@@ -1,0 +1,7 @@
+require 'line/bot/message/content_type'
+require 'line/bot/message/text'
+require 'line/bot/message/image'
+require 'line/bot/message/video'
+require 'line/bot/message/audio'
+require 'line/bot/message/location'
+require 'line/bot/message/sticker'
