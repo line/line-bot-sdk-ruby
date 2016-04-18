@@ -170,6 +170,9 @@ describe Line::Bot::Receive do
     content = message.content
     expect(content).to be_a(Line::Bot::Message::Text)
 
+    expect(message.created_time.to_i).to eq 1332394961
+    expect(message.created_time.usec).to eq 610
+
     expect(content[:text]).to eq "hello"
   end
 
@@ -180,6 +183,9 @@ describe Line::Bot::Receive do
     message = request.data.first
     expect(message).to be_a(Line::Bot::Receive::Message)
     expect(message.id).to eq "325708"
+
+    expect(message.created_time.to_i).to eq 1332394961
+    expect(message.created_time.usec).to eq 610
 
     content = message.content
     expect(content).to be_a(Line::Bot::Message::Image)
@@ -192,6 +198,9 @@ describe Line::Bot::Receive do
     message = request.data.first
     expect(message).to be_a(Line::Bot::Receive::Message)
     expect(message.id).to eq "325708"
+
+    expect(message.created_time.to_i).to eq 1332394961
+    expect(message.created_time.usec).to eq 610
 
     content = message.content
     expect(content).to be_a(Line::Bot::Message::Location)
@@ -209,6 +218,9 @@ describe Line::Bot::Receive do
     message = request.data.first
     expect(message).to be_a(Line::Bot::Receive::Message)
     expect(message.id).to eq "325708"
+
+    expect(message.created_time.to_i).to eq 1332394961
+    expect(message.created_time.usec).to eq 610
 
     content = message.content
     expect(content).to be_a(Line::Bot::Message::Sticker)
