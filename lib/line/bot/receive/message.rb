@@ -14,8 +14,8 @@ module Line
 
           @event_type = env['eventType']
 
-          (epoch, ms) = env['createdTime'].to_i.divmod(1000)
-          @created_time = Time.at(epoch, ms)
+          (time, usec) = env['content']['createdTime'].to_i.divmod(1000)
+          @created_time = Time.at(time, usec)
 
           @content = create_content(env['content'])
         end
