@@ -16,7 +16,7 @@ end
 post '/callback' do
   signature = request.env['HTTP_X_LINE_CHANNELSIGNATURE']
   unless client.validate_signature(request.body.read, signature)
-    return "NO"
+    error 400 do 'Bad Request' end
   end
 
   request = Line::Bot::Receive::Request.new(request.env)

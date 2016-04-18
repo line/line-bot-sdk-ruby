@@ -1,6 +1,6 @@
-# LINE::Bot::API
+# Line::Bot::API
 
-LINE::Bot::API - SDK of the LINE BOT API Trial for Ruby
+Line::Bot::API - SDK of the LINE BOT API Trial for Ruby
 
 [![Gem-version](https://img.shields.io/gem/v/line-bot-api.svg)](https://rubygems.org/gems/) [![Build Status](https://travis-ci.org/line/line-bot-sdk-ruby.svg?branch=master)](https://travis-ci.org/line/line-bot-sdk-ruby)
 
