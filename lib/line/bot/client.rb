@@ -241,7 +241,26 @@ module Line
         hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, channel_secret, content)
         signature = Base64.strict_encode64(hash)
 
-        channel_signature == signature
+        variable_secure_compare(channel_signature, signature)
+      end
+
+      private
+      # Constant time string comparison.
+      #
+      # via timing attacks.
+      # reference: https://github.com/rails/rails/blob/master/activesupport/lib/active_support/security_utils.rb
+      def variable_secure_compare(a, b)
+        secure_compare(::Digest::SHA256.hexdigest(a), ::Digest::SHA256.hexdigest(b))
+      end
+
+      def secure_compare(a, b)
+        return false unless a.bytesize == b.bytesize
+
+        l = a.unpack "C#{a.bytesize}"
+
+        res = 0
+        b.each_byte { |byte| res |= byte ^ l.shift }
+        res == 0
       end
     end
 
