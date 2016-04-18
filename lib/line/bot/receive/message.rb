@@ -2,7 +2,7 @@ module Line
   module Bot
     module Receive
       class Message
-        attr_reader :id, :from_mid, :to_mid, :from_channel_id, :to_channel_id, :event_type, :content
+        attr_reader :id, :from_mid, :to_mid, :from_channel_id, :to_channel_id, :event_type, :created_time, :content
 
         def initialize(env)
           @id = env['content']['id']
@@ -13,6 +13,10 @@ module Line
           @to_channel_id = env['toChannel']
 
           @event_type = env['eventType']
+
+          (time, usec) = env['content']['createdTime'].to_i.divmod(1000)
+          @created_time = Time.at(time, usec)
+
           @content = create_content(env['content'])
         end
 
