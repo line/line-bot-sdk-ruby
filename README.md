@@ -219,8 +219,7 @@ Get the preview image file which was sent by user.
 ```
 user_profile = client.get_user_profile("1234567")
 user_profile #=> [Line::Bot::Response::User::Profile]
-contacts = user_profile.contacts
-contacts #=> [Array] Line::Bot::Response::User::Contacts
+user_profile.contacts #=> [Array] Line::Bot::Response::User::Contact
 ```
 
 ## License
