@@ -188,7 +188,7 @@ end
 request_from_rack = Rack::Request.new( .. )
 
 request = Line::Bot::Receive::Request.new(request_from_rack.env)
-request.data #=> [Array] Line::Bot::Receive::Message || Line::Bot::Receive::Operation
+request.data #=> [Array<Line::Bot::Receive::Message || Line::Bot::Receive::Operation>]
 
 request.data.each { |message|
   case message.content
@@ -219,7 +219,7 @@ Get the preview image file which was sent by user.
 ```
 user_profile = client.get_user_profile("1234567")
 user_profile #=> [Line::Bot::Response::User::Profile]
-user_profile.contacts #=> [Array] Line::Bot::Response::User::Contact
+user_profile.contacts #=> [Array<Line::Bot::Response::User::Contact>]
 ```
 
 ## License
