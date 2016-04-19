@@ -33,6 +33,15 @@ post '/callback' do
       when Line::Bot::Message::Image, Line::Bot::Message::Video
       end
     when Line::Bot::Receive::Operation
+      case message.content
+      when Line::Bot::Operation::AddFriend
+        client.send_sticker(
+          to_mid: message.from_mid,
+          stkpkgid: 2,
+          stkid: 144,
+          stkver: 100
+        )
+      end
     end
   }
 
