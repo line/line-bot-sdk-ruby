@@ -7,9 +7,9 @@ module Line
         attr_reader :id, :from_mid, :to_mid, :from_channel_id, :to_channel_id, :event_type, :content
 
         def initialize(env)
-          @id = env['content']['id']
-          @from_mid = env['content']['from']
-          @to_mid = env['content']['to']
+          @id = env['id']
+          @from_mid = env['content']['params'].first
+          @to_mid = env['to']
 
           @from_channel_id = env['fromChannel']
           @to_channel_id = env['toChannel']
