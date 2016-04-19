@@ -9,11 +9,12 @@ require 'net/http'
 module Line
   module Bot
     class Client
+
+      #  @return [String]
       attr_accessor :channel_id, :channel_secret, :channel_mid
 
-      # Initializes a new Bot Client
+      # Initialize a new Bot Client.
       #
-      # @param options [Hash]
       # @return [LINE::Bot::Client]
       def initialize
         yield(self) if block_given?
@@ -32,11 +33,12 @@ module Line
         credentials.values.all?
       end
 
-      # Sends text to users
+      # Send text to users.
       #
       # @param attrs [Hash]
-      # @param attrs [:to_mid] [String or Array] User's indentifiers
-      # @param attrs [:text] [String]
+      #   @param to_mid [String or Array] User's identifiers
+      #   @param text [String]
+      #
       # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :text keys.
       #
       # @return [Net::HTTPResponse]
@@ -47,12 +49,13 @@ module Line
         send_message(attrs[:to_mid], message)
       end
 
-      # Sends image to users
+      # Send image to users.
       #
       # @param attrs [Hash]
-      # @param attrs [:to_mid] [String or Array] User's indentifiers
-      # @param attrs [:image_url] [String] Image file's url
-      # @param attrs [:preview_url] [String] Preview image file's url
+      #   @param to_mid [String or Array] User's identifiers
+      #   @param image_url [String] Image file's url
+      #   @param preview_url [String] Preview image file's url
+      #
       # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :image_url, :preview_url keys.
       #
       # @return [Net::HTTPResponse]
@@ -64,12 +67,13 @@ module Line
         send_message(attrs[:to_mid], message)
       end
 
-      # Sends video to users
+      # Send video to users.
       #
       # @param attrs [Hash]
-      # @param attrs [:to_mid] [String or Array] User's indentifiers
-      # @param attrs [:video_url] [String] Video file's url
-      # @param attrs [:preview_url] [String] Preview image file's url
+      #   @param to_mid [String or Array] User's identifiers
+      #   @param video_url [String] Video file's url
+      #   @param preview_url [String] Preview image file's url
+      #
       # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :video_url, :preview_url keys.
       #
       # @return [Net::HTTPResponse]
@@ -81,12 +85,13 @@ module Line
         send_message(attrs[:to_mid], message)
       end
 
-      # Sends audio to users
+      # Send audio to users.
       #
       # @param attrs [Hash]
-      # @param attrs [:to_mid] [String or Array] User's indentifiers
-      # @param attrs [:audio_url] [String] Audio file's url
-      # @param attrs [:duration] [String or Integer] Voice message's length, milliseconds
+      #   @param to_mid [String or Array] User's identifiers
+      #   @param audio_url [String] Audio file's url
+      #   @param duration [String or Integer] Voice message's length, milliseconds
+      #
       # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :audio_url, :duration keys.
       #
       # @return [Net::HTTPResponse]
@@ -98,14 +103,15 @@ module Line
         send_message(attrs[:to_mid], message)
       end
 
-      # Sends location to users
+      # Send location to users.
       #
       # @param attrs [Hash]
-      # @param attrs [:to_mid] [String or Array] User's indentifiers
-      # @param attrs [:title] [String] Location's title
-      # @param attrs [:address] [String] Location's address
-      # @param attrs [:latitude] [Float] Location's latitude
-      # @param attrs [:longitude] [Float] Location's longitude
+      #   @param to_mid [String or Array] User's identifiers
+      #   @param title [String] Location's title
+      #   @param address [String] Location's address
+      #   @param latitude [Float] Location's latitude
+      #   @param longitude [Float] Location's longitude
+      #
       # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :title, :latitude, :longitude keys.
       #
       # @return [Net::HTTPResponse]
@@ -119,13 +125,14 @@ module Line
         send_message(attrs[:to_mid], message)
       end
 
-      # Sends sticker to users
+      # Send sticker to users.
       #
       # @param attrs [Hash]
-      # @param attrs [:to_mid] [String or Array] User's indentifiers
-      # @param attrs [:stkpkgid] [String or Integer] Sticker's package identifier
-      # @param attrs [:stkid] [String or Integer] Sticker's identifier
-      # @param attrs [:stkver] [String or Integer] Sticker's version number
+      #   @param to_mid [String or Array] User's identifiers
+      #   @param stkpkgid [String or Integer] Sticker's package identifier
+      #   @param stkid [String or Integer] Sticker's identifier
+      #   @param stkver [String or Integer] Sticker's version number
+      #
       # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :stkpkgid, :stkid, :stkver keys.
       #
       # @return [Net::HTTPResponse]
@@ -138,10 +145,11 @@ module Line
         send_message(attrs[:to_mid], message)
       end
 
-      # Sends message to line server and to users
+      # Send message to line server and to users.
       #
-      # @param attrs [:to_mid] [String or Array] User's indentifiers
+      # @param to_mid [String or Array] User's identifiers
       # @param message [Line::Bot::Message]
+      #
       # @raise [ArgumentError] Error raised when supplied argument are missing message.
       #
       # @return [Net::HTTPResponse]
@@ -158,7 +166,7 @@ module Line
         request.post
       end
 
-      # Gets message content
+      # Get message content.
       #
       # @param identifer [String] Message's identifier
       #
@@ -170,7 +178,7 @@ module Line
         get(endpoint_path)
       end
 
-      # Gets preview of message content
+      # Get preview of message content.
       #
       # @param identifer [String] Message's identifier
       #
@@ -182,9 +190,9 @@ module Line
         get(endpoint_path)
       end
 
-      # Gets user profile
+      # Get user profile.
       #
-      # @param attrs [:to_mid] [String or Array] User's indentifiers
+      # @param mids [String or Array] User's identifiers
       #
       # @raise [ArgumentError] Error raised when supplied argument are missing message.
       # @raise [HTTPError]
@@ -199,7 +207,7 @@ module Line
         Line::Bot::Response::User::Profile.new(response) if !response.value
       end
 
-      # Fetches data
+      # Fetch data, get content of specified URL.
       #
       # @param endpoint_path [String]
       #
@@ -215,21 +223,21 @@ module Line
         request.get
       end
 
-      # Creates rich message to line server and to users
+      # Create rich message to line server and to users.
       #
       # @return [Line::Bot::Builder::RichMessage]
       def rich_message
         Line::Bot::Builder::RichMessage.new(self)
       end
 
-      # Creates multiple message to line server and to users
+      # Create multiple message to line server and to users.
       #
       # @return [Line::Bot::Builder::MultipleMessage]
       def multiple_message
         Line::Bot::Builder::MultipleMessage.new(self)
       end
 
-      # Validates signature
+      # Validate signature
       #
       # @param content [String] Request's body
       # @param channel_signature [String] Request'header 'X-LINE-ChannelSignature' # HTTP_X_LINE_CHANNELSIGNATURE
@@ -244,15 +252,17 @@ module Line
         variable_secure_compare(channel_signature, signature)
       end
 
-      private
+    private
       # Constant time string comparison.
       #
       # via timing attacks.
       # reference: https://github.com/rails/rails/blob/master/activesupport/lib/active_support/security_utils.rb
+      # @return [Boolean]
       def variable_secure_compare(a, b)
         secure_compare(::Digest::SHA256.hexdigest(a), ::Digest::SHA256.hexdigest(b))
       end
 
+      # @return [Boolean]
       def secure_compare(a, b)
         return false unless a.bytesize == b.bytesize
 
