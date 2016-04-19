@@ -94,4 +94,12 @@ describe "Line::Bot Get" do
     expect(contacts[1].status_message).to eq "Hello, LINE+!"
   end
 
+  it 'gets user profile information' do
+    client = generate_client
+
+    expect {
+      client.get_user_profile(nil)
+    }.to raise_error(ArgumentError)
+  end
+
 end

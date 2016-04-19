@@ -79,6 +79,24 @@ describe Line::Bot do
     }.to raise_error(Line::Bot::API::InvalidCredentialsError)
   end
 
+  it 'sends text message when to_mid is wrong value' do
+    client = generate_client
+
+    to_mid = nil
+    text   = "text"
+
+    expect {
+      client.send_text(to_mid: nil, text: "text")
+    }.to raise_error(ArgumentError)
+
+    expect {
+      client.send_text(to_mid: [], text: "text")
+    }.to raise_error(ArgumentError)
+
+    expect {
+      client.send_text(to_mid: {}, text: "text")
+    }.to raise_error(ArgumentError)
+  end
 
   it 'sends image message' do
     client = generate_client

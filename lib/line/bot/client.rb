@@ -199,6 +199,8 @@ module Line
       #
       # @return [Line::Bot::Response::User::Profile]
       def get_user_profile(mids)
+        raise ArgumentError, 'Invalid arguments, mids' unless mids.instance_of?(String) || mids.instance_of?(Array)
+
         mids = mids.instance_of?(String) ? [mids] : mids
         endpoint_path  = "/v1/profiles?mids=#{mids.join(',')}"
 
