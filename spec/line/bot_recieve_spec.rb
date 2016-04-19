@@ -237,6 +237,11 @@ describe Line::Bot::Receive do
     operation = request.data.first
     expect(operation).to be_a(Line::Bot::Receive::Operation)
 
+    expect(operation.from_mid).to eq "u0f3bfc598b061eba02183bfc5280886a"
+    expect(operation.to_mid).to eq ["u0cc15697597f61dd8b01cea8b027050e"]
+    expect(operation.from_channel_id).to eq "1341301815"
+    expect(operation.to_channel_id).to eq "1441301333"
+
     content = operation.content
     expect(content).to be_a(Line::Bot::Operation::AddFriend)
 
