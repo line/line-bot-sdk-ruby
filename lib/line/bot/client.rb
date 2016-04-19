@@ -15,8 +15,13 @@ module Line
 
       # Initialize a new Bot Client.
       #
+      # @param options [Hash]
+      #
       # @return [LINE::Bot::Client]
-      def initialize
+      def initialize(options = {})
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
         yield(self) if block_given?
       end
 
