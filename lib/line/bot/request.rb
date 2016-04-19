@@ -24,6 +24,8 @@ module Line
 
       # @return [Array]
       def to
+        raise ArgumentError, 'Invalid arguments, to_mid' unless to_mid.instance_of?(String) || to_mid.instance_of?(Array)
+
         to_mid.instance_of?(String) ? [to_mid] : to_mid
       end
 
