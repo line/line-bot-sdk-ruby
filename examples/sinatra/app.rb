@@ -22,17 +22,21 @@ post '/callback' do
   request = Line::Bot::Receive::Request.new(request.env)
 
   request.data.each { |message|
-    case message
-    when Line::Bot::Receive::Message
-      case message.content
-      when Line::Bot::Message::Text
-        result = client.send_text(
-          to_mid: message.from_mid,
-          text: message.content[:text],
-        )
-      when Line::Bot::Message::Image, Line::Bot::Message::Video
-      end
-    when Line::Bot::Receive::Operation
+    case message.content
+    # Line::Bot::Receive::Message
+    when Line::Bot::Message::Text
+      client.send_text(
+        to_mid: message.from_mid,
+        text: message.content[:text],
+      )
+    # Line::Bot::Receive::Operation
+    when Line::Bot::Operation::AddFriend
+      client.send_sticker(
+        to_mid: message.from_mid,
+        stkpkgid: 2,
+        stkid: 144,
+        stkver: 100
+      )
     end
   }
 
