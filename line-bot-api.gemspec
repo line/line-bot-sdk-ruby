@@ -6,7 +6,7 @@ require 'line/bot/api/version'
 Gem::Specification.new do |spec|
   spec.name          = "line-bot-api"
   spec.version       = Line::Bot::API::VERSION
-  spec.authors       = ["LINE Corporation", "Hirohisa Kawasaki"]
+  spec.authors       = ["LINE Corporation"]
   spec.email         = ["hirohisa.kawasaki@gmail.com"]
 
   spec.description   = "Line::Bot::API - SDK of the LINE BOT API"
@@ -20,10 +20,11 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version     = '>= 2.0.0'
 
-  spec.add_dependency 'rack', '~> 1.6.4'
+  spec.add_dependency 'rack', '~> 1.6'
 
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "webmock", "~> 1.24"
+  spec.add_development_dependency "addressable", ">= 2.3.6"
   spec.add_development_dependency "rspec", "~> 3.0"
 end
