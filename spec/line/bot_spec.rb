@@ -56,6 +56,23 @@ describe Line::Bot do
     expect(credentials['X-Line-Trusted-User-With-ACL']).to be channel_mid
   end
 
+  it 'creates client with arguments and checks credentials' do
+    channel_id = dummy_config[:channel_id]
+    channel_secret = dummy_config[:channel_secret]
+    channel_mid = dummy_config[:channel_mid]
+    client = Line::Bot::Client.new(
+      channel_id: channel_id,
+      channel_secret: channel_secret,
+      channel_mid: channel_mid,
+    )
+
+    credentials = client.credentials
+    expect(credentials['X-Line-ChannelID']).to be channel_id
+    expect(credentials['X-Line-ChannelSecret']).to be channel_secret
+    expect(credentials['X-Line-Trusted-User-With-ACL']).to be channel_mid
+  end
+
+
   it 'sends text message' do
     client = generate_client
 
