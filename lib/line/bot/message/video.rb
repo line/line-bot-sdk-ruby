@@ -8,7 +8,7 @@ module Line
         def content
           {
             contentType: ContentType::VIDEO,
-            toType: 1,
+            toType: recipient_type,
             originalContentUrl: attrs[:video_url],
             previewImageUrl: attrs[:preview_url],
           }

@@ -8,7 +8,7 @@ module Line
         def content
           {
             contentType: ContentType::IMAGE,
-            toType: 1,
+            toType: recipient_type,
             originalContentUrl: attrs[:image_url],
             previewImageUrl: attrs[:preview_url],
           }

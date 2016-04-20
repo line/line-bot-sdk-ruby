@@ -8,7 +8,7 @@ module Line
         def content
           {
             contentType: ContentType::STICKER,
-            toType: 1,
+            toType: recipient_type,
             contentMetadata: {
               STKPKGID: attrs[:stkpkgid].to_s,
               STKID: attrs[:stkid].to_s,

@@ -8,7 +8,7 @@ module Line
         def content
           {
             contentType: ContentType::AUDIO,
-            toType: 1,
+            toType: recipient_type,
             originalContentUrl: attrs[:audio_url],
             contentMetadata: {
               AUDLEN: attrs[:duration].to_s,
