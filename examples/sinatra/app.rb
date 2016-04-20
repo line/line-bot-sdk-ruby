@@ -30,7 +30,7 @@ post '/callback' do
         text: message.content[:text],
       )
     # Line::Bot::Receive::Operation
-    when Line::Bot::Operation::AddFriend
+    when Line::Bot::Operation::AddedAsFriend
       client.send_sticker(
         to_mid: message.from_mid,
         stkpkgid: 2,
