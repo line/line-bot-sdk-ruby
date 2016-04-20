@@ -20,14 +20,14 @@ module Line
 
         def create_content(attrs)
           case attrs['opType']
-          when Line::Bot::Operation::OpType::ADD_FRIEND
-            return Line::Bot::Operation::AddFriend.new(
+          when Line::Bot::Operation::OpType::ADDED_AS_FRIEND
+            return Line::Bot::Operation::AddedAsFriend.new(
               revision: attrs['revision'],
               op_type: attrs['opType'],
               params: attrs['params'],
             )
-          when Line::Bot::Operation::OpType::BLOCK_ACCOUNT
-            return Line::Bot::Operation::BlockAccount.new(
+          when Line::Bot::Operation::OpType::BLOCKED_ACCOUNT
+            return Line::Bot::Operation::BlockedAccount.new(
               revision: attrs['revision'],
               op_type: attrs['opType'],
               params: attrs['params'],

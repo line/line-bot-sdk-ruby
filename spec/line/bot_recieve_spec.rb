@@ -243,9 +243,9 @@ describe Line::Bot::Receive do
     expect(operation.to_channel_id).to eq "1441301333"
 
     content = operation.content
-    expect(content).to be_a(Line::Bot::Operation::AddFriend)
+    expect(content).to be_a(Line::Bot::Operation::AddedAsFriend)
 
     expect(content[:params]).to eq ["u0f3bfc598b061eba02183bfc5280886a", nil, nil]
-    expect(content[:op_type]).to eq Line::Bot::Operation::OpType::ADD_FRIEND
+    expect(content[:op_type]).to eq Line::Bot::Operation::OpType::ADDED_AS_FRIEND
   end
 end
