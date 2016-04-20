@@ -6,7 +6,7 @@ module Line
     module Builder
       class RichMessage
 
-        def initialize client
+        def initialize(client)
           @actions ||= {}
           @listeners ||= []
           @client = client
