@@ -105,6 +105,7 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::TEXT
     expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['text']).to eq text
@@ -149,6 +150,7 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::IMAGE
     expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['originalContentUrl']).to eq image_url
@@ -167,6 +169,7 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
 
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::VIDEO
     expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
@@ -186,6 +189,7 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
 
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::AUDIO
     expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
@@ -207,6 +211,7 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
 
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::LOCATION
     expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
@@ -229,6 +234,7 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::STICKER
     expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['contentMetadata']['STKPKGID']).to eq stkpkgid
@@ -264,6 +270,7 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::RICH_MESSAGE
     expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['contentMetadata']['DOWNLOAD_URL']).to eq 'https://example.com/image.jpeg'

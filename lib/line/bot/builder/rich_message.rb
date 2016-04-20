@@ -81,7 +81,7 @@ module Line
         end
 
         def event_type
-          138311608800106203
+          Line::Bot::EventType::MESSAGE
         end
 
         def content
