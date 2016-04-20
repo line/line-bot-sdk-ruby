@@ -6,7 +6,7 @@ require 'uri'
 module Line
   module Bot
     class Request
-      attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message
+      attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message, :to_channel_id
 
       # Initializes a new Request
       #
@@ -26,10 +26,6 @@ module Line
         https
       end
 
-      def endpoint
-        @endpoint ||= Line::Bot::API::DEFAULT_ENDPOINT
-      end
-
       # @return [Array]
       def to
         raise ArgumentError, 'Invalid arguments, to_mid' unless to_mid.instance_of?(String) || to_mid.instance_of?(Array)
@@ -46,7 +42,7 @@ module Line
       def payload
         payload = {
           to: to,
-          toChannel: 1383378250, # Fixed  value
+          toChannel: to_channel_id,
           eventType: message.event_type.to_s,
           content: content
         }

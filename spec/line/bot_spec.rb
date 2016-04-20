@@ -105,7 +105,9 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::TEXT
+    expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['text']).to eq text
   end
 
@@ -148,7 +150,9 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::IMAGE
+    expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['originalContentUrl']).to eq image_url
     expect(body['content']['previewImageUrl']).to eq preview_url
   end
@@ -165,8 +169,10 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
 
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::VIDEO
+    expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['originalContentUrl']).to eq video_url
     expect(body['content']['previewImageUrl']).to eq preview_url
   end
@@ -183,8 +189,10 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
 
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::AUDIO
+    expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['originalContentUrl']).to eq audio_url
     expect(body['content']['contentMetadata']['AUDLEN']).to eq duration.to_s
   end
@@ -203,8 +211,10 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
 
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::LOCATION
+    expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['text']).to eq address
     expect(body['content']['location']['title']).to eq title
     expect(body['content']['location']['latitude']).to eq latitude
@@ -224,7 +234,9 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::STICKER
+    expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['contentMetadata']['STKPKGID']).to eq stkpkgid
     expect(body['content']['contentMetadata']['STKID']).to eq stkid
     expect(body['content']['contentMetadata']['STKVER']).to eq stkver
@@ -258,7 +270,9 @@ describe Line::Bot do
     body = JSON.parse(result.body)
 
     expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
     expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::RICH_MESSAGE
+    expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['contentMetadata']['DOWNLOAD_URL']).to eq 'https://example.com/image.jpeg'
     expect(body['content']['contentMetadata']['ALT_TEXT']).to eq alt_text
 
@@ -327,25 +341,30 @@ describe Line::Bot do
 
     # Text
     expect(body['content']['messages'][0]['contentType']).to eq Line::Bot::Message::ContentType::TEXT
+    expect(body['content']['messages'][0]['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['messages'][0]['text']).to eq text
 
     # Image
     expect(body['content']['messages'][1]['contentType']).to eq Line::Bot::Message::ContentType::IMAGE
+    expect(body['content']['messages'][1]['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['messages'][1]['originalContentUrl']).to eq image_url
     expect(body['content']['messages'][1]['previewImageUrl']).to eq preview_url
 
     # Video
     expect(body['content']['messages'][2]['contentType']).to eq Line::Bot::Message::ContentType::VIDEO
+    expect(body['content']['messages'][2]['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['messages'][2]['originalContentUrl']).to eq video_url
     expect(body['content']['messages'][2]['previewImageUrl']).to eq preview_url
 
     # Audio
     expect(body['content']['messages'][3]['contentType']).to eq Line::Bot::Message::ContentType::AUDIO
+    expect(body['content']['messages'][3]['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['messages'][3]['originalContentUrl']).to eq audio_url
     expect(body['content']['messages'][3]['contentMetadata']['AUDLEN']).to eq duration.to_s
 
     # Location
     expect(body['content']['messages'][4]['contentType']).to eq Line::Bot::Message::ContentType::LOCATION
+    expect(body['content']['messages'][4]['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['messages'][4]['text']).to eq location_title
     expect(body['content']['messages'][4]['location']['title']).to eq location_title
     expect(body['content']['messages'][4]['location']['latitude']).to eq latitude
@@ -353,6 +372,7 @@ describe Line::Bot do
 
     # Sticker
     expect(body['content']['messages'][5]['contentType']).to eq Line::Bot::Message::ContentType::STICKER
+    expect(body['content']['messages'][5]['toType']).to eq Line::Bot::Message::RecipientType::USER
     expect(body['content']['messages'][5]['contentMetadata']['STKPKGID'].to_i).to eq stkpkgid
     expect(body['content']['messages'][5]['contentMetadata']['STKID'].to_i).to eq stkid
     expect(body['content']['messages'][5]['contentMetadata']['STKVER'].to_i).to eq stkver

@@ -8,7 +8,7 @@ module Line
         def content
           {
             contentType: ContentType::TEXT,
-            toType: 1,
+            toType: recipient_type,
             text: attrs[:text]
           }
         end

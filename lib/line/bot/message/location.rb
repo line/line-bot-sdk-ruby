@@ -8,7 +8,7 @@ module Line
         def content
           {
             contentType: ContentType::LOCATION,
-            toType: 1,
+            toType: recipient_type,
             text: attrs[:address] || attrs[:title],
             location: {
               title: attrs[:title],

@@ -1,11 +1,17 @@
+require 'line/bot/message/recipient_type'
+
 module Line
   module Bot
     module Message
       class Base
-        attr_reader :attrs
+        attr_reader :attrs, :recipient_type
 
         def initialize(attrs = {})
           @attrs = attrs
+        end
+
+        def recipient_type
+          @attrs[:recipient_type] ||= Line::Bot::Message::RecipientType::USER
         end
 
         def [](key)
@@ -13,7 +19,7 @@ module Line
         end
 
         def event_type
-          138311608800106203
+          Line::Bot::EventType::MESSAGE
         end
 
         def content
