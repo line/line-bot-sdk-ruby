@@ -1,7 +1,8 @@
 module Line
   module Bot
     module API
-      class InvalidCredentialsError < StandardError; end
+      class Error < StandardError; end
+      class InvalidCredentialsError < Error; end
     end
   end
 end
