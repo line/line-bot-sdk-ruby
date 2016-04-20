@@ -4,20 +4,20 @@ module Line
       class Message
         attr_reader :id, :from_mid, :to_mid, :from_channel_id, :to_channel_id, :event_type, :created_time, :content
 
-        def initialize(env)
-          @id = env['content']['id']
-          @from_mid = env['content']['from']
-          @to_mid = env['content']['to']
+        def initialize(attrs)
+          @id = attrs['content']['id']
+          @from_mid = attrs['content']['from']
+          @to_mid = attrs['content']['to']
 
-          @from_channel_id = env['fromChannel']
-          @to_channel_id = env['toChannel']
+          @from_channel_id = attrs['fromChannel']
+          @to_channel_id = attrs['toChannel']
 
-          @event_type = env['eventType']
+          @event_type = attrs['eventType']
 
-          (time, usec) = env['content']['createdTime'].to_i.divmod(1000)
+          (time, usec) = attrs['content']['createdTime'].to_i.divmod(1000)
           @created_time = Time.at(time, usec)
 
-          @content = create_content(env['content'])
+          @content = create_content(attrs['content'])
         end
 
         def create_content(attrs)

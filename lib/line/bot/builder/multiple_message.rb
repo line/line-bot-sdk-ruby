@@ -5,7 +5,7 @@ module Line
     module Builder
       class MultipleMessage
 
-        def initialize client
+        def initialize(client)
           @messages ||= []
           @client = client
         end
