@@ -6,16 +6,16 @@ module Line
       class Operation
         attr_reader :id, :from_mid, :to_mid, :from_channel_id, :to_channel_id, :event_type, :content
 
-        def initialize(env)
-          @id = env['id']
-          @from_mid = env['content']['params'].first
-          @to_mid = env['to']
+        def initialize(attrs)
+          @id = attrs['id']
+          @from_mid = attrs['content']['params'].first
+          @to_mid = attrs['to']
 
-          @from_channel_id = env['fromChannel']
-          @to_channel_id = env['toChannel']
+          @from_channel_id = attrs['fromChannel']
+          @to_channel_id = attrs['toChannel']
 
-          @event_type = env['eventType']
-          @content = create_content(env['content'])
+          @event_type = attrs['eventType']
+          @content = create_content(attrs['content'])
         end
 
         def create_content(attrs)
