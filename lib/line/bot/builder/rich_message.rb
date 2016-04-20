@@ -112,8 +112,8 @@ module Line
               image1: {
                 x: 0,
                 y: 0,
-                width: 1040, # Integer fixed value: 1040
-                height: height
+                w: 1040, # Integer fixed value: 1040
+                h: height
               },
             },
             actions: @actions,
@@ -123,8 +123,8 @@ module Line
                   image: 'image1', # Use the image ID "image1".
                   x: 0,
                   y: 0,
-                  width: 1040, # Integer fixed value: 1040
-                  height: height
+                  w: 1040, # Integer fixed value: 1040
+                  h: height
                 },
                 listeners: @listeners
               }
