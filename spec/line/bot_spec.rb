@@ -72,6 +72,27 @@ describe Line::Bot do
     expect(credentials['X-Line-Trusted-User-With-ACL']).to be channel_mid
   end
 
+  it 'creates client and change endpoint' do
+    endpoint = 'https://developer.line.me:443'
+    endpoint_path = '/v1/events'
+
+    uri_template = Addressable::Template.new endpoint + endpoint_path
+    stub_request(:post, uri_template).to_return { |request| {:body => request.uri.to_s, :status => 200} }
+
+    channel_id = dummy_config[:channel_id]
+    channel_secret = dummy_config[:channel_secret]
+    channel_mid = dummy_config[:channel_mid]
+    client = Line::Bot::Client.new do |config|
+      config.endpoint   = endpoint
+      config.channel_id = channel_id
+      config.channel_secret = channel_secret
+      config.channel_mid = channel_mid
+    end
+
+    result = client.send_text(to_mid: "1", text: "text")
+
+    expect(result.body).to eq endpoint + endpoint_path
+  end
 
   it 'sends text message' do
     client = generate_client

@@ -1,5 +1,6 @@
 require 'line/bot/client'
 require 'line/bot/api/errors'
+require 'line/bot/api'
 require 'line/bot/event_type'
 require 'line/bot/message'
 require 'line/bot/operation'

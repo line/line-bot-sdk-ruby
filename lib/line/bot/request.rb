@@ -1,25 +1,33 @@
 require 'line/bot/api/version'
 require 'json'
 require 'net/http'
+require 'uri'
 
 module Line
   module Bot
     class Request
-      attr_accessor :endpoint_path, :credentials, :to_mid, :message
+      attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message
 
       # Initializes a new Request
       #
-      # @return [LINE::Bot::Client]
+      # @return [LINE::Bot::Request]
       def initialize
         yield(self) if block_given?
       end
 
       # @return [Net::HTTP]
       def https
-        https = Net::HTTP.new('trialbot-api.line.me', 443)
-        https.use_ssl = true
+        uri = URI(endpoint)
+        https = Net::HTTP.new(uri.host, uri.port)
+        if uri.scheme == "https"
+          https.use_ssl = true
+        end
 
         https
+      end
+
+      def endpoint
+        @endpoint ||= Line::Bot::API::DEFAULT_ENDPOINT
       end
 
       # @return [Array]
