@@ -173,25 +173,25 @@ module Line
 
       # Get message content.
       #
-      # @param identifer [String] Message's identifier
+      # @param identifier [String] Message's identifier
       #
       # @raise [ArgumentError] Error raised when supplied argument are missing message.
       #
       # @return [Net::HTTPResponse]
-      def get_message_content(identifer)
-        endpoint_path  = "/v1/bot/message/#{identifer}/content"
+      def get_message_content(identifier)
+        endpoint_path  = "/v1/bot/message/#{identifier}/content"
         get(endpoint_path)
       end
 
       # Get preview of message content.
       #
-      # @param identifer [String] Message's identifier
+      # @param identifier [String] Message's identifier
       #
       # @raise [ArgumentError] Error raised when supplied argument are missing message.
       #
       # @return [Net::HTTPResponse]
-      def get_message_content_preview(identifer)
-        endpoint_path  = "/v1/bot/message/#{identifer}/content/preview"
+      def get_message_content_preview(identifier)
+        endpoint_path  = "/v1/bot/message/#{identifier}/content/preview"
         get(endpoint_path)
       end
 

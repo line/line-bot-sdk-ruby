@@ -51,7 +51,7 @@ describe "Line::Bot Get" do
   end
 
   it 'gets message content' do
-    uri_template = Addressable::Template.new 'https://trialbot-api.line.me/v1/bot/message/{identifer}/content'
+    uri_template = Addressable::Template.new 'https://trialbot-api.line.me/v1/bot/message/{identifier}/content'
     stub_request(:get, uri_template).to_return { |request| {:body => request.body, :status => 200} }
 
     client = generate_client
@@ -61,7 +61,7 @@ describe "Line::Bot Get" do
   end
 
   it 'gets preview of message content' do
-    uri_template = Addressable::Template.new 'https://trialbot-api.line.me/v1/bot/message/{identifer}/content/preview'
+    uri_template = Addressable::Template.new 'https://trialbot-api.line.me/v1/bot/message/{identifier}/content/preview'
     stub_request(:get, uri_template).to_return { |request| {:body => request.body, :status => 200} }
 
     client = generate_client
