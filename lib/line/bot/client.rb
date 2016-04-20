@@ -11,7 +11,7 @@ module Line
     class Client
 
       #  @return [String]
-      attr_accessor :channel_id, :channel_secret, :channel_mid
+      attr_accessor :channel_id, :channel_secret, :channel_mid, :endpoint
 
       # Initialize a new Bot Client.
       #
@@ -23,6 +23,10 @@ module Line
           instance_variable_set("@#{key}", value)
         end
         yield(self) if block_given?
+      end
+
+      def endpoint
+        @endpoint ||= Line::Bot::API::DEFAULT_ENDPOINT
       end
 
       # @return [Hash]
@@ -162,6 +166,7 @@ module Line
         raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
 
         request = Request.new do |config|
+          config.endpoint       = endpoint
           config.endpoint_path  = '/v1/events'
           config.credentials    = credentials
           config.to_mid         = to_mid
@@ -223,6 +228,7 @@ module Line
         raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
 
         request = Request.new do |config|
+          config.endpoint       = endpoint
           config.endpoint_path  = endpoint_path
           config.credentials    = credentials
         end
