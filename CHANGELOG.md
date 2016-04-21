@@ -1,3 +1,9 @@
+0.1.3
+-----
+* [Allow to set endpoint](https://github.com/line/line-bot-sdk-ruby/pull/15)
+* [Rename operations](https://github.com/line/line-bot-sdk-ruby/pull/14)
+* [Bugfix: faild when send rich message](https://github.com/line/line-bot-sdk-ruby/pull/11)
+
 0.1.2
 -----
 * [Add to use arguments in Line::Bot::Client#new](https://github.com/line/line-bot-sdk-ruby/pull/7)
