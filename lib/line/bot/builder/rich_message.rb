@@ -119,13 +119,15 @@ module Line
             actions: @actions,
             scenes: {
               scene1: {
-                draws: {
-                  image: 'image1', # Use the image ID "image1".
-                  x: 0,
-                  y: 0,
-                  w: 1040, # Integer fixed value: 1040
-                  h: height
-                },
+                draws: [
+                  {
+                    image: 'image1', # Use the image ID "image1".
+                    x: 0,
+                    y: 0,
+                    w: 1040, # Integer fixed value: 1040
+                    h: height
+                  },
+                ],
                 listeners: @listeners
               }
             }

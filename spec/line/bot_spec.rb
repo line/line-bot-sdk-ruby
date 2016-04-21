@@ -285,10 +285,10 @@ describe Line::Bot do
     expect(markup['actions']['MANGA']['text']).to eq 'manga'
     expect(markup['actions']['MANGA']['params']['linkUri']).to eq link_url
 
-    expect(markup['scenes']['scene1']['draws']['x']).to eq 0
-    expect(markup['scenes']['scene1']['draws']['y']).to eq 0
-    expect(markup['scenes']['scene1']['draws']['w']).to eq 1040
-    expect(markup['scenes']['scene1']['draws']['h']).to eq 520
+    expect(markup['scenes']['scene1']['draws'][0]['x']).to eq 0
+    expect(markup['scenes']['scene1']['draws'][0]['y']).to eq 0
+    expect(markup['scenes']['scene1']['draws'][0]['w']).to eq 1040
+    expect(markup['scenes']['scene1']['draws'][0]['h']).to eq 520
 
     expect(markup['scenes']['scene1']['listeners'][0]['action']).to eq 'MANGA'
     expect(markup['scenes']['scene1']['listeners'][0]['params']).to eq [0, 0, 520, 520]
