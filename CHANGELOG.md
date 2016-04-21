@@ -1,8 +1,8 @@
 0.1.3
 -----
-* [Allow to set endpoint](https://github.com/line/line-bot-sdk-ruby/pull/15)
+* [Allow to set endpoint](https://github.com/line/line-bot-sdk-ruby/pull/11)
 * [Rename operations](https://github.com/line/line-bot-sdk-ruby/pull/14)
-* [Bugfix: faild when send rich message](https://github.com/line/line-bot-sdk-ruby/pull/11)
+* [Bugfix: faild when send rich message](https://github.com/line/line-bot-sdk-ruby/pull/15)
 
 0.1.2
 -----
