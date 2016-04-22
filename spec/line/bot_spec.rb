@@ -242,7 +242,7 @@ describe Line::Bot do
     expect(body['content']['contentMetadata']['STKVER']).to eq stkver
   end
 
-  it 'cant sends contact message' do
+  it 'cant send a contact message' do
     client = generate_client
     to_mid = "1"
     expect {
