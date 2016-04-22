@@ -54,6 +54,11 @@ module Line
               stkid: attrs['contentMetadata']['STKID'],
               stkver: attrs['contentMetadata']['STKVER'],
             )
+          when Line::Bot::Message::ContentType::CONTACT
+            return Line::Bot::Message::Contact.new(
+              mid: attrs['contentMetadata']['mid'],
+              display_name: attrs['contentMetadata']['displayName'],
+            )
           else
           end
         end

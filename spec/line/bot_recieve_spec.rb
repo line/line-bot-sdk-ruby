@@ -109,6 +109,33 @@ STICKER_CONTENT = <<"EOS"
 }
 EOS
 
+CONTACT_CONTENT = <<"EOS"
+{
+  "result":[
+    {
+      "from":"u206d25c2ea6bd87c17655609a1c37cb8",
+      "fromChannel":"1341301815",
+      "to":["u0cc15697597f61dd8b01cea8b027050e"],
+      "toChannel":"1441301333",
+      "eventType":"138311609000106303",
+      "id":"ABCDEF-12345678901",
+      "content":{
+        "id":"325708",
+        "createdTime":1332394961610,
+        "from":"uff2aec188e58752ee1fb0f9507c6529a",
+        "to":["u0a556cffd4da0dd89c94fb36e36e1cdc"],
+        "toType":1,
+        "contentType":10,
+        "contentMetadata":{
+          "displayName":"hogefuga",
+          "mid":"uaaa000dddfffbbbcontactmid"
+        }
+      }
+    }
+  ]
+}
+EOS
+
 OPERATION_CONTENT = <<"EOS"
 {
   "result":[
@@ -228,6 +255,24 @@ describe Line::Bot::Receive do
     expect(content[:stkpkgid]).to eq "1"
     expect(content[:stkid]).to eq "2"
     expect(content[:stkver]).to eq "1"
+  end
+
+  it 'receives contact message' do
+    request = generate_request(CONTACT_CONTENT)
+    expect(request.data.size).to eq 1
+
+    message = request.data.first
+    expect(message).to be_a(Line::Bot::Receive::Message)
+    expect(message.id).to eq "325708"
+
+    expect(message.created_time.to_i).to eq 1332394961
+    expect(message.created_time.usec).to eq 610
+
+    content = message.content
+    expect(content).to be_a(Line::Bot::Message::Contact)
+
+    expect(content[:display_name]).to eq "hogefuga"
+    expect(content[:mid]).to eq "uaaa000dddfffbbbcontactmid"
   end
 
   it 'receives operation' do
