@@ -242,6 +242,14 @@ describe Line::Bot do
     expect(body['content']['contentMetadata']['STKVER']).to eq stkver
   end
 
+  it 'cant send a contact message' do
+    client = generate_client
+    to_mid = "1"
+    expect {
+      client.send_message(to_mid, Line::Bot::Message::Contact.new)
+    }.to raise_error(Line::Bot::API::NotSupportedError)
+  end
+
   it 'sends rich message' do
     client = generate_client
 
