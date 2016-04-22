@@ -1,3 +1,7 @@
+0.1.4
+-----
+* [Support Receive::Message::Contact](https://github.com/line/line-bot-sdk-ruby/pull/16)
+
 0.1.3
 -----
 * [Allow to set endpoint](https://github.com/line/line-bot-sdk-ruby/pull/11)
