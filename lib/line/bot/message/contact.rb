@@ -6,18 +6,11 @@ module Line
       class Contact < Line::Bot::Message::Base
 
         def content
-          {
-            contentType: ContentType::CONTACT,
-            toType: recipient_type,
-            contentMetadata: {
-              mid: attrs[:mid].to_s,
-              displayName: attrs[:display_name].to_s,
-            },
-          }
+          raise Line::Bot::API::NotSupportedError
         end
 
         def valid?
-          attrs[:mid] && attrs[:display_name]
+          raise Line::Bot::API::NotSupportedError
         end
       end
     end
