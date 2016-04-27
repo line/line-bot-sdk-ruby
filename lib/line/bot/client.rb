@@ -214,9 +214,12 @@ module Line
       #
       # @return [Line::Bot::Response::User::Profile]
       def get_user_profile(mids)
-        raise ArgumentError, 'Invalid arguments, mids' unless mids.instance_of?(String) || mids.instance_of?(Array)
+        raise ArgumentError, 'Wrong argument type `mids`' unless mids.instance_of?(String) || mids.instance_of?(Array)
 
         mids = mids.instance_of?(String) ? [mids] : mids
+
+        raise ArgumentError, 'Wrong argument type `mids`' unless mids.size > 0 && mids.reject {|item| item.instance_of?(String) }
+
         endpoint_path  = "/v1/profiles?mids=#{mids.join(',')}"
 
         response = get(endpoint_path)
