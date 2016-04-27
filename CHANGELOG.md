@@ -1,3 +1,7 @@
+0.1.5
+-----
+* [Update Exception](https://github.com/line/line-bot-sdk-ruby/pull/18)
+
 0.1.4
 -----
 * [Support Receive::Message::Contact](https://github.com/line/line-bot-sdk-ruby/pull/16)
