@@ -28,9 +28,12 @@ module Line
 
       # @return [Array]
       def to
-        raise ArgumentError, 'Invalid arguments, to_mid' unless to_mid.instance_of?(String) || to_mid.instance_of?(Array)
+        raise ArgumentError, 'Wrong argument type `to_mid`' unless to_mid.instance_of?(String) || to_mid.instance_of?(Array)
+        to = to_mid.instance_of?(String) ? [to_mid] : to_mid
 
-        to_mid.instance_of?(String) ? [to_mid] : to_mid
+        raise ArgumentError, 'Wrong argument type `to_mid`' unless to.size > 0 && to.reject {|item| item.instance_of?(String) }
+
+        to
       end
 
       # @return [Line::Bot::Message::Base#content]
@@ -67,8 +70,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get
-        raise ArgumentError, "Invalid arguments" unless validate_for_getting_message?
-
+        validate_for_getting_message
         https.get(endpoint_path, header)
       end
 
@@ -78,17 +80,17 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def post
-        raise ArgumentError, "Invalid arguments" unless validate_for_posting_message?
-
+        validate_for_posting_message
         https.post(endpoint_path, payload, header)
       end
 
-      def validate_for_getting_message?
-        !endpoint_path.nil?
+      def validate_for_getting_message
+        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.instance_of?(String)
       end
 
-      def validate_for_posting_message?
-        to.size > 0 && message.valid? && endpoint_path
+      def validate_for_posting_message
+        raise ArgumentError, 'Invalid argument `message`' unless message.valid?
+        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.instance_of?(String)
       end
 
     end

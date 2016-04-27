@@ -72,7 +72,7 @@ module Line
         end
 
         def push_message(message)
-          raise ArgumentError, "Invalid arguments" unless message.valid?
+          raise ArgumentError, "Invalid argument: `message`" unless message.valid?
           @messages << message.content
         end
 
