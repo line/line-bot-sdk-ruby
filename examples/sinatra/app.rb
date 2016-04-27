@@ -19,9 +19,9 @@ post '/callback' do
     error 400 do 'Bad Request' end
   end
 
-  request = Line::Bot::Receive::Request.new(request.env)
+  receive_request = Line::Bot::Receive::Request.new(request.env)
 
-  request.data.each { |message|
+  receive_request.data.each { |message|
     case message.content
     # Line::Bot::Receive::Message
     when Line::Bot::Message::Text
