@@ -1,8 +1,44 @@
 # Line::Bot::API
 
+[![Gem-version](https://img.shields.io/gem/v/line-bot-api.svg)](https://rubygems.org/gems/line-bot-api) [![Build Status](https://travis-ci.org/line/line-bot-sdk-ruby.svg?branch=master)](https://travis-ci.org/line/line-bot-sdk-ruby)
+
+
 Line::Bot::API - SDK of the LINE BOT API Trial for Ruby
 
-[![Gem-version](https://img.shields.io/gem/v/line-bot-api.svg)](https://rubygems.org/gems/line-bot-api) [![Build Status](https://travis-ci.org/line/line-bot-sdk-ruby.svg?branch=master)](https://travis-ci.org/line/line-bot-sdk-ruby)
+```
+# app.rb
+require 'sinatra'
+require 'line/bot'
+
+def client
+  @client ||= Line::Bot::Client.new { |config|
+    config.channel_id = ENV["LINE_CHANNEL_ID"]
+    config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+    config.channel_mid = ENV["LINE_CHANNEL_MID"]
+  }
+end
+
+post '/callback' do
+  signature = request.env['HTTP_X_LINE_CHANNELSIGNATURE']
+  unless client.validate_signature(request.body.read, signature)
+    error 400 do 'Bad Request' end
+  end
+
+  receive_request = Line::Bot::Receive::Request.new(request.env)
+
+  receive_request.data.each { |message|
+    case message.content
+    when Line::Bot::Message::Text
+      client.send_text(
+        to_mid: message.from_mid,
+        text: message.content[:text],
+      )
+    end
+  }
+
+  "OK"
+end
+```
 
 ## Installation
 
@@ -185,12 +221,12 @@ end
 ### Receiving request
 
 ```
-request_from_rack = Rack::Request.new( .. )
+request = Rack::Request.new( .. )
 
-request = Line::Bot::Receive::Request.new(request_from_rack.env)
-request.data #=> [Array<Line::Bot::Receive::Message || Line::Bot::Receive::Operation>]
+receive_request = Line::Bot::Receive::Request.new(request.env)
+receive_request.data #=> [Array<Line::Bot::Receive::Message || Line::Bot::Receive::Operation>]
 
-request.data.each { |message|
+receive_request.data.each { |message|
   case message.content
   when Line::Bot::Message::Image, Line::Bot::Message::Video
     # get message content
