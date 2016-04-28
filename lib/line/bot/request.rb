@@ -20,7 +20,7 @@ module Line
         uri = URI(endpoint)
         proxy_uri = URI(http_proxy ||= "")
         https = Net::HTTP.new(uri.host, uri.port, proxy_uri.host || :ENV, proxy_uri.port, proxy_uri.user, proxy_uri.password)
-        if uri.scheme == "https"
+        if proxy_uri.scheme == "https" || (!proxy_uri.scheme && uri.scheme == "https")
           https.use_ssl = true
         end
 
