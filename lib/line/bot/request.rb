@@ -6,7 +6,7 @@ require 'uri'
 module Line
   module Bot
     class Request
-      attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message, :to_channel_id, :http_proxy
+      attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message, :to_channel_id, :proxy
 
       # Initializes a new Request
       #
@@ -18,9 +18,9 @@ module Line
       # @return [Net::HTTP]
       def https
         uri = URI(endpoint)
-        proxy_uri = URI(@http_proxy ||= "")
-        proxy = Net::HTTP.Proxy(proxy_uri.host, proxy_uri.port, proxy_uri.user, proxy_uri.password)
-        https = proxy.new(uri.host, uri.port)
+        proxy_uri = URI(@proxy ||= "")
+        proxy_http = Net::HTTP.Proxy(proxy_uri.host, proxy_uri.port, proxy_uri.user, proxy_uri.password)
+        https = proxy_http.new(uri.host, uri.port)
         if uri.scheme == "https"
           https.use_ssl = true
         end

@@ -11,7 +11,7 @@ module Line
     class Client
 
       #  @return [String]
-      attr_accessor :channel_id, :channel_secret, :channel_mid, :endpoint, :to_channel_id, :http_proxy
+      attr_accessor :channel_id, :channel_secret, :channel_mid, :endpoint, :to_channel_id, :proxy
 
       # Initialize a new Bot Client.
       #
@@ -176,7 +176,7 @@ module Line
           config.credentials    = credentials
           config.to_mid         = to_mid
           config.message        = message
-          config.http_proxy     = http_proxy
+          config.proxy          = proxy
         end
 
         request.post
@@ -241,7 +241,7 @@ module Line
           config.endpoint       = endpoint
           config.endpoint_path  = endpoint_path
           config.credentials    = credentials
-          config.http_proxy     = http_proxy
+          config.proxy          = proxy
         end
 
         request.get
