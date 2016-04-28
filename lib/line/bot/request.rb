@@ -18,9 +18,10 @@ module Line
       # @return [Net::HTTP]
       def https
         uri = URI(endpoint)
-        proxy_uri = URI(http_proxy ||= "")
-        https = Net::HTTP.new(uri.host, uri.port, proxy_uri.host || :ENV, proxy_uri.port, proxy_uri.user, proxy_uri.password)
-        if proxy_uri.scheme == "https" || (!proxy_uri.scheme && uri.scheme == "https")
+        proxy_uri = URI(@http_proxy ||= "")
+        proxy = Net::HTTP.Proxy(proxy_uri.host, proxy_uri.port, proxy_uri.user, proxy_uri.password)
+        https = proxy.new(uri.host, uri.port)
+        if uri.scheme == "https"
           https.use_ssl = true
         end
 
