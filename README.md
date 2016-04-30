@@ -5,7 +5,7 @@
 
 Line::Bot::API - SDK of the LINE BOT API Trial for Ruby
 
-```
+```ruby
 # app.rb
 require 'sinatra'
 require 'line/bot'
@@ -58,7 +58,7 @@ Or install it yourself as:
 
 ## Configuration
 
-```
+```ruby
 client = Line::Bot::Client.new do |config|
   config.channel_id = 'YOUR LINE BOT Channel ID'
   config.channel_secret = 'YOUR LINE BOT Channel Secret'
@@ -77,7 +77,7 @@ After configuring a client, you can start sending messages as the following refe
 Sending message APIs requires the following parameter.
 - `:to_mid` String or Array
 
-```
+```ruby
 client.send_text(
   to_mid: '12345678',
 )
@@ -88,7 +88,7 @@ client.send_text(
 
 #### send_text
 
-```
+```ruby
 client.send_text(
   to_mid: to_mid,
   text: 'Hello',
@@ -97,7 +97,7 @@ client.send_text(
 
 #### send_image
 
-```
+```ruby
 client.send_image(
   to_mid: to_mid,
   image_url: 'http://example.com/image.jpg',            # originalContentUrl
@@ -107,7 +107,7 @@ client.send_image(
 
 #### send_video
 
-```
+```ruby
 client.send_video(
   to_mid: to_mid,
   video_url: 'http://example.com/video.mp4',            # originalContentUrl
@@ -117,7 +117,7 @@ client.send_video(
 
 #### send_audio
 
-```
+```ruby
 client.send_audio(
   to_mid: to_mid,
   audio_url: 'http://example.com/audio.mp3',            # originalContentUrl
@@ -127,7 +127,7 @@ client.send_audio(
 
 #### send_location
 
-```
+```ruby
 client.send_location(
   to_mid: to_mid,
   title: 'LINE Corporation.',
@@ -143,7 +143,7 @@ See online documentation to find which sticker's you can send.
 
 - [https://developers.line.me/bot-api/api-reference#sending_message_sticker](https://developers.line.me/bot-api/api-reference#sending_message_sticker)
 
-```
+```ruby
 client.send_sticker(
   to_mid: to_mid,
   stkpkgid: 2,                                          # contentMetadata.STKPKGID
@@ -157,7 +157,7 @@ client.send_sticker(
 Support on sending multiple message.
 - [https://developers.line.me/bot-api/api-reference#sending_multiple_messages](https://developers.line.me/bot-api/api-reference#sending_multiple_messages)
 
-```
+```ruby
 client.multiple_message.add_text(
   text: text,
 ).add_image(
@@ -189,7 +189,7 @@ Support on sending rich message.
 See also a online document.
 - [https://developers.line.me/bot-api/api-reference#sending_rich_content_message](https://developers.line.me/bot-api/api-reference#sending_rich_content_message)
 
-```
+```ruby
 client.rich_message.set_action(
   MANGA: {
     text: 'manga',
@@ -210,7 +210,7 @@ client.rich_message.set_action(
 
 ### Signature validation
 
-```
+```ruby
 request = Rack::Request.new( .. )
 signature = request.env['HTTP_X_LINE_CHANNELSIGNATURE']
 unless client.validate_signature(request.body.read, signature)
@@ -220,7 +220,7 @@ end
 
 ### Receiving request
 
-```
+```ruby
 request = Rack::Request.new( .. )
 
 receive_request = Line::Bot::Receive::Request.new(request.env)
@@ -252,7 +252,7 @@ Get the preview image file which was sent by user.
 
 ### Getting user profile information
 
-```
+```ruby
 user_profile = client.get_user_profile("1234567")
 user_profile #=> [Line::Bot::Response::User::Profile]
 user_profile.contacts #=> [Array<Line::Bot::Response::User::Contact>]
