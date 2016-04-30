@@ -17,7 +17,6 @@ module Line
             attrs.each { |key, value|
               raise ArgumentError, 'Invalid arguments, :text, :link_url keys.' unless validate_action_attributes(value)
 
-              @actions[key.to_s] ||= {}
               @actions[key.to_s] = {
                 type: 'web',
                 text: value[:text].to_s,
@@ -87,12 +86,12 @@ module Line
         def content
           {
             contentType: Line::Bot::Message::ContentType::RICH_MESSAGE,
-            toType: 1,
+            toType: Line::Bot::Message::RecipientType::USER,
             contentMetadata: {
               DOWNLOAD_URL: @image_url,
               SPEC_REV: "1", # Fixed "1".
               ALT_TEXT: @alt_text,
-              MARKUP_JSON: markup_json,
+              MARKUP_JSON: markup.to_json,
             },
           }
         end
@@ -101,7 +100,7 @@ module Line
           @image_url && @alt_text
         end
 
-        def markup_json
+        def markup
           {
             canvas: {
               height: height,
@@ -131,7 +130,7 @@ module Line
                 listeners: @listeners
               }
             }
-          }.to_json
+          }
         end
 
       end
