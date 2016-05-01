@@ -31,7 +31,7 @@ module Line
         raise ArgumentError, 'Wrong argument type `to_mid`' unless to_mid.instance_of?(String) || to_mid.instance_of?(Array)
         to = to_mid.instance_of?(String) ? [to_mid] : to_mid
 
-        raise ArgumentError, 'Wrong argument type `to_mid`' unless to.size > 0 && to.reject {|item| item.instance_of?(String) }
+        raise ArgumentError, 'Wrong argument type `to_mid`' unless to.size > 0 && to.all? {|item| item.instance_of?(String) }
 
         to
       end

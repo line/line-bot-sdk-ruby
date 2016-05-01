@@ -218,7 +218,7 @@ module Line
 
         mids = mids.instance_of?(String) ? [mids] : mids
 
-        raise ArgumentError, 'Wrong argument type `mids`' unless mids.size > 0 && mids.reject {|item| item.instance_of?(String) }
+        raise ArgumentError, 'Wrong argument type `mids`' unless mids.size > 0 && mids.all? {|item| item.instance_of?(String) }
 
         endpoint_path  = "/v1/profiles?mids=#{mids.join(',')}"
 
