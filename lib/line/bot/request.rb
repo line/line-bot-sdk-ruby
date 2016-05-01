@@ -1,4 +1,5 @@
 require 'line/bot/api/version'
+require 'line/bot/utils'
 require 'json'
 require 'net/http'
 require 'uri'
@@ -7,6 +8,8 @@ module Line
   module Bot
     class Request
       attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message, :to_channel_id
+
+      include Line::Bot::Utils
 
       # Initializes a new Request
       #
@@ -28,12 +31,9 @@ module Line
 
       # @return [Array]
       def to
-        raise ArgumentError, 'Wrong argument type `to_mid`' unless to_mid.instance_of?(String) || to_mid.instance_of?(Array)
-        to = to_mid.instance_of?(String) ? [to_mid] : to_mid
+        raise ArgumentError, 'Wrong argument type `to_mid`' unless validate_mids(to_mid)
 
-        raise ArgumentError, 'Wrong argument type `to_mid`' unless to.size > 0 && to.all? {|item| item.instance_of?(String) }
-
-        to
+        to_mid.instance_of?(String) ? [to_mid] : to_mid
       end
 
       # @return [Line::Bot::Message::Base#content]
