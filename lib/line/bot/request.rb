@@ -7,7 +7,7 @@ require 'uri'
 module Line
   module Bot
     class Request
-      attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message, :to_channel_id
+      attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message, :to_channel_id, :httpclient
 
       include Line::Bot::Utils
 
@@ -16,17 +16,6 @@ module Line
       # @return [Line::Bot::Request]
       def initialize
         yield(self) if block_given?
-      end
-
-      # @return [Net::HTTP]
-      def https
-        uri = URI(endpoint)
-        https = Net::HTTP.new(uri.host, uri.port)
-        if uri.scheme == "https"
-          https.use_ssl = true
-        end
-
-        https
       end
 
       # @return [Array]
@@ -69,7 +58,7 @@ module Line
       # @return [Net::HTTPResponse]
       def get
         assert_for_getting_message
-        https.get(endpoint_path, header)
+        httpclient.get(endpoint + endpoint_path, header)
       end
 
       # Post content of specified URL.
@@ -79,7 +68,7 @@ module Line
       # @return [Net::HTTPResponse]
       def post
         assert_for_posting_message
-        https.post(endpoint_path, payload, header)
+        httpclient.post(endpoint + endpoint_path, payload, header)
       end
 
       def assert_for_getting_message

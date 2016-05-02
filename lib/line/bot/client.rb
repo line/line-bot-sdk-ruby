@@ -13,7 +13,7 @@ module Line
       include Line::Bot::Utils
 
       #  @return [String]
-      attr_accessor :channel_id, :channel_secret, :channel_mid, :endpoint, :to_channel_id
+      attr_accessor :channel_id, :channel_secret, :channel_mid, :endpoint, :to_channel_id, :httpclient
 
       # Initialize a new Bot Client.
       #
@@ -25,6 +25,8 @@ module Line
           instance_variable_set("@#{key}", value)
         end
         yield(self) if block_given?
+
+        @httpclient ||= Line::Bot::HTTPClient.new
       end
 
       def endpoint
@@ -173,6 +175,7 @@ module Line
 
         request = Request.new do |config|
           config.to_channel_id  = to_channel_id
+          config.httpclient     = httpclient
           config.endpoint       = endpoint
           config.endpoint_path  = '/v1/events'
           config.credentials    = credentials
@@ -236,6 +239,7 @@ module Line
 
         request = Request.new do |config|
           config.to_channel_id  = to_channel_id
+          config.httpclient     = httpclient
           config.endpoint       = endpoint
           config.endpoint_path  = endpoint_path
           config.credentials    = credentials

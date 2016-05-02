@@ -2,6 +2,25 @@ require 'spec_helper'
 require 'webmock/rspec'
 require 'json'
 
+class TestClient
+
+  def get(url, header = {})
+    {
+      url: url,
+      header: header
+    }
+  end
+
+  def post(url, payload, header = {})
+    {
+      url: url,
+      payload: payload,
+      header: header
+    }
+  end
+
+end
+
 WebMock.allow_net_connect!
 
 describe Line::Bot do
@@ -92,6 +111,55 @@ describe Line::Bot do
     result = client.send_text(to_mid: "1", text: "text")
 
     expect(result.body).to eq endpoint + endpoint_path
+  end
+
+  it 'creates a client then assorts request parameters' do
+    client = Line::Bot::Client.new do |config|
+      config.httpclient = TestClient.new
+      config.channel_id = dummy_config[:channel_id]
+      config.channel_secret = dummy_config[:channel_secret]
+      config.channel_mid = dummy_config[:channel_mid]
+    end
+
+    expect(client.httpclient).to be_a(TestClient)
+
+    identifier = "12345"
+
+    # get
+    result = client.get_message_content(identifier)
+
+    expect(result[:url]).to eq "https://trialbot-api.line.me/v1/bot/message/#{identifier}/content"
+
+    header = result[:header]
+    expect(header['X-Line-ChannelID'].to_i).to eq dummy_config[:channel_id]
+    expect(header['X-Line-ChannelSecret']).to eq dummy_config[:channel_secret]
+    expect(header['X-Line-Trusted-User-With-ACL']).to eq dummy_config[:channel_mid]
+    expect(header['User-Agent']).to eq "LINE-BotSDK/" + Line::Bot::API::VERSION
+
+    expect(result[:payload]).to be nil
+
+    # post
+    to_mid = "1"
+    text   = "text"
+
+    result = client.send_text(to_mid: to_mid, text: text)
+
+    expect(result[:url]).to eq "https://trialbot-api.line.me/v1/events"
+
+    header = result[:header]
+    expect(header['X-Line-ChannelID'].to_i).to eq dummy_config[:channel_id]
+    expect(header['X-Line-ChannelSecret']).to eq dummy_config[:channel_secret]
+    expect(header['X-Line-Trusted-User-With-ACL']).to eq dummy_config[:channel_mid]
+    expect(header['User-Agent']).to eq "LINE-BotSDK/" + Line::Bot::API::VERSION
+    expect(header['Content-Type']).to eq "application/json; charset=UTF-8"
+
+    body = JSON.parse(result[:payload])
+
+    expect(body['to']).to eq [to_mid]
+    expect(body['eventType'].to_i).to eq Line::Bot::EventType::MESSAGE
+    expect(body['content']['contentType']).to eq Line::Bot::Message::ContentType::TEXT
+    expect(body['content']['toType']).to eq Line::Bot::Message::RecipientType::USER
+    expect(body['content']['text']).to eq text
   end
 
   it 'sends text message' do
