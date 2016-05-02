@@ -13,7 +13,7 @@ module Line
 
       # Initializes a new Request
       #
-      # @return [LINE::Bot::Request]
+      # @return [Line::Bot::Request]
       def initialize
         yield(self) if block_given?
       end
@@ -31,8 +31,6 @@ module Line
 
       # @return [Array]
       def to
-        raise ArgumentError, 'Wrong argument type `to_mid`' unless validate_mids(to_mid)
-
         to_mid.instance_of?(String) ? [to_mid] : to_mid
       end
 
@@ -70,7 +68,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get
-        validate_for_getting_message
+        assert_for_getting_message
         https.get(endpoint_path, header)
       end
 
@@ -80,15 +78,16 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def post
-        validate_for_posting_message
+        assert_for_posting_message
         https.post(endpoint_path, payload, header)
       end
 
-      def validate_for_getting_message
+      def assert_for_getting_message
         raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.instance_of?(String)
       end
 
-      def validate_for_posting_message
+      def assert_for_posting_message
+        raise ArgumentError, 'Wrong argument type `to_mid`' unless validate_mids(to)
         raise ArgumentError, 'Invalid argument `message`' unless message.valid?
         raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.instance_of?(String)
       end
