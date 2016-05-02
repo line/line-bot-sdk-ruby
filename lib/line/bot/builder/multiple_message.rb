@@ -77,8 +77,7 @@ module Line
         end
 
         def send(attrs = {})
-          to_mid = attrs.instance_of?(Hash) ? attrs[:to_mid] : attrs
-          @client.send_message(to_mid, self)
+          @client.send_message(attrs[:to_mid], self)
         end
 
         def event_type

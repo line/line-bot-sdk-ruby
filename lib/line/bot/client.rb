@@ -10,6 +10,8 @@ module Line
   module Bot
     class Client
 
+      include Line::Bot::Utils
+
       #  @return [String]
       attr_accessor :channel_id, :channel_secret, :channel_mid, :endpoint, :to_channel_id
 
@@ -17,7 +19,7 @@ module Line
       #
       # @param options [Hash]
       #
-      # @return [LINE::Bot::Client]
+      # @return [Line::Bot::Client]
       def initialize(options = {})
         options.each do |key, value|
           instance_variable_set("@#{key}", value)
@@ -214,13 +216,10 @@ module Line
       #
       # @return [Line::Bot::Response::User::Profile]
       def get_user_profile(mids)
-        raise ArgumentError, 'Wrong argument type `mids`' unless mids.instance_of?(String) || mids.instance_of?(Array)
+        raise ArgumentError, 'Wrong argument type `mids`' unless validate_mids(mids)
 
-        mids = mids.instance_of?(String) ? [mids] : mids
-
-        raise ArgumentError, 'Wrong argument type `mids`' unless mids.size > 0 && mids.reject {|item| item.instance_of?(String) }
-
-        endpoint_path  = "/v1/profiles?mids=#{mids.join(',')}"
+        query = mids.is_a?(Array) ? mids.join(',') : mids
+        endpoint_path  = "/v1/profiles?mids=#{query}"
 
         response = get(endpoint_path)
 

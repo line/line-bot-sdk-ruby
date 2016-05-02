@@ -1,4 +1,5 @@
 require 'line/bot/api/version'
+require 'line/bot/utils'
 require 'json'
 require 'net/http'
 require 'uri'
@@ -8,9 +9,11 @@ module Line
     class Request
       attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message, :to_channel_id
 
+      include Line::Bot::Utils
+
       # Initializes a new Request
       #
-      # @return [LINE::Bot::Request]
+      # @return [Line::Bot::Request]
       def initialize
         yield(self) if block_given?
       end
@@ -28,12 +31,7 @@ module Line
 
       # @return [Array]
       def to
-        raise ArgumentError, 'Wrong argument type `to_mid`' unless to_mid.instance_of?(String) || to_mid.instance_of?(Array)
-        to = to_mid.instance_of?(String) ? [to_mid] : to_mid
-
-        raise ArgumentError, 'Wrong argument type `to_mid`' unless to.size > 0 && to.reject {|item| item.instance_of?(String) }
-
-        to
+        to_mid.is_a?(String) ? [to_mid] : to_mid
       end
 
       # @return [Line::Bot::Message::Base#content]
@@ -70,7 +68,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get
-        validate_for_getting_message
+        assert_for_getting_message
         https.get(endpoint_path, header)
       end
 
@@ -80,17 +78,18 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def post
-        validate_for_posting_message
+        assert_for_posting_message
         https.post(endpoint_path, payload, header)
       end
 
-      def validate_for_getting_message
-        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.instance_of?(String)
+      def assert_for_getting_message
+        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.is_a?(String)
       end
 
-      def validate_for_posting_message
+      def assert_for_posting_message
+        raise ArgumentError, 'Wrong argument type `to_mid`' unless validate_mids(to)
         raise ArgumentError, 'Invalid argument `message`' unless message.valid?
-        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.instance_of?(String)
+        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.is_a?(String)
       end
 
     end
