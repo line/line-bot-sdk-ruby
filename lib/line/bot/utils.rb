@@ -7,7 +7,7 @@ module Line
         return false unless mids.is_a?(String) || mids.is_a?(Array)
         mids = [mids] if mids.is_a?(String)
 
-        return false unless mids.size > 0 && mids.all? {|item| item.is_a?(String)}
+        return false unless mids.size > 0
 
         true
       end
