@@ -34,23 +34,23 @@ module Line
 
         def add_listener(attrs = {})
           tap {
-            raise ArgumentError, 'Invalid arguments, :x [Fixnum], :y [Fixnum], :width [Fixnum], :height [Fixnum] keys.' unless validate_listener_attributes(attrs)
+            raise ArgumentError, 'Invalid arguments, :x, :y, :width, :height keys.' unless validate_listener_attributes(attrs)
 
             listener = {
               type: 'touch', # Fixed "touch".
-              params: [attrs[:x], attrs[:y], attrs[:width], attrs[:height]],
-              action: attrs[:action],
+              params: [attrs[:x].to_i, attrs[:y].to_i, attrs[:width].to_i, attrs[:height].to_i],
+              action: attrs[:action].to_s,
             }
             @listeners << listener
           }
         end
 
         def validate_listener_attributes(attrs = {})
-          attrs[:action].instance_of?(String) &&
-          attrs[:x].instance_of?(Fixnum) &&
-          attrs[:y].instance_of?(Fixnum) &&
-          attrs[:width].instance_of?(Fixnum) &&
-          attrs[:height].instance_of?(Fixnum)
+          attrs[:action] &&
+          attrs[:x] &&
+          attrs[:y] &&
+          attrs[:width] &&
+          attrs[:height]
         end
 
         # send rich message to line server and to users

@@ -75,15 +75,19 @@ describe Line::Bot::Builder::RichMessage do
 
     image_url = 'https://example.com/image.jpeg'
 
-    expect {
-      client.rich_message.add_listener(
-        action: 'MANGA',
-        x: 0,
-        y: 0,
-        width: "520",
-        height: 520,
-      )
-    }.to raise_error(ArgumentError)
+    rich_message = client.rich_message.add_listener(
+      action: 'MANGA',
+      x: 0,
+      y: 0,
+      width: "520",
+      height: 520,
+    )
+
+    listener = rich_message.markup[:scenes][:scene1][:listeners].first
+    expect(listener[:params][0]).to eq 0
+    expect(listener[:params][1]).to eq 0
+    expect(listener[:params][2]).to eq 520
+    expect(listener[:params][3]).to eq 520
   end
 
 end

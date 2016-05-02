@@ -77,7 +77,7 @@ module Line
         end
 
         def send(attrs = {})
-          to_mid = attrs.instance_of?(Hash) ? attrs[:to_mid] : attrs
+          to_mid = attrs.instance_of?(Hash) ? attrs[:to_mid] : attrs.to_s
           @client.send_message(to_mid, self)
         end
 

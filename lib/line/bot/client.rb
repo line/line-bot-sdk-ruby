@@ -19,7 +19,7 @@ module Line
       #
       # @param options [Hash]
       #
-      # @return [LINE::Bot::Client]
+      # @return [Line::Bot::Client]
       def initialize(options = {})
         options.each do |key, value|
           instance_variable_set("@#{key}", value)
