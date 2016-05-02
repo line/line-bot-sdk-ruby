@@ -218,7 +218,7 @@ module Line
       def get_user_profile(mids)
         raise ArgumentError, 'Wrong argument type `mids`' unless validate_mids(mids)
 
-        query = mids.instance_of?(Array) ? mids.join(',') : mids
+        query = mids.is_a?(Array) ? mids.join(',') : mids
         endpoint_path  = "/v1/profiles?mids=#{query}"
 
         response = get(endpoint_path)

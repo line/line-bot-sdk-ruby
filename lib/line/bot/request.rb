@@ -31,7 +31,7 @@ module Line
 
       # @return [Array]
       def to
-        to_mid.instance_of?(String) ? [to_mid] : to_mid
+        to_mid.is_a?(String) ? [to_mid] : to_mid
       end
 
       # @return [Line::Bot::Message::Base#content]
@@ -83,13 +83,13 @@ module Line
       end
 
       def assert_for_getting_message
-        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.instance_of?(String)
+        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.is_a?(String)
       end
 
       def assert_for_posting_message
         raise ArgumentError, 'Wrong argument type `to_mid`' unless validate_mids(to)
         raise ArgumentError, 'Invalid argument `message`' unless message.valid?
-        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.instance_of?(String)
+        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.is_a?(String)
       end
 
     end
