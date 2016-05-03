@@ -13,7 +13,7 @@ module Line
       include Line::Bot::Utils
 
       #  @return [String]
-      attr_accessor :channel_id, :channel_secret, :channel_mid, :endpoint, :to_channel_id
+      attr_accessor :channel_id, :channel_secret, :channel_mid, :endpoint, :to_channel_id, :httpclient
 
       # Initialize a new Bot Client.
       #
@@ -25,6 +25,8 @@ module Line
           instance_variable_set("@#{key}", value)
         end
         yield(self) if block_given?
+
+        @httpclient ||= Line::Bot::HTTPClient.new
       end
 
       def endpoint
@@ -173,8 +175,9 @@ module Line
 
         request = Request.new do |config|
           config.to_channel_id  = to_channel_id
+          config.httpclient     = httpclient
           config.endpoint       = endpoint
-          config.endpoint_path  = '/v1/events'
+          config.endpoint_path  = '/events'
           config.credentials    = credentials
           config.to_mid         = to_mid
           config.message        = message
@@ -191,7 +194,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_content(identifier)
-        endpoint_path  = "/v1/bot/message/#{identifier}/content"
+        endpoint_path  = "/bot/message/#{identifier}/content"
         get(endpoint_path)
       end
 
@@ -203,7 +206,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_content_preview(identifier)
-        endpoint_path  = "/v1/bot/message/#{identifier}/content/preview"
+        endpoint_path  = "/bot/message/#{identifier}/content/preview"
         get(endpoint_path)
       end
 
@@ -219,7 +222,7 @@ module Line
         raise ArgumentError, 'Wrong argument type `mids`' unless validate_mids(mids)
 
         query = mids.is_a?(Array) ? mids.join(',') : mids
-        endpoint_path  = "/v1/profiles?mids=#{query}"
+        endpoint_path  = "/profiles?mids=#{query}"
 
         response = get(endpoint_path)
 
@@ -236,6 +239,7 @@ module Line
 
         request = Request.new do |config|
           config.to_channel_id  = to_channel_id
+          config.httpclient     = httpclient
           config.endpoint       = endpoint
           config.endpoint_path  = endpoint_path
           config.credentials    = credentials
