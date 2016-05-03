@@ -1,3 +1,7 @@
+0.1.6
+-----
+* [Enable to replace httpclient](https://github.com/line/line-bot-sdk-ruby/pull/24)
+
 0.1.5
 -----
 * [Update Exception](https://github.com/line/line-bot-sdk-ruby/pull/18)
