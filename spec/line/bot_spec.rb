@@ -92,8 +92,8 @@ describe Line::Bot do
   end
 
   it 'creates client and change endpoint' do
-    endpoint = 'https://developer.line.me:443'
-    endpoint_path = '/v1/events'
+    endpoint = 'https://developer.line.me:443/v1'
+    endpoint_path = '/events'
 
     uri_template = Addressable::Template.new endpoint + endpoint_path
     stub_request(:post, uri_template).to_return { |request| {:body => request.uri.to_s, :status => 200} }
