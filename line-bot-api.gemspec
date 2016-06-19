@@ -12,15 +12,15 @@ Gem::Specification.new do |spec|
   spec.description   = "Line::Bot::API - SDK of the LINE BOT API"
   spec.summary       = spec.description
   spec.homepage      = "https://github.com/line/line-bot-sdk-ruby"
-  spec.license       = "Apache License, Version 2.0"
+  spec.license       = "Apache-2.0"
 
-  spec.files         = %w(CONTRIBUTING.md LICENSE README.md line-bot-api.gemspec) + Dir['lib/**/*.rb']
+  spec.files         = %w(CONTRIBUTING.md LICENSE README.md line-bot-api.gemspec line-bot.gemspec) + Dir['lib/**/*.rb']
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
   spec.required_ruby_version     = '>= 2.0.0'
 
-  spec.add_dependency 'rack', '>= 1.6'
+  spec.add_dependency 'rack', '~> 0'
 
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"
