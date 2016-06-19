@@ -1,3 +1,7 @@
+0.1.7
+-----
+* [Delegate gem's name `line-bot` and support it](https://github.com/line/line-bot-sdk-ruby/issues/26)
+
 0.1.6
 -----
 * [Enable to replace httpclient](https://github.com/line/line-bot-sdk-ruby/pull/24)
