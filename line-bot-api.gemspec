@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/line/line-bot-sdk-ruby"
   spec.license       = "Apache-2.0"
 
-  spec.files         = %w(CONTRIBUTING.md LICENSE README.md line-bot-api.gemspec line-bot.gemspec) + Dir['lib/**/*.rb']
+  spec.files         = %w(CONTRIBUTING.md LICENSE README.md line-bot-api.gemspec) + Dir['lib/**/*.rb']
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
