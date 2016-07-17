@@ -1,3 +1,7 @@
+0.1.8
+-----
+* [Bugfix: Support Rails 5](https://github.com/line/line-bot-sdk-ruby/pull/30)
+
 0.1.7
 -----
 * [Delegate gem's name `line-bot` and support it](https://github.com/line/line-bot-sdk-ruby/issues/26)
