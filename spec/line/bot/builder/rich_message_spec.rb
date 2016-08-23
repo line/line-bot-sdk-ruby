@@ -43,6 +43,24 @@ describe Line::Bot::Builder::RichMessage do
     )
   end
 
+  it 'generates rich message action type: web' do
+    client = generate_client
+
+    result = client.rich_message.set_action(
+      MANGA: {
+        text: 'manga',
+        link_url: 'https://store.line.me/family/manga/en',
+        type: 'web',
+      }
+    ).add_listener(
+      action: 'MANGA',
+      x: 0,
+      y: 0,
+      width: 520,
+      height: 520,
+    )
+  end
+
   it 'generates rich message action type: sendMessage' do
     client = generate_client
 
@@ -59,6 +77,19 @@ describe Line::Bot::Builder::RichMessage do
       width: 520,
       height: 520,
     )
+  end
+
+  it 'generates rich message then action type: value is wrong' do
+    client = generate_client
+
+    expect {
+      client.rich_message.set_action(
+        MANGA: {
+          text: 'Say hello.',
+          params_text: 'Hello, Brown!',
+        }
+      )
+    }.to raise_error(ArgumentError)
   end
 
   it 'generates rich message then forgets link_url' do
@@ -101,7 +132,7 @@ describe Line::Bot::Builder::RichMessage do
     }.to raise_error(ArgumentError)
   end
 
-  it "generates rich message then misses width's type in add_listener" do
+  it "generates rich message then width's value type is wrong in add_listener" do
     client = generate_client
 
     image_url = 'https://example.com/image.jpeg'
