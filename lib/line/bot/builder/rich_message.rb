@@ -15,20 +15,35 @@ module Line
         def set_action(attrs = {})
           tap {
             attrs.each { |key, value|
-              raise ArgumentError, 'Invalid arguments, :text, :link_url keys.' unless validate_action_attributes(value)
-
-              @actions[key.to_s] = {
-                type: 'web',
-                text: value[:text].to_s,
-                params: {
-                  linkUri: value[:link_url].to_s
-                },
-              }
+              case value[:type]
+              when 'sendMessage'
+                raise ArgumentError, 'Invalid arguments, :text, :params_text keys.' unless validate_action_attributes_type_send_message(value)
+                @actions[key.to_s] = {
+                  type: 'sendMessage',
+                  text: value[:text].to_s,
+                  params: {
+                    text: value[:params_text].to_s
+                  },
+                }
+              when 'web', nil
+                raise ArgumentError, 'Invalid arguments, :text, :link_url keys.' unless validate_action_attributes_type_web(value)
+                @actions[key.to_s] = {
+                  type: 'web',
+                  text: value[:text].to_s,
+                  params: {
+                    linkUri: value[:link_url].to_s
+                  },
+                }
+              end
             }
           }
         end
 
-        def validate_action_attributes(attrs = {})
+        def validate_action_attributes_type_send_message(attrs = {})
+          attrs[:text] && attrs[:params_text]
+        end
+
+        def validate_action_attributes_type_web(attrs = {})
           attrs[:text] && attrs[:link_url]
         end
 
