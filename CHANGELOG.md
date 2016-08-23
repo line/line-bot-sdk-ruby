@@ -1,3 +1,7 @@
+0.1.9
+-----
+* [Add type 'sendMessage' in rich message](https://github.com/line/line-bot-sdk-ruby/pull/34)
+
 0.1.8
 -----
 * [Bugfix: Support Rails 5](https://github.com/line/line-bot-sdk-ruby/pull/30)
