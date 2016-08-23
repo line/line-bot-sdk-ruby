@@ -43,6 +43,24 @@ describe Line::Bot::Builder::RichMessage do
     )
   end
 
+  it 'generates rich message action type: sendMessage' do
+    client = generate_client
+
+    result = client.rich_message.set_action(
+      MANGA: {
+        text: 'Say hello.',
+        params_text: 'Hello, Brown!',
+        type: 'sendMessage',
+      }
+    ).add_listener(
+      action: 'MANGA',
+      x: 0,
+      y: 0,
+      width: 520,
+      height: 520,
+    )
+  end
+
   it 'generates rich message then forgets link_url' do
     client = generate_client
 
@@ -50,6 +68,19 @@ describe Line::Bot::Builder::RichMessage do
       client.rich_message.set_action(
         MANGA: {
           text: 'manga',
+        }
+      )
+    }.to raise_error(ArgumentError)
+  end
+
+  it 'generates rich message then forgets params_text' do
+    client = generate_client
+
+    expect {
+      client.rich_message.set_action(
+        MANGA: {
+          text: 'Say hello.',
+          type: 'sendMessage',
         }
       )
     }.to raise_error(ArgumentError)
