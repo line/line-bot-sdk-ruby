@@ -194,6 +194,11 @@ client.rich_message.set_action(
   MANGA: {
     text: 'manga',
     link_url: link_url,
+  },
+  HELLO: {
+    text: "Say hello.",
+    params_text: "Hello, Brown!",
+    type: "sendMessage",
   }
 ).add_listener(
   action: 'MANGA',
@@ -201,6 +206,12 @@ client.rich_message.set_action(
   y: 0,
   width: 520,
   height: 520,
+).add_listener(
+  action: 'HELLO',
+  x: 521,
+  y: 0,
+  width: 520,
+  height: 520
 ).send(
   to_mid: to_mid,
   image_url: image_url,
