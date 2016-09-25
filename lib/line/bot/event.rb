@@ -1,0 +1,8 @@
+require 'line/bot/event/base'
+require 'line/bot/event/beacon'
+require 'line/bot/event/follow'
+require 'line/bot/event/join'
+require 'line/bot/event/leave'
+require 'line/bot/event/message'
+require 'line/bot/event/postback'
+require 'line/bot/event/unfollow'

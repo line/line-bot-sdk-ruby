@@ -1,5 +1,4 @@
 require 'line/bot/api/version'
-require 'line/bot/utils'
 require 'json'
 require 'net/http'
 require 'uri'
@@ -7,9 +6,7 @@ require 'uri'
 module Line
   module Bot
     class Request
-      attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message, :to_channel_id, :httpclient
-
-      include Line::Bot::Utils
+      attr_accessor :endpoint, :endpoint_path, :credentials, :to, :reply_token, :messages, :httpclient
 
       # Initializes a new Request
       #
@@ -18,26 +15,15 @@ module Line
         yield(self) if block_given?
       end
 
-      # @return [Array]
-      def to
-        to_mid.is_a?(String) ? [to_mid] : to_mid
-      end
-
-      # @return [Line::Bot::Message::Base#content]
-      def content
-        message.content
-      end
-
       # @return [Hash]
       def payload
         payload = {
           to: to,
-          toChannel: to_channel_id,
-          eventType: message.event_type.to_s,
-          content: content
+          replyToken: reply_token,
+          messages: messages
         }
 
-        payload.to_json
+        payload.delete_if{|k, v| v.nil?}.to_json
       end
 
       # @return [Hash]
@@ -52,8 +38,6 @@ module Line
       end
 
       # Get content of specified URL.
-      #
-      # @raise [ArgumentError]
       #
       # @return [Net::HTTPResponse]
       def get
@@ -76,8 +60,6 @@ module Line
       end
 
       def assert_for_posting_message
-        raise ArgumentError, 'Wrong argument type `to_mid`' unless validate_mids(to)
-        raise ArgumentError, 'Invalid argument `message`' unless message.valid?
         raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.is_a?(String)
       end
 
