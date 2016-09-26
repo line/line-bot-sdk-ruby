@@ -47,7 +47,7 @@ describe Line::Bot::Client do
       config.credentials    = dummy_config
     end
 
-    expect(request.header['User-Agent']).to eq "LINE-BotSDK/#{Line::Bot::API::VERSION}"
+    expect(request.header['User-Agent']).to eq "LINE-BotSDK-Ruby/#{Line::Bot::API::VERSION}"
   end
 
   it 'checks credentials on creating a client' do
@@ -87,7 +87,7 @@ describe Line::Bot::Client do
 
     header = result[:header]
     expect(header['Authorization']).to eq "Bearer #{dummy_config[:channel_token]}"
-    expect(header['User-Agent']).to eq "LINE-BotSDK/" + Line::Bot::API::VERSION
+    expect(header['User-Agent']).to eq "LINE-BotSDK-Ruby/" + Line::Bot::API::VERSION
 
     expect(result[:payload]).to be nil
 
@@ -104,7 +104,7 @@ describe Line::Bot::Client do
 
     header = result[:header]
     expect(header['Authorization']).to eq "Bearer #{dummy_config[:channel_token]}"
-    expect(header['User-Agent']).to eq "LINE-BotSDK/" + Line::Bot::API::VERSION
+    expect(header['User-Agent']).to eq "LINE-BotSDK-Ruby/" + Line::Bot::API::VERSION
     expect(header['Content-Type']).to eq "application/json; charset=UTF-8"
 
     body = JSON.parse(result[:payload], symbolize_names: true)

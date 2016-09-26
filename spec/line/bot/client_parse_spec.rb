@@ -140,8 +140,10 @@ EVENTS_CONTENT = <<"EOS"
         "userId": "userid"
       },
       "replyToken": "replytoken",
-      "beacon.hwid": "bid",
-      "beacon.type": "enter"
+      "beacon": {
+        "hwid": "hwid",
+        "type": "enter"
+      }
     }
   ]
 }
