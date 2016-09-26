@@ -160,7 +160,7 @@ module Line
       # @param request_body [String]
       #
       # @return [Array<Line::Bot::Event::Class>]
-      def parse(request_body)
+      def parse_events_from(request_body)
         json = JSON.parse(request_body)
 
         json['events'].map { |item|

@@ -207,7 +207,7 @@ describe Line::Bot::Client do
 
   it 'parses events' do
     client = generate_client
-    events = client.parse(EVENTS_CONTENT)
+    events = client.parse_events_from(EVENTS_CONTENT)
 
     message = {"id" => "contentid", "type" => "text", "text" => "message"}
     expect(events[0]).to be_a(Line::Bot::Event::Message)
@@ -249,14 +249,14 @@ describe Line::Bot::Client do
 
   it 'parses unknown event' do
     client = generate_client
-    events = client.parse(UNKNOWN_EVENT_CONTENT)
+    events = client.parse_events_from(UNKNOWN_EVENT_CONTENT)
 
     expect(events[0]).to be_a(Line::Bot::Event::Base)
   end
 
   it 'parses unsupport message event' do
     client = generate_client
-    events = client.parse(UNSUPPORT_MESSAGE_EVENT_CONTENT)
+    events = client.parse_events_from(UNSUPPORT_MESSAGE_EVENT_CONTENT)
 
     expect(events[0]).to be_a(Line::Bot::Event::Message)
     expect(events[0].type).to eq(Line::Bot::Event::MessageType::Unsupport)
