@@ -30,7 +30,7 @@ module Line
       def header
         header = {
           'Content-Type' => 'application/json; charset=UTF-8',
-          'User-Agent' => "LINE-BotSDK/#{Line::Bot::API::VERSION}",
+          'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::API::VERSION}",
         }
         hash = credentials.inject({}) { |h, (k, v)| h[k] = v.to_s; h }
 
