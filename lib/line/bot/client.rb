@@ -51,7 +51,7 @@ module Line
       # @param messages [Hash or Array]
       #
       # @return [Net::HTTPResponse]
-      def push(user_id, messages)
+      def push_message(user_id, messages)
         raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
 
         messages = [messages] if messages.is_a?(Hash)
@@ -70,11 +70,11 @@ module Line
 
       # Reply messages to line server and to users.
       #
-      # @param token [String] User's identifiers
+      # @param token [String]
       # @param messages [Hash or Array]
       #
       # @return [Net::HTTPResponse]
-      def reply(token, messages)
+      def reply_message(token, messages)
         raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
 
         messages = [messages] if messages.is_a?(Hash)

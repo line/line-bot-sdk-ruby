@@ -98,7 +98,7 @@ describe Line::Bot::Client do
       text: "Hello, world"
     }
 
-    result = client.push(user_id, message)
+    result = client.push_message(user_id, message)
 
     expect(result[:url]).to eq  Line::Bot::API::DEFAULT_ENDPOINT + "/message/push"
 

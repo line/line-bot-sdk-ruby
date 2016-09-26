@@ -20,7 +20,7 @@ describe Line::Bot::Client do
       originalContentUrl: 'https://example.com/image.jpg',
       previewImageUrl: 'https://example.com/image_preview.jpg',
     }
-    response = client.push(user_id, message)
+    response = client.push_message(user_id, message)
 
     expected = {
       to: user_id,
@@ -45,7 +45,7 @@ describe Line::Bot::Client do
       originalContentUrl: 'https://example.com/image.jpg',
       previewImageUrl: 'https://example.com/image_preview.jpg',
     }
-    response = client.reply(reply_token, message)
+    response = client.reply_message(reply_token, message)
 
     expected = {
       replyToken: reply_token,
