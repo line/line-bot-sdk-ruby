@@ -11,6 +11,9 @@ Please refer to the official api documents for details.
 
 https://devdocs.line.me/
 
+## Synopsis
+
+usage is:
 
 ```ruby
 # app.rb
