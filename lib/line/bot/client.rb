@@ -194,7 +194,7 @@ module Line
       #
       # @return [Boolean]
       def validate_signature(content = "", channel_signature)
-        return false unless !channel_signature.nil? && !channel_secret.nil?
+        return false if !channel_signature || !channel_secret
 
         hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, channel_secret, content)
         signature = Base64.strict_encode64(hash)
