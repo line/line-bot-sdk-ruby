@@ -1,5 +1,5 @@
-require 'sinatra'
-require 'line/bot'
+require 'sinatra'   # gem 'sinatra'
+require 'line/bot'  # gem 'line-bot-api'
 
 def client
   @client ||= Line::Bot::Client.new { |config|
