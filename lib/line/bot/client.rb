@@ -181,7 +181,7 @@ module Line
           begin
             klass = Line::Bot::Event.const_get(item['type'].capitalize)
             klass.new(item)
-          rescue => e # NameError: uninitialized constant
+          rescue NameError => e
             Line::Bot::Event::Base.new(item)
           end
         }

@@ -29,7 +29,7 @@ module Line
         def type
           begin
             Line::Bot::Event::MessageType.const_get(@src['message']['type'].capitalize)
-          rescue => e # NameError: uninitialized constant
+          rescue NameError => e
             Line::Bot::Event::MessageType::Unsupport
           end
         end
