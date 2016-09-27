@@ -35,7 +35,7 @@ post '/callback' do
     error 400 do 'Bad Request' end
   end
 
-  events = client.parse(body)
+  events = client.parse_events_from(body)
   events.each { |event|
     case event
     when Line::Bot::Event::Message
