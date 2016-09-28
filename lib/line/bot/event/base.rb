@@ -24,10 +24,6 @@ module Line
           @src[key]
         end
 
-        def to_s
-          inspect
-        end
-
       end
     end
   end
