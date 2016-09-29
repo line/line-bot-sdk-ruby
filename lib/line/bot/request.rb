@@ -1,5 +1,18 @@
+# Copyright 2016 LINE
+#
+# LINE Corporation licenses this file to you under the Apache License,
+# version 2.0 (the "License"); you may not use this file except in compliance
+# with the License. You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+
 require 'line/bot/api/version'
-require 'line/bot/utils'
 require 'json'
 require 'net/http'
 require 'uri'
@@ -7,9 +20,7 @@ require 'uri'
 module Line
   module Bot
     class Request
-      attr_accessor :endpoint, :endpoint_path, :credentials, :to_mid, :message, :to_channel_id, :httpclient
-
-      include Line::Bot::Utils
+      attr_accessor :endpoint, :endpoint_path, :credentials, :to, :reply_token, :messages, :httpclient
 
       # Initializes a new Request
       #
@@ -18,33 +29,22 @@ module Line
         yield(self) if block_given?
       end
 
-      # @return [Array]
-      def to
-        to_mid.is_a?(String) ? [to_mid] : to_mid
-      end
-
-      # @return [Line::Bot::Message::Base#content]
-      def content
-        message.content
-      end
-
       # @return [Hash]
       def payload
         payload = {
           to: to,
-          toChannel: to_channel_id,
-          eventType: message.event_type.to_s,
-          content: content
+          replyToken: reply_token,
+          messages: messages
         }
 
-        payload.to_json
+        payload.delete_if{|k, v| v.nil?}.to_json
       end
 
       # @return [Hash]
       def header
         header = {
           'Content-Type' => 'application/json; charset=UTF-8',
-          'User-Agent' => "LINE-BotSDK/#{Line::Bot::API::VERSION}",
+          'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::API::VERSION}",
         }
         hash = credentials.inject({}) { |h, (k, v)| h[k] = v.to_s; h }
 
@@ -52,8 +52,6 @@ module Line
       end
 
       # Get content of specified URL.
-      #
-      # @raise [ArgumentError]
       #
       # @return [Net::HTTPResponse]
       def get
@@ -76,8 +74,6 @@ module Line
       end
 
       def assert_for_posting_message
-        raise ArgumentError, 'Wrong argument type `to_mid`' unless validate_mids(to)
-        raise ArgumentError, 'Invalid argument `message`' unless message.valid?
         raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.is_a?(String)
       end
 

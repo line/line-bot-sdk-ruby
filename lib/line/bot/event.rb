@@ -12,10 +12,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-module Line
-  module Bot
-    module API
-      DEFAULT_ENDPOINT = "https://api.line.me/v2/bot"
-    end
-  end
-end
+require 'line/bot/event/base'
+require 'line/bot/event/beacon'
+require 'line/bot/event/follow'
+require 'line/bot/event/join'
+require 'line/bot/event/leave'
+require 'line/bot/event/message'
+require 'line/bot/event/postback'
+require 'line/bot/event/unfollow'

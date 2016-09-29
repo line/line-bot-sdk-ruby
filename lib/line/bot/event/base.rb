@@ -14,8 +14,17 @@
 
 module Line
   module Bot
-    module API
-      DEFAULT_ENDPOINT = "https://api.line.me/v2/bot"
+    module Event
+      class Base
+        def initialize(src)
+          @src = src
+        end
+
+        def [](key)
+          @src[key]
+        end
+
+      end
     end
   end
 end

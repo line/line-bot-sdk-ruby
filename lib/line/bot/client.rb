@@ -1,19 +1,32 @@
-require 'line/bot/message'
+# Copyright 2016 LINE
+#
+# LINE Corporation licenses this file to you under the Apache License,
+# version 2.0 (the "License"); you may not use this file except in compliance
+# with the License. You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+
 require 'line/bot/request'
-require 'line/bot/builder/rich_message'
-require 'line/bot/builder/multiple_message'
 require 'line/bot/api/errors'
 require 'base64'
 require 'net/http'
+require 'openssl'
 
 module Line
   module Bot
     class Client
 
-      include Line::Bot::Utils
-
       #  @return [String]
-      attr_accessor :channel_id, :channel_secret, :channel_mid, :endpoint, :to_channel_id, :httpclient
+      attr_accessor :channel_token, :channel_secret, :endpoint
+
+      # @return [Object]
+      attr_accessor :httpclient
 
       # Initialize a new Bot Client.
       #
@@ -25,7 +38,9 @@ module Line
           instance_variable_set("@#{key}", value)
         end
         yield(self) if block_given?
+      end
 
+      def httpclient
         @httpclient ||= Line::Bot::HTTPClient.new
       end
 
@@ -33,16 +48,10 @@ module Line
         @endpoint ||= Line::Bot::API::DEFAULT_ENDPOINT
       end
 
-      def to_channel_id
-        @to_channel_id ||= Line::Bot::API::DEFAULT_SENDING_MESSAGE_CHANNEL_ID
-      end
-
       # @return [Hash]
       def credentials
         {
-          'X-Line-ChannelID' => channel_id,
-          'X-Line-ChannelSecret' => channel_secret,
-          'X-Line-Trusted-User-With-ACL' => channel_mid,
+          "Authorization" => "Bearer #{channel_token}",
         }
       end
 
@@ -50,137 +59,73 @@ module Line
         credentials.values.all?
       end
 
-      # Send text to users.
+      # Push messages to line server and to users.
       #
-      # @param attrs [Hash]
-      #   @param to_mid [String or Array] User's identifiers
-      #   @param text [String]
-      #
-      # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :text keys.
+      # @param user_id [String] User's identifiers
+      # @param messages [Hash or Array]
       #
       # @return [Net::HTTPResponse]
-      def send_text(attrs = {})
-        message = Message::Text.new(
-          text: attrs[:text],
-        )
-        send_message(attrs[:to_mid], message)
+      def push_message(user_id, messages)
+        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+
+        messages = [messages] if messages.is_a?(Hash)
+
+        request = Request.new do |config|
+          config.httpclient     = httpclient
+          config.endpoint       = endpoint
+          config.endpoint_path  = '/message/push'
+          config.credentials    = credentials
+          config.to             = user_id
+          config.messages       = messages
+        end
+
+        request.post
       end
 
-      # Send image to users.
+      # Reply messages to line server and to users.
       #
-      # @param attrs [Hash]
-      #   @param to_mid [String or Array] User's identifiers
-      #   @param image_url [String] Image file's url
-      #   @param preview_url [String] Preview image file's url
-      #
-      # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :image_url, :preview_url keys.
+      # @param token [String]
+      # @param messages [Hash or Array]
       #
       # @return [Net::HTTPResponse]
-      def send_image(attrs = {})
-        message = Message::Image.new(
-          image_url: attrs[:image_url],
-          preview_url: attrs[:preview_url],
-        )
-        send_message(attrs[:to_mid], message)
+      def reply_message(token, messages)
+        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+
+        messages = [messages] if messages.is_a?(Hash)
+
+        request = Request.new do |config|
+          config.httpclient     = httpclient
+          config.endpoint       = endpoint
+          config.endpoint_path  = '/message/reply'
+          config.credentials    = credentials
+          config.reply_token    = token
+          config.messages       = messages
+        end
+
+        request.post
       end
 
-      # Send video to users.
-      #
-      # @param attrs [Hash]
-      #   @param to_mid [String or Array] User's identifiers
-      #   @param video_url [String] Video file's url
-      #   @param preview_url [String] Preview image file's url
-      #
-      # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :video_url, :preview_url keys.
-      #
-      # @return [Net::HTTPResponse]
-      def send_video(attrs = {})
-        message = Message::Video.new(
-          video_url: attrs[:video_url],
-          preview_url: attrs[:preview_url],
-        )
-        send_message(attrs[:to_mid], message)
-      end
-
-      # Send audio to users.
-      #
-      # @param attrs [Hash]
-      #   @param to_mid [String or Array] User's identifiers
-      #   @param audio_url [String] Audio file's url
-      #   @param duration [String or Integer] Voice message's length, milliseconds
-      #
-      # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :audio_url, :duration keys.
-      #
-      # @return [Net::HTTPResponse]
-      def send_audio(attrs = {})
-        message = Message::Audio.new(
-          audio_url: attrs[:audio_url],
-          duration: attrs[:duration],
-        )
-        send_message(attrs[:to_mid], message)
-      end
-
-      # Send location to users.
-      #
-      # @param attrs [Hash]
-      #   @param to_mid [String or Array] User's identifiers
-      #   @param title [String] Location's title
-      #   @param address [String] Location's address
-      #   @param latitude [Float] Location's latitude
-      #   @param longitude [Float] Location's longitude
-      #
-      # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :title, :latitude, :longitude keys.
-      #
-      # @return [Net::HTTPResponse]
-      def send_location(attrs = {})
-        message = Message::Location.new(
-          title: attrs[:title],
-          address: attrs[:address],
-          latitude: attrs[:latitude],
-          longitude: attrs[:longitude],
-        )
-        send_message(attrs[:to_mid], message)
-      end
-
-      # Send sticker to users.
-      #
-      # @param attrs [Hash]
-      #   @param to_mid [String or Array] User's identifiers
-      #   @param stkpkgid [String or Integer] Sticker's package identifier
-      #   @param stkid [String or Integer] Sticker's identifier
-      #   @param stkver [String or Integer] Sticker's version number
-      #
-      # @raise [ArgumentError] Error raised when supplied argument are missing :to_mid, :stkpkgid, :stkid, :stkver keys.
-      #
-      # @return [Net::HTTPResponse]
-      def send_sticker(attrs = {})
-        message = Message::Sticker.new(
-          stkpkgid: attrs[:stkpkgid],
-          stkid: attrs[:stkid],
-          stkver: attrs[:stkver],
-        )
-        send_message(attrs[:to_mid], message)
-      end
-
-      # Send message to line server and to users.
-      #
-      # @param to_mid [String or Array] User's identifiers
-      # @param message [Line::Bot::Message]
-      #
-      # @raise [ArgumentError] Error raised when supplied argument are missing message.
-      #
-      # @return [Net::HTTPResponse]
-      def send_message(to_mid, message)
+      def leave_group(group_id)
         raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
 
         request = Request.new do |config|
-          config.to_channel_id  = to_channel_id
           config.httpclient     = httpclient
           config.endpoint       = endpoint
-          config.endpoint_path  = '/events'
+          config.endpoint_path  = "/group/#{group_id}/leave"
           config.credentials    = credentials
-          config.to_mid         = to_mid
-          config.message        = message
+        end
+
+        request.post
+      end
+
+      def leave_room(room_id)
+        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+
+        request = Request.new do |config|
+          config.httpclient     = httpclient
+          config.endpoint       = endpoint
+          config.endpoint_path  = "/room/#{room_id}/leave"
+          config.credentials    = credentials
         end
 
         request.post
@@ -190,43 +135,20 @@ module Line
       #
       # @param identifier [String] Message's identifier
       #
-      # @raise [ArgumentError] Error raised when supplied argument are missing message.
-      #
       # @return [Net::HTTPResponse]
       def get_message_content(identifier)
-        endpoint_path  = "/bot/message/#{identifier}/content"
+        endpoint_path  = "/message/#{identifier}/content"
         get(endpoint_path)
       end
 
-      # Get preview of message content.
+      # Get an user's profile.
       #
-      # @param identifier [String] Message's identifier
-      #
-      # @raise [ArgumentError] Error raised when supplied argument are missing message.
+      # @param user_id [String] User's identifiers
       #
       # @return [Net::HTTPResponse]
-      def get_message_content_preview(identifier)
-        endpoint_path  = "/bot/message/#{identifier}/content/preview"
+      def get_profile(user_id)
+        endpoint_path  = "/profile/#{user_id}"
         get(endpoint_path)
-      end
-
-      # Get user profile.
-      #
-      # @param mids [String or Array] User's identifiers
-      #
-      # @raise [ArgumentError] Error raised when supplied argument are missing message.
-      # @raise [HTTPError]
-      #
-      # @return [Line::Bot::Response::User::Profile]
-      def get_user_profile(mids)
-        raise ArgumentError, 'Wrong argument type `mids`' unless validate_mids(mids)
-
-        query = mids.is_a?(Array) ? mids.join(',') : mids
-        endpoint_path  = "/profiles?mids=#{query}"
-
-        response = get(endpoint_path)
-
-        Line::Bot::Response::User::Profile.new(response) if !response.value
       end
 
       # Fetch data, get content of specified URL.
@@ -238,7 +160,6 @@ module Line
         raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
 
         request = Request.new do |config|
-          config.to_channel_id  = to_channel_id
           config.httpclient     = httpclient
           config.endpoint       = endpoint
           config.endpoint_path  = endpoint_path
@@ -248,28 +169,32 @@ module Line
         request.get
       end
 
-      # Create rich message to line server and to users.
+      # Parse events from request.body
       #
-      # @return [Line::Bot::Builder::RichMessage]
-      def rich_message
-        Line::Bot::Builder::RichMessage.new(self)
-      end
+      # @param request_body [String]
+      #
+      # @return [Array<Line::Bot::Event::Class>]
+      def parse_events_from(request_body)
+        json = JSON.parse(request_body)
 
-      # Create multiple message to line server and to users.
-      #
-      # @return [Line::Bot::Builder::MultipleMessage]
-      def multiple_message
-        Line::Bot::Builder::MultipleMessage.new(self)
+        json['events'].map { |item|
+          begin
+            klass = Line::Bot::Event.const_get(item['type'].capitalize)
+            klass.new(item)
+          rescue NameError => e
+            Line::Bot::Event::Base.new(item)
+          end
+        }
       end
 
       # Validate signature
       #
       # @param content [String] Request's body
-      # @param channel_signature [String] Request'header 'X-LINE-ChannelSignature' # HTTP_X_LINE_CHANNELSIGNATURE
+      # @param channel_signature [String] Request'header 'X-LINE-Signature' # HTTP_X_LINE_SIGNATURE
       #
       # @return [Boolean]
       def validate_signature(content = "", channel_signature)
-        return false unless !channel_signature.nil? && credentials?
+        return false if !channel_signature || !channel_secret
 
         hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, channel_secret, content)
         signature = Base64.strict_encode64(hash)
