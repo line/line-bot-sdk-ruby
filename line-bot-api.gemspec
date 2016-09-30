@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["LINE Corporation"]
   spec.email         = ["hirohisa.kawasaki@gmail.com"]
 
-  spec.description   = "Line::Bot::API - SDK of the LINE BOT API"
-  spec.summary       = spec.description
+  spec.description   = "Line::Bot::API - SDK of the LINE Messaging API for Ruby"
+  spec.summary       = "SDK of the LINE Messaging API"
   spec.homepage      = "https://github.com/line/line-bot-sdk-ruby"
   spec.license       = "Apache-2.0"
 
