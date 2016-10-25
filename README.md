@@ -5,15 +5,15 @@
 
 Line::Bot::API - SDK of the LINE Messaging API for Ruby.
 
-## About LINE Messaging API
+## About the LINE Messaging API
 
-Please refer to the official api documents for details.
+See the official API reference documentation for more information.
 
 https://devdocs.line.me/
 
 ## Synopsis
 
-usage is:
+Usage:
 
 ```ruby
 # app.rb
