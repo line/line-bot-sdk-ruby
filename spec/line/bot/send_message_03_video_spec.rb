@@ -56,4 +56,29 @@ describe Line::Bot::Client do
     expect(response.body).to eq(expected)
   end
 
+  it 'multicasts the video message' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/message/multicast'
+    stub_request(:post, uri_template).to_return { |request| {:body => request.body, :status => 200} }
+
+    client = Line::Bot::Client.new do |config|
+      config.channel_token = 'channel_token'
+    end
+
+    user_ids = ['user1', 'user2']
+    message = {
+      type: 'video',
+      originalContentUrl: 'https://example.com/video.mp4',
+      previewImageUrl: 'https://example.com/video_preview.jpg',
+    }
+    response = client.multicast(user_ids, message)
+
+    expected = {
+      to: user_ids,
+      messages: [
+        message
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
+  end
+
 end

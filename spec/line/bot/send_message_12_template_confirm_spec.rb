@@ -86,4 +86,44 @@ describe Line::Bot::Client do
     expect(response.body).to eq(expected)
   end
 
+  it 'multicasts the template message type confirm' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/message/multicast'
+    stub_request(:post, uri_template).to_return { |request| {:body => request.body, :status => 200} }
+
+    client = Line::Bot::Client.new do |config|
+      config.channel_token = 'channel_token'
+    end
+
+    user_ids = ['user1', 'user2']
+    message = {
+      type: 'template',
+      altText: 'this is an template message',
+      template: {
+        type: 'confirm',
+        text: 'test',
+        actions: [
+          {
+            type: 'message',
+            label: 'yes',
+            text: 'yes',
+          },
+          {
+            type: 'message',
+            label: 'no',
+            text: 'no',
+          },
+        ],
+      }
+    }
+    response = client.multicast(user_ids, message)
+
+    expected = {
+      to: user_ids,
+      messages: [
+        message
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
+  end
+
 end

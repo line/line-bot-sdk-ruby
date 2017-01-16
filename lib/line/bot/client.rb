@@ -59,7 +59,7 @@ module Line
         credentials.values.all?
       end
 
-      # Push messages to line server and to users.
+      # Push messages to line server and to user.
       #
       # @param user_id [String] User's identifiers
       # @param messages [Hash or Array]
@@ -99,6 +99,30 @@ module Line
           config.endpoint_path  = '/message/reply'
           config.credentials    = credentials
           config.reply_token    = token
+          config.messages       = messages
+        end
+
+        request.post
+      end
+
+      # Multicast messages to line server and to users.
+      #
+      # @param to [Array or String]
+      # @param messages [Hash or Array]
+      #
+      # @return [Net::HTTPResponse]
+      def multicast(to, messages)
+        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+
+        to = [to] if to.is_a?(String)
+        messages = [messages] if messages.is_a?(Hash)
+
+        request = Request.new do |config|
+          config.httpclient     = httpclient
+          config.endpoint       = endpoint
+          config.endpoint_path  = '/message/multicast'
+          config.credentials    = credentials
+          config.to             = to
           config.messages       = messages
         end
 
