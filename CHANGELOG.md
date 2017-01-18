@@ -1,3 +1,11 @@
+1.1.0
+-----
+* [Support Multicast](https://github.com/line/line-bot-sdk-ruby/pull/46)
+
+1.0.0
+-----
+* [Support Messaging API](https://github.com/line/line-bot-sdk-ruby/pull/38)
+
 0.1.9
 -----
 * [Add type 'sendMessage' in rich message](https://github.com/line/line-bot-sdk-ruby/pull/34)
