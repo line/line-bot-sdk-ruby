@@ -25,7 +25,7 @@ module Line
         end
 
         def deviceMessage
-          @src['beacon']['dm']
+          [@src['beacon']['dm']].pack('H*')
         end
       end
     end
