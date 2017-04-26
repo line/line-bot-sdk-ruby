@@ -250,7 +250,8 @@ describe Line::Bot::Client do
     expect(events[11]).to be_a(Line::Bot::Event::Beacon)
     expect(events[11].hwid).to eq("374591320")
     expect(events[11].type).to eq("enter")
-    expect(events[11].deviceMessage).to eq("1234567890abcdef")
+    expect(events[11]['beacon']['dm']).to eq("1234567890abcdef")
+    expect(events[11].deviceMessage).to eq("\x12\x34\x56\x78\x90\xab\xcd\xef".b)
   end
 
   it 'parses unknown event' do
