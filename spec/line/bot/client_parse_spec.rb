@@ -141,8 +141,9 @@ EVENTS_CONTENT = <<"EOS"
       },
       "replyToken": "replytoken",
       "beacon": {
-        "hwid": "hwid",
-        "type": "enter"
+        "hwid": "374591320",
+        "type": "enter",
+        "dm": "1234567890abcdef"
       }
     }
   ]
@@ -247,6 +248,9 @@ describe Line::Bot::Client do
     expect(events[9]).to be_a(Line::Bot::Event::Leave)
     expect(events[10]).to be_a(Line::Bot::Event::Postback)
     expect(events[11]).to be_a(Line::Bot::Event::Beacon)
+    expect(events[11].hwid).to eq("374591320")
+    expect(events[11].type).to eq("enter")
+    expect(events[11].deviceMessage).to eq("1234567890abcdef")
   end
 
   it 'parses unknown event' do

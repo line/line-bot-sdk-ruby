@@ -16,6 +16,17 @@ module Line
   module Bot
     module Event
       class Beacon < Base
+        def type
+          @src['beacon']['type']
+        end
+
+        def hwid
+          @src['beacon']['hwid']
+        end
+
+        def deviceMessage
+          @src['beacon']['dm']
+        end
       end
     end
   end
