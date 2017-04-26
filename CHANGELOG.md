@@ -1,3 +1,7 @@
+1.2.0
+-----
+* [Support device message of beacon](https://github.com/line/line-bot-sdk-ruby/pull/50)
+
 1.1.0
 -----
 * [Support Multicast](https://github.com/line/line-bot-sdk-ruby/pull/46)
