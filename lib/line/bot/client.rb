@@ -175,6 +175,17 @@ module Line
         get(endpoint_path)
       end
 
+      # Get an user's display name.
+      #
+      # @param user_id [String] User's identifiers
+      #
+      # @return [String]
+      def get_display_name(user_id)
+        response = get_profile(user_id)
+        json = JSON.parse(response.body)
+        json['displayName']
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_path [String]
