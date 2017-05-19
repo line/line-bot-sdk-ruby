@@ -20,7 +20,7 @@ describe Line::Bot::Client do
       altText: 'this is an template message',
       template: {
         type: 'buttons',
-        thumbnaiImageUrl: 'https://example.com/image.jpg',
+        thumbnailImageUrl: 'https://example.com/image.jpg',
         title: 'example',
         text: 'test',
         actions: [
@@ -67,7 +67,7 @@ describe Line::Bot::Client do
       altText: 'this is an template message',
       template: {
         type: 'buttons',
-        thumbnaiImageUrl: 'https://example.com/image.jpg',
+        thumbnailImageUrl: 'https://example.com/image.jpg',
         title: 'example',
         text: 'test',
         actions: [
@@ -114,7 +114,7 @@ describe Line::Bot::Client do
       altText: 'this is an template message',
       template: {
         type: 'buttons',
-        thumbnaiImageUrl: 'https://example.com/image.jpg',
+        thumbnailImageUrl: 'https://example.com/image.jpg',
         title: 'example',
         text: 'test',
         actions: [
