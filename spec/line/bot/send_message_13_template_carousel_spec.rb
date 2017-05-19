@@ -22,7 +22,7 @@ describe Line::Bot::Client do
         type: 'carousel',
         columns: [
           {
-            thumbnaiImageUrl: 'https://example.com/image1.jpg',
+            thumbnailImageUrl: 'https://example.com/image1.jpg',
             title: 'example',
             text: 'test',
             actions: [
@@ -39,7 +39,7 @@ describe Line::Bot::Client do
             ],
           },
           {
-            thumbnaiImageUrl: 'https://example.com/image2.jpg',
+            thumbnailImageUrl: 'https://example.com/image2.jpg',
             title: 'example',
             text: 'test',
             actions: [
@@ -85,7 +85,7 @@ describe Line::Bot::Client do
         type: 'carousel',
         columns: [
           {
-            thumbnaiImageUrl: 'https://example.com/image1.jpg',
+            thumbnailImageUrl: 'https://example.com/image1.jpg',
             title: 'example',
             text: 'test',
             actions: [
@@ -102,7 +102,7 @@ describe Line::Bot::Client do
             ],
           },
           {
-            thumbnaiImageUrl: 'https://example.com/image2.jpg',
+            thumbnailImageUrl: 'https://example.com/image2.jpg',
             title: 'example',
             text: 'test',
             actions: [
@@ -148,7 +148,7 @@ describe Line::Bot::Client do
         type: 'carousel',
         columns: [
           {
-            thumbnaiImageUrl: 'https://example.com/image1.jpg',
+            thumbnailImageUrl: 'https://example.com/image1.jpg',
             title: 'example',
             text: 'test',
             actions: [
@@ -165,7 +165,7 @@ describe Line::Bot::Client do
             ],
           },
           {
-            thumbnaiImageUrl: 'https://example.com/image2.jpg',
+            thumbnailImageUrl: 'https://example.com/image2.jpg',
             title: 'example',
             text: 'test',
             actions: [
