@@ -83,7 +83,7 @@ describe Line::Bot::Client do
     # get
     result = client.get_message_content(identifier)
 
-    expect(result[:url]).to eq  Line::Bot::API::DEFAULT_ENDPOINT + "/message/#{identifier}/content"
+    expect(result[:url]).to eq  Line::Bot::API::DEFAULT_ENDPOINT + "/bot/message/#{identifier}/content"
 
     header = result[:header]
     expect(header['Authorization']).to eq "Bearer #{dummy_config[:channel_token]}"
@@ -100,7 +100,7 @@ describe Line::Bot::Client do
 
     result = client.push_message(user_id, message)
 
-    expect(result[:url]).to eq  Line::Bot::API::DEFAULT_ENDPOINT + "/message/push"
+    expect(result[:url]).to eq  Line::Bot::API::DEFAULT_ENDPOINT + "/bot/message/push"
 
     header = result[:header]
     expect(header['Authorization']).to eq "Bearer #{dummy_config[:channel_token]}"

@@ -7,7 +7,7 @@ WebMock.allow_net_connect!
 describe Line::Bot::Client do
 
   it 'pushes the imagemap message' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/message/push'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/push'
     stub_request(:post, uri_template).to_return { |request| {:body => request.body, :status => 200} }
 
     client = Line::Bot::Client.new do |config|
@@ -58,7 +58,7 @@ describe Line::Bot::Client do
   end
 
   it 'replies the imagemap message' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/message/reply'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/reply'
     stub_request(:post, uri_template).to_return { |request| {:body => request.body, :status => 200} }
 
     client = Line::Bot::Client.new do |config|
@@ -109,7 +109,7 @@ describe Line::Bot::Client do
   end
 
   it 'multicasts the imagemap message' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/message/multicast'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/multicast'
     stub_request(:post, uri_template).to_return { |request| {:body => request.body, :status => 200} }
 
     client = Line::Bot::Client.new do |config|

@@ -73,7 +73,7 @@ module Line
         request = Request.new do |config|
           config.httpclient     = httpclient
           config.endpoint       = endpoint
-          config.endpoint_path  = '/message/push'
+          config.endpoint_path  = '/bot/message/push'
           config.credentials    = credentials
           config.to             = user_id
           config.messages       = messages
@@ -96,7 +96,7 @@ module Line
         request = Request.new do |config|
           config.httpclient     = httpclient
           config.endpoint       = endpoint
-          config.endpoint_path  = '/message/reply'
+          config.endpoint_path  = '/bot/message/reply'
           config.credentials    = credentials
           config.reply_token    = token
           config.messages       = messages
@@ -120,7 +120,7 @@ module Line
         request = Request.new do |config|
           config.httpclient     = httpclient
           config.endpoint       = endpoint
-          config.endpoint_path  = '/message/multicast'
+          config.endpoint_path  = '/bot/message/multicast'
           config.credentials    = credentials
           config.to             = to
           config.messages       = messages
@@ -135,7 +135,7 @@ module Line
         request = Request.new do |config|
           config.httpclient     = httpclient
           config.endpoint       = endpoint
-          config.endpoint_path  = "/group/#{group_id}/leave"
+          config.endpoint_path  = "/bot/group/#{group_id}/leave"
           config.credentials    = credentials
         end
 
@@ -148,7 +148,7 @@ module Line
         request = Request.new do |config|
           config.httpclient     = httpclient
           config.endpoint       = endpoint
-          config.endpoint_path  = "/room/#{room_id}/leave"
+          config.endpoint_path  = "/bot/room/#{room_id}/leave"
           config.credentials    = credentials
         end
 
@@ -161,7 +161,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_content(identifier)
-        endpoint_path  = "/message/#{identifier}/content"
+        endpoint_path  = "/bot/message/#{identifier}/content"
         get(endpoint_path)
       end
 
@@ -171,7 +171,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_profile(user_id)
-        endpoint_path  = "/profile/#{user_id}"
+        endpoint_path  = "/bot/profile/#{user_id}"
         get(endpoint_path)
       end
 
