@@ -11,6 +11,15 @@ PROFILES_CONTENT = <<"EOS"
 }
 EOS
 
+PROFILE_CONTENT = <<"EOS"
+{
+  "userId":"Ufr47556f2e40dba2456887320ba7c76d",
+  "displayName":"Brown",
+  "pictureUrl":"https://example.com/abcdefghijklmn",
+  "statusMessage":"Hello, LINE!"
+}
+EOS
+
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
@@ -57,6 +66,18 @@ describe Line::Bot::Client do
     expect(contact['displayName']).to eq "BOT API"
     expect(contact['pictureUrl']).to eq "http://dl.profile.line.naver.jp/abcdefghijklmn"
     expect(contact['statusMessage']).to eq "Hello, LINE!"
+  end
+
+  it 'gets custom path' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/profile'
+    stub_request(:get, uri_template).to_return { |request| {:body => PROFILE_CONTENT, :status => 200} }
+
+    client = generate_client
+
+    response = client.get('/profile')
+
+    contact = JSON.parse(response.body)
+    expect(contact['displayName']).to eq "Brown"
   end
 
 end
