@@ -15,7 +15,7 @@
 module Line
   module Bot
     module API
-      DEFAULT_ENDPOINT = "https://api.line.me/v2/bot"
+      DEFAULT_ENDPOINT = "https://api.line.me/v2"
     end
   end
 end
