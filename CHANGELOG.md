@@ -1,3 +1,7 @@
+1.2.1
+-----
+* [Change default endpoint](https://github.com/line/line-bot-sdk-ruby/pull/53)
+
 1.2.0
 -----
 * [Support device message of beacon](https://github.com/line/line-bot-sdk-ruby/pull/50)
