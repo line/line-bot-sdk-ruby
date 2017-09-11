@@ -23,7 +23,7 @@ NEXT_MEMBER_ID_CONTENT = <<"EOS"
 }
 EOS
 
-PROFILE_CONTENT = <<"EOS"
+GROUP_ROOM_MEMBER_PROFILE_CONTENT = <<"EOS"
 {
     "displayName":"LINE taro",
     "userId":"Uxxxxxxxxxxxxxx11",
@@ -108,7 +108,7 @@ describe Line::Bot::Client do
 
   it 'gets room member profile' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/room/{roomId}/member/{userId}'
-    stub_request(:get, uri_template).to_return { |request| {:body => PROFILE_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {:body => GROUP_ROOM_MEMBER_PROFILE_CONTENT, :status => 200} }
 
     client = generate_client
     room_id = "room_id"
@@ -124,7 +124,7 @@ describe Line::Bot::Client do
 
   it 'gets group member profile' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/group/{groupId}/member/{userId}'
-    stub_request(:get, uri_template).to_return { |request| {:body => PROFILE_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {:body => GROUP_ROOM_MEMBER_PROFILE_CONTENT, :status => 200} }
 
     client = generate_client
     group_id = "group_id"
