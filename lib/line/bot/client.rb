@@ -206,7 +206,7 @@ module Line
       # @return [Net::HTTPResponse]
       def get_group_member_ids(group_id, continuation_token=nil)
         endpoint_path  = "/bot/group/#{group_id}/members/ids"
-        endpoint_path += "?start=#{continuation_token}" unless continuation_token.nil?
+        endpoint_path += "?start=#{continuation_token}" if continuation_token
         get(endpoint_path)
       end
 
@@ -219,7 +219,7 @@ module Line
       # @return [Net::HTTPResponse]
       def get_room_member_ids(room_id, continuation_token=nil)
         endpoint_path  = "/bot/room/#{room_id}/members/ids"
-        endpoint_path += "?start=#{continuation_token}" unless continuation_token.nil?
+        endpoint_path += "?start=#{continuation_token}" if continuation_token
         get(endpoint_path)
       end
 
