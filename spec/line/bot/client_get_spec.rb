@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'webmock/rspec'
 require 'json'
 
-PROFILES_CONTENT = <<"EOS"
+PROFILE_CONTENT = <<"EOS"
 {
   "displayName":"BOT API",
   "userId":"u0047556f2e40dba2456887320ba7c76d",
@@ -11,7 +11,7 @@ PROFILES_CONTENT = <<"EOS"
 }
 EOS
 
-PROFILE_CONTENT = <<"EOS"
+OTHER_PROFILE_CONTENT = <<"EOS"
 {
   "userId":"Ufr47556f2e40dba2456887320ba7c76d",
   "displayName":"Brown",
@@ -53,9 +53,9 @@ describe Line::Bot::Client do
     expect(response).to be_a(Net::HTTPOK)
   end
 
-  it 'gets profile information' do
+  it 'gets profile' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/profile/{user_id}'
-    stub_request(:get, uri_template).to_return { |request| {:body => PROFILES_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {:body => PROFILE_CONTENT, :status => 200} }
 
     client = generate_client
 
@@ -70,7 +70,7 @@ describe Line::Bot::Client do
 
   it 'gets other path' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/profile'
-    stub_request(:get, uri_template).to_return { |request| {:body => PROFILE_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {:body => OTHER_PROFILE_CONTENT, :status => 200} }
 
     client = generate_client
 

@@ -167,11 +167,59 @@ module Line
 
       # Get an user's profile.
       #
-      # @param user_id [String] User's identifiers
+      # @param user_id [String] User's identifier
       #
       # @return [Net::HTTPResponse]
       def get_profile(user_id)
         endpoint_path  = "/bot/profile/#{user_id}"
+        get(endpoint_path)
+      end
+
+      # Get an user's profile of a group.
+      #
+      # @param group_id [String] Group's identifier
+      # @param user_id [String] User's identifier
+      #
+      # @return [Net::HTTPResponse]
+      def get_group_member_profile(group_id, user_id)
+        endpoint_path = "/bot/group/#{group_id}/member/#{user_id}"
+        get(endpoint_path)
+      end
+
+      # Get an user's profile of a room.
+      #
+      # @param room_id [String] Room's identifier
+      # @param user_id [String] User's identifier
+      #
+      # @return [Net::HTTPResponse]
+      def get_room_member_profile(room_id, user_id)
+        endpoint_path = "/bot/room/#{room_id}/member/#{user_id}"
+        get(endpoint_path)
+      end
+
+      # Get user IDs of a group
+      #
+      # @param group_id [String] Group's identifier
+      # @param continuation_token [String] Identifier to return next page
+      #                                   (next property to be included in the response)
+      #
+      # @return [Net::HTTPResponse]
+      def get_group_member_ids(group_id, continuation_token=nil)
+        endpoint_path  = "/bot/group/#{group_id}/members/ids"
+        endpoint_path += "?start=#{continuation_token}" if continuation_token
+        get(endpoint_path)
+      end
+
+      # Get user IDs of a room
+      #
+      # @param group_id [String] Room's identifier
+      # @param continuation_token [String] Identifier to return next page
+      #                                   (next property to be included in the response)
+      #
+      # @return [Net::HTTPResponse]
+      def get_room_member_ids(room_id, continuation_token=nil)
+        endpoint_path  = "/bot/room/#{room_id}/members/ids"
+        endpoint_path += "?start=#{continuation_token}" if continuation_token
         get(endpoint_path)
       end
 
