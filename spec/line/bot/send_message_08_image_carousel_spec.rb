@@ -59,7 +59,7 @@ describe Line::Bot::Client do
     expect(response.body).to eq(expected)
   end
 
-  it 'replies the imagemap message' do
+  it 'replies the image carousel message' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/reply'
     stub_request(:post, uri_template).to_return { |request| { body: request.body, status: 200 } }
 
@@ -112,7 +112,7 @@ describe Line::Bot::Client do
     expect(response.body).to eq(expected)
   end
 
-  it 'multicasts the imagemap message' do
+  it 'multicasts the image carousel message' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/multicast'
     stub_request(:post, uri_template).to_return { |request| { body: request.body, status: 200 } }
 
