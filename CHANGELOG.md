@@ -1,3 +1,8 @@
+1.2.2
+-----
+* [Add to get group/room member ids or profiles support](https://github.com/line/line-bot-sdk-ruby/pull/54)
+* [Add image carousel support](https://github.com/line/line-bot-sdk-ruby/issue/56)
+
 1.2.1
 -----
 * [Change default endpoint](https://github.com/line/line-bot-sdk-ruby/pull/53)
