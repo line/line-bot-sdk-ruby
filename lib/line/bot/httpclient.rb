@@ -40,6 +40,11 @@ module Line
         uri = URI(url)
         http(uri).post(uri.request_uri, payload, header)
       end
+
+      def delete(url, header = {})
+        uri = URI(url)
+        http(uri).delete(uri.request_uri, header)
+      end
     end
   end
 end
