@@ -14,7 +14,6 @@
 
 require 'line/bot/api/version'
 require 'json'
-require 'mime/types'
 require 'net/http'
 require 'uri'
 
@@ -47,7 +46,10 @@ module Line
       def header
         content_type =
           if file.is_a? File
-            MIME::Types.type_for(file.path).first.to_s
+            case file.path
+            when /\.png$/ then 'image/png'
+            when /\.jpe?g$/ then 'image/jpeg'
+            end
           else
             'application/json; charset=UTF-8'
           end
