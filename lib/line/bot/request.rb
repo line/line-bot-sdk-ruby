@@ -20,7 +20,7 @@ require 'uri'
 module Line
   module Bot
     class Request
-      attr_accessor :endpoint, :endpoint_path, :credentials, :to, :reply_token, :messages, :httpclient
+      attr_accessor :endpoint, :endpoint_path, :credentials, :to, :reply_token, :messages, :httpclient, :payload, :file
 
       # Initializes a new Request
       #
@@ -29,8 +29,10 @@ module Line
         yield(self) if block_given?
       end
 
-      # @return [Hash]
+      # @return [String]
       def payload
+        return file.seek(0) && file.read if file.is_a? File
+        return @payload if @payload.is_a? String
         payload = {
           to: to,
           replyToken: reply_token,
@@ -42,8 +44,18 @@ module Line
 
       # @return [Hash]
       def header
+        content_type =
+          if file.is_a? File
+            case file.path
+            when /\.png$/ then 'image/png'
+            when /\.jpe?g$/ then 'image/jpeg'
+            end
+          else
+            'application/json; charset=UTF-8'
+          end
+
         header = {
-          'Content-Type' => 'application/json; charset=UTF-8',
+          'Content-Type' => content_type,
           'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::API::VERSION}",
         }
         hash = credentials.inject({}) { |h, (k, v)| h[k] = v.to_s; h }
@@ -69,6 +81,11 @@ module Line
         httpclient.post(endpoint + endpoint_path, payload, header)
       end
 
+      def delete
+        assert_for_deleting_message
+        httpclient.delete(endpoint + endpoint_path, header)
+      end
+
       def assert_for_getting_message
         raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.is_a?(String)
       end
@@ -77,6 +94,9 @@ module Line
         raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.is_a?(String)
       end
 
+      def assert_for_deleting_message
+        raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.is_a?(String)
+      end
     end
   end
 end

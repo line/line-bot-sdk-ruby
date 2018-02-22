@@ -223,6 +223,116 @@ module Line
         get(endpoint_path)
       end
 
+      # Get a list of all uploaded rich menus
+      #
+      # @return [Net::HTTPResponse]
+      def get_rich_menus
+        endpoint_path = '/bot/richmenu/list'
+        get(endpoint_path)
+      end
+
+      # Get a rich menu via a rich menu ID
+      #
+      # @param rich_menu_id [String] ID of an uploaded rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def get_rich_menu(rich_menu_id)
+        endpoint_path = "/bot/richmenu/#{rich_menu_id}"
+        get(endpoint_path)
+      end
+
+      # Create a rich menu
+      #
+      # @param rich_menu [Hash] The rich menu represented as a rich menu object
+      #
+      # @return [Net::HTTPResponse]
+      def create_rich_menu(rich_menu)
+        request = Request.new do |config|
+          config.httpclient     = httpclient
+          config.endpoint       = endpoint
+          config.endpoint_path  = '/bot/richmenu'
+          config.credentials    = credentials
+          config.payload        = rich_menu.to_json
+        end
+
+        request.post
+      end
+
+      # Delete a rich menu
+      #
+      # @param rich_menu_id [String] ID of an uploaded rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def delete_rich_menu(rich_menu_id)
+        endpoint_path = "/bot/richmenu/#{rich_menu_id}"
+        delete(endpoint_path)
+      end
+
+      # Get the ID of the rich menu linked to a user
+      #
+      # @param user_id [String] ID of the user
+      #
+      # @return [Net::HTTPResponse]
+      def get_user_rich_menu(user_id)
+        endpoint_path = "/bot/user/#{user_id}/richmenu"
+        get(endpoint_path)
+      end
+
+      # Link a rich menu to a user
+      #
+      # @param user_id [String] ID of the user
+      # @param rich_menu_id [String] ID of an uploaded rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def link_user_rich_menu(user_id, rich_menu_id)
+        request = Request.new do |config|
+          config.httpclient = httpclient
+          config.endpoint = endpoint
+          config.endpoint_path = "/bot/user/#{user_id}/richmenu/#{rich_menu_id}"
+          config.credentials = credentials
+        end
+
+        request.post
+      end
+
+      # Unlink a rich menu from a user
+      #
+      # @param user_id [String] ID of the user
+      #
+      # @return [Net::HTTPResponse]
+      def unlink_user_rich_menu(user_id)
+        endpoint_path  = "/bot/user/#{user_id}/richmenu"
+        delete(endpoint_path)
+      end
+
+      # Download an image associated with a rich menu
+      #
+      # @param rich_menu_id [String] ID of an uploaded rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def get_rich_menu_image(rich_menu_id)
+        endpoint_path = "/bot/richmenu/#{rich_menu_id}/content"
+        get(endpoint_path)
+      end
+
+      # Upload and attaches an image to a rich menu
+      #
+      # @param rich_menu_id [String] The ID of the rich menu to attach the image to
+      # @param file [File] Image file to attach rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def create_rich_menu_image(rich_menu_id, file)
+        request = Request.new do |config|
+          config.httpclient     = httpclient
+          config.endpoint       = endpoint
+          config.endpoint_path  = "/bot/richmenu/#{rich_menu_id}/content"
+          config.credentials = credentials
+          config.file = file
+        end
+
+        request.post
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_path [String]
@@ -239,6 +349,24 @@ module Line
         end
 
         request.get
+      end
+
+      # Delete content of specified URL.
+      #
+      # @param endpoint_path [String]
+      #
+      # @return [Net::HTTPResponse]
+      def delete(endpoint_path)
+        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+
+        request = Request.new do |config|
+          config.httpclient     = httpclient
+          config.endpoint       = endpoint
+          config.endpoint_path  = endpoint_path
+          config.credentials    = credentials
+        end
+
+        request.delete
       end
 
       # Parse events from request.body
