@@ -49,6 +49,8 @@ module Line
             case file.path
             when /\.png$/ then 'image/png'
             when /\.jpe?g$/ then 'image/jpeg'
+            else
+              raise ArgumentError.new("invalid file extension: #{file.path}")
             end
           else
             'application/json; charset=UTF-8'
