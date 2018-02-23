@@ -47,8 +47,8 @@ module Line
         content_type =
           if file.is_a? File
             case file.path
-            when /\.png$/ then 'image/png'
-            when /\.jpe?g$/ then 'image/jpeg'
+            when /\.png\z/i then 'image/png'
+            when /\.jpe?g\z/i then 'image/jpeg'
             else
               raise ArgumentError.new("invalid file extension: #{file.path}")
             end
