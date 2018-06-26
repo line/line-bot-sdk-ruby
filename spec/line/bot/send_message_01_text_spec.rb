@@ -5,7 +5,6 @@ require 'json'
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
-
   it 'pushes the text message' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/push'
     stub_request(:post, uri_template).to_return { |request| {:body => request.body, :status => 200} }
@@ -77,5 +76,4 @@ describe Line::Bot::Client do
     }.to_json
     expect(response.body).to eq(expected)
   end
-
 end

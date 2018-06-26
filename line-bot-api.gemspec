@@ -1,4 +1,4 @@
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'line/bot/api/version'
 
@@ -19,9 +19,9 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version     = '>= 2.0.0'
 
-  spec.add_development_dependency 'rake', "~> 10.4"
-  spec.add_development_dependency "bundler", "~> 1.11"
-  spec.add_development_dependency "webmock", "~> 1.24"
   spec.add_development_dependency "addressable", "~> 2.3"
+  spec.add_development_dependency "bundler", "~> 1.11"
+  spec.add_development_dependency 'rake', "~> 10.4"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "webmock", "~> 1.24"
 end

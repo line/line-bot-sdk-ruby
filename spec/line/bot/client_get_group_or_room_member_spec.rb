@@ -34,7 +34,6 @@ EOS
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
-
   before do
   end
 
@@ -137,5 +136,4 @@ describe Line::Bot::Client do
     expect(contact['displayName']).to eq "LINE taro"
     expect(contact['pictureUrl']).to eq "http://obs.line-apps.com/image"
   end
-
 end

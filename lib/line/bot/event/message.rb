@@ -27,11 +27,9 @@ module Line
 
       class Message < Base
         def type
-          begin
-            Line::Bot::Event::MessageType.const_get(@src['message']['type'].capitalize)
-          rescue NameError => e
-            Line::Bot::Event::MessageType::Unsupport
-          end
+          Line::Bot::Event::MessageType.const_get(@src['message']['type'].capitalize)
+        rescue NameError => e
+          Line::Bot::Event::MessageType::Unsupport
         end
 
         def message

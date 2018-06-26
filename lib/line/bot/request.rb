@@ -39,7 +39,7 @@ module Line
           messages: messages
         }
 
-        payload.delete_if{|k, v| v.nil?}.to_json
+        payload.delete_if { |k, v| v.nil? }.to_json
       end
 
       # @return [Hash]

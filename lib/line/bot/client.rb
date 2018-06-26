@@ -21,7 +21,6 @@ require 'openssl'
 module Line
   module Bot
     class Client
-
       #  @return [String]
       attr_accessor :channel_token, :channel_secret, :endpoint
 
@@ -204,7 +203,7 @@ module Line
       #                                   (next property to be included in the response)
       #
       # @return [Net::HTTPResponse]
-      def get_group_member_ids(group_id, continuation_token=nil)
+      def get_group_member_ids(group_id, continuation_token = nil)
         endpoint_path  = "/bot/group/#{group_id}/members/ids"
         endpoint_path += "?start=#{continuation_token}" if continuation_token
         get(endpoint_path)
@@ -217,7 +216,7 @@ module Line
       #                                   (next property to be included in the response)
       #
       # @return [Net::HTTPResponse]
-      def get_room_member_ids(room_id, continuation_token=nil)
+      def get_room_member_ids(room_id, continuation_token = nil)
         endpoint_path  = "/bot/room/#{room_id}/members/ids"
         endpoint_path += "?start=#{continuation_token}" if continuation_token
         get(endpoint_path)
@@ -393,16 +392,17 @@ module Line
       # @param channel_signature [String] Request'header 'X-LINE-Signature' # HTTP_X_LINE_SIGNATURE
       #
       # @return [Boolean]
-      def validate_signature(content = "", channel_signature)
+      def validate_signature(content, channel_signature)
         return false if !channel_signature || !channel_secret
 
-        hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, channel_secret, content)
+        hash = OpenSSL::HMAC.digest(OpenSSL::Digest::SHA256.new, channel_secret, content)
         signature = Base64.strict_encode64(hash)
 
         variable_secure_compare(channel_signature, signature)
       end
 
-    private
+      private
+
       # Constant time string comparison.
       #
       # via timing attacks.
@@ -423,6 +423,5 @@ module Line
         res == 0
       end
     end
-
   end
 end

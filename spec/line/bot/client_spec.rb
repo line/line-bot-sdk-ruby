@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'webmock/rspec'
 
 class TestClient
-
   def get(url, header = {})
     {
       url: url,
@@ -17,13 +16,11 @@ class TestClient
       header: header
     }
   end
-
 end
 
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
-
   def dummy_config
     {
       channel_token: 'access token',
@@ -63,7 +60,7 @@ describe Line::Bot::Client do
   it 'checks credentials on creating a client with arguments' do
     channel_token = dummy_config[:channel_token]
     client = Line::Bot::Client.new(
-      channel_token: channel_token,
+      channel_token: channel_token
     )
 
     credentials = client.credentials
@@ -83,7 +80,7 @@ describe Line::Bot::Client do
     # get
     result = client.get_message_content(identifier)
 
-    expect(result[:url]).to eq  Line::Bot::API::DEFAULT_ENDPOINT + "/bot/message/#{identifier}/content"
+    expect(result[:url]).to eq Line::Bot::API::DEFAULT_ENDPOINT + "/bot/message/#{identifier}/content"
 
     header = result[:header]
     expect(header['Authorization']).to eq "Bearer #{dummy_config[:channel_token]}"
@@ -100,7 +97,7 @@ describe Line::Bot::Client do
 
     result = client.push_message(user_id, message)
 
-    expect(result[:url]).to eq  Line::Bot::API::DEFAULT_ENDPOINT + "/bot/message/push"
+    expect(result[:url]).to eq Line::Bot::API::DEFAULT_ENDPOINT + "/bot/message/push"
 
     header = result[:header]
     expect(header['Authorization']).to eq "Bearer #{dummy_config[:channel_token]}"
@@ -114,5 +111,4 @@ describe Line::Bot::Client do
     messages = body[:messages]
     expect(messages[0]).to eq message
   end
-
 end

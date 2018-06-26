@@ -75,7 +75,7 @@ describe Line::Bot::Client do
 
     client.create_rich_menu(JSON.parse(RICH_MENU_CONTENT))
     expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu')
-                         .with(:body => JSON.parse(RICH_MENU_CONTENT).to_json)
+      .with(:body => JSON.parse(RICH_MENU_CONTENT).to_json)
   end
 
   it 'deletes a rich menu' do
@@ -113,11 +113,11 @@ describe Line::Bot::Client do
 
   it 'gets an image associated with a rich menu' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content'
-    stub_request(:get, uri_template).to_return(:body => open(RICH_MENU_IMAGE_FILE_PATH).read, :status => 200)
+    stub_request(:get, uri_template).to_return(:body => File.open(RICH_MENU_IMAGE_FILE_PATH).read, :status => 200)
 
     response = client.get_rich_menu_image('1234567')
     expect(WebMock).to have_requested(:get, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content')
-    expect(response.body).to eq open(RICH_MENU_IMAGE_FILE_PATH).read
+    expect(response.body).to eq File.open(RICH_MENU_IMAGE_FILE_PATH).read
   end
 
   it 'uploads and attaches an image to a rich menu' do
@@ -132,7 +132,7 @@ describe Line::Bot::Client do
     end
 
     expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content')
-                         .with(:body => open(RICH_MENU_IMAGE_FILE_PATH).read)
+      .with(:body => File.open(RICH_MENU_IMAGE_FILE_PATH).read)
   end
 
   it "uploads invalid extension's file" do
