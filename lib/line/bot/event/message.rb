@@ -20,6 +20,7 @@ module Line
         Image = 'image'
         Video = 'video'
         Audio = 'audio'
+        File = 'file'
         Location = 'location'
         Sticker = 'sticker'
         Unsupport = 'unsupport'
