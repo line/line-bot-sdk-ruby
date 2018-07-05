@@ -7,7 +7,7 @@ WebMock.allow_net_connect!
 describe Line::Bot::Client do
   it 'pushes the template message type datepicker' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/push'
-    stub_request(:post, uri_template).to_return { |request| {:body => request.body, :status => 200} }
+    stub_request(:post, uri_template).to_return { |request| {body: request.body, status: 200} }
 
     client = Line::Bot::Client.new do |config|
       config.channel_token = 'channel_token'
@@ -49,7 +49,7 @@ describe Line::Bot::Client do
 
   it 'replies the template message type carousel' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/reply'
-    stub_request(:post, uri_template).to_return { |request| {:body => request.body, :status => 200} }
+    stub_request(:post, uri_template).to_return { |request| {body: request.body, status: 200} }
 
     client = Line::Bot::Client.new do |config|
       config.channel_token = 'channel_token'
@@ -91,7 +91,7 @@ describe Line::Bot::Client do
 
   it 'multicasts the template message type carousel' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/multicast'
-    stub_request(:post, uri_template).to_return { |request| {:body => request.body, :status => 200} }
+    stub_request(:post, uri_template).to_return { |request| {body: request.body, status: 200} }
 
     client = Line::Bot::Client.new do |config|
       config.channel_token = 'channel_token'

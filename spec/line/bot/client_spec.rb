@@ -36,7 +36,7 @@ describe Line::Bot::Client do
   end
 
   before do
-    stub_request(:post, Line::Bot::API::DEFAULT_ENDPOINT).to_return { |request| {:body => request.body, :status => 200} }
+    stub_request(:post, Line::Bot::API::DEFAULT_ENDPOINT).to_return { |request| {body: request.body, status: 200} }
   end
 
   it 'checks user-agent' do

@@ -16,8 +16,6 @@ Style/NumericLiterals:
   Enabled: false
 Style/BlockDelimiters:
   Enabled: false
-Style/HashSyntax:
-  Enabled: false
 Style/MutableConstant:
   Enabled: false
 Style/StringLiterals:
