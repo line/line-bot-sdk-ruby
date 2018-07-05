@@ -148,7 +148,6 @@ VALIDATION_CONTENT = <<"EOS"
 EOS
 
 describe Line::Bot::Client do
-
   def dummy_config
     {
       channel_secret: 'testsecret',
@@ -177,5 +176,4 @@ describe Line::Bot::Client do
 
     expect(result).to be_falsey
   end
-
 end

@@ -23,7 +23,6 @@ module Line
         def [](key)
           @src[key]
         end
-
       end
     end
   end

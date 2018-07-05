@@ -34,7 +34,6 @@ EOS
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
-
   before do
   end
 
@@ -54,10 +53,10 @@ describe Line::Bot::Client do
 
   it 'gets room member ids' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/room/{roomId}/members/ids'
-    stub_request(:get, uri_template).to_return { |request| {:body => MEMBER_ID_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {body: MEMBER_ID_CONTENT, status: 200} }
 
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/room/{roomId}/members/ids?start={continuationToken}'
-    stub_request(:get, uri_template).to_return { |request| {:body => NEXT_MEMBER_ID_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {body: NEXT_MEMBER_ID_CONTENT, status: 200} }
 
     client = generate_client
     room_id = "room_id"
@@ -81,10 +80,10 @@ describe Line::Bot::Client do
 
   it 'gets group member ids' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/group/{groupId}/members/ids'
-    stub_request(:get, uri_template).to_return { |request| {:body => MEMBER_ID_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {body: MEMBER_ID_CONTENT, status: 200} }
 
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/group/{groupId}/members/ids?start={continuationToken}'
-    stub_request(:get, uri_template).to_return { |request| {:body => NEXT_MEMBER_ID_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {body: NEXT_MEMBER_ID_CONTENT, status: 200} }
 
     client = generate_client
     group_id = "group_id"
@@ -108,7 +107,7 @@ describe Line::Bot::Client do
 
   it 'gets room member profile' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/room/{roomId}/member/{userId}'
-    stub_request(:get, uri_template).to_return { |request| {:body => GROUP_ROOM_MEMBER_PROFILE_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {body: GROUP_ROOM_MEMBER_PROFILE_CONTENT, status: 200} }
 
     client = generate_client
     room_id = "room_id"
@@ -124,7 +123,7 @@ describe Line::Bot::Client do
 
   it 'gets group member profile' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/group/{groupId}/member/{userId}'
-    stub_request(:get, uri_template).to_return { |request| {:body => GROUP_ROOM_MEMBER_PROFILE_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {body: GROUP_ROOM_MEMBER_PROFILE_CONTENT, status: 200} }
 
     client = generate_client
     group_id = "group_id"
@@ -137,5 +136,4 @@ describe Line::Bot::Client do
     expect(contact['displayName']).to eq "LINE taro"
     expect(contact['pictureUrl']).to eq "http://obs.line-apps.com/image"
   end
-
 end

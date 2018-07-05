@@ -20,7 +20,6 @@ require 'uri'
 module Line
   module Bot
     class HTTPClient
-
       # @return [Net::HTTP]
       def http(uri)
         http = Net::HTTP.new(uri.host, uri.port)

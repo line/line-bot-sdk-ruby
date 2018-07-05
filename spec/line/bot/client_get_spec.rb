@@ -23,7 +23,6 @@ EOS
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
-
   before do
   end
 
@@ -42,10 +41,8 @@ describe Line::Bot::Client do
   end
 
   it 'gets message content' do
-    endpoint = Line::Bot::API::DEFAULT_ENDPOINT
-
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/{identifier}/content'
-    stub_request(:get, uri_template).to_return { |request| {:body => request.body, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {body: request.body, status: 200} }
 
     client = generate_client
 
@@ -55,7 +52,7 @@ describe Line::Bot::Client do
 
   it 'gets profile' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/profile/{user_id}'
-    stub_request(:get, uri_template).to_return { |request| {:body => PROFILE_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {body: PROFILE_CONTENT, status: 200} }
 
     client = generate_client
 
@@ -70,7 +67,7 @@ describe Line::Bot::Client do
 
   it 'gets other path' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/profile'
-    stub_request(:get, uri_template).to_return { |request| {:body => OTHER_PROFILE_CONTENT, :status => 200} }
+    stub_request(:get, uri_template).to_return { |request| {body: OTHER_PROFILE_CONTENT, status: 200} }
 
     client = generate_client
 
@@ -79,5 +76,4 @@ describe Line::Bot::Client do
     contact = JSON.parse(response.body)
     expect(contact['displayName']).to eq "Brown"
   end
-
 end
