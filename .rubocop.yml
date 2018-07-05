@@ -1,5 +1,7 @@
 AllCops:
   TargetRubyVersion: 2.1
+  Exclude:
+    - 'examples/**/*'
 
 Gemspec/RequiredRubyVersion:
   Enabled: false
