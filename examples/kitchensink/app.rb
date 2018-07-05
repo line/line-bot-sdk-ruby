@@ -71,6 +71,30 @@ end
 
 def handle_message(event)
   case event.type
+  when Line::Bot::Event::MessageType::Image
+    message_id = event.message['id']
+    response = client.get_message_content(message_id)
+    tf = Tempfile.open("content")
+    tf.write(response.body)
+    reply_text(event, "[MessageType::IMAGE]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+  when Line::Bot::Event::MessageType::Video
+    message_id = event.message['id']
+    response = client.get_message_content(message_id)
+    tf = Tempfile.open("content")
+    tf.write(response.body)
+    reply_text(event, "[MessageType::VIDEO]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+  when Line::Bot::Event::MessageType::Audio
+    message_id = event.message['id']
+    response = client.get_message_content(message_id)
+    tf = Tempfile.open("content")
+    tf.write(response.body)
+    reply_text(event, "[MessageType::AUDIO]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+  when Line::Bot::Event::MessageType::File
+    message_id = event.message['id']
+    response = client.get_message_content(message_id)
+    tf = Tempfile.open("content")
+    tf.write(response.body)
+    reply_text(event, "[MessageType::FILE]\nid:#{message_id}\nfileName:#{event.message['fileName']}\nfileSize:#{event.message['fileSize']}\nreceived #{tf.size} bytes data")
   when Line::Bot::Event::MessageType::Sticker
     handle_sticker(event)
   when Line::Bot::Event::MessageType::Location
