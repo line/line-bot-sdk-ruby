@@ -7,3 +7,6 @@ rvm:
   - ruby-head
 before_install:
   - gem install bundler
+script:
+  - bundle exec rubocop
+  - bundle exec rspec
