@@ -3,6 +3,7 @@ require 'line/bot'  # gem 'line-bot-api'
 
 THUMBNAIL_URL = 'https://via.placeholder.com/1024x1024'
 HORIZONTAL_THUMBNAIL_URL = 'https://via.placeholder.com/1024x768'
+QUICK_REPLY_ICON_URL = 'https://via.placeholder.com/64x64'
 
 def client
   @client ||= Line::Bot::Client.new do |config|
@@ -361,6 +362,77 @@ def handle_message(event)
             }
           ]
         }
+      })
+
+    when 'quickreply'
+      reply_content(event, {
+        type: 'text',
+        text: '[QUICK REPLY]',
+        quickReply: {
+          items: [
+            {
+              type: "action",
+              imageUrl: QUICK_REPLY_ICON_URL,
+              action: {
+                type: "message",
+                label: "Sushi",
+                text: "Sushi"
+              }
+            },
+            {
+              type: "action",
+              action: {
+                type: "location",
+                label: "Send location"
+              }
+            },
+            {
+              type: "action",
+              imageUrl: QUICK_REPLY_ICON_URL,
+              action: {
+                type: "camera",
+                label: "Open camera",
+              }
+            },
+            {
+              type: "action",
+              imageUrl: QUICK_REPLY_ICON_URL,
+              action: {
+                type: "cameraRoll",
+                label: "Open cameraRoll",
+              }
+            },
+            {
+              type: "action",
+              action: {
+                type: "postback",
+                label: "buy",
+                data: "action=buy&itemid=111",
+                text: "buy",
+              }
+            },
+            {
+              type: "action",
+              action: {
+                type: "message",
+                label: "Yes",
+                text: "Yes"
+              }
+            },
+            {
+              type: "action",
+              action: {
+                type: "datetimepicker",
+                label: "Select date",
+                data: "storeId=12345",
+                mode: "datetime",
+                initial: "2017-12-25t00:00",
+                max: "2018-01-24t23:59",
+                min: "2017-12-25t00:00"
+              }
+            },
+          ],
+        },
       })
 
     when 'bye'
