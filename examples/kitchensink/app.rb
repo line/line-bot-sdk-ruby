@@ -369,66 +369,66 @@ def handle_message(event)
         type: 'text',
         text: '[QUICK REPLY]',
         quickReply: {
-          "items": [
+          items: [
             {
-              "type": "action",
-              "imageUrl": QUICK_REPLY_ICON_URL,
-              "action": {
-                "type": "message",
-                "label": "Sushi",
-                "text": "Sushi"
+              type: "action",
+              imageUrl: QUICK_REPLY_ICON_URL,
+              action: {
+                type: "message",
+                label: "Sushi",
+                text: "Sushi"
               }
             },
             {
-              "type": "action",
-              "action": {
-                "type": "location",
-                "label": "Send location"
+              type: "action",
+              action: {
+                type: "location",
+                label: "Send location"
               }
             },
             {
-              "type": "action",
-              "imageUrl": QUICK_REPLY_ICON_URL,
-              "action": {
-                "type": "camera",
-                "label": "Open camera",
+              type: "action",
+              imageUrl: QUICK_REPLY_ICON_URL,
+              action: {
+                type: "camera",
+                label: "Open camera",
               }
             },
             {
-              "type": "action",
-              "imageUrl": QUICK_REPLY_ICON_URL,
-              "action": {
-                "type": "cameraRoll",
-                "label": "Open cameraRoll",
+              type: "action",
+              imageUrl: QUICK_REPLY_ICON_URL,
+              action: {
+                type: "cameraRoll",
+                label: "Open cameraRoll",
               }
             },
             {
-              "type": "action",
-              "action": {
-                "type": "postback",
-                "label": "buy",
-                "data": "action=buy&itemid=111",
-                "text": "buy",
+              type: "action",
+              action: {
+                type: "postback",
+                label: "buy",
+                data: "action=buy&itemid=111",
+                text: "buy",
               }
             },
             {
-              "type": "action",
-              "action": {
-                "type": "message",
-                "label": "Yes",
-                "text": "Yes"
+              type: "action",
+              action: {
+                type: "message",
+                label: "Yes",
+                text: "Yes"
               }
             },
             {
-              "type": "action",
-              "action": {
-                "type":"datetimepicker",
-                "label":"Select date",
-                "data":"storeId=12345",
-                "mode":"datetime",
-                "initial":"2017-12-25t00:00",
-                "max":"2018-01-24t23:59",
-                "min":"2017-12-25t00:00"
+              type: "action",
+              action: {
+                type: "datetimepicker",
+                label: "Select date",
+                data: "storeId=12345",
+                mode: "datetime",
+                initial: "2017-12-25t00:00",
+                max: "2018-01-24t23:59",
+                min: "2017-12-25t00:00"
               }
             },
           ],
