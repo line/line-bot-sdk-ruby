@@ -15,7 +15,7 @@
 module Line
   module Bot
     module API
-      VERSION = "1.2.4"
+      VERSION = "1.2.5"
     end
   end
 end
