@@ -30,8 +30,9 @@ module Line
         http
       end
 
-      def get(url, header = {})
+      def get(url, parameters = nil, header = {})
         uri = URI(url)
+        uri.query = URI.encode_www_form(parameters) if parameters
         http(uri).get(uri.request_uri, header)
       end
 

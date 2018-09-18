@@ -68,9 +68,9 @@ module Line
       # Get content of specified URL.
       #
       # @return [Net::HTTPResponse]
-      def get
+      def get(parameters = nil)
         assert_for_getting_message
-        httpclient.get(endpoint + endpoint_path, header)
+        httpclient.get(endpoint + endpoint_path, parameters, header)
       end
 
       # Post content of specified URL.
