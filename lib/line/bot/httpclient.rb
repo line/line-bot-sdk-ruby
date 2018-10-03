@@ -20,12 +20,26 @@ require 'uri'
 module Line
   module Bot
     class HTTPClient
+      #  @return [Numeric]
+      attr_accessor :net_open_timeout
+
+      # Initialize a new HTTPClient
+      #
+      # @param net_open_timeout [Integer]
+      #
+      # @return [Line::Bot::HTTPClient]
+      def initialize(net_open_timeout = nil)
+        @net_open_timeout = net_open_timeout
+      end
+
       # @return [Net::HTTP]
       def http(uri)
         http = Net::HTTP.new(uri.host, uri.port)
         if uri.scheme == "https"
           http.use_ssl = true
         end
+
+        http.open_timeout = net_open_timeout if net_open_timeout
 
         http
       end
