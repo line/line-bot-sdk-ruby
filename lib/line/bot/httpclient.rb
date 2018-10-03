@@ -20,16 +20,16 @@ require 'uri'
 module Line
   module Bot
     class HTTPClient
-      #  @return [Numeric]
-      attr_accessor :net_open_timeout
+      #  @return [Hash]
+      attr_accessor :http_options
 
       # Initialize a new HTTPClient
       #
-      # @param net_open_timeout [Integer]
+      # @param http_options [Hash]
       #
       # @return [Line::Bot::HTTPClient]
-      def initialize(net_open_timeout = nil)
-        @net_open_timeout = net_open_timeout
+      def initialize(http_options = {})
+        @http_options = http_options
       end
 
       # @return [Net::HTTP]
@@ -39,7 +39,9 @@ module Line
           http.use_ssl = true
         end
 
-        http.open_timeout = net_open_timeout if net_open_timeout
+        http_options&.each do |key, value|
+          http.send("#{key}=", value)
+        end
 
         http
       end

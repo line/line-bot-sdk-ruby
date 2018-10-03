@@ -27,8 +27,8 @@ module Line
       # @return [Object]
       attr_accessor :httpclient
 
-      # @return [Numeric]
-      attr_reader :net_open_timeout
+      # @return [Hash]
+      attr_accessor :http_options
 
       # Initialize a new Bot Client.
       #
@@ -40,11 +40,10 @@ module Line
           instance_variable_set("@#{key}", value)
         end
         yield(self) if block_given?
-        varidate_net_open_timeout if defined?(@net_open_timeout)
       end
 
       def httpclient
-        @httpclient ||= Line::Bot::HTTPClient.new(net_open_timeout)
+        @httpclient ||= Line::Bot::HTTPClient.new(http_options)
       end
 
       def endpoint
@@ -425,10 +424,6 @@ module Line
         res = 0
         b.each_byte { |byte| res |= byte ^ l.shift }
         res == 0
-      end
-
-      def varidate_net_open_timeout
-        raise ArgumentError, 'net_open_timeout must be positive Numeric' if net_open_timeout.nil? || net_open_timeout < 0
       end
     end
   end
