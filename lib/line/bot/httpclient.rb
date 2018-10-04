@@ -20,11 +20,29 @@ require 'uri'
 module Line
   module Bot
     class HTTPClient
+      #  @return [Hash]
+      attr_accessor :http_options
+
+      # Initialize a new HTTPClient
+      #
+      # @param http_options [Hash]
+      #
+      # @return [Line::Bot::HTTPClient]
+      def initialize(http_options = {})
+        @http_options = http_options
+      end
+
       # @return [Net::HTTP]
       def http(uri)
         http = Net::HTTP.new(uri.host, uri.port)
         if uri.scheme == "https"
           http.use_ssl = true
+        end
+
+        if http_options
+          http_options.each do |key, value|
+            http.send("#{key}=", value)
+          end
         end
 
         http

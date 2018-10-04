@@ -27,6 +27,9 @@ module Line
       # @return [Object]
       attr_accessor :httpclient
 
+      # @return [Hash]
+      attr_accessor :http_options
+
       # Initialize a new Bot Client.
       #
       # @param options [Hash]
@@ -40,7 +43,7 @@ module Line
       end
 
       def httpclient
-        @httpclient ||= Line::Bot::HTTPClient.new
+        @httpclient ||= Line::Bot::HTTPClient.new(http_options)
       end
 
       def endpoint
