@@ -39,8 +39,10 @@ module Line
           http.use_ssl = true
         end
 
-        http_options&.each do |key, value|
-          http.send("#{key}=", value)
+        if http_options
+          http_options.each do |key, value|
+            http.send("#{key}=", value)
+          end
         end
 
         http
