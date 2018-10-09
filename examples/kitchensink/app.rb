@@ -9,6 +9,10 @@ def client
   @client ||= Line::Bot::Client.new do |config|
     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
     config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+    config.http_options = {
+      open_timeout: 5,
+      read_timeout: 5,
+    }
   end
 end
 
