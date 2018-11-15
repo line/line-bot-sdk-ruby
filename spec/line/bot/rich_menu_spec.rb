@@ -95,6 +95,22 @@ describe Line::Bot::Client do
     expect(response.body).to eq '{"richMenuId":"7654321"}'
   end
 
+  it 'set a default rich menu' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/all/richmenu/7654321'
+    stub_request(:post, uri_template).to_return(body: '{}', status: 200)
+
+    client.set_default_rich_menu('7654321')
+    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/all/richmenu/7654321')
+  end
+
+  it 'unset a default rich menu' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/all/richmenu'
+    stub_request(:delete, uri_template).to_return(body: '{}', status: 200)
+
+    client.unset_default_rich_menu()
+    expect(WebMock).to have_requested(:delete, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/all/richmenu')
+  end
+
   it 'links a rich menu to a user' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/1234567/richmenu/7654321'
     stub_request(:post, uri_template).to_return(body: '{}', status: 200)
