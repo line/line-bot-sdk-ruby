@@ -371,6 +371,25 @@ module Line
         request.get
       end
 
+      # Post data, get content of specified URL.
+      #
+      # @param endpoint_path [String]
+      #
+      # @return [Net::HTTPResponse]
+      def post(endpoint_path, payload=nil)
+        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+
+        request = Request.new do |config|
+          config.httpclient     = httpclient
+          config.endpoint       = endpoint
+          config.endpoint_path  = endpoint_path
+          config.credentials    = credentials
+          config.payload        = payload if payload
+        end
+
+        request.post
+      end
+
       # Delete content of specified URL.
       #
       # @param endpoint_path [String]
