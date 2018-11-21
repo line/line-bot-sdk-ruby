@@ -107,7 +107,7 @@ describe Line::Bot::Client do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/all/richmenu'
     stub_request(:delete, uri_template).to_return(body: '{}', status: 200)
 
-    client.unset_default_rich_menu()
+    client.unset_default_rich_menu
     expect(WebMock).to have_requested(:delete, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/all/richmenu')
   end
 
