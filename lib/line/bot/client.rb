@@ -280,6 +280,24 @@ module Line
         get(endpoint_path)
       end
 
+      # Set default rich menu (Link a rich menu to all user)
+      #
+      # @param rich_menu_id [String] ID of an uploaded rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def set_default_rich_menu(rich_menu_id)
+        endpoint_path = "/bot/user/all/richmenu/#{rich_menu_id}"
+        post(endpoint_path)
+      end
+
+      # Unset default rich menu (Unlink a rich menu from all user)
+      #
+      # @return [Net::HTTPResponse]
+      def unset_default_rich_menu
+        endpoint_path = "/bot/user/all/richmenu"
+        delete(endpoint_path)
+      end
+
       # Link a rich menu to a user
       #
       # @param user_id [String] ID of the user
@@ -351,6 +369,25 @@ module Line
         end
 
         request.get
+      end
+
+      # Post data, get content of specified URL.
+      #
+      # @param endpoint_path [String]
+      #
+      # @return [Net::HTTPResponse]
+      def post(endpoint_path, payload = nil)
+        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+
+        request = Request.new do |config|
+          config.httpclient     = httpclient
+          config.endpoint       = endpoint
+          config.endpoint_path  = endpoint_path
+          config.credentials    = credentials
+          config.payload        = payload if payload
+        end
+
+        request.post
       end
 
       # Delete content of specified URL.
