@@ -17,6 +17,7 @@ require 'line/bot/api/errors'
 require 'base64'
 require 'net/http'
 require 'openssl'
+require 'active_support/core_ext/string/inflections'
 
 module Line
   module Bot
@@ -418,7 +419,7 @@ module Line
 
         json['events'].map { |item|
           begin
-            klass = Line::Bot::Event.const_get(item['type'].capitalize)
+            klass = Line::Bot::Event.const_get(item['type'].camelize)
             klass.new(item)
           rescue NameError => e
             Line::Bot::Event::Base.new(item)

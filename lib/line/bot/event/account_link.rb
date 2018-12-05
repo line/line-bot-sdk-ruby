@@ -12,12 +12,18 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require 'line/bot/event/base'
-require 'line/bot/event/account_link'
-require 'line/bot/event/beacon'
-require 'line/bot/event/follow'
-require 'line/bot/event/join'
-require 'line/bot/event/leave'
-require 'line/bot/event/message'
-require 'line/bot/event/postback'
-require 'line/bot/event/unfollow'
+module Line
+  module Bot
+    module Event
+      class AccountLink < Base
+        def result
+          @src['link']['result']
+        end
+
+        def nonce
+          @src['link']['nonce']
+        end
+      end
+    end
+  end
+end
