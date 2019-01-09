@@ -353,6 +353,16 @@ module Line
         request.post
       end
 
+      # Issue a link token to a user
+      #
+      # @param user_id [String] ID of the user
+      #
+      # @return [Net::HTTPResponse]
+      def create_link_token(user_id)
+        endpoint_path = "/bot/user/#{user_id}/linkToken"
+        post(endpoint_path)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_path [String]
