@@ -6,7 +6,12 @@ rvm:
   - 2.5
   - ruby-head
 before_install:
-  - gem install bundler
+  - if [ ${TRAVIS_RUBY_VERSION} = '2.2' ]; then
+      gem install bundler -v '< 2';
+    else
+      gem update --system;
+      gem install bundler;
+    fi
 script:
   - bundle exec rubocop
   - bundle exec rspec
