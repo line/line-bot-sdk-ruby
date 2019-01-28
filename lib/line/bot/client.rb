@@ -243,6 +243,36 @@ module Line
         get(endpoint_path)
       end
 
+      # Gets the number of messages sent with the /bot/message/reply endpoint.
+      #
+      # @param date [String] Date the messages were sent (format: yyyyMMdd)
+      #
+      # @return [Net::HTTPResponse]
+      def get_message_delivery_reply(date)
+        endpoint_path = "/bot/message/delivery/reply?date=#{date}"
+        get(endpoint_path)
+      end
+
+      # Gets the number of messages sent with the /bot/message/push endpoint.
+      #
+      # @param date [String] Date the messages were sent (format: yyyyMMdd)
+      #
+      # @return [Net::HTTPResponse]
+      def get_message_delivery_push(date)
+        endpoint_path = "/bot/message/delivery/push?date=#{date}"
+        get(endpoint_path)
+      end
+
+      # Gets the number of messages sent with the /bot/message/multicast endpoint.
+      #
+      # @param date [String] Date the messages were sent (format: yyyyMMdd)
+      #
+      # @return [Net::HTTPResponse]
+      def get_message_delivery_multicast(date)
+        endpoint_path = "/bot/message/delivery/multicast?date=#{date}"
+        get(endpoint_path)
+      end
+
       # Create a rich menu
       #
       # @param rich_menu [Hash] The rich menu represented as a rich menu object
