@@ -20,6 +20,13 @@ OTHER_PROFILE_CONTENT = <<"EOS"
 }
 EOS
 
+DELIVERY_NUMBER_CONTENT = <<"EOS"
+{
+  "status": "ready",
+  "success": 1
+}
+EOS
+
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
@@ -75,5 +82,49 @@ describe Line::Bot::Client do
 
     contact = JSON.parse(response.body)
     expect(contact['displayName']).to eq "Brown"
+  end
+
+  it "gets the number of reply messages sent" do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/delivery/reply?date={sended_date}'
+    stub_request(:get, uri_template).to_return(body: DELIVERY_NUMBER_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_message_delivery_reply("20190101")
+
+    delivery = JSON.parse(response.body)
+    expect(delivery['status']).to eq "ready"
+    expect(delivery['success']).to eq 1
+  end
+
+  it "gets the number of push messages sent" do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/delivery/push?date={sended_date}'
+    stub_request(:get, uri_template).to_return(body: DELIVERY_NUMBER_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_message_delivery_push("20190101")
+
+    delivery = JSON.parse(response.body)
+    expect(delivery['status']).to eq "ready"
+    expect(delivery['success']).to eq 1
+  end
+
+  it "gets the number of multicast messages sent" do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/delivery/multicast?date={send_date}'
+    stub_request(:get, uri_template).to_return(body: DELIVERY_NUMBER_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_message_delivery_multicast("20190101")
+
+    delivery = JSON.parse(response.body)
+    expect(delivery['status']).to eq "ready"
+    expect(delivery['success']).to eq 1
+  end
+
+  it "gets number of messages sent whithout date will raise error" do
+    client = generate_client
+
+    expect { client.get_message_delivery_reply }.to raise_error(ArgumentError)
+    expect { client.get_message_delivery_push }.to raise_error(ArgumentError)
+    expect { client.get_message_delivery_multicast }.to raise_error(ArgumentError)
   end
 end
