@@ -85,7 +85,7 @@ describe Line::Bot::Client do
   end
 
   it "gets the number of reply messages sent" do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/delivery/reply?date={sended_date}'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/delivery/reply?date={sent_date}'
     stub_request(:get, uri_template).to_return(body: DELIVERY_NUMBER_CONTENT, status: 200)
 
     client = generate_client
@@ -97,7 +97,7 @@ describe Line::Bot::Client do
   end
 
   it "gets the number of push messages sent" do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/delivery/push?date={sended_date}'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/delivery/push?date={sent_date}'
     stub_request(:get, uri_template).to_return(body: DELIVERY_NUMBER_CONTENT, status: 200)
 
     client = generate_client
