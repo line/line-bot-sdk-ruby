@@ -310,6 +310,14 @@ module Line
         get(endpoint_path)
       end
 
+      # Get default rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def get_default_rich_menu
+        endpoint_path = '/bot/user/all/richmenu'
+        get(endpoint_path)
+      end
+
       # Set default rich menu (Link a rich menu to all user)
       #
       # @param rich_menu_id [String] ID of an uploaded rich menu
