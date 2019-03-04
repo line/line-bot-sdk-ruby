@@ -15,7 +15,7 @@
 module Line
   module Bot
     module Event
-      class MemberLeave < Base
+      class MemberLeft < Base
       end
     end
   end

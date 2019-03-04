@@ -15,7 +15,7 @@
 module Line
   module Bot
     module Event
-      class MemberJoin < Base
+      class MemberJoined < Base
       end
     end
   end
