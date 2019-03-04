@@ -145,6 +145,19 @@ EVENTS_CONTENT = <<"EOS"
         "type": "enter",
         "dm": "1234567890abcdef"
       }
+    },
+    {
+      "type": "accountLink",
+      "replyToken": "replyToken",
+      "source": {
+        "type": "user",
+        "userId": "userid"
+      },
+      "timestamp": 12345678901234,
+      "link": {
+        "result": "ok",
+        "nonce": "nonce"
+      }
     }
   ]
 }
@@ -251,6 +264,10 @@ describe Line::Bot::Client do
     expect(events[11].type).to eq("enter")
     expect(events[11]['beacon']['dm']).to eq("1234567890abcdef")
     expect(events[11].deviceMessage).to eq("\x12\x34\x56\x78\x90\xab\xcd\xef".b)
+
+    expect(events[12]).to be_a(Line::Bot::Event::AccountLink)
+    expect(events[12].result).to eq("ok")
+    expect(events[12].nonce).to eq("nonce")
   end
 
   it 'parses unknown event' do

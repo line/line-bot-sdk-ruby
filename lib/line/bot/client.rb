@@ -466,7 +466,7 @@ module Line
 
         json['events'].map { |item|
           begin
-            klass = Line::Bot::Event.const_get(item['type'].capitalize)
+            klass = Line::Bot::Event.const_get(camelize(item['type']))
             klass.new(item)
           rescue NameError => e
             Line::Bot::Event::Base.new(item)
@@ -509,6 +509,11 @@ module Line
         res = 0
         b.each_byte { |byte| res |= byte ^ l.shift }
         res == 0
+      end
+
+      # @return [String]
+      def camelize(string)
+        string.split(/_|(?=[A-Z])/).map(&:capitalize).join
       end
     end
   end
