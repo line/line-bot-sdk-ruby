@@ -243,6 +243,36 @@ module Line
         get(endpoint_path)
       end
 
+      # Gets the number of messages sent with the /bot/message/reply endpoint.
+      #
+      # @param date [String] Date the messages were sent (format: yyyyMMdd)
+      #
+      # @return [Net::HTTPResponse]
+      def get_message_delivery_reply(date)
+        endpoint_path = "/bot/message/delivery/reply?date=#{date}"
+        get(endpoint_path)
+      end
+
+      # Gets the number of messages sent with the /bot/message/push endpoint.
+      #
+      # @param date [String] Date the messages were sent (format: yyyyMMdd)
+      #
+      # @return [Net::HTTPResponse]
+      def get_message_delivery_push(date)
+        endpoint_path = "/bot/message/delivery/push?date=#{date}"
+        get(endpoint_path)
+      end
+
+      # Gets the number of messages sent with the /bot/message/multicast endpoint.
+      #
+      # @param date [String] Date the messages were sent (format: yyyyMMdd)
+      #
+      # @return [Net::HTTPResponse]
+      def get_message_delivery_multicast(date)
+        endpoint_path = "/bot/message/delivery/multicast?date=#{date}"
+        get(endpoint_path)
+      end
+
       # Create a rich menu
       #
       # @param rich_menu [Hash] The rich menu represented as a rich menu object
@@ -277,6 +307,14 @@ module Line
       # @return [Net::HTTPResponse]
       def get_user_rich_menu(user_id)
         endpoint_path = "/bot/user/#{user_id}/richmenu"
+        get(endpoint_path)
+      end
+
+      # Get default rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def get_default_rich_menu
+        endpoint_path = '/bot/user/all/richmenu'
         get(endpoint_path)
       end
 
@@ -353,6 +391,16 @@ module Line
         request.post
       end
 
+      # Issue a link token to a user
+      #
+      # @param user_id [String] ID of the user
+      #
+      # @return [Net::HTTPResponse]
+      def create_link_token(user_id)
+        endpoint_path = "/bot/user/#{user_id}/linkToken"
+        post(endpoint_path)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_path [String]
@@ -418,7 +466,7 @@ module Line
 
         json['events'].map { |item|
           begin
-            klass = Line::Bot::Event.const_get(item['type'].capitalize)
+            klass = Line::Bot::Event.const_get(camelize(item['type']))
             klass.new(item)
           rescue NameError => e
             Line::Bot::Event::Base.new(item)
@@ -461,6 +509,11 @@ module Line
         res = 0
         b.each_byte { |byte| res |= byte ^ l.shift }
         res == 0
+      end
+
+      # @return [String]
+      def camelize(string)
+        string.split(/_|(?=[A-Z])/).map(&:capitalize).join
       end
     end
   end

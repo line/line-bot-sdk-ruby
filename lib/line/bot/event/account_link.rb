@@ -14,8 +14,16 @@
 
 module Line
   module Bot
-    module API
-      VERSION = "1.6.0"
+    module Event
+      class AccountLink < Base
+        def result
+          @src['link']['result']
+        end
+
+        def nonce
+          @src['link']['nonce']
+        end
+      end
     end
   end
 end

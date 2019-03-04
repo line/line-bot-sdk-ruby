@@ -13,6 +13,7 @@
 # under the License.
 
 require 'line/bot/event/base'
+require 'line/bot/event/account_link'
 require 'line/bot/event/beacon'
 require 'line/bot/event/follow'
 require 'line/bot/event/join'
