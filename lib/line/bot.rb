@@ -12,6 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+require 'line/bot/util'
 require 'line/bot/client'
 require 'line/bot/event'
 require 'line/bot/api/errors'

@@ -12,15 +12,26 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require 'line/bot/event/base'
-require 'line/bot/event/account_link'
-require 'line/bot/event/beacon'
-require 'line/bot/event/follow'
-require 'line/bot/event/join'
-require 'line/bot/event/leave'
-require 'line/bot/event/message'
-require 'line/bot/event/postback'
-require 'line/bot/event/unfollow'
-require 'line/bot/event/member_joined'
-require 'line/bot/event/member_left'
-require 'line/bot/event/things'
+module Line
+  module Bot
+    module Event
+      module ThingsType
+        Link = 'link'
+        Unlink = 'unlink'
+        Unsupport = 'unsupport'
+      end
+
+      class Things < Base
+        def type
+          Line::Bot::Event::ThingsType.const_get(Line::Bot::Util.camelize(@src['things']['type']))
+        rescue NameError
+          Line::Bot::Event::ThingsType::Unsupport
+        end
+
+        def device_id
+          @src['things']['deviceId']
+        end
+      end
+    end
+  end
+end
