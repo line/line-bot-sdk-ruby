@@ -158,6 +158,48 @@ EVENTS_CONTENT = <<"EOS"
         "result": "ok",
         "nonce": "nonce"
       }
+    },
+    {
+      "type": "memberJoined",
+      "replyToken": "replyToken",
+      "source": {
+        "type": "user",
+        "groupId": "groupId"
+      },
+      "timestamp": 12345678901234,
+      "joined": {
+        "members": [
+          {
+           "type": "user",
+            "userId": "U4af4980629..."
+          },
+          {
+            "type": "user",
+            "userId": "U91eeaf62d9..."
+          }
+        ]
+      }
+    },
+    {
+      "type": "memberLeft",
+      "replyToken": "replyToken",
+      "source": {
+        "type": "user",
+        "groupId": "groupId"
+      },
+      "timestamp": 12345678901234,
+      "left": {
+        "members": [
+          {
+           "type": "user",
+            "userId": "U4af4980629..."
+          },
+          {
+            "type": "user",
+            "userId": "U91eeaf62d9..."
+          }
+        ]
+      }
     }
   ]
 }
@@ -268,6 +310,9 @@ describe Line::Bot::Client do
     expect(events[12]).to be_a(Line::Bot::Event::AccountLink)
     expect(events[12].result).to eq("ok")
     expect(events[12].nonce).to eq("nonce")
+
+    expect(events[13]).to be_a(Line::Bot::Event::MemberJoined)
+    expect(events[14]).to be_a(Line::Bot::Event::MemberLeft)
   end
 
   it 'parses unknown event' do
