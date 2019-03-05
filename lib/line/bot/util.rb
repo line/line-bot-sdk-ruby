@@ -17,9 +17,7 @@ module Line
     module Util
       # @return [String]
       def self.camelize(string)
-        p "camelize: #{string}"
         ret = string.split(/_|(?=[A-Z])/).map(&:capitalize).join
-        p ret
         return ret
       end
     end
