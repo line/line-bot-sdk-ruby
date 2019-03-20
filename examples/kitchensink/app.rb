@@ -66,6 +66,9 @@ post '/callback' do
     when Line::Bot::Event::Beacon
       reply_text(event, "[BEACON]\n#{JSON.generate(event['beacon'])}")
 
+    when Line::Bot::Event::Things
+      reply_text(event, "[THINGS]\n#{JSON.generate(event['things'])}")
+
     else
       reply_text(event, "Unknown event type: #{event}")
     end

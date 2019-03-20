@@ -200,6 +200,45 @@ EVENTS_CONTENT = <<"EOS"
           }
         ]
       }
+    },
+    {
+      "type": "things",
+      "replyToken": "nHuyWi...",
+      "source": {
+        "type": "user",
+        "groupId": "U991eeaf62d..."
+      },
+      "timestamp": 12345678901234,
+      "things": {
+        "deviceId": "deviceid1",
+        "type": "link"
+      }
+    },
+    {
+      "type": "things",
+      "replyToken": "nHuyWi...",
+      "source": {
+        "type": "user",
+        "groupId": "U991eeaf62d..."
+      },
+      "timestamp": 12345678901234,
+      "things": {
+        "deviceId": "deviceid2",
+        "type": "unlink"
+      }
+    },
+    {
+      "type": "things",
+      "replyToken": "nHuyWi...",
+      "source": {
+        "type": "user",
+        "groupId": "U991eeaf62d..."
+      },
+      "timestamp": 12345678901234,
+      "things": {
+        "deviceId": "deviceid3",
+        "type": "unsupport"
+      }
     }
   ]
 }
@@ -313,6 +352,18 @@ describe Line::Bot::Client do
 
     expect(events[13]).to be_a(Line::Bot::Event::MemberJoined)
     expect(events[14]).to be_a(Line::Bot::Event::MemberLeft)
+
+    expect(events[15]).to be_a(Line::Bot::Event::Things)
+    expect(events[15].type).to eq(Line::Bot::Event::ThingsType::Link)
+    expect(events[15].device_id).to eq('deviceid1')
+
+    expect(events[16]).to be_a(Line::Bot::Event::Things)
+    expect(events[16].type).to eq(Line::Bot::Event::ThingsType::Unlink)
+    expect(events[16].device_id).to eq('deviceid2')
+
+    expect(events[17]).to be_a(Line::Bot::Event::Things)
+    expect(events[17].type).to eq(Line::Bot::Event::ThingsType::Unsupport)
+    expect(events[17].device_id).to eq('deviceid3')
   end
 
   it 'parses unknown event' do
