@@ -258,25 +258,25 @@ def handle_message(event)
       })
 
     when 'imagemap video'
-      video_url = File.join(settings.app_base_url.to_s, "imagemap/video.mp4")
-      preview_url = File.join(settings.app_base_url.to_s, "imagemap/preview.jpg")
+      video_url = File.join(settings.app_base_url.to_s, 'imagemap/video.mp4')
+      preview_url = File.join(settings.app_base_url.to_s, 'imagemap/preview.jpg')
       reply_content(event, {
         type: 'imagemap',
         baseUrl: THUMBNAIL_URL,
         altText: 'Imagemap alt text',
         baseSize: { width: 1040, height: 1040 },
         video: {
-          "originalContentUrl": video_url,
-          "previewImageUrl": preview_url,
-          "area": {
-            "x": 0,
-            "y": 0,
-            "width": 520,
-            "height": 520,
+          originalContentUrl: video_url,
+          previewImageUrl: preview_url,
+          area: {
+            x: 0,
+            y: 0,
+            width: 520,
+            height: 520,
           },
           external_link: {
-            linkUri: "https://line.me",
-            label: "LINE",
+            linkUri: 'https://line.me',
+            label: 'LINE',
           },
         },
         actions: [
