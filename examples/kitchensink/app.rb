@@ -5,6 +5,8 @@ THUMBNAIL_URL = 'https://via.placeholder.com/1024x1024'
 HORIZONTAL_THUMBNAIL_URL = 'https://via.placeholder.com/1024x768'
 QUICK_REPLY_ICON_URL = 'https://via.placeholder.com/64x64'
 
+set :app_base_url, ENV['APP_BASE_URL']
+
 def client
   @client ||= Line::Bot::Client.new do |config|
     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
@@ -247,6 +249,36 @@ def handle_message(event)
         baseUrl: THUMBNAIL_URL,
         altText: 'Imagemap alt text',
         baseSize: { width: 1024, height: 1024 },
+        actions: [
+          { area: { x: 0, y: 0, width: 512, height: 512 }, type: 'uri', linkUri: 'https://store.line.me/family/manga/en' },
+          { area: { x: 512, y: 0, width: 512, height: 512 }, type: 'uri', linkUri: 'https://store.line.me/family/music/en' },
+          { area: { x: 0, y: 512, width: 512, height: 512 }, type: 'uri', linkUri: 'https://store.line.me/family/play/en' },
+          { area: { x: 512, y: 512, width: 512, height: 512 }, type: 'message', text: 'Fortune!' },
+        ]
+      })
+
+    when 'imagemap video'
+      video_url = File.join(settings.app_base_url.to_s, 'imagemap/video.mp4')
+      preview_url = File.join(settings.app_base_url.to_s, 'imagemap/preview.jpg')
+      reply_content(event, {
+        type: 'imagemap',
+        baseUrl: THUMBNAIL_URL,
+        altText: 'Imagemap alt text',
+        baseSize: { width: 1040, height: 1040 },
+        video: {
+          originalContentUrl: video_url,
+          previewImageUrl: preview_url,
+          area: {
+            x: 0,
+            y: 0,
+            width: 520,
+            height: 520,
+          },
+          external_link: {
+            linkUri: 'https://line.me',
+            label: 'LINE',
+          },
+        },
         actions: [
           { area: { x: 0, y: 0, width: 512, height: 512 }, type: 'uri', linkUri: 'https://store.line.me/family/manga/en' },
           { area: { x: 512, y: 0, width: 512, height: 512 }, type: 'uri', linkUri: 'https://store.line.me/family/music/en' },
