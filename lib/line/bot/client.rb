@@ -363,7 +363,7 @@ module Line
         delete(endpoint_path)
       end
 
-      # To link a rich menus to multiple users at a time
+      # To link rich menus to multiple users at a time
       #
       # @param user_ids [Array] ID of the user
       # @param rich_menu_id [String] ID of the uploaded rich menu
@@ -384,7 +384,7 @@ module Line
         request.post
       end
 
-      # To unlink a rich menus from multiple users at a time
+      # To unlink rich menus from multiple users at a time
       #
       # @param user_ids [Array] ID of the user
       #
