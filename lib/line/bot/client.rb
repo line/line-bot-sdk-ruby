@@ -369,7 +369,7 @@ module Line
       # @param rich_menu_id [String] ID of the uploaded rich menu
       #
       # @return [Net::HTTPResponse]
-      def bulk_link_user_rich_menus(user_ids, rich_menu_id)
+      def bulk_link_rich_menus(user_ids, rich_menu_id)
         request = Request.new do |config|
           config.httpclient = httpclient
           config.endpoint = endpoint
@@ -389,7 +389,7 @@ module Line
       # @param user_ids [Array] ID of the user
       #
       # @return [Net::HTTPResponse]
-      def bulk_unlink_user_rich_menus(user_ids)
+      def bulk_unlink_rich_menus(user_ids)
         request = Request.new do |config|
           config.httpclient = httpclient
           config.endpoint = endpoint
