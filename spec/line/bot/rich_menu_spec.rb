@@ -136,7 +136,7 @@ describe Line::Bot::Client do
     expect(WebMock).to have_requested(:delete, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/1234567/richmenu')
   end
 
-  it 'link a rich menus to multiple users at a atime' do
+  it 'link a rich menu to multiple users at a atime' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/link'
     stub_request(:post, uri_template).to_return(body: '{}', status: 200)
 
@@ -144,7 +144,7 @@ describe Line::Bot::Client do
     expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/link')
   end
 
-  it 'unlink a rich menus from multiple users at a time' do
+  it 'unlink a rich menu from multiple users at a time' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/unlink'
     stub_request(:post, uri_template).to_return(body: '{}', status: 200)
 
