@@ -363,44 +363,23 @@ module Line
         delete(endpoint_path)
       end
 
-      # To link rich menus to multiple users at a time
+      # To link a rich menu to multiple users at a time
       #
       # @param user_ids [Array] ID of the user
       # @param rich_menu_id [String] ID of the uploaded rich menu
       #
       # @return [Net::HTTPResponse]
       def bulk_link_rich_menus(user_ids, rich_menu_id)
-        request = Request.new do |config|
-          config.httpclient = httpclient
-          config.endpoint = endpoint
-          config.endpoint_path = "/bot/richmenu/bulk/link"
-          config.credentials = credentials
-          config.payload = {
-            richMenuId: rich_menu_id,
-            userIds: user_ids,
-          }.to_json
-        end
-
-        request.post
+        post("/bot/richmenu/bulk/link", {richMenuId: rich_menu_id, userIds: user_ids}.to_json)
       end
 
-      # To unlink rich menus from multiple users at a time
+      # To unlink a rich menu from multiple users at a time
       #
       # @param user_ids [Array] ID of the user
       #
       # @return [Net::HTTPResponse]
       def bulk_unlink_rich_menus(user_ids)
-        request = Request.new do |config|
-          config.httpclient = httpclient
-          config.endpoint = endpoint
-          config.endpoint_path = "/bot/richmenu/bulk/unlink"
-          config.credentials = credentials
-          config.payload = {
-            userIds: user_ids,
-          }.to_json
-        end
-
-        request.post
+        post("/bot/richmenu/bulk/unlink", {userIds: user_ids}.to_json)
       end
 
       # Download an image associated with a rich menu
