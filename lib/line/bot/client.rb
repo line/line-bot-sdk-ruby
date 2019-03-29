@@ -376,8 +376,8 @@ module Line
           config.endpoint_path = "/bot/user/richmenu/bulk/link"
           config.credentials = credentials
           config.payload = {
-            'richMenuId': rich_menu_id,
-            'userIds': user_ids,
+            richMenuId: rich_menu_id,
+            userIds: user_ids,
           }.to_json
         end
 
@@ -396,7 +396,7 @@ module Line
           config.endpoint_path = "/bot/user/richmenu/bulk/unlink"
           config.credentials = credentials
           config.payload = {
-            'userIds': user_ids,
+            userIds: user_ids,
           }.to_json
         end
 
