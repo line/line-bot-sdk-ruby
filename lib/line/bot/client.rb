@@ -373,7 +373,7 @@ module Line
         request = Request.new do |config|
           config.httpclient = httpclient
           config.endpoint = endpoint
-          config.endpoint_path = "/bot/user/richmenu/bulk/link"
+          config.endpoint_path = "/bot/richmenu/bulk/link"
           config.credentials = credentials
           config.payload = {
             richMenuId: rich_menu_id,
@@ -393,7 +393,7 @@ module Line
         request = Request.new do |config|
           config.httpclient = httpclient
           config.endpoint = endpoint
-          config.endpoint_path = "/bot/user/richmenu/bulk/unlink"
+          config.endpoint_path = "/bot/richmenu/bulk/unlink"
           config.credentials = credentials
           config.payload = {
             userIds: user_ids,
