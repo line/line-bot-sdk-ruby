@@ -137,19 +137,19 @@ describe Line::Bot::Client do
   end
 
   it 'link a rich menus to multiple users at a atime' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/richmenu/bulk/link'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/link'
     stub_request(:post, uri_template).to_return(body: '{}', status: 200)
 
     client.bulk_link_user_rich_menus(['1', '2'], '7654321')
-    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/richmenu/bulk/link')
+    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/link')
   end
 
   it 'unlink a rich menus from multiple users at a time' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/richmenu/bulk/unlink'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/unlink'
     stub_request(:post, uri_template).to_return(body: '{}', status: 200)
 
     client.bulk_unlink_user_rich_menus(['1', '2'])
-    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/richmenu/bulk/unlink')
+    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/unlink')
   end
 
   it 'gets an image associated with a rich menu' do
