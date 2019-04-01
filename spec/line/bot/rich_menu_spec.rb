@@ -136,6 +136,22 @@ describe Line::Bot::Client do
     expect(WebMock).to have_requested(:delete, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/1234567/richmenu')
   end
 
+  it 'link a rich menu to multiple users at a atime' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/link'
+    stub_request(:post, uri_template).to_return(body: '{}', status: 200)
+
+    client.bulk_link_rich_menus(['1', '2'], '7654321')
+    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/link')
+  end
+
+  it 'unlink a rich menu from multiple users at a time' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/unlink'
+    stub_request(:post, uri_template).to_return(body: '{}', status: 200)
+
+    client.bulk_unlink_rich_menus(['1', '2'])
+    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/bulk/unlink')
+  end
+
   it 'gets an image associated with a rich menu' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content'
     stub_request(:get, uri_template).to_return(body: File.open(RICH_MENU_IMAGE_FILE_PATH).read, status: 200)
