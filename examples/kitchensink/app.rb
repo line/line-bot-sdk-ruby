@@ -133,7 +133,7 @@ def handle_message(event)
           title: 'My button sample',
           text: 'Hello, my button',
           actions: [
-            { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
+            { label: 'Go to line.me', type: 'uri', uri: 'https://line.me', 'altUri.desktop': 'https://line.me#desktop' },
             { label: 'Send postback', type: 'postback', data: 'hello world' },
             { label: 'Send postback2', type: 'postback', data: 'hello world', text: 'hello world' },
             { label: 'Send message', type: 'message', text: 'This is message' }
@@ -166,7 +166,7 @@ def handle_message(event)
               title: 'hoge',
               text: 'fuga',
               actions: [
-                { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
+                { label: 'Go to line.me', type: 'uri', uri: 'https://line.me', 'altUri.desktop': 'https://line.me#desktop' },
                 { label: 'Send postback', type: 'postback', data: 'hello world' },
                 { label: 'Send message', type: 'message', text: 'This is message' }
               ]
@@ -217,7 +217,7 @@ def handle_message(event)
           columns: [
             {
               imageUrl: THUMBNAIL_URL,
-              action: { label: 'line.me', type: 'uri', uri: 'https://line.me' }
+              action: { label: 'line.me', type: 'uri', uri: 'https://line.me', 'altUri.desktop': 'https://line.me#desktop' }
             },
             {
               imageUrl: THUMBNAIL_URL,
