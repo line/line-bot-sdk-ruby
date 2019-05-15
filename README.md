@@ -1,15 +1,33 @@
-# Line::Bot::API
+# LINE Messaging API SDK for Ruby
 
 [![Gem-version](https://img.shields.io/gem/v/line-bot-api.svg)](https://rubygems.org/gems/line-bot-api) [![Build Status](https://travis-ci.org/line/line-bot-sdk-ruby.svg?branch=master)](https://travis-ci.org/line/line-bot-sdk-ruby)
 
 
-Line::Bot::API - SDK of the LINE Messaging API for Ruby.
+## Introduction
+The LINE Messaging API SDK for Ruby makes it easy to develop bots using LINE Messaging API, and you can create a sample bot within minutes.
 
-## About the LINE Messaging API
+## Documentation
 
-See the official API reference documentation for more information.
+See the official API documentation for more information
 
-https://developers.line.me/en/docs/messaging-api/reference/
+- English: https://developers.line.biz/en/docs/messaging-api/overview/
+- Japanese: https://developers.line.biz/ja/docs/messaging-api/overview/
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'line-bot-api'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install line-bot-api
 
 ## Synopsis
 
@@ -58,34 +76,36 @@ post '/callback' do
 end
 ```
 
-## Installation
+## Help and media
+FAQ: https://developers.line.biz/en/faq/
 
-Add this line to your application's Gemfile:
+Community Q&A: https://www.line-community.me/questions
 
-```ruby
-gem 'line-bot-api'
-```
+News: https://developers.line.biz/en/news/
 
-And then execute:
+Twitter: @LINE_DEV 
 
-    $ bundle
+## Versioning
+This project respects semantic versioning.
 
-Or install it yourself as:
+See http://semver.org/
 
-    $ gem install line-bot-api
+## Contributing
+Please check [CONTRIBUTING](contributing.md) before making a contribution.
 
 ## License
-
-   Copyright (C) 2016 LINE Corporation.
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+```
+Copyright (C) 2016 LINE Corp.
+ 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+ 
+   http://www.apache.org/licenses/LICENSE-2.0
+ 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
