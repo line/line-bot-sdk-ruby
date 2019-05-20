@@ -23,11 +23,15 @@ gem 'line-bot-api'
 
 And then execute:
 
-    $ bundle
+```ruby
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install line-bot-api
+```ruby
+gem install 'line-bot-api'
+```
 
 ## Synopsis
 
@@ -88,7 +92,7 @@ Twitter: @LINE_DEV
 ## Versioning
 This project respects semantic versioning.
 
-See http://semver.org/
+See https://semver.org/
 
 ## Contributing
 Please check [CONTRIBUTING](contributing.md) before making a contribution.
