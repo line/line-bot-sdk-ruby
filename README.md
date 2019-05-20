@@ -29,8 +29,8 @@ bundle
 
 Or install it yourself as:
 
-```ruby
-gem install 'line-bot-api'
+```sh
+gem install line-bot-api
 ```
 
 ## Synopsis
