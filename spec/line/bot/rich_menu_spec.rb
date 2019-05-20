@@ -42,14 +42,14 @@ RICH_MENU_INVALID_FILE_EXTENSION_PATH = 'spec/fixtures/line/bot/rich_menu_01.txt
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
-  let(:client) {
+  let(:client) do
     dummy_config = {
       channel_token: 'access token',
     }
     Line::Bot::Client.new do |config|
       config.channel_token = dummy_config[:channel_token]
     end
-  }
+  end
 
   it 'gets a list of rich menus' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/list'
@@ -164,9 +164,9 @@ describe Line::Bot::Client do
   it 'uploads and attaches an image to a rich menu' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content'
 
-    stub_request(:post, uri_template).to_return(body: '{}', status: 200).with { |request|
+    stub_request(:post, uri_template).to_return(body: '{}', status: 200).with do |request|
       expect(request.headers["Content-Type"]).to eq('image/png')
-    }
+    end
 
     File.open(RICH_MENU_IMAGE_FILE_PATH) do |image_file|
       client.create_rich_menu_image('1234567', image_file)
@@ -179,10 +179,10 @@ describe Line::Bot::Client do
   it "uploads invalid extension's file" do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content'
     stub_request(:post, uri_template).to_return(body: '{}', status: 200)
-    expect {
+    expect do
       File.open(RICH_MENU_INVALID_FILE_EXTENSION_PATH) do |file|
         client.create_rich_menu_image('1234567', file)
       end
-    }.to raise_error(ArgumentError)
+    end.to raise_error(ArgumentError)
   end
 end

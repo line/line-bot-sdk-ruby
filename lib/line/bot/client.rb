@@ -483,14 +483,14 @@ module Line
       def parse_events_from(request_body)
         json = JSON.parse(request_body)
 
-        json['events'].map { |item|
+        json['events'].map do |item|
           begin
             klass = Line::Bot::Event.const_get(Line::Bot::Util.camelize(item['type']))
             klass.new(item)
           rescue NameError
             Line::Bot::Event::Base.new(item)
           end
-        }
+        end
       end
 
       # Validate signature

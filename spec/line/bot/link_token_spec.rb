@@ -11,14 +11,14 @@ EOS
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
-  let(:client) {
+  let(:client) do
     dummy_config = {
       channel_token: 'access token',
     }
     Line::Bot::Client.new do |config|
       config.channel_token = dummy_config[:channel_token]
     end
-  }
+  end
 
   it 'issues a link token' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/user/{user_id}/linkToken'
