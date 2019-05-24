@@ -131,6 +131,27 @@ module Line
         request.post
       end
 
+      # Broadcast messages to users
+      #
+      # @param messages [Hash or Array]
+      #
+      # @return [Net::HTTPResponse]
+      def broadcast(messages)
+        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+
+        messages = [messages] if messages.is_a?(Hash)
+
+        request = Request.new do |config|
+          config.httpclient     = httpclient
+          config.endpoint       = endpoint
+          config.endpoint_path  = '/bot/message/broadcast'
+          config.credentials    = credentials
+          config.messages       = messages
+        end
+
+        request.post
+      end
+
       def leave_group(group_id)
         raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
 

@@ -76,4 +76,26 @@ describe Line::Bot::Client do
     }.to_json
     expect(response.body).to eq(expected)
   end
+
+  it 'broadcasts the text message' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/broadcast'
+    stub_request(:post, uri_template).to_return { |request| {body: request.body, status: 200} }
+
+    client = Line::Bot::Client.new do |config|
+      config.channel_token = 'channel_token'
+    end
+
+    message = {
+      type: 'text',
+      text: 'Hello, world'
+    }
+    response = client.broadcast(message)
+
+    expected = {
+      messages: [
+        message
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
+  end
 end
