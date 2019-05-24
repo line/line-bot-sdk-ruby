@@ -27,6 +27,18 @@ DELIVERY_NUMBER_CONTENT = <<"EOS"
 }
 EOS
 
+QUOTA_CONTENT = <<"EOS"
+{
+  "type":"none"
+}
+EOS
+
+QUOTA_CONSUMPTION_CONTENT = <<"EOS"
+{
+  "totalUsage":1
+}
+EOS
+
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
@@ -120,11 +132,45 @@ describe Line::Bot::Client do
     expect(delivery['success']).to eq 1
   end
 
+  it "gets the number of broadcast messages sent" do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/delivery/broadcast?date={send_date}'
+    stub_request(:get, uri_template).to_return(body: DELIVERY_NUMBER_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_message_delivery_broadcast("20190101")
+
+    delivery = JSON.parse(response.body)
+    expect(delivery['status']).to eq "ready"
+    expect(delivery['success']).to eq 1
+  end
+
   it "gets number of messages sent whithout date will raise error" do
     client = generate_client
 
     expect { client.get_message_delivery_reply }.to raise_error(ArgumentError)
     expect { client.get_message_delivery_push }.to raise_error(ArgumentError)
     expect { client.get_message_delivery_multicast }.to raise_error(ArgumentError)
+  end
+
+  it 'gets number of quota' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/quota'
+    stub_request(:get, uri_template).to_return(body: QUOTA_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_quota
+
+    quota = JSON.parse(response.body)
+    expect(quota['type']).to eq 'none'
+  end
+
+  it 'gets number of quota consumption' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/quota/consumption'
+    stub_request(:get, uri_template).to_return(body: QUOTA_CONSUMPTION_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_quota_consumption
+
+    quota = JSON.parse(response.body)
+    expect(quota['totalUsage']).to eq 1
   end
 end

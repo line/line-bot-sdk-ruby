@@ -273,6 +273,16 @@ module Line
         get(endpoint_path)
       end
 
+      # Gets the number of messages sent with the /bot/message/multicast endpoint.
+      #
+      # @param date [String] Date the messages were sent (format: yyyyMMdd)
+      #
+      # @return [Net::HTTPResponse]
+      def get_message_delivery_broadcast(date)
+        endpoint_path = "/bot/message/delivery/broadcast?date=#{date}"
+        get(endpoint_path)
+      end
+
       # Create a rich menu
       #
       # @param rich_menu [Hash] The rich menu represented as a rich menu object
@@ -418,6 +428,22 @@ module Line
       def create_link_token(user_id)
         endpoint_path = "/bot/user/#{user_id}/linkToken"
         post(endpoint_path)
+      end
+
+      # Get the target limit for additional messages
+      #
+      # @return [Net::HTTPResponse]
+      def get_quota
+        endpoint_path = "/bot/message/quota"
+        get(endpoint_path)
+      end
+
+      # Get number of messages sent this month
+      #
+      # @return [Net::HTTPResponse]
+      def get_quota_consumption
+        endpoint_path = "/bot/message/quota/consumption"
+        get(endpoint_path)
       end
 
       # Fetch data, get content of specified URL.
