@@ -1,17 +1,19 @@
 require 'spec_helper'
 require 'webmock/rspec'
 
-class TestClient
-  def get(url, header = {})
+class TestClient < Line::Bot::HttpClient
+  def get(url, query: {}, header: {})
     {
       url: url,
+      query: query,
       header: header
     }
   end
 
-  def post(url, payload, header = {})
+  def post(url, payload, query: {}, header: {})
     {
       url: url,
+      query: query,
       payload: payload,
       header: header
     }
@@ -39,32 +41,24 @@ describe Line::Bot::Client do
     stub_request(:post, Line::Bot::API::DEFAULT_ENDPOINT).to_return { |request| {body: request.body, status: 200} }
   end
 
-  it 'checks user-agent' do
-    request = Line::Bot::Request.new do |config|
-      config.credentials    = dummy_config
-    end
-
-    expect(request.header['User-Agent']).to eq "LINE-BotSDK-Ruby/#{Line::Bot::API::VERSION}"
-  end
-
-  it 'checks credentials on creating a client' do
+  it 'checks headers on creating a client' do
     channel_token = dummy_config[:channel_token]
+    expected_headers = {
+      'Authorization' => "Bearer #{channel_token}",
+      'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::API::VERSION}",
+      'Content-Type' => 'application/json; charset=UTF-8'
+    }
+
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/multicast'
+    stub_request(:post, uri_template)
+      .with(headers: expected_headers)
+      .to_return { |request| {body: request.body, status: 200} }
+
     client = Line::Bot::Client.new do |config|
       config.channel_token = channel_token
     end
-
-    credentials = client.credentials
-    expect(credentials['Authorization']).to eq "Bearer #{channel_token}"
-  end
-
-  it 'checks credentials on creating a client with arguments' do
-    channel_token = dummy_config[:channel_token]
-    client = Line::Bot::Client.new(
-      channel_token: channel_token
-    )
-
-    credentials = client.credentials
-    expect(credentials['Authorization']).to eq "Bearer #{channel_token}"
+    result = client.multicast('user', {})
+    expect(result.code).to eq '200'
   end
 
   it 'assorts request parameters when httpclient is replaced' do
@@ -82,10 +76,6 @@ describe Line::Bot::Client do
 
     expect(result[:url]).to eq Line::Bot::API::DEFAULT_ENDPOINT + "/bot/message/#{identifier}/content"
 
-    header = result[:header]
-    expect(header['Authorization']).to eq "Bearer #{dummy_config[:channel_token]}"
-    expect(header['User-Agent']).to eq "LINE-BotSDK-Ruby/" + Line::Bot::API::VERSION
-
     expect(result[:payload]).to be nil
 
     # post
@@ -98,11 +88,6 @@ describe Line::Bot::Client do
     result = client.push_message(user_id, message)
 
     expect(result[:url]).to eq Line::Bot::API::DEFAULT_ENDPOINT + "/bot/message/push"
-
-    header = result[:header]
-    expect(header['Authorization']).to eq "Bearer #{dummy_config[:channel_token]}"
-    expect(header['User-Agent']).to eq "LINE-BotSDK-Ruby/" + Line::Bot::API::VERSION
-    expect(header['Content-Type']).to eq "application/json; charset=UTF-8"
 
     body = JSON.parse(result[:payload], symbolize_names: true)
 

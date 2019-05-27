@@ -19,22 +19,76 @@ require 'uri'
 
 module Line
   module Bot
-    class HTTPClient
-      #  @return [Hash]
-      attr_accessor :http_options
+    class HttpClient
+      JSON_HEADER = {'Content-Type' => 'application/json; charset=UTF-8'}
+      FORM_HEADER = {'Content-Type' => 'application/x-www-form-urlencoded'}
 
-      # Initialize a new HTTPClient
-      #
-      # @param http_options [Hash]
-      #
-      # @return [Line::Bot::HTTPClient]
-      def initialize(http_options = {})
-        @http_options = http_options
+      attr_accessor :http_options, :default_headers
+
+      def initialize(options = {})
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
+        yield(self) if block_given?
       end
 
-      # @return [Net::HTTP]
-      def http(uri)
+      # advanced methods
+      def post_json(url, json, query: {}, header: {})
+        json = json.to_json unless json.is_a?(String)
+        header = JSON_HEADER.merge(header)
+        post(url, json, query: query, header: header)
+      end
+
+      def post_form(url, form, query: {}, header: {})
+        body = URI.encode_www_form(form)
+        header = FORM_HEADER.merge(header)
+        post(url, body, query: query, header: header)
+      end
+
+      def post_file(url, file, query: {}, header: {})
+        content_type = case file.path
+          when /\.png\z/i then 'image/png'
+          when /\.jpe?g\z/i then 'image/jpeg'
+          else
+            raise ArgumentError.new("invalid file extension: #{file.path}")
+        end
+        header = {'Content-Type' => content_type}.merge(header)
+        body = file.seek(0) && file.read
+        post(url, body, query: query, header: header)
+      end
+
+      # primitive methods
+      def get(url, query: {}, header: {})
+        req = Net::HTTP::Get.new(uri_with_query(url, query))
+        http(req, header)
+      end
+
+      def delete(url, query: {}, header: {})
+        req = Net::HTTP::Delete.new(uri_with_query(url, query))
+        http(req, header)
+      end
+
+      def post(url, body, query: {}, header: {})
+        req = Net::HTTP::Post.new(uri_with_query(url, query))
+        req.body = body
+        http(req, header)
+      end
+
+      private
+
+      def uri_with_query(url, query)
+        uri = URI(url)
+        uri.query = URI.encode_www_form(query)
+        uri
+      end
+
+      def http(req, header)
+        default_headers.merge(header).each do |key, val|
+          req[key.to_s] = val.to_s
+        end
+        uri = req.uri
         http = Net::HTTP.new(uri.host, uri.port)
+
         if uri.scheme == "https"
           http.use_ssl = true
         end
@@ -45,22 +99,7 @@ module Line
           end
         end
 
-        http
-      end
-
-      def get(url, header = {})
-        uri = URI(url)
-        http(uri).get(uri.request_uri, header)
-      end
-
-      def post(url, payload, header = {})
-        uri = URI(url)
-        http(uri).post(uri.request_uri, payload, header)
-      end
-
-      def delete(url, header = {})
-        uri = URI(url)
-        http(uri).delete(uri.request_uri, header)
+        http.request(req)
       end
     end
   end
