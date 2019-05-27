@@ -47,11 +47,10 @@ module Line
 
       def post_file(url, file, query: {}, header: {})
         content_type = case file.path
-          when /\.png\z/i then 'image/png'
-          when /\.jpe?g\z/i then 'image/jpeg'
-          else
-            raise ArgumentError.new("invalid file extension: #{file.path}")
-        end
+                       when /\.png\z/i then 'image/png'
+                       when /\.jpe?g\z/i then 'image/jpeg'
+                       else raise ArgumentError.new("invalid file extension: #{file.path}")
+                       end
         header = {'Content-Type' => content_type}.merge(header)
         body = file.seek(0) && file.read
         post(url, body, query: query, header: header)

@@ -42,10 +42,10 @@ module Line
       end
 
       def httpclient
-        headers = (@additional_headers || {}).merge({
+        headers = (@additional_headers || {}).merge(
           'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::API::VERSION}",
-          'Authorization' => "Bearer #{channel_token}",
-        })
+          'Authorization' => "Bearer #{channel_token}"
+        )
         @httpclient ||= Line::Bot::HttpClient.new(
           http_options: http_options,
           default_headers: headers
@@ -63,10 +63,11 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def push_message(user_id, messages)
-        httpclient.post_json("#{endpoint}/bot/message/push", {
+        httpclient.post_json(
+          "#{endpoint}/bot/message/push",
           to: user_id,
           messages: ensure_array(messages)
-        })
+        )
       end
 
       # Reply messages to line server and to users.
@@ -76,10 +77,11 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def reply_message(token, messages)
-        httpclient.post_json("#{endpoint}/bot/message/reply", {
+        httpclient.post_json(
+          "#{endpoint}/bot/message/reply",
           replyToken: token,
           messages: ensure_array(messages)
-        })
+        )
       end
 
       # Multicast messages to line server and to users.
@@ -89,10 +91,11 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def multicast(user_ids, messages)
-        httpclient.post_json("#{endpoint}/bot/message/multicast", {
+        httpclient.post_json(
+          "#{endpoint}/bot/message/multicast",
           to: ensure_array(user_ids),
           messages: ensure_array(messages)
-        })
+        )
       end
 
       # Broadcast messages to line server and to users.
@@ -101,9 +104,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def broadcast(messages)
-        httpclient.post_json("#{endpoint}/bot/message/broadcast", {
+        httpclient.post_json(
+          "#{endpoint}/bot/message/broadcast",
           messages: ensure_array(messages)
-        })
+        )
       end
 
       def leave_group(group_id)
@@ -306,7 +310,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def bulk_link_rich_menus(user_ids, rich_menu_id)
-        httpclient.post("#{endpoint}/bot/richmenu/bulk/link", {richMenuId: rich_menu_id, userIds: user_ids})
+        httpclient.post("#{endpoint}/bot/richmenu/bulk/link", richMenuId: rich_menu_id, userIds: user_ids)
       end
 
       # To unlink a rich menu from multiple users at a time
@@ -315,7 +319,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def bulk_unlink_rich_menus(user_ids)
-        httpclient.post("#{endpoint}/bot/richmenu/bulk/unlink", {userIds: user_ids})
+        httpclient.post("#{endpoint}/bot/richmenu/bulk/unlink", userIds: user_ids)
       end
 
       # Download an image associated with a rich menu
