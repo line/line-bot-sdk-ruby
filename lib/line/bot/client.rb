@@ -165,7 +165,7 @@ module Line
       # @return [Net::HTTPResponse]
       def get_group_member_ids(group_id, continuation_token = nil)
         query = {}
-        query['start'] = continuation_token if continuation_token
+        query[:start] = continuation_token if continuation_token
         httpclient.get("#{endpoint}/bot/group/#{group_id}/members/ids", query: query)
       end
 
@@ -178,7 +178,7 @@ module Line
       # @return [Net::HTTPResponse]
       def get_room_member_ids(room_id, continuation_token = nil)
         query = {}
-        query['start'] = continuation_token if continuation_token
+        query[:start] = continuation_token if continuation_token
         httpclient.get("#{endpoint}/bot/room/#{room_id}/members/ids", query: query)
       end
 
