@@ -1,7 +1,7 @@
 # Change Log
 
-## [1.10.0](https://github.com/line/line-bot-sdk-ruby/tree/1.10.0) (2019-05-27)
-[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.9.0...1.10.0)
+## [v1.10.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.10.0) (2019-05-28)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.9.0...v1.10.0)
 
 **Implemented enhancements:**
 
@@ -118,6 +118,7 @@
 
 - Support link token [\#92](https://github.com/line/line-bot-sdk-ruby/pull/92) ([a2ikm](https://github.com/a2ikm))
 - Add functions for default rich menu [\#91](https://github.com/line/line-bot-sdk-ruby/pull/91) ([kotaro-dr](https://github.com/kotaro-dr))
+- Update CONTRIBUTING.md [\#88](https://github.com/line/line-bot-sdk-ruby/pull/88) ([syleeeee](https://github.com/syleeeee))
 
 ## [v1.3.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.3.0) (2018-10-09)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.2.5...v1.3.0)
@@ -132,10 +133,6 @@
 **Closed issues:**
 
 - Net::OpenTimeout when calling `get\_message\_content` [\#84](https://github.com/line/line-bot-sdk-ruby/issues/84)
-
-**Merged pull requests:**
-
-- Update version 1.3.0 [\#87](https://github.com/line/line-bot-sdk-ruby/pull/87) ([kimoto](https://github.com/kimoto))
 
 ## [v1.2.5](https://github.com/line/line-bot-sdk-ruby/tree/v1.2.5) (2018-08-02)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.2.4...v1.2.5)
@@ -162,7 +159,7 @@
 
 **Merged pull requests:**
 
-- Update CONTRIBUTING.md [\#88](https://github.com/line/line-bot-sdk-ruby/pull/88) ([syleeeee](https://github.com/syleeeee))
+- Update version 1.3.0 [\#87](https://github.com/line/line-bot-sdk-ruby/pull/87) ([kimoto](https://github.com/kimoto))
 - Update version 1.2.4 [\#79](https://github.com/line/line-bot-sdk-ruby/pull/79) ([kimoto](https://github.com/kimoto))
 - Add more message type handler in kitchensink [\#77](https://github.com/line/line-bot-sdk-ruby/pull/77) ([kimoto](https://github.com/kimoto))
 - Add kitchensink example [\#76](https://github.com/line/line-bot-sdk-ruby/pull/76) ([toduq](https://github.com/toduq))
@@ -242,7 +239,6 @@
 - Support multicast [\#46](https://github.com/line/line-bot-sdk-ruby/pull/46) ([hirohisa](https://github.com/hirohisa))
 - Fix documentation issues [\#42](https://github.com/line/line-bot-sdk-ruby/pull/42) ([kenneth-lau](https://github.com/kenneth-lau))
 - fix incorrect method name [\#39](https://github.com/line/line-bot-sdk-ruby/pull/39) ([kimoto](https://github.com/kimoto))
-- Change ruby version that travis tries [\#31](https://github.com/line/line-bot-sdk-ruby/pull/31) ([hirohisa](https://github.com/hirohisa))
 
 ## [1.0.0](https://github.com/line/line-bot-sdk-ruby/tree/1.0.0) (2016-09-29)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/0.1.9...1.0.0)
@@ -273,6 +269,7 @@
 
 **Merged pull requests:**
 
+- Change ruby version that travis tries [\#31](https://github.com/line/line-bot-sdk-ruby/pull/31) ([hirohisa](https://github.com/hirohisa))
 - Bugfix: Rails 5 runs with version 0.1.7 is failed [\#30](https://github.com/line/line-bot-sdk-ruby/pull/30) ([hirohisa](https://github.com/hirohisa))
 
 ## [0.1.7](https://github.com/line/line-bot-sdk-ruby/tree/0.1.7) (2016-06-19)
@@ -307,7 +304,6 @@
 **Merged pull requests:**
 
 - implemented contact message [\#16](https://github.com/line/line-bot-sdk-ruby/pull/16) ([kimoto](https://github.com/kimoto))
-- Allow to set endpoint [\#11](https://github.com/line/line-bot-sdk-ruby/pull/11) ([hirohisa](https://github.com/hirohisa))
 
 ## [0.1.3](https://github.com/line/line-bot-sdk-ruby/tree/0.1.3) (2016-04-21)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/0.1.2...0.1.3)
@@ -318,6 +314,7 @@
 - Rename operations [\#14](https://github.com/line/line-bot-sdk-ruby/pull/14) ([hirohisa](https://github.com/hirohisa))
 - Use constant [\#13](https://github.com/line/line-bot-sdk-ruby/pull/13) ([hirohisa](https://github.com/hirohisa))
 - Use shortended form [\#12](https://github.com/line/line-bot-sdk-ruby/pull/12) ([hirohisa](https://github.com/hirohisa))
+- Allow to set endpoint [\#11](https://github.com/line/line-bot-sdk-ruby/pull/11) ([hirohisa](https://github.com/hirohisa))
 - Refactor [\#10](https://github.com/line/line-bot-sdk-ruby/pull/10) ([hirohisa](https://github.com/hirohisa))
 - Update example [\#9](https://github.com/line/line-bot-sdk-ruby/pull/9) ([hirohisa](https://github.com/hirohisa))
 
