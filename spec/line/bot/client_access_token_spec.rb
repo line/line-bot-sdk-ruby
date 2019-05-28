@@ -15,13 +15,15 @@ WebMock.allow_net_connect!
 describe Line::Bot::Client do
   def dummy_config
     {
-      channel_token: 'access token',
+      channel_id: 'channel id',
+      channel_secret: 'channel secret',
     }
   end
 
   def generate_client
     Line::Bot::Client.new do |config|
-      config.channel_token = dummy_config[:channel_token]
+      config.channel_id     = dummy_config[:channel_id]
+      config.channel_secret = dummy_config[:channel_secret]
     end
   end
 

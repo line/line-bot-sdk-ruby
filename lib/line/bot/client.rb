@@ -22,7 +22,7 @@ module Line
   module Bot
     class Client
       #  @return [String]
-      attr_accessor :channel_token, :channel_secret, :endpoint
+      attr_accessor :channel_token, :channel_id, :channel_secret, :endpoint
 
       # @return [Object]
       attr_accessor :httpclient
@@ -65,7 +65,7 @@ module Line
       def issue_access_token(grant_type)
         payload = URI.encode_www_form(
           grant_type:    grant_type,
-          client_id:     channel_token,
+          client_id:     channel_id,
           client_secret: channel_secret
         )
 
