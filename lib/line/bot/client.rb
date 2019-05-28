@@ -16,6 +16,7 @@ require 'line/bot/request'
 require 'base64'
 require 'net/http'
 require 'openssl'
+require 'uri'
 
 module Line
   module Bot
@@ -54,6 +55,46 @@ module Line
         {
           "Authorization" => "Bearer #{channel_token}",
         }
+      end
+
+      # Issue channel access token
+      #
+      # @param grant_type [String] Grant type
+      #
+      # @return [Net::HTTPResponse]
+      def issue_access_token(grant_type)
+        payload = URI.encode_www_form(
+          grant_type:    grant_type,
+          client_id:     channel_token,
+          client_secret: channel_secret
+        )
+
+        request = Request.new do |config|
+          config.httpclient    = httpclient
+          config.endpoint      = endpoint
+          config.endpoint_path = '/oauth/accessToken'
+          config.content_type  = 'application/x-www-form-urlencoded'
+          config.payload       = payload
+        end
+
+        request.post
+      end
+
+      # Revoke channel access token
+      #
+      # @return [Net::HTTPResponse]
+      def revoke_access_token(access_token)
+        payload = URI.encode_www_form(access_token: access_token)
+
+        request = Request.new do |config|
+          config.httpclient    = httpclient
+          config.endpoint      = endpoint
+          config.endpoint_path = '/oauth/revoke'
+          config.content_type  = 'application/x-www-form-urlencoded'
+          config.payload       = payload
+        end
+
+        request.post
       end
 
       # Push messages to line server and to user.

@@ -22,6 +22,8 @@ module Line
     class Request
       attr_accessor :endpoint, :endpoint_path, :credentials, :to, :reply_token, :messages, :httpclient, :payload, :file
 
+      attr_writer :content_type
+
       # Initializes a new Request
       #
       # @return [Line::Bot::Request]
@@ -44,25 +46,20 @@ module Line
 
       # @return [Hash]
       def header
-        content_type =
-          if file.is_a? File
-            case file.path
-            when /\.png\z/i then 'image/png'
-            when /\.jpe?g\z/i then 'image/jpeg'
-            else
-              raise ArgumentError.new("invalid file extension: #{file.path}")
-            end
-          else
-            'application/json; charset=UTF-8'
-          end
-
         header = {
           'Content-Type' => content_type,
           'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::API::VERSION}",
         }
-        hash = credentials.inject({}) { |h, (k, v)| h[k] = v.to_s; h }
+        hash = (credentials || {}).inject({}) { |h, (k, v)| h[k] = v.to_s; h }
 
         header.merge(hash)
+      end
+
+      # @return [String]
+      def content_type
+        return @content_type if @content_type
+
+        guess_content_type
       end
 
       # Get content of specified URL.
@@ -98,6 +95,22 @@ module Line
 
       def assert_for_deleting_message
         raise ArgumentError, 'Wrong argument type `endpoint_path`' unless endpoint_path.is_a?(String)
+      end
+
+      private
+
+      # @return [String]
+      def guess_content_type
+        if file.is_a? File
+          case file.path
+          when /\.png\z/i then 'image/png'
+          when /\.jpe?g\z/i then 'image/jpeg'
+          else
+            raise ArgumentError.new("invalid file extension: #{file.path}")
+          end
+        else
+          'application/json; charset=UTF-8'
+        end
       end
     end
   end
