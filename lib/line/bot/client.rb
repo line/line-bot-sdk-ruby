@@ -62,7 +62,7 @@ module Line
       # @param grant_type [String] Grant type
       #
       # @return [Net::HTTPResponse]
-      def issue_access_token(grant_type)
+      def issue_access_token(grant_type = 'client_credentials')
         payload = URI.encode_www_form(
           grant_type:    grant_type,
           client_id:     channel_id,

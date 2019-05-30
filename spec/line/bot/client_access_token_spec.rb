@@ -32,9 +32,7 @@ describe Line::Bot::Client do
     stub_request(:post, uri_template).to_return { |request| {body: OAUTH_ACCESS_TOKEN_ISSUE_CONTENT, status: 200} }
 
     client = generate_client
-    grant_type = 'client_credentials'
-
-    response = client.issue_access_token(grant_type)
+    response = client.issue_access_token
 
     expect(response).to be_a(Net::HTTPOK)
     result = JSON.parse(response.body)
