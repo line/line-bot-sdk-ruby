@@ -62,7 +62,7 @@ module Line
       # @param grant_type [String] Grant type
       #
       # @return [Net::HTTPResponse]
-      def issue_access_token(grant_type = 'client_credentials')
+      def issue_channel_token(grant_type = 'client_credentials')
         payload = URI.encode_www_form(
           grant_type:    grant_type,
           client_id:     channel_id,
@@ -83,7 +83,7 @@ module Line
       # Revoke channel access token
       #
       # @return [Net::HTTPResponse]
-      def revoke_access_token(access_token)
+      def revoke_channel_token(access_token)
         payload = URI.encode_www_form(access_token: access_token)
 
         request = Request.new do |config|

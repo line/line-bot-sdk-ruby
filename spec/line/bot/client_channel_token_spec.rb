@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'webmock/rspec'
 require 'json'
 
-OAUTH_ACCESS_TOKEN_ISSUE_CONTENT = <<"EOS"
+OAUTH_CHANNEL_TOKEN_ISSUE_CONTENT = <<"EOS"
 {
     "access_token": "W1TeHCgfH2Liwaxxxxx1",
     "expires_in": 2592000,
@@ -29,10 +29,10 @@ describe Line::Bot::Client do
 
   it 'issues an oauth access token' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/oauth/accessToken'
-    stub_request(:post, uri_template).to_return { |request| {body: OAUTH_ACCESS_TOKEN_ISSUE_CONTENT, status: 200} }
+    stub_request(:post, uri_template).to_return { |request| {body: OAUTH_CHANNEL_TOKEN_ISSUE_CONTENT, status: 200} }
 
     client = generate_client
-    response = client.issue_access_token
+    response = client.issue_channel_token
 
     expect(response).to be_a(Net::HTTPOK)
     result = JSON.parse(response.body)
@@ -47,7 +47,7 @@ describe Line::Bot::Client do
 
     client = generate_client
 
-    response = client.revoke_access_token('W1TeHCgfH2Liwaxxxxx1')
+    response = client.revoke_channel_token('W1TeHCgfH2Liwaxxxxx1')
 
     expect(response).to be_a(Net::HTTPOK)
   end
