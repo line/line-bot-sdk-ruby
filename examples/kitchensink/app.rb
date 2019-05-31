@@ -31,7 +31,7 @@ def reply_content(event, messages)
     event['replyToken'],
     messages
   )
-  puts res.read_body unless Net::HTTPOK === res
+  logger.warn res.read_body unless Net::HTTPOK === res
 end
 
 post '/callback' do
@@ -53,13 +53,13 @@ post '/callback' do
       reply_text(event, "[FOLLOW]\nThank you for following")
 
     when Line::Bot::Event::Unfollow
-      puts "[UNFOLLOW]\n#{body}"
+      logger.info "[UNFOLLOW]\n#{body}"
 
     when Line::Bot::Event::Join
       reply_text(event, "[JOIN]\n#{event['source']['type']}")
 
     when Line::Bot::Event::Leave
-      puts "[LEAVE]\n#{body}"
+      logger.info "[LEAVE]\n#{body}"
 
     when Line::Bot::Event::Postback
       message = "[POSTBACK]\n#{event['postback']['data']} (#{JSON.generate(event['postback']['params'])})"
@@ -497,7 +497,7 @@ def handle_message(event)
 
     end
   else
-    puts "Unknown message type: #{event.type}"
+    logger.info "Unknown message type: #{event.type}"
     reply_text(event, "[UNKNOWN]\n#{event.type}")
   end
 end
