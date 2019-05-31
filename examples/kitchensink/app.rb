@@ -31,7 +31,7 @@ def reply_content(event, messages)
     event['replyToken'],
     messages
   )
-  puts res.read_body if res.code != 200
+  puts res.read_body unless Net::HTTPOK === res
 end
 
 post '/callback' do
