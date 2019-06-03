@@ -63,6 +63,9 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def issue_channel_token(grant_type = 'client_credentials')
+        channel_id_required
+        channel_secret_required
+
         payload = URI.encode_www_form(
           grant_type:    grant_type,
           client_id:     channel_id,
@@ -615,6 +618,14 @@ module Line
 
       def channel_token_required
         raise ArgumentError, '`channel_token` is not configured' unless channel_token
+      end
+
+      def channel_id_required
+        raise ArgumentError, '`channel_id` is not configured' unless channel_id
+      end
+
+      def channel_secret_required
+        raise ArgumentError, '`channel_secret` is not configured' unless channel_secret
       end
     end
   end
