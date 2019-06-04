@@ -1,5 +1,22 @@
 # Change Log
 
+## [v1.11.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.11.0) (2019-06-04)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.10.0...v1.11.0)
+
+**Closed issues:**
+
+- Support OAUTH [\#120](https://github.com/line/line-bot-sdk-ruby/issues/120)
+- Is changelog maintained? [\#117](https://github.com/line/line-bot-sdk-ruby/issues/117)
+- Incorrect test case [\#71](https://github.com/line/line-bot-sdk-ruby/issues/71)
+
+**Merged pull requests:**
+
+- Fix broken credentials validation [\#133](https://github.com/line/line-bot-sdk-ruby/pull/133) ([mizoR](https://github.com/mizoR))
+- Use `logger` instead of `puts` in examples/kitchensink [\#132](https://github.com/line/line-bot-sdk-ruby/pull/132) ([mizoR](https://github.com/mizoR))
+- Fix HTTP status code check [\#131](https://github.com/line/line-bot-sdk-ruby/pull/131) ([mizoR](https://github.com/mizoR))
+- Support OAuth [\#129](https://github.com/line/line-bot-sdk-ruby/pull/129) ([mizoR](https://github.com/mizoR))
+- Fix invalid payload of RichMenu testcase [\#128](https://github.com/line/line-bot-sdk-ruby/pull/128) ([toduq](https://github.com/toduq))
+
 ## [v1.10.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.10.0) (2019-05-28)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.9.0...v1.10.0)
 
@@ -82,10 +99,6 @@
 - Add AccountLink event type [\#80](https://github.com/line/line-bot-sdk-ruby/issues/80)
 - Make Message Builder classes [\#59](https://github.com/line/line-bot-sdk-ruby/issues/59)
 
-**Merged pull requests:**
-
-- Implement get\_default\_rich\_menu [\#105](https://github.com/line/line-bot-sdk-ruby/pull/105) ([kimoto](https://github.com/kimoto))
-
 ## [v1.5.1](https://github.com/line/line-bot-sdk-ruby/tree/v1.5.1) (2019-02-05)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.4.1...v1.5.1)
 
@@ -103,6 +116,7 @@
 
 **Merged pull requests:**
 
+- Implement get\_default\_rich\_menu [\#105](https://github.com/line/line-bot-sdk-ruby/pull/105) ([kimoto](https://github.com/kimoto))
 - Make CI run on Ruby 2.6 [\#101](https://github.com/line/line-bot-sdk-ruby/pull/101) ([dlackty](https://github.com/dlackty))
 - Add helper for bundler to auto require [\#100](https://github.com/line/line-bot-sdk-ruby/pull/100) ([dlackty](https://github.com/dlackty))
 - Fix issue of last version of bundler not support for Ruby 2.2. [\#97](https://github.com/line/line-bot-sdk-ruby/pull/97) ([bugtender](https://github.com/bugtender))
@@ -134,6 +148,10 @@
 
 - Net::OpenTimeout when calling `get\_message\_content` [\#84](https://github.com/line/line-bot-sdk-ruby/issues/84)
 
+**Merged pull requests:**
+
+- Update version 1.3.0 [\#87](https://github.com/line/line-bot-sdk-ruby/pull/87) ([kimoto](https://github.com/kimoto))
+
 ## [v1.2.5](https://github.com/line/line-bot-sdk-ruby/tree/v1.2.5) (2018-08-02)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.2.4...v1.2.5)
 
@@ -159,7 +177,6 @@
 
 **Merged pull requests:**
 
-- Update version 1.3.0 [\#87](https://github.com/line/line-bot-sdk-ruby/pull/87) ([kimoto](https://github.com/kimoto))
 - Update version 1.2.4 [\#79](https://github.com/line/line-bot-sdk-ruby/pull/79) ([kimoto](https://github.com/kimoto))
 - Add more message type handler in kitchensink [\#77](https://github.com/line/line-bot-sdk-ruby/pull/77) ([kimoto](https://github.com/kimoto))
 - Add kitchensink example [\#76](https://github.com/line/line-bot-sdk-ruby/pull/76) ([toduq](https://github.com/toduq))
@@ -196,7 +213,6 @@
 **Merged pull requests:**
 
 - Support image carousel, Fix \#56 [\#60](https://github.com/line/line-bot-sdk-ruby/pull/60) ([hirohisa](https://github.com/hirohisa))
-- Implement to get user id and profile, Fix \#55 [\#54](https://github.com/line/line-bot-sdk-ruby/pull/54) ([hirohisa](https://github.com/hirohisa))
 
 ## [1.2.1](https://github.com/line/line-bot-sdk-ruby/tree/1.2.1) (2017-07-20)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/1.2.0...1.2.1)
@@ -215,6 +231,7 @@
 
 **Merged pull requests:**
 
+- Implement to get user id and profile, Fix \#55 [\#54](https://github.com/line/line-bot-sdk-ruby/pull/54) ([hirohisa](https://github.com/hirohisa))
 - Get bytes from Event::Beacon [\#50](https://github.com/line/line-bot-sdk-ruby/pull/50) ([hirohisa](https://github.com/hirohisa))
 - Add properties in Event::Beacon [\#49](https://github.com/line/line-bot-sdk-ruby/pull/49) ([hirohisa](https://github.com/hirohisa))
 - Create ISSUE\_TEMPLATE.md [\#48](https://github.com/line/line-bot-sdk-ruby/pull/48) ([GuitarSucks](https://github.com/GuitarSucks))
