@@ -16,12 +16,13 @@ require 'line/bot/request'
 require 'base64'
 require 'net/http'
 require 'openssl'
+require 'uri'
 
 module Line
   module Bot
     class Client
       #  @return [String]
-      attr_accessor :channel_token, :channel_secret, :endpoint
+      attr_accessor :channel_token, :channel_id, :channel_secret, :endpoint
 
       # @return [Object]
       attr_accessor :httpclient
@@ -54,6 +55,49 @@ module Line
         {
           "Authorization" => "Bearer #{channel_token}",
         }
+      end
+
+      # Issue channel access token
+      #
+      # @param grant_type [String] Grant type
+      #
+      # @return [Net::HTTPResponse]
+      def issue_channel_token(grant_type = 'client_credentials')
+        channel_id_required
+        channel_secret_required
+
+        payload = URI.encode_www_form(
+          grant_type:    grant_type,
+          client_id:     channel_id,
+          client_secret: channel_secret
+        )
+
+        request = Request.new do |config|
+          config.httpclient    = httpclient
+          config.endpoint      = endpoint
+          config.endpoint_path = '/oauth/accessToken'
+          config.content_type  = 'application/x-www-form-urlencoded'
+          config.payload       = payload
+        end
+
+        request.post
+      end
+
+      # Revoke channel access token
+      #
+      # @return [Net::HTTPResponse]
+      def revoke_channel_token(access_token)
+        payload = URI.encode_www_form(access_token: access_token)
+
+        request = Request.new do |config|
+          config.httpclient    = httpclient
+          config.endpoint      = endpoint
+          config.endpoint_path = '/oauth/revoke'
+          config.content_type  = 'application/x-www-form-urlencoded'
+          config.payload       = payload
+        end
+
+        request.post
       end
 
       # Push messages to line server and to user.
@@ -574,6 +618,14 @@ module Line
 
       def channel_token_required
         raise ArgumentError, '`channel_token` is not configured' unless channel_token
+      end
+
+      def channel_id_required
+        raise ArgumentError, '`channel_id` is not configured' unless channel_id
+      end
+
+      def channel_secret_required
+        raise ArgumentError, '`channel_secret` is not configured' unless channel_secret
       end
     end
   end
