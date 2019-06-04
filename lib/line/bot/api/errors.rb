@@ -12,11 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require 'line/bot/util'
-require 'line/bot/client'
-require 'line/bot/event'
-require 'line/bot/api/errors'
-require 'line/bot/api'
-require 'line/bot/request'
-require 'line/bot/httpclient'
-require 'line/bot/api/version'
+module Line
+  module Bot
+    module API
+      class Error < StandardError; end
+    end
+  end
+end
