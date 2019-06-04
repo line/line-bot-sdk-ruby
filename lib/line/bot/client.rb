@@ -12,7 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require 'line/bot/request'
 require 'base64'
 require 'net/http'
 require 'openssl'
@@ -66,38 +65,24 @@ module Line
         channel_id_required
         channel_secret_required
 
+        endpoint_path = '/oauth/accessToken'
         payload = URI.encode_www_form(
           grant_type:    grant_type,
           client_id:     channel_id,
           client_secret: channel_secret
         )
-
-        request = Request.new do |config|
-          config.httpclient    = httpclient
-          config.endpoint      = endpoint
-          config.endpoint_path = '/oauth/accessToken'
-          config.content_type  = 'application/x-www-form-urlencoded'
-          config.payload       = payload
-        end
-
-        request.post
+        headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
+        post(endpoint_path, payload, headers)
       end
 
       # Revoke channel access token
       #
       # @return [Net::HTTPResponse]
       def revoke_channel_token(access_token)
+        endpoint_path = '/oauth/revoke'
         payload = URI.encode_www_form(access_token: access_token)
-
-        request = Request.new do |config|
-          config.httpclient    = httpclient
-          config.endpoint      = endpoint
-          config.endpoint_path = '/oauth/revoke'
-          config.content_type  = 'application/x-www-form-urlencoded'
-          config.payload       = payload
-        end
-
-        request.post
+        headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
+        post(endpoint_path, payload, headers)
       end
 
       # Push messages to line server and to user.
@@ -111,16 +96,9 @@ module Line
 
         messages = [messages] if messages.is_a?(Hash)
 
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = '/bot/message/push'
-          config.credentials    = credentials
-          config.to             = user_id
-          config.messages       = messages
-        end
-
-        request.post
+        endpoint_path = '/bot/message/push'
+        payload = { to: user_id, messages: messages }.to_json
+        post(endpoint_path, payload, credentials)
       end
 
       # Reply messages to line server and to users.
@@ -134,16 +112,9 @@ module Line
 
         messages = [messages] if messages.is_a?(Hash)
 
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = '/bot/message/reply'
-          config.credentials    = credentials
-          config.reply_token    = token
-          config.messages       = messages
-        end
-
-        request.post
+        endpoint_path = '/bot/message/reply'
+        payload = { replyToken: token, messages: messages }.to_json
+        post(endpoint_path, payload, credentials)
       end
 
       # Multicast messages to line server and to users.
@@ -158,16 +129,9 @@ module Line
         to = [to] if to.is_a?(String)
         messages = [messages] if messages.is_a?(Hash)
 
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = '/bot/message/multicast'
-          config.credentials    = credentials
-          config.to             = to
-          config.messages       = messages
-        end
-
-        request.post
+        endpoint_path = '/bot/message/multicast'
+        payload = { to: to, messages: messages }.to_json
+        post(endpoint_path, payload, credentials)
       end
 
       # Broadcast messages to users
@@ -180,41 +144,23 @@ module Line
 
         messages = [messages] if messages.is_a?(Hash)
 
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = '/bot/message/broadcast'
-          config.credentials    = credentials
-          config.messages       = messages
-        end
-
-        request.post
+        endpoint_path = '/bot/message/broadcast'
+        payload = { messages: messages }.to_json
+        post(endpoint_path, payload, credentials)
       end
 
       def leave_group(group_id)
         channel_token_required
 
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = "/bot/group/#{group_id}/leave"
-          config.credentials    = credentials
-        end
-
-        request.post
+        endpoint_path = "/bot/group/#{group_id}/leave"
+        post(endpoint_path, nil, credentials)
       end
 
       def leave_room(room_id)
         channel_token_required
 
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = "/bot/room/#{room_id}/leave"
-          config.credentials    = credentials
-        end
-
-        request.post
+        endpoint_path = "/bot/room/#{room_id}/leave"
+        post(endpoint_path, nil, credentials)
       end
 
       # Get message content.
@@ -223,8 +169,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_content(identifier)
-        endpoint_path  = "/bot/message/#{identifier}/content"
-        get(endpoint_path)
+        channel_token_required
+
+        endpoint_path = "/bot/message/#{identifier}/content"
+        get(endpoint_path, credentials)
       end
 
       # Get an user's profile.
@@ -233,8 +181,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_profile(user_id)
-        endpoint_path  = "/bot/profile/#{user_id}"
-        get(endpoint_path)
+        channel_token_required
+
+        endpoint_path = "/bot/profile/#{user_id}"
+        get(endpoint_path, credentials)
       end
 
       # Get an user's profile of a group.
@@ -244,8 +194,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_group_member_profile(group_id, user_id)
+        channel_token_required
+
         endpoint_path = "/bot/group/#{group_id}/member/#{user_id}"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Get an user's profile of a room.
@@ -255,8 +207,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_room_member_profile(room_id, user_id)
+        channel_token_required
+
         endpoint_path = "/bot/room/#{room_id}/member/#{user_id}"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Get user IDs of a group
@@ -267,9 +221,11 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_group_member_ids(group_id, continuation_token = nil)
-        endpoint_path  = "/bot/group/#{group_id}/members/ids"
+        channel_token_required
+
+        endpoint_path = "/bot/group/#{group_id}/members/ids"
         endpoint_path += "?start=#{continuation_token}" if continuation_token
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Get user IDs of a room
@@ -280,17 +236,21 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_room_member_ids(room_id, continuation_token = nil)
-        endpoint_path  = "/bot/room/#{room_id}/members/ids"
+        channel_token_required
+
+        endpoint_path = "/bot/room/#{room_id}/members/ids"
         endpoint_path += "?start=#{continuation_token}" if continuation_token
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Get a list of all uploaded rich menus
       #
       # @return [Net::HTTPResponse]
       def get_rich_menus
+        channel_token_required
+
         endpoint_path = '/bot/richmenu/list'
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Get a rich menu via a rich menu ID
@@ -299,8 +259,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_rich_menu(rich_menu_id)
+        channel_token_required
+
         endpoint_path = "/bot/richmenu/#{rich_menu_id}"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Gets the number of messages sent with the /bot/message/reply endpoint.
@@ -309,8 +271,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_delivery_reply(date)
+        channel_token_required
+
         endpoint_path = "/bot/message/delivery/reply?date=#{date}"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Gets the number of messages sent with the /bot/message/push endpoint.
@@ -319,8 +283,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_delivery_push(date)
+        channel_token_required
+
         endpoint_path = "/bot/message/delivery/push?date=#{date}"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Gets the number of messages sent with the /bot/message/multicast endpoint.
@@ -329,8 +295,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_delivery_multicast(date)
+        channel_token_required
+
         endpoint_path = "/bot/message/delivery/multicast?date=#{date}"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Gets the number of messages sent with the /bot/message/multicast endpoint.
@@ -339,8 +307,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_delivery_broadcast(date)
+        channel_token_required
+
         endpoint_path = "/bot/message/delivery/broadcast?date=#{date}"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Create a rich menu
@@ -349,15 +319,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def create_rich_menu(rich_menu)
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = '/bot/richmenu'
-          config.credentials    = credentials
-          config.payload        = rich_menu.to_json
-        end
+        channel_token_required
 
-        request.post
+        endpoint_path = '/bot/richmenu'
+        post(endpoint_path, rich_menu.to_json, credentials)
       end
 
       # Delete a rich menu
@@ -366,8 +331,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def delete_rich_menu(rich_menu_id)
+        channel_token_required
+
         endpoint_path = "/bot/richmenu/#{rich_menu_id}"
-        delete(endpoint_path)
+        delete(endpoint_path, credentials)
       end
 
       # Get the ID of the rich menu linked to a user
@@ -376,16 +343,20 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_user_rich_menu(user_id)
+        channel_token_required
+
         endpoint_path = "/bot/user/#{user_id}/richmenu"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Get default rich menu
       #
       # @return [Net::HTTPResponse]
       def get_default_rich_menu
+        channel_token_required
+
         endpoint_path = '/bot/user/all/richmenu'
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Set default rich menu (Link a rich menu to all user)
@@ -394,16 +365,20 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def set_default_rich_menu(rich_menu_id)
+        channel_token_required
+
         endpoint_path = "/bot/user/all/richmenu/#{rich_menu_id}"
-        post(endpoint_path)
+        post(endpoint_path, nil, credentials)
       end
 
       # Unset default rich menu (Unlink a rich menu from all user)
       #
       # @return [Net::HTTPResponse]
       def unset_default_rich_menu
+        channel_token_required
+
         endpoint_path = "/bot/user/all/richmenu"
-        delete(endpoint_path)
+        delete(endpoint_path, credentials)
       end
 
       # Link a rich menu to a user
@@ -413,14 +388,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def link_user_rich_menu(user_id, rich_menu_id)
-        request = Request.new do |config|
-          config.httpclient = httpclient
-          config.endpoint = endpoint
-          config.endpoint_path = "/bot/user/#{user_id}/richmenu/#{rich_menu_id}"
-          config.credentials = credentials
-        end
+        channel_token_required
 
-        request.post
+        endpoint_path = "/bot/user/#{user_id}/richmenu/#{rich_menu_id}"
+        post(endpoint_path, nil, credentials)
       end
 
       # Unlink a rich menu from a user
@@ -429,8 +400,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def unlink_user_rich_menu(user_id)
-        endpoint_path  = "/bot/user/#{user_id}/richmenu"
-        delete(endpoint_path)
+        channel_token_required
+
+        endpoint_path = "/bot/user/#{user_id}/richmenu"
+        delete(endpoint_path, credentials)
       end
 
       # To link a rich menu to multiple users at a time
@@ -440,7 +413,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def bulk_link_rich_menus(user_ids, rich_menu_id)
-        post("/bot/richmenu/bulk/link", {richMenuId: rich_menu_id, userIds: user_ids}.to_json)
+        channel_token_required
+
+        endpoint_path = "/bot/richmenu/bulk/link"
+        post(endpoint_path, { richMenuId: rich_menu_id, userIds: user_ids }.to_json, credentials)
       end
 
       # To unlink a rich menu from multiple users at a time
@@ -449,7 +425,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def bulk_unlink_rich_menus(user_ids)
-        post("/bot/richmenu/bulk/unlink", {userIds: user_ids}.to_json)
+        channel_token_required
+
+        endpoint_path = "/bot/richmenu/bulk/unlink"
+        post(endpoint_path, { userIds: user_ids }.to_json, credentials)
       end
 
       # Download an image associated with a rich menu
@@ -458,8 +437,10 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_rich_menu_image(rich_menu_id)
+        channel_token_required
+
         endpoint_path = "/bot/richmenu/#{rich_menu_id}/content"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Upload and attaches an image to a rich menu
@@ -469,15 +450,18 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def create_rich_menu_image(rich_menu_id, file)
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = "/bot/richmenu/#{rich_menu_id}/content"
-          config.credentials = credentials
-          config.file = file
-        end
+        channel_token_required
 
-        request.post
+        content_type = case file.path
+                       when /\.jpe?g\z/i then 'image/jpeg'
+                       when /\.png\z/i   then 'image/png'
+                       else
+                         raise ArgumentError, "invalid file extension: #{file.path}"
+                       end
+
+        endpoint_path = "/bot/richmenu/#{rich_menu_id}/content"
+        headers = credentials.merge('Content-Type' => content_type)
+        post(endpoint_path, file.rewind && file.read, headers)
       end
 
       # Issue a link token to a user
@@ -486,79 +470,64 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def create_link_token(user_id)
+        channel_token_required
+
         endpoint_path = "/bot/user/#{user_id}/linkToken"
-        post(endpoint_path)
+        post(endpoint_path, nil, credentials)
       end
 
       # Get the target limit for additional messages
       #
       # @return [Net::HTTPResponse]
       def get_quota
+        channel_token_required
+
         endpoint_path = "/bot/message/quota"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Get number of messages sent this month
       #
       # @return [Net::HTTPResponse]
       def get_quota_consumption
+        channel_token_required
+
         endpoint_path = "/bot/message/quota/consumption"
-        get(endpoint_path)
+        get(endpoint_path, credentials)
       end
 
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_path [String]
+      # @param headers [Hash]
       #
       # @return [Net::HTTPResponse]
-      def get(endpoint_path)
-        channel_token_required
-
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = endpoint_path
-          config.credentials    = credentials
-        end
-
-        request.get
+      def get(endpoint_path, headers = {})
+        headers = Line::Bot::API::DEFAULT_HEADERS.merge(headers)
+        httpclient.get(endpoint + endpoint_path, headers)
       end
 
       # Post data, get content of specified URL.
       #
       # @param endpoint_path [String]
+      # @param payload [String or NilClass]
+      # @param headers [Hash]
       #
       # @return [Net::HTTPResponse]
-      def post(endpoint_path, payload = nil)
-        channel_token_required
-
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = endpoint_path
-          config.credentials    = credentials
-          config.payload        = payload if payload
-        end
-
-        request.post
+      def post(endpoint_path, payload = nil, headers = {})
+        headers = Line::Bot::API::DEFAULT_HEADERS.merge(headers)
+        httpclient.post(endpoint + endpoint_path, payload, headers)
       end
 
       # Delete content of specified URL.
       #
       # @param endpoint_path [String]
+      # @param headers [Hash]
       #
       # @return [Net::HTTPResponse]
-      def delete(endpoint_path)
-        channel_token_required
-
-        request = Request.new do |config|
-          config.httpclient     = httpclient
-          config.endpoint       = endpoint
-          config.endpoint_path  = endpoint_path
-          config.credentials    = credentials
-        end
-
-        request.delete
+      def delete(endpoint_path, headers = {})
+        headers = Line::Bot::API::DEFAULT_HEADERS.merge(headers)
+        httpclient.delete(endpoint + endpoint_path, headers)
       end
 
       # Parse events from request.body
