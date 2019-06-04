@@ -13,7 +13,6 @@
 # under the License.
 
 require 'line/bot/request'
-require 'line/bot/api/errors'
 require 'base64'
 require 'net/http'
 require 'openssl'
@@ -57,10 +56,6 @@ module Line
         }
       end
 
-      def credentials?
-        credentials.values.all?
-      end
-
       # Push messages to line server and to user.
       #
       # @param user_id [String] User's identifiers
@@ -68,7 +63,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def push_message(user_id, messages)
-        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+        channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
 
@@ -91,7 +86,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def reply_message(token, messages)
-        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+        channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
 
@@ -114,7 +109,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def multicast(to, messages)
-        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+        channel_token_required
 
         to = [to] if to.is_a?(String)
         messages = [messages] if messages.is_a?(Hash)
@@ -137,7 +132,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def broadcast(messages)
-        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+        channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
 
@@ -153,7 +148,7 @@ module Line
       end
 
       def leave_group(group_id)
-        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+        channel_token_required
 
         request = Request.new do |config|
           config.httpclient     = httpclient
@@ -166,7 +161,7 @@ module Line
       end
 
       def leave_room(room_id)
-        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+        channel_token_required
 
         request = Request.new do |config|
           config.httpclient     = httpclient
@@ -473,7 +468,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get(endpoint_path)
-        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+        channel_token_required
 
         request = Request.new do |config|
           config.httpclient     = httpclient
@@ -491,7 +486,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def post(endpoint_path, payload = nil)
-        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+        channel_token_required
 
         request = Request.new do |config|
           config.httpclient     = httpclient
@@ -510,7 +505,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def delete(endpoint_path)
-        raise Line::Bot::API::InvalidCredentialsError, 'Invalidates credentials' unless credentials?
+        channel_token_required
 
         request = Request.new do |config|
           config.httpclient     = httpclient
@@ -575,6 +570,10 @@ module Line
         res = 0
         b.each_byte { |byte| res |= byte ^ l.shift }
         res == 0
+      end
+
+      def channel_token_required
+        raise ArgumentError, '`channel_token` is not configured' unless channel_token
       end
     end
   end

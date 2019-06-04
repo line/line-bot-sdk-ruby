@@ -15,7 +15,6 @@
 require 'line/bot/util'
 require 'line/bot/client'
 require 'line/bot/event'
-require 'line/bot/api/errors'
 require 'line/bot/api'
 require 'line/bot/request'
 require 'line/bot/httpclient'
