@@ -77,6 +77,7 @@ post '/callback' do
     end
   end
 
+  # Don't forget to return a successful response
   "OK"
 end
 ```
