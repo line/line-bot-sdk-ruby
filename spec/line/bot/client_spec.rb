@@ -39,14 +39,6 @@ describe Line::Bot::Client do
     stub_request(:post, Line::Bot::API::DEFAULT_ENDPOINT).to_return { |request| {body: request.body, status: 200} }
   end
 
-  it 'checks user-agent' do
-    request = Line::Bot::Request.new do |config|
-      config.credentials    = dummy_config
-    end
-
-    expect(request.header['User-Agent']).to eq "LINE-BotSDK-Ruby/#{Line::Bot::API::VERSION}"
-  end
-
   it 'checks credentials on creating a client' do
     channel_token = dummy_config[:channel_token]
     client = Line::Bot::Client.new do |config|
