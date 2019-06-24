@@ -5,14 +5,15 @@ labels: bug
 
  <!--
 ## Do this before creating an issue
- - Check our [developer documentation](https://developers.line.me/en/docs/) and [FAQ](https://developers.line.me/en/faq/messaging-api/) page for more information on LINE bots and the Messaging API
+ - Check our [developer documentation](https://developers.line.biz/en/docs/) and [FAQ](https://developers.line.biz/en/faq/messaging-api/) page for more information on LINE bots and the Messaging API
  ## When creating an issue
  - Provide detailed information about the issue you had with the SDK as below
 -->
 
  ## System Informations
 
- * Go version:
+ * Ruby version:
+ * Gem (line-bot-api) version:
  * OS:
 
  ## Expected Behavior
