@@ -18,6 +18,7 @@ module Line
       module ThingsType
         Link = 'link'
         Unlink = 'unlink'
+        ScenarioResult = 'scenarioResult'
         Unsupport = 'unsupport'
       end
 
