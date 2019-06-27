@@ -237,6 +237,39 @@ EVENTS_CONTENT = <<"EOS"
       "timestamp": 12345678901234,
       "things": {
         "deviceId": "deviceid3",
+        "type": "scenarioResult",
+        "result": {
+          "scenarioId": "DUMMY_SCENARIO_ID",
+          "revision": 0,
+          "resultCode": "success",
+          "startTime": 1552375571097,
+          "endTime": 1552375571098,
+          "bleNotificationPayload": "AAAAAA==",
+          "actionResults": [
+            {
+                "data": "mIcIAA==",
+                "type": "binary"
+            },
+            {
+                "type": "void"
+            },
+            {
+                "type": "void"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "things",
+      "replyToken": "nHuyWi...",
+      "source": {
+        "type": "user",
+        "groupId": "U991eeaf62d..."
+      },
+      "timestamp": 12345678901234,
+      "things": {
+        "deviceId": "deviceid4",
         "type": "unsupport"
       }
     }
@@ -362,8 +395,13 @@ describe Line::Bot::Client do
     expect(events[16].device_id).to eq('deviceid2')
 
     expect(events[17]).to be_a(Line::Bot::Event::Things)
-    expect(events[17].type).to eq(Line::Bot::Event::ThingsType::Unsupport)
+    expect(events[17].type).to eq(Line::Bot::Event::ThingsType::ScenarioResult)
     expect(events[17].device_id).to eq('deviceid3')
+    expect(events[17]["things"]["result"]["resultCode"]).to eq('success')
+
+    expect(events[18]).to be_a(Line::Bot::Event::Things)
+    expect(events[18].type).to eq(Line::Bot::Event::ThingsType::Unsupport)
+    expect(events[18].device_id).to eq('deviceid4')
   end
 
   it 'parses unknown event' do
