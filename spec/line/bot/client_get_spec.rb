@@ -286,7 +286,7 @@ describe Line::Bot::Client do
     response = client.get_number_of_message_deliveries("20190701")
 
     json = JSON.parse(response.body, symbolize_names: true)
-    expect(json).to eq({
+    expect(json).to eq(
       status: "ready",
       broadcast: 5385,
       targeting: 522,
@@ -296,8 +296,8 @@ describe Line::Bot::Client do
       apiBroadcast: 1123,
       apiPush: 1234,
       apiMulticast: 1567,
-      apiReply: 1890,
-    })
+      apiReply: 1890
+    )
   end
 
   it 'get number of followers' do
@@ -308,12 +308,12 @@ describe Line::Bot::Client do
     response = client.get_number_of_followers("20190701")
 
     json = JSON.parse(response.body, symbolize_names: true)
-    expect(json).to eq({
+    expect(json).to eq(
       status: "ready",
       followers: 5385,
       targetedReaches: 522,
-      blocks: 123,
-    })
+      blocks: 123
+    )
   end
 
   it 'get friend demographics' do
@@ -324,34 +324,34 @@ describe Line::Bot::Client do
     response = client.get_friend_demographics
 
     json = JSON.parse(response.body, symbolize_names: true)
-    expect(json).to eq({
+    expect(json).to eq(
       available: true,
       genders: [
-          { gender: "unknown", percentage: 37.6 },
-          { gender: "male",    percentage: 31.8 },
-          { gender: "female",  percentage: 30.6 }
+        { gender: "unknown", percentage: 37.6 },
+        { gender: "male",    percentage: 31.8 },
+        { gender: "female",  percentage: 30.6 }
       ],
       ages: [
-          { age: "unknown", percentage: 37.6 },
-          { age: "from50", percentage: 17.3 },
+        { age: "unknown", percentage: 37.6 },
+        { age: "from50", percentage: 17.3 },
       ],
       areas: [
-          { area: "unknown", percentage: 42.9 },
-          { area: "徳島",    percentage: 2.9 },
+        { area: "unknown", percentage: 42.9 },
+        { area: "徳島",    percentage: 2.9 }
       ],
       appTypes: [
-          { appType: "ios",     percentage: 62.4 },
-          { appType: "android", percentage: 27.7 },
-          { appType: "others",  percentage: 9.9 }
+        { appType: "ios",     percentage: 62.4 },
+        { appType: "android", percentage: 27.7 },
+        { appType: "others",  percentage: 9.9 }
       ],
       subscriptionPeriods: [
-          { subscriptionPeriod: "over365days",   percentage: 96.4 },
-          { subscriptionPeriod: "within365days", percentage: 1.9 },
-          { subscriptionPeriod: "within180days", percentage: 1.2 },
-          { subscriptionPeriod: "within90days",  percentage: 0.5 },
-          { subscriptionPeriod: "within30days",  percentage: 0.1 },
-          { subscriptionPeriod: "within7days",   percentage: 0 }
+        { subscriptionPeriod: "over365days",   percentage: 96.4 },
+        { subscriptionPeriod: "within365days", percentage: 1.9 },
+        { subscriptionPeriod: "within180days", percentage: 1.2 },
+        { subscriptionPeriod: "within90days",  percentage: 0.5 },
+        { subscriptionPeriod: "within30days",  percentage: 0.1 },
+        { subscriptionPeriod: "within7days",   percentage: 0 }
       ]
-    })
+    )
   end
 end
