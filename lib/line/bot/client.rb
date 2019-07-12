@@ -496,6 +496,40 @@ module Line
         get(endpoint_path, credentials)
       end
 
+      # Returns the number of messages sent on a specified day
+      #
+      # @param [String] date (Format:yyyyMMdd, Example:20191231)
+      #
+      # @return [Net::HTTPResponse]
+      def get_number_of_message_deliveries(date)
+        channel_token_required
+
+        endpoint_path = "/bot/insight/message/delivery?date=#{date}"
+        get(endpoint_path, credentials)
+      end
+
+      # Returns the number of followers
+      #
+      # @param [String] date (Format:yyyyMMdd, Example:20191231)
+      #
+      # @return [Net::HTTPResponse]
+      def get_number_of_followers(date)
+        channel_token_required
+
+        endpoint_path = "/bot/insight/followers?date=#{date}"
+        get(endpoint_path, credentials)
+      end
+
+      # Retrieves the demographic attributes for a bot's friends.
+      #
+      # @return [Net::HTTPResponse]
+      def get_friend_demographics
+        channel_token_required
+
+        endpoint_path = '/bot/insight/demographic'
+        get(endpoint_path, credentials)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_path [String]
