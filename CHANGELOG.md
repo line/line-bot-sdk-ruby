@@ -1,11 +1,30 @@
 # Change Log
 
+## [v1.12.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.12.0) (2019-07-16)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.11.0...v1.12.0)
+
+**Closed issues:**
+
+- Update issue.md [\#121](https://github.com/line/line-bot-sdk-ruby/issues/121)
+- Consider dropping support for Ruby 2.1 & 2.2 [\#102](https://github.com/line/line-bot-sdk-ruby/issues/102)
+- Update HTTPClient [\#58](https://github.com/line/line-bot-sdk-ruby/issues/58)
+
+**Merged pull requests:**
+
+- Support insights \(friend statistics / demographics\) api [\#141](https://github.com/line/line-bot-sdk-ruby/pull/141) ([kimoto](https://github.com/kimoto))
+- Support LINE Things ScenarioResult Event [\#139](https://github.com/line/line-bot-sdk-ruby/pull/139) ([kimoto](https://github.com/kimoto))
+- Fix wrong \#error method usage [\#138](https://github.com/line/line-bot-sdk-ruby/pull/138) ([mizoR](https://github.com/mizoR))
+- Add issue template [\#137](https://github.com/line/line-bot-sdk-ruby/pull/137) ([kimoto](https://github.com/kimoto))
+- Fix broken link to CONTRIBUTING [\#136](https://github.com/line/line-bot-sdk-ruby/pull/136) ([mizoR](https://github.com/mizoR))
+- Remove `Line::Bot::Request` class to make logic clear [\#135](https://github.com/line/line-bot-sdk-ruby/pull/135) ([mizoR](https://github.com/mizoR))
+- Add kind comment on sample code of README.md [\#134](https://github.com/line/line-bot-sdk-ruby/pull/134) ([toduq](https://github.com/toduq))
+
 ## [v1.11.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.11.0) (2019-06-04)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.10.0...v1.11.0)
 
 **Closed issues:**
 
-- Support OAUTH [\#120](https://github.com/line/line-bot-sdk-ruby/issues/120)
+- Support OAuth [\#120](https://github.com/line/line-bot-sdk-ruby/issues/120)
 - Is changelog maintained? [\#117](https://github.com/line/line-bot-sdk-ruby/issues/117)
 - Incorrect test case [\#71](https://github.com/line/line-bot-sdk-ruby/issues/71)
 
