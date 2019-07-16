@@ -39,6 +39,110 @@ QUOTA_CONSUMPTION_CONTENT = <<"EOS"
 }
 EOS
 
+NUMBER_OF_MESSAGE_DELIVERY_CONTENT = <<"EOS"
+{
+  "status": "ready",
+  "broadcast": 5385,
+  "targeting": 522,
+  "autoResponse": 123,
+  "welcomeResponse": 456,
+  "chat": 789,
+  "apiBroadcast": 1123,
+  "apiPush": 1234,
+  "apiMulticast": 1567,
+  "apiReply": 1890
+}
+EOS
+
+NUMBER_OF_FOLLOWERS_CONTENT = <<"EOS"
+{
+  "status": "ready",
+  "followers": 5385,
+  "targetedReaches": 522,
+  "blocks": 123
+}
+EOS
+
+FRIEND_DEMOGRAPHIC_CONTENT = <<"EOS"
+{
+    "available": true,
+    "genders": [
+        {
+            "gender": "unknown",
+            "percentage": 37.6
+        },
+        {
+            "gender": "male",
+            "percentage": 31.8
+        },
+        {
+            "gender": "female",
+            "percentage": 30.6
+        }
+    ],
+    "ages": [
+        {
+            "age": "unknown",
+            "percentage": 37.6
+        },
+        {
+            "age": "from50",
+            "percentage": 17.3
+        }
+    ],
+    "areas": [
+        {
+            "area": "unknown",
+            "percentage": 42.9
+        },
+        {
+            "area": "徳島",
+            "percentage": 2.9
+        }
+    ],
+    "appTypes": [
+        {
+            "appType": "ios",
+            "percentage": 62.4
+        },
+        {
+            "appType": "android",
+            "percentage": 27.7
+        },
+        {
+            "appType": "others",
+            "percentage": 9.9
+        }
+    ],
+    "subscriptionPeriods": [
+        {
+            "subscriptionPeriod": "over365days",
+            "percentage": 96.4
+        },
+        {
+            "subscriptionPeriod": "within365days",
+            "percentage": 1.9
+        },
+        {
+            "subscriptionPeriod": "within180days",
+            "percentage": 1.2
+        },
+        {
+            "subscriptionPeriod": "within90days",
+            "percentage": 0.5
+        },
+        {
+            "subscriptionPeriod": "within30days",
+            "percentage": 0.1
+        },
+        {
+            "subscriptionPeriod": "within7days",
+            "percentage": 0
+        }
+    ]
+}
+EOS
+
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
@@ -172,5 +276,82 @@ describe Line::Bot::Client do
 
     quota = JSON.parse(response.body)
     expect(quota['totalUsage']).to eq 1
+  end
+
+  it 'get number of message deliveries' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/insight/message/delivery?date=20190701'
+    stub_request(:get, uri_template).to_return(body: NUMBER_OF_MESSAGE_DELIVERY_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_number_of_message_deliveries("20190701")
+
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json).to eq(
+      status: "ready",
+      broadcast: 5385,
+      targeting: 522,
+      autoResponse: 123,
+      welcomeResponse: 456,
+      chat: 789,
+      apiBroadcast: 1123,
+      apiPush: 1234,
+      apiMulticast: 1567,
+      apiReply: 1890
+    )
+  end
+
+  it 'get number of followers' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/insight/followers?date=20190701'
+    stub_request(:get, uri_template).to_return(body: NUMBER_OF_FOLLOWERS_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_number_of_followers("20190701")
+
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json).to eq(
+      status: "ready",
+      followers: 5385,
+      targetedReaches: 522,
+      blocks: 123
+    )
+  end
+
+  it 'get friend demographics' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/insight/demographic'
+    stub_request(:get, uri_template).to_return(body: FRIEND_DEMOGRAPHIC_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_friend_demographics
+
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json).to eq(
+      available: true,
+      genders: [
+        { gender: "unknown", percentage: 37.6 },
+        { gender: "male",    percentage: 31.8 },
+        { gender: "female",  percentage: 30.6 }
+      ],
+      ages: [
+        { age: "unknown", percentage: 37.6 },
+        { age: "from50", percentage: 17.3 },
+      ],
+      areas: [
+        { area: "unknown", percentage: 42.9 },
+        { area: "徳島",    percentage: 2.9 }
+      ],
+      appTypes: [
+        { appType: "ios",     percentage: 62.4 },
+        { appType: "android", percentage: 27.7 },
+        { appType: "others",  percentage: 9.9 }
+      ],
+      subscriptionPeriods: [
+        { subscriptionPeriod: "over365days",   percentage: 96.4 },
+        { subscriptionPeriod: "within365days", percentage: 1.9 },
+        { subscriptionPeriod: "within180days", percentage: 1.2 },
+        { subscriptionPeriod: "within90days",  percentage: 0.5 },
+        { subscriptionPeriod: "within30days",  percentage: 0.1 },
+        { subscriptionPeriod: "within7days",   percentage: 0 }
+      ]
+    )
   end
 end
