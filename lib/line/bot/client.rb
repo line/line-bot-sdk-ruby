@@ -564,6 +564,51 @@ module Line
         httpclient.delete(endpoint + endpoint_path, headers)
       end
 
+      # Switch distination by user_id
+      #
+      # @param distination_id [String] Distination identifier
+      # @param user_id [String] User's identifier
+      # @param note [Hash] Data for distination
+      #
+      # @return [Net::HTTPResponse]
+      def switch_distination_by_user_id(destination_id, user_id, note = {})
+        channel_token_required
+
+        endpoint_path = '/v2/bot/admin/switcher/switch'
+        payload = { destinationId: destination_id, user_id: user_id, note: note }.to_json
+        post(endpoint_path, payload, credentials)
+      end
+
+      # Switch distination by group_id
+      #
+      # @param distination_id [String] Distination identifier
+      # @param group_id [String] User's identifier
+      # @param note [Hash] Data for distination
+      #
+      # @return [Net::HTTPResponse]
+      def switch_distination_by_group_id(destination_id, group_id)
+        channel_token_required
+
+        endpoint_path = '/v2/bot/admin/switcher/switch'
+        payload = { destinationId: destination_id, group_id: group_id, note: note }.to_json
+        post(endpoint_path, payload, credentials)
+      end
+
+      # Switch distination by room_id
+      #
+      # @param distination_id [String] Distination identifier
+      # @param room_id [String] User's identifier
+      # @param note [Hash] Data for distination
+      #
+      # @return [Net::HTTPResponse]
+      def switch_distination_by_room_id(destination_id, room_id)
+        channel_token_required
+
+        endpoint_path = '/v2/bot/admin/switcher/switch'
+        payload = { destinationId: destination_id, room_id: room_id, note: note }.to_json
+        post(endpoint_path, payload, credentials)
+      end
+
       # Parse events from request.body
       #
       # @param request_body [String]
