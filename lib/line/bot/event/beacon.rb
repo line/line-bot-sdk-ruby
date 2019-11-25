@@ -15,15 +15,21 @@
 module Line
   module Bot
     module Event
+      # Event object for when a user enters the range of a LINE Beacon.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#beacon-event
       class Beacon < Base
+        # @return [String]
         def type
           @src['beacon']['type']
         end
 
+        # @return [String]
         def hwid
           @src['beacon']['hwid']
         end
 
+        # @return [String]
         def deviceMessage
           [@src['beacon']['dm']].pack('H*')
         end

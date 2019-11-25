@@ -22,6 +22,11 @@ module Line
         Unsupport = 'unsupport'
       end
 
+      # LINE Things API related events.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#device-link-event
+      # https://developers.line.biz/en/reference/messaging-api/#device-unlink-event
+      # https://developers.line.biz/en/reference/messaging-api/#scenario-result-event
       class Things < Base
         def type
           Line::Bot::Event::ThingsType.const_get(Line::Bot::Util.camelize(@src['things']['type']))

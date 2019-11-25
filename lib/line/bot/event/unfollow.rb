@@ -15,6 +15,11 @@
 module Line
   module Bot
     module Event
+      # Event object for when your LINE official account is blocked.
+      #
+      # No replyToken is generated for this event.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#unfollow-event
       class Unfollow < Base
       end
     end

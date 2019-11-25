@@ -15,6 +15,9 @@
 module Line
   module Bot
     module Event
+      # Event object for when a user joins a group or room that the LINE official account is in.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#member-joined-event
       class MemberJoined < Base
       end
     end

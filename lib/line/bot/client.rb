@@ -19,9 +19,16 @@ require 'uri'
 
 module Line
   module Bot
+    # API Client of LINE Bot SDK Ruby
+    #
+    #   @client ||= Line::Bot::Client.new do |config|
+    #     config.channel_id = ENV["LINE_CHANNEL_ID"]
+    #     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+    #     config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+    #   end
     class Client
-      #  @return [String]
-      attr_accessor :channel_token, :channel_id, :channel_secret, :endpoint
+      # @return [String]
+      attr_accessor :channela_token, :channel_id, :channel_secret, :endpoint
 
       # @return [Object]
       attr_accessor :httpclient
@@ -29,10 +36,9 @@ module Line
       # @return [Hash]
       attr_accessor :http_options
 
-      # Initialize a new Bot Client.
+      # Initialize a new client.
       #
       # @param options [Hash]
-      #
       # @return [Line::Bot::Client]
       def initialize(options = {})
         options.each do |key, value|
@@ -85,11 +91,10 @@ module Line
         post(endpoint_path, payload, headers)
       end
 
-      # Push messages to line server and to user.
+      # Push messages to a user using user_id.
       #
-      # @param user_id [String] User's identifiers
-      # @param messages [Hash or Array]
-      #
+      # @param user_id [String] User Id
+      # @param messages [Hash or Array] Message Objects
       # @return [Net::HTTPResponse]
       def push_message(user_id, messages)
         channel_token_required
@@ -101,11 +106,25 @@ module Line
         post(endpoint_path, payload, credentials)
       end
 
-      # Reply messages to line server and to users.
+      # Reply messages to a user using replyToken.
       #
-      # @param token [String]
-      # @param messages [Hash or Array]
+      # @example Send a balloon to a user.
+      #   message = {
+      #     type: 'text',
+      #     text: 'Hello, World!'
+      #   }
+      #   client.reply_message(event['replyToken'], message)
       #
+      # @example Send multiple balloons to a user.
+      #
+      #   messages = [
+      #    {type: 'text', text: 'Message1'},
+      #    {type: 'text', text: 'Message2'}
+      #   ]
+      #   client.reply_message(event['replyToken'], messages)
+      #
+      # @param token [String] Reply Token
+      # @param messages [Hash or Array] Message Objects
       # @return [Net::HTTPResponse]
       def reply_message(token, messages)
         channel_token_required
@@ -117,11 +136,10 @@ module Line
         post(endpoint_path, payload, credentials)
       end
 
-      # Multicast messages to line server and to users.
+      # Send messages to multiple users using userIds.
       #
-      # @param to [Array or String]
-      # @param messages [Hash or Array]
-      #
+      # @param to [Array or String] Array of userIds
+      # @param messages [Hash or Array] Message Objects
       # @return [Net::HTTPResponse]
       def multicast(to, messages)
         channel_token_required
@@ -134,10 +152,9 @@ module Line
         post(endpoint_path, payload, credentials)
       end
 
-      # Broadcast messages to users
+      # Send messages to all friends.
       #
-      # @param messages [Hash or Array]
-      #
+      # @param messages [Hash or Array] Message Objects
       # @return [Net::HTTPResponse]
       def broadcast(messages)
         channel_token_required
@@ -166,7 +183,6 @@ module Line
       # Get message content.
       #
       # @param identifier [String] Message's identifier
-      #
       # @return [Net::HTTPResponse]
       def get_message_content(identifier)
         channel_token_required
@@ -177,8 +193,7 @@ module Line
 
       # Get an user's profile.
       #
-      # @param user_id [String] User's identifier
-      #
+      # @param user_id [String] User Id user_id
       # @return [Net::HTTPResponse]
       def get_profile(user_id)
         channel_token_required
@@ -190,7 +205,7 @@ module Line
       # Get an user's profile of a group.
       #
       # @param group_id [String] Group's identifier
-      # @param user_id [String] User's identifier
+      # @param user_id [String] User Id user_id
       #
       # @return [Net::HTTPResponse]
       def get_group_member_profile(group_id, user_id)
@@ -203,7 +218,7 @@ module Line
       # Get an user's profile of a room.
       #
       # @param room_id [String] Room's identifier
-      # @param user_id [String] User's identifier
+      # @param user_id [String] User Id user_id
       #
       # @return [Net::HTTPResponse]
       def get_room_member_profile(room_id, user_id)
@@ -230,7 +245,7 @@ module Line
 
       # Get user IDs of a room
       #
-      # @param group_id [String] Room's identifier
+      # @param room_id [String] Room's identifier
       # @param continuation_token [String] Identifier to return next page
       #                                   (next property to be included in the response)
       #
@@ -339,7 +354,7 @@ module Line
 
       # Get the ID of the rich menu linked to a user
       #
-      # @param user_id [String] ID of the user
+      # @param user_id [String] User Id ID of the user
       #
       # @return [Net::HTTPResponse]
       def get_user_rich_menu(user_id)
@@ -383,7 +398,10 @@ module Line
 
       # Link a rich menu to a user
       #
-      # @param user_id [String] ID of the user
+      # If you want to link a rich menu to multiple users,
+      # please consider to use bulk_link_rich_menus.
+      #
+      # @param user_id [String] User Id ID of the user
       # @param rich_menu_id [String] ID of an uploaded rich menu
       #
       # @return [Net::HTTPResponse]
@@ -396,7 +414,7 @@ module Line
 
       # Unlink a rich menu from a user
       #
-      # @param user_id [String] ID of the user
+      # @param user_id [String] User Id ID of the user
       #
       # @return [Net::HTTPResponse]
       def unlink_user_rich_menu(user_id)
@@ -466,7 +484,7 @@ module Line
 
       # Issue a link token to a user
       #
-      # @param user_id [String] ID of the user
+      # @param user_id [String] User Id ID of the user
       #
       # @return [Net::HTTPResponse]
       def create_link_token(user_id)
@@ -520,7 +538,7 @@ module Line
         get(endpoint_path, credentials)
       end
 
-      # Retrieves the demographic attributes for a bot's friends.
+      # Get the demographic attributes for a bot's friends.
       #
       # @return [Net::HTTPResponse]
       def get_friend_demographics
@@ -582,7 +600,9 @@ module Line
         end
       end
 
-      # Validate signature
+      # Validate signature of a webhook event.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#signature-validation
       #
       # @param content [String] Request's body
       # @param channel_signature [String] Request'header 'X-LINE-Signature' # HTTP_X_LINE_SIGNATURE
