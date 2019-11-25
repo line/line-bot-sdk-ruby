@@ -28,7 +28,7 @@ module Line
     #   end
     class Client
       # @return [String]
-      attr_accessor :channela_token, :channel_id, :channel_secret, :endpoint
+      attr_accessor :channel_token, :channel_id, :channel_secret, :endpoint
 
       # @return [Object]
       attr_accessor :httpclient
