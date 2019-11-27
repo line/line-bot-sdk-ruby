@@ -13,6 +13,10 @@ See the official API documentation for more information
 - English: https://developers.line.biz/en/docs/messaging-api/overview/
 - Japanese: https://developers.line.biz/ja/docs/messaging-api/overview/
 
+Also, generated documentation by YARD is available.
+
+- https://rubydoc.info/gems/line-bot-api
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -64,11 +68,11 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        client.reply_message(
-          event['replyToken'],
+        message = {
           type: 'text',
           text: event.message['text']
-        })
+        }
+        client.reply_message(event['replyToken'], message)
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
         response = client.get_message_content(event.message['id'])
         tf = Tempfile.open("content")
