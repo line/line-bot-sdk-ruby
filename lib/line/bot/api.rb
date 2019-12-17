@@ -18,6 +18,7 @@ module Line
   module Bot
     module API
       DEFAULT_ENDPOINT = "https://api.line.me/v2"
+      DEFAULT_BLOB_ENDPOINT = "https://api-data.line.me/v2"
 
       DEFAULT_HEADERS = {
         'Content-Type' => 'application/json; charset=UTF-8',
