@@ -9,9 +9,6 @@ rvm:
 before_install:
   - if [ ${TRAVIS_RUBY_VERSION} = '2.2' ]; then
       gem install bundler -v '< 2';
-    else
-      gem update --system;
-      gem install bundler;
     fi
 script:
   - bundle exec rubocop
