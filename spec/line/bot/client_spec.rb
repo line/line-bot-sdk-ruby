@@ -39,6 +39,29 @@ describe Line::Bot::Client do
     stub_request(:post, Line::Bot::API::DEFAULT_ENDPOINT).to_return { |request| {body: request.body, status: 200} }
   end
 
+  it 'default endpoint' do
+    client = Line::Bot::Client.new
+    expect(client.endpoint).to eq Line::Bot::API::DEFAULT_ENDPOINT
+    expect(client.blob_endpoint).to eq Line::Bot::API::DEFAULT_BLOB_ENDPOINT
+  end
+
+  it 'rewrite endpoint' do
+    client = Line::Bot::Client.new do |config|
+      config.endpoint = 'https://example.com/api/v1'
+      config.blob_endpoint = 'https://example.com/api-data/v1'
+    end
+    expect(client.endpoint).to eq 'https://example.com/api/v1'
+    expect(client.blob_endpoint).to eq 'https://example.com/api-data/v1'
+  end
+
+  it 'rewrite endpoint and backward compatible' do
+    client = Line::Bot::Client.new do |config|
+      config.endpoint = 'https://example.com/api/v1'
+    end
+    expect(client.endpoint).to eq 'https://example.com/api/v1'
+    expect(client.blob_endpoint).to eq 'https://example.com/api/v1' # rewrited
+  end
+
   it 'checks credentials on creating a client' do
     channel_token = dummy_config[:channel_token]
     client = Line::Bot::Client.new do |config|
