@@ -50,16 +50,14 @@ module Line
       end
 
       def blob_endpoint
-        unless @blob_endpoint
-          if endpoint == Line::Bot::API::DEFAULT_ENDPOINT
-            @blob_endpoint = Line::Bot::API::DEFAULT_BLOB_ENDPOINT
-          else
-            # for backward compatible
-            @blob_endpoint = endpoint
-          end
-        end
+        return @blob_endpoint if @blob_endpoint
 
-        @blob_endpoint
+        @blob_endpoint = if endpoint == Line::Bot::API::DEFAULT_ENDPOINT
+                           Line::Bot::API::DEFAULT_BLOB_ENDPOINT
+                         else
+                           # for backward compatible
+                           endpoint
+                         end
       end
 
       # @return [Hash]
