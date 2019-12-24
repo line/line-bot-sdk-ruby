@@ -164,7 +164,7 @@ describe Line::Bot::Client do
   end
 
   it 'gets message content' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/{identifier}/content'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_BLOB_ENDPOINT + '/bot/message/{identifier}/content'
     stub_request(:get, uri_template).to_return { |request| {body: request.body, status: 200} }
 
     client = generate_client
@@ -194,7 +194,7 @@ describe Line::Bot::Client do
 
     client = generate_client
 
-    response = client.get('/profile')
+    response = client.get(Line::Bot::API::DEFAULT_ENDPOINT, '/profile')
 
     contact = JSON.parse(response.body)
     expect(contact['displayName']).to eq "Brown"
