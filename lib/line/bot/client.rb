@@ -354,7 +354,7 @@ module Line
 
       # Get the ID of the rich menu linked to a user
       #
-      # @param user_id [String] User Id ID of the user
+      # @param user_id [String] ID of the user
       #
       # @return [Net::HTTPResponse]
       def get_user_rich_menu(user_id)
@@ -401,7 +401,7 @@ module Line
       # If you want to link a rich menu to multiple users,
       # please consider to use bulk_link_rich_menus.
       #
-      # @param user_id [String] User Id ID of the user
+      # @param user_id [String] ID of the user
       # @param rich_menu_id [String] ID of an uploaded rich menu
       #
       # @return [Net::HTTPResponse]
@@ -414,7 +414,7 @@ module Line
 
       # Unlink a rich menu from a user
       #
-      # @param user_id [String] User Id ID of the user
+      # @param user_id [String] ID of the user
       #
       # @return [Net::HTTPResponse]
       def unlink_user_rich_menu(user_id)
@@ -484,7 +484,7 @@ module Line
 
       # Issue a link token to a user
       #
-      # @param user_id [String] User Id ID of the user
+      # @param user_id [String] ID of the user
       #
       # @return [Net::HTTPResponse]
       def create_link_token(user_id)
