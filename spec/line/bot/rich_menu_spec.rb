@@ -154,16 +154,16 @@ describe Line::Bot::Client do
   end
 
   it 'gets an image associated with a rich menu' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_BLOB_ENDPOINT + '/bot/richmenu/1234567/content'
     stub_request(:get, uri_template).to_return(body: File.open(RICH_MENU_IMAGE_FILE_PATH).read, status: 200)
 
     response = client.get_rich_menu_image('1234567')
-    expect(WebMock).to have_requested(:get, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content')
+    expect(WebMock).to have_requested(:get, Line::Bot::API::DEFAULT_BLOB_ENDPOINT + '/bot/richmenu/1234567/content')
     expect(response.body).to eq File.open(RICH_MENU_IMAGE_FILE_PATH).read
   end
 
   it 'uploads and attaches an image to a rich menu' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_BLOB_ENDPOINT + '/bot/richmenu/1234567/content'
 
     stub_request(:post, uri_template).to_return(body: '{}', status: 200).with do |request|
       expect(request.headers["Content-Type"]).to eq('image/png')
@@ -173,7 +173,7 @@ describe Line::Bot::Client do
       client.create_rich_menu_image('1234567', image_file)
     end
 
-    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content')
+    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_BLOB_ENDPOINT + '/bot/richmenu/1234567/content')
       .with(body: File.open(RICH_MENU_IMAGE_FILE_PATH).read)
   end
 

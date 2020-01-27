@@ -481,6 +481,45 @@ def handle_message(event)
         },
       })
 
+    when 'flex1'
+      reply_content(event, {
+        "type": "bubble",
+        "size": "nano",
+        "hero": {
+          "type": "image",
+          "url": THUMBNAIL_URL,
+          "size": "full",
+          "aspectRatio": "4:3",
+          "action": {
+            "type": "uri",
+            "uri": "http://linecorp.com/"
+          }
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "hello",
+              "contents": [
+                {
+                  "type": "span",
+                  "text": "hello",
+                  "color": "#FF0000"
+                },
+                {
+                  "type": "span",
+                  "text": "world",
+                  "color": "#0000FF"
+                }
+              ]
+            }
+          ],
+          "paddingAll": "10px"
+        },
+      })
+
     when 'bye'
       case event['source']['type']
       when 'user'

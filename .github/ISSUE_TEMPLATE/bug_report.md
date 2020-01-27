@@ -1,4 +1,6 @@
 ---
+name: Bug Report Template
+about: for Bug Report
 title: 'Bug Report'
 labels: bug
 ---

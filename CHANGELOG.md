@@ -1,5 +1,23 @@
 # Change Log
 
+## [v1.13.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.13.0) (2019-12-24)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.12.0...v1.13.0)
+
+**Fixed bugs:**
+
+- Fix issue template [\#148](https://github.com/line/line-bot-sdk-ruby/pull/148) ([kimoto](https://github.com/kimoto))
+
+**Closed issues:**
+
+- Support new Messaging API endpoints for friend statistics added on 07/08 [\#140](https://github.com/line/line-bot-sdk-ruby/issues/140)
+- LINE Things - automatic communication feature support [\#130](https://github.com/line/line-bot-sdk-ruby/issues/130)
+
+**Merged pull requests:**
+
+- Domain name change from api.line.me to api-data.line.me [\#158](https://github.com/line/line-bot-sdk-ruby/pull/158) ([kimoto](https://github.com/kimoto))
+- Fix travis error [\#157](https://github.com/line/line-bot-sdk-ruby/pull/157) ([kimoto](https://github.com/kimoto))
+- Add sample code for flex update1 [\#149](https://github.com/line/line-bot-sdk-ruby/pull/149) ([kimoto](https://github.com/kimoto))
+
 ## [v1.12.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.12.0) (2019-07-16)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.11.0...v1.12.0)
 

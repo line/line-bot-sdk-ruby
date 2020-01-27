@@ -27,8 +27,8 @@ module Line
     #     config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     #   end
     class Client
-      # @return [String]
-      attr_accessor :channel_token, :channel_id, :channel_secret, :endpoint
+      #  @return [String]
+      attr_accessor :channel_token, :channel_id, :channel_secret, :endpoint, :blob_endpoint
 
       # @return [Object]
       attr_accessor :httpclient
@@ -55,6 +55,17 @@ module Line
         @endpoint ||= Line::Bot::API::DEFAULT_ENDPOINT
       end
 
+      def blob_endpoint
+        return @blob_endpoint if @blob_endpoint
+
+        @blob_endpoint = if endpoint == Line::Bot::API::DEFAULT_ENDPOINT
+                           Line::Bot::API::DEFAULT_BLOB_ENDPOINT
+                         else
+                           # for backward compatible
+                           endpoint
+                         end
+      end
+
       # @return [Hash]
       def credentials
         {
@@ -78,7 +89,7 @@ module Line
           client_secret: channel_secret
         )
         headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
-        post(endpoint_path, payload, headers)
+        post(endpoint, endpoint_path, payload, headers)
       end
 
       # Revoke channel access token
@@ -88,7 +99,7 @@ module Line
         endpoint_path = '/oauth/revoke'
         payload = URI.encode_www_form(access_token: access_token)
         headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
-        post(endpoint_path, payload, headers)
+        post(endpoint, endpoint_path, payload, headers)
       end
 
       # Push messages to a user using user_id.
@@ -103,7 +114,7 @@ module Line
 
         endpoint_path = '/bot/message/push'
         payload = { to: user_id, messages: messages }.to_json
-        post(endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, credentials)
       end
 
       # Reply messages to a user using replyToken.
@@ -133,7 +144,7 @@ module Line
 
         endpoint_path = '/bot/message/reply'
         payload = { replyToken: token, messages: messages }.to_json
-        post(endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, credentials)
       end
 
       # Send messages to multiple users using userIds.
@@ -149,7 +160,7 @@ module Line
 
         endpoint_path = '/bot/message/multicast'
         payload = { to: to, messages: messages }.to_json
-        post(endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, credentials)
       end
 
       # Send messages to all friends.
@@ -163,21 +174,21 @@ module Line
 
         endpoint_path = '/bot/message/broadcast'
         payload = { messages: messages }.to_json
-        post(endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, credentials)
       end
 
       def leave_group(group_id)
         channel_token_required
 
         endpoint_path = "/bot/group/#{group_id}/leave"
-        post(endpoint_path, nil, credentials)
+        post(endpoint, endpoint_path, nil, credentials)
       end
 
       def leave_room(room_id)
         channel_token_required
 
         endpoint_path = "/bot/room/#{room_id}/leave"
-        post(endpoint_path, nil, credentials)
+        post(endpoint, endpoint_path, nil, credentials)
       end
 
       # Get message content.
@@ -188,7 +199,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/message/#{identifier}/content"
-        get(endpoint_path, credentials)
+        get(blob_endpoint, endpoint_path, credentials)
       end
 
       # Get an user's profile.
@@ -199,7 +210,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/profile/#{user_id}"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Get an user's profile of a group.
@@ -212,7 +223,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/group/#{group_id}/member/#{user_id}"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Get an user's profile of a room.
@@ -225,7 +236,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/room/#{room_id}/member/#{user_id}"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Get user IDs of a group
@@ -240,7 +251,7 @@ module Line
 
         endpoint_path = "/bot/group/#{group_id}/members/ids"
         endpoint_path += "?start=#{continuation_token}" if continuation_token
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Get user IDs of a room
@@ -255,7 +266,7 @@ module Line
 
         endpoint_path = "/bot/room/#{room_id}/members/ids"
         endpoint_path += "?start=#{continuation_token}" if continuation_token
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Get a list of all uploaded rich menus
@@ -265,7 +276,7 @@ module Line
         channel_token_required
 
         endpoint_path = '/bot/richmenu/list'
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Get a rich menu via a rich menu ID
@@ -277,7 +288,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/richmenu/#{rich_menu_id}"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Gets the number of messages sent with the /bot/message/reply endpoint.
@@ -289,7 +300,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/message/delivery/reply?date=#{date}"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Gets the number of messages sent with the /bot/message/push endpoint.
@@ -301,7 +312,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/message/delivery/push?date=#{date}"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Gets the number of messages sent with the /bot/message/multicast endpoint.
@@ -313,7 +324,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/message/delivery/multicast?date=#{date}"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Gets the number of messages sent with the /bot/message/multicast endpoint.
@@ -325,7 +336,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/message/delivery/broadcast?date=#{date}"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Create a rich menu
@@ -337,7 +348,7 @@ module Line
         channel_token_required
 
         endpoint_path = '/bot/richmenu'
-        post(endpoint_path, rich_menu.to_json, credentials)
+        post(endpoint, endpoint_path, rich_menu.to_json, credentials)
       end
 
       # Delete a rich menu
@@ -349,7 +360,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/richmenu/#{rich_menu_id}"
-        delete(endpoint_path, credentials)
+        delete(endpoint, endpoint_path, credentials)
       end
 
       # Get the ID of the rich menu linked to a user
@@ -361,7 +372,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/user/#{user_id}/richmenu"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Get default rich menu
@@ -371,7 +382,7 @@ module Line
         channel_token_required
 
         endpoint_path = '/bot/user/all/richmenu'
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Set default rich menu (Link a rich menu to all user)
@@ -383,7 +394,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/user/all/richmenu/#{rich_menu_id}"
-        post(endpoint_path, nil, credentials)
+        post(endpoint, endpoint_path, nil, credentials)
       end
 
       # Unset default rich menu (Unlink a rich menu from all user)
@@ -393,7 +404,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/user/all/richmenu"
-        delete(endpoint_path, credentials)
+        delete(endpoint, endpoint_path, credentials)
       end
 
       # Link a rich menu to a user
@@ -409,7 +420,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/user/#{user_id}/richmenu/#{rich_menu_id}"
-        post(endpoint_path, nil, credentials)
+        post(endpoint, endpoint_path, nil, credentials)
       end
 
       # Unlink a rich menu from a user
@@ -421,7 +432,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/user/#{user_id}/richmenu"
-        delete(endpoint_path, credentials)
+        delete(endpoint, endpoint_path, credentials)
       end
 
       # To link a rich menu to multiple users at a time
@@ -434,7 +445,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/richmenu/bulk/link"
-        post(endpoint_path, { richMenuId: rich_menu_id, userIds: user_ids }.to_json, credentials)
+        post(endpoint, endpoint_path, { richMenuId: rich_menu_id, userIds: user_ids }.to_json, credentials)
       end
 
       # To unlink a rich menu from multiple users at a time
@@ -446,7 +457,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/richmenu/bulk/unlink"
-        post(endpoint_path, { userIds: user_ids }.to_json, credentials)
+        post(endpoint, endpoint_path, { userIds: user_ids }.to_json, credentials)
       end
 
       # Download an image associated with a rich menu
@@ -458,7 +469,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/richmenu/#{rich_menu_id}/content"
-        get(endpoint_path, credentials)
+        get(blob_endpoint, endpoint_path, credentials)
       end
 
       # Upload and attaches an image to a rich menu
@@ -479,7 +490,7 @@ module Line
 
         endpoint_path = "/bot/richmenu/#{rich_menu_id}/content"
         headers = credentials.merge('Content-Type' => content_type)
-        post(endpoint_path, file.rewind && file.read, headers)
+        post(blob_endpoint, endpoint_path, file.rewind && file.read, headers)
       end
 
       # Issue a link token to a user
@@ -491,7 +502,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/user/#{user_id}/linkToken"
-        post(endpoint_path, nil, credentials)
+        post(endpoint, endpoint_path, nil, credentials)
       end
 
       # Get the target limit for additional messages
@@ -501,7 +512,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/message/quota"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Get number of messages sent this month
@@ -511,7 +522,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/message/quota/consumption"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Returns the number of messages sent on a specified day
@@ -523,7 +534,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/insight/message/delivery?date=#{date}"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Returns the number of followers
@@ -535,7 +546,7 @@ module Line
         channel_token_required
 
         endpoint_path = "/bot/insight/followers?date=#{date}"
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Get the demographic attributes for a bot's friends.
@@ -545,41 +556,44 @@ module Line
         channel_token_required
 
         endpoint_path = '/bot/insight/demographic'
-        get(endpoint_path, credentials)
+        get(endpoint, endpoint_path, credentials)
       end
 
       # Fetch data, get content of specified URL.
       #
+      # @param endpoint_base [String]
       # @param endpoint_path [String]
       # @param headers [Hash]
       #
       # @return [Net::HTTPResponse]
-      def get(endpoint_path, headers = {})
+      def get(endpoint_base, endpoint_path, headers = {})
         headers = Line::Bot::API::DEFAULT_HEADERS.merge(headers)
-        httpclient.get(endpoint + endpoint_path, headers)
+        httpclient.get(endpoint_base + endpoint_path, headers)
       end
 
       # Post data, get content of specified URL.
       #
+      # @param endpoint_base [String]
       # @param endpoint_path [String]
       # @param payload [String or NilClass]
       # @param headers [Hash]
       #
       # @return [Net::HTTPResponse]
-      def post(endpoint_path, payload = nil, headers = {})
+      def post(endpoint_base, endpoint_path, payload = nil, headers = {})
         headers = Line::Bot::API::DEFAULT_HEADERS.merge(headers)
-        httpclient.post(endpoint + endpoint_path, payload, headers)
+        httpclient.post(endpoint_base + endpoint_path, payload, headers)
       end
 
       # Delete content of specified URL.
       #
+      # @param endpoint_base [String]
       # @param endpoint_path [String]
       # @param headers [Hash]
       #
       # @return [Net::HTTPResponse]
-      def delete(endpoint_path, headers = {})
+      def delete(endpoint_base, endpoint_path, headers = {})
         headers = Line::Bot::API::DEFAULT_HEADERS.merge(headers)
-        httpclient.delete(endpoint + endpoint_path, headers)
+        httpclient.delete(endpoint_base + endpoint_path, headers)
       end
 
       # Parse events from request.body
