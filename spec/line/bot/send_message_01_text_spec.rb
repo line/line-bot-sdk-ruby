@@ -98,4 +98,65 @@ describe Line::Bot::Client do
     }.to_json
     expect(response.body).to eq(expected)
   end
+
+  it 'narrowcast the text message without any conditions' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/narrowcast'
+    stub_request(:post, uri_template).to_return { |request| {body: request.body, status: 200} }
+
+    client = Line::Bot::Client.new do |config|
+      config.channel_token = 'channel_token'
+    end
+
+    message = {
+      type: 'text',
+      text: 'Hello, world'
+    }
+    response = client.narrowcast(message)
+
+    expected = {
+      messages: [message],
+      recipient: nil,
+      filter: nil,
+      limit: nil
+    }.to_json
+    expect(response.body).to eq(expected)
+  end
+
+  it 'narrowcast the text message' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/narrowcast'
+    stub_request(:post, uri_template).to_return { |request| {body: request.body, status: 200} }
+
+    client = Line::Bot::Client.new do |config|
+      config.channel_token = 'channel_token'
+    end
+
+    message = {
+      type: 'text',
+      text: 'Hello, world'
+    }
+    recipient = {
+      type: "audience",
+      audienceGroupId: 5614991017776
+    }
+    filter = {
+      demographic: {
+        type: "appType",
+        oneOf: [
+          "android"
+        ]
+      }
+    }
+    limit = {
+      max: 300
+    }
+    response = client.narrowcast(message, recipient: recipient, filter: filter, limit: limit)
+
+    expected = {
+      messages: [message],
+      recipient: recipient,
+      filter: filter,
+      limit: limit
+    }.to_json
+    expect(response.body).to eq(expected)
+  end
 end
