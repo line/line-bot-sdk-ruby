@@ -15,6 +15,9 @@
 module Line
   module Bot
     module Event
+      # Event object for when a user performs a postback action which initiates a postback.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#postback-event
       class Postback < Base
       end
     end

@@ -19,7 +19,7 @@ require 'uri'
 module Line
   module Bot
     class HTTPClient
-      #  @return [Hash]
+      # @return [Hash]
       attr_accessor :http_options
 
       # Initialize a new HTTPClient

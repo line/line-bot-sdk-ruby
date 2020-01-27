@@ -13,6 +13,10 @@ See the official API documentation for more information
 - English: https://developers.line.biz/en/docs/messaging-api/overview/
 - Japanese: https://developers.line.biz/ja/docs/messaging-api/overview/
 
+Also, generated documentation by YARD is available.
+
+- https://rubydoc.info/gems/line-bot-api
+
 ## Installation
 
 Add this line to your application's Gemfile:

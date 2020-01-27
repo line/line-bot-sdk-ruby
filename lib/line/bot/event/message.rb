@@ -26,6 +26,9 @@ module Line
         Unsupport = 'unsupport'
       end
 
+      # Webhook event object which contains the sent message.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#message-event
       class Message < Base
         def type
           Line::Bot::Event::MessageType.const_get(@src['message']['type'].capitalize)

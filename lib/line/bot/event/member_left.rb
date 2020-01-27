@@ -15,6 +15,11 @@
 module Line
   module Bot
     module Event
+      # Event object for when a user leaves a group or room that the LINE official account is in.
+      #
+      # No replyToken is generated for this event.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#member-left-event
       class MemberLeft < Base
       end
     end

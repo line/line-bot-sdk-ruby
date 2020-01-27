@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Event
+      # Event object for when your LINE official account is added as a friend (or unblocked).
+      # You can reply to follow events.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#follow-event
       class Follow < Base
       end
     end

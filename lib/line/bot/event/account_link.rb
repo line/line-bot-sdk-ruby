@@ -15,11 +15,16 @@
 module Line
   module Bot
     module Event
+      # Event object for when a user has linked his/her LINE account with a provider's service account.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#account-link-event
       class AccountLink < Base
+        # @return [String]
         def result
           @src['link']['result']
         end
 
+        # @return [String]
         def nonce
           @src['link']['nonce']
         end
