@@ -135,14 +135,14 @@ describe Line::Bot::Client do
       text: 'Hello, world'
     }
     recipient = {
-      type: "audience",
+      type: 'audience',
       audienceGroupId: 5614991017776
     }
     filter = {
       demographic: {
-        type: "appType",
+        type: 'appType',
         oneOf: [
-          "android"
+          'android'
         ]
       }
     }

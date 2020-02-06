@@ -179,6 +179,9 @@ module Line
 
       # Narrowcast messages to users
       #
+      # API Documentation is here.
+      # https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
+      #
       # @param messages [Hash or Array]
       # @param recipient [Hash]
       # @param filter [Hash]
