@@ -177,6 +177,32 @@ module Line
         post(endpoint, endpoint_path, payload, credentials)
       end
 
+      # Narrowcast messages to users
+      #
+      # API Documentation is here.
+      # https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
+      #
+      # @param messages [Hash or Array]
+      # @param recipient [Hash]
+      # @param filter [Hash]
+      # @param limit [Hash]
+      #
+      # @return [Net::HTTPResponse]
+      def narrowcast(messages, recipient: nil, filter: nil, limit: nil)
+        channel_token_required
+
+        messages = [messages] if messages.is_a?(Hash)
+
+        endpoint_path = '/bot/message/narrowcast'
+        payload = {
+          messages: messages,
+          recipient: recipient,
+          filter: filter,
+          limit: limit
+        }.to_json
+        post(endpoint, endpoint_path, payload, credentials)
+      end
+
       def leave_group(group_id)
         channel_token_required
 
