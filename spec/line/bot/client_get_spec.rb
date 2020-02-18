@@ -451,6 +451,6 @@ describe Line::Bot::Client do
           uniqueClickOfRequest: -1
         }
       ]
-  )
+    )
   end
 end
