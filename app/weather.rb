@@ -34,19 +34,17 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        # メッセージのおうむ返し
-        if message.text == 'こんちは'
-        # 必ずおはようを返す。
-          message = {
-            type: 'text',
-            text: 'ifだよ'
-          }
-        else
-          message = {
-            type: 'text',
-            text: 'elseだよ'
-          }
-        end
+        # if message.text == 'こんちは'
+        #   message = {
+        #     type: 'text',
+        #     text: 'ifだよ'
+        #   }
+        # else
+        #   message = {
+        #     type: 'text',
+        #     text: 'elseだよ'
+        #   }
+        # end
         client.reply_message(event['replyToken'],           message = {
           type: 'text',
           text: 'elseだよ'
