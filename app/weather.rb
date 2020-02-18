@@ -37,10 +37,10 @@ post '/callback' do
         # メッセージのおうむ返し
         if message.text == 'こんちは'
         # 必ずおはようを返す。
-        # message = {
-        #   type: 'text',
-        #   text: 'おはよう'
-        # }
+          message = {
+            type: 'text',
+            text: 'おはよう'
+          }
           client.reply_message(event['replyToken'], message)
         end
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
