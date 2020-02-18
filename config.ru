@@ -1,2 +1,2 @@
-require './app_main'
+require 'app/return'
 run Sinatra::Application
