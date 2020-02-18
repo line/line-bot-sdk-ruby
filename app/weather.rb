@@ -47,7 +47,10 @@ post '/callback' do
             text: 'elseだよ'
           }
         end
-        client.reply_message(event['replyToken'], message)
+        client.reply_message(event['replyToken'],           message = {
+          type: 'text',
+          text: 'elseだよ'
+        })
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
         response = client.get_message_content(event.message['id'])
         tf = Tempfile.open("content")
