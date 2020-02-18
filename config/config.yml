@@ -1,0 +1,4 @@
+# 天気予報API URL
+weather-url : http://weather.livedoor.com/forecast/webservice/json/v1
+# 天気予報取得拠点コード
+location-code : 130010
