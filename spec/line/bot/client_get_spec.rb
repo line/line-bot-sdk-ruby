@@ -143,6 +143,52 @@ FRIEND_DEMOGRAPHIC_CONTENT = <<"EOS"
 }
 EOS
 
+USER_INTERACTION_STATISTICS_CONTENT = <<EOS
+{
+    "overview": {
+        "requestId": "f70dd685-499a-4231-a441-f24b8d4fba21",
+        "timestamp": 1568214000,
+        "delivered": 32,
+        "uniqueImpression": 4,
+        "uniqueClick": null,
+        "uniqueMediaPlayed": 2,
+        "uniqueMediaPlayed100Percent": -1
+    },
+    "messages": [
+        {
+            "seq": 1,
+            "impression": 18,
+            "mediaPlayed": 11,
+            "mediaPlayed25Percent": -1,
+            "mediaPlayed50Percent": -1,
+            "mediaPlayed75Percent": -1,
+            "mediaPlayed100Percent": -1,
+            "uniqueMediaPlayed": 2,
+            "uniqueMediaPlayed25Percent": -1,
+            "uniqueMediaPlayed50Percent": -1,
+            "uniqueMediaPlayed75Percent": -1,
+            "uniqueMediaPlayed100Percent": -1
+        }
+    ],
+    "clicks": [
+        {
+            "seq": 1,
+            "url": "https://example.com/1",
+            "click": -1,
+            "uniqueClick": -1,
+            "uniqueClickOfRequest": -1
+        },
+        {
+            "seq": 1,
+            "url": "https://example.com/2",
+            "click": -1,
+            "uniqueClick": -1,
+            "uniqueClickOfRequest": -1
+        }
+    ]
+}
+EOS
+
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
@@ -353,5 +399,58 @@ describe Line::Bot::Client do
         { subscriptionPeriod: "within7days",   percentage: 0 }
       ]
     )
+  end
+
+  it 'get user interaction statistics' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/insight/message/event?requestId=f70dd685-499a-4231-a441-f24b8d4fba21'
+    stub_request(:get, uri_template).to_return(body: USER_INTERACTION_STATISTICS_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_user_interaction_statistics('f70dd685-499a-4231-a441-f24b8d4fba21')
+
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json).to eq(
+      overview: {
+        requestId: 'f70dd685-499a-4231-a441-f24b8d4fba21',
+        timestamp: 1568214000,
+        delivered: 32,
+        uniqueImpression: 4,
+        uniqueClick: nil,
+        uniqueMediaPlayed: 2,
+        uniqueMediaPlayed100Percent: -1
+      },
+      messages: [
+        {
+          seq: 1,
+          impression: 18,
+          mediaPlayed: 11,
+          mediaPlayed25Percent: -1,
+          mediaPlayed50Percent: -1,
+          mediaPlayed75Percent: -1,
+          mediaPlayed100Percent: -1,
+          uniqueMediaPlayed: 2,
+          uniqueMediaPlayed25Percent: -1,
+          uniqueMediaPlayed50Percent: -1,
+          uniqueMediaPlayed75Percent: -1,
+          uniqueMediaPlayed100Percent: -1
+        }
+      ],
+      clicks: [
+        {
+          seq: 1,
+          url: 'https://example.com/1',
+          click: -1,
+          uniqueClick: -1,
+          uniqueClickOfRequest: -1
+        },
+        {
+          seq: 1,
+          url: 'https://example.com/2',
+          click: -1,
+          uniqueClick: -1,
+          uniqueClickOfRequest: -1
+        }
+      ]
+  )
   end
 end
