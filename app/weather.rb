@@ -35,17 +35,14 @@ post '/callback' do
       case event.type
       when Line::Bot::Event::MessageType::Text
         # メッセージのおうむ返し
-        message = {
-          type: 'text',
-          text: 'こんちは',
-          # text: event.message['text']
-        }
+        if message.text == 'こんちは'
         # 必ずおはようを返す。
         # message = {
         #   type: 'text',
         #   text: 'おはよう'
         # }
-        client.reply_message(event['replyToken'], message)
+          client.reply_message(event['replyToken'], message)
+        end
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
         response = client.get_message_content(event.message['id'])
         tf = Tempfile.open("content")
