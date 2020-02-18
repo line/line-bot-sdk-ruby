@@ -41,19 +41,19 @@ post '/callback' do
             type: 'text',
             text: 'ifだよ'
           }
-          client.reply_message(event['replyToken'], message)
+          # client.reply_message(event['replyToken'], message)
         else
           message = {
             type: 'text',
             text: 'elseだよ'
           }
-          client.reply_message(event['replyToken'], message)
+          # client.reply_message(event['replyToken'], message)
         end
         # message = {
         #   type: 'text',
         #   text: 'elseだよ'
         # }
-        # client.reply_message(event['replyToken'], message)
+        client.reply_message(event['replyToken'], message)
         # client.reply_message(event['replyToken'],           message = {
         #   type: 'text',
         #   text: 'elseだよ'
