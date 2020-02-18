@@ -39,7 +39,7 @@ post '/callback' do
         if event.message['text'] == 'こんにちは' then
           message = {
             type: 'text',
-            text: "今日、#{info.today()} 東京の天気です。"
+            text: "今日、#{info.today()} 東京の天気です。\n天気    ：#{info.todayTelop()}"
           }
           # client.reply_message(event['replyToken'], message)
         else
