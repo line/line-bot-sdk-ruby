@@ -13,9 +13,9 @@ def client
   }
 end
 
-# def initialize()
-
-# end
+def initialize()
+  Object.instance_eval{remove_const :Say_weather}
+end
 
 # require './app/return'
 # require './app/weather'
@@ -39,7 +39,7 @@ post '/callback' do
           Say_weather = Say_weather.new
           message = Say_weather.message
           client.reply_message(event['replyToken'], message)
-          Object.instance_eval{remove_const :Say_weather}
+
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
         else
@@ -56,7 +56,7 @@ post '/callback' do
       else
         message = {
           type: 'text',
-          text: "「天気!!!」か「おうむ返し」\nとメッセージを送信して下さい。"
+          text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
         }
         client.reply_message(event['replyToken'], message)
       end
