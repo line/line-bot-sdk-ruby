@@ -566,6 +566,7 @@ def handle_message(event)
 
     else
       reply_text(event, "[ECHO]\n#{event.message['text']}")
+
     end
   else
     logger.info "Unknown message type: #{event.type}"
