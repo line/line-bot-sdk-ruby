@@ -13,6 +13,10 @@ def client
   }
 end
 
+def initialize()
+  Say_weather = ""
+end
+
 # require './app/return'
 # require './app/weather'
 
