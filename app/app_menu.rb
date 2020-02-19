@@ -34,11 +34,22 @@ post '/callback' do
           message = say_weather.message
           client.reply_message(event['replyToken'], message)
         elsif event.message['text'] == 'オウム返し' then
-          require './app/return'
-          client.reply_message(event['replyToken'],   message = {
-            type: 'text',
-            text: "オウム"
-          })
+          # require './app/return'
+          # client.reply_message(event['replyToken'],   message = {
+          #   type: 'text',
+          #   text: "オウム"
+          # })
+          loop{
+            if event.message['text'] == 'また明日' then
+              break
+            else
+              message = {
+                type: 'text',
+                text: event.message['text']
+              }
+              client.reply_message(event['replyToken'], message)
+            end
+          }
         else
           message = {
             type: 'text',
