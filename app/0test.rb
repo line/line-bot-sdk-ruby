@@ -1,9 +1,12 @@
-def say_weather
-  message = {
-    type: 'text',
-    text: "あはは\nと送信してください。"
-  }
+class Say_weather
+  def message
+    message = {
+      type: 'text',
+      text: "あはは\nと送信してください。"
+    }
+  end
 end
+
 
 # post '/callback' do
 #   body = request.body.read
