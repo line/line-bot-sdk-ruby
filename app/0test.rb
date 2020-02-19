@@ -14,7 +14,7 @@ message = {
   type: 'text',
   text: "あはは\nと送信してください。"
 }
-client.reply_message(event['replyToken'], message)
+# client.reply_message(event['replyToken'], message)
 # end
 # post '/callback' do
 #   body = request.body.read
