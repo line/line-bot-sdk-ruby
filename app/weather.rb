@@ -39,11 +39,7 @@ post '/callback' do
         if event.message['text'] == 'こんにちは' then
           message = {
             type: 'text',
-            text: 
-              "今日、#{info.today()} 東京の天気です。\n 天気    ：#{info.todayTelop()}\n 最高気温：#{info.todayTempMax()}\n 最低気温：#{info.todayTempMin()}\n\n明日、#{info.tmrw()} 東京の天気です。\n 天気    ：#{info.tmrwTelop()}\n 最高気温：#{info.tmrwTempMax()}\n 最低気温：#{info.tmrwTempMin()}
-              
-              【概要】
-              #{info.description()}"
+            text: "今日、#{info.today()} 東京の天気です。\n 天気    ：#{info.todayTelop()}\n 最高気温：#{info.todayTempMax()}\n 最低気温：#{info.todayTempMin()}\n\n明日、#{info.tmrw()} 東京の天気です。\n 天気    ：#{info.tmrwTelop()}\n 最高気温：#{info.tmrwTempMax()}\n 最低気温：#{info.tmrwTempMin()}\n【概要】\n #{info.description()}"
           }
           # client.reply_message(event['replyToken'], message)
         else
