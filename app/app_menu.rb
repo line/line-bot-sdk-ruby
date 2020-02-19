@@ -58,10 +58,11 @@ post '/callback' do
         client.reply_message(event['replyToken'], message)
       end
     end
+    client.reply_message(event['replyToken'],   message = {
+      type: 'text',
+      text: "終了しました"
+    })
   }
-  client.reply_message(event['replyToken'],   message = {
-    type: 'text',
-    text: "終了しました"
-  })
+
   "OK"
 end
