@@ -2,7 +2,7 @@ class Say_weather
   def message
     message = {
       type: 'text',
-      text: "にはは\nと送信してください。"
+      text: "あはは\nと送信してください。"
     }
   end
 end
