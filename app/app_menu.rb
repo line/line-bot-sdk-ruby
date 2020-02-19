@@ -14,7 +14,7 @@ def client
 end
 
 # require './app/return'
-require './app/weather'
+# require './app/weather'
 
 post '/callback' do
   body = request.body.read
@@ -43,7 +43,6 @@ post '/callback' do
           }
           client.reply_message(event['replyToken'], message)
         end
-
   }
 
   "OK"
