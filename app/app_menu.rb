@@ -13,10 +13,6 @@ def client
   }
 end
 
-# def initialize()
-#   Object.instance_eval{remove_const :Say_weather}
-# end
-
 post '/callback' do
   body = request.body.read
 
@@ -24,6 +20,8 @@ post '/callback' do
   unless client.validate_signature(body, signature)
     error 400 do 'Bad Request' end
   end
+
+  Say_weather = Say_weather.new
 
   events = client.parse_events_from(body)
   events.each { |event|
@@ -33,10 +31,8 @@ post '/callback' do
       when Line::Bot::Event::MessageType::Text
         if event.message['text'] == '天気' then
           require './app/weather'
-          Say_weather = Say_weather.new
           message = Say_weather.message
           client.reply_message(event['replyToken'], message)
-          Say_weather = ""
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
           client.reply_message(event['replyToken'],   message = {
