@@ -33,7 +33,6 @@ post '/callback' do
           say_weather = Say_weather.new
           message = say_weather.message
           client.reply_message(event['replyToken'], message)
-          # break
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
           client.reply_message(event['replyToken'],   message = {
@@ -46,7 +45,6 @@ post '/callback' do
             text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
           }
           client.reply_message(event['replyToken'], message)
-          # break
         end
       # when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
       #   response = client.get_message_content(event.message['id'])
@@ -55,12 +53,16 @@ post '/callback' do
       else
         message = {
           type: 'text',
-          text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
+          text: "メッセージで「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
         }
         client.reply_message(event['replyToken'], message)
-        # break
       end
     end
+    message = {
+      type: 'text',
+      text: "終わり"
+    }
+    client.reply_message(event['replyToken'], message)
 
   }
 
