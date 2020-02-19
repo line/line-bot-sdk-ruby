@@ -1,8 +1,8 @@
-require "./src/Weather"
-require "./src/WeatherInfo"
+# require "./src/Weather"
+# require "./src/WeatherInfo"
 
-weatherobj = Weather.new
-info = weatherobj.doProcess()
+# weatherobj = Weather.new
+# info = weatherobj.doProcess()
 
 # class Say_weather
 #   def message
@@ -32,6 +32,11 @@ info = weatherobj.doProcess()
 # end
 
 class Say_weather
+  require "./src/Weather"
+  require "./src/WeatherInfo"
+  
+  weatherobj = Weather.new
+  info = weatherobj.doProcess()
   def message
     message = {
       type: 'text',
