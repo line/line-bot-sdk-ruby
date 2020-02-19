@@ -8,7 +8,7 @@ def client
   }
 end
 
-# post '/callback' do
+post '/callback' do
   body = request.body.read
 
   signature = request.env['HTTP_X_LINE_SIGNATURE']
@@ -24,7 +24,8 @@ end
       when Line::Bot::Event::MessageType::Text
         message = {
           type: 'text',
-          text: event.message['text']
+          # text: event.message['text']
+          text: '暑い'
         }
         client.reply_message(event['replyToken'], message)
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
@@ -35,8 +36,8 @@ end
     end
   }
 
-#   "OK"
-# end
+  "OK"
+end
 
 # loop{
 #   if event.message['text'] == 'また明日' then
