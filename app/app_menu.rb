@@ -36,7 +36,7 @@ post '/callback' do
           Say_weather = Say_weather.new
           message = Say_weather.message
           client.reply_message(event['replyToken'], message)
-
+          Say_weather = ""
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
           client.reply_message(event['replyToken'],   message = {
@@ -61,11 +61,12 @@ post '/callback' do
         }
         client.reply_message(event['replyToken'], message)
       end
+      client.reply_message(event['replyToken'],   message = {
+        type: 'text',
+        text: "終了しました"
+      })
     end
-    client.reply_message(event['replyToken'],   message = {
-      type: 'text',
-      text: "終了しました"
-    })
+
   }
 
   "OK"
