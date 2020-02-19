@@ -40,18 +40,18 @@ post '/callback' do
           message = {
             type: 'text',
             text: 
-              "今日、#{info.today()} 東京の天気です。
-              \n 天気    ：#{info.todayTelop()}
-              \n 最高気温：#{info.todayTempMax()}
-              \n 最低気温：#{info.todayTempMin()}
+              "今日、#{info.today()} 東京の天気です。\n
+              天気    ：#{info.todayTelop()}\n
+              最高気温：#{info.todayTempMax()}
+              最低気温：#{info.todayTempMin()}\n
               \n 
-              \n 明日、#{info.tmrw()} 東京の天気です。
-              \n 天気    ：#{info.tmrwTelop()}
-              \n 最高気温：#{info.tmrwTempMax()}
-              \n 最低気温：#{info.tmrwTempMin()}
+              明日、#{info.tmrw()} 東京の天気です。\n
+              天気    ：#{info.tmrwTelop()}\n
+              最高気温：#{info.tmrwTempMax()}\n
+              最低気温：#{info.tmrwTempMin()}\n
               \n 
-              \n 【概要】
-              \n #{info.description()}"
+              【概要】\n
+              #{info.description()}"
           }
           # client.reply_message(event['replyToken'], message)
         else
