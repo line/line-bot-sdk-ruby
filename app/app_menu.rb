@@ -39,6 +39,7 @@ post '/callback' do
           Say_weather = Say_weather.new
           message = Say_weather.message
           client.reply_message(event['replyToken'], message)
+          Object.instance_eval{remove_const :Say_weather}
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
         else
