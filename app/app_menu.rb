@@ -29,6 +29,7 @@ post '/callback' do
       when Line::Bot::Event::MessageType::Text
         if event.message['text'] == '天気' then
           require './app/weather'
+          Say_weather = Say_weather.new
           message = Say_weather.message
           client.reply_message(event['replyToken'], message)
         elsif event.message['text'] == 'おうむ返し' then
@@ -55,7 +56,10 @@ post '/callback' do
         }
         client.reply_message(event['replyToken'], message)
       end
-
+      client.reply_message(event['replyToken'],   message = {
+        type: 'text',
+        text: "終了しました"
+      })
     end
 
   }
