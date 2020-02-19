@@ -21,10 +21,12 @@ post '/callback' do
     error 400 do 'Bad Request' end
   end
 
-  Say_weather = Say_weather.new
-
   events = client.parse_events_from(body)
   events.each { |event|
+    client.reply_message(event['replyToken'],   message = {
+      type: 'text',
+      text: "終了しました"
+    })
     case event
     when Line::Bot::Event::Message
       case event.type
@@ -57,10 +59,7 @@ post '/callback' do
         }
         client.reply_message(event['replyToken'], message)
       end
-      client.reply_message(event['replyToken'],   message = {
-        type: 'text',
-        text: "終了しました"
-      })
+
     end
 
   }
