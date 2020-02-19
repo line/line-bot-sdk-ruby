@@ -22,11 +22,20 @@ info = weatherobj.doProcess()
 #   end
 # end
 
+# class Say_weather
+#   def message
+#     message = {
+#       type: 'text',
+#       text: "とほほ\nと送信してください。"
+#     }
+#   end
+# end
+
 class Say_weather
   def message
     message = {
       type: 'text',
-      text: "とほほ\nと送信してください。"
+      text: "今日、#{info.today()} 東京の天気です。"
     }
   end
 end
