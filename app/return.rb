@@ -22,10 +22,15 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
+        # message = {
+        #   type: 'text',
+        #   # text: event.message['text']
+        #   text: '暑い'
+        # }
+        # client.reply_message(event['replyToken'], message)
         message = {
           type: 'text',
-          # text: event.message['text']
-          text: '暑い'
+          text: "「天気」か「オウム返し」\nとメッセージを送信して下さい。"
         }
         client.reply_message(event['replyToken'], message)
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
