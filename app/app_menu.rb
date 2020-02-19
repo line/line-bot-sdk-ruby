@@ -21,7 +21,7 @@ post '/callback' do
     error 400 do 'Bad Request' end
   end
 
-  event = client.parse_events_from(body)
+  event = client.parse_events_from(body).find(0)
   # events.each { |event|
     # client.reply_message(event['replyToken'],   message = {
     #   type: 'text',
