@@ -35,10 +35,10 @@ post '/callback' do
           client.reply_message(event['replyToken'], message)
         elsif event.message['text'] == 'オウム返し' then
           require './app/return'
-          client.reply_message(event['replyToken'],   message = {
-            type: 'text',
-            text: "オウムだよ"
-          })
+          # client.reply_message(event['replyToken'],   message = {
+          #   type: 'text',
+          #   text: "オウムだよ"
+          # })
           # loop{
           #   if event.message['text'] == 'また明日' then
           #     break
