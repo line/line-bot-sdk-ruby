@@ -30,6 +30,7 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
+        client.reply_message(event['replyToken'], message)
         if event.message['text'] == '天気' then
           require './app/weather'
           Say_weather = Say_weather.new
@@ -47,16 +48,19 @@ post '/callback' do
       # when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
       #   response = client.get_message_content(event.message['id'])
       #   tf = Tempfile.open("content")
-      #   tf.write(response.body)1
+      #   tf.write(response.body)
       else
-        message = {
-          type: 'text',
-          text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
-        }
-        client.reply_message(event['replyToken'], message)
+        # message = {
+        #   type: 'text',
+        #   text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
+        # }
+        # client.reply_message(event['replyToken'], message)
       end
     end
   }
-
-  "OK"
+  message = {
+    type: 'text',
+    text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
+  }
+  client.reply_message(event['replyToken'], message)
 end
