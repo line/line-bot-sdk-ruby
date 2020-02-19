@@ -46,7 +46,7 @@ post '/callback' do
             text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
           }
           client.reply_message(event['replyToken'], message)
-          break
+          # break
         end
       # when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
       #   response = client.get_message_content(event.message['id'])
@@ -58,7 +58,7 @@ post '/callback' do
           text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
         }
         client.reply_message(event['replyToken'], message)
-        break
+        # break
       end
     end
 
