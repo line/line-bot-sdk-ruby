@@ -39,7 +39,7 @@ post '/callback' do
           # }
           # client.reply_message(event['replyToken'], message)
           # require './app/weather'
-          require './app/0tes'
+          require './app/0test'
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
         else
