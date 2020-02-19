@@ -28,11 +28,12 @@ post '/callback' do
       case event.type
       when Line::Bot::Event::MessageType::Text
         if event.message['text'] == '天気' then
-          require './app/weather'
+          # require './app/weather'
+          require './app/0test'
           Say_weather = Say_weather.new
           message = Say_weather.message
           client.reply_message(event['replyToken'], message)
-          break
+          # break
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
           client.reply_message(event['replyToken'],   message = {
