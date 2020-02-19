@@ -30,7 +30,7 @@ post '/callback' do
         # client.reply_message(event['replyToken'], message)
         message = {
           type: 'text',
-          text: "「天気」か「オウム返し」\nとメッセージを送信して下さい。"
+          text: "暑いよ"
         }
         client.reply_message(event['replyToken'], message)
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
