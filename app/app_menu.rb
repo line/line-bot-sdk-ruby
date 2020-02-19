@@ -39,6 +39,10 @@ post '/callback' do
 
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
+          client.reply_message(event['replyToken'],   message = {
+            type: 'text',
+            text: "オウム"
+          })
         else
           message = {
             type: 'text',
