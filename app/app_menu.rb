@@ -30,8 +30,8 @@ post '/callback' do
         if event.message['text'] == '天気' then
           # require './app/weather'
           require './app/0test'
-          Say_weather = Say_weather.new
-          message = Say_weather.message
+          say_weather = Say_weather.new
+          message = say_weather.message
           client.reply_message(event['replyToken'], message)
           # break
         elsif event.message['text'] == 'おうむ返し' then
