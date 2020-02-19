@@ -13,13 +13,6 @@ def client
   }
 end
 
-# def initialize()
-
-# end
-
-# require './app/return'
-# require './app/weather'
-
 post '/callback' do
   body = request.body.read
 
@@ -36,12 +29,16 @@ post '/callback' do
       when Line::Bot::Event::MessageType::Text
         if event.message['text'] == '天気' then
           require './app/weather'
-          Say_weather = Say_weather.new
-          message = Say_weather.message
+          # require './app/0test'
+          say_weather = Say_weather.new
+          message = say_weather.message
           client.reply_message(event['replyToken'], message)
-          Object.instance_eval{remove_const :Say_weather}
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
+          client.reply_message(event['replyToken'],   message = {
+            type: 'text',
+            text: "オウム"
+          })
         else
           message = {
             type: 'text',
@@ -56,16 +53,17 @@ post '/callback' do
       else
         message = {
           type: 'text',
-          text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
+          text: "メッセージで「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
         }
         client.reply_message(event['replyToken'], message)
       end
     end
-  message = {
-    type: 'text',
-    text: "終了しました"
-  }
-  client.reply_message(event['replyToken'], message)
+    message = {
+      type: 'text',
+      text: "終わり"
+    }
+    client.reply_message(event['replyToken'], message)
+
   }
 
   "OK"
