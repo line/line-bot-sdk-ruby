@@ -26,7 +26,6 @@ post '/callback' do
   end
 
   events = client.parse_events_from(body)
-  binding.pry
   events.each { |event|
     case event
     when Line::Bot::Event::Message
@@ -59,12 +58,10 @@ post '/callback' do
         client.reply_message(event['replyToken'], message)
       end
     end
-  message = {
+  }
+  client.reply_message(event['replyToken'],   message = {
     type: 'text',
     text: "終了しました"
-  }
-  client.reply_message(event['replyToken'], message)
-  }
-
+  })
   "OK"
 end
