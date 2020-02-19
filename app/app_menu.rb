@@ -21,8 +21,8 @@ post '/callback' do
     error 400 do 'Bad Request' end
   end
 
-  events = client.parse_events_from(body)
-  events.each { |event|
+  event = client.parse_events_from(body)
+  # events.each { |event|
     # client.reply_message(event['replyToken'],   message = {
     #   type: 'text',
     #   text: "終了しました"
@@ -62,7 +62,7 @@ post '/callback' do
 
     end
 
-  }
+  # }
 
   "OK"
 end
