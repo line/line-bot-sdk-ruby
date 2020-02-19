@@ -38,8 +38,8 @@ post '/callback' do
           #   text: "あはは\nと送信してください。"
           # }
           # client.reply_message(event['replyToken'], message)
-          # require './app/weather'
-          require './app/0test'
+          require './app/weather'
+          # require './app/0test'
           Say_weather = Say_weather.new
           message = Say_weather.message
           client.reply_message(event['replyToken'], message)
