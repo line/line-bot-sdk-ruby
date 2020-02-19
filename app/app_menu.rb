@@ -23,10 +23,10 @@ post '/callback' do
 
   events = client.parse_events_from(body)
   events.each { |event|
-    client.reply_message(event['replyToken'],   message = {
-      type: 'text',
-      text: "終了しました"
-    })
+    # client.reply_message(event['replyToken'],   message = {
+    #   type: 'text',
+    #   text: "終了しました"
+    # })
     case event
     when Line::Bot::Event::Message
       case event.type
