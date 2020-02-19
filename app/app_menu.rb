@@ -16,7 +16,7 @@ end
 # require './app/return'
 # require './app/weather'
 
-post '/callback' do
+# post '/callback' do
   body = request.body.read
 
   signature = request.env['HTTP_X_LINE_SIGNATURE']
@@ -60,5 +60,5 @@ post '/callback' do
     end
   }
 
-  "OK"
-end
+#   "OK"
+# end
