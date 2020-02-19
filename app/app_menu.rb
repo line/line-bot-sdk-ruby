@@ -56,7 +56,7 @@ post '/callback' do
       else
         message = {
           type: 'text',
-          text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
+          text: "「天気!!!」か「おうむ返し」\nとメッセージを送信して下さい。"
         }
         client.reply_message(event['replyToken'], message)
       end
