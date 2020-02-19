@@ -27,12 +27,19 @@ def reply_text(event, texts)
   )
 end
 
+def broadcast(messages)
+  client.broadcast(
+    messages
+  )
+end
+
 def reply_content(event, messages)
   res = client.reply_message(
     event['replyToken'],
     messages
   )
   logger.warn res.read_body unless Net::HTTPOK === res
+  res
 end
 
 post '/callback' do
@@ -532,9 +539,36 @@ def handle_message(event)
         client.leave_room(event['source']['roomId'])
       end
 
+    when 'stats sample'
+      response = broadcast({
+        type: 'template',
+        altText: 'stats',
+        template: {
+          type: 'buttons',
+          thumbnailImageUrl: THUMBNAIL_URL,
+          title: 'stats sample',
+          text: 'Hello, my stats',
+          actions: [
+            { label: 'Go to line.me', type: 'uri', uri: 'https://line.me', altUri: {desktop: 'https://line.me#desktop'} },
+            { label: 'Send postback', type: 'postback', data: 'hello world' },
+            { label: 'Send postback2', type: 'postback', data: 'hello world', text: 'hello world' },
+            { label: 'Send message', type: 'message', text: 'This is message' }
+          ]
+        }
+      })
+      request_id = response.header["X-Line-Request-Id"]
+      reply_text(event, "RequestId: #{request_id}")
+
+    when /\Astats\s+(?<request_id>.+)/
+      request_id = Regexp.last_match[:request_id]
+      if request_id
+        stats = client.get_user_interaction_statistics(request_id)
+        stats.body
+        reply_text(event, "[STATS]\n#{stats}")
+      end
+
     else
       reply_text(event, "[ECHO]\n#{event.message['text']}")
-
     end
   else
     logger.info "Unknown message type: #{event.type}"
