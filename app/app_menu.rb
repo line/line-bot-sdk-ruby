@@ -33,7 +33,7 @@ post '/callback' do
           say_weather = Say_weather.new
           message = say_weather.message
           client.reply_message(event['replyToken'], message)
-        elsif event.message['text'] == 'おうむ返し' then
+        elsif event.message['text'] == 'オウム返し' then
           require './app/return'
           client.reply_message(event['replyToken'],   message = {
             type: 'text',
@@ -42,7 +42,7 @@ post '/callback' do
         else
           message = {
             type: 'text',
-            text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
+            text: "「天気」か「オウム返し」\nとメッセージを送信して下さい。"
           }
           client.reply_message(event['replyToken'], message)
         end
@@ -53,7 +53,7 @@ post '/callback' do
       else
         message = {
           type: 'text',
-          text: "メッセージで「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
+          text: "メッセージで「天気」か「オウム返し」\nとメッセージを送信して下さい。"
         }
         client.reply_message(event['replyToken'], message)
       end

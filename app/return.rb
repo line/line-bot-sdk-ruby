@@ -1,14 +1,22 @@
-loop{
-  if event.message['text'] == 'また明日' then
-    break
-  else
-    message = {
-      type: 'text',
-      text: event.message['text']
-    }
-    client.reply_message(event['replyToken'], message)
-  end
+require 'sinatra'
+require 'line/bot'
+
+post '/callback' do
+  body = request.body.read
+  events = client.parse_events_from(body)
+  events.each { |event|
+    loop{
+      if event.message['text'] == 'また明日' then
+        break
+      else
+        message = {
+          type: 'text',
+          text: event.message['text']
+        }
+        client.reply_message(event['replyToken'], message)
+      end
 }
+  }
 
 
 # post '/callback' do
