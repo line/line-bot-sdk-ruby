@@ -8,7 +8,7 @@ def client
   }
 end
 
-post '/callback' do
+# post '/callback' do
   body = request.body.read
 
   signature = request.env['HTTP_X_LINE_SIGNATURE']
@@ -35,8 +35,8 @@ post '/callback' do
     end
   }
 
-  "OK"
-end
+#   "OK"
+# end
 
 # loop{
 #   if event.message['text'] == 'また明日' then
