@@ -13,9 +13,9 @@ def client
   }
 end
 
-def initialize()
-  Say_weather = ""
-end
+# def initialize()
+
+# end
 
 # require './app/return'
 # require './app/weather'
@@ -36,7 +36,7 @@ post '/callback' do
       when Line::Bot::Event::MessageType::Text
         if event.message['text'] == '天気' then
           require './app/weather'
-          Say_weather = Say_weather.new
+          # Say_weather = Say_weather.new
           message = Say_weather.message
           client.reply_message(event['replyToken'], message)
         elsif event.message['text'] == 'おうむ返し' then
