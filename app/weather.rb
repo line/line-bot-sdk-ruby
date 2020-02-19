@@ -1,5 +1,5 @@
-# require "./src/Weather"
-# require "./src/WeatherInfo"
+require "./src/Weather"
+require "./src/WeatherInfo"
 
 # weatherobj = Weather.new
 # info = weatherobj.doProcess()
@@ -32,12 +32,11 @@
 # end
 
 class Say_weather
-  require "./src/Weather"
-  require "./src/WeatherInfo"
-  
-  weatherobj = Weather.new
-  info = weatherobj.doProcess()
+  # require "./src/Weather"
+  # require "./src/WeatherInfo"
   def message
+    weatherobj = Weather.new
+    info = weatherobj.doProcess()
     message = {
       type: 'text',
       text: "今日、#{info.today()} 東京の天気です。"
