@@ -13,6 +13,10 @@ def client
   }
 end
 
+# def initialize()
+
+# end
+
 # require './app/return'
 # require './app/weather'
 
@@ -35,6 +39,7 @@ post '/callback' do
           Say_weather = Say_weather.new
           message = Say_weather.message
           client.reply_message(event['replyToken'], message)
+          Object.instance_eval{remove_const :Say_weather}
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
         else
@@ -47,7 +52,7 @@ post '/callback' do
       # when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
       #   response = client.get_message_content(event.message['id'])
       #   tf = Tempfile.open("content")
-      #   tf.write(response.body)
+      #   tf.write(response.body)!
       else
         message = {
           type: 'text',
@@ -56,6 +61,11 @@ post '/callback' do
         client.reply_message(event['replyToken'], message)
       end
     end
+  message = {
+    type: 'text',
+    text: "終了しました"
+  }
+  client.reply_message(event['replyToken'], message)
   }
 
   "OK"
