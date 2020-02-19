@@ -13,12 +13,9 @@ def client
   }
 end
 
-def initialize()
-  Object.instance_eval{remove_const :Say_weather}
-end
-
-# require './app/return'
-# require './app/weather'
+# def initialize()
+#   Object.instance_eval{remove_const :Say_weather}
+# end
 
 post '/callback' do
   body = request.body.read
@@ -29,6 +26,7 @@ post '/callback' do
   end
 
   events = client.parse_events_from(body)
+  binding.pry
   events.each { |event|
     case event
     when Line::Bot::Event::Message
