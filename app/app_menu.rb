@@ -16,7 +16,7 @@ end
 # require './app/return'
 # require './app/weather'
 
-# post '/callback' do
+post '/callback' do
   body = request.body.read
 
   signature = request.env['HTTP_X_LINE_SIGNATURE']
@@ -40,17 +40,16 @@ end
           # client.reply_message(event['replyToken'], message)
           # require './app/weather'
           require './app/0test'
-          # client.reply_message(event['replyToken'], message)
+          say_weather
+          client.reply_message(event['replyToken'], message)
         elsif event.message['text'] == 'おうむ返し' then
           require './app/return'
         else
-          post '/callback' do
-            message = {
-              type: 'text',
-              text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
-            }
-            client.reply_message(event['replyToken'], message)
-          end
+          message = {
+            type: 'text',
+            text: "「天気」か「おうむ返し」\nとメッセージを送信して下さい。"
+          }
+          client.reply_message(event['replyToken'], message)
         end
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
         response = client.get_message_content(event.message['id'])
@@ -60,5 +59,5 @@ end
     end
   }
 
-#   "OK"
-# end
+  "OK"
+end
