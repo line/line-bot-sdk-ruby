@@ -539,7 +539,7 @@ def handle_message(event)
         client.leave_room(event['source']['roomId'])
       end
 
-    when 'stats sample'
+    when 'stats'
       response = broadcast({
         type: 'template',
         altText: 'stats',
@@ -561,11 +561,8 @@ def handle_message(event)
 
     when /\Astats\s+(?<request_id>.+)/
       request_id = Regexp.last_match[:request_id]
-      if request_id
-        stats = client.get_user_interaction_statistics(request_id)
-        stats.body
-        reply_text(event, "[STATS]\n#{stats}")
-      end
+      stats = client.get_user_interaction_statistics(request_id)
+      reply_text(event, "[STATS]\n#{stats.body}")
 
     else
       reply_text(event, "[ECHO]\n#{event.message['text']}")
