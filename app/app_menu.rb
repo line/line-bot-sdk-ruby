@@ -35,7 +35,7 @@ post '/callback' do
         if event.message['text'] == '天気' then
           message = {
             type: 'text',
-            text: "こんにちは\nと送信してください。"
+            text: "あはは\nと送信してください。"
           }
           client.reply_message(event['replyToken'], message)
           require './app/weather'
