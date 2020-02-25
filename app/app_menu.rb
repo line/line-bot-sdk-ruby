@@ -14,6 +14,7 @@ def client
 end
 
 # require './app/return'
+# require './app/0test'
 menu_index = ""
 
 post '/callback' do
@@ -32,7 +33,6 @@ post '/callback' do
       when Line::Bot::Event::MessageType::Text
         if event.message['text'] == '天気'
           require './app/weather'
-          # require './app/0test'
           say_weather = Say_weather.new
           message = say_weather.message
           client.reply_message(event['replyToken'], message)
