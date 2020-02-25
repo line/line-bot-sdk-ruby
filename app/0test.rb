@@ -1,24 +1,12 @@
-# class Say_weather
-#   def message
-#     message = {
-#       type: 'text',
-#       text: "これはテストです\nと送信してください。"
-#     }
-#   end
-# end
+require 'sinatra'
+require 'line/bot'
 
-# ---------------------------------------------------
-# require 'sinatra'
-# require 'line/bot'
-require "./src/Weather"
-require "./src/WeatherInfo"
-
-# def client
-#   @client ||= Line::Bot::Client.new { |config|
-#     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-#     config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
-#   }
-# end
+def client
+  @client ||= Line::Bot::Client.new { |config|
+    config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+    config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+  }
+end
 
 post '/callback' do
   body = request.body.read
@@ -34,23 +22,17 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        # if event.message['text'] == 'こんにちは' then
-          message = {
-            type: 'text',
-            text: "今日、#{info.today()} 東京の天気です。\n 天気    ：#{info.todayTelop()}\n 最高気温：#{info.todayTempMax()}\n 最低気温：#{info.todayTempMin()}\n\n明日、#{info.tmrw()} 東京の天気です。\n 天気    ：#{info.tmrwTelop()}\n 最高気温：#{info.tmrwTempMax()}\n 最低気温：#{info.tmrwTempMin()}\n【概要】\n #{info.description()}"
-          }
-        # else
-        #   message = {
-        #     type: 'text',
-        #     text: "こんにちは\nと送信してください。"
-        #   }
-        # end
-        client.reply_message(event['replyToken'], message)
-        #下記の書き方でも、返信メッセージを代入できる。
-        # client.reply_message(event['replyToken'],           message = {
+        # メッセージのおうむ返し
+        message = {
+          type: 'text',
+          text: event.message['text']
+        }
+        # 必ずおはようを返す。
+        # message = {
         #   type: 'text',
-        #   text: 'elseだよ'
-        # })
+        #   text: 'おはよう'
+        # }
+        client.reply_message(event['replyToken'], message)
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
         response = client.get_message_content(event.message['id'])
         tf = Tempfile.open("content")
