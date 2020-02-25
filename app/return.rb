@@ -1,16 +1,16 @@
-require 'sinatra'
-require 'line/bot'
+# require 'sinatra'
+# require 'line/bot'
 
-def client
-  @client ||= Line::Bot::Client.new { |config|
-    config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-    config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
-  }
-end
+# def client
+#   @client ||= Line::Bot::Client.new { |config|
+#     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+#     config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+#   }
+# end
 
 keyword = ""
 
-loop {
+# loop {
 post '/callback' do
   body = request.body.read
 
@@ -47,9 +47,9 @@ post '/callback' do
   "OK"
 end
 
-break if keyword == "また明日"
+# break if keyword == "また明日"
 
-}
+# }
 
 # loop{
 #   if event.message['text'] == 'また明日' then

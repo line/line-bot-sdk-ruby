@@ -8,8 +8,8 @@
 # end
 
 # ---------------------------------------------------
-require 'sinatra'
-require 'line/bot'
+# require 'sinatra'
+# require 'line/bot'
 require "./src/Weather"
 require "./src/WeatherInfo"
 
