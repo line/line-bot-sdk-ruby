@@ -28,7 +28,7 @@ post '/callback' do
         # メッセージのおうむ返し
         message = {
           type: 'text',
-          text: event.message['text' + "num"]
+          text: event.message['text' + "#{num}" ]
         }
         # 必ずおはようを返す。
         # message = {
