@@ -2,7 +2,7 @@ num = 0
 # num += 1
 
 when num <= 10 do
-  num += 1
+
 require 'sinatra'
 require 'line/bot'
 
@@ -24,6 +24,10 @@ post '/callback' do
   end
 
   events = client.parse_events_from(body)
+  unless events.[0] = ""
+    num += 1
+  end
+
   events.each { |event|
     case event
     when Line::Bot::Event::Message
