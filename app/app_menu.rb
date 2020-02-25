@@ -13,7 +13,7 @@ def client
   }
 end
 
-require './app/return'
+# require './app/return'
 
 post '/callback' do
   body = request.body.read
