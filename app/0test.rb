@@ -28,7 +28,7 @@ post '/callback' do
         message = {
           type: 'text',
           # text: event.message['text'] + num
-          text: "テスト + #{num.to_s} +回目"
+          text: "テスト#{num.to_s}回目"
         }
         # 必ずおはようを返す。
         # message = {
