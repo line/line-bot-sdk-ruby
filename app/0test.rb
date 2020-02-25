@@ -24,7 +24,8 @@ post '/callback' do
   end
 
   events = client.parse_events_from(body)
-  unless events.[0] = ""
+
+  unless events.[0] == ""
     num += 1
   end
 
