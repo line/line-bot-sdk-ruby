@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'line/bot'
 
-
 def client
   @client ||= Line::Bot::Client.new { |config|
     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
@@ -28,7 +27,7 @@ post '/callback' do
         # メッセージのおうむ返し
         message = {
           type: 'text',
-          text: event.message['text' + "#{num}" ]
+          text: event.message['text'] + num
         }
         # 必ずおはようを返す。
         # message = {
