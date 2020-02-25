@@ -14,6 +14,7 @@ def client
 end
 
 # require './app/return'
+menu_index = ""
 
 post '/callback' do
   body = request.body.read
@@ -36,7 +37,7 @@ post '/callback' do
           message = say_weather.message
           client.reply_message(event['replyToken'], message)
         elsif event.message['text'] == 'オウム返し' then
-          menu = "オウム返し"
+          menu_index = "オウム返し"
           # require './app/return'
           # client.reply_message(event['replyToken'],   message = {
           #   type: 'text',
@@ -83,6 +84,6 @@ post '/callback' do
   "OK"
 end
 
-# if menu == "オウム返し"
-#   require './app/return'
-# end
+if menu_index == "オウム返し"
+  require './app/return'
+end
