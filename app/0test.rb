@@ -1,7 +1,7 @@
 num = 0
 # num += 1
 
-when num <= 10 do
+while num <= 10 do
 
 require 'sinatra'
 require 'line/bot'
