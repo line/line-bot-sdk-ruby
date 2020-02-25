@@ -83,6 +83,6 @@ post '/callback' do
   "OK"
 end
 
-if menu == "オウム返し"
-  require './app/return'
-end
+# if menu == "オウム返し"
+#   require './app/return'
+# end
