@@ -90,5 +90,5 @@ end
 
 if menu_index == "オウム返し"
   # require './app/return'
-  require './app/weather'
+  require './app/0test'
 end
