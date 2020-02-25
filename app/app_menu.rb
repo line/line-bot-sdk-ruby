@@ -100,7 +100,7 @@ if menu_index == "オウム返し"
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          if event.message['text'] == '天気'
+          if event.message['text'] == 'オウム返し'
             require './app/weather'
             say_weather = Say_weather.new
             message = say_weather.message
@@ -109,7 +109,7 @@ if menu_index == "オウム返し"
             #   type: 'text',
             #   text: "終了しました"
             # })
-          elsif event.message['text'] == 'オウム返し'
+          elsif event.message['text'] == '!!'
             menu_index = "オウム返し"
             # require './app/return'
             # client.reply_message(event['replyToken'],   message = {
