@@ -8,6 +8,9 @@ def client
   }
 end
 
+keyword = ""
+
+loop {
 post '/callback' do
   body = request.body.read
 
@@ -17,12 +20,16 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        message = {
-          type: 'text',
-          text: event.message['text']
-          # text: '暑い'
-        }
-        client.reply_message(event['replyToken'], message)
+        if event.message['text'] == 'また明日'
+          keyword == "また明日"
+        else
+          message = {
+            type: 'text',
+            text: event.message['text']
+            # text: '暑い'
+          }
+          client.reply_message(event['replyToken'], message)
+        end
         # message = {
         #   type: 'text',
         #   text: "暑いよ"
@@ -32,12 +39,17 @@ post '/callback' do
         response = client.get_message_content(event.message['id'])
         tf = Tempfile.open("content")
         tf.write(response.body)
+        keyword == "また明日"
       end
     end
   }
 
   "OK"
 end
+
+break if keyword == "また明日"
+
+}
 
 # loop{
 #   if event.message['text'] == 'また明日' then
