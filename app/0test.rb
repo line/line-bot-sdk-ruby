@@ -1,7 +1,7 @@
 num = 0
 # num += 1
 
-while num <= 10 do
+# while num <= 10 do
 
 require 'sinatra'
 require 'line/bot'
@@ -57,4 +57,4 @@ post '/callback' do
   "OK"
 end
 
-end
+# end
