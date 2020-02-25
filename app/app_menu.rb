@@ -36,10 +36,10 @@ post '/callback' do
           say_weather = Say_weather.new
           message = say_weather.message
           client.reply_message(event['replyToken'], message)
-          client.reply_message(event['replyToken'],   message = {
-            type: 'text',
-            text: "終了しました"
-          })
+          # client.reply_message(event['replyToken'], message = {
+          #   type: 'text',
+          #   text: "終了しました"
+          # })
         elsif event.message['text'] == 'オウム返し'
           menu_index = "オウム返し"
           # require './app/return'
@@ -89,5 +89,6 @@ post '/callback' do
 end
 
 if menu_index == "オウム返し"
-  require './app/return'
+  # require './app/return'
+  require './app/weather'
 end
