@@ -58,6 +58,10 @@ post '/callback' do
           #     client.reply_message(event['replyToken'], message)
           #   end
           # }
+            client.reply_message(event['replyToken'],   message = {
+            type: 'text',
+            text: event.message['text']
+          })
         else
           message = {
             type: 'text',
