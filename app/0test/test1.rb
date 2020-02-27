@@ -1,12 +1,11 @@
 # require 'rest-client'
 require 'json'
-# require 'sinatra'   # gem 'sinatra'
-# require 'line/bot'  # gem 'line-bot-api'
 require 'sinatra'
 require 'line/bot'
 
 def search_businesses_from_yelp(times)
-  token = ENV['YELP_API_KEY']
+  # token = ENV['YELP_API_KEY']
+  token = "BCNuz3Iq8iMTlO1-2tegXhQCe2CQlCHS8nH3hS69vG-kjqDWG9U4mOB-NHZcy2TcgmeTeu8iDlB6vN6_gNRgalvBue_mplBE5LpXK3_LhYOnKSWD3FvTclD3uFxXXnYx"
   yelp_ep = 'https://api.yelp.com/v3/businesses/search'
   params = { 
       latitude: 36.108722,
