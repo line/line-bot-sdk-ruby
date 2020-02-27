@@ -1,5 +1,7 @@
 require 'rest-client'
 require 'json'
+require 'sinatra'   # gem 'sinatra'
+require 'line/bot'  # gem 'line-bot-api'
 
 def search_businesses_from_yelp(times)
   token = ENV['YELP_API_KEY']
@@ -81,9 +83,9 @@ def get_bot_response_message(word)
   end
 end
 
-require 'sinatra'   # gem 'sinatra'
-require 'line/bot'  # gem 'line-bot-api'
-require_relative 'lib/interactor'
+# require 'sinatra'   # gem 'sinatra'
+# require 'line/bot'  # gem 'line-bot-api'
+# require_relative 'lib/interactor'
 
 # def client
 #   @client ||= Line::Bot::Client.new { |config|
