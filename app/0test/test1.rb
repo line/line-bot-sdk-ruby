@@ -1,4 +1,4 @@
-# require 'rest-client'
+require 'rest-client'
 require 'json'
 # require 'sinatra'   # gem 'sinatra'
 # require 'line/bot'  # gem 'line-bot-api'
