@@ -1,4 +1,4 @@
-require './app/0test/test'
+require './app/0test/test1'
 
 # require './app/meshi_gacha/app'
 # require './app_meshi'
