@@ -1,4 +1,5 @@
-require './app/meshi_gacha/app'
+# require './app/meshi_gacha/app'
+require './app_meshi'
 
 # require './app/app_menu'
 # require './app/return'
