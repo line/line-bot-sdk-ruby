@@ -114,8 +114,15 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
+        if event.message['text'] == '天気'
+          client.reply_message(event['replyToken'], message = {
+            type: 'text',
+            text: "終了しました"
+          })
+        else
         message = get_bot_response_message(event.message['text'])
         client.reply_message(event['replyToken'], message)
+        end
       end
     end
   }
