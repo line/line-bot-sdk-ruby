@@ -1,6 +1,7 @@
 require 'sinatra'
 # require 'line/bot'
 
+
 # 微小変更部分！確認用。
 get '/' do
   "Hello world"
