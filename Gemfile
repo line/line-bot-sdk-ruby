@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'httpclient'
 gem 'pry-rails' #binding.pry
+gem 'rest-client'
 
 gemspec
 

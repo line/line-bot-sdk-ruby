@@ -1,4 +1,4 @@
-# require 'rest-client'
+require 'rest-client'
 require 'json'
 require 'sinatra'
 require 'line/bot'
