@@ -28,9 +28,7 @@ def reply_text(event, texts)
 end
 
 def broadcast(messages)
-  client.broadcast(
-    messages
-  )
+  client.broadcast(messages)
 end
 
 def reply_content(event, messages)
