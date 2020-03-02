@@ -1,5 +1,34 @@
 # Change Log
 
+## [v1.14.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.14.0) (2020-03-02)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.13.0...v1.14.0)
+
+**Implemented enhancements:**
+
+- Support Narrowcast api endpoint [\#161](https://github.com/line/line-bot-sdk-ruby/issues/161)
+
+**Fixed bugs:**
+
+- Fix travis error [\#156](https://github.com/line/line-bot-sdk-ruby/issues/156)
+
+**Closed issues:**
+
+- mode property added to webhook event [\#159](https://github.com/line/line-bot-sdk-ruby/issues/159)
+- Support stay event added to beacon event [\#155](https://github.com/line/line-bot-sdk-ruby/issues/155)
+- Let's create documentation page using RDoc or YARD! [\#152](https://github.com/line/line-bot-sdk-ruby/issues/152)
+- Domain name change from api.line.me to api-data.line.me [\#151](https://github.com/line/line-bot-sdk-ruby/issues/151)
+- Issue template [\#147](https://github.com/line/line-bot-sdk-ruby/issues/147)
+- Documentation - clean up [\#146](https://github.com/line/line-bot-sdk-ruby/issues/146)
+- Flex 1 update [\#144](https://github.com/line/line-bot-sdk-ruby/issues/144)
+
+**Merged pull requests:**
+
+- Add example code for User interaction statistic API [\#168](https://github.com/line/line-bot-sdk-ruby/pull/168) ([kimoto](https://github.com/kimoto))
+- Support user interaction statistics API [\#166](https://github.com/line/line-bot-sdk-ruby/pull/166) ([kimoto](https://github.com/kimoto))
+- Add narrowcast method to client [\#163](https://github.com/line/line-bot-sdk-ruby/pull/163) ([toduq](https://github.com/toduq))
+- Remove ruby-head from travis config and add 2.7 [\#162](https://github.com/line/line-bot-sdk-ruby/pull/162) ([toduq](https://github.com/toduq))
+- Use yard to generate documentation [\#153](https://github.com/line/line-bot-sdk-ruby/pull/153) ([toduq](https://github.com/toduq))
+
 ## [v1.13.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.13.0) (2019-12-24)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.12.0...v1.13.0)
 
