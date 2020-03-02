@@ -563,6 +563,18 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.
+      #
+      # @param [String] request_id
+      #
+      # @return [Net::HTTPResponse]
+      def get_user_interaction_statistics(request_id)
+        channel_token_required
+
+        endpoint_path = "/bot/insight/message/event?requestId=#{request_id}"
+        get(endpoint, endpoint_path, credentials)
+      end
+
       # Returns the number of followers
       #
       # @param [String] date (Format:yyyyMMdd, Example:20191231)
