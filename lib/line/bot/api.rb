@@ -22,7 +22,7 @@ module Line
 
       DEFAULT_HEADERS = {
         'Content-Type' => 'application/json; charset=UTF-8',
-        'User-Agent'   => "LINE-BotSDK-Ruby/#{Line::Bot::API::VERSION}"
+        'User-Agent'   => "LINE-BotSDK-Ruby/#{VERSION}"
       }.freeze
     end
   end

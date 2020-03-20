@@ -29,9 +29,9 @@ module Line
       # * https://developers.line.biz/en/reference/messaging-api/#scenario-result-event
       class Things < Base
         def type
-          Line::Bot::Event::ThingsType.const_get(Line::Bot::Util.camelize(@src['things']['type']))
+          ThingsType.const_get(Util.camelize(@src['things']['type']))
         rescue NameError
-          Line::Bot::Event::ThingsType::Unsupport
+          ThingsType::Unsupport
         end
 
         def device_id
