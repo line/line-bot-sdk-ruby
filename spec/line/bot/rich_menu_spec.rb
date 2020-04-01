@@ -188,9 +188,9 @@ describe Line::Bot::Client do
     image_url = 'https://line.example.org/rich_menu.png'
     image_content = File.open(RICH_MENU_IMAGE_FILE_PATH).read
     image_content.force_encoding('ASCII-8BIT')
-    stub_request(:get, image_url).to_return(body: image_content, status: 200, headers: {'Content-type': 'image/png' })
+    stub_request(:get, image_url).to_return(body: image_content, status: 200, headers: { 'Content-type' => 'image/png' })
 
-    client.create_rich_menu_image('1234567', open(image_url))
+    client.create_rich_menu_image('1234567', URI.parse(image_url).open)
 
     expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_BLOB_ENDPOINT + '/bot/richmenu/1234567/content')
       .with(body: image_content)
@@ -212,10 +212,10 @@ describe Line::Bot::Client do
 
     text_url = 'https://line.example.org/rich_menu.txt'
     text_content = File.open(RICH_MENU_INVALID_FILE_EXTENSION_PATH).read
-    stub_request(:get, text_url).to_return(body: text_content, status: 200, headers: {'Content-type': 'plain/text' })
+    stub_request(:get, text_url).to_return(body: text_content, status: 200, headers: { 'Content-type' => 'plain/text' })
 
     expect do
-      client.create_rich_menu_image('1234567', open(text_url))
+      client.create_rich_menu_image('1234567', URI.parse(text_url).open)
     end.to raise_error(ArgumentError)
   end
 end

@@ -507,21 +507,8 @@ module Line
       def create_rich_menu_image(rich_menu_id, file)
         channel_token_required
 
-        content_type = if file.respond_to?(:content_type)
-                         content_type = file.content_type
-                         raise ArgumentError, "invalid content type: #{content_type}" unless ['image/jpeg', 'image/png'].include?(content_type)
-                         content_type
-                       else
-                         case file.path
-                         when /\.jpe?g\z/i then 'image/jpeg'
-                         when /\.png\z/i   then 'image/png'
-                         else
-                           raise ArgumentError, "invalid file extension: #{file.path}"
-                         end
-                       end
-
         endpoint_path = "/bot/richmenu/#{rich_menu_id}/content"
-        headers = credentials.merge('Content-Type' => content_type)
+        headers = credentials.merge('Content-Type' => content_type(file))
         post(blob_endpoint, endpoint_path, file.rewind && file.read, headers)
       end
 
@@ -695,6 +682,21 @@ module Line
         res = 0
         b.each_byte { |byte| res |= byte ^ l.shift }
         res == 0
+      end
+
+      def content_type(file)
+        if file.respond_to?(:content_type)
+          content_type = file.content_type
+          raise ArgumentError, "invalid content type: #{content_type}" unless ['image/jpeg', 'image/png'].include?(content_type)
+          content_type
+        else
+          case file.path
+          when /\.jpe?g\z/i then 'image/jpeg'
+          when /\.png\z/i   then 'image/png'
+          else
+            raise ArgumentError, "invalid file extension: #{file.path}"
+          end
+        end
       end
 
       def channel_token_required
