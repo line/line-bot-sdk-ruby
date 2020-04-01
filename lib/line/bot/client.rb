@@ -507,11 +507,17 @@ module Line
       def create_rich_menu_image(rich_menu_id, file)
         channel_token_required
 
-        content_type = case file.path
-                       when /\.jpe?g\z/i then 'image/jpeg'
-                       when /\.png\z/i   then 'image/png'
+        content_type = if file.respond_to?(:content_type)
+                         content_type = file.content_type
+                         raise ArgumentError, "invalid content type: #{content_type}" unless ['image/jpeg', 'image/png'].include?(content_type)
+                         content_type
                        else
-                         raise ArgumentError, "invalid file extension: #{file.path}"
+                         case file.path
+                         when /\.jpe?g\z/i then 'image/jpeg'
+                         when /\.png\z/i   then 'image/png'
+                         else
+                           raise ArgumentError, "invalid file extension: #{file.path}"
+                         end
                        end
 
         endpoint_path = "/bot/richmenu/#{rich_menu_id}/content"
