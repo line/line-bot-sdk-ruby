@@ -48,18 +48,18 @@ module Line
       end
 
       def httpclient
-        @httpclient ||= Line::Bot::HTTPClient.new(http_options)
+        @httpclient ||= HTTPClient.new(http_options)
       end
 
       def endpoint
-        @endpoint ||= Line::Bot::API::DEFAULT_ENDPOINT
+        @endpoint ||= API::DEFAULT_ENDPOINT
       end
 
       def blob_endpoint
         return @blob_endpoint if @blob_endpoint
 
-        @blob_endpoint = if endpoint == Line::Bot::API::DEFAULT_ENDPOINT
-                           Line::Bot::API::DEFAULT_BLOB_ENDPOINT
+        @blob_endpoint = if endpoint == API::DEFAULT_ENDPOINT
+                           API::DEFAULT_BLOB_ENDPOINT
                          else
                            # for backward compatible
                            endpoint
@@ -598,7 +598,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get(endpoint_base, endpoint_path, headers = {})
-        headers = Line::Bot::API::DEFAULT_HEADERS.merge(headers)
+        headers = API::DEFAULT_HEADERS.merge(headers)
         httpclient.get(endpoint_base + endpoint_path, headers)
       end
 
@@ -611,7 +611,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def post(endpoint_base, endpoint_path, payload = nil, headers = {})
-        headers = Line::Bot::API::DEFAULT_HEADERS.merge(headers)
+        headers = API::DEFAULT_HEADERS.merge(headers)
         httpclient.post(endpoint_base + endpoint_path, payload, headers)
       end
 
@@ -623,7 +623,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def delete(endpoint_base, endpoint_path, headers = {})
-        headers = Line::Bot::API::DEFAULT_HEADERS.merge(headers)
+        headers = API::DEFAULT_HEADERS.merge(headers)
         httpclient.delete(endpoint_base + endpoint_path, headers)
       end
 
@@ -637,10 +637,10 @@ module Line
 
         json['events'].map do |item|
           begin
-            klass = Line::Bot::Event.const_get(Line::Bot::Util.camelize(item['type']))
+            klass = Event.const_get(Util.camelize(item['type']))
             klass.new(item)
           rescue NameError
-            Line::Bot::Event::Base.new(item)
+            Event::Base.new(item)
           end
         end
       end
