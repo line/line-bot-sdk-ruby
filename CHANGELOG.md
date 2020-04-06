@@ -1,5 +1,15 @@
 # Change Log
 
+## [v1.14.1](https://github.com/line/line-bot-sdk-ruby/tree/v1.14.1) (2020-04-06)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.14.0...v1.14.1)
+
+**Merged pull requests:**
+
+- Accept open-uri as create\_rich\_menu\_image's argument [\#177](https://github.com/line/line-bot-sdk-ruby/pull/177) ([yskkin](https://github.com/yskkin))
+- Update rake requirement from ~\> 10.4 to ~\> 13.0 [\#176](https://github.com/line/line-bot-sdk-ruby/pull/176) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Update webmock requirement from ~\> 1.24 to ~\> 3.8 [\#175](https://github.com/line/line-bot-sdk-ruby/pull/175) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Quit top level reference [\#174](https://github.com/line/line-bot-sdk-ruby/pull/174) ([koheisg](https://github.com/koheisg))
+
 ## [v1.14.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.14.0) (2020-03-02)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.13.0...v1.14.0)
 
@@ -13,6 +23,7 @@
 
 **Closed issues:**
 
+- Release v1.14.0 [\#171](https://github.com/line/line-bot-sdk-ruby/pull/171) ([kimoto](https://github.com/kimoto))
 - mode property added to webhook event [\#159](https://github.com/line/line-bot-sdk-ruby/issues/159)
 - Support stay event added to beacon event [\#155](https://github.com/line/line-bot-sdk-ruby/issues/155)
 - Let's create documentation page using RDoc or YARD! [\#152](https://github.com/line/line-bot-sdk-ruby/issues/152)
