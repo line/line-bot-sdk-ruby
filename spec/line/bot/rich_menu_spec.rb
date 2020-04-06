@@ -2,6 +2,7 @@ require 'spec_helper'
 require 'webmock/rspec'
 require 'json'
 require 'tempfile'
+require 'open-uri'
 
 RICH_MENU_CONTENT = <<"EOS"
 {
@@ -177,6 +178,24 @@ describe Line::Bot::Client do
       .with(body: File.open(RICH_MENU_IMAGE_FILE_PATH).read)
   end
 
+  it 'uploads and attaches an image to a rich menu from uri' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_BLOB_ENDPOINT + '/bot/richmenu/1234567/content'
+
+    stub_request(:post, uri_template).to_return(body: '{}', status: 200).with do |request|
+      expect(request.headers["Content-Type"]).to eq('image/png')
+    end
+
+    image_url = 'https://line.example.org/rich_menu.png'
+    image_content = File.open(RICH_MENU_IMAGE_FILE_PATH).read
+    image_content.force_encoding('ASCII-8BIT')
+    stub_request(:get, image_url).to_return(body: image_content, status: 200, headers: { 'Content-Type' => 'image/png' })
+
+    client.create_rich_menu_image('1234567', URI.parse(image_url).open)
+
+    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_BLOB_ENDPOINT + '/bot/richmenu/1234567/content')
+      .with(body: image_content)
+  end
+
   it "uploads invalid extension's file" do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content'
     stub_request(:post, uri_template).to_return(body: '{}', status: 200)
@@ -184,6 +203,19 @@ describe Line::Bot::Client do
       File.open(RICH_MENU_INVALID_FILE_EXTENSION_PATH) do |file|
         client.create_rich_menu_image('1234567', file)
       end
+    end.to raise_error(ArgumentError)
+  end
+
+  it 'uploads invalid content type uri' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content'
+    stub_request(:post, uri_template).to_return(body: '{}', status: 200)
+
+    text_url = 'https://line.example.org/rich_menu.txt'
+    text_content = File.open(RICH_MENU_INVALID_FILE_EXTENSION_PATH).read
+    stub_request(:get, text_url).to_return(body: text_content, status: 200, headers: { 'Content-Type' => 'plain/text' })
+
+    expect do
+      client.create_rich_menu_image('1234567', URI.parse(text_url).open)
     end.to raise_error(ArgumentError)
   end
 end
