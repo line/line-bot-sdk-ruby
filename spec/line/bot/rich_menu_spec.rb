@@ -178,7 +178,7 @@ describe Line::Bot::Client do
       .with(body: File.open(RICH_MENU_IMAGE_FILE_PATH).read)
   end
 
-  it 'uploads and attaches am image to a rich menu from uri' do
+  it 'uploads and attaches an image to a rich menu from uri' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_BLOB_ENDPOINT + '/bot/richmenu/1234567/content'
 
     stub_request(:post, uri_template).to_return(body: '{}', status: 200).with do |request|
@@ -188,7 +188,7 @@ describe Line::Bot::Client do
     image_url = 'https://line.example.org/rich_menu.png'
     image_content = File.open(RICH_MENU_IMAGE_FILE_PATH).read
     image_content.force_encoding('ASCII-8BIT')
-    stub_request(:get, image_url).to_return(body: image_content, status: 200, headers: { 'Content-type' => 'image/png' })
+    stub_request(:get, image_url).to_return(body: image_content, status: 200, headers: { 'Content-Type' => 'image/png' })
 
     client.create_rich_menu_image('1234567', URI.parse(image_url).open)
 
@@ -206,13 +206,13 @@ describe Line::Bot::Client do
     end.to raise_error(ArgumentError)
   end
 
-  it "uploads invalid content type uri" do
+  it 'uploads invalid content type uri' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/1234567/content'
     stub_request(:post, uri_template).to_return(body: '{}', status: 200)
 
     text_url = 'https://line.example.org/rich_menu.txt'
     text_content = File.open(RICH_MENU_INVALID_FILE_EXTENSION_PATH).read
-    stub_request(:get, text_url).to_return(body: text_content, status: 200, headers: { 'Content-type' => 'plain/text' })
+    stub_request(:get, text_url).to_return(body: text_content, status: 200, headers: { 'Content-Type' => 'plain/text' })
 
     expect do
       client.create_rich_menu_image('1234567', URI.parse(text_url).open)
