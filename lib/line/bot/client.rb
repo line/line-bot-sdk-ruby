@@ -20,12 +20,6 @@ require 'uri'
 module Line
   module Bot
     # API Client of LINE Bot SDK Ruby
-    #
-    #   @client ||= Line::Bot::Client.new do |config|
-    #     config.channel_id = ENV["LINE_CHANNEL_ID"]
-    #     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-    #     config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
-    #   end
     class Client
       #  @return [String]
       attr_accessor :channel_token, :channel_id, :channel_secret, :endpoint, :blob_endpoint
@@ -40,7 +34,9 @@ module Line
       #
       # @param options [Hash]
       # @return [Line::Bot::Client]
-      def initialize(options = {})
+      def initialize(options = { channel_token: ENV["LINE_CHANNEL_TOKEN"],
+                                 channel_id: ENV["LINE_CHANNEL_ID"],
+                                 channel_secret: ENV["LINE_CHANNEL_SECRET"] })
         options.each do |key, value|
           instance_variable_set("@#{key}", value)
         end

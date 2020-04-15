@@ -126,4 +126,15 @@ describe Line::Bot::Client do
     messages = body[:messages]
     expect(messages[0]).to eq message
   end
+
+  it 'reads credentials from ENV' do
+    ENV['LINE_CHANNEL_ID'] = 'CHANNEL_ID'
+    ENV['LINE_CHANNEL_SECRET'] = 'CHANNEL_SECRET'
+    ENV['LINE_CHANNEL_TOKEN'] = 'CHANNEL_TOKEN'
+
+    client = Line::Bot::Client.new
+    expect(client.channel_id).to eq 'CHANNEL_ID'
+    expect(client.channel_secret).to eq 'CHANNEL_SECRET'
+    expect(client.channel_token).to eq 'CHANNEL_TOKEN'
+  end
 end
