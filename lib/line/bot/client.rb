@@ -34,11 +34,13 @@ module Line
       #
       # @param options [Hash]
       # @return [Line::Bot::Client]
-      def initialize(options = { channel_token: ENV["LINE_CHANNEL_TOKEN"],
-                                 channel_id: ENV["LINE_CHANNEL_ID"],
-                                 channel_secret: ENV["LINE_CHANNEL_SECRET"] })
+      def initialize(options = {})
         options.each do |key, value|
           instance_variable_set("@#{key}", value)
+        end
+        %w[channel_token channel_id channel_secret].each do |key|
+          value = ENV["LINE_#{key.upcase}"]
+          instance_variable_set("@#{key}", value) if value
         end
         yield(self) if block_given?
       end
