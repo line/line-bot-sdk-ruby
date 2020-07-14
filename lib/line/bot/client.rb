@@ -107,14 +107,14 @@ module Line
       # @param user_id [String] User Id
       # @param messages [Hash or Array] Message Objects
       # @return [Net::HTTPResponse]
-      def push_message(user_id, messages)
+      def push_message(user_id, messages, headers={})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
 
         endpoint_path = '/bot/message/push'
         payload = { to: user_id, messages: messages }.to_json
-        post(endpoint, endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, headers.merge(credentials))
       end
 
       # Reply messages to a user using replyToken.
@@ -152,7 +152,7 @@ module Line
       # @param to [Array or String] Array of userIds
       # @param messages [Hash or Array] Message Objects
       # @return [Net::HTTPResponse]
-      def multicast(to, messages)
+      def multicast(to, messages, headers={})
         channel_token_required
 
         to = [to] if to.is_a?(String)
@@ -160,21 +160,21 @@ module Line
 
         endpoint_path = '/bot/message/multicast'
         payload = { to: to, messages: messages }.to_json
-        post(endpoint, endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, headers.merge(credentials))
       end
 
       # Send messages to all friends.
       #
       # @param messages [Hash or Array] Message Objects
       # @return [Net::HTTPResponse]
-      def broadcast(messages)
+      def broadcast(messages, headers={})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
 
         endpoint_path = '/bot/message/broadcast'
         payload = { messages: messages }.to_json
-        post(endpoint, endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, headers.merge(credentials))
       end
 
       # Narrowcast messages to users
@@ -188,7 +188,7 @@ module Line
       # @param limit [Hash]
       #
       # @return [Net::HTTPResponse]
-      def narrowcast(messages, recipient: nil, filter: nil, limit: nil)
+      def narrowcast(messages, recipient: nil, filter: nil, limit: nil, headers: {})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
@@ -200,7 +200,7 @@ module Line
           filter: filter,
           limit: limit
         }.to_json
-        post(endpoint, endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, headers.merge(credentials))
       end
 
       def leave_group(group_id)
