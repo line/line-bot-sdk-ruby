@@ -129,6 +129,19 @@ def handle_message(event)
         reply_text(event, "Bot can't use profile API without user ID")
       end
 
+    when 'emoji'
+      reply_content(event, {
+        type: 'text',
+        text: 'Look at this: $ It\'s a LINE emoji!',
+        emojis: [
+          {
+              index: 14,
+              productId: '5ac1bfd5040ab15980c9b435',
+              emojiId: '001'
+          }
+        ]
+      })
+
     when 'buttons'
       reply_content(event, {
         type: 'template',
