@@ -152,9 +152,9 @@ describe Line::Bot::Client do
       text: "Hello, world"
     }
 
-    client.push_message(user_id, message, {'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000'})
-    client.multicast(user_id, message, {'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000'})
+    client.push_message(user_id, message, 'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000')
+    client.multicast(user_id, message, 'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000')
     client.narrowcast(message, headers: {'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000'})
-    client.broadcast(message, {'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000'})
+    client.broadcast(message, 'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000')
   end
 end
