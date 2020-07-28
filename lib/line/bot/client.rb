@@ -114,7 +114,7 @@ module Line
 
         endpoint_path = '/bot/message/push'
         payload = { to: user_id, messages: messages }.to_json
-        post(endpoint, endpoint_path, payload, headers.merge(credentials))
+        post(endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
       # Reply messages to a user using replyToken.
@@ -160,7 +160,7 @@ module Line
 
         endpoint_path = '/bot/message/multicast'
         payload = { to: to, messages: messages }.to_json
-        post(endpoint, endpoint_path, payload, headers.merge(credentials))
+        post(endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
       # Send messages to all friends.
@@ -174,7 +174,7 @@ module Line
 
         endpoint_path = '/bot/message/broadcast'
         payload = { messages: messages }.to_json
-        post(endpoint, endpoint_path, payload, headers.merge(credentials))
+        post(endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
       # Narrowcast messages to users
@@ -200,7 +200,7 @@ module Line
           filter: filter,
           limit: limit
         }.to_json
-        post(endpoint, endpoint_path, payload, headers.merge(credentials))
+        post(endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
       def leave_group(group_id)
