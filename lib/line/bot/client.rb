@@ -106,6 +106,7 @@ module Line
       #
       # @param user_id [String] User Id
       # @param messages [Hash or Array] Message Objects
+      # @param headers [Hash] HTTP Headers
       # @return [Net::HTTPResponse]
       def push_message(user_id, messages, headers = {})
         channel_token_required
@@ -151,6 +152,7 @@ module Line
       #
       # @param to [Array or String] Array of userIds
       # @param messages [Hash or Array] Message Objects
+      # @param headers [Hash] HTTP Headers
       # @return [Net::HTTPResponse]
       def multicast(to, messages, headers = {})
         channel_token_required
@@ -166,6 +168,8 @@ module Line
       # Send messages to all friends.
       #
       # @param messages [Hash or Array] Message Objects
+      # @param headers [Hash] HTTP Headers
+      #
       # @return [Net::HTTPResponse]
       def broadcast(messages, headers = {})
         channel_token_required
@@ -186,6 +190,7 @@ module Line
       # @param recipient [Hash]
       # @param filter [Hash]
       # @param limit [Hash]
+      # @param headers [Hash]
       #
       # @return [Net::HTTPResponse]
       def narrowcast(messages, recipient: nil, filter: nil, limit: nil, headers: {})
