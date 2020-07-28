@@ -107,7 +107,7 @@ module Line
       # @param user_id [String] User Id
       # @param messages [Hash or Array] Message Objects
       # @return [Net::HTTPResponse]
-      def push_message(user_id, messages, headers={})
+      def push_message(user_id, messages, headers = {})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
@@ -152,7 +152,7 @@ module Line
       # @param to [Array or String] Array of userIds
       # @param messages [Hash or Array] Message Objects
       # @return [Net::HTTPResponse]
-      def multicast(to, messages, headers={})
+      def multicast(to, messages, headers = {})
         channel_token_required
 
         to = [to] if to.is_a?(String)
@@ -167,7 +167,7 @@ module Line
       #
       # @param messages [Hash or Array] Message Objects
       # @return [Net::HTTPResponse]
-      def broadcast(messages, headers={})
+      def broadcast(messages, headers = {})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
