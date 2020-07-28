@@ -108,7 +108,7 @@ module Line
       # @param messages [Hash or Array] Message Objects
       # @param headers [Hash] HTTP Headers
       # @return [Net::HTTPResponse]
-      def push_message(user_id, messages, headers = {})
+      def push_message(user_id, messages, headers: {})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
@@ -154,7 +154,7 @@ module Line
       # @param messages [Hash or Array] Message Objects
       # @param headers [Hash] HTTP Headers
       # @return [Net::HTTPResponse]
-      def multicast(to, messages, headers = {})
+      def multicast(to, messages, headers: {})
         channel_token_required
 
         to = [to] if to.is_a?(String)
@@ -171,7 +171,7 @@ module Line
       # @param headers [Hash] HTTP Headers
       #
       # @return [Net::HTTPResponse]
-      def broadcast(messages, headers = {})
+      def broadcast(messages, headers: {})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
@@ -190,7 +190,7 @@ module Line
       # @param recipient [Hash]
       # @param filter [Hash]
       # @param limit [Hash]
-      # @param headers [Hash]
+      # @param headers [Hash] HTTP Headers
       #
       # @return [Net::HTTPResponse]
       def narrowcast(messages, recipient: nil, filter: nil, limit: nil, headers: {})
