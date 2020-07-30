@@ -104,7 +104,7 @@ module Line
 
       # Issue channel access token v2.1
       #
-      # @param grant_type [String] jwt
+      # @param jwt [String]
       #
       # @return [Net::HTTPResponse]
       def issue_channel_access_token_21(jwt)
@@ -132,8 +132,8 @@ module Line
 
         endpoint_path = '/oauth2/v2.1/revoke'
         payload = URI.encode_www_form(
-          client_id: client_id,
-          client_secret: client_secret,
+          client_id: channel_id,
+          client_secret: channel_secret,
           access_token: access_token
         )
         headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
@@ -149,7 +149,7 @@ module Line
         channel_id_required
         channel_secret_required
 
-        endpoint_path = '/oauth2/v2.1/kid'
+        endpoint_path = '/oauth2/v2.1/tokens/kid'
         payload = URI.encode_www_form(
           grant_type: 'client_credentials',
           client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',

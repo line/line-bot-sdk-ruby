@@ -95,7 +95,7 @@ describe Line::Bot::Client do
 
     client = generate_client
 
-    response = client.revoke_channel_access_token_21('sDTOzw5wIfxxxxPEzcmeQA'):
+    response = client.revoke_channel_access_token_21('sDTOzw5wIfxxxxPEzcmeQA')
 
     expect(response).to be_a(Net::HTTPOK)
   end
