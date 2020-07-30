@@ -104,7 +104,7 @@ module Line
 
       # Issue channel access token v2.1
       #
-      # @param grant_type [string] client_assertion
+      # @param grant_type [String] jwt
       #
       # @return [Net::HTTPResponse]
       def issue_channel_access_token_21(jwt)
@@ -112,16 +112,18 @@ module Line
         channel_secret_required
 
         endpoint_path = '/oauth2/v2.1/token'
-        payload = uri.encode_www_form(
+        payload = URI.encode_www_form(
           grant_type: 'client_credentials',
           client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
           client_assertion: jwt
         )
-        headers = { 'content-type' => 'application/x-www-form-urlencoded' }
+        headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
         post(endpoint, endpoint_path, payload, headers)
       end
 
       # Revoke channel access token v2.1
+      #
+      # @param access_token [String]
       #
       # @return [Net::HTTPResponse]
       def revoke_channel_access_token_21(access_token)
@@ -140,18 +142,20 @@ module Line
 
       # Get all valid channel access token key IDs v2.1
       #
+      # @param jwt [String]
+      #
       # @return [Net::HTTPResponse]
       def get_channel_access_token_key_ids_21(jwt)
         channel_id_required
         channel_secret_required
 
         endpoint_path = '/oauth2/v2.1/kid'
-        payload = uri.encode_www_form(
+        payload = URI.encode_www_form(
           grant_type: 'client_credentials',
           client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
           client_assertion: jwt
         )
-        headers = { 'content-type' => 'application/x-www-form-urlencoded' }
+        headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
         post(endpoint, endpoint_path, payload, headers)
       end
 
