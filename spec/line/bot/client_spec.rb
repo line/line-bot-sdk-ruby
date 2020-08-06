@@ -126,4 +126,35 @@ describe Line::Bot::Client do
     messages = body[:messages]
     expect(messages[0]).to eq message
   end
+
+  it 'set X-Line-Retry-Key' do
+    client = Line::Bot::Client.new do |config|
+      config.channel_token = dummy_config[:channel_token]
+    end
+
+    available_endpoints = [
+      '/bot/message/push',
+      '/bot/message/multicast',
+      '/bot/message/narrowcast',
+      '/bot/message/broadcast'
+    ]
+
+    available_endpoints.each do |available_endpoint|
+      uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + available_endpoint
+      stub_request(:post, uri_template).with do |request|
+        expect(request.headers['X-Line-Retry-Key']).to eq '123e4567-e89b-12d3-a456-426614174000'
+      end.to_return(body: '{}', status: 200)
+    end
+
+    user_id = "user1"
+    message = {
+      type: "text",
+      text: "Hello, world"
+    }
+
+    client.push_message(user_id, message, headers: {'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000'})
+    client.multicast(user_id, message, headers: {'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000'})
+    client.narrowcast(message, headers: {'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000'})
+    client.broadcast(message, headers: {'X-Line-Retry-Key' => '123e4567-e89b-12d3-a456-426614174000'})
+  end
 end
