@@ -300,6 +300,42 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Gets the group ID, group name, and group icon URL of a group where the LINE Official Account is a member.
+      #
+      # @param group_id [String] Group's identifier
+      #
+      # @return [Net::HTTPResponse]
+      def get_group_summary(group_id)
+        channel_token_required
+
+        endpoint_path = "/bot/group/#{group_id}/summary"
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Gets the user IDs of the members of a group that the bot is in.
+      #
+      # @param group_id [String] Group's identifier
+      #
+      # @return [Net::HTTPResponse]
+      def get_group_members_count(group_id)
+        channel_token_required
+
+        endpoint_path = "/bot/group/#{group_id}/members/count"
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Gets the count of members in a room.
+      #
+      # @param room_id [String] Room's identifier
+      #
+      # @return [Net::HTTPResponse]
+      def get_room_members_count(room_id)
+        channel_token_required
+
+        endpoint_path = "/bot/room/#{room_id}/members/count"
+        get(endpoint, endpoint_path, credentials)
+      end
+
       # Get a list of all uploaded rich menus
       #
       # @return [Net::HTTPResponse]

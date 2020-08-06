@@ -31,6 +31,26 @@ GROUP_ROOM_MEMBER_PROFILE_CONTENT = <<"EOS"
 }
 EOS
 
+GROUP_SUMMARY = <<"EOS"
+{
+    "groupId": "group_id",
+    "groupName": "Group name",
+    "pictureUrl":"https://example.com/abcdefghijklmn"
+}
+EOS
+
+GROUP_MEMBERS_COUNT = <<"EOS"
+{
+   "count": 3
+}
+EOS
+
+ROOM_MEMBERS_COUNT = <<"EOS"
+{
+   "count": 3
+}
+EOS
+
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
@@ -135,5 +155,46 @@ describe Line::Bot::Client do
     expect(contact['userId']).to eq "Uxxxxxxxxxxxxxx11"
     expect(contact['displayName']).to eq "LINE taro"
     expect(contact['pictureUrl']).to eq "http://obs.line-apps.com/image"
+  end
+
+  it 'gets group summary' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/group/{groupId}/summary'
+    stub_request(:get, uri_template).to_return { |request| {body: GROUP_SUMMARY, status: 200} }
+
+    client = generate_client
+    group_id = "group_id"
+
+    response = client.get_group_summary(group_id)
+
+    contact = JSON.parse(response.body)
+    expect(contact['groupId']).to eq "group_id"
+    expect(contact['groupName']).to eq "Group name"
+    expect(contact['pictureUrl']).to eq "https://example.com/abcdefghijklmn"
+  end
+
+  it 'gets group members count' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/group/{groupId}/members/count'
+    stub_request(:get, uri_template).to_return { |request| {body: GROUP_MEMBERS_COUNT, status: 200} }
+
+    client = generate_client
+    group_id = "group_id"
+
+    response = client.get_group_members_count(group_id)
+
+    contact = JSON.parse(response.body)
+    expect(contact['count']).to eq 3
+  end
+
+  it 'gets group members count' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/room/{roomId}/members/count'
+    stub_request(:get, uri_template).to_return { |request| {body: ROOM_MEMBERS_COUNT, status: 200} }
+
+    client = generate_client
+    room_id = "room_id"
+
+    response = client.get_room_members_count(room_id)
+
+    contact = JSON.parse(response.body)
+    expect(contact['count']).to eq 3
   end
 end
