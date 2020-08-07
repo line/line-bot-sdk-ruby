@@ -12,16 +12,16 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require 'line/bot/event/base'
-require 'line/bot/event/account_link'
-require 'line/bot/event/beacon'
-require 'line/bot/event/follow'
-require 'line/bot/event/join'
-require 'line/bot/event/leave'
-require 'line/bot/event/message'
-require 'line/bot/event/postback'
-require 'line/bot/event/unfollow'
-require 'line/bot/event/unsend'
-require 'line/bot/event/member_joined'
-require 'line/bot/event/member_left'
-require 'line/bot/event/things'
+module Line
+  module Bot
+    module Event
+      # Event object for when the user unsends a message in a group or room.
+      #
+      # No replyToken is generated for this event.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#unsend-event
+      class Unsend < Base
+      end
+    end
+  end
+end
