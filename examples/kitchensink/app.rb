@@ -80,6 +80,9 @@ post '/callback' do
     when Line::Bot::Event::VideoPlayComplete
       reply_text(event, "[VIDEOPLAYCOMPLETE]\n#{JSON.generate(event['videoPlayComplete'])}")
 
+    when Line::Bot::Event::Unsend
+      handle_unsend(event)
+
     else
       reply_text(event, "Unknown event type: #{event}")
     end
@@ -614,5 +617,21 @@ def handle_location(event)
     address: message['address'],
     latitude: message['latitude'],
     longitude: message['longitude']
+  })
+end
+
+def handle_unsend(event)
+  source = event['source']
+  id = case source['type']
+  when 'user'
+    source['userId']
+  when 'group'
+    source['groupId']
+  when 'room'
+    source['roomId']
+  end
+  client.push_message(id, {
+    type: 'text',
+    text: "[UNSEND]\nmessageId: #{event['unsend']['messageId']}"
   })
 end
