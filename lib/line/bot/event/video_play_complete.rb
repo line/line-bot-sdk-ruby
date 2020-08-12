@@ -12,17 +12,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require 'line/bot/event/base'
-require 'line/bot/event/account_link'
-require 'line/bot/event/beacon'
-require 'line/bot/event/follow'
-require 'line/bot/event/join'
-require 'line/bot/event/leave'
-require 'line/bot/event/message'
-require 'line/bot/event/postback'
-require 'line/bot/event/unfollow'
-require 'line/bot/event/unsend'
-require 'line/bot/event/member_joined'
-require 'line/bot/event/member_left'
-require 'line/bot/event/things'
-require 'line/bot/event/video_play_complete'
+module Line
+  module Bot
+    module Event
+      # Event for when a user finishes viewing a video at least once with the specified trackingId sent by the LINE Official Account.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#video-viewing-complete
+      class VideoPlayComplete < Base
+      end
+    end
+  end
+end

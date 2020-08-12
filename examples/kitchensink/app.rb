@@ -77,6 +77,9 @@ post '/callback' do
     when Line::Bot::Event::Things
       reply_text(event, "[THINGS]\n#{JSON.generate(event['things'])}")
 
+    when Line::Bot::Event::VideoPlayComplete
+      reply_text(event, "[VIDEOPLAYCOMPLETE]\n#{JSON.generate(event['videoPlayComplete'])}")
+
     else
       reply_text(event, "Unknown event type: #{event}")
     end
