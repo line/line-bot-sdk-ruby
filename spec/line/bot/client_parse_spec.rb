@@ -285,6 +285,18 @@ EVENTS_CONTENT = <<"EOS"
       "unsend": {
         "messageId": "325708"
       }
+    },
+    {
+      "type": "videoPlayComplete",
+      "replyToken": "nHuyWi...",
+      "source": {
+        "type": "user",
+        "userId": "U4af4980629..."
+      },
+      "timestamp": 12345678901234,
+      "videoPlayComplete": {
+        "trackingId": "track_id"
+      }
     }
   ]
 }
@@ -417,6 +429,7 @@ describe Line::Bot::Client do
     expect(events[18].device_id).to eq('deviceid4')
 
     expect(events[19]).to be_a(Line::Bot::Event::Unsend)
+    expect(events[20]).to be_a(Line::Bot::Event::VideoPlayComplete)
   end
 
   it 'parses unknown event' do
