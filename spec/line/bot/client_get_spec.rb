@@ -194,7 +194,7 @@ BOT_INFO_CONTENT = <<"EOS"
   "userId": "Ufr47556f2e40dba2456887320ba7c76d",
   "basicId": "@abcdefghijklmn",
   "displayName": "Example",
-  "pictureUrl": "https://obs.line-apps.com/abcdefghijklmn",
+  "pictureUrl": "https://example.com/hogehoge",
   "chatMode": "chat",
   "markAsReadMode": "manual"
 }
@@ -477,7 +477,7 @@ describe Line::Bot::Client do
       userId: 'Ufr47556f2e40dba2456887320ba7c76d',
       basicId: '@abcdefghijklmn',
       displayName: 'Example',
-      pictureUrl: 'https://obs.line-apps.com/abcdefghijklmn',
+      pictureUrl: 'https://example.com/hogehoge',
       chatMode: 'chat',
       markAsReadMode: 'manual'
     )
