@@ -189,6 +189,17 @@ USER_INTERACTION_STATISTICS_CONTENT = <<EOS
 }
 EOS
 
+BOT_INFO_CONTENT = <<"EOS"
+{
+  "userId": "Ufr47556f2e40dba2456887320ba7c76d",
+  "basicId": "@abcdefghijklmn",
+  "displayName": "Example",
+  "pictureUrl": "https://obs.line-apps.com/abcdefghijklmn",
+  "chatMode": "chat",
+  "markAsReadMode": "manual"
+}
+EOS
+
 WebMock.allow_net_connect!
 
 describe Line::Bot::Client do
@@ -451,6 +462,24 @@ describe Line::Bot::Client do
           uniqueClickOfRequest: -1
         }
       ]
+    )
+  end
+
+  it 'get bot info' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/info'
+    stub_request(:get, uri_template).to_return(body: BOT_INFO_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_bot_info
+
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json).to eq(
+      userId: 'Ufr47556f2e40dba2456887320ba7c76d',
+      basicId: '@abcdefghijklmn',
+      displayName: 'Example',
+      pictureUrl: 'https://obs.line-apps.com/abcdefghijklmn',
+      chatMode: 'chat',
+      markAsReadMode: 'manual'
     )
   end
 end

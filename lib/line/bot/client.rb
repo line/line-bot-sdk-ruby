@@ -631,6 +631,16 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Gets a bot's basic information.
+      #
+      # @return [Net::HTTPResponse]
+      def get_bot_info
+        channel_token_required
+
+        endpoint_path = '/bot/info'
+        get(endpoint, endpoint_path, credentials)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_base [String]
