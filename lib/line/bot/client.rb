@@ -66,6 +66,10 @@ module Line
                          end
       end
 
+      def liff_endpoint
+        @liff_endpoint ||= endpoint.sub(%r{/v2\z}, '')
+      end
+
       # @return [Hash]
       def credentials
         {
@@ -641,6 +645,34 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      def get_liff_apps
+        channel_token_required
+
+        endpoint_path = '/liff/v1/apps'
+        get(liff_endpoint, endpoint_path, credentials)
+      end
+
+      def create_liff_app(app)
+        channel_token_required
+
+        endpoint_path = '/liff/v1/apps'
+        post(liff_endpoint, endpoint_path, app.to_json, credentials)
+      end
+
+      def update_liff_app(liff_id, app)
+        channel_token_required
+
+        endpoint_path = "/liff/v1/apps/#{liff_id}"
+        put(liff_endpoint, endpoint_path, app.to_json, credentials)
+      end
+
+      def delete_liff_app(liff_id)
+        channel_token_required
+
+        endpoint_path = "/liff/v1/apps/#{liff_id}"
+        delete(liff_endpoint, endpoint_path, credentials)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_base [String]
@@ -664,6 +696,19 @@ module Line
       def post(endpoint_base, endpoint_path, payload = nil, headers = {})
         headers = API::DEFAULT_HEADERS.merge(headers)
         httpclient.post(endpoint_base + endpoint_path, payload, headers)
+      end
+
+      # Put data, get content of specified URL.
+      #
+      # @param endpoint_base [String]
+      # @param endpoint_path [String]
+      # @param payload [String or NilClass]
+      # @param headers [Hash]
+      #
+      # @return [Net::HTTPResponse]
+      def put(endpoint_base, endpoint_path, payload = nil, headers = {})
+        headers = API::DEFAULT_HEADERS.merge(headers)
+        httpclient.put(endpoint_base + endpoint_path, payload, headers)
       end
 
       # Delete content of specified URL.
