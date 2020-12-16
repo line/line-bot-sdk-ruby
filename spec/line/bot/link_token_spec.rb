@@ -8,8 +8,6 @@ LINK_TOKEN_CONTENT = <<"EOS"
 }
 EOS
 
-WebMock.allow_net_connect!
-
 describe Line::Bot::Client do
   let(:client) do
     dummy_config = {

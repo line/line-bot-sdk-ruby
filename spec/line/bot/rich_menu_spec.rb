@@ -41,8 +41,6 @@ EOS
 RICH_MENU_IMAGE_FILE_PATH = 'spec/fixtures/line/bot/rich_menu_01.png'
 RICH_MENU_INVALID_FILE_EXTENSION_PATH = 'spec/fixtures/line/bot/rich_menu_01.txt'
 
-WebMock.allow_net_connect!
-
 describe Line::Bot::Client do
   let(:client) do
     dummy_config = {
