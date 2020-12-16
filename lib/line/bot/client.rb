@@ -67,7 +67,7 @@ module Line
       end
 
       def liff_endpoint
-        @liff_endpoint ||= endpoint.sub(%r{/v2\z}, '')
+        @liff_endpoint ||= API::DEFAULT_LIFF_ENDPOINT
       end
 
       # @return [Hash]
@@ -648,28 +648,28 @@ module Line
       def get_liff_apps
         channel_token_required
 
-        endpoint_path = '/liff/v1/apps'
+        endpoint_path = '/apps'
         get(liff_endpoint, endpoint_path, credentials)
       end
 
       def create_liff_app(app)
         channel_token_required
 
-        endpoint_path = '/liff/v1/apps'
+        endpoint_path = '/apps'
         post(liff_endpoint, endpoint_path, app.to_json, credentials)
       end
 
       def update_liff_app(liff_id, app)
         channel_token_required
 
-        endpoint_path = "/liff/v1/apps/#{liff_id}"
+        endpoint_path = "/apps/#{liff_id}"
         put(liff_endpoint, endpoint_path, app.to_json, credentials)
       end
 
       def delete_liff_app(liff_id)
         channel_token_required
 
-        endpoint_path = "/liff/v1/apps/#{liff_id}"
+        endpoint_path = "/apps/#{liff_id}"
         delete(liff_endpoint, endpoint_path, credentials)
       end
 
