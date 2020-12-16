@@ -726,7 +726,7 @@ module Line
       # @param opts [Hash] options
       #
       # @return [Net::HTTPResponse] This response includes an audience_group_id.
-      def create_impression_audience
+      def create_impression_audience(params)
         channel_token_required
 
         endpoint_path = '/bot/audienceGroup/imp'
