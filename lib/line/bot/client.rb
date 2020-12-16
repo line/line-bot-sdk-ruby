@@ -688,6 +688,21 @@ module Line
         post(endpoint, endpoint_path, params.to_json, credentials)
       end
 
+      # Update an audience group
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
+      #
+      # @param opts [Hash] options
+      #
+      # @return [Net::HTTPResponse] This response includes an audience_group_id.
+      def update_user_id_audience(params)
+        channel_token_required
+
+        endpoint_path = '/bot/audienceGroup/upload'
+        put(endpoint, endpoint_path, params.to_json, credentials)
+      end
+
       # Create an audience group of users that clicked a URL in a message sent in the past
       #
       # Parameters are described here.
@@ -727,12 +742,15 @@ module Line
       def rename_audience(audience_group_id, description)
         channel_token_required
 
-        endpoint_path = "/bot/audienceGroup/#{audience_group_id}"
+        endpoint_path = "/bot/audienceGroup/#{audience_group_id}/updateDescription"
         body = {description: description}
         put(endpoint, endpoint_path, body.to_json, credentials)
       end
 
       # Delete an existing audience group
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
       #
       # @param audience_group_id [Integer]
       #
@@ -745,6 +763,9 @@ module Line
       end
 
       # Get audience group data
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#get-audience-group
       #
       # @param audience_group_id [Integer]
       #
@@ -761,17 +782,20 @@ module Line
       # Parameters are described here.
       # https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
       #
-      # @param params [Hash] key name `size` is required
+      # @param params [Hash] key name `page` is required
       #
       # @return [Net::HTTPResponse]
       def get_audiences(params)
         channel_token_required
 
-        endpoint_path = "/bot/audienceGroup/list?" + params.map{|k, v| "#{k}=#{v}"}.join('&')
+        endpoint_path = "/bot/audienceGroup/list?" + URI.encode_www_form(params)
         get(endpoint, endpoint_path, credentials)
       end
 
       # Get the authority level of the audience
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#get-authority-level
       #
       # @return [Net::HTTPResponse]
       def get_audience_authority_level
@@ -782,6 +806,9 @@ module Line
       end
 
       # Change the authority level of the audience
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#change-authority-level
       #
       # @param authority_level [String] value must be `PUBLIC` or `PRIVATE`
       #
