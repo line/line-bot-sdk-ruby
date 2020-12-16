@@ -48,7 +48,7 @@ describe Line::Bot::Client do
 
     response = client.update_liff_app('1234567-abcdefgh', JSON.parse(LIFF_APP_CONTENT))
     expect(WebMock).to have_requested(:put, LIFF_ENDPOINT + '/liff/v1/apps/1234567-abcdefgh')
-    .with(body: JSON.parse(LIFF_APP_CONTENT).to_json)
+      .with(body: JSON.parse(LIFF_APP_CONTENT).to_json)
     expect(response.body).to eq LIFF_APP_CONTENT
   end
 
