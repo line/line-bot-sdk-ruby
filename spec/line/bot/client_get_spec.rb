@@ -200,8 +200,6 @@ BOT_INFO_CONTENT = <<"EOS"
 }
 EOS
 
-WebMock.allow_net_connect!
-
 describe Line::Bot::Client do
   before do
   end

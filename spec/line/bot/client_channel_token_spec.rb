@@ -10,8 +10,6 @@ OAUTH_CHANNEL_TOKEN_ISSUE_CONTENT = <<"EOS"
 }
 EOS
 
-WebMock.allow_net_connect!
-
 describe Line::Bot::Client do
   def dummy_config
     {

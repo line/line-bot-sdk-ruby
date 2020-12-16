@@ -18,8 +18,6 @@ class TestClient
   end
 end
 
-WebMock.allow_net_connect!
-
 describe Line::Bot::Client do
   def dummy_config
     {

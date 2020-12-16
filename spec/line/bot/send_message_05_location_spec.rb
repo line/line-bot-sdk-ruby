@@ -2,8 +2,6 @@ require 'spec_helper'
 require 'webmock/rspec'
 require 'json'
 
-WebMock.allow_net_connect!
-
 describe Line::Bot::Client do
   it 'pushes the location message' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/push'
