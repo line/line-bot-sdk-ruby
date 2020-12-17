@@ -19,6 +19,7 @@ module Line
     module API
       DEFAULT_ENDPOINT = "https://api.line.me/v2"
       DEFAULT_BLOB_ENDPOINT = "https://api-data.line.me/v2"
+      DEFAULT_LIFF_ENDPOINT = "https://api.line.me/liff/v1"
 
       DEFAULT_HEADERS = {
         'Content-Type' => 'application/json; charset=UTF-8',
