@@ -272,6 +272,31 @@ EVENTS_CONTENT = <<"EOS"
         "deviceId": "deviceid4",
         "type": "unsupport"
       }
+    },
+    {
+      "type": "unsend",
+      "mode": "active",
+      "timestamp": 1462629479859,
+      "source": {
+        "type": "group",
+        "groupId": "Ca56f94637c...",
+        "userId": "U4af4980629..."
+      },
+      "unsend": {
+        "messageId": "325708"
+      }
+    },
+    {
+      "type": "videoPlayComplete",
+      "replyToken": "nHuyWi...",
+      "source": {
+        "type": "user",
+        "userId": "U4af4980629..."
+      },
+      "timestamp": 12345678901234,
+      "videoPlayComplete": {
+        "trackingId": "track_id"
+      }
     }
   ]
 }
@@ -402,6 +427,9 @@ describe Line::Bot::Client do
     expect(events[18]).to be_a(Line::Bot::Event::Things)
     expect(events[18].type).to eq(Line::Bot::Event::ThingsType::Unsupport)
     expect(events[18].device_id).to eq('deviceid4')
+
+    expect(events[19]).to be_a(Line::Bot::Event::Unsend)
+    expect(events[20]).to be_a(Line::Bot::Event::VideoPlayComplete)
   end
 
   it 'parses unknown event' do

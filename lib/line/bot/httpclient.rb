@@ -57,6 +57,11 @@ module Line
         http(uri).post(uri.request_uri, payload, header)
       end
 
+      def put(url, payload, header = {})
+        uri = URI(url)
+        http(uri).put(uri.request_uri, payload, header)
+      end
+
       def delete(url, header = {})
         uri = URI(url)
         http(uri).delete(uri.request_uri, header)

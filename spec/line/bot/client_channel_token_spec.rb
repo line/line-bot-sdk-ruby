@@ -32,8 +32,6 @@ GET_CHANNEL_ACCESS_TOKEN_KEY_IDS_21_CONTENT = <<"EOS"
 }
 EOS
 
-WebMock.allow_net_connect!
-
 describe Line::Bot::Client do
   def dummy_config
     {

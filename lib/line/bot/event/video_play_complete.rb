@@ -12,19 +12,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require 'line/bot/api/version'
-
 module Line
   module Bot
-    module API
-      DEFAULT_ENDPOINT = "https://api.line.me/v2"
-      DEFAULT_BLOB_ENDPOINT = "https://api-data.line.me/v2"
-      DEFAULT_LIFF_ENDPOINT = "https://api.line.me/liff/v1"
-
-      DEFAULT_HEADERS = {
-        'Content-Type' => 'application/json; charset=UTF-8',
-        'User-Agent'   => "LINE-BotSDK-Ruby/#{VERSION}"
-      }.freeze
+    module Event
+      # Event for when a user finishes viewing a video at least once with the specified trackingId sent by the LINE Official Account.
+      #
+      # https://developers.line.biz/en/reference/messaging-api/#video-viewing-complete
+      class VideoPlayComplete < Base
+      end
     end
   end
 end

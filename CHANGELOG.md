@@ -1,10 +1,47 @@
 # Change Log
 
+## [v1.16.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.16.0) (2020-08-13)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.15.0...v1.16.0)
+
+**Closed issues:**
+
+- The endpoint to get statistics is now available in Indonesia \(ID\) [\#194](https://github.com/line/line-bot-sdk-ruby/issues/194)
+
+**Merged pull requests:**
+
+- Add videoPlayComplete event and spec [\#196](https://github.com/line/line-bot-sdk-ruby/pull/196) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
+- Add example for unsend [\#195](https://github.com/line/line-bot-sdk-ruby/pull/195) ([gom](https://github.com/gom))
+- Add unsend event and spec [\#193](https://github.com/line/line-bot-sdk-ruby/pull/193) ([dlackty](https://github.com/dlackty))
+
+## [v1.15.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.15.0) (2020-08-06)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.14.1...v1.15.0)
+
+**Implemented enhancements:**
+
+- Support icon-nickname-switch [\#173](https://github.com/line/line-bot-sdk-ruby/issues/173)
+
+**Closed issues:**
+
+- Support Get user's language [\#181](https://github.com/line/line-bot-sdk-ruby/issues/181)
+- New property added to "sticker message" webhook event [\#154](https://github.com/line/line-bot-sdk-ruby/issues/154)
+- Support new Messaging API endpoints for friend statistics added on 10/16 [\#150](https://github.com/line/line-bot-sdk-ruby/issues/150)
+- Messaging API update for June 2020 [\#186](https://github.com/line/line-bot-sdk-ruby/issues/186)
+- Messaging API - May 2020 update [\#184](https://github.com/line/line-bot-sdk-ruby/issues/184)
+- Support LINE emoji in messages [\#180](https://github.com/line/line-bot-sdk-ruby/issues/180)
+
+**Merged pull requests:**
+
+- Release 1.15.0 [\#192](https://github.com/line/line-bot-sdk-ruby/pull/192) ([kimoto](https://github.com/kimoto))
+- Support X-Line-Retry-Key [\#189](https://github.com/line/line-bot-sdk-ruby/pull/189) ([kimoto](https://github.com/kimoto))
+- Add example for LINE emoji [\#188](https://github.com/line/line-bot-sdk-ruby/pull/188) ([kimoto](https://github.com/kimoto))
+- feat: endpoints for group and room informations [\#187](https://github.com/line/line-bot-sdk-ruby/pull/187) ([etrex](https://github.com/etrex))
+
 ## [v1.14.1](https://github.com/line/line-bot-sdk-ruby/tree/v1.14.1) (2020-04-06)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.14.0...v1.14.1)
 
 **Merged pull requests:**
 
+- Release 1.14.1 [\#178](https://github.com/line/line-bot-sdk-ruby/pull/178) ([kimoto](https://github.com/kimoto))
 - Accept open-uri as create\_rich\_menu\_image's argument [\#177](https://github.com/line/line-bot-sdk-ruby/pull/177) ([yskkin](https://github.com/yskkin))
 - Update rake requirement from ~\> 10.4 to ~\> 13.0 [\#176](https://github.com/line/line-bot-sdk-ruby/pull/176) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Update webmock requirement from ~\> 1.24 to ~\> 3.8 [\#175](https://github.com/line/line-bot-sdk-ruby/pull/175) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
@@ -31,6 +68,7 @@
 - Issue template [\#147](https://github.com/line/line-bot-sdk-ruby/issues/147)
 - Documentation - clean up [\#146](https://github.com/line/line-bot-sdk-ruby/issues/146)
 - Flex 1 update [\#144](https://github.com/line/line-bot-sdk-ruby/issues/144)
+- Release v1.14.0 [\#171](https://github.com/line/line-bot-sdk-ruby/pull/171) ([kimoto](https://github.com/kimoto))
 
 **Merged pull requests:**
 

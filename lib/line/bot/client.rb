@@ -66,6 +66,10 @@ module Line
                          end
       end
 
+      def liff_endpoint
+        @liff_endpoint ||= API::DEFAULT_LIFF_ENDPOINT
+      end
+
       # @return [Hash]
       def credentials
         {
@@ -163,15 +167,16 @@ module Line
       #
       # @param user_id [String] User Id
       # @param messages [Hash or Array] Message Objects
+      # @param headers [Hash] HTTP Headers
       # @return [Net::HTTPResponse]
-      def push_message(user_id, messages)
+      def push_message(user_id, messages, headers: {})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
 
         endpoint_path = '/bot/message/push'
         payload = { to: user_id, messages: messages }.to_json
-        post(endpoint, endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
       # Reply messages to a user using replyToken.
@@ -208,8 +213,9 @@ module Line
       #
       # @param to [Array or String] Array of userIds
       # @param messages [Hash or Array] Message Objects
+      # @param headers [Hash] HTTP Headers
       # @return [Net::HTTPResponse]
-      def multicast(to, messages)
+      def multicast(to, messages, headers: {})
         channel_token_required
 
         to = [to] if to.is_a?(String)
@@ -217,21 +223,23 @@ module Line
 
         endpoint_path = '/bot/message/multicast'
         payload = { to: to, messages: messages }.to_json
-        post(endpoint, endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
       # Send messages to all friends.
       #
       # @param messages [Hash or Array] Message Objects
+      # @param headers [Hash] HTTP Headers
+      #
       # @return [Net::HTTPResponse]
-      def broadcast(messages)
+      def broadcast(messages, headers: {})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
 
         endpoint_path = '/bot/message/broadcast'
         payload = { messages: messages }.to_json
-        post(endpoint, endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
       # Narrowcast messages to users
@@ -243,9 +251,10 @@ module Line
       # @param recipient [Hash]
       # @param filter [Hash]
       # @param limit [Hash]
+      # @param headers [Hash] HTTP Headers
       #
       # @return [Net::HTTPResponse]
-      def narrowcast(messages, recipient: nil, filter: nil, limit: nil)
+      def narrowcast(messages, recipient: nil, filter: nil, limit: nil, headers: {})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
@@ -257,7 +266,7 @@ module Line
           filter: filter,
           limit: limit
         }.to_json
-        post(endpoint, endpoint_path, payload, credentials)
+        post(endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
       def leave_group(group_id)
@@ -349,6 +358,42 @@ module Line
 
         endpoint_path = "/bot/room/#{room_id}/members/ids"
         endpoint_path += "?start=#{continuation_token}" if continuation_token
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Gets the group ID, group name, and group icon URL of a group where the LINE Official Account is a member.
+      #
+      # @param group_id [String] Group's identifier
+      #
+      # @return [Net::HTTPResponse]
+      def get_group_summary(group_id)
+        channel_token_required
+
+        endpoint_path = "/bot/group/#{group_id}/summary"
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Gets the user IDs of the members of a group that the bot is in.
+      #
+      # @param group_id [String] Group's identifier
+      #
+      # @return [Net::HTTPResponse]
+      def get_group_members_count(group_id)
+        channel_token_required
+
+        endpoint_path = "/bot/group/#{group_id}/members/count"
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Gets the count of members in a room.
+      #
+      # @param room_id [String] Room's identifier
+      #
+      # @return [Net::HTTPResponse]
+      def get_room_members_count(room_id)
+        channel_token_required
+
+        endpoint_path = "/bot/room/#{room_id}/members/count"
         get(endpoint, endpoint_path, credentials)
       end
 
@@ -647,6 +692,44 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Gets a bot's basic information.
+      #
+      # @return [Net::HTTPResponse]
+      def get_bot_info
+        channel_token_required
+
+        endpoint_path = '/bot/info'
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      def get_liff_apps
+        channel_token_required
+
+        endpoint_path = '/apps'
+        get(liff_endpoint, endpoint_path, credentials)
+      end
+
+      def create_liff_app(app)
+        channel_token_required
+
+        endpoint_path = '/apps'
+        post(liff_endpoint, endpoint_path, app.to_json, credentials)
+      end
+
+      def update_liff_app(liff_id, app)
+        channel_token_required
+
+        endpoint_path = "/apps/#{liff_id}"
+        put(liff_endpoint, endpoint_path, app.to_json, credentials)
+      end
+
+      def delete_liff_app(liff_id)
+        channel_token_required
+
+        endpoint_path = "/apps/#{liff_id}"
+        delete(liff_endpoint, endpoint_path, credentials)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_base [String]
@@ -670,6 +753,19 @@ module Line
       def post(endpoint_base, endpoint_path, payload = nil, headers = {})
         headers = API::DEFAULT_HEADERS.merge(headers)
         httpclient.post(endpoint_base + endpoint_path, payload, headers)
+      end
+
+      # Put data, get content of specified URL.
+      #
+      # @param endpoint_base [String]
+      # @param endpoint_path [String]
+      # @param payload [String or NilClass]
+      # @param headers [Hash]
+      #
+      # @return [Net::HTTPResponse]
+      def put(endpoint_base, endpoint_path, payload = nil, headers = {})
+        headers = API::DEFAULT_HEADERS.merge(headers)
+        httpclient.put(endpoint_base + endpoint_path, payload, headers)
       end
 
       # Delete content of specified URL.
