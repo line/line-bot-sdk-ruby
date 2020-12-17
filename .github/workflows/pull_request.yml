@@ -1,0 +1,20 @@
+name: Pull Request CI
+
+on: [ pull_request ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: [ '2.4', '2.5', '2.6', '2.7' ]
+    name: Ruby v${{ matrix.ruby }}
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+    - run: gem install bundler
+    - run: bundle install
+    - run: bundle exec rubocop
+    - run: bundle exec rspec
