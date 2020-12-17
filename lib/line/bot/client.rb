@@ -678,7 +678,7 @@ module Line
       # Parameters are described here.
       # https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
       #
-      # @param opts [Hash] options
+      # @param params [Hash] options
       #
       # @return [Net::HTTPResponse] This response includes an audience_group_id.
       def create_user_id_audience(params)
@@ -693,7 +693,7 @@ module Line
       # Parameters are described here.
       # https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
       #
-      # @param opts [Hash] options
+      # @param params [Hash] options
       #
       # @return [Net::HTTPResponse] This response includes an audience_group_id.
       def update_user_id_audience(params)
@@ -708,7 +708,7 @@ module Line
       # Parameters are described here.
       # https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
       #
-      # @param opts [Hash] options
+      # @param params [Hash] options
       #
       # @return [Net::HTTPResponse] This response includes an audience_group_id.
       def create_click_audience(params)
@@ -723,7 +723,7 @@ module Line
       # Parameters are described here.
       # https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
       #
-      # @param opts [Hash] options
+      # @param params [Hash] options
       #
       # @return [Net::HTTPResponse] This response includes an audience_group_id.
       def create_impression_audience(params)
