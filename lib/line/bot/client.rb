@@ -673,6 +673,154 @@ module Line
         delete(liff_endpoint, endpoint_path, credentials)
       end
 
+      # Create an audience group by uploading user_ids
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
+      #
+      # @param params [Hash] options
+      #
+      # @return [Net::HTTPResponse] This response includes an audience_group_id.
+      def create_user_id_audience(params)
+        channel_token_required
+
+        endpoint_path = '/bot/audienceGroup/upload'
+        post(endpoint, endpoint_path, params.to_json, credentials)
+      end
+
+      # Update an audience group
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
+      #
+      # @param params [Hash] options
+      #
+      # @return [Net::HTTPResponse] This response includes an audience_group_id.
+      def update_user_id_audience(params)
+        channel_token_required
+
+        endpoint_path = '/bot/audienceGroup/upload'
+        put(endpoint, endpoint_path, params.to_json, credentials)
+      end
+
+      # Create an audience group of users that clicked a URL in a message sent in the past
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
+      #
+      # @param params [Hash] options
+      #
+      # @return [Net::HTTPResponse] This response includes an audience_group_id.
+      def create_click_audience(params)
+        channel_token_required
+
+        endpoint_path = '/bot/audienceGroup/click'
+        post(endpoint, endpoint_path, params.to_json, credentials)
+      end
+
+      # Create an audience group of users that opened a message sent in the past
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
+      #
+      # @param params [Hash] options
+      #
+      # @return [Net::HTTPResponse] This response includes an audience_group_id.
+      def create_impression_audience(params)
+        channel_token_required
+
+        endpoint_path = '/bot/audienceGroup/imp'
+        post(endpoint, endpoint_path, params.to_json, credentials)
+      end
+
+      # Rename an existing audience group
+      #
+      # @param audience_group_id [Integer]
+      # @param description [String]
+      #
+      # @return [Net::HTTPResponse]
+      def rename_audience(audience_group_id, description)
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/#{audience_group_id}/updateDescription"
+        body = {description: description}
+        put(endpoint, endpoint_path, body.to_json, credentials)
+      end
+
+      # Delete an existing audience group
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
+      #
+      # @param audience_group_id [Integer]
+      #
+      # @return [Net::HTTPResponse]
+      def delete_audience(audience_group_id)
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/#{audience_group_id}"
+        delete(endpoint, endpoint_path, credentials)
+      end
+
+      # Get audience group data
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#get-audience-group
+      #
+      # @param audience_group_id [Integer]
+      #
+      # @return [Net::HTTPResponse]
+      def get_audience(audience_group_id)
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/#{audience_group_id}"
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Get data for more than one audience group
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
+      #
+      # @param params [Hash] key name `page` is required
+      #
+      # @return [Net::HTTPResponse]
+      def get_audiences(params)
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/list?" + URI.encode_www_form(params)
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Get the authority level of the audience
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#get-authority-level
+      #
+      # @return [Net::HTTPResponse]
+      def get_audience_authority_level
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/authorityLevel"
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Change the authority level of the audience
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#change-authority-level
+      #
+      # @param authority_level [String] value must be `PUBLIC` or `PRIVATE`
+      #
+      # @return [Net::HTTPResponse]
+      def update_audience_authority_level(authority_level)
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/authorityLevel"
+        body = {authorityLevel: authority_level}
+        put(endpoint, endpoint_path, body.to_json, credentials)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_base [String]
