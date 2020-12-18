@@ -1,14 +1,37 @@
 # Change Log
 
+## [v1.17.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.17.0) (2020-12-18)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.16.0...v1.17.0)
+
+**Implemented enhancements:**
+
+- Support Audience apis [\#172](https://github.com/line/line-bot-sdk-ruby/issues/172)
+
+**Closed issues:**
+
+- Messaging API - September 2020 update [\#198](https://github.com/line/line-bot-sdk-ruby/issues/198)
+
+**Merged pull requests:**
+
+- Introduce github actions for CI [\#207](https://github.com/line/line-bot-sdk-ruby/pull/207) ([toduq](https://github.com/toduq))
+- disallow actual net connection during unit test [\#206](https://github.com/line/line-bot-sdk-ruby/pull/206) ([yskkin](https://github.com/yskkin))
+- Support LIFF v1 Server API [\#205](https://github.com/line/line-bot-sdk-ruby/pull/205) ([yskkin](https://github.com/yskkin))
+- Support bot info api [\#203](https://github.com/line/line-bot-sdk-ruby/pull/203) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
+- Add audience API endpoints [\#183](https://github.com/line/line-bot-sdk-ruby/pull/183) ([toduq](https://github.com/toduq))
+
 ## [v1.16.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.16.0) (2020-08-13)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.15.0...v1.16.0)
 
 **Closed issues:**
 
 - The endpoint to get statistics is now available in Indonesia \(ID\) [\#194](https://github.com/line/line-bot-sdk-ruby/issues/194)
+- Messaging API update for June 2020 [\#186](https://github.com/line/line-bot-sdk-ruby/issues/186)
+- Messaging API - May 2020 update [\#184](https://github.com/line/line-bot-sdk-ruby/issues/184)
+- Support LINE emoji in messages [\#180](https://github.com/line/line-bot-sdk-ruby/issues/180)
 
 **Merged pull requests:**
 
+- Release 1.16.0 [\#197](https://github.com/line/line-bot-sdk-ruby/pull/197) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
 - Add videoPlayComplete event and spec [\#196](https://github.com/line/line-bot-sdk-ruby/pull/196) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
 - Add example for unsend [\#195](https://github.com/line/line-bot-sdk-ruby/pull/195) ([gom](https://github.com/gom))
 - Add unsend event and spec [\#193](https://github.com/line/line-bot-sdk-ruby/pull/193) ([dlackty](https://github.com/dlackty))
