@@ -645,6 +645,16 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Gets information on a webhook endpoint.
+      #
+      # @return [Net::HTTPResponse]
+      def get_webhook_endpoint
+        channel_token_required
+
+        endpoint_path = '/bot/channel/webhook/endpoint'
+        get(endpoint, endpoint_path, credentials)
+      end
+
       def get_liff_apps
         channel_token_required
 
