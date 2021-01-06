@@ -200,13 +200,6 @@ BOT_INFO_CONTENT = <<"EOS"
 }
 EOS
 
-WEBHOOK_ENDPOINT_CONTENT = <<"EOS"
-{
-  "endpoint": "https://example.com/test",
-  "active": true
-}
-EOS
-
 describe Line::Bot::Client do
   before do
   end
@@ -485,20 +478,6 @@ describe Line::Bot::Client do
       pictureUrl: 'https://example.com/hogehoge',
       chatMode: 'chat',
       markAsReadMode: 'manual'
-    )
-  end
-
-  it 'get webhook endpoint' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/channel/webhook/endpoint'
-    stub_request(:get, uri_template).to_return(body: WEBHOOK_ENDPOINT_CONTENT, status: 200)
-
-    client = generate_client
-    response = client.get_webhook_endpoint
-
-    json = JSON.parse(response.body, symbolize_names: true)
-    expect(json).to eq(
-      endpoint: 'https://example.com/test',
-      active: true
     )
   end
 end
