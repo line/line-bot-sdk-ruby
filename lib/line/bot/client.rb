@@ -655,6 +655,19 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Sets the webhook endpoint URL.
+      #
+      # @param webhook_endpoint [String]
+      #
+      # @return [Net::HTTPResponse]
+      def set_webhook_endpoint(webhook_endpoint)
+        channel_token_required
+
+        endpoint_path = '/bot/channel/webhook/endpoint'
+        body = {endpoint: webhook_endpoint}
+        put(endpoint, endpoint_path, body.to_json, credentials)
+      end
+
       def get_liff_apps
         channel_token_required
 
