@@ -668,6 +668,23 @@ module Line
         put(endpoint, endpoint_path, body.to_json, credentials)
       end
 
+      # Checks if the configured webhook endpoint can receive a test webhook event.
+      #
+      # @param webhook_endpoint [String] options
+      #
+      # @return [Net::HTTPResponse]
+      def test_webhook_endpoint(webhook_endpoint = nil)
+        channel_token_required
+
+        endpoint_path = '/bot/channel/webhook/test'
+        body = if webhook_endpoint.nil?
+                 {}
+               else
+                 {endpoint: webhook_endpoint}
+               end
+        post(endpoint, endpoint_path, body.to_json, credentials)
+      end
+
       def get_liff_apps
         channel_token_required
 
