@@ -1,4 +1,21 @@
-# Change Log
+# Changelog
+
+## [v1.18.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.18.0) (2021-01-13)
+
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.17.0...v1.18.0)
+
+**Closed issues:**
+
+- Run github actions CI with ruby 3.0 [\#210](https://github.com/line/line-bot-sdk-ruby/issues/210)
+- keywords property added to Sticker event object [\#204](https://github.com/line/line-bot-sdk-ruby/issues/204)
+- Support Flex Message Update 2 [\#202](https://github.com/line/line-bot-sdk-ruby/issues/202)
+
+**Merged pull requests:**
+
+- support test webhook endpoint [\#213](https://github.com/line/line-bot-sdk-ruby/pull/213) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
+- support set webhook endpoint  [\#212](https://github.com/line/line-bot-sdk-ruby/pull/212) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
+- Add ruby v3.0 for pull request CI [\#211](https://github.com/line/line-bot-sdk-ruby/pull/211) ([toduq](https://github.com/toduq))
+- support get webhook endpoint [\#209](https://github.com/line/line-bot-sdk-ruby/pull/209) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
 
 ## [v1.17.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.17.0) (2020-12-18)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.16.0...v1.17.0)
@@ -13,6 +30,7 @@
 
 **Merged pull requests:**
 
+- Release 1.17.0 [\#208](https://github.com/line/line-bot-sdk-ruby/pull/208) ([kimoto](https://github.com/kimoto))
 - Introduce github actions for CI [\#207](https://github.com/line/line-bot-sdk-ruby/pull/207) ([toduq](https://github.com/toduq))
 - disallow actual net connection during unit test [\#206](https://github.com/line/line-bot-sdk-ruby/pull/206) ([yskkin](https://github.com/yskkin))
 - Support LIFF v1 Server API [\#205](https://github.com/line/line-bot-sdk-ruby/pull/205) ([yskkin](https://github.com/yskkin))
