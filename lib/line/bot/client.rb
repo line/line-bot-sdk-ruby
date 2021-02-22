@@ -274,6 +274,20 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Get user IDs of who added your LINE Official Account as a friend
+      #
+      # @param continuation_token [String] Identifier to return next page
+      #                                   (next property to be included in the response)
+      #
+      # @return [Net::HTTPResponse]
+      def get_follower_ids(continuation_token = nil)
+        channel_token_required
+
+        endpoint_path = "/bot/followers/ids"
+        endpoint_path += "?start=#{continuation_token}" if continuation_token
+        get(endpoint, endpoint_path, credentials)
+      end
+
       # Get user IDs of a group
       #
       # @param group_id [String] Group's identifier
