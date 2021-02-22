@@ -24,9 +24,6 @@ NEXT_USER_ID_CONTENT = <<"EOS"
 EOS
 
 describe Line::Bot::Client do
-  before do
-  end
-
   def dummy_config
     {
       channel_token: 'access token',
