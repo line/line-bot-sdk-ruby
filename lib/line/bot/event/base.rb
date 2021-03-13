@@ -19,6 +19,7 @@ module Line
         def initialize(src)
           @src = src
         end
+        attr_reader :src
 
         def [](key)
           @src[key]
