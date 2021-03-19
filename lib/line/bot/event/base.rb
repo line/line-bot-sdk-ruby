@@ -23,6 +23,10 @@ module Line
         def [](key)
           @src[key]
         end
+
+        def to_hash
+          @src
+        end
       end
     end
   end
