@@ -1,7 +1,19 @@
-# Changelog
+# Change Log
+
+## [v1.19.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.19.0) (2021-03-22)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.18.0...v1.19.0)
+
+**Closed issues:**
+
+- Messaging API - October 2020 update [\#201](https://github.com/line/line-bot-sdk-ruby/issues/201)
+
+**Merged pull requests:**
+
+- \[proposal\] Make src accessible from event object [\#220](https://github.com/line/line-bot-sdk-ruby/pull/220) ([Yuki-Inoue](https://github.com/Yuki-Inoue))
+- Remove unneeded before block [\#218](https://github.com/line/line-bot-sdk-ruby/pull/218) ([chocoby](https://github.com/chocoby))
+- Support follower IDs API [\#217](https://github.com/line/line-bot-sdk-ruby/pull/217) ([chocoby](https://github.com/chocoby))
 
 ## [v1.18.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.18.0) (2021-01-13)
-
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.17.0...v1.18.0)
 
 **Closed issues:**
@@ -12,6 +24,7 @@
 
 **Merged pull requests:**
 
+- Release 1.18.0 [\#214](https://github.com/line/line-bot-sdk-ruby/pull/214) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
 - support test webhook endpoint [\#213](https://github.com/line/line-bot-sdk-ruby/pull/213) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
 - support set webhook endpoint  [\#212](https://github.com/line/line-bot-sdk-ruby/pull/212) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
 - Add ruby v3.0 for pull request CI [\#211](https://github.com/line/line-bot-sdk-ruby/pull/211) ([toduq](https://github.com/toduq))
