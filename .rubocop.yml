@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.1
+  TargetRubyVersion: 2.4
   Exclude:
     - 'examples/**/*'
 
@@ -31,6 +31,8 @@ Style/IfUnlessModifier:
 Style/Semicolon:
   Enabled: false
 Style/EachWithObject:
+  Enabled: false
+Style/FrozenStringLiteralComment:
   Enabled: false
 
 Naming/HeredocDelimiterNaming:
