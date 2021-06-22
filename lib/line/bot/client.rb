@@ -954,7 +954,7 @@ module Line
       def validate_signature(content, channel_signature)
         return false if !channel_signature || !channel_secret
 
-        hash = OpenSSL::HMAC.digest(OpenSSL::Digest::SHA256.new, channel_secret, content)
+        hash = OpenSSL::HMAC.digest(OpenSSL::Digest.new('SHA256'), channel_secret, content)
         signature = Base64.strict_encode64(hash)
 
         variable_secure_compare(channel_signature, signature)
@@ -986,6 +986,7 @@ module Line
         if file.respond_to?(:content_type)
           content_type = file.content_type
           raise ArgumentError, "invalid content type: #{content_type}" unless ['image/jpeg', 'image/png'].include?(content_type)
+
           content_type
         else
           case file.path
