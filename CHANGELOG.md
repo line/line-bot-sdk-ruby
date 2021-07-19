@@ -1,5 +1,27 @@
 # Change Log
 
+## [v1.20.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.20.0) (2021-07-19)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.19.0...v1.20.0)
+
+**Closed issues:**
+
+- Dependabot can't resolve your Ruby dependency files [\#227](https://github.com/line/line-bot-sdk-ruby/issues/227)
+- Dependabot can't resolve your Ruby dependency files [\#226](https://github.com/line/line-bot-sdk-ruby/issues/226)
+- Dependabot can't resolve your Ruby dependency files [\#225](https://github.com/line/line-bot-sdk-ruby/issues/225)
+- Dependabot can't resolve your Ruby dependency files [\#224](https://github.com/line/line-bot-sdk-ruby/issues/224)
+- Dependabot can't resolve your Ruby dependency files [\#223](https://github.com/line/line-bot-sdk-ruby/issues/223)
+- Dependabot can't resolve your Ruby dependency files [\#222](https://github.com/line/line-bot-sdk-ruby/issues/222)
+- Support follower IDs API [\#216](https://github.com/line/line-bot-sdk-ruby/issues/216)
+- Support Redelivery object for narrowcast messages [\#200](https://github.com/line/line-bot-sdk-ruby/issues/200)
+
+**Merged pull requests:**
+
+- create set\_rich\_menu\_alias and unset\_rich\_menu\_alias method [\#233](https://github.com/line/line-bot-sdk-ruby/pull/233) ([4geru](https://github.com/4geru))
+- Update rubocop 0.56.0 -\> 1.12.1 [\#231](https://github.com/line/line-bot-sdk-ruby/pull/231) ([tokuhirom](https://github.com/tokuhirom))
+- Upgrade to GitHub-native Dependabot [\#230](https://github.com/line/line-bot-sdk-ruby/pull/230) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Upgrade minimum ruby version to 2.4 [\#228](https://github.com/line/line-bot-sdk-ruby/pull/228) ([toduq](https://github.com/toduq))
+- Release 1.19.0 [\#221](https://github.com/line/line-bot-sdk-ruby/pull/221) ([kimoto](https://github.com/kimoto))
+
 ## [v1.19.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.19.0) (2021-03-22)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.18.0...v1.19.0)
 
