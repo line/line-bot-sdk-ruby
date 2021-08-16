@@ -99,8 +99,11 @@ describe Line::Bot::Client do
   end
 
   it 'get all valid channel access token key ids v2.1' do
+    client_assertion = 'jwt_string'
+    client_assertion_type = 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'
+
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT +
-      "/oauth2/v2.1/tokens/kid?client_assertion=jwt_string&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+                                             "/oauth2/v2.1/tokens/kid?client_assertion=#{client_assertion}&client_assertion_type=#{client_assertion_type}"
     stub_request(:any, uri_template).to_return { |request| {body: GET_CHANNEL_ACCESS_TOKEN_KEY_IDS_JWT_CONTENT, status: 200} }
 
     client = generate_client
