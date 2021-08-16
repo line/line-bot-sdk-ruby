@@ -10,7 +10,7 @@ OAUTH_CHANNEL_TOKEN_ISSUE_CONTENT = <<"EOS"
 }
 EOS
 
-ISSUE_CHANNEL_ACCESS_TOKEN_21_CONTENT = <<"EOS"
+ISSUE_CHANNEL_ACCESS_TOKEN_JWT_CONTENT = <<"EOS"
 {
     "access_token": "eyJhbGciOiJIUzxxxxxx",
     "token_type": "Bearer",
@@ -19,7 +19,7 @@ ISSUE_CHANNEL_ACCESS_TOKEN_21_CONTENT = <<"EOS"
 }
 EOS
 
-GET_CHANNEL_ACCESS_TOKEN_KEY_IDS_21_CONTENT = <<"EOS"
+GET_CHANNEL_ACCESS_TOKEN_KEY_IDS_JWT_CONTENT = <<"EOS"
 {
     "key_ids": [
         "U_gdnFYKTWRxxxxDVZexGg",
@@ -74,10 +74,10 @@ describe Line::Bot::Client do
 
   it 'issues an oauth access token v2.1' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + '/oauth2/v2.1/token'
-    stub_request(:post, uri_template).to_return { |request| {body: ISSUE_CHANNEL_ACCESS_TOKEN_21_CONTENT, status: 200} }
+    stub_request(:post, uri_template).to_return { |request| {body: ISSUE_CHANNEL_ACCESS_TOKEN_JWT_CONTENT, status: 200} }
 
     client = generate_client
-    response = client.issue_channel_access_token_21('jwt_string')
+    response = client.issue_channel_access_token_jwt('jwt_string')
 
     expect(response).to be_a(Net::HTTPOK)
     result = JSON.parse(response.body)
@@ -93,18 +93,19 @@ describe Line::Bot::Client do
 
     client = generate_client
 
-    response = client.revoke_channel_access_token_21('sDTOzw5wIfxxxxPEzcmeQA')
+    response = client.revoke_channel_access_token_jwt('sDTOzw5wIfxxxxPEzcmeQA')
 
     expect(response).to be_a(Net::HTTPOK)
   end
 
   it 'get all valid channel access token key ids v2.1' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + "/oauth2/v2.1/tokens/kid?client_assertion=jwt_string&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
-    stub_request(:any, uri_template).to_return { |request| {body: GET_CHANNEL_ACCESS_TOKEN_KEY_IDS_21_CONTENT, status: 200} }
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT +
+      "/oauth2/v2.1/tokens/kid?client_assertion=jwt_string&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+    stub_request(:any, uri_template).to_return { |request| {body: GET_CHANNEL_ACCESS_TOKEN_KEY_IDS_JWT_CONTENT, status: 200} }
 
     client = generate_client
 
-    response = client.get_channel_access_token_key_ids_21('jwt_string')
+    response = client.get_channel_access_token_key_ids_jwt('jwt_string')
 
     expect(response).to be_a(Net::HTTPOK)
   end

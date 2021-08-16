@@ -115,7 +115,7 @@ module Line
       # @param jwt [String]
       #
       # @return [Net::HTTPResponse]
-      def issue_channel_access_token_21(jwt)
+      def issue_channel_access_token_jwt(jwt)
         channel_id_required
         channel_secret_required
 
@@ -134,7 +134,7 @@ module Line
       # @param access_token [String]
       #
       # @return [Net::HTTPResponse]
-      def revoke_channel_access_token_21(access_token)
+      def revoke_channel_access_token_jwt(access_token)
         channel_id_required
         channel_secret_required
 
@@ -153,7 +153,7 @@ module Line
       # @param jwt [String]
       #
       # @return [Net::HTTPResponse]
-      def get_channel_access_token_key_ids_21(jwt)
+      def get_channel_access_token_key_ids_jwt(jwt)
         channel_id_required
         channel_secret_required
 
