@@ -73,7 +73,7 @@ describe Line::Bot::Client do
   end
 
   it 'issues an oauth access token v2.1' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/oauth2/v2.1/token'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + '/oauth2/v2.1/token'
     stub_request(:post, uri_template).to_return { |request| {body: ISSUE_CHANNEL_ACCESS_TOKEN_21_CONTENT, status: 200} }
 
     client = generate_client
@@ -88,7 +88,7 @@ describe Line::Bot::Client do
   end
 
   it 'revokes the oauth access token v2.1' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/oauth2/v2.1/revoke'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + '/oauth2/v2.1/revoke'
     stub_request(:post, uri_template).to_return { |request| {body: '', status: 200} }
 
     client = generate_client
@@ -99,8 +99,8 @@ describe Line::Bot::Client do
   end
 
   it 'get all valid channel access token key ids v2.1' do
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/oauth2/v2.1/tokens/kid'
-    stub_request(:post, uri_template).to_return { |request| {body: GET_CHANNEL_ACCESS_TOKEN_KEY_IDS_21_CONTENT, status: 200} }
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + "/oauth2/v2.1/tokens/kid?client_assertion=jwt_string&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+    stub_request(:any, uri_template).to_return { |request| {body: GET_CHANNEL_ACCESS_TOKEN_KEY_IDS_21_CONTENT, status: 200} }
 
     client = generate_client
 

@@ -17,6 +17,7 @@ require 'line/bot/api/version'
 module Line
   module Bot
     module API
+      DEFAULT_OAUTH_ENDPOINT = "https://api.line.me"
       DEFAULT_ENDPOINT = "https://api.line.me/v2"
       DEFAULT_BLOB_ENDPOINT = "https://api-data.line.me/v2"
       DEFAULT_LIFF_ENDPOINT = "https://api.line.me/liff/v1"

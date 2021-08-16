@@ -55,6 +55,10 @@ module Line
         @endpoint ||= API::DEFAULT_ENDPOINT
       end
 
+      def oauth_endpoint
+        @oauth_endpoint ||= API::DEFAULT_OAUTH_ENDPOINT
+      end
+
       def blob_endpoint
         return @blob_endpoint if @blob_endpoint
 
@@ -122,7 +126,7 @@ module Line
           client_assertion: jwt
         )
         headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
-        post(endpoint, endpoint_path, payload, headers)
+        post(oauth_endpoint, endpoint_path, payload, headers)
       end
 
       # Revoke channel access token v2.1
@@ -141,7 +145,7 @@ module Line
           access_token: access_token
         )
         headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
-        post(endpoint, endpoint_path, payload, headers)
+        post(oauth_endpoint, endpoint_path, payload, headers)
       end
 
       # Get all valid channel access token key IDs v2.1
@@ -153,14 +157,14 @@ module Line
         channel_id_required
         channel_secret_required
 
-        endpoint_path = '/oauth2/v2.1/tokens/kid'
         payload = URI.encode_www_form(
-          grant_type: 'client_credentials',
           client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
           client_assertion: jwt
         )
+        endpoint_path = "/oauth2/v2.1/tokens/kid?#{payload}"
+
         headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
-        post(endpoint, endpoint_path, payload, headers)
+        get(oauth_endpoint, endpoint_path, headers)
       end
 
       # Push messages to a user using user_id.
