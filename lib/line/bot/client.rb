@@ -335,6 +335,20 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Get user IDs of who added your LINE Official Account as a friend
+      #
+      # @param continuation_token [String] Identifier to return next page
+      #                                   (next property to be included in the response)
+      #
+      # @return [Net::HTTPResponse]
+      def get_follower_ids(continuation_token = nil)
+        channel_token_required
+
+        endpoint_path = "/bot/followers/ids"
+        endpoint_path += "?start=#{continuation_token}" if continuation_token
+        get(endpoint, endpoint_path, credentials)
+      end
+
       # Get user IDs of a group
       #
       # @param group_id [String] Group's identifier
@@ -539,6 +553,31 @@ module Line
         delete(endpoint, endpoint_path, credentials)
       end
 
+      # Set rich menu alias
+      #
+      # @param rich_menu_id [String] ID of an uploaded rich menu
+      # @param rich_menu_alias_id [String] string of alias words rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def set_rich_menus_alias(rich_menu_id, rich_menu_alias_id)
+        channel_token_required
+
+        endpoint_path = '/bot/richmenu/alias'
+        post(endpoint, endpoint_path, { richMenuId: rich_menu_id, richMenuAliasId: rich_menu_alias_id }.to_json, credentials)
+      end
+
+      # Unset rich menu alias
+      #
+      # @param rich_menu_alias_id [String] string of alias words rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def unset_rich_menus_alias(rich_menu_alias_id)
+        channel_token_required
+
+        endpoint_path = "/bot/richmenu/alias/#{rich_menu_alias_id}"
+        delete(endpoint, endpoint_path, credentials)
+      end
+
       # Link a rich menu to a user
       #
       # If you want to link a rich menu to multiple users,
@@ -706,6 +745,46 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Gets information on a webhook endpoint.
+      #
+      # @return [Net::HTTPResponse]
+      def get_webhook_endpoint
+        channel_token_required
+
+        endpoint_path = '/bot/channel/webhook/endpoint'
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Sets the webhook endpoint URL.
+      #
+      # @param webhook_endpoint [String]
+      #
+      # @return [Net::HTTPResponse]
+      def set_webhook_endpoint(webhook_endpoint)
+        channel_token_required
+
+        endpoint_path = '/bot/channel/webhook/endpoint'
+        body = {endpoint: webhook_endpoint}
+        put(endpoint, endpoint_path, body.to_json, credentials)
+      end
+
+      # Checks if the configured webhook endpoint can receive a test webhook event.
+      #
+      # @param webhook_endpoint [String] options
+      #
+      # @return [Net::HTTPResponse]
+      def test_webhook_endpoint(webhook_endpoint = nil)
+        channel_token_required
+
+        endpoint_path = '/bot/channel/webhook/test'
+        body = if webhook_endpoint.nil?
+                 {}
+               else
+                 {endpoint: webhook_endpoint}
+               end
+        post(endpoint, endpoint_path, body.to_json, credentials)
+      end
+
       def get_liff_apps
         channel_token_required
 
@@ -732,6 +811,154 @@ module Line
 
         endpoint_path = "/apps/#{liff_id}"
         delete(liff_endpoint, endpoint_path, credentials)
+      end
+
+      # Create an audience group by uploading user_ids
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
+      #
+      # @param params [Hash] options
+      #
+      # @return [Net::HTTPResponse] This response includes an audience_group_id.
+      def create_user_id_audience(params)
+        channel_token_required
+
+        endpoint_path = '/bot/audienceGroup/upload'
+        post(endpoint, endpoint_path, params.to_json, credentials)
+      end
+
+      # Update an audience group
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
+      #
+      # @param params [Hash] options
+      #
+      # @return [Net::HTTPResponse] This response includes an audience_group_id.
+      def update_user_id_audience(params)
+        channel_token_required
+
+        endpoint_path = '/bot/audienceGroup/upload'
+        put(endpoint, endpoint_path, params.to_json, credentials)
+      end
+
+      # Create an audience group of users that clicked a URL in a message sent in the past
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
+      #
+      # @param params [Hash] options
+      #
+      # @return [Net::HTTPResponse] This response includes an audience_group_id.
+      def create_click_audience(params)
+        channel_token_required
+
+        endpoint_path = '/bot/audienceGroup/click'
+        post(endpoint, endpoint_path, params.to_json, credentials)
+      end
+
+      # Create an audience group of users that opened a message sent in the past
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
+      #
+      # @param params [Hash] options
+      #
+      # @return [Net::HTTPResponse] This response includes an audience_group_id.
+      def create_impression_audience(params)
+        channel_token_required
+
+        endpoint_path = '/bot/audienceGroup/imp'
+        post(endpoint, endpoint_path, params.to_json, credentials)
+      end
+
+      # Rename an existing audience group
+      #
+      # @param audience_group_id [Integer]
+      # @param description [String]
+      #
+      # @return [Net::HTTPResponse]
+      def rename_audience(audience_group_id, description)
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/#{audience_group_id}/updateDescription"
+        body = {description: description}
+        put(endpoint, endpoint_path, body.to_json, credentials)
+      end
+
+      # Delete an existing audience group
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
+      #
+      # @param audience_group_id [Integer]
+      #
+      # @return [Net::HTTPResponse]
+      def delete_audience(audience_group_id)
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/#{audience_group_id}"
+        delete(endpoint, endpoint_path, credentials)
+      end
+
+      # Get audience group data
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#get-audience-group
+      #
+      # @param audience_group_id [Integer]
+      #
+      # @return [Net::HTTPResponse]
+      def get_audience(audience_group_id)
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/#{audience_group_id}"
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Get data for more than one audience group
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
+      #
+      # @param params [Hash] key name `page` is required
+      #
+      # @return [Net::HTTPResponse]
+      def get_audiences(params)
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/list?" + URI.encode_www_form(params)
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Get the authority level of the audience
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#get-authority-level
+      #
+      # @return [Net::HTTPResponse]
+      def get_audience_authority_level
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/authorityLevel"
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Change the authority level of the audience
+      #
+      # Parameters are described here.
+      # https://developers.line.biz/en/reference/messaging-api/#change-authority-level
+      #
+      # @param authority_level [String] value must be `PUBLIC` or `PRIVATE`
+      #
+      # @return [Net::HTTPResponse]
+      def update_audience_authority_level(authority_level)
+        channel_token_required
+
+        endpoint_path = "/bot/audienceGroup/authorityLevel"
+        body = {authorityLevel: authority_level}
+        put(endpoint, endpoint_path, body.to_json, credentials)
       end
 
       # Fetch data, get content of specified URL.
@@ -813,7 +1040,7 @@ module Line
       def validate_signature(content, channel_signature)
         return false if !channel_signature || !channel_secret
 
-        hash = OpenSSL::HMAC.digest(OpenSSL::Digest::SHA256.new, channel_secret, content)
+        hash = OpenSSL::HMAC.digest(OpenSSL::Digest.new('SHA256'), channel_secret, content)
         signature = Base64.strict_encode64(hash)
 
         variable_secure_compare(channel_signature, signature)
@@ -845,6 +1072,7 @@ module Line
         if file.respond_to?(:content_type)
           content_type = file.content_type
           raise ArgumentError, "invalid content type: #{content_type}" unless ['image/jpeg', 'image/png'].include?(content_type)
+
           content_type
         else
           case file.path

@@ -1,14 +1,90 @@
 # Change Log
 
+## [v1.20.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.20.0) (2021-07-19)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.19.0...v1.20.0)
+
+**Closed issues:**
+
+- Dependabot can't resolve your Ruby dependency files [\#227](https://github.com/line/line-bot-sdk-ruby/issues/227)
+- Dependabot can't resolve your Ruby dependency files [\#226](https://github.com/line/line-bot-sdk-ruby/issues/226)
+- Dependabot can't resolve your Ruby dependency files [\#225](https://github.com/line/line-bot-sdk-ruby/issues/225)
+- Dependabot can't resolve your Ruby dependency files [\#224](https://github.com/line/line-bot-sdk-ruby/issues/224)
+- Dependabot can't resolve your Ruby dependency files [\#223](https://github.com/line/line-bot-sdk-ruby/issues/223)
+- Dependabot can't resolve your Ruby dependency files [\#222](https://github.com/line/line-bot-sdk-ruby/issues/222)
+- Support follower IDs API [\#216](https://github.com/line/line-bot-sdk-ruby/issues/216)
+- Support Redelivery object for narrowcast messages [\#200](https://github.com/line/line-bot-sdk-ruby/issues/200)
+
+**Merged pull requests:**
+
+- create set\_rich\_menu\_alias and unset\_rich\_menu\_alias method [\#233](https://github.com/line/line-bot-sdk-ruby/pull/233) ([4geru](https://github.com/4geru))
+- Update rubocop 0.56.0 -\> 1.12.1 [\#231](https://github.com/line/line-bot-sdk-ruby/pull/231) ([tokuhirom](https://github.com/tokuhirom))
+- Upgrade to GitHub-native Dependabot [\#230](https://github.com/line/line-bot-sdk-ruby/pull/230) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Upgrade minimum ruby version to 2.4 [\#228](https://github.com/line/line-bot-sdk-ruby/pull/228) ([toduq](https://github.com/toduq))
+- Release 1.19.0 [\#221](https://github.com/line/line-bot-sdk-ruby/pull/221) ([kimoto](https://github.com/kimoto))
+
+## [v1.19.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.19.0) (2021-03-22)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.18.0...v1.19.0)
+
+**Closed issues:**
+
+- Messaging API - October 2020 update [\#201](https://github.com/line/line-bot-sdk-ruby/issues/201)
+
+**Merged pull requests:**
+
+- \[proposal\] Make src accessible from event object [\#220](https://github.com/line/line-bot-sdk-ruby/pull/220) ([Yuki-Inoue](https://github.com/Yuki-Inoue))
+- Remove unneeded before block [\#218](https://github.com/line/line-bot-sdk-ruby/pull/218) ([chocoby](https://github.com/chocoby))
+- Support follower IDs API [\#217](https://github.com/line/line-bot-sdk-ruby/pull/217) ([chocoby](https://github.com/chocoby))
+
+## [v1.18.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.18.0) (2021-01-13)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.17.0...v1.18.0)
+
+**Closed issues:**
+
+- Run github actions CI with ruby 3.0 [\#210](https://github.com/line/line-bot-sdk-ruby/issues/210)
+- keywords property added to Sticker event object [\#204](https://github.com/line/line-bot-sdk-ruby/issues/204)
+- Support Flex Message Update 2 [\#202](https://github.com/line/line-bot-sdk-ruby/issues/202)
+
+**Merged pull requests:**
+
+- Release 1.18.0 [\#214](https://github.com/line/line-bot-sdk-ruby/pull/214) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
+- support test webhook endpoint [\#213](https://github.com/line/line-bot-sdk-ruby/pull/213) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
+- support set webhook endpoint  [\#212](https://github.com/line/line-bot-sdk-ruby/pull/212) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
+- Add ruby v3.0 for pull request CI [\#211](https://github.com/line/line-bot-sdk-ruby/pull/211) ([toduq](https://github.com/toduq))
+- support get webhook endpoint [\#209](https://github.com/line/line-bot-sdk-ruby/pull/209) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
+
+## [v1.17.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.17.0) (2020-12-18)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.16.0...v1.17.0)
+
+**Implemented enhancements:**
+
+- Support Audience apis [\#172](https://github.com/line/line-bot-sdk-ruby/issues/172)
+
+**Closed issues:**
+
+- Messaging API - September 2020 update [\#198](https://github.com/line/line-bot-sdk-ruby/issues/198)
+
+**Merged pull requests:**
+
+- Release 1.17.0 [\#208](https://github.com/line/line-bot-sdk-ruby/pull/208) ([kimoto](https://github.com/kimoto))
+- Introduce github actions for CI [\#207](https://github.com/line/line-bot-sdk-ruby/pull/207) ([toduq](https://github.com/toduq))
+- disallow actual net connection during unit test [\#206](https://github.com/line/line-bot-sdk-ruby/pull/206) ([yskkin](https://github.com/yskkin))
+- Support LIFF v1 Server API [\#205](https://github.com/line/line-bot-sdk-ruby/pull/205) ([yskkin](https://github.com/yskkin))
+- Support bot info api [\#203](https://github.com/line/line-bot-sdk-ruby/pull/203) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
+- Add audience API endpoints [\#183](https://github.com/line/line-bot-sdk-ruby/pull/183) ([toduq](https://github.com/toduq))
+
 ## [v1.16.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.16.0) (2020-08-13)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.15.0...v1.16.0)
 
 **Closed issues:**
 
 - The endpoint to get statistics is now available in Indonesia \(ID\) [\#194](https://github.com/line/line-bot-sdk-ruby/issues/194)
+- Messaging API update for June 2020 [\#186](https://github.com/line/line-bot-sdk-ruby/issues/186)
+- Messaging API - May 2020 update [\#184](https://github.com/line/line-bot-sdk-ruby/issues/184)
+- Support LINE emoji in messages [\#180](https://github.com/line/line-bot-sdk-ruby/issues/180)
 
 **Merged pull requests:**
 
+- Release 1.16.0 [\#197](https://github.com/line/line-bot-sdk-ruby/pull/197) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
 - Add videoPlayComplete event and spec [\#196](https://github.com/line/line-bot-sdk-ruby/pull/196) ([ryota-sakamoto](https://github.com/ryota-sakamoto))
 - Add example for unsend [\#195](https://github.com/line/line-bot-sdk-ruby/pull/195) ([gom](https://github.com/gom))
 - Add unsend event and spec [\#193](https://github.com/line/line-bot-sdk-ruby/pull/193) ([dlackty](https://github.com/dlackty))

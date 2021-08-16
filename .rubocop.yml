@@ -1,7 +1,8 @@
 AllCops:
-  TargetRubyVersion: 2.1
+  TargetRubyVersion: 2.4
   Exclude:
     - 'examples/**/*'
+  NewCops: disable
 
 Gemspec/RequiredRubyVersion:
   Enabled: false
@@ -32,10 +33,16 @@ Style/Semicolon:
   Enabled: false
 Style/EachWithObject:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/StringConcatenation:
+  Enabled: false
+Style/RedundantAssignment:
+  Enabled: false
 
 Naming/HeredocDelimiterNaming:
   Enabled: false
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   Enabled: false
 Naming/ConstantName:
   Enabled: false
@@ -43,9 +50,9 @@ Naming/AccessorMethodName:
   Enabled: false
 Naming/MethodName:
   Enabled: false
+Naming/FileName:
+  Enabled: false
 
-Metrics/LineLength:
-  Max: 200
 Metrics/BlockLength:
   Enabled: false
 Metrics/MethodLength:
@@ -53,11 +60,15 @@ Metrics/MethodLength:
 Metrics/ClassLength:
   Enabled: false
 
+Layout/LineLength:
+  Max: 200
 Layout/SpaceInsideBlockBraces:
+  Enabled: false
+Layout/HashAlignment:
   Enabled: false
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   Enabled: false
 Layout/ExtraSpacing:
   Enabled: false
