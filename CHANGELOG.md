@@ -1,5 +1,20 @@
 # Change Log
 
+## [v1.21.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.21.0) (2021-08-18)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.20.0...v1.21.0)
+
+**Fixed bugs:**
+
+- Invalid reply token [\#199](https://github.com/line/line-bot-sdk-ruby/issues/199)
+
+**Closed issues:**
+
+- Support Channel access token v2.1 [\#179](https://github.com/line/line-bot-sdk-ruby/issues/179)
+
+**Merged pull requests:**
+
+- Support channel access token v2.1 [\#190](https://github.com/line/line-bot-sdk-ruby/pull/190) ([kimoto](https://github.com/kimoto))
+
 ## [v1.20.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.20.0) (2021-07-19)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.19.0...v1.20.0)
 
