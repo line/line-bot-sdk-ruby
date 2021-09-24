@@ -578,6 +578,41 @@ module Line
         delete(endpoint, endpoint_path, credentials)
       end
 
+      # Update rich menu alias
+      #
+      # @param rich_menu_id [String] ID of an uploaded rich menu
+      # @param rich_menu_alias_id [String] string of alias words rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def update_rich_menus_alias(rich_menu_id, rich_menu_alias_id)
+        channel_token_required
+
+        endpoint_path = "/bot/richmenu/alias/#{rich_menu_alias_id}"
+        post(endpoint, endpoint_path, { richMenuId: rich_menu_id }.to_json, credentials)
+      end
+
+      # Get a rich menu alias via a rich menu alias ID
+      #
+      # @param rich_menu_alias_id [String] string of alias words rich menu
+      #
+      # @return [Net::HTTPResponse]
+      def get_rich_menus_alias(rich_menu_alias_id)
+        channel_token_required
+
+        endpoint_path = "/bot/richmenu/alias/#{rich_menu_alias_id}"
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Get a list of all uploaded rich menus alias
+      #
+      # @return [Net::HTTPResponse]
+      def get_rich_menus_alias_list
+        channel_token_required
+
+        endpoint_path = "/bot/richmenu/alias/list"
+        get(endpoint, endpoint_path, credentials)
+      end
+
       # Link a rich menu to a user
       #
       # If you want to link a rich menu to multiple users,

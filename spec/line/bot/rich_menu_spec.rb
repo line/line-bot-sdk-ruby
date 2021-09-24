@@ -38,6 +38,23 @@ RICH_MENU_LIST_CONTENT = <<"EOS"
 }
 EOS
 
+RICH_MENU_ALIAS_CONTENT = <<"EOS"
+{
+  {
+    "richMenuAliasId": "alias-1234567",
+    "richMenuId": "1234567"
+  }
+}
+EOS
+
+RICH_MENU_ALIAS_LIST_CONTENT = <<"EOS"
+{
+  "aliases": [
+    #{RICH_MENU_ALIAS_CONTENT}
+  ]
+}
+EOS
+
 RICH_MENU_IMAGE_FILE_PATH = 'spec/fixtures/line/bot/rich_menu_01.png'
 RICH_MENU_INVALID_FILE_EXTENSION_PATH = 'spec/fixtures/line/bot/rich_menu_01.txt'
 
@@ -128,12 +145,36 @@ describe Line::Bot::Client do
     expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/alias')
   end
 
-  fit 'deletes a rich menu alias' do
+  it 'deletes a rich menu alias' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/alias/alias-1234567'
     stub_request(:delete, uri_template).to_return(body: '{}', status: 200)
 
     client.unset_rich_menus_alias('alias-1234567')
     expect(WebMock).to have_requested(:delete, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/alias/alias-1234567')
+  end
+
+  it 'update a rich menu alias' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/alias/alias-1234567'
+    stub_request(:post, uri_template).to_return(body: '{}', status: 200)
+
+    client.update_rich_menus_alias('1234567', 'alias-1234567')
+    expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/alias/alias-1234567')
+  end
+
+  it 'get a rich menu alias' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/alias/alias-1234567'
+    stub_request(:get, uri_template).to_return(body: RICH_MENU_ALIAS_CONTENT, status: 200)
+
+    client.get_rich_menus_alias('alias-1234567')
+    expect(WebMock).to have_requested(:get, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/alias/alias-1234567')
+  end
+
+  it 'get a rich menu alias list' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/alias/list'
+    stub_request(:get, uri_template).to_return(body: RICH_MENU_ALIAS_LIST_CONTENT, status: 200)
+
+    client.get_rich_menus_alias_list
+    expect(WebMock).to have_requested(:get, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/alias/list')
   end
 
   it 'links a rich menu to a user' do
