@@ -116,9 +116,6 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def issue_channel_access_token_jwt(jwt)
-        channel_id_required
-        channel_secret_required
-
         endpoint_path = '/oauth2/v2.1/token'
         payload = URI.encode_www_form(
           grant_type: 'client_credentials',
@@ -154,9 +151,6 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_channel_access_token_key_ids_jwt(jwt)
-        channel_id_required
-        channel_secret_required
-
         payload = URI.encode_www_form(
           client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
           client_assertion: jwt
