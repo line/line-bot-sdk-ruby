@@ -1,5 +1,17 @@
 # Change Log
 
+## [v1.22.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.22.0) (2021-09-28)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.21.0...v1.22.0)
+
+**Closed issues:**
+
+- Support imageSet fields in webhook event [\#236](https://github.com/line/line-bot-sdk-ruby/issues/236)
+
+**Merged pull requests:**
+
+- add update/get/get\_list rich\_menu\_alias [\#237](https://github.com/line/line-bot-sdk-ruby/pull/237) ([4geru](https://github.com/4geru))
+- Don't require channel\_id & channel\_secret when call api related to JWT [\#240](https://github.com/line/line-bot-sdk-ruby/pull/240) ([koukikitamura](https://github.com/koukikitamura))
+
 ## [v1.21.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.21.0) (2021-08-18)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.20.0...v1.21.0)
 
@@ -13,6 +25,7 @@
 
 **Merged pull requests:**
 
+- Release/v1.21.0 [\#235](https://github.com/line/line-bot-sdk-ruby/pull/235) ([kimoto](https://github.com/kimoto))
 - Support channel access token v2.1 [\#190](https://github.com/line/line-bot-sdk-ruby/pull/190) ([kimoto](https://github.com/kimoto))
 
 ## [v1.20.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.20.0) (2021-07-19)
