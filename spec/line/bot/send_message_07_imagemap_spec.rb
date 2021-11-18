@@ -64,46 +64,46 @@ describe Line::Bot::Client do
 
     user_id = 'user_id'
     message = {
-      'type' => 'imagemap',
-      'baseUrl' => 'https://example.com/image',
-      'altText' => 'this is an imagemap message',
-      'baseSize' => {
-        'width' => 1040,
-        'height' => 1040,
+      type: 'imagemap',
+      baseUrl: 'https://example.com/image',
+      altText: 'this is an imagemap message',
+      baseSize: {
+        width: 1040,
+        height: 1040,
       },
-      'actions' => [
+      actions: [
         {
-          'type' => 'uri',
-          'linkUri' => 'https://github.com/line/line-bot-sdk-ruby',
-          'area' => {
-            'x' => 0,
-            'y' => 0,
-            'width' => 520,
-            'height' => 1040,
+          type: 'uri',
+          linkUri: 'https://github.com/line/line-bot-sdk-ruby',
+          area: {
+            x: 0,
+            y: 0,
+            width: 520,
+            height: 1040,
           },
         },
         {
-          'type' => 'message',
-          'text' => 'Hello',
-          'area' => {
-            'x' => 520,
-            'y' => 0,
-            'width' => 520,
-            'height' => 1040,
+          type: 'message',
+          text: 'Hello',
+          area: {
+            x: 520,
+            y: 0,
+            width: 520,
+            height: 1040,
           },
         },
       ],
     }
-    response = client.push_message(user_id, message, payload: {'customAggregationUnits' => ['test']})
+    response = client.push_message(user_id, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_id,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_id,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 
   it 'replies the imagemap message' do
@@ -218,45 +218,45 @@ describe Line::Bot::Client do
 
     user_ids = ['user1', 'user2']
     message = {
-      'type' => 'imagemap',
-      'baseUrl' => 'https://example.com/image',
-      'altText' => 'this is an imagemap message',
-      'baseSize' => {
-        'width' => 1040,
-        'height' => 1040,
+      type: 'imagemap',
+      baseUrl: 'https://example.com/image',
+      altText: 'this is an imagemap message',
+      baseSize: {
+        width: 1040,
+        height: 1040,
       },
-      'actions' => [
+      actions: [
         {
-          'type' => 'uri',
-          'linkUri' => 'https://github.com/line/line-bot-sdk-ruby',
-          'area' => {
-            'x' => 0,
-            'y' => 0,
-            'width' => 520,
-            'height' => 1040,
+          type: 'uri',
+          linkUri: 'https://github.com/line/line-bot-sdk-ruby',
+          area: {
+            x: 0,
+            y: 0,
+            width: 520,
+            height: 1040,
           },
         },
         {
-          'type' => 'message',
-          'text' => 'Hello',
-          'area' => {
-            'x' => 520,
-            'y' => 0,
-            'width' => 520,
-            'height' => 1040,
+          type: 'message',
+          text: 'Hello',
+          area: {
+            x: 520,
+            y: 0,
+            width: 520,
+            height: 1040,
           },
         },
       ],
     }
-    response = client.multicast(user_ids, message, payload: {'customAggregationUnits' => ['test']})
+    response = client.multicast(user_ids, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_ids,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_ids,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 end

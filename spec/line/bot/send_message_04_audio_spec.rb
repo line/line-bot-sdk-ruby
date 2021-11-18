@@ -38,20 +38,20 @@ describe Line::Bot::Client do
 
     user_id = 'user_id'
     message = {
-      'type' => 'audio',
-      'originalContentUrl' => 'https://example.com/audio.mp3',
-      'duration' => 120000
+      type: 'audio',
+      originalContentUrl: 'https://example.com/audio.mp3',
+      duration: 120000
     }
     response = client.push_message(user_id, message, payload: {'customAggregationUnits' => ['test']})
 
     expected = {
-      'to' => user_id,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_id,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 
   it 'replies the audio message' do
@@ -114,19 +114,19 @@ describe Line::Bot::Client do
 
     user_ids = ['user1', 'user2']
     message = {
-      'type' => 'audio',
-      'originalContentUrl' => 'https://example.com/audio.mp3',
-      'duration' => 120000
+      type: 'audio',
+      originalContentUrl: 'https://example.com/audio.mp3',
+      duration: 120000
     }
     response = client.multicast(user_ids, message, payload: {'customAggregationUnits' => ['test']})
 
     expected = {
-      'to' => user_ids,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_ids,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 end

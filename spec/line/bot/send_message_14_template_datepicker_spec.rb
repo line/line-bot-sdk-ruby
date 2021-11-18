@@ -55,23 +55,23 @@ describe Line::Bot::Client do
 
     user_id = 'user_id'
     message = {
-      'type' => 'template',
-      'altText' => 'this is an template message',
-      'template' => {
-        'type' => 'buttons',
-        'title' => 'event schedule',
-        'text' => 'select date',
-        'actions' => [
+      type: 'template',
+      altText: 'this is an template message',
+      template: {
+        type: 'buttons',
+        title: 'event schedule',
+        text: 'select date',
+        actions: [
           {
-            'type' => 'datetimepicker',
-            'label' => 'ok',
-            'data' => 'datetimepicker=ok',
-            'mode' => 'date'
+            type: 'datetimepicker',
+            label: 'ok',
+            data: 'datetimepicker=ok',
+            mode: 'date'
           },
           {
-            'type' => 'postback',
-            'label' => 'no',
-            'data' => 'datetimepicker=no',
+            type: 'postback',
+            label: 'no',
+            data: 'datetimepicker=no',
           },
         ]
       }
@@ -79,13 +79,13 @@ describe Line::Bot::Client do
     response = client.push_message(user_id, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_id,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_id,
+      messages: [
         message
       ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 
   it 'replies the template message type carousel' do
@@ -182,23 +182,23 @@ describe Line::Bot::Client do
 
     user_ids = ['user1', 'user2']
     message = {
-      'type' => 'template',
-      'altText' => 'this is an template message',
-      'template' => {
-        'type' => 'buttons',
-        'title' => 'event schedule',
-        'text' => 'select date',
-        'actions' => [
+      type: 'template',
+      altText: 'this is an template message',
+      template: {
+        type: 'buttons',
+        title: 'event schedule',
+        text: 'select date',
+        actions: [
           {
-            'type' => 'datetimepicker',
-            'label' => 'ok',
-            'data' => 'datetimepicker=ok',
-            'mode' => 'date'
+            type: 'datetimepicker',
+            label: 'ok',
+            data: 'datetimepicker=ok',
+            mode: 'date'
           },
           {
-            'type' => 'postback',
-            'label' => 'no',
-            'data' => 'datetimepicker=no',
+            type: 'postback',
+            label: 'no',
+            data: 'datetimepicker=no',
           },
         ]
       }
@@ -206,12 +206,12 @@ describe Line::Bot::Client do
     response = client.multicast(user_ids, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_ids,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_ids,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 end

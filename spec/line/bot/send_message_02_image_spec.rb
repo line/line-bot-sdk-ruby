@@ -38,20 +38,20 @@ describe Line::Bot::Client do
 
     user_id = 'user_id'
     message = {
-      'type' => 'image',
-      'originalContentUrl' => 'https://example.com/image.jpg',
-      'previewImageUrl' => 'https://example.com/image_preview.jpg',
+      type: 'image',
+      originalContentUrl: 'https://example.com/image.jpg',
+      previewImageUrl: 'https://example.com/image_preview.jpg',
     }
     response = client.push_message(user_id, message, payload: {'customAggregationUnits' => ['test']})
 
     expected = {
-      'to' => user_id,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_id,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 
   it 'replies the image message' do
@@ -114,19 +114,19 @@ describe Line::Bot::Client do
 
     user_ids = ['user1', 'user2']
     message = {
-      'type' => 'image',
-      'originalContentUrl' => 'https://example.com/image.jpg',
-      'previewImageUrl' => 'https://example.com/image_preview.jpg',
+      type: 'image',
+      originalContentUrl: 'https://example.com/image.jpg',
+      previewImageUrl: 'https://example.com/image_preview.jpg',
     }
     response = client.multicast(user_ids, message, payload: {'customAggregationUnits' => ['test']})
 
     expected = {
-      'to' => user_ids,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_ids,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 end

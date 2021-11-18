@@ -76,58 +76,58 @@ describe Line::Bot::Client do
 
     user_id = 'user_id'
     message = {
-      'type' => 'template',
-      'altText' => 'this is an template message',
-      'template' => {
-        'type' => 'carousel',
-        'columns' => [
+      type: 'template',
+      altText: 'this is an template message',
+      template: {
+        type: 'carousel',
+        columns: [
           {
-            'thumbnailImageUrl' => 'https://example.com/image1.jpg',
-            'title' => 'example',
-            'text' => 'test',
-            'actions' => [
+            thumbnailImageUrl: 'https://example.com/image1.jpg',
+            title: 'example',
+            text: 'test',
+            actions: [
               {
-                'type' => 'message',
-                'label' => 'keep',
-                'text' => 'keep'
+                type: 'message',
+                label: 'keep',
+                text: 'keep'
               },
               {
-                'type' => 'uri',
-                'label' => 'site',
-                'uri' => 'https://example.com/page1'
+                type: 'uri',
+                label: 'site',
+                uri: 'https://example.com/page1'
               },
             ],
           },
           {
-            'thumbnailImageUrl' => 'https://example.com/image2.jpg',
-            'title' => 'example',
-            'text' => 'test',
-            'actions' => [
+            thumbnailImageUrl: 'https://example.com/image2.jpg',
+            title: 'example',
+            text: 'test',
+            actions: [
               {
-                'type' => 'message',
-                'label' => 'keep',
-                'text' => 'keep'
+                type: 'message',
+                label: 'keep',
+                text: 'keep'
               },
               {
-                'type' => 'uri',
-                'label' => 'site',
-                'uri' => 'https://example.com/page2'
+                type: 'uri',
+                label: 'site',
+                uri: 'https://example.com/page2'
               },
             ],
           },
         ],
       }
     }
-    response = client.push_message(user_id, message, payload: {'customAggregationUnits' => ['test']})
+    response = client.push_message(user_id, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_id,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_id,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 
   it 'replies the template message type carousel' do
@@ -266,57 +266,57 @@ describe Line::Bot::Client do
 
     user_ids = ['user1', 'user2']
     message = {
-      'type' => 'template',
-      'altText' => 'this is an template message',
-      'template' => {
-        'type' => 'carousel',
-        'columns' => [
+      type: 'template',
+      altText: 'this is an template message',
+      template: {
+        type: 'carousel',
+        columns: [
           {
-            'thumbnailImageUrl' => 'https://example.com/image1.jpg',
-            'title' => 'example',
-            'text' => 'test',
-            'actions' => [
+            thumbnailImageUrl: 'https://example.com/image1.jpg',
+            title: 'example',
+            text: 'test',
+            actions: [
               {
-                'type' => 'message',
-                'label' => 'keep',
-                'text' => 'keep'
+                type: 'message',
+                label: 'keep',
+                text: 'keep'
               },
               {
-                'type' => 'uri',
-                'label' => 'site',
-                'uri' => 'https://example.com/page1'
+                type: 'uri',
+                label: 'site',
+                uri: 'https://example.com/page1'
               },
             ],
           },
           {
-            'thumbnailImageUrl' => 'https://example.com/image2.jpg',
-            'title' => 'example',
-            'text' => 'test',
-            'actions' => [
+            thumbnailImageUrl: 'https://example.com/image2.jpg',
+            title: 'example',
+            text: 'test',
+            actions: [
               {
-                'type' => 'message',
-                'label' => 'keep',
-                'text' => 'keep'
+                type: 'message',
+                label: 'keep',
+                text: 'keep'
               },
               {
-                'type' => 'uri',
-                'label' => 'site',
-                'uri' => 'https://example.com/page2'
+                type: 'uri',
+                label: 'site',
+                uri: 'https://example.com/page2'
               },
             ],
           },
         ],
       }
     }
-    response = client.multicast(user_ids, message, payload: {'customAggregationUnits' => ['test']})
+    response = client.multicast(user_ids, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_ids,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_ids,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 end

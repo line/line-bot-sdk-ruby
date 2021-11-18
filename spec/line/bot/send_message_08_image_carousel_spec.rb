@@ -66,48 +66,48 @@ describe Line::Bot::Client do
 
     user_id = 'user_id'
     message = {
-      'type' => 'template',
-      'altText' => 'this is a image carousel template',
-      'template' => {
-        'type' => 'image_carousel',
-        'columns' => [
+      type: 'template',
+      altText: 'this is a image carousel template',
+      template: {
+        type: 'image_carousel',
+        columns: [
           {
-            'imageUrl' => 'https://example.com/bot/images/item1.jpg',
-            'action' => {
-              'type' => 'postback',
-              'label' => 'Buy',
-              'data' => 'action=buy&itemid=111'
+            imageUrl: 'https://example.com/bot/images/item1.jpg',
+            action: {
+              type: 'postback',
+              label: 'Buy',
+              data: 'action=buy&itemid=111'
             }
           },
           {
-            'imageUrl' => 'https://example.com/bot/images/item2.jpg',
-            'action' => {
-              'type' => 'message',
-              'label' => 'Yes',
-              'text' => 'yes'
+            imageUrl: 'https://example.com/bot/images/item2.jpg',
+            action: {
+              type: 'message',
+              label: 'Yes',
+              text: 'yes'
             }
           },
           {
-            'imageUrl' => 'https://example.com/bot/images/item3.jpg',
-            'action' => {
-              'type' => 'uri',
-              'label' => 'View detail',
-              'uri' => 'http://example.com/page/222'
+            imageUrl: 'https://example.com/bot/images/item3.jpg',
+            action: {
+              type: 'uri',
+              label: 'View detail',
+              uri: 'http://example.com/page/222'
             }
           }
         ]
       }
     }
-    response = client.push_message(user_id, message, payload: {'customAggregationUnits' => ['test']})
+    response = client.push_message(user_id, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_id,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_id,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 
   it 'replies the image carousel message' do
@@ -226,33 +226,33 @@ describe Line::Bot::Client do
 
     user_ids = %w[user1 user2]
     message = {
-      'type' => 'template',
-      'altText' => 'this is a image carousel template',
-      'template' => {
-        'type' => 'image_carousel',
-        'columns' => [
+      type: 'template',
+      altText: 'this is a image carousel template',
+      template: {
+        type: 'image_carousel',
+        columns: [
           {
-            'imageUrl' => 'https://example.com/bot/images/item1.jpg',
-            'action' => {
-              'type' => 'postback',
-              'label' => 'Buy',
-              'data' => 'action=buy&itemid=111'
+            imageUrl: 'https://example.com/bot/images/item1.jpg',
+            action: {
+              type: 'postback',
+              label: 'Buy',
+              data: 'action=buy&itemid=111'
             }
           },
           {
-            'imageUrl' => 'https://example.com/bot/images/item2.jpg',
-            'action' => {
-              'type' => 'message',
-              'label' => 'Yes',
-              'text' => 'yes'
+            imageUrl: 'https://example.com/bot/images/item2.jpg',
+            action: {
+              type: 'message',
+              label: 'Yes',
+              text: 'yes'
             }
           },
           {
-            'imageUrl' => 'https://example.com/bot/images/item3.jpg',
-            'action' => {
-              'type' => 'uri',
-              'label' => 'View detail',
-              'uri' => 'http://example.com/page/222'
+            imageUrl: 'https://example.com/bot/images/item3.jpg',
+            action: {
+              type: 'uri',
+              label: 'View detail',
+              uri: 'http://example.com/page/222'
             }
           }
         ]
@@ -261,12 +261,12 @@ describe Line::Bot::Client do
     response = client.multicast(user_ids, message, payload: {'customAggregationUnits' => ['test']})
 
     expected = {
-      'to' => user_ids,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_ids,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 end

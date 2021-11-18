@@ -53,35 +53,35 @@ describe Line::Bot::Client do
 
     user_id = 'user_id'
     message = {
-      'type' => 'template',
-      'altText' => 'this is an template message',
-      'template' => {
-        'type' => 'confirm',
-        'text' => 'test',
-        'actions' => [
+      type: 'template',
+      altText: 'this is an template message',
+      template: {
+        type: 'confirm',
+        text: 'test',
+        actions: [
           {
-            'type' => 'message',
-            'label' => 'yes',
-            'text' => 'yes',
+            type: 'message',
+            label: 'yes',
+            text: 'yes',
           },
           {
-            'type' => 'message',
-            'label' => 'no',
-            'text' => 'no',
+            type: 'message',
+            label: 'no',
+            text: 'no',
           },
         ],
       }
     }
-    response = client.push_message(user_id, message, payload: {'customAggregationUnits' => ['test']})
+    response = client.push_message(user_id, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_id,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_id,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 
   it 'replies the template message type confirm' do
@@ -174,34 +174,34 @@ describe Line::Bot::Client do
 
     user_ids = ['user1', 'user2']
     message = {
-      'type' => 'template',
-      'altText' => 'this is an template message',
-      'template' => {
-        'type' => 'confirm',
-        'text' => 'test',
-        'actions' => [
+      type: 'template',
+      altText: 'this is an template message',
+      template: {
+        type: 'confirm',
+        text: 'test',
+        actions: [
           {
-            'type' => 'message',
-            'label' => 'yes',
-            'text' => 'yes',
+            type: 'message',
+            label: 'yes',
+            text: 'yes',
           },
           {
-            'type' => 'message',
-            'label' => 'no',
-            'text' => 'no',
+            type: 'message',
+            label: 'no',
+            text: 'no',
           },
         ],
       }
     }
-    response = client.multicast(user_ids, message, payload: {'customAggregationUnits' => ['test']})
+    response = client.multicast(user_ids, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_ids,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_ids,
+      messages: [
         message
       ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 end

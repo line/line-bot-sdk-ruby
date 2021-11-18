@@ -40,22 +40,22 @@ describe Line::Bot::Client do
 
     user_id = 'user_id'
     message = {
-      'type' => 'location',
-      'title' => 'LINE Corporation.',
-      'address' => 'Hikarie  Shibuya-ku Tokyo 151-0002',
-      'latitude' => 35.61823286112982,
-      'longitude' => 139.72824096679688,
+      type: 'location',
+      title: 'LINE Corporation.',
+      address: 'Hikarie  Shibuya-ku Tokyo 151-0002',
+      latitude: 35.61823286112982,
+      longitude: 139.72824096679688,
     }
-    response = client.push_message(user_id, message, payload: {'customAggregationUnits' => ['test']})
+    response = client.push_message(user_id, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_id,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_id,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 
   it 'replies the location message' do
@@ -122,21 +122,21 @@ describe Line::Bot::Client do
 
     user_ids = ['user1', 'user2']
     message = {
-      'type' => 'location',
-      'title' => 'LINE Corporation.',
-      'address' => 'Hikarie  Shibuya-ku Tokyo 151-0002',
-      'latitude' => 35.61823286112982,
-      'longitude' => 139.72824096679688,
+      type: 'location',
+      title: 'LINE Corporation.',
+      address: 'Hikarie  Shibuya-ku Tokyo 151-0002',
+      latitude: 35.61823286112982,
+      longitude: 139.72824096679688,
     }
-    response = client.multicast(user_ids, message, payload: {'customAggregationUnits' => ['test']})
+    response = client.multicast(user_ids, message, payload: {customAggregationUnits: ['test']})
 
     expected = {
-      'to' => user_ids,
-      'messages' => [
+      customAggregationUnits: ['test'],
+      to: user_ids,
+      messages: [
         message
-      ],
-      'customAggregationUnits' => ['test']
-    }
-    expect(JSON.parse(response.body)).to eq(expected)
+      ]
+    }.to_json
+    expect(response.body).to eq(expected)
   end
 end
