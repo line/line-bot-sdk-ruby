@@ -14,10 +14,10 @@ describe Line::Bot::Client do
     user_id = 'user_id'
     message = {
       type: 'location',
-      title: 'LINE Corporation.',
-      address: 'Hikarie  Shibuya-ku Tokyo 151-0002',
-      latitude: 35.61823286112982,
-      longitude: 139.72824096679688,
+      title: 'National Diet Building',
+      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014'
+      latitude: 35.675862,
+      longitude: 139.744967,
     }
     response = client.push_message(user_id, message)
 
@@ -41,10 +41,10 @@ describe Line::Bot::Client do
     user_id = 'user_id'
     message = {
       type: 'location',
-      title: 'LINE Corporation.',
-      address: 'Hikarie  Shibuya-ku Tokyo 151-0002',
-      latitude: 35.61823286112982,
-      longitude: 139.72824096679688,
+      title: 'National Diet Building',
+      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014'
+      latitude: 35.675862,
+      longitude: 139.744967,
     }
     response = client.push_message(user_id, message, payload: {customAggregationUnits: ['test']})
 
@@ -69,10 +69,10 @@ describe Line::Bot::Client do
     reply_token = 'reply_token'
     message = {
       type: 'location',
-      title: 'LINE Corporation.',
-      address: 'Hikarie  Shibuya-ku Tokyo 151-0002',
-      latitude: 35.61823286112982,
-      longitude: 139.72824096679688,
+      title: 'National Diet Building',
+      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014'
+      latitude: 35.675862,
+      longitude: 139.744967,
     }
     response = client.reply_message(reply_token, message)
 
@@ -96,10 +96,10 @@ describe Line::Bot::Client do
     user_ids = ['user1', 'user2']
     message = {
       type: 'location',
-      title: 'LINE Corporation.',
-      address: 'Hikarie  Shibuya-ku Tokyo 151-0002',
-      latitude: 35.61823286112982,
-      longitude: 139.72824096679688,
+      title: 'National Diet Building',
+      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014'
+      latitude: 35.675862,
+      longitude: 139.744967,
     }
     response = client.multicast(user_ids, message)
 
@@ -123,10 +123,10 @@ describe Line::Bot::Client do
     user_ids = ['user1', 'user2']
     message = {
       type: 'location',
-      title: 'LINE Corporation.',
-      address: 'Hikarie  Shibuya-ku Tokyo 151-0002',
-      latitude: 35.61823286112982,
-      longitude: 139.72824096679688,
+      title: 'National Diet Building',
+      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014'
+      latitude: 35.675862,
+      longitude: 139.744967,
     }
     response = client.multicast(user_ids, message, payload: {customAggregationUnits: ['test']})
 
