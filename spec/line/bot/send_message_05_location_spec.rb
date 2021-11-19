@@ -15,7 +15,7 @@ describe Line::Bot::Client do
     message = {
       type: 'location',
       title: 'National Diet Building',
-      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014'
+      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014',
       latitude: 35.675862,
       longitude: 139.744967,
     }
@@ -42,7 +42,7 @@ describe Line::Bot::Client do
     message = {
       type: 'location',
       title: 'National Diet Building',
-      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014'
+      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014',
       latitude: 35.675862,
       longitude: 139.744967,
     }
@@ -70,7 +70,7 @@ describe Line::Bot::Client do
     message = {
       type: 'location',
       title: 'National Diet Building',
-      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014'
+      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014',
       latitude: 35.675862,
       longitude: 139.744967,
     }
@@ -97,7 +97,7 @@ describe Line::Bot::Client do
     message = {
       type: 'location',
       title: 'National Diet Building',
-      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014'
+      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014',
       latitude: 35.675862,
       longitude: 139.744967,
     }
@@ -124,7 +124,7 @@ describe Line::Bot::Client do
     message = {
       type: 'location',
       title: 'National Diet Building',
-      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014'
+      address: 'Nagatacho 1-7-1 Chiyoda-ku, Tokyo 100-0014',
       latitude: 35.675862,
       longitude: 139.744967,
     }
