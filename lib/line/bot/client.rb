@@ -166,14 +166,15 @@ module Line
       # @param user_id [String] User Id
       # @param messages [Hash or Array] Message Objects
       # @param headers [Hash] HTTP Headers
+      # @param payload [Hash] Additional request body
       # @return [Net::HTTPResponse]
-      def push_message(user_id, messages, headers: {})
+      def push_message(user_id, messages, headers: {}, payload: {})
         channel_token_required
 
         messages = [messages] if messages.is_a?(Hash)
 
         endpoint_path = '/bot/message/push'
-        payload = { to: user_id, messages: messages }.to_json
+        payload = payload.merge({ to: user_id, messages: messages }).to_json
         post(endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
@@ -212,15 +213,16 @@ module Line
       # @param to [Array or String] Array of userIds
       # @param messages [Hash or Array] Message Objects
       # @param headers [Hash] HTTP Headers
+      # @param payload [Hash] Additional request body
       # @return [Net::HTTPResponse]
-      def multicast(to, messages, headers: {})
+      def multicast(to, messages, headers: {}, payload: {})
         channel_token_required
 
         to = [to] if to.is_a?(String)
         messages = [messages] if messages.is_a?(Hash)
 
         endpoint_path = '/bot/message/multicast'
-        payload = { to: to, messages: messages }.to_json
+        payload = payload.merge({ to: to, messages: messages }).to_json
         post(endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
