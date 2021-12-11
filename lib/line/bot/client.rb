@@ -333,15 +333,18 @@ module Line
 
       # Get user IDs of who added your LINE Official Account as a friend
       #
-      # @param continuation_token [String] Identifier to return next page
-      #                                   (next property to be included in the response)
+      # @param start [String] Identifier to return next page (next property to be included in the response)
+      # @param limit [Integer] The maximum number of user IDs to retrieve in a single request
       #
       # @return [Net::HTTPResponse]
-      def get_follower_ids(continuation_token = nil)
+      def get_follower_ids(start: nil, limit: nil)
         channel_token_required
 
+        params = { start: start, limit: limit }.compact
+
         endpoint_path = "/bot/followers/ids"
-        endpoint_path += "?start=#{continuation_token}" if continuation_token
+        endpoint_path += "?" unless params.empty?
+        endpoint_path += params.map { |key, value| "#{key}=#{value}" }.join("&")
         get(endpoint, endpoint_path, credentials)
       end
 
