@@ -96,4 +96,30 @@ describe Line::Bot::Client do
     expect(response).to be_a(Net::HTTPOK)
     expect(result['userIds']).to eq ["Uxxxxxxxxxxxxxx1", "Uxxxxxxxxxxxxxx2"]
   end
+
+  it 'gets follower ids using deprecated_continuation_token argument' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/followers/ids'
+    stub_request(:get, uri_template).to_return { |request| {body: USER_ID_CONTENT, status: 200} }
+
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/followers/ids?start={start}'
+    stub_request(:get, uri_template).to_return { |request| {body: NEXT_USER_ID_CONTENT, status: 200} }
+
+    client = generate_client
+
+    # first page
+    response = client.get_follower_ids
+
+    expect(response).to be_a(Net::HTTPOK)
+    result = JSON.parse(response.body)
+    expect(result['userIds']).to eq ["Uxxxxxxxxxxxxxx1", "Uxxxxxxxxxxxxxx2", "Uxxxxxxxxxxxxxx3"]
+    expect(result['next']).to eq "jxEWCEEP"
+
+    # second page
+    response = client.get_follower_ids(result['next'])
+
+    expect(response).to be_a(Net::HTTPOK)
+    result = JSON.parse(response.body)
+    expect(result['userIds']).to eq ["Uxxxxxxxxxxxxxx4", "Uxxxxxxxxxxxxxx5", "Uxxxxxxxxxxxxxx6"]
+    expect(result['next']).to be nil
+  end
 end

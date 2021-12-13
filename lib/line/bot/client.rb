@@ -337,8 +337,13 @@ module Line
       # @param limit [Integer] The maximum number of user IDs to retrieve in a single request
       #
       # @return [Net::HTTPResponse]
-      def get_follower_ids(start: nil, limit: nil)
+      def get_follower_ids(deprecated_continuation_token = nil, start: nil, limit: nil)
         channel_token_required
+
+        if deprecated_continuation_token
+          warn "continuation_token as the first argument is deprecated. Please use :start instead."
+          start = deprecated_continuation_token
+        end
 
         params = { start: start, limit: limit }.compact
 
