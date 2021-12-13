@@ -343,8 +343,7 @@ module Line
         params = { start: start, limit: limit }.compact
 
         endpoint_path = "/bot/followers/ids"
-        endpoint_path += "?" unless params.empty?
-        endpoint_path += params.map { |key, value| "#{key}=#{value}" }.join("&")
+        endpoint_path += "?" + URI.encode_www_form(params) unless params.empty?
         get(endpoint, endpoint_path, credentials)
       end
 
