@@ -23,6 +23,15 @@ NEXT_USER_ID_CONTENT = <<"EOS"
 }
 EOS
 
+LIMITED_USER_ID_CONTENT = <<"EOS"
+{
+    "userIds": [
+        "Uxxxxxxxxxxxxxx1",
+        "Uxxxxxxxxxxxxxx2"
+    ]
+}
+EOS
+
 describe Line::Bot::Client do
   def dummy_config
     {
@@ -42,7 +51,57 @@ describe Line::Bot::Client do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/followers/ids'
     stub_request(:get, uri_template).to_return { |request| {body: USER_ID_CONTENT, status: 200} }
 
-    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/followers/ids?start={continuationToken}'
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/followers/ids?start={start}'
+    stub_request(:get, uri_template).to_return { |request| {body: NEXT_USER_ID_CONTENT, status: 200} }
+
+    client = generate_client
+
+    # first page
+    response = client.get_follower_ids
+
+    expect(response).to be_a(Net::HTTPOK)
+    result = JSON.parse(response.body)
+    expect(result['userIds']).to eq ["Uxxxxxxxxxxxxxx1", "Uxxxxxxxxxxxxxx2", "Uxxxxxxxxxxxxxx3"]
+    expect(result['next']).to eq "jxEWCEEP"
+
+    # second page
+    response = client.get_follower_ids(start: result['next'])
+
+    expect(response).to be_a(Net::HTTPOK)
+    result = JSON.parse(response.body)
+    expect(result['userIds']).to eq ["Uxxxxxxxxxxxxxx4", "Uxxxxxxxxxxxxxx5", "Uxxxxxxxxxxxxxx6"]
+    expect(result['next']).to be nil
+  end
+
+  it 'gets limited number of follower ids' do
+    # without any other conditions
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/followers/ids?limit={limit}'
+    stub_request(:get, uri_template).to_return { |request| {body: LIMITED_USER_ID_CONTENT, status: 200} }
+
+    # with other conditions
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/followers/ids?limit={limit}&start={start}'
+    stub_request(:get, uri_template).to_return { |request| {body: LIMITED_USER_ID_CONTENT, status: 200} }
+
+    client = generate_client
+
+    # without any other conditions
+    response = client.get_follower_ids(limit: 2)
+    result = JSON.parse(response.body)
+    expect(response).to be_a(Net::HTTPOK)
+    expect(result['userIds']).to eq ["Uxxxxxxxxxxxxxx1", "Uxxxxxxxxxxxxxx2"]
+
+    # with other conditions
+    response = client.get_follower_ids(start: 'foo', limit: 2)
+    result = JSON.parse(response.body)
+    expect(response).to be_a(Net::HTTPOK)
+    expect(result['userIds']).to eq ["Uxxxxxxxxxxxxxx1", "Uxxxxxxxxxxxxxx2"]
+  end
+
+  it 'gets follower ids using deprecated_continuation_token argument' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/followers/ids'
+    stub_request(:get, uri_template).to_return { |request| {body: USER_ID_CONTENT, status: 200} }
+
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/followers/ids?start={start}'
     stub_request(:get, uri_template).to_return { |request| {body: NEXT_USER_ID_CONTENT, status: 200} }
 
     client = generate_client

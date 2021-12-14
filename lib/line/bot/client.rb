@@ -333,15 +333,22 @@ module Line
 
       # Get user IDs of who added your LINE Official Account as a friend
       #
-      # @param continuation_token [String] Identifier to return next page
-      #                                   (next property to be included in the response)
+      # @param start [String] Identifier to return next page (next property to be included in the response)
+      # @param limit [Integer] The maximum number of user IDs to retrieve in a single request
       #
       # @return [Net::HTTPResponse]
-      def get_follower_ids(continuation_token = nil)
+      def get_follower_ids(deprecated_continuation_token = nil, start: nil, limit: nil)
         channel_token_required
 
+        if deprecated_continuation_token
+          warn "continuation_token as the first argument is deprecated. Please use :start instead."
+          start = deprecated_continuation_token
+        end
+
+        params = { start: start, limit: limit }.compact
+
         endpoint_path = "/bot/followers/ids"
-        endpoint_path += "?start=#{continuation_token}" if continuation_token
+        endpoint_path += "?" + URI.encode_www_form(params) unless params.empty?
         get(endpoint, endpoint_path, credentials)
       end
 
