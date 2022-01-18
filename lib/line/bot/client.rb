@@ -1017,7 +1017,7 @@ module Line
       # Get the number of aggregation units used this month.
       #
       # @return [Net::HTTPResponse]
-      def get_number_of_units
+      def get_aggregation_info
         channel_token_required
 
         endpoint_path = "/bot/message/aggregation/info"
@@ -1030,7 +1030,7 @@ module Line
       # @param start [String] Value of the continuation token found in the `next` property of the JSON object returned in the response.
       #
       # @return [Net::HTTPResponse]
-      def get_unit_names(limit: nil, start: nil)
+      def get_aggregation_list(limit: nil, start: nil)
         channel_token_required
 
         params = {limit: limit, start: start}.compact
