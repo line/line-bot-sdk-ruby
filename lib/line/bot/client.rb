@@ -1034,7 +1034,7 @@ module Line
         channel_token_required
 
         params = {limit: limit, start: start}.compact
-        endpoint_path = "/bot/message/aggregation/list?" + + URI.encode_www_form(params)
+        endpoint_path = "/bot/message/aggregation/list?" + URI.encode_www_form(params)
         get(endpoint, endpoint_path, credentials)
       end
 
