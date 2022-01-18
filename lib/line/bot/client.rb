@@ -1002,8 +1002,8 @@ module Line
       # Get the per-unit statistics of how users interact with push messages and multicast messages.
       #
       # @param unit [String] Case-sensitive name of aggregation unit specified when sending the message.
-      # @param from [String] Start date of aggregation period in UTC+9 with `yyyyMMdd`` format
-      # @param to [String] End date of aggregation period in UTC+9 with `yyyyMMdd`` format.
+      # @param from [String] Start date of aggregation period in UTC+9 with `yyyyMMdd` format
+      # @param to [String] End date of aggregation period in UTC+9 with `yyyyMMdd` format.
       #
       # @return [Net::HTTPResponse]
       def get_statistics_per_unit(unit:, from:, to:)
@@ -1027,7 +1027,7 @@ module Line
       # Get the name list of units used this month for statistics aggregation.
       #
       # @param limit [Integer] Maximum number of aggregation units per request. Maximum: 100, Default: 100.
-      # @param start [String] Value of the continuation token found in the next property of the JSON object returned in the response.
+      # @param start [String] Value of the continuation token found in the `next` property of the JSON object returned in the response.
       #
       # @return [Net::HTTPResponse]
       def get_unit_names(limit: nil, start: nil)
