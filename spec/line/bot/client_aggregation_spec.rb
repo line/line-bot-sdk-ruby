@@ -113,7 +113,7 @@ describe Line::Bot::Client do
     stub_request(:get, uri_template).to_return { |request| {body: INFO_CONTENT, status: 200} }
 
     client = generate_client
-    response = client.get_number_of_units
+    response = client.get_aggregation_info
 
     expect(response).to be_a(Net::HTTPOK)
     result = JSON.parse(response.body)
@@ -130,7 +130,7 @@ describe Line::Bot::Client do
     client = generate_client
 
     # first page
-    response = client.get_unit_names
+    response = client.get_aggregation_list
 
     expect(response).to be_a(Net::HTTPOK)
     result = JSON.parse(response.body)
@@ -138,7 +138,7 @@ describe Line::Bot::Client do
     expect(result['next']).to eq "jxEWCEEP"
 
     # second page
-    response = client.get_unit_names(start: result['next'])
+    response = client.get_aggregation_list(start: result['next'])
 
     expect(response).to be_a(Net::HTTPOK)
     result = JSON.parse(response.body)
@@ -158,13 +158,13 @@ describe Line::Bot::Client do
     client = generate_client
 
     # without any other conditions
-    response = client.get_unit_names(limit: 2)
+    response = client.get_aggregation_list(limit: 2)
     result = JSON.parse(response.body)
     expect(response).to be_a(Net::HTTPOK)
     expect(result['customAggregationUnits']).to eq ["test7", "test8"]
 
     # with other conditions
-    response = client.get_unit_names(start: 'foo', limit: 2)
+    response = client.get_aggregation_list(start: 'foo', limit: 2)
     result = JSON.parse(response.body)
     expect(response).to be_a(Net::HTTPOK)
     expect(result['customAggregationUnits']).to eq ["test7", "test8"]
