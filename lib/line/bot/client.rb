@@ -999,6 +999,45 @@ module Line
         put(endpoint, endpoint_path, body.to_json, credentials)
       end
 
+      # Get the per-unit statistics of how users interact with push messages and multicast messages.
+      #
+      # @param unit [String] Case-sensitive name of aggregation unit specified when sending the message.
+      # @param from [String] Start date of aggregation period in UTC+9 with `yyyyMMdd` format
+      # @param to [String] End date of aggregation period in UTC+9 with `yyyyMMdd` format.
+      #
+      # @return [Net::HTTPResponse]
+      def get_statistics_per_unit(unit:, from:, to:)
+        channel_token_required
+
+        params = {customAggregationUnit: unit, from: from, to: to}
+        endpoint_path = "/bot/insight/message/event/aggregation?" + URI.encode_www_form(params)
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Get the number of aggregation units used this month.
+      #
+      # @return [Net::HTTPResponse]
+      def get_aggregation_info
+        channel_token_required
+
+        endpoint_path = "/bot/message/aggregation/info"
+        get(endpoint, endpoint_path, credentials)
+      end
+
+      # Get the name list of units used this month for statistics aggregation.
+      #
+      # @param limit [Integer] Maximum number of aggregation units per request. Maximum: 100, Default: 100.
+      # @param start [String] Value of the continuation token found in the `next` property of the JSON object returned in the response.
+      #
+      # @return [Net::HTTPResponse]
+      def get_aggregation_list(limit: nil, start: nil)
+        channel_token_required
+
+        params = {limit: limit, start: start}.compact
+        endpoint_path = "/bot/message/aggregation/list?" + URI.encode_www_form(params)
+        get(endpoint, endpoint_path, credentials)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_base [String]
