@@ -1,5 +1,20 @@
 # Change Log
 
+## [v1.23.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.23.0) (2022-01-27)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.22.0...v1.23.0)
+
+**Closed issues:**
+
+- Support get statistics per aggregation unit [\#219](https://github.com/line/line-bot-sdk-ruby/issues/219)
+
+**Merged pull requests:**
+
+- Add custom aggregation units API [\#247](https://github.com/line/line-bot-sdk-ruby/pull/247) ([yskkin](https://github.com/yskkin))
+- Get the follower ids with a limit [\#246](https://github.com/line/line-bot-sdk-ruby/pull/246) ([zenizh](https://github.com/zenizh))
+- additional request body for push\_message and multicast [\#245](https://github.com/line/line-bot-sdk-ruby/pull/245) ([yskkin](https://github.com/yskkin))
+- add kitchensink README.md [\#243](https://github.com/line/line-bot-sdk-ruby/pull/243) ([4geru](https://github.com/4geru))
+- add rich menu sample code [\#241](https://github.com/line/line-bot-sdk-ruby/pull/241) ([4geru](https://github.com/4geru))
+
 ## [v1.22.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.22.0) (2021-09-28)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.21.0...v1.22.0)
 
@@ -11,6 +26,7 @@
 
 - add update/get/get\_list rich\_menu\_alias [\#237](https://github.com/line/line-bot-sdk-ruby/pull/237) ([4geru](https://github.com/4geru))
 - Don't require channel\_id & channel\_secret when call api related to JWT [\#240](https://github.com/line/line-bot-sdk-ruby/pull/240) ([koukikitamura](https://github.com/koukikitamura))
+- Release/v1.22.0 [\#239](https://github.com/line/line-bot-sdk-ruby/pull/239) ([kimoto](https://github.com/kimoto))
 
 ## [v1.21.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.21.0) (2021-08-18)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.20.0...v1.21.0)
