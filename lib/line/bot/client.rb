@@ -145,6 +145,25 @@ module Line
         post(oauth_endpoint, endpoint_path, payload, headers)
       end
 
+      # Verify ID token
+      #
+      # @param id_token [String] ID token
+      # @param options [Hash] Optional request body
+      #
+      # @return [Net::HTTPResponse]
+      def verify_id_token(id_token, options = {})
+        channel_id_required
+
+        endpoint_path = '/oauth2/v2.1/verify'
+        payload = URI.encode_www_form(
+          client_id: channel_id,
+          id_token: id_token,
+          **options
+        )
+        headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
+        post(oauth_endpoint, endpoint_path, payload, headers)
+      end
+
       # Get all valid channel access token key IDs v2.1
       #
       # @param jwt [String]

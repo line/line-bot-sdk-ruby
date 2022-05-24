@@ -112,4 +112,15 @@ describe Line::Bot::Client do
 
     expect(response).to be_a(Net::HTTPOK)
   end
+
+  it 'verifies ID token' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + '/oauth2/v2.1/verify'
+    stub_request(:post, uri_template).to_return { |request| {body: '', status: 200} }
+
+    client = generate_client
+
+    response = client.verify_id_token('dummy_id_token', nonce: 'dummy_nonce')
+
+    expect(response).to be_a(Net::HTTPOK)
+  end
 end
