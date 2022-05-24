@@ -55,6 +55,15 @@ VERIFY_ACCESS_TOKEN_CONTENT = <<"EOS"
 }
 EOS
 
+PROFILE_BY_ACCESS_TOKEN_CONTENT = <<"EOS"
+{
+    "userId": "U4af4980629...",
+    "displayName": "Brown",
+    "pictureUrl": "https://profile.line-scdn.net/abcdefghijklmn",
+    "statusMessage": "Hello, LINE!"
+}
+EOS
+
 describe Line::Bot::Client do
   def dummy_config
     {
@@ -158,5 +167,18 @@ describe Line::Bot::Client do
     response = client.verify_access_token('dummy_access_token')
 
     expect(response).to be_a(Net::HTTPOK).and(have_attributes(body: VERIFY_ACCESS_TOKEN_CONTENT))
+  end
+
+  it 'gets profile by access token' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + '/v2/profile'
+    stub_request(:get, uri_template)
+      .with(headers: { 'Authorization' =>  'Bearer dummy_access_token'})
+      .to_return { |request| {body: PROFILE_BY_ACCESS_TOKEN_CONTENT, status: 200} }
+
+    client = generate_client
+
+    response = client.get_profile_by_access_token('dummy_access_token')
+
+    expect(response).to be_a(Net::HTTPOK).and(have_attributes(body: PROFILE_BY_ACCESS_TOKEN_CONTENT))
   end
 end

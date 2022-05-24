@@ -195,6 +195,19 @@ module Line
         get(oauth_endpoint, endpoint_path, headers)
       end
 
+      # Get user profile by access token
+      #
+      # @param access_token [String] access token
+      #
+      # @return [Net::HTTPResponse]
+      def get_profile_by_access_token(access_token)
+        headers = {
+          "Authorization" => "Bearer #{access_token}",
+        }
+        endpoint_path = "/v2/profile"
+        get(oauth_endpoint, endpoint_path, headers)
+      end
+
       # Push messages to a user using user_id.
       #
       # @param user_id [String] User Id
