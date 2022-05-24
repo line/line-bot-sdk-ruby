@@ -32,6 +32,21 @@ GET_CHANNEL_ACCESS_TOKEN_KEY_IDS_JWT_CONTENT = <<"EOS"
 }
 EOS
 
+VERIFY_ID_TOKEN_CONTENT = <<"EOS"
+{
+    "iss": "https://access.line.me",
+    "sub": "U1234567890abcdef1234567890abcdef",
+    "aud": "1234567890",
+    "exp": 1504169092,
+    "iat": 1504263657,
+    "nonce": "0987654asdf",
+    "amr": ["pwd"],
+    "name": "Taro Line",
+    "picture": "https://sample_line.me/aBcdefg123456",
+    "email": "taro.line@example.com"
+}
+EOS
+
 describe Line::Bot::Client do
   def dummy_config
     {
@@ -115,12 +130,14 @@ describe Line::Bot::Client do
 
   it 'verifies ID token' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + '/oauth2/v2.1/verify'
-    stub_request(:post, uri_template).to_return { |request| {body: '', status: 200} }
+    stub_request(:post, uri_template)
+      .with(body: { client_id: 'channel id', id_token: 'dummy_id_token', nonce: 'dummy_nonce'})
+      .to_return { |request| {body: VERIFY_ID_TOKEN_CONTENT, status: 200} }
 
     client = generate_client
 
     response = client.verify_id_token('dummy_id_token', nonce: 'dummy_nonce')
 
-    expect(response).to be_a(Net::HTTPOK)
+    expect(response).to be_a(Net::HTTPOK).and(have_attributes(body: VERIFY_ID_TOKEN_CONTENT))
   end
 end

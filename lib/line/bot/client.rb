@@ -148,18 +148,20 @@ module Line
       # Verify ID token
       #
       # @param id_token [String] ID token
-      # @param options [Hash] Optional request body
+      # @param nonce [String] Expected nonce value. Use the nonce value provided in the authorization request. Omit if the nonce value was not specified in the authorization request.
+      # @param user_id [String] Expected user ID.
       #
       # @return [Net::HTTPResponse]
-      def verify_id_token(id_token, options = {})
+      def verify_id_token(id_token, nonce: nil, user_id: nil)
         channel_id_required
 
         endpoint_path = '/oauth2/v2.1/verify'
-        payload = URI.encode_www_form(
+        payload = URI.encode_www_form({
           client_id: channel_id,
           id_token: id_token,
-          **options
-        )
+          nonce: nonce,
+          user_id: user_id
+        }.compact)
         headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
         post(oauth_endpoint, endpoint_path, payload, headers)
       end
