@@ -47,6 +47,14 @@ VERIFY_ID_TOKEN_CONTENT = <<"EOS"
 }
 EOS
 
+VERIFY_ACCESS_TOKEN_CONTENT = <<"EOS"
+{
+    "scope": "profile",
+    "client_id": "1440057261",
+    "expires_in": 2591659
+}
+EOS
+
 describe Line::Bot::Client do
   def dummy_config
     {
@@ -139,5 +147,16 @@ describe Line::Bot::Client do
     response = client.verify_id_token('dummy_id_token', nonce: 'dummy_nonce')
 
     expect(response).to be_a(Net::HTTPOK).and(have_attributes(body: VERIFY_ID_TOKEN_CONTENT))
+  end
+
+  it 'verifies access token' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + '/oauth2/v2.1/verify?access_token=dummy_access_token'
+    stub_request(:get, uri_template).to_return { |request| {body: VERIFY_ACCESS_TOKEN_CONTENT, status: 200} }
+
+    client = generate_client
+
+    response = client.verify_access_token('dummy_access_token')
+
+    expect(response).to be_a(Net::HTTPOK).and(have_attributes(body: VERIFY_ACCESS_TOKEN_CONTENT))
   end
 end

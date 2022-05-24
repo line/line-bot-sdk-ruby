@@ -166,6 +166,19 @@ module Line
         post(oauth_endpoint, endpoint_path, payload, headers)
       end
 
+      # Verify access token v2.1
+      #
+      # @param access_token [String] access token
+      #
+      # @return [Net::HTTPResponse]
+      def verify_access_token(access_token)
+        payload = URI.encode_www_form(
+          access_token: access_token
+        )
+        endpoint_path = "/oauth2/v2.1/verify?#{payload}"
+        get(oauth_endpoint, endpoint_path)
+      end
+
       # Get all valid channel access token key IDs v2.1
       #
       # @param jwt [String]
