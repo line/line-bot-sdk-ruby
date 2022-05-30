@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.24.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.24.0) (2022-05-30)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.23.0...v1.24.0)
+
+**Merged pull requests:**
+
+- Add ID token verification endpoint [\#253](https://github.com/line/line-bot-sdk-ruby/pull/253) ([yskkin](https://github.com/yskkin))
+
 ## [v1.23.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.23.0) (2022-01-27)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.22.0...v1.23.0)
 
@@ -9,10 +16,12 @@
 
 **Merged pull requests:**
 
+- Release v1.23.0 [\#249](https://github.com/line/line-bot-sdk-ruby/pull/249) ([kimoto](https://github.com/kimoto))
 - Add custom aggregation units API [\#247](https://github.com/line/line-bot-sdk-ruby/pull/247) ([yskkin](https://github.com/yskkin))
 - Get the follower ids with a limit [\#246](https://github.com/line/line-bot-sdk-ruby/pull/246) ([zenizh](https://github.com/zenizh))
 - additional request body for push\_message and multicast [\#245](https://github.com/line/line-bot-sdk-ruby/pull/245) ([yskkin](https://github.com/yskkin))
 - add kitchensink README.md [\#243](https://github.com/line/line-bot-sdk-ruby/pull/243) ([4geru](https://github.com/4geru))
+- add echo bot README.md [\#242](https://github.com/line/line-bot-sdk-ruby/pull/242) ([4geru](https://github.com/4geru))
 - add rich menu sample code [\#241](https://github.com/line/line-bot-sdk-ruby/pull/241) ([4geru](https://github.com/4geru))
 
 ## [v1.22.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.22.0) (2021-09-28)
