@@ -145,6 +145,40 @@ module Line
         post(oauth_endpoint, endpoint_path, payload, headers)
       end
 
+      # Verify ID token
+      #
+      # @param id_token [String] ID token
+      # @param nonce [String] Expected nonce value. Use the nonce value provided in the authorization request. Omit if the nonce value was not specified in the authorization request.
+      # @param user_id [String] Expected user ID.
+      #
+      # @return [Net::HTTPResponse]
+      def verify_id_token(id_token, nonce: nil, user_id: nil)
+        channel_id_required
+
+        endpoint_path = '/oauth2/v2.1/verify'
+        payload = URI.encode_www_form({
+          client_id: channel_id,
+          id_token: id_token,
+          nonce: nonce,
+          user_id: user_id
+        }.compact)
+        headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
+        post(oauth_endpoint, endpoint_path, payload, headers)
+      end
+
+      # Verify access token v2.1
+      #
+      # @param access_token [String] access token
+      #
+      # @return [Net::HTTPResponse]
+      def verify_access_token(access_token)
+        payload = URI.encode_www_form(
+          access_token: access_token
+        )
+        endpoint_path = "/oauth2/v2.1/verify?#{payload}"
+        get(oauth_endpoint, endpoint_path)
+      end
+
       # Get all valid channel access token key IDs v2.1
       #
       # @param jwt [String]
@@ -158,6 +192,19 @@ module Line
         endpoint_path = "/oauth2/v2.1/tokens/kid?#{payload}"
 
         headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
+        get(oauth_endpoint, endpoint_path, headers)
+      end
+
+      # Get user profile by access token
+      #
+      # @param access_token [String] access token
+      #
+      # @return [Net::HTTPResponse]
+      def get_profile_by_access_token(access_token)
+        headers = {
+          "Authorization" => "Bearer #{access_token}",
+        }
+        endpoint_path = "/v2/profile"
         get(oauth_endpoint, endpoint_path, headers)
       end
 

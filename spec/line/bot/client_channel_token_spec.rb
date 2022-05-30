@@ -32,6 +32,38 @@ GET_CHANNEL_ACCESS_TOKEN_KEY_IDS_JWT_CONTENT = <<"EOS"
 }
 EOS
 
+VERIFY_ID_TOKEN_CONTENT = <<"EOS"
+{
+    "iss": "https://access.line.me",
+    "sub": "U1234567890abcdef1234567890abcdef",
+    "aud": "1234567890",
+    "exp": 1504169092,
+    "iat": 1504263657,
+    "nonce": "0987654asdf",
+    "amr": ["pwd"],
+    "name": "Taro Line",
+    "picture": "https://sample_line.me/aBcdefg123456",
+    "email": "taro.line@example.com"
+}
+EOS
+
+VERIFY_ACCESS_TOKEN_CONTENT = <<"EOS"
+{
+    "scope": "profile",
+    "client_id": "1440057261",
+    "expires_in": 2591659
+}
+EOS
+
+PROFILE_BY_ACCESS_TOKEN_CONTENT = <<"EOS"
+{
+    "userId": "U4af4980629...",
+    "displayName": "Brown",
+    "pictureUrl": "https://profile.line-scdn.net/abcdefghijklmn",
+    "statusMessage": "Hello, LINE!"
+}
+EOS
+
 describe Line::Bot::Client do
   def dummy_config
     {
@@ -111,5 +143,42 @@ describe Line::Bot::Client do
     response = client.get_channel_access_token_key_ids_jwt('jwt_string')
 
     expect(response).to be_a(Net::HTTPOK)
+  end
+
+  it 'verifies ID token' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + '/oauth2/v2.1/verify'
+    stub_request(:post, uri_template)
+      .with(body: { client_id: 'channel id', id_token: 'dummy_id_token', nonce: 'dummy_nonce'})
+      .to_return { |request| {body: VERIFY_ID_TOKEN_CONTENT, status: 200} }
+
+    client = generate_client
+
+    response = client.verify_id_token('dummy_id_token', nonce: 'dummy_nonce')
+
+    expect(response).to be_a(Net::HTTPOK).and(have_attributes(body: VERIFY_ID_TOKEN_CONTENT))
+  end
+
+  it 'verifies access token' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + '/oauth2/v2.1/verify?access_token=dummy_access_token'
+    stub_request(:get, uri_template).to_return { |request| {body: VERIFY_ACCESS_TOKEN_CONTENT, status: 200} }
+
+    client = generate_client
+
+    response = client.verify_access_token('dummy_access_token')
+
+    expect(response).to be_a(Net::HTTPOK).and(have_attributes(body: VERIFY_ACCESS_TOKEN_CONTENT))
+  end
+
+  it 'gets profile by access token' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_OAUTH_ENDPOINT + '/v2/profile'
+    stub_request(:get, uri_template)
+      .with(headers: { 'Authorization' =>  'Bearer dummy_access_token'})
+      .to_return { |request| {body: PROFILE_BY_ACCESS_TOKEN_CONTENT, status: 200} }
+
+    client = generate_client
+
+    response = client.get_profile_by_access_token('dummy_access_token')
+
+    expect(response).to be_a(Net::HTTPOK).and(have_attributes(body: PROFILE_BY_ACCESS_TOKEN_CONTENT))
   end
 end
