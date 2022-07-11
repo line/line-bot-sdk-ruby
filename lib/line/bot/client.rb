@@ -547,6 +547,18 @@ module Line
         post(endpoint, endpoint_path, rich_menu.to_json, credentials)
       end
 
+      # Validate a rich menu
+      #
+      # @param rich_menu [Hash] The rich menu represented as a rich menu object
+      #
+      # @return [Net::HTTPResponse]
+      def validate_rich_menu(rich_menu)
+        channel_token_required
+
+        endpoint_path = '/bot/richmenu/validate'
+        post(endpoint, endpoint_path, rich_menu.to_json, credentials)
+      end
+
       # Delete a rich menu
       #
       # @param rich_menu_id [String] ID of an uploaded rich menu
