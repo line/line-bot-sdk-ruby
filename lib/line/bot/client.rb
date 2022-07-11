@@ -211,7 +211,7 @@ module Line
       # Push messages to a user using user_id.
       #
       # @param user_id [String] User Id
-      # @param messages [Hash or Array] Message Objects
+      # @param messages [Hash, Array] Message Objects
       # @param headers [Hash] HTTP Headers
       # @param payload [Hash] Additional request body
       # @return [Net::HTTPResponse]
@@ -243,7 +243,7 @@ module Line
       #   client.reply_message(event['replyToken'], messages)
       #
       # @param token [String] Reply Token
-      # @param messages [Hash or Array] Message Objects
+      # @param messages [Hash, Array] Message Objects
       # @return [Net::HTTPResponse]
       def reply_message(token, messages)
         channel_token_required
@@ -257,8 +257,8 @@ module Line
 
       # Send messages to multiple users using userIds.
       #
-      # @param to [Array or String] Array of userIds
-      # @param messages [Hash or Array] Message Objects
+      # @param to [Array, String] Array of userIds
+      # @param messages [Hash, Array] Message Objects
       # @param headers [Hash] HTTP Headers
       # @param payload [Hash] Additional request body
       # @return [Net::HTTPResponse]
@@ -275,7 +275,7 @@ module Line
 
       # Send messages to all friends.
       #
-      # @param messages [Hash or Array] Message Objects
+      # @param messages [Hash, Array] Message Objects
       # @param headers [Hash] HTTP Headers
       #
       # @return [Net::HTTPResponse]
@@ -294,7 +294,7 @@ module Line
       # API Documentation is here.
       # https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
       #
-      # @param messages [Hash or Array]
+      # @param messages [Hash, Array]
       # @param recipient [Hash]
       # @param filter [Hash]
       # @param limit [Hash]
@@ -1101,7 +1101,7 @@ module Line
       #
       # @param endpoint_base [String]
       # @param endpoint_path [String]
-      # @param payload [String or NilClass]
+      # @param payload [String, NilClass]
       # @param headers [Hash]
       #
       # @return [Net::HTTPResponse]
@@ -1114,7 +1114,7 @@ module Line
       #
       # @param endpoint_base [String]
       # @param endpoint_path [String]
-      # @param payload [String or NilClass]
+      # @param payload [String, NilClass]
       # @param headers [Hash]
       #
       # @return [Net::HTTPResponse]
