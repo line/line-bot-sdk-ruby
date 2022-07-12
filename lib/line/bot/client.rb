@@ -547,12 +547,12 @@ module Line
         post(endpoint, endpoint_path, rich_menu.to_json, credentials)
       end
 
-      # Validate a rich menu
+      # Validate a rich menu object
       #
       # @param rich_menu [Hash] The rich menu represented as a rich menu object
       #
       # @return [Net::HTTPResponse]
-      def validate_rich_menu(rich_menu)
+      def validate_rich_menu_object(rich_menu)
         channel_token_required
 
         endpoint_path = '/bot/richmenu/validate'

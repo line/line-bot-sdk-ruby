@@ -95,11 +95,11 @@ describe Line::Bot::Client do
       .with(body: JSON.parse(RICH_MENU_CONTENT).to_json)
   end
 
-  it 'validates a rich menu' do
+  it 'validates a rich menu object' do
     uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/validate'
     stub_request(:post, uri_template).to_return(body: '{}', status: 200)
 
-    client.validate_rich_menu(JSON.parse(RICH_MENU_CONTENT))
+    client.validate_rich_menu_object(JSON.parse(RICH_MENU_CONTENT))
     expect(WebMock).to have_requested(:post, Line::Bot::API::DEFAULT_ENDPOINT + '/bot/richmenu/validate')
   end
 
