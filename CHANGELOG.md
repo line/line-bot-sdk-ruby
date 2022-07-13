@@ -1,10 +1,23 @@
 # Change Log
 
+## [v1.25.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.25.0) (2022-07-13)
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.24.0...v1.25.0)
+
+**Closed issues:**
+
+- Incorrect description of types specifier list in Rdoc [\#257](https://github.com/line/line-bot-sdk-ruby/issues/257)
+
+**Merged pull requests:**
+
+- create validate\_rich\_menu method [\#259](https://github.com/line/line-bot-sdk-ruby/pull/259) ([kenta-takeuchi](https://github.com/kenta-takeuchi))
+- fix types specifier list in Rdoc [\#258](https://github.com/line/line-bot-sdk-ruby/pull/258) ([kenta-takeuchi](https://github.com/kenta-takeuchi))
+
 ## [v1.24.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.24.0) (2022-05-30)
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.23.0...v1.24.0)
 
 **Merged pull requests:**
 
+- Release v1.24.0 [\#254](https://github.com/line/line-bot-sdk-ruby/pull/254) ([zenizh](https://github.com/zenizh))
 - Add ID token verification endpoint [\#253](https://github.com/line/line-bot-sdk-ruby/pull/253) ([yskkin](https://github.com/yskkin))
 
 ## [v1.23.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.23.0) (2022-01-27)
