@@ -1,6 +1,27 @@
-# Change Log
+# Changelog
+
+## [v1.26.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.26.0) (2022-11-09)
+
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.25.0...v1.26.0)
+
+**Closed issues:**
+
+- Validating message objects [\#267](https://github.com/line/line-bot-sdk-ruby/issues/267)
+- Validate rich menu object [\#256](https://github.com/line/line-bot-sdk-ruby/issues/256)
+- DateTimePicker Action is not working properly [\#250](https://github.com/line/line-bot-sdk-ruby/issues/250)
+
+**Merged pull requests:**
+
+- Update dependency rubocop to '~\> 1.38.0' [\#269](https://github.com/line/line-bot-sdk-ruby/pull/269) ([renovate[bot]](https://github.com/apps/renovate))
+- Add APIs to validate message objects [\#268](https://github.com/line/line-bot-sdk-ruby/pull/268) ([zenizh](https://github.com/zenizh))
+- Update dependency rubocop to '~\> 1.37.0' [\#266](https://github.com/line/line-bot-sdk-ruby/pull/266) ([renovate[bot]](https://github.com/apps/renovate))
+- Update CI target version of the ruby [\#265](https://github.com/line/line-bot-sdk-ruby/pull/265) ([tokuhirom](https://github.com/tokuhirom))
+- Update actions/checkout action to v3 [\#263](https://github.com/line/line-bot-sdk-ruby/pull/263) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency rubocop to '~\> 1.36.0' [\#262](https://github.com/line/line-bot-sdk-ruby/pull/262) ([renovate[bot]](https://github.com/apps/renovate))
+- Configure Renovate [\#261](https://github.com/line/line-bot-sdk-ruby/pull/261) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [v1.25.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.25.0) (2022-07-13)
+
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.24.0...v1.25.0)
 
 **Closed issues:**
@@ -9,10 +30,12 @@
 
 **Merged pull requests:**
 
+- Release v1.25.0 [\#260](https://github.com/line/line-bot-sdk-ruby/pull/260) ([zenizh](https://github.com/zenizh))
 - create validate\_rich\_menu method [\#259](https://github.com/line/line-bot-sdk-ruby/pull/259) ([kenta-takeuchi](https://github.com/kenta-takeuchi))
 - fix types specifier list in Rdoc [\#258](https://github.com/line/line-bot-sdk-ruby/pull/258) ([kenta-takeuchi](https://github.com/kenta-takeuchi))
 
 ## [v1.24.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.24.0) (2022-05-30)
+
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.23.0...v1.24.0)
 
 **Merged pull requests:**
