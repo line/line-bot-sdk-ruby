@@ -535,6 +535,71 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Validate message objects of a reply message
+      #
+      # @param messages [Array] Array of message objects to validate
+      #
+      # @return [Net::HTTPResponse]
+      def validate_reply_message_objects(messages)
+        channel_token_required
+
+        endpoint_path = '/bot/message/validate/reply'
+        payload = { messages: messages }.to_json
+        post(endpoint, endpoint_path, payload, credentials)
+      end
+
+      # Validate message objects of a push message
+      #
+      # @param messages [Array] Array of message objects to validate
+      #
+      # @return [Net::HTTPResponse]
+      def validate_push_message_objects(messages)
+        channel_token_required
+
+        endpoint_path = '/bot/message/validate/push'
+        payload = { messages: messages }.to_json
+        post(endpoint, endpoint_path, payload, credentials)
+      end
+
+      # Validate message objects of a multicast message
+      #
+      # @param messages [Array] Array of message objects to validate
+      #
+      # @return [Net::HTTPResponse]
+      def validate_multicast_message_objects(messages)
+        channel_token_required
+
+        endpoint_path = '/bot/message/validate/multicast'
+        payload = { messages: messages }.to_json
+        post(endpoint, endpoint_path, payload, credentials)
+      end
+
+      # Validate message objects of a narrowcast message
+      #
+      # @param messages [Array] Array of message objects to validate
+      #
+      # @return [Net::HTTPResponse]
+      def validate_narrowcast_message_objects(messages)
+        channel_token_required
+
+        endpoint_path = '/bot/message/validate/narrowcast'
+        payload = { messages: messages }.to_json
+        post(endpoint, endpoint_path, payload, credentials)
+      end
+
+      # Validate message objects of a broadcast message
+      #
+      # @param messages [Array] Array of message objects to validate
+      #
+      # @return [Net::HTTPResponse]
+      def validate_broadcast_message_objects(messages)
+        channel_token_required
+
+        endpoint_path = '/bot/message/validate/broadcast'
+        payload = { messages: messages }.to_json
+        post(endpoint, endpoint_path, payload, credentials)
+      end
+
       # Create a rich menu
       #
       # @param rich_menu [Hash] The rich menu represented as a rich menu object
