@@ -1162,6 +1162,18 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Gets the status of a narrowcast message.
+      #
+      # @param request_id [String] The narrowcast message's request ID. Each Messaging API request has a request ID. Find it in the response headers.
+      #
+      # @return [Net::HTTPResponse]
+      def get_narrowcast_message_status(request_id)
+        channel_token_required
+
+        endpoint_path = "/bot/message/progress/narrowcast?requestId=#{request_id}"
+        get(endpoint, endpoint_path, credentials)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_base [String]
