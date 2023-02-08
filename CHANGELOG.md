@@ -1,5 +1,22 @@
 # Changelog
 
+## [v1.27.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.27.0) (2023-02-08)
+
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.26.0...v1.27.0)
+
+**Closed issues:**
+
+- Create chat bot with conversation loop and save message to database [\#272](https://github.com/line/line-bot-sdk-ruby/issues/272)
+- Messaging API - January 2021 update [\#215](https://github.com/line/line-bot-sdk-ruby/issues/215)
+
+**Merged pull requests:**
+
+- Implement get_narrowcast_message_status [\#276](https://github.com/line/line-bot-sdk-ruby/pull/276) ([dlackty](https://github.com/dlackty))
+- Update dependency rubocop to '~\> 1.44.0' [\#275](https://github.com/line/line-bot-sdk-ruby/pull/275) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency rubocop to '~\> 1.43.0' [\#274](https://github.com/line/line-bot-sdk-ruby/pull/274) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency rubocop to '~\> 1.40.0' [\#273](https://github.com/line/line-bot-sdk-ruby/pull/273) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency rubocop to '~\> 1.39.0' [\#271](https://github.com/line/line-bot-sdk-ruby/pull/271) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [v1.26.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.26.0) (2022-11-09)
 
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.25.0...v1.26.0)
@@ -12,6 +29,7 @@
 
 **Merged pull requests:**
 
+- Release v1.26.0 [\#270](https://github.com/line/line-bot-sdk-ruby/pull/270) ([zenizh](https://github.com/zenizh))
 - Update dependency rubocop to '~\> 1.38.0' [\#269](https://github.com/line/line-bot-sdk-ruby/pull/269) ([renovate[bot]](https://github.com/apps/renovate))
 - Add APIs to validate message objects [\#268](https://github.com/line/line-bot-sdk-ruby/pull/268) ([zenizh](https://github.com/zenizh))
 - Update dependency rubocop to '~\> 1.37.0' [\#266](https://github.com/line/line-bot-sdk-ruby/pull/266) ([renovate[bot]](https://github.com/apps/renovate))
