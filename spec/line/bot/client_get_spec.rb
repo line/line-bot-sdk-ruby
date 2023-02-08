@@ -200,6 +200,17 @@ BOT_INFO_CONTENT = <<"EOS"
 }
 EOS
 
+NARROWCAST_MESSAGE_STATUS_CONTENT = <<"EOS"
+{
+  "phase": "succeeded",
+  "successCount": 65535,
+  "failureCount": 128,
+  "targetCount": 65663,
+  "acceptedTime": "2020-12-03T10:15:30.121Z",
+  "completedTime": "2020-12-03T10:15:30.121Z"
+}
+EOS
+
 describe Line::Bot::Client do
   def dummy_config
     {
@@ -475,6 +486,24 @@ describe Line::Bot::Client do
       pictureUrl: 'https://example.com/hogehoge',
       chatMode: 'chat',
       markAsReadMode: 'manual'
+    )
+  end
+
+  it 'get narrowcast message status' do
+    uri_template = Addressable::Template.new Line::Bot::API::DEFAULT_ENDPOINT + '/bot/message/progress/narrowcast?requestId=request_id'
+    stub_request(:get, uri_template).to_return(body: NARROWCAST_MESSAGE_STATUS_CONTENT, status: 200)
+
+    client = generate_client
+    response = client.get_narrowcast_message_status('request_id')
+
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json).to eq(
+      phase: "succeeded",
+      successCount: 65535,
+      failureCount: 128,
+      targetCount: 65663,
+      acceptedTime: "2020-12-03T10:15:30.121Z",
+      completedTime: "2020-12-03T10:15:30.121Z"
     )
   end
 end
