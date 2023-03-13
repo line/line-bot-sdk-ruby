@@ -1194,6 +1194,19 @@ module Line
         post(oauth_endpoint, endpoint_path, payload, credentials.merge(headers))
       end
 
+      # Get the delivery result of the message delivered in Send message using phone number. (`#multicast_by_phone_numbers`)
+      #
+      # @param date [String] Date the message was sent in UTC+9 with `yyyyMMdd` format.
+      #
+      # @return [Net::HTTPResponse]
+
+      def get_delivery_result_sent_by_phone_numbers(date)
+        channel_token_required
+
+        endpoint_path = "/bot/message/delivery/ad_phone?date=#{date}"
+        get(endpoint, endpoint_path, credentials)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_base [String]
