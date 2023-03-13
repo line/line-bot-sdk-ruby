@@ -1176,10 +1176,10 @@ module Line
 
       # Send messages to multiple users using phone numbers.
       #
-      # @param to [Array, String] Array of hashed phone numbers
-      # @param messages [Hash, Array] Message Objects
-      # @param headers [Hash] HTTP Headers
-      # @param payload [Hash] Additional request body
+      # @param to [Array, String] Array of hashed phone numbers.
+      # @param messages [Hash, Array] Message Objects.
+      # @param headers [Hash] HTTP Headers.
+      # @param payload [Hash] Additional request body.
       #
       # @return [Net::HTTPResponse]
 
