@@ -1,5 +1,17 @@
 # Changelog
 
+## [v1.28.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.28.0) (2023-03-14)
+
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.27.0...v1.28.0)
+
+**Merged pull requests:**
+
+- feat: support the Audience Match API [\#284](https://github.com/line/line-bot-sdk-ruby/pull/284) ([Sean0628](https://github.com/Sean0628))
+- Update dependency rubocop to '~\> 1.48.0' [\#281](https://github.com/line/line-bot-sdk-ruby/pull/281) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency rubocop to '~\> 1.47.0' [\#280](https://github.com/line/line-bot-sdk-ruby/pull/280) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency rubocop to '~\> 1.46.0' [\#279](https://github.com/line/line-bot-sdk-ruby/pull/279) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency rubocop to '~\> 1.45.0' [\#278](https://github.com/line/line-bot-sdk-ruby/pull/278) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [v1.27.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.27.0) (2023-02-08)
 
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.26.0...v1.27.0)
@@ -11,7 +23,8 @@
 
 **Merged pull requests:**
 
-- Implement get_narrowcast_message_status [\#276](https://github.com/line/line-bot-sdk-ruby/pull/276) ([dlackty](https://github.com/dlackty))
+- Release v1.27.0 [\#277](https://github.com/line/line-bot-sdk-ruby/pull/277) ([zenizh](https://github.com/zenizh))
+- Implement get\_narrowcast\_message\_status [\#276](https://github.com/line/line-bot-sdk-ruby/pull/276) ([dlackty](https://github.com/dlackty))
 - Update dependency rubocop to '~\> 1.44.0' [\#275](https://github.com/line/line-bot-sdk-ruby/pull/275) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency rubocop to '~\> 1.43.0' [\#274](https://github.com/line/line-bot-sdk-ruby/pull/274) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency rubocop to '~\> 1.40.0' [\#273](https://github.com/line/line-bot-sdk-ruby/pull/273) ([renovate[bot]](https://github.com/apps/renovate))
