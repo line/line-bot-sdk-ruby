@@ -7,3 +7,15 @@
 /pkg/
 /spec/reports/
 /tmp/
+
+# OpenAPI Generator
+/lib/clients/*/spec/
+/lib/clients/*/.gitlab-ci.yml
+/lib/clients/*/.openapi-generator-ignore
+/lib/clients/*/.rspec
+/lib/clients/*/.rubocop.yml
+/lib/clients/*/.travis.yml
+/lib/clients/*/Gemfile
+/lib/clients/*/git_push.sh
+/lib/clients/*/line_client_*.gemspec
+/lib/clients/*/Rakefile

@@ -1,1 +1,1 @@
-require 'line/bot'
+require 'line/client'

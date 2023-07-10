@@ -1,0 +1,49 @@
+name: Generate clients from LINE OpenAPI
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        required: true
+        description: "Version"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Update submodules
+        run: git submodule update --remote --recursive
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
+      - run: echo "OPENAPI_GENERATOR_VERSION=6.6.0" >> $GITHUB_ENV
+      - run: echo "GEM_VERSION=${{ inputs.version }}" >> $GITHUB_ENV
+      - uses: actions/cache@v3
+        id: openapi-generator-cache
+        env:
+          cache-name: openapi-generator-cache
+        with:
+          path: ~/bin/openapitools
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ env.OPENAPI_GENERATOR_VERSION }}
+      - if: steps.openapi-generator-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/bin/openapitools
+          curl https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh > ~/bin/openapitools/openapi-generator-cli
+          chmod u+x ~/bin/openapitools/openapi-generator-cli
+          echo "~/bin/openapitools/" >> $GITHUB_PATH
+      - run: bin/generate-clients
+      - run: sed -i -r "s/[0-9]+\.[0-9]+\.[0-9]+/${{ env.GEM_VERSION }}/" lib/line/client/version.rb
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git checkout -b generate-clients-v$GEM_VERSION
+          git add .
+          git commit -m "Generate clients: v$GEM_VERSION"
+          git push origin generate-clients-v$GEM_VERSION
+          gh pr create -B ${{ github.ref_name }} --title "Generate clients: v$GEM_VERSION" --body "" --label "auto-generated code"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
