@@ -137,7 +137,7 @@ nil (empty response body)
 
 ## broadcast
 
-> broadcast(broadcast_request, opts)
+> Object broadcast(broadcast_request, opts)
 
 
 
@@ -162,7 +162,8 @@ opts = {
 
 begin
   
-  api_instance.broadcast(broadcast_request, opts)
+  result = api_instance.broadcast(broadcast_request, opts)
+  p result
 rescue LINE::Client::MessagingApi::ApiError => e
   puts "Error when calling MessagingApiApi->broadcast: #{e}"
 end
@@ -170,9 +171,9 @@ end
 
 #### Using the broadcast_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> broadcast_with_http_info(broadcast_request, opts)
+> <Array(Object, Integer, Hash)> broadcast_with_http_info(broadcast_request, opts)
 
 ```ruby
 begin
@@ -180,7 +181,7 @@ begin
   data, status_code, headers = api_instance.broadcast_with_http_info(broadcast_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => Object
 rescue LINE::Client::MessagingApi::ApiError => e
   puts "Error when calling MessagingApiApi->broadcast_with_http_info: #{e}"
 end
@@ -195,7 +196,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+**Object**
 
 ### Authorization
 
@@ -2955,7 +2956,7 @@ nil (empty response body)
 
 ## multicast
 
-> multicast(multicast_request, opts)
+> Object multicast(multicast_request, opts)
 
 
 
@@ -2980,7 +2981,8 @@ opts = {
 
 begin
   
-  api_instance.multicast(multicast_request, opts)
+  result = api_instance.multicast(multicast_request, opts)
+  p result
 rescue LINE::Client::MessagingApi::ApiError => e
   puts "Error when calling MessagingApiApi->multicast: #{e}"
 end
@@ -2988,9 +2990,9 @@ end
 
 #### Using the multicast_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> multicast_with_http_info(multicast_request, opts)
+> <Array(Object, Integer, Hash)> multicast_with_http_info(multicast_request, opts)
 
 ```ruby
 begin
@@ -2998,7 +3000,7 @@ begin
   data, status_code, headers = api_instance.multicast_with_http_info(multicast_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => Object
 rescue LINE::Client::MessagingApi::ApiError => e
   puts "Error when calling MessagingApiApi->multicast_with_http_info: #{e}"
 end
@@ -3013,7 +3015,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+**Object**
 
 ### Authorization
 
@@ -3027,7 +3029,7 @@ nil (empty response body)
 
 ## narrowcast
 
-> narrowcast(narrowcast_request, opts)
+> Object narrowcast(narrowcast_request, opts)
 
 
 
@@ -3052,7 +3054,8 @@ opts = {
 
 begin
   
-  api_instance.narrowcast(narrowcast_request, opts)
+  result = api_instance.narrowcast(narrowcast_request, opts)
+  p result
 rescue LINE::Client::MessagingApi::ApiError => e
   puts "Error when calling MessagingApiApi->narrowcast: #{e}"
 end
@@ -3060,9 +3063,9 @@ end
 
 #### Using the narrowcast_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> narrowcast_with_http_info(narrowcast_request, opts)
+> <Array(Object, Integer, Hash)> narrowcast_with_http_info(narrowcast_request, opts)
 
 ```ruby
 begin
@@ -3070,7 +3073,7 @@ begin
   data, status_code, headers = api_instance.narrowcast_with_http_info(narrowcast_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => Object
 rescue LINE::Client::MessagingApi::ApiError => e
   puts "Error when calling MessagingApiApi->narrowcast_with_http_info: #{e}"
 end
@@ -3085,7 +3088,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+**Object**
 
 ### Authorization
 
@@ -3099,7 +3102,7 @@ nil (empty response body)
 
 ## push_message
 
-> push_message(push_message_request, opts)
+> <PushMessageResponse> push_message(push_message_request, opts)
 
 
 
@@ -3124,7 +3127,8 @@ opts = {
 
 begin
   
-  api_instance.push_message(push_message_request, opts)
+  result = api_instance.push_message(push_message_request, opts)
+  p result
 rescue LINE::Client::MessagingApi::ApiError => e
   puts "Error when calling MessagingApiApi->push_message: #{e}"
 end
@@ -3132,9 +3136,9 @@ end
 
 #### Using the push_message_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> push_message_with_http_info(push_message_request, opts)
+> <Array(<PushMessageResponse>, Integer, Hash)> push_message_with_http_info(push_message_request, opts)
 
 ```ruby
 begin
@@ -3142,7 +3146,7 @@ begin
   data, status_code, headers = api_instance.push_message_with_http_info(push_message_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <PushMessageResponse>
 rescue LINE::Client::MessagingApi::ApiError => e
   puts "Error when calling MessagingApiApi->push_message_with_http_info: #{e}"
 end
@@ -3157,7 +3161,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**PushMessageResponse**](PushMessageResponse.md)
 
 ### Authorization
 
@@ -3243,7 +3247,7 @@ nil (empty response body)
 
 ## reply_message
 
-> reply_message(reply_message_request)
+> <ReplyMessageResponse> reply_message(reply_message_request)
 
 
 
@@ -3265,7 +3269,8 @@ reply_message_request = LINE::Client::MessagingApi::ReplyMessageRequest.new({rep
 
 begin
   
-  api_instance.reply_message(reply_message_request)
+  result = api_instance.reply_message(reply_message_request)
+  p result
 rescue LINE::Client::MessagingApi::ApiError => e
   puts "Error when calling MessagingApiApi->reply_message: #{e}"
 end
@@ -3273,9 +3278,9 @@ end
 
 #### Using the reply_message_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> reply_message_with_http_info(reply_message_request)
+> <Array(<ReplyMessageResponse>, Integer, Hash)> reply_message_with_http_info(reply_message_request)
 
 ```ruby
 begin
@@ -3283,7 +3288,7 @@ begin
   data, status_code, headers = api_instance.reply_message_with_http_info(reply_message_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <ReplyMessageResponse>
 rescue LINE::Client::MessagingApi::ApiError => e
   puts "Error when calling MessagingApiApi->reply_message_with_http_info: #{e}"
 end
@@ -3297,7 +3302,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**ReplyMessageResponse**](ReplyMessageResponse.md)
 
 ### Authorization
 

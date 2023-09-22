@@ -84,6 +84,7 @@ Class | Method | HTTP request | Description
 *LINE::Client::ChannelAccessToken::ChannelAccessTokenApi* | [**gets_all_valid_channel_access_token_key_ids**](docs/ChannelAccessTokenApi.md#gets_all_valid_channel_access_token_key_ids) | **GET** /oauth2/v2.1/tokens/kid | 
 *LINE::Client::ChannelAccessToken::ChannelAccessTokenApi* | [**issue_channel_token**](docs/ChannelAccessTokenApi.md#issue_channel_token) | **POST** /v2/oauth/accessToken | 
 *LINE::Client::ChannelAccessToken::ChannelAccessTokenApi* | [**issue_channel_token_by_jwt**](docs/ChannelAccessTokenApi.md#issue_channel_token_by_jwt) | **POST** /oauth2/v2.1/token | 
+*LINE::Client::ChannelAccessToken::ChannelAccessTokenApi* | [**issue_stateless_channel_token**](docs/ChannelAccessTokenApi.md#issue_stateless_channel_token) | **POST** /oauth2/v3/token | 
 *LINE::Client::ChannelAccessToken::ChannelAccessTokenApi* | [**revoke_channel_token**](docs/ChannelAccessTokenApi.md#revoke_channel_token) | **POST** /v2/oauth/revoke | 
 *LINE::Client::ChannelAccessToken::ChannelAccessTokenApi* | [**revoke_channel_token_by_jwt**](docs/ChannelAccessTokenApi.md#revoke_channel_token_by_jwt) | **POST** /oauth2/v2.1/revoke | 
 *LINE::Client::ChannelAccessToken::ChannelAccessTokenApi* | [**verify_channel_token**](docs/ChannelAccessTokenApi.md#verify_channel_token) | **POST** /v2/oauth/verify | 
@@ -96,6 +97,7 @@ Class | Method | HTTP request | Description
  - [LINE::Client::ChannelAccessToken::ErrorResponse](docs/ErrorResponse.md)
  - [LINE::Client::ChannelAccessToken::IssueChannelAccessTokenResponse](docs/IssueChannelAccessTokenResponse.md)
  - [LINE::Client::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse](docs/IssueShortLivedChannelAccessTokenResponse.md)
+ - [LINE::Client::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse](docs/IssueStatelessChannelAccessTokenResponse.md)
  - [LINE::Client::ChannelAccessToken::VerifyChannelAccessTokenResponse](docs/VerifyChannelAccessTokenResponse.md)
 
 

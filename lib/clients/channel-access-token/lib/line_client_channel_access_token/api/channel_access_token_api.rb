@@ -226,6 +226,111 @@ module LINE::Client::ChannelAccessToken
       return data, status_code, headers
     end
 
+    # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
+    # @param grant_type [String] &#x60;client_credentials&#x60;
+    # @param client_assertion_type [String] URL-encoded value of &#x60;urn:ietf:params:oauth:client-assertion-type:jwt-bearer&#x60;
+    # @param client_assertion [String] A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+    # @param client_id [String] Channel ID.
+    # @param client_secret [String] Channel secret.
+    # @param [Hash] opts the optional parameters
+    # @return [IssueStatelessChannelAccessTokenResponse]
+    def issue_stateless_channel_token(grant_type, client_assertion_type, client_assertion, client_id, client_secret, opts = {})
+      data, _status_code, _headers = issue_stateless_channel_token_with_http_info(grant_type, client_assertion_type, client_assertion, client_id, client_secret, opts)
+      data
+    end
+
+    # Issues a new stateless channel access token, which doesn&#39;t have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
+    # @param grant_type [String] &#x60;client_credentials&#x60;
+    # @param client_assertion_type [String] URL-encoded value of &#x60;urn:ietf:params:oauth:client-assertion-type:jwt-bearer&#x60;
+    # @param client_assertion [String] A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+    # @param client_id [String] Channel ID.
+    # @param client_secret [String] Channel secret.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(IssueStatelessChannelAccessTokenResponse, Integer, Hash)>] IssueStatelessChannelAccessTokenResponse data, response status code and response headers
+    def issue_stateless_channel_token_with_http_info(grant_type, client_assertion_type, client_assertion, client_id, client_secret, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ChannelAccessTokenApi.issue_stateless_channel_token ...'
+      end
+      # verify the required parameter 'grant_type' is set
+      if @api_client.config.client_side_validation && grant_type.nil?
+        fail ArgumentError, "Missing the required parameter 'grant_type' when calling ChannelAccessTokenApi.issue_stateless_channel_token"
+      end
+      # verify enum value
+      allowable_values = ["client_credentials"]
+      if @api_client.config.client_side_validation && !allowable_values.include?(grant_type)
+        fail ArgumentError, "invalid value for \"grant_type\", must be one of #{allowable_values}"
+      end
+      # verify the required parameter 'client_assertion_type' is set
+      if @api_client.config.client_side_validation && client_assertion_type.nil?
+        fail ArgumentError, "Missing the required parameter 'client_assertion_type' when calling ChannelAccessTokenApi.issue_stateless_channel_token"
+      end
+      # verify enum value
+      allowable_values = ["urn:ietf:params:oauth:client-assertion-type:jwt-bearer"]
+      if @api_client.config.client_side_validation && !allowable_values.include?(client_assertion_type)
+        fail ArgumentError, "invalid value for \"client_assertion_type\", must be one of #{allowable_values}"
+      end
+      # verify the required parameter 'client_assertion' is set
+      if @api_client.config.client_side_validation && client_assertion.nil?
+        fail ArgumentError, "Missing the required parameter 'client_assertion' when calling ChannelAccessTokenApi.issue_stateless_channel_token"
+      end
+      # verify the required parameter 'client_id' is set
+      if @api_client.config.client_side_validation && client_id.nil?
+        fail ArgumentError, "Missing the required parameter 'client_id' when calling ChannelAccessTokenApi.issue_stateless_channel_token"
+      end
+      # verify the required parameter 'client_secret' is set
+      if @api_client.config.client_side_validation && client_secret.nil?
+        fail ArgumentError, "Missing the required parameter 'client_secret' when calling ChannelAccessTokenApi.issue_stateless_channel_token"
+      end
+      # resource path
+      local_var_path = '/oauth2/v3/token'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/x-www-form-urlencoded'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+      form_params['grant_type'] = grant_type
+      form_params['client_assertion_type'] = client_assertion_type
+      form_params['client_assertion'] = client_assertion
+      form_params['client_id'] = client_id
+      form_params['client_secret'] = client_secret
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'IssueStatelessChannelAccessTokenResponse'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Bearer']
+
+      new_options = opts.merge(
+        :operation => :"ChannelAccessTokenApi.issue_stateless_channel_token",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ChannelAccessTokenApi#issue_stateless_channel_token\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Revoke short-lived or long-lived channel access token
     # @param [Hash] opts the optional parameters
     # @option opts [String] :access_token Channel access token

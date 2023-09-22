@@ -19,11 +19,15 @@ module LINE::Client::MessagingApi
 
     attr_accessor :emojis
 
+    # Quote token of the message you want to quote.
+    attr_accessor :quote_token
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'text' => :'text',
-        :'emojis' => :'emojis'
+        :'emojis' => :'emojis',
+        :'quote_token' => :'quoteToken'
       }
     end
 
@@ -41,7 +45,8 @@ module LINE::Client::MessagingApi
     def self.openapi_types
       {
         :'text' => :'String',
-        :'emojis' => :'Array<Emoji>'
+        :'emojis' => :'Array<Emoji>',
+        :'quote_token' => :'String'
       }
     end
 
@@ -85,6 +90,10 @@ module LINE::Client::MessagingApi
           self.emojis = value
         end
       end
+
+      if attributes.key?(:'quote_token')
+        self.quote_token = attributes[:'quote_token']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -108,7 +117,8 @@ module LINE::Client::MessagingApi
       return true if self.equal?(o)
       self.class == o.class &&
           text == o.text &&
-          emojis == o.emojis && super(o)
+          emojis == o.emojis &&
+          quote_token == o.quote_token && super(o)
     end
 
     # @see the `==` method
@@ -120,7 +130,7 @@ module LINE::Client::MessagingApi
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [text, emojis].hash
+      [text, emojis, quote_token].hash
     end
 
     # Builds the object from hash

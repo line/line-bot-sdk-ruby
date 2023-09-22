@@ -23,12 +23,16 @@ module LINE::Client::Webhook
 
     attr_accessor :content_provider
 
+    # Quote token to quote this message. 
+    attr_accessor :quote_token
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
         :'duration' => :'duration',
-        :'content_provider' => :'contentProvider'
+        :'content_provider' => :'contentProvider',
+        :'quote_token' => :'quoteToken'
       }
     end
 
@@ -47,7 +51,8 @@ module LINE::Client::Webhook
       {
         :'id' => :'String',
         :'duration' => :'Integer',
-        :'content_provider' => :'ContentProvider'
+        :'content_provider' => :'ContentProvider',
+        :'quote_token' => :'String'
       }
     end
 
@@ -97,6 +102,12 @@ module LINE::Client::Webhook
       else
         self.content_provider = nil
       end
+
+      if attributes.key?(:'quote_token')
+        self.quote_token = attributes[:'quote_token']
+      else
+        self.quote_token = nil
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -112,6 +123,10 @@ module LINE::Client::Webhook
         invalid_properties.push('invalid value for "content_provider", content_provider cannot be nil.')
       end
 
+      if @quote_token.nil?
+        invalid_properties.push('invalid value for "quote_token", quote_token cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -121,6 +136,7 @@ module LINE::Client::Webhook
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @id.nil?
       return false if @content_provider.nil?
+      return false if @quote_token.nil?
       true && super
     end
 
@@ -131,7 +147,8 @@ module LINE::Client::Webhook
       self.class == o.class &&
           id == o.id &&
           duration == o.duration &&
-          content_provider == o.content_provider && super(o)
+          content_provider == o.content_provider &&
+          quote_token == o.quote_token && super(o)
     end
 
     # @see the `==` method
@@ -143,7 +160,7 @@ module LINE::Client::Webhook
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, duration, content_provider].hash
+      [id, duration, content_provider, quote_token].hash
     end
 
     # Builds the object from hash

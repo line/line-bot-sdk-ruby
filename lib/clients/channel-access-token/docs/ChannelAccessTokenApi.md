@@ -7,6 +7,7 @@ All URIs are relative to *https://api.line.me*
 | [**gets_all_valid_channel_access_token_key_ids**](ChannelAccessTokenApi.md#gets_all_valid_channel_access_token_key_ids) | **GET** /oauth2/v2.1/tokens/kid |  |
 | [**issue_channel_token**](ChannelAccessTokenApi.md#issue_channel_token) | **POST** /v2/oauth/accessToken |  |
 | [**issue_channel_token_by_jwt**](ChannelAccessTokenApi.md#issue_channel_token_by_jwt) | **POST** /oauth2/v2.1/token |  |
+| [**issue_stateless_channel_token**](ChannelAccessTokenApi.md#issue_stateless_channel_token) | **POST** /oauth2/v3/token |  |
 | [**revoke_channel_token**](ChannelAccessTokenApi.md#revoke_channel_token) | **POST** /v2/oauth/revoke |  |
 | [**revoke_channel_token_by_jwt**](ChannelAccessTokenApi.md#revoke_channel_token_by_jwt) | **POST** /oauth2/v2.1/revoke |  |
 | [**verify_channel_token**](ChannelAccessTokenApi.md#verify_channel_token) | **POST** /v2/oauth/verify |  |
@@ -223,6 +224,83 @@ end
 ### Return type
 
 [**IssueChannelAccessTokenResponse**](IssueChannelAccessTokenResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/x-www-form-urlencoded
+- **Accept**: application/json
+
+
+## issue_stateless_channel_token
+
+> <IssueStatelessChannelAccessTokenResponse> issue_stateless_channel_token(grant_type, client_assertion_type, client_assertion, client_id, client_secret)
+
+
+
+Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
+
+### Examples
+
+```ruby
+require 'time'
+require 'line_client_channel_access_token'
+# setup authorization
+LINE::Client::ChannelAccessToken.configure do |config|
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = LINE::Client::ChannelAccessToken::ChannelAccessTokenApi.new
+grant_type = 'client_credentials' # String | `client_credentials`
+client_assertion_type = 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer' # String | URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+client_assertion = 'client_assertion_example' # String | A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+client_id = 'client_id_example' # String | Channel ID.
+client_secret = 'client_secret_example' # String | Channel secret.
+
+begin
+  
+  result = api_instance.issue_stateless_channel_token(grant_type, client_assertion_type, client_assertion, client_id, client_secret)
+  p result
+rescue LINE::Client::ChannelAccessToken::ApiError => e
+  puts "Error when calling ChannelAccessTokenApi->issue_stateless_channel_token: #{e}"
+end
+```
+
+#### Using the issue_stateless_channel_token_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<IssueStatelessChannelAccessTokenResponse>, Integer, Hash)> issue_stateless_channel_token_with_http_info(grant_type, client_assertion_type, client_assertion, client_id, client_secret)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.issue_stateless_channel_token_with_http_info(grant_type, client_assertion_type, client_assertion, client_id, client_secret)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <IssueStatelessChannelAccessTokenResponse>
+rescue LINE::Client::ChannelAccessToken::ApiError => e
+  puts "Error when calling ChannelAccessTokenApi->issue_stateless_channel_token_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **grant_type** | **String** | &#x60;client_credentials&#x60; |  |
+| **client_assertion_type** | **String** | URL-encoded value of &#x60;urn:ietf:params:oauth:client-assertion-type:jwt-bearer&#x60; |  |
+| **client_assertion** | **String** | A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. |  |
+| **client_id** | **String** | Channel ID. |  |
+| **client_secret** | **String** | Channel secret. |  |
+
+### Return type
+
+[**IssueStatelessChannelAccessTokenResponse**](IssueStatelessChannelAccessTokenResponse.md)
 
 ### Authorization
 

@@ -14,38 +14,35 @@ require 'date'
 require 'time'
 
 module LINE::Client::MessagingApi
-  class StickerMessage < Message
-    attr_accessor :package_id
+  class SentMessage
+    # ID of the sent message.
+    attr_accessor :id
 
-    attr_accessor :sticker_id
-
-    # Quote token of the message you want to quote.
+    # Quote token of the message. Only included when a message object that can be specified as a quote target was sent as a push or reply message. 
     attr_accessor :quote_token
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'package_id' => :'packageId',
-        :'sticker_id' => :'stickerId',
+        :'id' => :'id',
         :'quote_token' => :'quoteToken'
       }
     end
 
-    # Returns all the JSON keys this model knows about, including the ones defined in its parent(s)
+    # Returns all the JSON keys this model knows about
     def self.acceptable_attributes
-      attribute_map.values.concat(superclass.acceptable_attributes)
+      attribute_map.values
     end
 
-    # Returns the key-value map of all the JSON attributes this model knows about, including the ones defined in its parent(s)
+    # Returns the key-value map of all the JSON attributes this model knows about
     def self.acceptable_attribute_map
-      attribute_map.merge(superclass.acceptable_attribute_map)
+      attribute_map
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'package_id' => :'String',
-        :'sticker_id' => :'String',
+        :'id' => :'String',
         :'quote_token' => :'String'
       }
     end
@@ -56,37 +53,25 @@ module LINE::Client::MessagingApi
       ])
     end
 
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'Message'
-      ]
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `LINE::Client::MessagingApi::StickerMessage` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `LINE::Client::MessagingApi::SentMessage` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `LINE::Client::MessagingApi::StickerMessage`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `LINE::Client::MessagingApi::SentMessage`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      # call parent's initialize
-      super(attributes)
-
-      if attributes.key?(:'package_id')
-        self.package_id = attributes[:'package_id']
-      end
-
-      if attributes.key?(:'sticker_id')
-        self.sticker_id = attributes[:'sticker_id']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
+      else
+        self.id = nil
       end
 
       if attributes.key?(:'quote_token')
@@ -98,7 +83,11 @@ module LINE::Client::MessagingApi
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = super
+      invalid_properties = Array.new
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -106,7 +95,8 @@ module LINE::Client::MessagingApi
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      true && super
+      return false if @id.nil?
+      true
     end
 
     # Checks equality by comparing each attribute.
@@ -114,9 +104,8 @@ module LINE::Client::MessagingApi
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          package_id == o.package_id &&
-          sticker_id == o.sticker_id &&
-          quote_token == o.quote_token && super(o)
+          id == o.id &&
+          quote_token == o.quote_token
     end
 
     # @see the `==` method
@@ -128,7 +117,7 @@ module LINE::Client::MessagingApi
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [package_id, sticker_id, quote_token].hash
+      [id, quote_token].hash
     end
 
     # Builds the object from hash
@@ -136,7 +125,6 @@ module LINE::Client::MessagingApi
     # @return [Object] Returns the model itself
     def self.build_from_hash(attributes)
       return nil unless attributes.is_a?(Hash)
-      super(attributes)
       attributes = attributes.transform_keys(&:to_sym)
       transformed_hash = {}
       openapi_types.each_pair do |key, type|
@@ -213,7 +201,7 @@ module LINE::Client::MessagingApi
     # Returns the object in the form of hash
     # @return [Hash] Returns the object in the form of hash
     def to_hash
-      hash = super
+      hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
         if value.nil?

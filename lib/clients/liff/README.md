@@ -63,13 +63,13 @@ LINE::Client::Liff.configure do |config|
 end
 
 api_instance = LINE::Client::Liff::LiffApi.new
+add_liff_app_request = LINE::Client::Liff::AddLiffAppRequest.new({view: LINE::Client::Liff::LiffView.new({type: 'compact', url: 'url_example'})}) # AddLiffAppRequest | 
 
 begin
-  #Get all LIFF apps
-  result = api_instance.liff_v1_apps_get
+  result = api_instance.add_liff_app(add_liff_app_request)
   p result
 rescue LINE::Client::Liff::ApiError => e
-  puts "Exception when calling LiffApi->liff_v1_apps_get: #{e}"
+  puts "Exception when calling LiffApi->add_liff_app: #{e}"
 end
 
 ```
@@ -80,10 +80,10 @@ All URIs are relative to *https://api.line.me*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*LINE::Client::Liff::LiffApi* | [**liff_v1_apps_get**](docs/LiffApi.md#liff_v1_apps_get) | **GET** /liff/v1/apps | Get all LIFF apps
-*LINE::Client::Liff::LiffApi* | [**liff_v1_apps_liff_id_delete**](docs/LiffApi.md#liff_v1_apps_liff_id_delete) | **DELETE** /liff/v1/apps/{liffId} | Delete LIFF app from a channel
-*LINE::Client::Liff::LiffApi* | [**liff_v1_apps_liff_id_put**](docs/LiffApi.md#liff_v1_apps_liff_id_put) | **PUT** /liff/v1/apps/{liffId} | 
-*LINE::Client::Liff::LiffApi* | [**liff_v1_apps_post**](docs/LiffApi.md#liff_v1_apps_post) | **POST** /liff/v1/apps | 
+*LINE::Client::Liff::LiffApi* | [**add_liff_app**](docs/LiffApi.md#add_liff_app) | **POST** /liff/v1/apps | 
+*LINE::Client::Liff::LiffApi* | [**delete_liff_app**](docs/LiffApi.md#delete_liff_app) | **DELETE** /liff/v1/apps/{liffId} | Delete LIFF app from a channel
+*LINE::Client::Liff::LiffApi* | [**get_all_liff_apps**](docs/LiffApi.md#get_all_liff_apps) | **GET** /liff/v1/apps | Get all LIFF apps
+*LINE::Client::Liff::LiffApi* | [**update_liff_app**](docs/LiffApi.md#update_liff_app) | **PUT** /liff/v1/apps/{liffId} | 
 
 
 ## Documentation for Models

@@ -21,11 +21,15 @@ module LINE::Client::MessagingApi
     # An array of error details. If the array is empty, this property will not be included in the response.
     attr_accessor :details
 
+    # Array of sent messages.
+    attr_accessor :sent_messages
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'message' => :'message',
-        :'details' => :'details'
+        :'details' => :'details',
+        :'sent_messages' => :'sentMessages'
       }
     end
 
@@ -43,7 +47,8 @@ module LINE::Client::MessagingApi
     def self.openapi_types
       {
         :'message' => :'String',
-        :'details' => :'Array<ErrorDetail>'
+        :'details' => :'Array<ErrorDetail>',
+        :'sent_messages' => :'Array<SentMessage>'
       }
     end
 
@@ -79,6 +84,12 @@ module LINE::Client::MessagingApi
           self.details = value
         end
       end
+
+      if attributes.key?(:'sent_messages')
+        if (value = attributes[:'sent_messages']).is_a?(Array)
+          self.sent_messages = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -90,6 +101,14 @@ module LINE::Client::MessagingApi
         invalid_properties.push('invalid value for "message", message cannot be nil.')
       end
 
+      if !@sent_messages.nil? && @sent_messages.length > 5
+        invalid_properties.push('invalid value for "sent_messages", number of items must be less than or equal to 5.')
+      end
+
+      if !@sent_messages.nil? && @sent_messages.length < 1
+        invalid_properties.push('invalid value for "sent_messages", number of items must be greater than or equal to 1.')
+      end
+
       invalid_properties
     end
 
@@ -98,7 +117,27 @@ module LINE::Client::MessagingApi
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @message.nil?
+      return false if !@sent_messages.nil? && @sent_messages.length > 5
+      return false if !@sent_messages.nil? && @sent_messages.length < 1
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] sent_messages Value to be assigned
+    def sent_messages=(sent_messages)
+      if sent_messages.nil?
+        fail ArgumentError, 'sent_messages cannot be nil'
+      end
+
+      if sent_messages.length > 5
+        fail ArgumentError, 'invalid value for "sent_messages", number of items must be less than or equal to 5.'
+      end
+
+      if sent_messages.length < 1
+        fail ArgumentError, 'invalid value for "sent_messages", number of items must be greater than or equal to 1.'
+      end
+
+      @sent_messages = sent_messages
     end
 
     # Checks equality by comparing each attribute.
@@ -107,7 +146,8 @@ module LINE::Client::MessagingApi
       return true if self.equal?(o)
       self.class == o.class &&
           message == o.message &&
-          details == o.details
+          details == o.details &&
+          sent_messages == o.sent_messages
     end
 
     # @see the `==` method
@@ -119,7 +159,7 @@ module LINE::Client::MessagingApi
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [message, details].hash
+      [message, details, sent_messages].hash
     end
 
     # Builds the object from hash

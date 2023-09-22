@@ -25,9 +25,11 @@ module LINE::Client::ManageAudience
     VIDEO_VIEW = "VIDEO_VIEW".freeze
     WEBTRAFFIC = "WEBTRAFFIC".freeze
     IMAGE_CLICK = "IMAGE_CLICK".freeze
+    RICHMENU_IMP = "RICHMENU_IMP".freeze
+    RICHMENU_CLICK = "RICHMENU_CLICK".freeze
 
     def self.all_vars
-      @all_vars ||= [UPLOAD, CLICK, IMP, CHAT_TAG, FRIEND_PATH, RESERVATION, APP_EVENT, VIDEO_VIEW, WEBTRAFFIC, IMAGE_CLICK].freeze
+      @all_vars ||= [UPLOAD, CLICK, IMP, CHAT_TAG, FRIEND_PATH, RESERVATION, APP_EVENT, VIDEO_VIEW, WEBTRAFFIC, IMAGE_CLICK, RICHMENU_IMP, RICHMENU_CLICK].freeze
     end
 
     # Builds the enum from string

@@ -26,13 +26,21 @@ module LINE::Client::Webhook
 
     attr_accessor :mention
 
+    # Quote token to quote this message. 
+    attr_accessor :quote_token
+
+    # Message ID of a quoted message. Only included when the received message quotes a past message.
+    attr_accessor :quoted_message_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
         :'text' => :'text',
         :'emojis' => :'emojis',
-        :'mention' => :'mention'
+        :'mention' => :'mention',
+        :'quote_token' => :'quoteToken',
+        :'quoted_message_id' => :'quotedMessageId'
       }
     end
 
@@ -52,7 +60,9 @@ module LINE::Client::Webhook
         :'id' => :'String',
         :'text' => :'String',
         :'emojis' => :'Array<Emoji>',
-        :'mention' => :'Mention'
+        :'mention' => :'Mention',
+        :'quote_token' => :'String',
+        :'quoted_message_id' => :'String'
       }
     end
 
@@ -108,6 +118,16 @@ module LINE::Client::Webhook
       if attributes.key?(:'mention')
         self.mention = attributes[:'mention']
       end
+
+      if attributes.key?(:'quote_token')
+        self.quote_token = attributes[:'quote_token']
+      else
+        self.quote_token = nil
+      end
+
+      if attributes.key?(:'quoted_message_id')
+        self.quoted_message_id = attributes[:'quoted_message_id']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -123,6 +143,10 @@ module LINE::Client::Webhook
         invalid_properties.push('invalid value for "text", text cannot be nil.')
       end
 
+      if @quote_token.nil?
+        invalid_properties.push('invalid value for "quote_token", quote_token cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -132,6 +156,7 @@ module LINE::Client::Webhook
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @id.nil?
       return false if @text.nil?
+      return false if @quote_token.nil?
       true && super
     end
 
@@ -143,7 +168,9 @@ module LINE::Client::Webhook
           id == o.id &&
           text == o.text &&
           emojis == o.emojis &&
-          mention == o.mention && super(o)
+          mention == o.mention &&
+          quote_token == o.quote_token &&
+          quoted_message_id == o.quoted_message_id && super(o)
     end
 
     # @see the `==` method
@@ -155,7 +182,7 @@ module LINE::Client::Webhook
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, text, emojis, mention].hash
+      [id, text, emojis, mention, quote_token, quoted_message_id].hash
     end
 
     # Builds the object from hash

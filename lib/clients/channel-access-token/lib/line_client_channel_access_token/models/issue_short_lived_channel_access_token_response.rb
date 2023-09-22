@@ -22,7 +22,7 @@ module LINE::Client::ChannelAccessToken
     # Time until channel access token expires in seconds from time the token is issued.
     attr_accessor :expires_in
 
-    # A token type. `Bearer`
+    # Token type. The value is always `Bearer`.
     attr_accessor :token_type
 
     # Attribute mapping from ruby-style variable name to JSON key.

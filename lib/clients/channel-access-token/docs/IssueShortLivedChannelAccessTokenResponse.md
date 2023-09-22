@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **access_token** | **String** | A short-lived channel access token. Valid for 30 days. Note: Channel access tokens cannot be refreshed.  |  |
 | **expires_in** | **Integer** | Time until channel access token expires in seconds from time the token is issued. |  |
-| **token_type** | **String** | A token type. &#x60;Bearer&#x60; | [default to &#39;Bearer&#39;] |
+| **token_type** | **String** | Token type. The value is always &#x60;Bearer&#x60;. | [default to &#39;Bearer&#39;] |
 
 ## Example
 

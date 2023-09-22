@@ -21,6 +21,7 @@ require 'line_client_channel_access_token/models/channel_access_token_key_ids_re
 require 'line_client_channel_access_token/models/error_response'
 require 'line_client_channel_access_token/models/issue_channel_access_token_response'
 require 'line_client_channel_access_token/models/issue_short_lived_channel_access_token_response'
+require 'line_client_channel_access_token/models/issue_stateless_channel_access_token_response'
 require 'line_client_channel_access_token/models/verify_channel_access_token_response'
 
 # APIs

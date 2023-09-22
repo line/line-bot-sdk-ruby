@@ -1,7 +1,7 @@
 =begin
-#LINE Messaging API
+#Channel Access Token API
 
-#This document describes LINE Messaging API.
+#This document describes Channel Access Token API.
 
 The version of the OpenAPI document: 0.0.1
 
@@ -13,40 +13,43 @@ OpenAPI Generator version: 7.0.0
 require 'date'
 require 'time'
 
-module LINE::Client::MessagingApi
-  class StickerMessage < Message
-    attr_accessor :package_id
+module LINE::Client::ChannelAccessToken
+  # Issued stateless channel access token
+  class IssueStatelessChannelAccessTokenResponse
+    # A stateless channel access token. The token is an opaque string which means its format is an implementation detail and the consumer of this token should never try to use the data parsed from the token. 
+    attr_accessor :access_token
 
-    attr_accessor :sticker_id
+    # Duration in seconds after which the issued access token expires
+    attr_accessor :expires_in
 
-    # Quote token of the message you want to quote.
-    attr_accessor :quote_token
+    # Token type. The value is always `Bearer`.
+    attr_accessor :token_type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'package_id' => :'packageId',
-        :'sticker_id' => :'stickerId',
-        :'quote_token' => :'quoteToken'
+        :'access_token' => :'access_token',
+        :'expires_in' => :'expires_in',
+        :'token_type' => :'token_type'
       }
     end
 
-    # Returns all the JSON keys this model knows about, including the ones defined in its parent(s)
+    # Returns all the JSON keys this model knows about
     def self.acceptable_attributes
-      attribute_map.values.concat(superclass.acceptable_attributes)
+      attribute_map.values
     end
 
-    # Returns the key-value map of all the JSON attributes this model knows about, including the ones defined in its parent(s)
+    # Returns the key-value map of all the JSON attributes this model knows about
     def self.acceptable_attribute_map
-      attribute_map.merge(superclass.acceptable_attribute_map)
+      attribute_map
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'package_id' => :'String',
-        :'sticker_id' => :'String',
-        :'quote_token' => :'String'
+        :'access_token' => :'String',
+        :'expires_in' => :'Integer',
+        :'token_type' => :'String'
       }
     end
 
@@ -56,41 +59,37 @@ module LINE::Client::MessagingApi
       ])
     end
 
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'Message'
-      ]
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `LINE::Client::MessagingApi::StickerMessage` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `LINE::Client::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `LINE::Client::MessagingApi::StickerMessage`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `LINE::Client::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      # call parent's initialize
-      super(attributes)
-
-      if attributes.key?(:'package_id')
-        self.package_id = attributes[:'package_id']
+      if attributes.key?(:'access_token')
+        self.access_token = attributes[:'access_token']
+      else
+        self.access_token = nil
       end
 
-      if attributes.key?(:'sticker_id')
-        self.sticker_id = attributes[:'sticker_id']
+      if attributes.key?(:'expires_in')
+        self.expires_in = attributes[:'expires_in']
+      else
+        self.expires_in = nil
       end
 
-      if attributes.key?(:'quote_token')
-        self.quote_token = attributes[:'quote_token']
+      if attributes.key?(:'token_type')
+        self.token_type = attributes[:'token_type']
+      else
+        self.token_type = 'Bearer'
       end
     end
 
@@ -98,7 +97,19 @@ module LINE::Client::MessagingApi
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = super
+      invalid_properties = Array.new
+      if @access_token.nil?
+        invalid_properties.push('invalid value for "access_token", access_token cannot be nil.')
+      end
+
+      if @expires_in.nil?
+        invalid_properties.push('invalid value for "expires_in", expires_in cannot be nil.')
+      end
+
+      if @token_type.nil?
+        invalid_properties.push('invalid value for "token_type", token_type cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -106,7 +117,10 @@ module LINE::Client::MessagingApi
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      true && super
+      return false if @access_token.nil?
+      return false if @expires_in.nil?
+      return false if @token_type.nil?
+      true
     end
 
     # Checks equality by comparing each attribute.
@@ -114,9 +128,9 @@ module LINE::Client::MessagingApi
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          package_id == o.package_id &&
-          sticker_id == o.sticker_id &&
-          quote_token == o.quote_token && super(o)
+          access_token == o.access_token &&
+          expires_in == o.expires_in &&
+          token_type == o.token_type
     end
 
     # @see the `==` method
@@ -128,7 +142,7 @@ module LINE::Client::MessagingApi
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [package_id, sticker_id, quote_token].hash
+      [access_token, expires_in, token_type].hash
     end
 
     # Builds the object from hash
@@ -136,7 +150,6 @@ module LINE::Client::MessagingApi
     # @return [Object] Returns the model itself
     def self.build_from_hash(attributes)
       return nil unless attributes.is_a?(Hash)
-      super(attributes)
       attributes = attributes.transform_keys(&:to_sym)
       transformed_hash = {}
       openapi_types.each_pair do |key, type|
@@ -193,7 +206,7 @@ module LINE::Client::MessagingApi
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = LINE::Client::MessagingApi.const_get(type)
+        klass = LINE::Client::ChannelAccessToken.const_get(type)
         klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end
@@ -213,7 +226,7 @@ module LINE::Client::MessagingApi
     # Returns the object in the form of hash
     # @return [Hash] Returns the object in the form of hash
     def to_hash
-      hash = super
+      hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
         if value.nil?

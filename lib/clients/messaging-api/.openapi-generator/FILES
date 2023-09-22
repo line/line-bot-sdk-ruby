@@ -91,6 +91,7 @@ docs/OperatorRecipient.md
 docs/PnpMessagesRequest.md
 docs/PostbackAction.md
 docs/PushMessageRequest.md
+docs/PushMessageResponse.md
 docs/QuickReply.md
 docs/QuickReplyItem.md
 docs/QuotaConsumptionResponse.md
@@ -98,6 +99,7 @@ docs/QuotaType.md
 docs/Recipient.md
 docs/RedeliveryRecipient.md
 docs/ReplyMessageRequest.md
+docs/ReplyMessageResponse.md
 docs/RichMenuAliasListResponse.md
 docs/RichMenuAliasResponse.md
 docs/RichMenuArea.md
@@ -120,6 +122,7 @@ docs/RichMenuSwitchAction.md
 docs/RoomMemberCountResponse.md
 docs/RoomUserProfileResponse.md
 docs/Sender.md
+docs/SentMessage.md
 docs/SetWebhookEndpointRequest.md
 docs/StickerMessage.md
 docs/SubscriptionPeriodDemographic.md
@@ -225,6 +228,7 @@ lib/line_client_messaging_api/models/operator_recipient.rb
 lib/line_client_messaging_api/models/pnp_messages_request.rb
 lib/line_client_messaging_api/models/postback_action.rb
 lib/line_client_messaging_api/models/push_message_request.rb
+lib/line_client_messaging_api/models/push_message_response.rb
 lib/line_client_messaging_api/models/quick_reply.rb
 lib/line_client_messaging_api/models/quick_reply_item.rb
 lib/line_client_messaging_api/models/quota_consumption_response.rb
@@ -232,6 +236,7 @@ lib/line_client_messaging_api/models/quota_type.rb
 lib/line_client_messaging_api/models/recipient.rb
 lib/line_client_messaging_api/models/redelivery_recipient.rb
 lib/line_client_messaging_api/models/reply_message_request.rb
+lib/line_client_messaging_api/models/reply_message_response.rb
 lib/line_client_messaging_api/models/rich_menu_alias_list_response.rb
 lib/line_client_messaging_api/models/rich_menu_alias_response.rb
 lib/line_client_messaging_api/models/rich_menu_area.rb
@@ -254,6 +259,7 @@ lib/line_client_messaging_api/models/rich_menu_switch_action.rb
 lib/line_client_messaging_api/models/room_member_count_response.rb
 lib/line_client_messaging_api/models/room_user_profile_response.rb
 lib/line_client_messaging_api/models/sender.rb
+lib/line_client_messaging_api/models/sent_message.rb
 lib/line_client_messaging_api/models/set_webhook_endpoint_request.rb
 lib/line_client_messaging_api/models/sticker_message.rb
 lib/line_client_messaging_api/models/subscription_period_demographic.rb
@@ -273,4 +279,7 @@ lib/line_client_messaging_api/version.rb
 line_client_messaging_api.gemspec
 spec/api_client_spec.rb
 spec/configuration_spec.rb
+spec/models/push_message_response_spec.rb
+spec/models/reply_message_response_spec.rb
+spec/models/sent_message_spec.rb
 spec/spec_helper.rb

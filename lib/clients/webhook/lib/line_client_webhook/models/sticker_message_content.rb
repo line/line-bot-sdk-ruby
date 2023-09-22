@@ -32,6 +32,12 @@ module LINE::Client::Webhook
     # Any text entered by the user. This property is only included for message stickers. Max character limit: 100 
     attr_accessor :text
 
+    # Quote token to quote this message. 
+    attr_accessor :quote_token
+
+    # Message ID of a quoted message. Only included when the received message quotes a past message.  
+    attr_accessor :quoted_message_id
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -62,7 +68,9 @@ module LINE::Client::Webhook
         :'sticker_id' => :'stickerId',
         :'sticker_resource_type' => :'stickerResourceType',
         :'keywords' => :'keywords',
-        :'text' => :'text'
+        :'text' => :'text',
+        :'quote_token' => :'quoteToken',
+        :'quoted_message_id' => :'quotedMessageId'
       }
     end
 
@@ -84,7 +92,9 @@ module LINE::Client::Webhook
         :'sticker_id' => :'String',
         :'sticker_resource_type' => :'String',
         :'keywords' => :'Array<String>',
-        :'text' => :'String'
+        :'text' => :'String',
+        :'quote_token' => :'String',
+        :'quoted_message_id' => :'String'
       }
     end
 
@@ -152,6 +162,16 @@ module LINE::Client::Webhook
       if attributes.key?(:'text')
         self.text = attributes[:'text']
       end
+
+      if attributes.key?(:'quote_token')
+        self.quote_token = attributes[:'quote_token']
+      else
+        self.quote_token = nil
+      end
+
+      if attributes.key?(:'quoted_message_id')
+        self.quoted_message_id = attributes[:'quoted_message_id']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -183,6 +203,10 @@ module LINE::Client::Webhook
         invalid_properties.push('invalid value for "text", the character length must be smaller than or equal to 100.')
       end
 
+      if @quote_token.nil?
+        invalid_properties.push('invalid value for "quote_token", quote_token cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -198,6 +222,7 @@ module LINE::Client::Webhook
       return false unless sticker_resource_type_validator.valid?(@sticker_resource_type)
       return false if !@keywords.nil? && @keywords.length > 15
       return false if !@text.nil? && @text.to_s.length > 100
+      return false if @quote_token.nil?
       true && super
     end
 
@@ -249,7 +274,9 @@ module LINE::Client::Webhook
           sticker_id == o.sticker_id &&
           sticker_resource_type == o.sticker_resource_type &&
           keywords == o.keywords &&
-          text == o.text && super(o)
+          text == o.text &&
+          quote_token == o.quote_token &&
+          quoted_message_id == o.quoted_message_id && super(o)
     end
 
     # @see the `==` method
@@ -261,7 +288,7 @@ module LINE::Client::Webhook
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, package_id, sticker_id, sticker_resource_type, keywords, text].hash
+      [id, package_id, sticker_id, sticker_resource_type, keywords, text, quote_token, quoted_message_id].hash
     end
 
     # Builds the object from hash

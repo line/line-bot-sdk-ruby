@@ -517,28 +517,28 @@ module LINE::Client::ManageAudience
 
     # Gets data for more than one audience.
     # @param page [Integer] The page to return when getting (paginated) results. Must be 1 or higher.
-    # @param description [String] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
-    # @param status [AudienceGroupStatus] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
-    # @param size [Integer] The number of audiences per page. Default: 20 Max: 40 
-    # @param includes_external_public_groups [Boolean] true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
-    # @param create_route [AudienceGroupCreateRoute] How the audience was created. If omitted, all audiences are included.  &#x60;OA_MANAGER&#x60;: Return only audiences created with LINE Official Account Manager (opens new window). &#x60;MESSAGING_API&#x60;: Return only audiences created with Messaging API. 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :description The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+    # @option opts [AudienceGroupStatus] :status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+    # @option opts [Integer] :size The number of audiences per page. Default: 20 Max: 40 
+    # @option opts [Boolean] :includes_external_public_groups true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
+    # @option opts [AudienceGroupCreateRoute] :create_route How the audience was created. If omitted, all audiences are included.  &#x60;OA_MANAGER&#x60;: Return only audiences created with LINE Official Account Manager (opens new window). &#x60;MESSAGING_API&#x60;: Return only audiences created with Messaging API. 
     # @return [GetAudienceGroupsResponse]
-    def get_audience_groups(page, description, status, size, includes_external_public_groups, create_route, opts = {})
-      data, _status_code, _headers = get_audience_groups_with_http_info(page, description, status, size, includes_external_public_groups, create_route, opts)
+    def get_audience_groups(page, opts = {})
+      data, _status_code, _headers = get_audience_groups_with_http_info(page, opts)
       data
     end
 
     # Gets data for more than one audience.
     # @param page [Integer] The page to return when getting (paginated) results. Must be 1 or higher.
-    # @param description [String] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
-    # @param status [AudienceGroupStatus] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
-    # @param size [Integer] The number of audiences per page. Default: 20 Max: 40 
-    # @param includes_external_public_groups [Boolean] true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
-    # @param create_route [AudienceGroupCreateRoute] How the audience was created. If omitted, all audiences are included.  &#x60;OA_MANAGER&#x60;: Return only audiences created with LINE Official Account Manager (opens new window). &#x60;MESSAGING_API&#x60;: Return only audiences created with Messaging API. 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :description The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+    # @option opts [AudienceGroupStatus] :status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+    # @option opts [Integer] :size The number of audiences per page. Default: 20 Max: 40 
+    # @option opts [Boolean] :includes_external_public_groups true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
+    # @option opts [AudienceGroupCreateRoute] :create_route How the audience was created. If omitted, all audiences are included.  &#x60;OA_MANAGER&#x60;: Return only audiences created with LINE Official Account Manager (opens new window). &#x60;MESSAGING_API&#x60;: Return only audiences created with Messaging API. 
     # @return [Array<(GetAudienceGroupsResponse, Integer, Hash)>] GetAudienceGroupsResponse data, response status code and response headers
-    def get_audience_groups_with_http_info(page, description, status, size, includes_external_public_groups, create_route, opts = {})
+    def get_audience_groups_with_http_info(page, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ManageAudienceApi.get_audience_groups ...'
       end
@@ -550,41 +550,21 @@ module LINE::Client::ManageAudience
         fail ArgumentError, 'invalid value for "page" when calling ManageAudienceApi.get_audience_groups, must be greater than or equal to 1.'
       end
 
-      # verify the required parameter 'description' is set
-      if @api_client.config.client_side_validation && description.nil?
-        fail ArgumentError, "Missing the required parameter 'description' when calling ManageAudienceApi.get_audience_groups"
-      end
-      # verify the required parameter 'status' is set
-      if @api_client.config.client_side_validation && status.nil?
-        fail ArgumentError, "Missing the required parameter 'status' when calling ManageAudienceApi.get_audience_groups"
-      end
-      # verify the required parameter 'size' is set
-      if @api_client.config.client_side_validation && size.nil?
-        fail ArgumentError, "Missing the required parameter 'size' when calling ManageAudienceApi.get_audience_groups"
-      end
-      if @api_client.config.client_side_validation && size > 40
-        fail ArgumentError, 'invalid value for "size" when calling ManageAudienceApi.get_audience_groups, must be smaller than or equal to 40.'
+      if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] > 40
+        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling ManageAudienceApi.get_audience_groups, must be smaller than or equal to 40.'
       end
 
-      # verify the required parameter 'includes_external_public_groups' is set
-      if @api_client.config.client_side_validation && includes_external_public_groups.nil?
-        fail ArgumentError, "Missing the required parameter 'includes_external_public_groups' when calling ManageAudienceApi.get_audience_groups"
-      end
-      # verify the required parameter 'create_route' is set
-      if @api_client.config.client_side_validation && create_route.nil?
-        fail ArgumentError, "Missing the required parameter 'create_route' when calling ManageAudienceApi.get_audience_groups"
-      end
       # resource path
       local_var_path = '/v2/bot/audienceGroup/list'
 
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'page'] = page
-      query_params[:'description'] = description
-      query_params[:'status'] = status
-      query_params[:'size'] = size
-      query_params[:'includesExternalPublicGroups'] = includes_external_public_groups
-      query_params[:'createRoute'] = create_route
+      query_params[:'description'] = opts[:'description'] if !opts[:'description'].nil?
+      query_params[:'status'] = opts[:'status'] if !opts[:'status'].nil?
+      query_params[:'size'] = opts[:'size'] if !opts[:'size'].nil?
+      query_params[:'includesExternalPublicGroups'] = opts[:'includes_external_public_groups'] if !opts[:'includes_external_public_groups'].nil?
+      query_params[:'createRoute'] = opts[:'create_route'] if !opts[:'create_route'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

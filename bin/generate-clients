@@ -19,7 +19,7 @@ def to_pascal_case(str)
 end
 
 clients.each do |client|
-  command = "openapi-generator-cli generate \
+  command = "openapi-generator generate \
     -i line-openapi/#{client}.yml \
     -g ruby \
     -t src/main/resources/ruby-client \
