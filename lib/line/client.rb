@@ -13,6 +13,7 @@
 # under the License.
 
 require 'line/client/version'
+require 'line/client/webhook'
 
 clients_dir = File.expand_path('../clients', __dir__)
 
