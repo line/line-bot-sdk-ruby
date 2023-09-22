@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe LINE::Client::Webhook do
-  let(:body) {
-    JSON.generate({
+  let(:body) do
+    JSON.generate(
       destination: 'xxxxxxxxxx',
       events: [
         {
@@ -23,8 +23,8 @@ describe LINE::Client::Webhook do
           }
         }
       ]
-    })
-  }
+    )
+  end
   let(:channel_secret) { 'channel secret' }
 
   it 'validates a signature with success' do
