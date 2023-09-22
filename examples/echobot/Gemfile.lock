@@ -1,0 +1,40 @@
+PATH
+  remote: ../..
+  specs:
+    line-bot-api (2.0.0)
+      typhoeus (~> 1.0, >= 1.0.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ethon (0.16.0)
+      ffi (>= 1.15.0)
+    ffi (1.15.5)
+    mustermann (3.0.0)
+      ruby2_keywords (~> 0.0.1)
+    nio4r (2.5.9)
+    puma (6.3.1)
+      nio4r (~> 2.0)
+    rack (2.2.8)
+    rack-protection (3.1.0)
+      rack (~> 2.2, >= 2.2.4)
+    ruby2_keywords (0.0.5)
+    sinatra (3.1.0)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.1.0)
+      tilt (~> 2.0)
+    tilt (2.2.0)
+    typhoeus (1.4.0)
+      ethon (>= 0.9.0)
+
+PLATFORMS
+  x86_64-darwin-20
+
+DEPENDENCIES
+  line-bot-api!
+  puma
+  sinatra
+
+BUNDLED WITH
+   2.3.3
