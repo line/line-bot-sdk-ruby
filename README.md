@@ -18,7 +18,7 @@ Also, generated documentation by YARD is available.
 - https://rubydoc.info/gems/line-bot-api
 
 ## Requirements
-This library requires Ruby 3.0 or later.
+This library requires Ruby 3.1 or later.
 
 ## Installation
 
