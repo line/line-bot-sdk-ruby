@@ -1207,6 +1207,36 @@ module Line
         get(endpoint, endpoint_path, credentials)
       end
 
+      # Send a LINE notification message by specifying the user's phone number.
+      #
+      # @param hashed_phone_number [String] Phone number that has been normalized.
+      # @param messages [Hash, Array] Message Objects.
+      # @param headers [Hash] HTTP Headers.
+      # @param payload [Hash] Additional request body.
+      #
+      # @return [Net::HTTPResponse]
+      def push_pnp(hashed_phone_number, messages, headers: {}, payload: {})
+        channel_token_required
+
+        messages = [messages] if messages.is_a?(Hash)
+
+        endpoint_path = '/bot/pnp/push'
+        payload = payload.merge({ to: hashed_phone_number, messages: messages }).to_json
+        post(oauth_endpoint, endpoint_path, payload, credentials.merge(headers))
+      end
+
+      # Get the number of LINE notification messages sent using the /bot/pnp/push endpoint.
+      #
+      # @param date [String] Date the messages were sent (format: yyyyMMdd).
+      #
+      # @return [Net::HTTPResponse]
+      def get_message_delivery_pnp(date)
+        channel_token_required
+
+        endpoint_path = "/bot/message/delivery/pnp?date=#{date}"
+        get(endpoint, endpoint_path, credentials)
+      end
+
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_base [String]
