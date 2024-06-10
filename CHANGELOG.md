@@ -1,11 +1,51 @@
 # Changelog
 
+## [v1.29.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.29.0) (2024-06-10)
+
+[Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.28.0...v1.29.0)
+
+**Closed issues:**
+
+- Write supported ruby version explicitly [\#311](https://github.com/line/line-bot-sdk-ruby/issues/311)
+- Bug Report [\#291](https://github.com/line/line-bot-sdk-ruby/issues/291)
+
+**Merged pull requests:**
+
+- feat: Support LINE notification messages API [\#326](https://github.com/line/line-bot-sdk-ruby/pull/326) ([linhnv](https://github.com/linhnv))
+- chore\(deps\): update dependency rubocop to '~\> 1.64.0' [\#325](https://github.com/line/line-bot-sdk-ruby/pull/325) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update actions/checkout digest to a5ac7e5 [\#324](https://github.com/line/line-bot-sdk-ruby/pull/324) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update actions/checkout digest to 0ad4b8f [\#322](https://github.com/line/line-bot-sdk-ruby/pull/322) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update actions/checkout digest to 1d96c77 [\#321](https://github.com/line/line-bot-sdk-ruby/pull/321) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency rubocop to '~\> 1.63.0' [\#319](https://github.com/line/line-bot-sdk-ruby/pull/319) ([renovate[bot]](https://github.com/apps/renovate))
+- Delete unused travis-ci url from README.md [\#318](https://github.com/line/line-bot-sdk-ruby/pull/318) ([Yang-33](https://github.com/Yang-33))
+- Drop Ruby 3.0 support [\#317](https://github.com/line/line-bot-sdk-ruby/pull/317) ([Yang-33](https://github.com/Yang-33))
+- chore\(deps\): update dependency rubocop to '~\> 1.62.0' [\#316](https://github.com/line/line-bot-sdk-ruby/pull/316) ([renovate[bot]](https://github.com/apps/renovate))
+- Remove unnecessary urls from README [\#315](https://github.com/line/line-bot-sdk-ruby/pull/315) ([Yang-33](https://github.com/Yang-33))
+- Drop Ruby 2.7 and support Ruby 3.2 & 3.3 [\#313](https://github.com/line/line-bot-sdk-ruby/pull/313) ([Yang-33](https://github.com/Yang-33))
+- chore\(deps\): update actions/stale action to v9 [\#310](https://github.com/line/line-bot-sdk-ruby/pull/310) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency rubocop to '~\> 1.60.0' [\#309](https://github.com/line/line-bot-sdk-ruby/pull/309) ([renovate[bot]](https://github.com/apps/renovate))
+- Import release.yml to generate release note automatically based on label [\#308](https://github.com/line/line-bot-sdk-ruby/pull/308) ([Yang-33](https://github.com/Yang-33))
+- Enable merge queue [\#307](https://github.com/line/line-bot-sdk-ruby/pull/307) ([Yang-33](https://github.com/Yang-33))
+- Close stale issue automatically [\#306](https://github.com/line/line-bot-sdk-ruby/pull/306) ([Yang-33](https://github.com/Yang-33))
+- chore\(deps\): update dependency rubocop to '~\> 1.57.0' [\#305](https://github.com/line/line-bot-sdk-ruby/pull/305) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update actions/checkout digest to b4ffde6 [\#303](https://github.com/line/line-bot-sdk-ruby/pull/303) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update actions/checkout action to v4 [\#300](https://github.com/line/line-bot-sdk-ruby/pull/300) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency rubocop to '~\> 1.56.0' [\#298](https://github.com/line/line-bot-sdk-ruby/pull/298) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency rubocop to '~\> 1.55.0' [\#297](https://github.com/line/line-bot-sdk-ruby/pull/297) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency rubocop to '~\> 1.54.0' [\#293](https://github.com/line/line-bot-sdk-ruby/pull/293) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency rubocop to '~\> 1.53.0' [\#290](https://github.com/line/line-bot-sdk-ruby/pull/290) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency rubocop to '~\> 1.52.0' [\#289](https://github.com/line/line-bot-sdk-ruby/pull/289) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency rubocop to '~\> 1.51.0' [\#288](https://github.com/line/line-bot-sdk-ruby/pull/288) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency rubocop to '~\> 1.50.0' [\#287](https://github.com/line/line-bot-sdk-ruby/pull/287) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency rubocop to '~\> 1.49.0' [\#286](https://github.com/line/line-bot-sdk-ruby/pull/286) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [v1.28.0](https://github.com/line/line-bot-sdk-ruby/tree/v1.28.0) (2023-03-14)
 
 [Full Changelog](https://github.com/line/line-bot-sdk-ruby/compare/v1.27.0...v1.28.0)
 
 **Merged pull requests:**
 
+- Release v1.28.0 [\#285](https://github.com/line/line-bot-sdk-ruby/pull/285) ([zenizh](https://github.com/zenizh))
 - feat: support the Audience Match API [\#284](https://github.com/line/line-bot-sdk-ruby/pull/284) ([Sean0628](https://github.com/Sean0628))
 - Update dependency rubocop to '~\> 1.48.0' [\#281](https://github.com/line/line-bot-sdk-ruby/pull/281) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency rubocop to '~\> 1.47.0' [\#280](https://github.com/line/line-bot-sdk-ruby/pull/280) ([renovate[bot]](https://github.com/apps/renovate))
