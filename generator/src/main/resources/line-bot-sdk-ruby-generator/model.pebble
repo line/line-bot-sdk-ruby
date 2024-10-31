@@ -1,0 +1,36 @@
+{# @pebvariable name="models" type="java.util.ArrayList<org.openapitools.codegen.model.ModelMap>" -#}
+{# @pebvariable name="typeMapping" type="java. util. Map<String, String>" -#}
+{# @pebvariable name="packageName" type="String" #}
+{%- for model in models -%}
+{%- include "./license.pebble" -%}
+{% if model.model.parent != null %}
+require_relative './{{ model.model.parent | underscore }}'
+{% endif -%}
+{% if model.model.description != null %}
+# {{ model.model.description }}{% endif %}{% if model.model.externalDocumentation.description != null %}
+# {{ model.model.externalDocumentation.description }}{% endif %}{% if model.model.externalDocumentation.url != null %}
+# @see {{ model.model.externalDocumentation.url }}{% endif %}
+module Line
+  module Bot
+    module V2
+      module {{ packageName | camelize }}
+        class {{ model.model.classname }}{% if model.model.parent != null %} < {{ model.model.parent }}{% endif %}
+          {%- for property in model.model.vars %}
+          attr_accessor :{{ property.name }}{% if property.description != null %} # {{ property.description }}{% endif %}
+          {%- endfor %}
+
+          def initialize(
+            {%- for property in model.model.vars %}
+            {{ property.name }}:{% if property.defaultValue == null %}{{ property.required ? '' : ' nil'  }}{% else %}{{ ' ' + property.defaultValue }}{% endif %}{{ loop.last ? '' : ',' -}}
+            {% endfor %}
+          )
+            {%- for property in model.model.vars %}
+            @{{ property.name }} = {{ property.name -}}
+            {% endfor %}
+          end
+        end
+      end
+    end
+  end
+end
+{% endfor -%}
