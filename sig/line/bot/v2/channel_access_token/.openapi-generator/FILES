@@ -1,0 +1,8 @@
+.openapi-generator-ignore
+api/channel_access_token_client.rbs
+model/channel_access_token_key_ids_response.rbs
+model/error_response.rbs
+model/issue_channel_access_token_response.rbs
+model/issue_short_lived_channel_access_token_response.rbs
+model/issue_stateless_channel_access_token_response.rbs
+model/verify_channel_access_token_response.rbs
