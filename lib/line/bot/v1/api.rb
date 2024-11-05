@@ -12,17 +12,20 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require 'line/bot/event/base'
-require 'line/bot/event/account_link'
-require 'line/bot/event/beacon'
-require 'line/bot/event/follow'
-require 'line/bot/event/join'
-require 'line/bot/event/leave'
-require 'line/bot/event/message'
-require 'line/bot/event/postback'
-require 'line/bot/event/unfollow'
-require 'line/bot/event/unsend'
-require 'line/bot/event/member_joined'
-require 'line/bot/event/member_left'
-require 'line/bot/event/things'
-require 'line/bot/event/video_play_complete'
+require 'line/bot/v1/api/version'
+
+module Line
+  module Bot
+    module API
+      DEFAULT_OAUTH_ENDPOINT = "https://api.line.me"
+      DEFAULT_ENDPOINT = "https://api.line.me/v2"
+      DEFAULT_BLOB_ENDPOINT = "https://api-data.line.me/v2"
+      DEFAULT_LIFF_ENDPOINT = "https://api.line.me/liff/v1"
+
+      DEFAULT_HEADERS = {
+        'Content-Type' => 'application/json; charset=UTF-8',
+        'User-Agent'   => "LINE-BotSDK-Ruby/#{VERSION}"
+      }.freeze
+    end
+  end
+end
