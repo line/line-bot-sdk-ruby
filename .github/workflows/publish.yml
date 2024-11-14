@@ -19,19 +19,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           ruby-version: 3.3
-      - name: Update version
+      - name: Update version file with the release version
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             VERSION=${{ github.event.inputs.version }}
           else
             VERSION=${{ github.event.release.tag_name }}
           fi
-          
-          sed -i "s/VERSION = \".*\"/VERSION = \"$VERSION\"/" lib/line/bot/api/version.rb
+          VERSION=${VERSION#v}
 
+          sed -i "s/VERSION = \".*\"/VERSION = \"$VERSION\"/" lib/line/bot/api/version.rb
+          
+          cat lib/line/bot/api/version.rb
       - uses: rubygems/release-gem@v1
