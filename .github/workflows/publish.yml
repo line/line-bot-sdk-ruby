@@ -1,0 +1,37 @@
+name: Publish package to the RubyGems.org
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version to release. v prefix is required (e.g. v1.10.0)'
+        required: true
+
+jobs:
+  push:
+    name: Push gem to RubyGems.org
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
+      contents: write # IMPORTANT: this permission is required for `rake release` to push the release tag
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: 3.3
+      - name: Update version
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            VERSION=${{ github.event.inputs.version }}
+          else
+            VERSION=${{ github.event.release.tag_name }}
+          fi
+          
+          sed -i "s/VERSION = \".*\"/VERSION = \"$VERSION\"/" lib/line/bot/api/version.rb
+
+      - uses: rubygems/release-gem@v1
