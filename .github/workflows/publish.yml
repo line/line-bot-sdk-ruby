@@ -35,4 +35,11 @@ jobs:
           sed -i "s/VERSION = \".*\"/VERSION = \"$VERSION\"/" lib/line/bot/api/version.rb
           
           cat lib/line/bot/api/version.rb
+          
+          # commit
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          git add lib/line/bot/api/version.rb
+          git commit -m "Set version to $VERSION"
       - uses: rubygems/release-gem@v1
