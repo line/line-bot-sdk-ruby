@@ -31,6 +31,7 @@ jobs:
             VERSION=${{ github.event.release.tag_name }}
           fi
           VERSION=${VERSION#v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
           sed -i "s/VERSION = \".*\"/VERSION = \"$VERSION\"/" lib/line/bot/api/version.rb
           
@@ -43,3 +44,21 @@ jobs:
           git add lib/line/bot/api/version.rb
           git commit -m "Set version to $VERSION"
       - uses: rubygems/release-gem@v1
+
+      - name: Create GitHub Issue on Failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const version = process.env.VERSION;
+            const issueTitle = `Release job for ${version} failed`;
+            const issueBody = `The release job failed. Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.`;
+            const assignees = [context.actor];
+            await github.rest.issues.create({
+              owner,
+              repo,
+              title: issueTitle,
+              body: issueBody,
+              assignees
+            });
