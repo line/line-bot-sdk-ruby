@@ -1,0 +1,23 @@
+module Line
+  module Bot
+    module V2
+      class WebhookParser
+        def initialize: (channel_secret: String) -> void
+
+        def parse: (String body, String signature) -> Hash[Symbol, untyped]
+
+        private
+
+        def verify_signature: (body: String, signature: String) -> bool
+
+        def create_instance: (untyped klass, Hash[Symbol, untyped] attributes) -> untyped
+
+        def determine_class_name: (Symbol key, untyped value) -> (String | nil)
+
+        def pascalize: (String|Symbol str) -> String
+
+        def singularize: (String|Symbol str) -> String
+      end
+    end
+  end
+end

@@ -1,0 +1,4 @@
+.openapi-generator-ignore
+api/line_module_attach_client.rb
+core.rb
+model/attach_module_response.rb

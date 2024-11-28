@@ -1,0 +1,4 @@
+.openapi-generator-ignore
+api/shop_client.rbs
+model/error_response.rbs
+model/mission_sticker_request.rbs
