@@ -49,6 +49,10 @@ Style/StringConcatenation:
   Enabled: false
 Style/RedundantAssignment:
   Enabled: false
+Style/MultilineIfModifier:
+  Enabled: false
+Style/SafeNavigation:
+  Enabled: false
 
 Naming/HeredocDelimiterNaming:
   Enabled: false
@@ -69,6 +73,12 @@ Metrics/MethodLength:
   Enabled: false
 Metrics/ClassLength:
   Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
 
 Layout/LineLength:
   Max: 200
@@ -83,6 +93,8 @@ Layout/HeredocIndentation:
 Layout/ExtraSpacing:
   Enabled: false
 Layout/SpaceAroundOperators:
+  Enabled: false
+Layout/DotPosition:
   Enabled: false
 
 Lint/UnusedBlockArgument:
