@@ -1720,4 +1720,3 @@ describe Line::Bot::V2::WebhookParser do
     end
   end
 end
-
