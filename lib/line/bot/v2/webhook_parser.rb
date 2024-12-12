@@ -22,21 +22,25 @@ module Line
           data = JSON.parse(body.chomp, symbolize_names: true)
           data = Line::Bot::V2::Utils.deep_underscore(data)
 
-          data[:events].map { |event|
+          data[:events].map do |event|
             event_class_name = determine_class_name(:events, event)
-            event_class = Object.const_get(event_class_name) rescue nil
+            event_class = begin
+              Object.const_get(event_class_name)
+            rescue StandardError
+              nil
+            end
 
             # If there is no specific webhook class, leave the value as is
             event_instance = event_class ? create_instance(event_class, event) : event
 
             deep_hash_to_ostruct(event_instance)
-          }
+          end
         end
 
         private
 
         def verify_signature(body:, signature:)
-          hash = OpenSSL::HMAC::digest(OpenSSL::Digest.new('SHA256'), @channel_secret, body)
+          hash = OpenSSL::HMAC.digest(OpenSSL::Digest.new('SHA256'), @channel_secret, body)
           signature == Base64.strict_encode64(hash.to_s)
         end
 
@@ -127,7 +131,7 @@ module Line
         end
 
         def pascalize(str)
-          str.to_s.gsub(/(?:^|_)([a-z])/) { $1.upcase }
+          str.to_s.gsub(/(?:^|_)([a-z])/) { ::Regexp.last_match(1).upcase }
         end
 
         def singularize(str)
