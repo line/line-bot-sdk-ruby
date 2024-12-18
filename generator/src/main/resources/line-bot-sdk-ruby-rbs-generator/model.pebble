@@ -1,0 +1,66 @@
+{# @pebvariable name="models" type="java.util.ArrayList<org.openapitools.codegen.model.ModelMap>" -#}
+{# @pebvariable name="packageName" type="String" #}
+{%- for model in models -%}
+{% include "./license.pebble" %}
+{% if model.model.description != null -%}
+# {{ model.model.description }}
+{% endif -%}
+{% if model.model.externalDocumentation.description != null -%}
+# {{ model.model.externalDocumentation.description }}
+{% endif -%}
+{% if model.model.externalDocumentation.url != null -%}
+# @see {{ model.model.externalDocumentation.url }}
+{% endif -%}
+module Line
+  module Bot
+    module V2
+      module {{ packageName | camelize }}
+        class {{ model.model.classname }}{% if model.model.parent != null %} < {{ model.model.parent }}{% endif %}
+          {% if not model.model.isEnum -%}
+          {% for variable in model.model.vars -%}
+          {% if variable.openApiType == 'array' -%}
+          {% if variable.items.isModel -%}
+          attr_accessor {{ variable.name }}: {{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %}?{% endif %}
+          {% elseif variable.items.allowableValues != null -%}
+          attr_accessor {{ variable.name }}: Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]{% if not variable.required %}?{% endif %}
+          {% else -%}
+          attr_accessor {{ variable.name }}: {{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %}?{% endif %}
+          {% endif -%}
+          {% elseif variable.isModel -%}
+          attr_accessor {{ variable.name }}: {{ variable.openApiType }}{% if not variable.required %}?{% endif %}
+          {% else -%}
+          {% if variable.allowableValues != null -%}
+          attr_accessor {{ variable.name }}: {% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}{% if not variable.required %}?{% endif %}
+          {% else -%}
+          attr_accessor {{ variable.name }}: {{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}{% if not variable.required %}?{% endif %}
+          {% endif -%}
+          {% endif -%}
+          {% endfor %}
+          def initialize: (
+            {% for variable in model.model.vars -%}
+            {% if variable.openApiType == 'array' -%}
+            {% if variable.items.isModel -%}
+            {{ variable.name }}: {{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %}?{% endif -%}
+            {% elseif variable.items.allowableValues != null -%}
+            {{ variable.name }}: Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]{% if not variable.required %}?{% endif -%}
+            {% else -%}
+            {{ variable.name }}: {{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %}?{% endif -%}
+            {% endif -%}
+            {% elseif variable.isModel -%}
+            {{ variable.name }}: {{ variable.openApiType }}{% if not variable.required %}?{% endif -%}
+            {% else -%}
+            {% if variable.allowableValues != null -%}
+            {{ variable.name }}: {% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}{% if not variable.required %}?{% endif -%}
+            {% else -%}
+            {{ variable.name }}: {{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}{% if not variable.required %}?{% endif -%}
+            {% endif -%}
+            {% endif %}{{ loop.last ? '' : ",
+            " }}{% endfor %}
+          ) -> void
+          {%- endif %}
+        end
+      end
+    end
+  end
+end
+{% endfor -%}
