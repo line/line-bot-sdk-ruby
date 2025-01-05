@@ -1189,7 +1189,7 @@ module Line
         to = [to] if to.is_a?(String)
         messages = [messages] if messages.is_a?(Hash)
 
-        endpoint_path = 'bot/ad/multicast/phone'
+        endpoint_path = '/bot/ad/multicast/phone'
         payload = payload.merge({ to: to, messages: messages }).to_json
         post(oauth_endpoint, endpoint_path, payload, credentials.merge(headers))
       end
