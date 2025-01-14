@@ -1,10 +1,10 @@
-# Copyright 2016 LINE
+# Copyright 2016-2024 LINE
 #
 # LINE Corporation licenses this file to you under the Apache License,
 # version 2.0 (the "License"); you may not use this file except in compliance
 # with the License. You may obtain a copy of the License at:
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE_2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -12,10 +12,25 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require 'line/bot/util'
-require 'line/bot/client'
-require 'line/bot/event'
-require 'line/bot/api/errors'
-require 'line/bot/api'
-require 'line/bot/httpclient'
-require 'line/bot/api/version'
+# V1
+require 'line/bot/v1/util'
+require 'line/bot/v1/client'
+require 'line/bot/v1/event'
+require 'line/bot/v1/api/errors'
+require 'line/bot/v1/api'
+require 'line/bot/v1/httpclient'
+require 'line/bot/v1/api/version'
+
+# V2
+require 'line/bot/v2/webhook_parser'
+
+## OpenAPI
+require 'line/bot/v2/channel_access_token/core'
+require 'line/bot/v2/insight/core'
+require 'line/bot/v2/liff/core'
+require 'line/bot/v2/manage_audience/core'
+require 'line/bot/v2/messaging_api/core'
+require 'line/bot/v2/module/core'
+require 'line/bot/v2/module_attach/core'
+require 'line/bot/v2/shop/core'
+require 'line/bot/v2/webhook/core'

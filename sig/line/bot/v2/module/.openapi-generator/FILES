@@ -1,0 +1,6 @@
+.openapi-generator-ignore
+api/line_module_client.rbs
+model/acquire_chat_control_request.rbs
+model/detach_module_request.rbs
+model/get_modules_response.rbs
+model/module_bot.rbs

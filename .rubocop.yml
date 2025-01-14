@@ -2,6 +2,16 @@ AllCops:
   TargetRubyVersion: 2.4
   Exclude:
     - 'examples/**/*'
+    - 'lib/line/bot/v1/**/*'
+    - 'lib/line/bot/v2/channel_access_token/**/*'
+    - 'lib/line/bot/v2/insight/**/*'
+    - 'lib/line/bot/v2/liff/**/*'
+    - 'lib/line/bot/v2/manage_audience/**/*'
+    - 'lib/line/bot/v2/messaging_api/**/*'
+    - 'lib/line/bot/v2/module/**/*'
+    - 'lib/line/bot/v2/module_attach/**/*'
+    - 'lib/line/bot/v2/shop/**/*'
+    - 'lib/line/bot/v2/webhook/**/*'
   NewCops: disable
 
 Gemspec/RequiredRubyVersion:
@@ -39,6 +49,10 @@ Style/StringConcatenation:
   Enabled: false
 Style/RedundantAssignment:
   Enabled: false
+Style/MultilineIfModifier:
+  Enabled: false
+Style/SafeNavigation:
+  Enabled: false
 
 Naming/HeredocDelimiterNaming:
   Enabled: false
@@ -59,6 +73,12 @@ Metrics/MethodLength:
   Enabled: false
 Metrics/ClassLength:
   Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
 
 Layout/LineLength:
   Max: 200
@@ -73,6 +93,8 @@ Layout/HeredocIndentation:
 Layout/ExtraSpacing:
   Enabled: false
 Layout/SpaceAroundOperators:
+  Enabled: false
+Layout/DotPosition:
   Enabled: false
 
 Lint/UnusedBlockArgument:
