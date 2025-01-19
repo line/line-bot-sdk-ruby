@@ -70,6 +70,3 @@ require_relative './model/user_source'
 require_relative './model/video_message_content'
 require_relative './model/video_play_complete'
 require_relative './model/video_play_complete_event'
-
-# APIs
-require_relative './api/dummy_client'

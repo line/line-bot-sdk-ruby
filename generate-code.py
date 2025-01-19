@@ -58,6 +58,10 @@ def generate_clients():
         generate_client(source_yaml, "line-bot-sdk-ruby-generator", "lib/line/bot/v2")
         generate_client(source_yaml, "line-bot-sdk-ruby-rbs-generator", "sig/line/bot/v2")
 
+    # Remove the dummy API client from the webhook component
+    run_command("rm -rf lib/line/bot/v2/webhook/api")
+    run_command("rm -rf sig/line/bot/v2/webhook/api")
+
 def main():
     """Main function to package and generate clients."""
     os.chdir("generator")

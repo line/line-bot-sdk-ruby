@@ -5,7 +5,9 @@
 {% for model in models -%}
 require_relative './model/{{ model.model.classFilename | underscore }}'
 {% endfor %}
+{%- if packageName != 'webhook' %}
 # APIs
 {% for api in apiInfo.apis -%}
 require_relative './api/{{ api.get("classFilename") | underscore }}'
 {% endfor -%}
+{% endif -%}
