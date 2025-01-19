@@ -9,3 +9,8 @@ group :development, :test do
   gem 'rubocop', '~> 1.70.0', require: false
   gem 'yard', '~> 0.9.20'
 end
+
+group :test do
+  gem 'rspec', '~> 3.10.0'
+  gem 'webmock', '~> 3.14.0'
+end
