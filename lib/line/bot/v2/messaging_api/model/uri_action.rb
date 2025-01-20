@@ -14,18 +14,18 @@ module Line
     module V2
       module MessagingApi
         class URIAction < Action
-          attr_accessor :type # Type of action
+          attr_reader :type # Type of action
           attr_accessor :label # Label for the action.
           attr_accessor :uri
           attr_accessor :alt_uri
 
           def initialize(
-            type: nil,
             label: nil,
             uri: nil,
             alt_uri: nil
           )
-            @type = type
+            @type = "uri"
+            
             @label = label
             @uri = uri
             @alt_uri = alt_uri

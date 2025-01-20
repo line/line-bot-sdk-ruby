@@ -30,6 +30,7 @@ module Line
             unique_media_played: nil,
             unique_media_played100_percent: nil
           )
+            
             @request_id = request_id
             @timestamp = timestamp
             @delivered = delivered

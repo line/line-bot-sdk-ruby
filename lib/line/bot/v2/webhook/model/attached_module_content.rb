@@ -14,7 +14,7 @@ module Line
     module V2
       module Webhook
         class AttachedModuleContent < ModuleContent
-          attr_accessor :type # Type
+          attr_reader :type # Type
           attr_accessor :bot_id # User ID of the bot on the attached LINE Official Account
           attr_accessor :scopes # An array of strings indicating the scope permitted by the admin of the LINE Official Account.
 
@@ -23,7 +23,8 @@ module Line
             bot_id:,
             scopes:
           )
-            @type = type
+            @type = "attached"
+            
             @bot_id = bot_id
             @scopes = scopes
           end

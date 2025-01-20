@@ -14,7 +14,7 @@ module Line
     module V2
       module Webhook
         class TextMessageContent < MessageContent
-          attr_accessor :type # Type
+          attr_reader :type # Type
           attr_accessor :id # Message ID
           attr_accessor :text # Message text.
           attr_accessor :emojis # Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
@@ -31,7 +31,8 @@ module Line
             quote_token:,
             quoted_message_id: nil
           )
-            @type = type
+            @type = "text"
+            
             @id = id
             @text = text
             @emojis = emojis

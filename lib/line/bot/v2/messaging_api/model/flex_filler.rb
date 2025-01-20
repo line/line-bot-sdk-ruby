@@ -14,14 +14,14 @@ module Line
     module V2
       module MessagingApi
         class FlexFiller < FlexComponent
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :flex
 
           def initialize(
-            type:,
             flex: nil
           )
-            @type = type
+            @type = "filler"
+            
             @flex = flex
           end
         end

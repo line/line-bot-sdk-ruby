@@ -12,7 +12,7 @@ module Line
     module V2
       module MessagingApi
         class ButtonsTemplate < Template
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor thumbnail_image_url: String?
           attr_accessor image_aspect_ratio: String?
           attr_accessor image_size: String?
@@ -23,7 +23,6 @@ module Line
           attr_accessor actions: Array[Action]
           
           def initialize: (
-            type: String,
             thumbnail_image_url: String?,
             image_aspect_ratio: String?,
             image_size: String?,

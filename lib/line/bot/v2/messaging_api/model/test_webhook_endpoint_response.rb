@@ -26,6 +26,7 @@ module Line
             reason:,
             detail:
           )
+            
             @success = success
             @timestamp = timestamp
             @status_code = status_code

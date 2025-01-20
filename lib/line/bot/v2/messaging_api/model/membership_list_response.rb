@@ -18,6 +18,7 @@ module Line
           def initialize(
             memberships:
           )
+            
             @memberships = memberships
           end
         end

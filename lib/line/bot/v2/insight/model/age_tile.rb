@@ -19,6 +19,7 @@ module Line
             age: nil,
             percentage: nil
           )
+            
             @age = age
             @percentage = percentage
           end

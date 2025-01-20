@@ -17,6 +17,7 @@ module Line
           def initialize(
             expire_at:
           )
+            
             @expire_at = expire_at
           end
         end

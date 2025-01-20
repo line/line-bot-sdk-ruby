@@ -20,6 +20,7 @@ module Line
             bot_id:,
             scopes:
           )
+            
             @bot_id = bot_id
             @scopes = scopes
           end

@@ -25,6 +25,7 @@ module Line
             width: nil,
             height: nil
           )
+            
             @x = x
             @y = y
             @width = width

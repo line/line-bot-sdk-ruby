@@ -23,6 +23,7 @@ module Line
             upload_description: nil,
             audiences: nil
           )
+            
             @audience_group_id = audience_group_id
             @upload_description = upload_description
             @audiences = audiences

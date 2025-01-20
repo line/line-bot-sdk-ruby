@@ -15,7 +15,7 @@ module Line
     module V2
       module MessagingApi
         class DatetimePickerAction < Action
-          attr_accessor :type # Type of action
+          attr_reader :type # Type of action
           attr_accessor :label # Label for the action.
           attr_accessor :data
           attr_accessor :mode
@@ -24,7 +24,6 @@ module Line
           attr_accessor :min
 
           def initialize(
-            type: nil,
             label: nil,
             data: nil,
             mode: nil,
@@ -32,7 +31,8 @@ module Line
             max: nil,
             min: nil
           )
-            @type = type
+            @type = "datetimepicker"
+            
             @label = label
             @data = data
             @mode = mode

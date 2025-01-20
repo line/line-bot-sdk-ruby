@@ -22,6 +22,7 @@ module Line
             original_content_url: nil,
             preview_image_url: nil
           )
+            
             @type = type
             @original_content_url = original_content_url
             @preview_image_url = preview_image_url

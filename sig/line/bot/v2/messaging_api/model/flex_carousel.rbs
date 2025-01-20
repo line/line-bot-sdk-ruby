@@ -12,11 +12,10 @@ module Line
     module V2
       module MessagingApi
         class FlexCarousel < FlexContainer
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor contents: Array[FlexBubble]
           
           def initialize: (
-            type: String,
             contents: Array[FlexBubble]
           ) -> void
         end

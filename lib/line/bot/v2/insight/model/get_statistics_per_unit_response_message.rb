@@ -42,6 +42,7 @@ module Line
             unique_media_played75_percent: nil,
             unique_media_played100_percent: nil
           )
+            
             @seq = seq
             @impression = impression
             @media_played = media_played

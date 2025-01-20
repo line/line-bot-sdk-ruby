@@ -13,13 +13,12 @@ module Line
     module V2
       module MessagingApi
         class ClipboardImagemapAction < ImagemapAction
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor area: ImagemapArea
           attr_accessor clipboard_text: String
           attr_accessor label: String?
           
           def initialize: (
-            type: String,
             area: ImagemapArea,
             clipboard_text: String,
             label: String?

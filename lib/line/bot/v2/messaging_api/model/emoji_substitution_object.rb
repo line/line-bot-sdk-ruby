@@ -16,16 +16,16 @@ module Line
     module V2
       module MessagingApi
         class EmojiSubstitutionObject < SubstitutionObject
-          attr_accessor :type # Type of substitution object
+          attr_reader :type # Type of substitution object
           attr_accessor :product_id
           attr_accessor :emoji_id
 
           def initialize(
-            type:,
             product_id:,
             emoji_id:
           )
-            @type = type
+            @type = "emoji"
+            
             @product_id = product_id
             @emoji_id = emoji_id
           end

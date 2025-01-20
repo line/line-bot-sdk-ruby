@@ -23,6 +23,7 @@ module Line
             width:,
             height:
           )
+            
             @x = x
             @y = y
             @width = width

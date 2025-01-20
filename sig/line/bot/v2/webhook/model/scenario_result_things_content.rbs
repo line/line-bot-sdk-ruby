@@ -12,7 +12,7 @@ module Line
     module V2
       module Webhook
         class ScenarioResultThingsContent < ThingsContent
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor device_id: String
           attr_accessor result: ScenarioResult
           

@@ -29,7 +29,7 @@ post '/callback' do
       request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
         reply_token: event.reply_token,
         messages: [
-          Line::Bot::V2::MessagingApi::TextMessage.new(type: 'text', text: message)
+          Line::Bot::V2::MessagingApi::TextMessage.new(text: message)
         ]
       )
       client.reply_message(reply_message_request: request)

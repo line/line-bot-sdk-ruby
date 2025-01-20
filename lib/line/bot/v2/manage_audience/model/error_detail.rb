@@ -19,6 +19,7 @@ module Line
             message: nil,
             property: nil
           )
+            
             @message = message
             @property = property
           end

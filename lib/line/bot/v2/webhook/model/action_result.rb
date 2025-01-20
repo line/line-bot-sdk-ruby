@@ -19,6 +19,7 @@ module Line
             type:,
             data: nil
           )
+            
             @type = type
             @data = data
           end

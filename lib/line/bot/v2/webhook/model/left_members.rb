@@ -17,6 +17,7 @@ module Line
           def initialize(
             members:
           )
+            
             @members = members
           end
         end

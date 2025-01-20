@@ -17,6 +17,7 @@ module Line
           def initialize(
             liff_id:
           )
+            
             @liff_id = liff_id
           end
         end

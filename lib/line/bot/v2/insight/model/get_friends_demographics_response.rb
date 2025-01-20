@@ -29,6 +29,7 @@ module Line
             app_types: nil,
             subscription_periods: nil
           )
+            
             @available = available
             @genders = genders
             @ages = ages

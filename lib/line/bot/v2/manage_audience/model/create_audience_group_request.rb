@@ -25,6 +25,7 @@ module Line
             upload_description: nil,
             audiences: nil
           )
+            
             @description = description
             @is_ifa_audience = is_ifa_audience
             @upload_description = upload_description

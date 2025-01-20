@@ -14,7 +14,7 @@ module Line
     module V2
       module MessagingApi
         class PostbackAction < Action
-          attr_accessor :type # Type of action
+          attr_reader :type # Type of action
           attr_accessor :label # Label for the action.
           attr_accessor :data
           attr_accessor :display_text
@@ -23,7 +23,6 @@ module Line
           attr_accessor :fill_in_text
 
           def initialize(
-            type: nil,
             label: nil,
             data: nil,
             display_text: nil,
@@ -31,7 +30,8 @@ module Line
             input_option: nil,
             fill_in_text: nil
           )
-            @type = type
+            @type = "postback"
+            
             @label = label
             @data = data
             @display_text = display_text

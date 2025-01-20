@@ -15,20 +15,20 @@ module Line
     module V2
       module MessagingApi
         class TemplateMessage < Message
-          attr_accessor :type # Type of message
+          attr_reader :type # Type of message
           attr_accessor :quick_reply
           attr_accessor :sender
           attr_accessor :alt_text
           attr_accessor :template
 
           def initialize(
-            type:,
             quick_reply: nil,
             sender: nil,
             alt_text:,
             template:
           )
-            @type = type
+            @type = "template"
+            
             @quick_reply = quick_reply
             @sender = sender
             @alt_text = alt_text

@@ -18,6 +18,7 @@ module Line
           def initialize(
             num_of_custom_aggregation_units:
           )
+            
             @num_of_custom_aggregation_units = num_of_custom_aggregation_units
           end
         end

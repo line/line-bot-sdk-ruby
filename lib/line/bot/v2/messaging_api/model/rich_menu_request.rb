@@ -25,6 +25,7 @@ module Line
             chat_bar_text: nil,
             areas: nil
           )
+            
             @size = size
             @selected = selected
             @name = name

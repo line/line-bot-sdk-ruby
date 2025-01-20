@@ -15,14 +15,14 @@ module Line
     module V2
       module MessagingApi
         class RichMenuBatchUnlinkOperation < RichMenuBatchOperation
-          attr_accessor :type # The type of operation to the rich menu linked to the user. One of link, unlink, or unlinkAll.
+          attr_reader :type # The type of operation to the rich menu linked to the user. One of link, unlink, or unlinkAll.
           attr_accessor :from
 
           def initialize(
-            type:,
             from:
           )
-            @type = type
+            @type = "unlink"
+            
             @from = from
           end
         end

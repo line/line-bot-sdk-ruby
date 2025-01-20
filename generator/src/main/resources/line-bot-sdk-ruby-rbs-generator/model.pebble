@@ -20,24 +20,25 @@ module Line
           {% for variable in model.model.vars -%}
           {% if variable.openApiType == 'array' -%}
           {% if variable.items.isModel -%}
-          attr_accessor {{ variable.name }}: {{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %}?{% endif %}
+          {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}attr_accessor{% else %}attr_reader{% endif %} {{ variable.name }}: {{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %}?{% endif %}
           {% elseif variable.items.allowableValues != null -%}
-          attr_accessor {{ variable.name }}: Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]{% if not variable.required %}?{% endif %}
+          {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}attr_accessor{% else %}attr_reader{% endif %} {{ variable.name }}: Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]{% if not variable.required %}?{% endif %}
           {% else -%}
-          attr_accessor {{ variable.name }}: {{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %}?{% endif %}
+          {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}attr_accessor{% else %}attr_reader{% endif %} {{ variable.name }}: {{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %}?{% endif %}
           {% endif -%}
           {% elseif variable.isModel -%}
-          attr_accessor {{ variable.name }}: {{ variable.openApiType }}{% if not variable.required %}?{% endif %}
+          {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}attr_accessor{% else %}attr_reader{% endif %} {{ variable.name }}: {{ variable.openApiType }}{% if not variable.required %}?{% endif %}
           {% else -%}
           {% if variable.allowableValues != null -%}
-          attr_accessor {{ variable.name }}: {% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}{% if not variable.required %}?{% endif %}
+          {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}attr_accessor{% else %}attr_reader{% endif %} {{ variable.name }}: {% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}{% if not variable.required %}?{% endif %}
           {% else -%}
-          attr_accessor {{ variable.name }}: {{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}{% if not variable.required %}?{% endif %}
+          {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}attr_accessor{% else %}attr_reader{% endif %} {{ variable.name }}: {{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}{% if not variable.required %}?{% endif %}
           {% endif -%}
           {% endif -%}
           {% endfor %}
           def initialize: (
             {% for variable in model.model.vars -%}
+            {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name or packageName == 'webhook' -%}
             {% if variable.openApiType == 'array' -%}
             {% if variable.items.isModel -%}
             {{ variable.name }}: {{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %}?{% endif -%}
@@ -55,7 +56,7 @@ module Line
             {{ variable.name }}: {{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}{% if not variable.required %}?{% endif -%}
             {% endif -%}
             {% endif %}{{ loop.last ? '' : ",
-            " }}{% endfor %}
+            " }}{% endif %}{% endfor %}
           ) -> void
           {%- endif %}
         end

@@ -20,6 +20,7 @@ module Line
             name: nil,
             icon_url: nil
           )
+            
             @name = name
             @icon_url = icon_url
           end

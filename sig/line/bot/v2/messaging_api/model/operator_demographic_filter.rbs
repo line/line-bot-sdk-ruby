@@ -12,13 +12,12 @@ module Line
     module V2
       module MessagingApi
         class OperatorDemographicFilter < DemographicFilter
-          attr_accessor type: String?
+          attr_reader type: String?
           attr_accessor _and: Array[DemographicFilter]?
           attr_accessor _or: Array[DemographicFilter]?
           attr_accessor _not: DemographicFilter?
           
           def initialize: (
-            type: String?,
             _and: Array[DemographicFilter]?,
             _or: Array[DemographicFilter]?,
             _not: DemographicFilter?

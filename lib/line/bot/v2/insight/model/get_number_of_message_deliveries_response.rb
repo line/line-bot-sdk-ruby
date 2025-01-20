@@ -39,6 +39,7 @@ module Line
             api_narrowcast: nil,
             api_reply: nil
           )
+            
             @status = status
             @broadcast = broadcast
             @targeting = targeting

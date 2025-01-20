@@ -13,12 +13,11 @@ module Line
     module V2
       module MessagingApi
         class ClipboardAction < Action
-          attr_accessor type: String?
+          attr_reader type: String?
           attr_accessor label: String?
           attr_accessor clipboard_text: String
           
           def initialize: (
-            type: String?,
             label: String?,
             clipboard_text: String
           ) -> void

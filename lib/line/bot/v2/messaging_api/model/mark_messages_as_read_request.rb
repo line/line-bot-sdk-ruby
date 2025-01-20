@@ -18,6 +18,7 @@ module Line
           def initialize(
             chat:
           )
+            
             @chat = chat
           end
         end

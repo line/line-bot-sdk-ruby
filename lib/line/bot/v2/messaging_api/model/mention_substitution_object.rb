@@ -16,14 +16,14 @@ module Line
     module V2
       module MessagingApi
         class MentionSubstitutionObject < SubstitutionObject
-          attr_accessor :type # Type of substitution object
+          attr_reader :type # Type of substitution object
           attr_accessor :mentionee
 
           def initialize(
-            type:,
             mentionee:
           )
-            @type = type
+            @type = "mention"
+            
             @mentionee = mentionee
           end
         end

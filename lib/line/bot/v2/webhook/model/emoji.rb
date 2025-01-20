@@ -23,6 +23,7 @@ module Line
             product_id:,
             emoji_id:
           )
+            
             @index = index
             @length = length
             @product_id = product_id

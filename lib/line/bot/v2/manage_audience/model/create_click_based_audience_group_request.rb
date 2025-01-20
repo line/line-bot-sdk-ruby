@@ -23,6 +23,7 @@ module Line
             request_id: nil,
             click_url: nil
           )
+            
             @description = description
             @request_id = request_id
             @click_url = click_url

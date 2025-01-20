@@ -15,7 +15,7 @@ module Line
     module V2
       module MessagingApi
         class FlexIcon < FlexComponent
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :url
           attr_accessor :size
           attr_accessor :aspect_ratio
@@ -28,7 +28,6 @@ module Line
           attr_accessor :scaling
 
           def initialize(
-            type:,
             url:,
             size: nil,
             aspect_ratio: nil,
@@ -40,7 +39,8 @@ module Line
             offset_end: nil,
             scaling: nil
           )
-            @type = type
+            @type = "icon"
+            
             @url = url
             @size = size
             @aspect_ratio = aspect_ratio

@@ -14,7 +14,7 @@ module Line
     module V2
       module Webhook
         class AudioMessageContent < MessageContent
-          attr_accessor :type # Type
+          attr_reader :type # Type
           attr_accessor :id # Message ID
           attr_accessor :content_provider
           attr_accessor :duration # Length of audio file (milliseconds)
@@ -25,7 +25,8 @@ module Line
             content_provider:,
             duration: nil
           )
-            @type = type
+            @type = "audio"
+            
             @id = id
             @content_provider = content_provider
             @duration = duration

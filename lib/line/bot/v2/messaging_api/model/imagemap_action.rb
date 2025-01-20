@@ -20,6 +20,7 @@ module Line
             type:,
             area:
           )
+            
             @type = type
             @area = area
           end

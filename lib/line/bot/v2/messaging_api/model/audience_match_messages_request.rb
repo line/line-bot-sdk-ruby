@@ -22,6 +22,7 @@ module Line
             to:,
             notification_disabled: false
           )
+            
             @messages = messages
             @to = to
             @notification_disabled = notification_disabled

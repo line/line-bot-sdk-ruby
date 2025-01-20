@@ -20,6 +20,7 @@ module Line
             custom_aggregation_units:,
             _next: nil
           )
+            
             @custom_aggregation_units = custom_aggregation_units
             @_next = _next
           end

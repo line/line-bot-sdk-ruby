@@ -14,18 +14,18 @@ module Line
     module V2
       module MessagingApi
         class RichMenuSwitchAction < Action
-          attr_accessor :type # Type of action
+          attr_reader :type # Type of action
           attr_accessor :label # Label for the action.
           attr_accessor :data
           attr_accessor :rich_menu_alias_id
 
           def initialize(
-            type: nil,
             label: nil,
             data: nil,
             rich_menu_alias_id: nil
           )
-            @type = type
+            @type = "richmenuswitch"
+            
             @label = label
             @data = data
             @rich_menu_alias_id = rich_menu_alias_id

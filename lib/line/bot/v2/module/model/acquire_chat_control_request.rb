@@ -21,6 +21,7 @@ module Line
             expired: nil,
             ttl: nil
           )
+            
             @expired = expired
             @ttl = ttl
           end

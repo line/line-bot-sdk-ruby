@@ -13,7 +13,7 @@ module Line
     module V2
       module Webhook
         class DeactivatedEvent < Event
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor source: Source?
           attr_accessor timestamp: Integer
           attr_accessor mode: 'active'|'standby'

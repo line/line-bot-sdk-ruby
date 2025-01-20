@@ -15,7 +15,7 @@ module Line
     module V2
       module Webhook
         class LeaveEvent < Event
-          attr_accessor :type # Type of the event
+          attr_reader :type # Type of the event
           attr_accessor :source
           attr_accessor :timestamp # Time of the event in milliseconds.
           attr_accessor :mode
@@ -30,7 +30,8 @@ module Line
             webhook_event_id:,
             delivery_context:
           )
-            @type = type
+            @type = "leave"
+            
             @source = source
             @timestamp = timestamp
             @mode = mode

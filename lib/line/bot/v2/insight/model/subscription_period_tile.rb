@@ -19,6 +19,7 @@ module Line
             subscription_period: nil,
             percentage: nil
           )
+            
             @subscription_period = subscription_period
             @percentage = percentage
           end

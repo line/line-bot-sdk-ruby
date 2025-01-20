@@ -22,6 +22,7 @@ module Line
             url: nil,
             module_mode: nil
           )
+            
             @type = type
             @url = url
             @module_mode = module_mode

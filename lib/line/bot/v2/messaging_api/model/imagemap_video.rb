@@ -23,6 +23,7 @@ module Line
             area: nil,
             external_link: nil
           )
+            
             @original_content_url = original_content_url
             @preview_image_url = preview_image_url
             @area = area

@@ -19,6 +19,7 @@ module Line
             operations:,
             resume_request_key: nil
           )
+            
             @operations = operations
             @resume_request_key = resume_request_key
           end

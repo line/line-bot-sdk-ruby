@@ -17,6 +17,7 @@ module Line
           def initialize(
             mentionees:
           )
+            
             @mentionees = mentionees
           end
         end

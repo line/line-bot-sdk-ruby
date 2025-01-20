@@ -13,10 +13,10 @@ module Line
     module V2
       module MessagingApi
         class AllMentionTarget < MentionTarget
-          attr_accessor type: String
+          attr_reader type: String
           
           def initialize: (
-            type: String
+            
           ) -> void
         end
       end

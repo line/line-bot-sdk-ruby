@@ -14,7 +14,7 @@ module Line
     module V2
       module MessagingApi
         class FlexButton < FlexComponent
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :flex
           attr_accessor :color
           attr_accessor :style
@@ -31,7 +31,6 @@ module Line
           attr_accessor :scaling
 
           def initialize(
-            type:,
             flex: nil,
             color: nil,
             style: nil,
@@ -47,7 +46,8 @@ module Line
             adjust_mode: nil,
             scaling: nil
           )
-            @type = type
+            @type = "button"
+            
             @flex = flex
             @color = color
             @style = style

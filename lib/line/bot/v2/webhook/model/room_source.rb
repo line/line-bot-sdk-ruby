@@ -14,7 +14,7 @@ module Line
     module V2
       module Webhook
         class RoomSource < Source
-          attr_accessor :type # source type
+          attr_reader :type # source type
           attr_accessor :user_id # ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
           attr_accessor :room_id # Room ID of the source multi-person chat
 
@@ -23,7 +23,8 @@ module Line
             user_id: nil,
             room_id:
           )
-            @type = type
+            @type = "room"
+            
             @user_id = user_id
             @room_id = room_id
           end

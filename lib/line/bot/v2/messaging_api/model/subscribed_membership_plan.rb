@@ -28,6 +28,7 @@ module Line
             price:,
             currency:
           )
+            
             @membership_id = membership_id
             @title = title
             @description = description

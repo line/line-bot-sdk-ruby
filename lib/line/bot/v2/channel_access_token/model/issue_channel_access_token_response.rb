@@ -25,6 +25,7 @@ module Line
             token_type: 'Bearer',
             key_id:
           )
+            
             @access_token = access_token
             @expires_in = expires_in
             @token_type = token_type

@@ -17,6 +17,7 @@ module Line
           def initialize(
             apps: nil
           )
+            
             @apps = apps
           end
         end

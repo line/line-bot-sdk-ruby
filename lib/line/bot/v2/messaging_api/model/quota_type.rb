@@ -17,6 +17,7 @@ module Line
 
           def initialize(
           )
+            
           end
         end
       end

@@ -32,6 +32,7 @@ module Line
             ble_notification_payload: nil,
             error_reason: nil
           )
+            
             @scenario_id = scenario_id
             @revision = revision
             @start_time = start_time

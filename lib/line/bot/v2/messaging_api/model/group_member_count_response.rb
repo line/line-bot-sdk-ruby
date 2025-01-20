@@ -18,6 +18,7 @@ module Line
           def initialize(
             count:
           )
+            
             @count = count
           end
         end

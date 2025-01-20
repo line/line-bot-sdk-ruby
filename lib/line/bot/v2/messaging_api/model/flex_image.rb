@@ -15,7 +15,7 @@ module Line
     module V2
       module MessagingApi
         class FlexImage < FlexComponent
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :url # Image URL (Max character limit: 2000) Protocol: HTTPS (TLS 1.2 or later) Image format: JPEG or PNG Maximum image size: 1024×1024 pixels Maximum file size: 10 MB (300 KB when the animated property is true) 
           attr_accessor :flex # The ratio of the width or height of this component within the parent box.
           attr_accessor :margin # The minimum amount of space to include before this component in its parent container. 
@@ -34,7 +34,6 @@ module Line
           attr_accessor :animated # When this is `true`, an animated image (APNG) plays. You can specify a value of true up to 10 images in a single message. You can't send messages that exceed this limit. This is `false` by default. Animated images larger than 300 KB aren't played back. 
 
           def initialize(
-            type:,
             url:,
             flex: nil,
             margin: nil,
@@ -52,7 +51,8 @@ module Line
             action: nil,
             animated: false
           )
-            @type = type
+            @type = "image"
+            
             @url = url
             @flex = flex
             @margin = margin

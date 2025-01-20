@@ -14,7 +14,7 @@ module Line
     module V2
       module Webhook
         class VideoMessageContent < MessageContent
-          attr_accessor :type # Type
+          attr_reader :type # Type
           attr_accessor :id # Message ID
           attr_accessor :duration # Length of video file (milliseconds)
           attr_accessor :content_provider
@@ -27,7 +27,8 @@ module Line
             content_provider:,
             quote_token:
           )
-            @type = type
+            @type = "video"
+            
             @id = id
             @duration = duration
             @content_provider = content_provider

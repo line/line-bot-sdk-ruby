@@ -12,7 +12,7 @@ module Line
     module V2
       module MessagingApi
         class FlexButton < FlexComponent
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor flex: Integer?
           attr_accessor color: String?
           attr_accessor style: 'primary'|'secondary'|'link'?
@@ -29,7 +29,6 @@ module Line
           attr_accessor scaling: bool?
           
           def initialize: (
-            type: String,
             flex: Integer?,
             color: String?,
             style: 'primary'|'secondary'|'link'?,

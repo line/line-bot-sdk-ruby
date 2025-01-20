@@ -19,6 +19,7 @@ module Line
             id:,
             quote_token: nil
           )
+            
             @id = id
             @quote_token = quote_token
           end

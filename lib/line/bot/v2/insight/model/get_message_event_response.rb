@@ -23,6 +23,7 @@ module Line
             messages: nil,
             clicks: nil
           )
+            
             @overview = overview
             @messages = messages
             @clicks = clicks

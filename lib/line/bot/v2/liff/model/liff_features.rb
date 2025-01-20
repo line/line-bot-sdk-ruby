@@ -19,6 +19,7 @@ module Line
             ble: nil,
             qr_code: false
           )
+            
             @ble = ble
             @qr_code = qr_code
           end

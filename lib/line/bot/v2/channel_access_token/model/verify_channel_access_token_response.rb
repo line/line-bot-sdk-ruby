@@ -22,6 +22,7 @@ module Line
             expires_in:,
             scope: nil
           )
+            
             @client_id = client_id
             @expires_in = expires_in
             @scope = scope

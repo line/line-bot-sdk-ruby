@@ -14,14 +14,14 @@ module Line
     module V2
       module MessagingApi
         class FlexCarousel < FlexContainer
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :contents
 
           def initialize(
-            type:,
             contents:
           )
-            @type = type
+            @type = "carousel"
+            
             @contents = contents
           end
         end

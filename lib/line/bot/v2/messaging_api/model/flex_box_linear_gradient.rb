@@ -14,7 +14,7 @@ module Line
     module V2
       module MessagingApi
         class FlexBoxLinearGradient < FlexBoxBackground
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :angle
           attr_accessor :start_color
           attr_accessor :end_color
@@ -22,14 +22,14 @@ module Line
           attr_accessor :center_position
 
           def initialize(
-            type:,
             angle: nil,
             start_color: nil,
             end_color: nil,
             center_color: nil,
             center_position: nil
           )
-            @type = type
+            @type = "linearGradient"
+            
             @angle = angle
             @start_color = start_color
             @end_color = end_color

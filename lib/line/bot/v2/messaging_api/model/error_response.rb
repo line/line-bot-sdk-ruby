@@ -22,6 +22,7 @@ module Line
             details: nil,
             sent_messages: nil
           )
+            
             @message = message
             @details = details
             @sent_messages = sent_messages

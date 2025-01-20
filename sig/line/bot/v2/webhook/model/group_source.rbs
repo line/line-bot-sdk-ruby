@@ -12,7 +12,7 @@ module Line
     module V2
       module Webhook
         class GroupSource < Source
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor group_id: String
           attr_accessor user_id: String?
           

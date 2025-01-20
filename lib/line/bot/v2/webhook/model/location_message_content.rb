@@ -14,7 +14,7 @@ module Line
     module V2
       module Webhook
         class LocationMessageContent < MessageContent
-          attr_accessor :type # Type
+          attr_reader :type # Type
           attr_accessor :id # Message ID
           attr_accessor :title # Title
           attr_accessor :address # Address
@@ -29,7 +29,8 @@ module Line
             latitude:,
             longitude:
           )
-            @type = type
+            @type = "location"
+            
             @id = id
             @title = title
             @address = address

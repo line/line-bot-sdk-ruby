@@ -20,6 +20,7 @@ module Line
             message:,
             details: nil
           )
+            
             @message = message
             @details = details
           end

@@ -15,7 +15,7 @@ module Line
     module V2
       module Webhook
         class StickerMessageContent < MessageContent
-          attr_accessor :type # Type
+          attr_reader :type # Type
           attr_accessor :id # Message ID
           attr_accessor :package_id # Package ID
           attr_accessor :sticker_id # Sticker ID
@@ -36,7 +36,8 @@ module Line
             quote_token:,
             quoted_message_id: nil
           )
-            @type = type
+            @type = "sticker"
+            
             @id = id
             @package_id = package_id
             @sticker_id = sticker_id

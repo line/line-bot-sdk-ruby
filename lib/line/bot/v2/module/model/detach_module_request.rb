@@ -19,6 +19,7 @@ module Line
           def initialize(
             bot_id: nil
           )
+            
             @bot_id = bot_id
           end
         end

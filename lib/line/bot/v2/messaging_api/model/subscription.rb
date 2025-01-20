@@ -20,6 +20,7 @@ module Line
             membership:,
             user:
           )
+            
             @membership = membership
             @user = user
           end

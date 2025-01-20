@@ -18,6 +18,7 @@ module Line
           def initialize(
             message:
           )
+            
             @message = message
           end
         end

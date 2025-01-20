@@ -18,6 +18,7 @@ module Line
           def initialize(
             total_usage:
           )
+            
             @total_usage = total_usage
           end
         end

@@ -20,6 +20,7 @@ module Line
             rich_menu_alias_id:,
             rich_menu_id:
           )
+            
             @rich_menu_alias_id = rich_menu_alias_id
             @rich_menu_id = rich_menu_id
           end

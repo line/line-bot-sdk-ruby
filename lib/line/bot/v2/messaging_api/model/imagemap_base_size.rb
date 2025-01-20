@@ -19,6 +19,7 @@ module Line
             height:,
             width:
           )
+            
             @height = height
             @width = width
           end

@@ -21,6 +21,7 @@ module Line
             max: nil,
             up_to_remaining_quota: false
           )
+            
             @max = max
             @up_to_remaining_quota = up_to_remaining_quota
           end

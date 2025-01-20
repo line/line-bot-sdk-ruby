@@ -26,6 +26,7 @@ module Line
             status_message: nil,
             language: nil
           )
+            
             @display_name = display_name
             @user_id = user_id
             @picture_url = picture_url

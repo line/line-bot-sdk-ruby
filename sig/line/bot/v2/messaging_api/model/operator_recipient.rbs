@@ -12,13 +12,12 @@ module Line
     module V2
       module MessagingApi
         class OperatorRecipient < Recipient
-          attr_accessor type: String?
+          attr_reader type: String?
           attr_accessor _and: Array[Recipient]?
           attr_accessor _or: Array[Recipient]?
           attr_accessor _not: Recipient?
           
           def initialize: (
-            type: String?,
             _and: Array[Recipient]?,
             _or: Array[Recipient]?,
             _not: Recipient?

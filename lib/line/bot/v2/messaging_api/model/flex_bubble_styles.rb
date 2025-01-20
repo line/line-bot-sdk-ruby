@@ -23,6 +23,7 @@ module Line
             body: nil,
             footer: nil
           )
+            
             @header = header
             @hero = hero
             @body = body

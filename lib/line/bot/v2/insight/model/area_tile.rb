@@ -19,6 +19,7 @@ module Line
             area: nil,
             percentage: nil
           )
+            
             @area = area
             @percentage = percentage
           end

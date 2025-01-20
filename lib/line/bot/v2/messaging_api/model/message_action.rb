@@ -14,16 +14,16 @@ module Line
     module V2
       module MessagingApi
         class MessageAction < Action
-          attr_accessor :type # Type of action
+          attr_reader :type # Type of action
           attr_accessor :label # Label for the action.
           attr_accessor :text
 
           def initialize(
-            type: nil,
             label: nil,
             text: nil
           )
-            @type = type
+            @type = "message"
+            
             @label = label
             @text = text
           end

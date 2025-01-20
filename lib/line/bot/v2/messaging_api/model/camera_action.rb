@@ -14,14 +14,14 @@ module Line
     module V2
       module MessagingApi
         class CameraAction < Action
-          attr_accessor :type # Type of action
+          attr_reader :type # Type of action
           attr_accessor :label # Label for the action.
 
           def initialize(
-            type: nil,
             label: nil
           )
-            @type = type
+            @type = "camera"
+            
             @label = label
           end
         end

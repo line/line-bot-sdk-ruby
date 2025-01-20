@@ -15,12 +15,12 @@ module Line
     module V2
       module MessagingApi
         class AllMentionTarget < MentionTarget
-          attr_accessor :type # Target to be mentioned
+          attr_reader :type # Target to be mentioned
 
           def initialize(
-            type:
           )
-            @type = type
+            @type = "all"
+            
           end
         end
       end

@@ -20,6 +20,7 @@ module Line
             error: nil,
             error_description: nil
           )
+            
             @error = error
             @error_description = error_description
           end

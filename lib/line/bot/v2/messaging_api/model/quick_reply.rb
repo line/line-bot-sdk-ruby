@@ -19,6 +19,7 @@ module Line
           def initialize(
             items: nil
           )
+            
             @items = items
           end
         end

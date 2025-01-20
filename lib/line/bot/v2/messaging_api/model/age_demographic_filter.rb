@@ -14,16 +14,16 @@ module Line
     module V2
       module MessagingApi
         class AgeDemographicFilter < DemographicFilter
-          attr_accessor :type # Type of demographic filter
+          attr_reader :type # Type of demographic filter
           attr_accessor :gte
           attr_accessor :lt
 
           def initialize(
-            type: nil,
             gte: nil,
             lt: nil
           )
-            @type = type
+            @type = "age"
+            
             @gte = gte
             @lt = lt
           end

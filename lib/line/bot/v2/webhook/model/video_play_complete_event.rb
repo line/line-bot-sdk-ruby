@@ -15,7 +15,7 @@ module Line
     module V2
       module Webhook
         class VideoPlayCompleteEvent < Event
-          attr_accessor :type # Type of the event
+          attr_reader :type # Type of the event
           attr_accessor :source
           attr_accessor :timestamp # Time of the event in milliseconds.
           attr_accessor :mode
@@ -34,7 +34,8 @@ module Line
             reply_token:,
             video_play_complete:
           )
-            @type = type
+            @type = "videoPlayComplete"
+            
             @source = source
             @timestamp = timestamp
             @mode = mode

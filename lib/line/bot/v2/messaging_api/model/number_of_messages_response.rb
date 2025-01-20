@@ -19,6 +19,7 @@ module Line
             status:,
             success: nil
           )
+            
             @status = status
             @success = success
           end

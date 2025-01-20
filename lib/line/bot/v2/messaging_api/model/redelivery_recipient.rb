@@ -14,14 +14,14 @@ module Line
     module V2
       module MessagingApi
         class RedeliveryRecipient < Recipient
-          attr_accessor :type # Type of recipient
+          attr_reader :type # Type of recipient
           attr_accessor :request_id
 
           def initialize(
-            type: nil,
             request_id: nil
           )
-            @type = type
+            @type = "redelivery"
+            
             @request_id = request_id
           end
         end

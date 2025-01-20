@@ -40,6 +40,7 @@ module Line
             permission: nil,
             create_route: nil
           )
+            
             @audience_group_id = audience_group_id
             @type = type
             @description = description

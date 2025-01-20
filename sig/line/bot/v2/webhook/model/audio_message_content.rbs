@@ -12,7 +12,7 @@ module Line
     module V2
       module Webhook
         class AudioMessageContent < MessageContent
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor id: String
           attr_accessor content_provider: ContentProvider
           attr_accessor duration: Integer?

@@ -19,6 +19,7 @@ module Line
           def initialize(
             authority_level: nil
           )
+            
             @authority_level = authority_level
           end
         end

@@ -14,16 +14,16 @@ module Line
     module V2
       module MessagingApi
         class FlexSeparator < FlexComponent
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :margin
           attr_accessor :color
 
           def initialize(
-            type:,
             margin: nil,
             color: nil
           )
-            @type = type
+            @type = "separator"
+            
             @margin = margin
             @color = color
           end

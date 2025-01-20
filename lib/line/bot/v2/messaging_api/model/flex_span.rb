@@ -14,7 +14,7 @@ module Line
     module V2
       module MessagingApi
         class FlexSpan < FlexComponent
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :text
           attr_accessor :size
           attr_accessor :color
@@ -23,7 +23,6 @@ module Line
           attr_accessor :decoration
 
           def initialize(
-            type:,
             text: nil,
             size: nil,
             color: nil,
@@ -31,7 +30,8 @@ module Line
             style: nil,
             decoration: nil
           )
-            @type = type
+            @type = "span"
+            
             @text = text
             @size = size
             @color = color

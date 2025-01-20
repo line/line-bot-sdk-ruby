@@ -19,6 +19,7 @@ module Line
             image_url:,
             action:
           )
+            
             @image_url = image_url
             @action = action
           end

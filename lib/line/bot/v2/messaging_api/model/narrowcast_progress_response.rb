@@ -32,6 +32,7 @@ module Line
             accepted_time:,
             completed_time: nil
           )
+            
             @phase = phase
             @success_count = success_count
             @failure_count = failure_count

@@ -12,7 +12,7 @@ module Line
     module V2
       module MessagingApi
         class FlexVideo < FlexComponent
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor url: String
           attr_accessor preview_url: String
           attr_accessor alt_content: FlexComponent
@@ -20,7 +20,6 @@ module Line
           attr_accessor action: Action?
           
           def initialize: (
-            type: String,
             url: String,
             preview_url: String,
             alt_content: FlexComponent,

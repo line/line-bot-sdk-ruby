@@ -18,6 +18,7 @@ module Line
           def initialize(
             aliases:
           )
+            
             @aliases = aliases
           end
         end

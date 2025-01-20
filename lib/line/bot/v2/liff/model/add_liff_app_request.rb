@@ -28,6 +28,7 @@ module Line
             scope: nil,
             bot_prompt: nil
           )
+            
             @view = view
             @description = description
             @features = features

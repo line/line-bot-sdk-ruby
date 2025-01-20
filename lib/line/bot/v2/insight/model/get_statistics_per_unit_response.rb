@@ -23,6 +23,7 @@ module Line
             messages:,
             clicks:
           )
+            
             @overview = overview
             @messages = messages
             @clicks = clicks

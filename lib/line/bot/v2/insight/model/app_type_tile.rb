@@ -19,6 +19,7 @@ module Line
             app_type: nil,
             percentage: nil
           )
+            
             @app_type = app_type
             @percentage = percentage
           end

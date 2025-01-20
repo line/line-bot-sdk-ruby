@@ -18,6 +18,7 @@ module Line
           def initialize(
             is_redelivery:
           )
+            
             @is_redelivery = is_redelivery
           end
         end

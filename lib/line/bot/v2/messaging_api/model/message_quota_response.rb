@@ -20,6 +20,7 @@ module Line
             type:,
             value: nil
           )
+            
             @type = type
             @value = value
           end

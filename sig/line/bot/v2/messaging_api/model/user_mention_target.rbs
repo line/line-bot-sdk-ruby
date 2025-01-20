@@ -13,11 +13,10 @@ module Line
     module V2
       module MessagingApi
         class UserMentionTarget < MentionTarget
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor user_id: String
           
           def initialize: (
-            type: String,
             user_id: String
           ) -> void
         end

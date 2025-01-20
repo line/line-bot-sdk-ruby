@@ -25,6 +25,7 @@ module Line
             targeted_reaches: nil,
             blocks: nil
           )
+            
             @status = status
             @followers = followers
             @targeted_reaches = targeted_reaches

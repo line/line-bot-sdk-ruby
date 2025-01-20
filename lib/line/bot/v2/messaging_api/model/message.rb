@@ -22,6 +22,7 @@ module Line
             quick_reply: nil,
             sender: nil
           )
+            
             @type = type
             @quick_reply = quick_reply
             @sender = sender

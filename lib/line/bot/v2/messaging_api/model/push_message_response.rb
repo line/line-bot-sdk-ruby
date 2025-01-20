@@ -18,6 +18,7 @@ module Line
           def initialize(
             sent_messages:
           )
+            
             @sent_messages = sent_messages
           end
         end

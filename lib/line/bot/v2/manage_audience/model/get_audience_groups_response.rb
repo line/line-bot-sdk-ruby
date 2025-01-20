@@ -29,6 +29,7 @@ module Line
             page: nil,
             size: nil
           )
+            
             @audience_groups = audience_groups
             @has_next_page = has_next_page
             @total_count = total_count

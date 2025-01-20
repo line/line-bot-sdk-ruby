@@ -19,6 +19,7 @@ module Line
             link_uri: nil,
             label: nil
           )
+            
             @link_uri = link_uri
             @label = label
           end

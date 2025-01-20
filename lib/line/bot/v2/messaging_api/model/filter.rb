@@ -18,6 +18,7 @@ module Line
           def initialize(
             demographic: nil
           )
+            
             @demographic = demographic
           end
         end

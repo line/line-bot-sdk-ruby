@@ -17,6 +17,7 @@ module Line
           def initialize(
             is_unblocked:
           )
+            
             @is_unblocked = is_unblocked
           end
         end

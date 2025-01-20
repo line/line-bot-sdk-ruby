@@ -21,6 +21,7 @@ module Line
             audience_group: nil,
             jobs: nil
           )
+            
             @audience_group = audience_group
             @jobs = jobs
           end

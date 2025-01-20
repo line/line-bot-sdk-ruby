@@ -20,6 +20,7 @@ module Line
             rich_menu_id:,
             user_ids:
           )
+            
             @rich_menu_id = rich_menu_id
             @user_ids = user_ids
           end

@@ -27,6 +27,7 @@ module Line
             display_name:,
             picture_url: nil
           )
+            
             @user_id = user_id
             @basic_id = basic_id
             @premium_id = premium_id

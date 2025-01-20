@@ -14,7 +14,7 @@ module Line
     module V2
       module MessagingApi
         class FlexVideo < FlexComponent
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :url
           attr_accessor :preview_url
           attr_accessor :alt_content
@@ -22,14 +22,14 @@ module Line
           attr_accessor :action
 
           def initialize(
-            type:,
             url:,
             preview_url:,
             alt_content:,
             aspect_ratio: nil,
             action: nil
           )
-            @type = type
+            @type = "video"
+            
             @url = url
             @preview_url = preview_url
             @alt_content = alt_content

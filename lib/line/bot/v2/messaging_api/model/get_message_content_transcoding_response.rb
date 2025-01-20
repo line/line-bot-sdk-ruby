@@ -19,6 +19,7 @@ module Line
           def initialize(
             status:
           )
+            
             @status = status
           end
         end

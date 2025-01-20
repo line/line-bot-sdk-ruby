@@ -21,6 +21,7 @@ module Line
             index: nil,
             total: nil
           )
+            
             @id = id
             @index = index
             @total = total

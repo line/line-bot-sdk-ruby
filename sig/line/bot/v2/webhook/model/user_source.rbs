@@ -12,7 +12,7 @@ module Line
     module V2
       module Webhook
         class UserSource < Source
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor user_id: String?
           
           def initialize: (

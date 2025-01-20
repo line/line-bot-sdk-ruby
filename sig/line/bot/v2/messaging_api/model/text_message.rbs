@@ -13,7 +13,7 @@ module Line
     module V2
       module MessagingApi
         class TextMessage < Message
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor quick_reply: QuickReply?
           attr_accessor sender: Sender?
           attr_accessor text: String
@@ -21,7 +21,6 @@ module Line
           attr_accessor quote_token: String?
           
           def initialize: (
-            type: String,
             quick_reply: QuickReply?,
             sender: Sender?,
             text: String,

@@ -27,6 +27,7 @@ module Line
             chat_bar_text:,
             areas:
           )
+            
             @rich_menu_id = rich_menu_id
             @size = size
             @selected = selected

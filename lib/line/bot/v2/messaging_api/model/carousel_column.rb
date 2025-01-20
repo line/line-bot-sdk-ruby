@@ -28,6 +28,7 @@ module Line
             default_action: nil,
             actions:
           )
+            
             @thumbnail_image_url = thumbnail_image_url
             @image_background_color = image_background_color
             @title = title

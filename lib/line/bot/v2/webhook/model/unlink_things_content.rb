@@ -14,14 +14,15 @@ module Line
     module V2
       module Webhook
         class UnlinkThingsContent < ThingsContent
-          attr_accessor :type # Type
+          attr_reader :type # Type
           attr_accessor :device_id # Device ID of the device that has been linked with LINE.
 
           def initialize(
             type:,
             device_id:
           )
-            @type = type
+            @type = "unlink"
+            
             @device_id = device_id
           end
         end

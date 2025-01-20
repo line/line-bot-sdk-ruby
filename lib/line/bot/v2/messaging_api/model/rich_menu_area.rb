@@ -20,6 +20,7 @@ module Line
             bounds: nil,
             action: nil
           )
+            
             @bounds = bounds
             @action = action
           end

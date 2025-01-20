@@ -22,6 +22,7 @@ module Line
             accepted_time:,
             completed_time: nil
           )
+            
             @phase = phase
             @accepted_time = accepted_time
             @completed_time = completed_time

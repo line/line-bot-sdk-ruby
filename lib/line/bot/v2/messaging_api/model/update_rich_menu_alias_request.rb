@@ -18,6 +18,7 @@ module Line
           def initialize(
             rich_menu_id:
           )
+            
             @rich_menu_id = rich_menu_id
           end
         end

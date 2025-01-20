@@ -14,7 +14,7 @@ module Line
     module V2
       module MessagingApi
         class ButtonsTemplate < Template
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :thumbnail_image_url
           attr_accessor :image_aspect_ratio
           attr_accessor :image_size
@@ -25,7 +25,6 @@ module Line
           attr_accessor :actions
 
           def initialize(
-            type:,
             thumbnail_image_url: nil,
             image_aspect_ratio: nil,
             image_size: nil,
@@ -35,7 +34,8 @@ module Line
             default_action: nil,
             actions:
           )
-            @type = type
+            @type = "buttons"
+            
             @thumbnail_image_url = thumbnail_image_url
             @image_aspect_ratio = image_aspect_ratio
             @image_size = image_size

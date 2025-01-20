@@ -15,7 +15,7 @@ module Line
     module V2
       module MessagingApi
         class ImagemapMessage < Message
-          attr_accessor :type # Type of message
+          attr_reader :type # Type of message
           attr_accessor :quick_reply
           attr_accessor :sender
           attr_accessor :base_url
@@ -25,7 +25,6 @@ module Line
           attr_accessor :video
 
           def initialize(
-            type:,
             quick_reply: nil,
             sender: nil,
             base_url:,
@@ -34,7 +33,8 @@ module Line
             actions:,
             video: nil
           )
-            @type = type
+            @type = "imagemap"
+            
             @quick_reply = quick_reply
             @sender = sender
             @base_url = base_url

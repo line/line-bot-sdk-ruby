@@ -12,11 +12,10 @@ module Line
     module V2
       module MessagingApi
         class ImageCarouselTemplate < Template
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor columns: Array[ImageCarouselColumn]
           
           def initialize: (
-            type: String,
             columns: Array[ImageCarouselColumn]
           ) -> void
         end

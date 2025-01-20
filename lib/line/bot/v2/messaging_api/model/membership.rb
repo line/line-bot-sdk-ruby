@@ -35,6 +35,7 @@ module Line
             is_in_app_purchase:,
             is_published:
           )
+            
             @membership_id = membership_id
             @title = title
             @description = description

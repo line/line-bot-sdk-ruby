@@ -24,6 +24,7 @@ module Line
             next_billing_date:,
             total_subscription_months:
           )
+            
             @membership_no = membership_no
             @joined_time = joined_time
             @next_billing_date = next_billing_date

@@ -17,6 +17,7 @@ module Line
           def initialize(
             message_id:
           )
+            
             @message_id = message_id
           end
         end

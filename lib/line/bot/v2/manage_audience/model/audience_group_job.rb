@@ -33,6 +33,7 @@ module Line
             audience_count: nil,
             created: nil
           )
+            
             @audience_group_job_id = audience_group_job_id
             @audience_group_id = audience_group_id
             @description = description

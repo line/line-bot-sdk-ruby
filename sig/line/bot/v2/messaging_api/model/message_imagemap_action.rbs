@@ -12,13 +12,12 @@ module Line
     module V2
       module MessagingApi
         class MessageImagemapAction < ImagemapAction
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor area: ImagemapArea
           attr_accessor text: String
           attr_accessor label: String?
           
           def initialize: (
-            type: String,
             area: ImagemapArea,
             text: String,
             label: String?

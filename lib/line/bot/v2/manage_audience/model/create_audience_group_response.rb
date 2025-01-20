@@ -33,6 +33,7 @@ module Line
             expire_timestamp: nil,
             is_ifa_audience: nil
           )
+            
             @audience_group_id = audience_group_id
             @create_route = create_route
             @type = type

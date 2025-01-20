@@ -14,7 +14,7 @@ module Line
     module V2
       module MessagingApi
         class FlexText < FlexComponent
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :flex
           attr_accessor :text
           attr_accessor :size
@@ -39,7 +39,6 @@ module Line
           attr_accessor :scaling
 
           def initialize(
-            type:,
             flex: nil,
             text: nil,
             size: nil,
@@ -63,7 +62,8 @@ module Line
             adjust_mode: nil,
             scaling: nil
           )
-            @type = type
+            @type = "text"
+            
             @flex = flex
             @text = text
             @size = size

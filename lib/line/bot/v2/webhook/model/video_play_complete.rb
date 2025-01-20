@@ -17,6 +17,7 @@ module Line
           def initialize(
             tracking_id:
           )
+            
             @tracking_id = tracking_id
           end
         end

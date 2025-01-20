@@ -12,12 +12,11 @@ module Line
     module V2
       module MessagingApi
         class AgeDemographicFilter < DemographicFilter
-          attr_accessor type: String?
+          attr_reader type: String?
           attr_accessor gte: 'age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70'?
           attr_accessor lt: 'age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70'?
           
           def initialize: (
-            type: String?,
             gte: 'age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70'?,
             lt: 'age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70'?
           ) -> void

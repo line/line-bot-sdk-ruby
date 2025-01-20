@@ -14,18 +14,18 @@ module Line
     module V2
       module MessagingApi
         class MessageImagemapAction < ImagemapAction
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :area
           attr_accessor :text
           attr_accessor :label
 
           def initialize(
-            type:,
             area:,
             text:,
             label: nil
           )
-            @type = type
+            @type = "message"
+            
             @area = area
             @text = text
             @label = label

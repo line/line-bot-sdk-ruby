@@ -19,6 +19,7 @@ module Line
             gender: nil,
             percentage: nil
           )
+            
             @gender = gender
             @percentage = percentage
           end

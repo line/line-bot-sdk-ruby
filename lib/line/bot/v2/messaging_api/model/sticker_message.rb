@@ -15,7 +15,7 @@ module Line
     module V2
       module MessagingApi
         class StickerMessage < Message
-          attr_accessor :type # Type of message
+          attr_reader :type # Type of message
           attr_accessor :quick_reply
           attr_accessor :sender
           attr_accessor :package_id
@@ -23,14 +23,14 @@ module Line
           attr_accessor :quote_token # Quote token of the message you want to quote.
 
           def initialize(
-            type:,
             quick_reply: nil,
             sender: nil,
             package_id:,
             sticker_id:,
             quote_token: nil
           )
-            @type = type
+            @type = "sticker"
+            
             @quick_reply = quick_reply
             @sender = sender
             @package_id = package_id

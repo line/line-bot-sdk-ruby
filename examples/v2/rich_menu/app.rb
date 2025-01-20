@@ -46,11 +46,11 @@ def rich_menu_request_a
     areas: [
       Line::Bot::V2::MessagingApi::RichMenuArea.new(
         bounds: Line::Bot::V2::MessagingApi::RichMenuBounds.new(x: 0, y: 0, width: 1250, height: 1686),
-        action: Line::Bot::V2::MessagingApi::URIAction.new(type: 'uri', uri: 'https://www.line-community.me/')
+        action: Line::Bot::V2::MessagingApi::URIAction.new(uri: 'https://www.line-community.me/')
       ),
       Line::Bot::V2::MessagingApi::RichMenuArea.new(
         bounds: Line::Bot::V2::MessagingApi::RichMenuBounds.new(x: 1251, y: 0, width: 1250, height: 1686),
-        action: Line::Bot::V2::MessagingApi::RichMenuSwitchAction.new(type: 'richmenuswitch', rich_menu_alias_id: 'richmenu-alias-b', data: 'richmenu-changed-to-b')
+        action: Line::Bot::V2::MessagingApi::RichMenuSwitchAction.new(rich_menu_alias_id: 'richmenu-alias-b', data: 'richmenu-changed-to-b')
       )
     ]
   )
@@ -65,11 +65,11 @@ def rich_menu_request_b
     areas: [
       Line::Bot::V2::MessagingApi::RichMenuArea.new(
         bounds: Line::Bot::V2::MessagingApi::RichMenuBounds.new(x: 0, y: 0, width: 1250, height: 1686),
-        action: Line::Bot::V2::MessagingApi::RichMenuSwitchAction.new(type: 'richmenuswitch', rich_menu_alias_id: 'richmenu-alias-a', data: 'richmenu-changed-to-a')
+        action: Line::Bot::V2::MessagingApi::RichMenuSwitchAction.new(rich_menu_alias_id: 'richmenu-alias-a', data: 'richmenu-changed-to-a')
       ),
       Line::Bot::V2::MessagingApi::RichMenuArea.new(
         bounds: Line::Bot::V2::MessagingApi::RichMenuBounds.new(x: 1251, y: 0, width: 1250, height: 1686),
-        action: Line::Bot::V2::MessagingApi::URIAction.new(type: 'uri', uri: 'https://www.line-community.me/')
+        action: Line::Bot::V2::MessagingApi::URIAction.new(uri: 'https://www.line-community.me/')
       )
     ]
   )

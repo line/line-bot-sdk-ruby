@@ -19,6 +19,7 @@ module Line
           def initialize(
             subscriptions:
           )
+            
             @subscriptions = subscriptions
           end
         end

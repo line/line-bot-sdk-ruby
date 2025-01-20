@@ -14,7 +14,7 @@ module Line
     module V2
       module Webhook
         class ImageMessageContent < MessageContent
-          attr_accessor :type # Type
+          attr_reader :type # Type
           attr_accessor :id # Message ID
           attr_accessor :content_provider
           attr_accessor :image_set
@@ -27,7 +27,8 @@ module Line
             image_set: nil,
             quote_token:
           )
-            @type = type
+            @type = "image"
+            
             @id = id
             @content_provider = content_provider
             @image_set = image_set

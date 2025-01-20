@@ -17,6 +17,7 @@ module Line
           def initialize(
             desktop: nil
           )
+            
             @desktop = desktop
           end
         end

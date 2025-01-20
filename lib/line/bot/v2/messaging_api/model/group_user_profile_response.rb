@@ -22,6 +22,7 @@ module Line
             user_id:,
             picture_url: nil
           )
+            
             @display_name = display_name
             @user_id = user_id
             @picture_url = picture_url

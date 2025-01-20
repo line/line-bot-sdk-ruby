@@ -14,7 +14,7 @@ module Line
     module V2
       module MessagingApi
         class FlexBox < FlexComponent
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :layout
           attr_accessor :flex
           attr_accessor :contents
@@ -44,7 +44,6 @@ module Line
           attr_accessor :background
 
           def initialize(
-            type:,
             layout:,
             flex: nil,
             contents:,
@@ -73,7 +72,8 @@ module Line
             align_items: nil,
             background: nil
           )
-            @type = type
+            @type = "box"
+            
             @layout = layout
             @flex = flex
             @contents = contents

@@ -29,6 +29,7 @@ module Line
             scope: nil,
             bot_prompt: nil
           )
+            
             @liff_id = liff_id
             @view = view
             @description = description

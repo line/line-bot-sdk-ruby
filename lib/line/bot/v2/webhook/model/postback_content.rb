@@ -19,6 +19,7 @@ module Line
             data:,
             params: nil
           )
+            
             @data = data
             @params = params
           end

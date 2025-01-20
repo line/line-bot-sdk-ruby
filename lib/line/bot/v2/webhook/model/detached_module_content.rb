@@ -14,7 +14,7 @@ module Line
     module V2
       module Webhook
         class DetachedModuleContent < ModuleContent
-          attr_accessor :type # Type
+          attr_reader :type # Type
           attr_accessor :bot_id # Detached LINE Official Account bot user ID
           attr_accessor :reason # Reason for detaching
 
@@ -23,7 +23,8 @@ module Line
             bot_id:,
             reason:
           )
-            @type = type
+            @type = "detached"
+            
             @bot_id = bot_id
             @reason = reason
           end

@@ -12,7 +12,7 @@ module Line
     module V2
       module MessagingApi
         class PostbackAction < Action
-          attr_accessor type: String?
+          attr_reader type: String?
           attr_accessor label: String?
           attr_accessor data: String?
           attr_accessor display_text: String?
@@ -21,7 +21,6 @@ module Line
           attr_accessor fill_in_text: String?
           
           def initialize: (
-            type: String?,
             label: String?,
             data: String?,
             display_text: String?,

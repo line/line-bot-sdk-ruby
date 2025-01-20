@@ -20,6 +20,7 @@ module Line
             user_ids:,
             _next: nil
           )
+            
             @user_ids = user_ids
             @_next = _next
           end

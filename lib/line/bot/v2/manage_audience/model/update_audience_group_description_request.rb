@@ -19,6 +19,7 @@ module Line
           def initialize(
             description: nil
           )
+            
             @description = description
           end
         end

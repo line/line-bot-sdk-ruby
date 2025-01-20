@@ -15,20 +15,20 @@ module Line
     module V2
       module MessagingApi
         class FlexMessage < Message
-          attr_accessor :type # Type of message
+          attr_reader :type # Type of message
           attr_accessor :quick_reply
           attr_accessor :sender
           attr_accessor :alt_text
           attr_accessor :contents
 
           def initialize(
-            type:,
             quick_reply: nil,
             sender: nil,
             alt_text:,
             contents:
           )
-            @type = type
+            @type = "flex"
+            
             @quick_reply = quick_reply
             @sender = sender
             @alt_text = alt_text

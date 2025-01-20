@@ -20,6 +20,7 @@ module Line
             chat_id:,
             loading_seconds: nil
           )
+            
             @chat_id = chat_id
             @loading_seconds = loading_seconds
           end

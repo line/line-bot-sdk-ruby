@@ -21,6 +21,7 @@ module Line
             type: nil,
             label: nil
           )
+            
             @type = type
             @label = label
           end

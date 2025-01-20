@@ -13,14 +13,13 @@ module Line
     module V2
       module MessagingApi
         class AudioMessage < Message
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor quick_reply: QuickReply?
           attr_accessor sender: Sender?
           attr_accessor original_content_url: String
           attr_accessor duration: Integer
           
           def initialize: (
-            type: String,
             quick_reply: QuickReply?,
             sender: Sender?,
             original_content_url: String,

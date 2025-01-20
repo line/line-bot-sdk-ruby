@@ -28,6 +28,7 @@ module Line
             webhook_event_id:,
             delivery_context:
           )
+            
             @type = type
             @source = source
             @timestamp = timestamp

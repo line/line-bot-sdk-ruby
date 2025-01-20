@@ -22,6 +22,7 @@ module Line
             index:,
             length:
           )
+            
             @type = type
             @index = index
             @length = length

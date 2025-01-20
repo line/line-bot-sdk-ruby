@@ -37,6 +37,7 @@ module Line
             expire_timestamp: nil,
             is_ifa_audience: false
           )
+            
             @audience_group_id = audience_group_id
             @type = type
             @description = description

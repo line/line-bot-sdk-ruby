@@ -26,6 +26,7 @@ module Line
             unique_click: nil,
             unique_click_of_request: nil
           )
+            
             @seq = seq
             @url = url
             @click = click

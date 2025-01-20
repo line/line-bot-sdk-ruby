@@ -14,18 +14,18 @@ module Line
     module V2
       module MessagingApi
         class URIImagemapAction < ImagemapAction
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :area
           attr_accessor :link_uri
           attr_accessor :label
 
           def initialize(
-            type:,
             area:,
             link_uri:,
             label: nil
           )
-            @type = type
+            @type = "uri"
+            
             @area = area
             @link_uri = link_uri
             @label = label

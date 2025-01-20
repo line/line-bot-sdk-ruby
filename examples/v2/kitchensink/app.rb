@@ -157,7 +157,6 @@ def handle_message_event(event)
       reply_token: event.reply_token,
       messages: [
         Line::Bot::V2::MessagingApi::LocationMessage.new(
-          type: 'location',
           title: message.title,
           address: message.address,
           latitude: message.latitude,
@@ -181,7 +180,7 @@ def handle_message_event(event)
       reply_request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
         reply_token: event.reply_token,
         messages: [
-          Line::Bot::V2::MessagingApi::TextMessage.new(type: 'text', text: "[REPLY] Reply message")
+          Line::Bot::V2::MessagingApi::TextMessage.new(text: "[REPLY] Reply message")
         ]
       )
 
@@ -190,7 +189,7 @@ def handle_message_event(event)
       push_request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
         to: event.source.user_id,
         messages: [
-          Line::Bot::V2::MessagingApi::TextMessage.new(type: 'text', text: "[^Request ID] #{headers['x-line-request-id']}")
+          Line::Bot::V2::MessagingApi::TextMessage.new(text: "[^Request ID] #{headers['x-line-request-id']}")
         ]
       )
       client.push_message(push_message_request: push_request)
@@ -200,7 +199,6 @@ def handle_message_event(event)
         reply_token: event.reply_token,
         messages: [
           Line::Bot::V2::MessagingApi::TextMessageV2.new(
-            type: 'textV2',
             text: "Look at this: {sample} It's a LINE emoji!",
             substitution: {
               sample: {
@@ -219,16 +217,13 @@ def handle_message_event(event)
         reply_token: event.reply_token,
         messages: [
           Line::Bot::V2::MessagingApi::TemplateMessage.new(
-            type: 'template',
             alt_text: 'Buttons alt text',
             template: Line::Bot::V2::MessagingApi::ButtonsTemplate.new(
-              type: 'buttons',
               thumbnail_image_url: THUMBNAIL_URL,
               title: 'My button sample',
               text: 'Hello, my button',
               actions: [
                 Line::Bot::V2::MessagingApi::URIAction.new(
-                  type: 'uri',
                   label: 'Go to line.me',
                   uri: 'https://line.me',
                   alt_uri: Line::Bot::V2::MessagingApi::AltUri.new(
@@ -236,18 +231,15 @@ def handle_message_event(event)
                   )
                 ),
                 Line::Bot::V2::MessagingApi::PostbackAction.new(
-                  type: 'postback',
                   label: 'Send postback',
                   data: 'hello world',
                 ),
                 Line::Bot::V2::MessagingApi::PostbackAction.new(
-                  type: 'postback',
                   label: 'Send postback2',
                   data: 'hello world',
                   text: 'hello world',
                 ),
                 Line::Bot::V2::MessagingApi::MessageAction.new(
-                  type: 'message',
                   label: 'Send message',
                   text: 'This is message',
                 ),
@@ -263,19 +255,15 @@ def handle_message_event(event)
         reply_token: event.reply_token,
         messages: [
           Line::Bot::V2::MessagingApi::TemplateMessage.new(
-            type: 'template',
             alt_text: 'Confirm alt text',
             template: Line::Bot::V2::MessagingApi::ConfirmTemplate.new(
-              type: 'confirm',
               text: 'Do it?',
               actions: [
                 Line::Bot::V2::MessagingApi::MessageAction.new(
-                  type: 'message',
                   label: 'Yes',
                   text: 'Yes!',
                 ),
                 Line::Bot::V2::MessagingApi::MessageAction.new(
-                  type: 'message',
                   label: 'No',
                   text: 'No!',
                   ),
@@ -291,17 +279,14 @@ def handle_message_event(event)
         reply_token: event.reply_token,
         messages: [
           Line::Bot::V2::MessagingApi::TemplateMessage.new(
-            type: 'template',
             alt_text: 'Carousel alt text',
             template: Line::Bot::V2::MessagingApi::CarouselTemplate.new(
-              type: 'carousel',
               columns: [
                 Line::Bot::V2::MessagingApi::CarouselColumn.new(
                   title: 'hoge',
                   text: 'fuga',
                   actions: [
                     Line::Bot::V2::MessagingApi::URIAction.new(
-                      type: 'uri',
                       label: 'Go to line.me',
                       uri: 'https://line.me',
                       alt_uri: Line::Bot::V2::MessagingApi::AltUri.new(
@@ -309,12 +294,10 @@ def handle_message_event(event)
                       )
                     ),
                     Line::Bot::V2::MessagingApi::PostbackAction.new(
-                      type: 'postback',
                       label: 'Send postback',
                       data: 'hello world',
                     ),
                     Line::Bot::V2::MessagingApi::MessageAction.new(
-                      type: 'message',
                       label: 'Send message',
                       text: 'This is message',
                     ),
@@ -325,7 +308,6 @@ def handle_message_event(event)
                   text: 'Please select a date, time or datetime',
                   actions: [
                     Line::Bot::V2::MessagingApi::DatetimePickerAction.new(
-                      type: 'datetimepicker',
                       label: 'Datetime',
                       data: 'action=sel',
                       mode: 'datetime',
@@ -334,7 +316,6 @@ def handle_message_event(event)
                       min: '1900-01-01T00:00'
                     ),
                     Line::Bot::V2::MessagingApi::DatetimePickerAction.new(
-                      type: 'datetimepicker',
                       label: 'Date',
                       data: 'action=sel&only=date',
                       mode: 'date',
@@ -343,7 +324,6 @@ def handle_message_event(event)
                       min: '1900-01-01'
                     ),
                     Line::Bot::V2::MessagingApi::DatetimePickerAction.new(
-                      type: 'datetimepicker',
                       label: 'Time',
                       data: 'action=sel&only=time',
                       mode: 'time',
@@ -365,15 +345,12 @@ def handle_message_event(event)
         reply_token: event.reply_token,
         messages: [
           Line::Bot::V2::MessagingApi::TemplateMessage.new(
-            type: 'template',
             alt_text: 'Image carousel alt text',
             template: Line::Bot::V2::MessagingApi::ImageCarouselTemplate.new(
-              type: 'image_carousel',
               columns: [
                 Line::Bot::V2::MessagingApi::ImageCarouselColumn.new(
                   image_url: THUMBNAIL_URL,
                   action: Line::Bot::V2::MessagingApi::URIAction.new(
-                    type: 'uri',
                     label: 'line.me',
                     uri: 'https://line.me',
                     alt_uri: Line::Bot::V2::MessagingApi::AltUri.new(
@@ -384,7 +361,6 @@ def handle_message_event(event)
                 Line::Bot::V2::MessagingApi::ImageCarouselColumn.new(
                   image_url: THUMBNAIL_URL,
                   action: Line::Bot::V2::MessagingApi::PostbackAction.new(
-                    type: 'postback',
                     label: 'postback',
                     data: 'hello world',
                   )
@@ -392,7 +368,6 @@ def handle_message_event(event)
                 Line::Bot::V2::MessagingApi::ImageCarouselColumn.new(
                   image_url: THUMBNAIL_URL,
                   action: Line::Bot::V2::MessagingApi::MessageAction.new(
-                    type: 'message',
                     text: 'This is message',
                     label: 'message',
                   )
@@ -400,7 +375,6 @@ def handle_message_event(event)
                 Line::Bot::V2::MessagingApi::ImageCarouselColumn.new(
                   image_url: THUMBNAIL_URL,
                   action: Line::Bot::V2::MessagingApi::DatetimePickerAction.new(
-                    type: 'datetimepicker',
                     label: 'Datetime',
                     data: 'action=sel',
                     mode: 'datetime',
@@ -421,7 +395,6 @@ def handle_message_event(event)
         reply_token: event.reply_token,
         messages: [
           Line::Bot::V2::MessagingApi::ImagemapMessage.new(
-            type: 'imagemap',
             base_url: THUMBNAIL_URL,
             alt_text: 'Imagemap alt text',
             base_size: Line::Bot::V2::MessagingApi::ImagemapBaseSize.new(
@@ -430,7 +403,6 @@ def handle_message_event(event)
             ),
             actions: [
               Line::Bot::V2::MessagingApi::URIImagemapAction.new(
-                type: 'uri',
                 link_uri: 'https://store.line.me/family/manga/en',
                 area: Line::Bot::V2::MessagingApi::ImagemapArea.new(
                   x: 0,
@@ -440,7 +412,6 @@ def handle_message_event(event)
                 )
               ),
               Line::Bot::V2::MessagingApi::URIImagemapAction.new(
-                type: 'uri',
                 link_uri: 'https://store.line.me/family/music/en',
                 area: Line::Bot::V2::MessagingApi::ImagemapArea.new(
                   x: 512,
@@ -450,7 +421,6 @@ def handle_message_event(event)
                 )
               ),
                 Line::Bot::V2::MessagingApi::URIImagemapAction.new(
-                type: 'uri',
                 link_uri: 'https://store.line.me/family/play/en',
                 area: Line::Bot::V2::MessagingApi::ImagemapArea.new(
                   x: 0,
@@ -460,7 +430,6 @@ def handle_message_event(event)
                 )
               ),
               Line::Bot::V2::MessagingApi::MessageImagemapAction.new(
-                type: 'message',
                 text: 'Fortune!',
                 area: Line::Bot::V2::MessagingApi::ImagemapArea.new(
                   x: 512,
@@ -483,7 +452,6 @@ def handle_message_event(event)
         reply_token: event.reply_token,
         messages: [
           Line::Bot::V2::MessagingApi::ImagemapMessage.new(
-            type: 'imagemap',
             base_url: THUMBNAIL_URL,
             alt_text: 'Imagemap video text',
             base_size: Line::Bot::V2::MessagingApi::ImagemapBaseSize.new(
@@ -506,7 +474,6 @@ def handle_message_event(event)
             ),
             actions: [
               Line::Bot::V2::MessagingApi::URIImagemapAction.new(
-                type: 'uri',
                 link_uri: 'https://store.line.me/family/manga/en',
                 area: Line::Bot::V2::MessagingApi::ImagemapArea.new(
                   x: 0,
@@ -516,7 +483,6 @@ def handle_message_event(event)
                 )
               ),
               Line::Bot::V2::MessagingApi::URIImagemapAction.new(
-                type: 'uri',
                 link_uri: 'https://store.line.me/family/music/en',
                 area: Line::Bot::V2::MessagingApi::ImagemapArea.new(
                   x: 512,
@@ -526,7 +492,6 @@ def handle_message_event(event)
                 )
               ),
               Line::Bot::V2::MessagingApi::URIImagemapAction.new(
-                type: 'uri',
                 link_uri: 'https://store.line.me/family/play/en',
                 area: Line::Bot::V2::MessagingApi::ImagemapArea.new(
                   x: 0,
@@ -536,7 +501,6 @@ def handle_message_event(event)
                 )
               ),
               Line::Bot::V2::MessagingApi::MessageImagemapAction.new(
-                type: 'message',
                 text: 'Fortune!',
                 area: Line::Bot::V2::MessagingApi::ImagemapArea.new(
                   x: 512,
@@ -556,42 +520,33 @@ def handle_message_event(event)
         reply_token: event.reply_token,
         messages: [
           Line::Bot::V2::MessagingApi::FlexMessage.new(
-            type: 'flex',
             alt_text: 'this is a flex message',
             contents: Line::Bot::V2::MessagingApi::FlexBubble.new(
-              type: 'bubble',
               header: Line::Bot::V2::MessagingApi::FlexBox.new(
-                type: 'box',
                 layout: 'vertical',
                 contents: [
                   Line::Bot::V2::MessagingApi::FlexText.new(
-                    type: 'text',
                     text: 'Header text'
                   )
                 ]
               ),
               hero: Line::Bot::V2::MessagingApi::FlexImage.new(
-                type: 'image',
                 url: HORIZONTAL_THUMBNAIL_URL,
                 size: 'full',
                 aspect_ratio: '4:3',
               ),
               body: Line::Bot::V2::MessagingApi::FlexBox.new(
-                type: 'box',
                 layout: 'vertical',
                 contents: [
                   Line::Bot::V2::MessagingApi::FlexText.new(
-                    type: 'text',
                     text: 'Body text'
                   )
                 ]
               ),
               footer: Line::Bot::V2::MessagingApi::FlexBox.new(
-                type: 'box',
                 layout: 'vertical',
                 contents: [
                   Line::Bot::V2::MessagingApi::FlexText.new(
-                    type: 'text',
                     text: 'Footer text',
                     align: 'center',
                     color: '#888888'
@@ -609,33 +564,25 @@ def handle_message_event(event)
         reply_token: event.reply_token,
         messages: [
           Line::Bot::V2::MessagingApi::FlexMessage.new(
-            type: 'flex',
             alt_text: 'this is a flex carousel',
             contents: Line::Bot::V2::MessagingApi::FlexCarousel.new(
-              type: 'carousel',
               contents: [
                 Line::Bot::V2::MessagingApi::FlexBubble.new(
-                  type: 'bubble',
                   body: Line::Bot::V2::MessagingApi::FlexBox.new(
-                    type: 'box',
                     layout: 'horizontal',
                     contents: [
                       Line::Bot::V2::MessagingApi::FlexText.new(
-                        type: 'text',
                         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                         wrap: true
                       )
                     ]
                   ),
                   footer: Line::Bot::V2::MessagingApi::FlexBox.new(
-                    type: 'box',
                     layout: 'horizontal',
                     contents: [
                       Line::Bot::V2::MessagingApi::FlexButton.new(
-                        type: 'button',
                         style: 'primary',
                         action: Line::Bot::V2::MessagingApi::URIAction.new(
-                          type: 'uri',
                           label: 'Go',
                           uri: 'https://example.com',
                           alt_uri: Line::Bot::V2::MessagingApi::AltUri.new(
@@ -647,27 +594,21 @@ def handle_message_event(event)
                   )
                 ),
                 Line::Bot::V2::MessagingApi::FlexBubble.new(
-                  type: 'bubble',
                   body: Line::Bot::V2::MessagingApi::FlexBox.new(
-                    type: 'box',
                     layout: 'horizontal',
                     contents: [
                       Line::Bot::V2::MessagingApi::FlexText.new(
-                        type: 'text',
                         text: "Hello, World!",
                         wrap: true
                       )
                     ]
                   ),
                   footer: Line::Bot::V2::MessagingApi::FlexBox.new(
-                    type: 'box',
                     layout: 'horizontal',
                     contents: [
                       Line::Bot::V2::MessagingApi::FlexButton.new(
-                        type: 'button',
                         style: 'primary',
                         action: Line::Bot::V2::MessagingApi::URIAction.new(
-                          type: 'uri',
                           label: 'Go',
                           uri: 'https://example.com',
                           alt_uri: Line::Bot::V2::MessagingApi::AltUri.new(
@@ -690,53 +631,41 @@ def handle_message_event(event)
         reply_token: event.reply_token,
         messages: [
           Line::Bot::V2::MessagingApi::TextMessage.new(
-            type: 'text',
             text: '[QUICK REPLY]',
             quick_reply: Line::Bot::V2::MessagingApi::QuickReply.new(
               items: [
                 Line::Bot::V2::MessagingApi::QuickReplyItem.new(
-                  type: 'action',
                   action: Line::Bot::V2::MessagingApi::MessageAction.new(
-                    type: 'message',
                     label: 'Sushi',
                     text: 'Sushi'
                   )
                 ),
                 Line::Bot::V2::MessagingApi::QuickReplyItem.new(
-                  type: 'action',
                   image_url: QUICK_REPLY_ICON_URL,
                   action: Line::Bot::V2::MessagingApi::LocationAction.new(
-                    type: 'location',
                     label: 'Send location'
                   )
                 ),
                 Line::Bot::V2::MessagingApi::QuickReplyItem.new(
-                  type: 'action',
                   image_url: QUICK_REPLY_ICON_URL,
                   action: Line::Bot::V2::MessagingApi::CameraAction.new(
-                    type: 'camera',
                     label: 'Open camera'
                   )
                 ),
                 Line::Bot::V2::MessagingApi::QuickReplyItem.new(
-                  type: 'action',
                   image_url: QUICK_REPLY_ICON_URL,
                   action: Line::Bot::V2::MessagingApi::CameraRollAction.new(
-                    type: 'cameraRoll',
                     label: 'Open camera roll'
                   )
                 ),
                 Line::Bot::V2::MessagingApi::QuickReplyItem.new(
-                  type: 'action',
                   action: Line::Bot::V2::MessagingApi::PostbackAction.new(
-                    type: 'postback',
                     label: 'buy',
                     data: "action=buy&itemid=111",
                     text: "buy"
                   )
                 ),
                 Line::Bot::V2::MessagingApi::QuickReplyItem.new(
-                  type: 'action',
                   action: Line::Bot::V2::MessagingApi::DatetimePickerAction.new(
                     type: "datetimepicker",
                     label: "Select date",
@@ -760,7 +689,7 @@ def handle_message_event(event)
         request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
           reply_token: event.reply_token,
           messages: [
-            Line::Bot::V2::MessagingApi::TextMessage.new(type: 'text', text: "[BYE]\nBot can't leave from 1:1 chat")
+            Line::Bot::V2::MessagingApi::TextMessage.new(text: "[BYE]\nBot can't leave from 1:1 chat")
           ]
         )
         client.reply_message(reply_message_request: request)
@@ -768,7 +697,7 @@ def handle_message_event(event)
         request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
           reply_token: event.reply_token,
           messages: [
-            Line::Bot::V2::MessagingApi::TextMessage.new(type: 'text', text: "[BYE]\nLeaving group")
+            Line::Bot::V2::MessagingApi::TextMessage.new(text: "[BYE]\nLeaving group")
           ]
         )
         client.reply_message(reply_message_request: request)
@@ -778,7 +707,7 @@ def handle_message_event(event)
         request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
           reply_token: event.reply_token,
           messages: [
-            Line::Bot::V2::MessagingApi::TextMessage.new(type: 'text', text: "[BYE]\nLeaving room")
+            Line::Bot::V2::MessagingApi::TextMessage.new(text: "[BYE]\nLeaving room")
           ]
         )
         client.reply_message(reply_message_request: request)
@@ -790,16 +719,13 @@ def handle_message_event(event)
       request = Line::Bot::V2::MessagingApi::BroadcastRequest.new(
         messages: [
           Line::Bot::V2::MessagingApi::TemplateMessage.new(
-            type: 'template',
             alt_text: 'stats',
             template: Line::Bot::V2::MessagingApi::ButtonsTemplate.new(
-              type: 'buttons',
               thumbnail_image_url: THUMBNAIL_URL,
               title: 'Stats sample',
               text: 'Hello, my stats',
               actions: [
                 Line::Bot::V2::MessagingApi::URIAction.new(
-                  type: 'uri',
                   label: 'Go to line.me',
                   uri: 'https://line.me',
                   alt_uri: Line::Bot::V2::MessagingApi::AltUri.new(
@@ -807,18 +733,15 @@ def handle_message_event(event)
                   )
                 ),
                 Line::Bot::V2::MessagingApi::PostbackAction.new(
-                  type: 'postback',
                   label: 'Send postback',
                   data: 'hello world'
                 ),
                 Line::Bot::V2::MessagingApi::PostbackAction.new(
-                  type: 'postback',
                   label: 'Send postback2',
                   data: 'hello world',
                   text: 'hello world'
                 ),
                 Line::Bot::V2::MessagingApi::MessageAction.new(
-                  type: 'message',
                   label: 'Send message',
                   text: 'This is message'
                 )
@@ -851,7 +774,7 @@ def reply_text(event, text)
   request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
     reply_token: event.reply_token,
     messages: [
-      Line::Bot::V2::MessagingApi::TextMessage.new(type: 'text', text: text)
+      Line::Bot::V2::MessagingApi::TextMessage.new(text: text)
     ]
   )
   client.reply_message(reply_message_request: request)

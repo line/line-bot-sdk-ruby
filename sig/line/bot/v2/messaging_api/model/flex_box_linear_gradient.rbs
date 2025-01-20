@@ -12,7 +12,7 @@ module Line
     module V2
       module MessagingApi
         class FlexBoxLinearGradient < FlexBoxBackground
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor angle: String?
           attr_accessor start_color: String?
           attr_accessor end_color: String?
@@ -20,7 +20,6 @@ module Line
           attr_accessor center_position: String?
           
           def initialize: (
-            type: String,
             angle: String?,
             start_color: String?,
             end_color: String?,

@@ -21,6 +21,7 @@ module Line
             product_id: nil,
             emoji_id: nil
           )
+            
             @index = index
             @product_id = product_id
             @emoji_id = emoji_id

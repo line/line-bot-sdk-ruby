@@ -25,6 +25,7 @@ module Line
             unique_media_played: nil,
             unique_media_played100_percent: nil
           )
+            
             @unique_impression = unique_impression
             @unique_click = unique_click
             @unique_media_played = unique_media_played

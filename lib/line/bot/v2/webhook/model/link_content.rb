@@ -20,6 +20,7 @@ module Line
             result:,
             nonce:
           )
+            
             @result = result
             @nonce = nonce
           end

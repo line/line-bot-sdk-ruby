@@ -30,6 +30,7 @@ module Line
             chat_mode:,
             mark_as_read_mode:
           )
+            
             @user_id = user_id
             @basic_id = basic_id
             @premium_id = premium_id

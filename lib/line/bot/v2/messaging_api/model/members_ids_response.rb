@@ -19,6 +19,7 @@ module Line
             member_ids:,
             _next: nil
           )
+            
             @member_ids = member_ids
             @_next = _next
           end

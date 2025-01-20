@@ -14,7 +14,7 @@ module Line
     module V2
       module Webhook
         class GroupSource < Source
-          attr_accessor :type # source type
+          attr_reader :type # source type
           attr_accessor :group_id # Group ID of the source group chat
           attr_accessor :user_id # ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
 
@@ -23,7 +23,8 @@ module Line
             group_id:,
             user_id: nil
           )
-            @type = type
+            @type = "group"
+            
             @group_id = group_id
             @user_id = user_id
           end

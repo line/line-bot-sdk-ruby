@@ -15,18 +15,18 @@ module Line
     module V2
       module MessagingApi
         class ClipboardImagemapAction < ImagemapAction
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :area
           attr_accessor :clipboard_text # Text that is copied to the clipboard. Max character limit: 1000 
           attr_accessor :label
 
           def initialize(
-            type:,
             area:,
             clipboard_text:,
             label: nil
           )
-            @type = type
+            @type = "clipboard"
+            
             @area = area
             @clipboard_text = clipboard_text
             @label = label

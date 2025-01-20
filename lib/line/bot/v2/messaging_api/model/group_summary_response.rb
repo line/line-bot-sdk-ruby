@@ -22,6 +22,7 @@ module Line
             group_name:,
             picture_url: nil
           )
+            
             @group_id = group_id
             @group_name = group_name
             @picture_url = picture_url

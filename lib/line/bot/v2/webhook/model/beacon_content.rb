@@ -21,6 +21,7 @@ module Line
             type:,
             dm: nil
           )
+            
             @hwid = hwid
             @type = type
             @dm = dm

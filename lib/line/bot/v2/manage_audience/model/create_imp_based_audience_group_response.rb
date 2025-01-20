@@ -27,6 +27,7 @@ module Line
             created: nil,
             request_id: nil
           )
+            
             @audience_group_id = audience_group_id
             @type = type
             @description = description

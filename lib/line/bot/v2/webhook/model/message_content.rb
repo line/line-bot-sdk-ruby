@@ -20,6 +20,7 @@ module Line
             type:,
             id:
           )
+            
             @type = type
             @id = id
           end

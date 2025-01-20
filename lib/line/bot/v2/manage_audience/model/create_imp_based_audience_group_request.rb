@@ -21,6 +21,7 @@ module Line
             description: nil,
             request_id: nil
           )
+            
             @description = description
             @request_id = request_id
           end

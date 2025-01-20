@@ -14,14 +14,14 @@ module Line
     module V2
       module MessagingApi
         class AudienceRecipient < Recipient
-          attr_accessor :type # Type of recipient
+          attr_reader :type # Type of recipient
           attr_accessor :audience_group_id
 
           def initialize(
-            type: nil,
             audience_group_id: nil
           )
-            @type = type
+            @type = "audience"
+            
             @audience_group_id = audience_group_id
           end
         end

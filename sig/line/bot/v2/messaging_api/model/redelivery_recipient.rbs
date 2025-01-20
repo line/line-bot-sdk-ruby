@@ -12,11 +12,10 @@ module Line
     module V2
       module MessagingApi
         class RedeliveryRecipient < Recipient
-          attr_accessor type: String?
+          attr_reader type: String?
           attr_accessor request_id: String?
           
           def initialize: (
-            type: String?,
             request_id: String?
           ) -> void
         end

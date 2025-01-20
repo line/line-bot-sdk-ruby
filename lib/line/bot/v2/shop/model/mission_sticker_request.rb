@@ -25,6 +25,7 @@ module Line
             product_type:,
             send_present_message:
           )
+            
             @to = to
             @product_id = product_id
             @product_type = product_type

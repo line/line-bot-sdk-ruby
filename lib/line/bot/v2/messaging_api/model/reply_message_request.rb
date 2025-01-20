@@ -22,6 +22,7 @@ module Line
             messages:,
             notification_disabled: false
           )
+            
             @reply_token = reply_token
             @messages = messages
             @notification_disabled = notification_disabled

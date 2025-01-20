@@ -18,6 +18,7 @@ module Line
           def initialize(
             link_token:
           )
+            
             @link_token = link_token
           end
         end

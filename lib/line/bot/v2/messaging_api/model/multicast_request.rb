@@ -24,6 +24,7 @@ module Line
             notification_disabled: false,
             custom_aggregation_units: nil
           )
+            
             @messages = messages
             @to = to
             @notification_disabled = notification_disabled

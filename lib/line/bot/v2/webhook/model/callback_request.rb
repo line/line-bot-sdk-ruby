@@ -21,6 +21,7 @@ module Line
             destination:,
             events:
           )
+            
             @destination = destination
             @events = events
           end

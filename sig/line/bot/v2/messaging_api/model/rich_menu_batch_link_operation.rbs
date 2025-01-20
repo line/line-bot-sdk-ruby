@@ -13,12 +13,11 @@ module Line
     module V2
       module MessagingApi
         class RichMenuBatchLinkOperation < RichMenuBatchOperation
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor from: String
           attr_accessor to: String
           
           def initialize: (
-            type: String,
             from: String,
             to: String
           ) -> void

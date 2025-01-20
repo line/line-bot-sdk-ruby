@@ -14,14 +14,14 @@ module Line
     module V2
       module MessagingApi
         class ImageCarouselTemplate < Template
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :columns
 
           def initialize(
-            type:,
             columns:
           )
-            @type = type
+            @type = "image_carousel"
+            
             @columns = columns
           end
         end

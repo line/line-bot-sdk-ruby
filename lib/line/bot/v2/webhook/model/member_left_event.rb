@@ -15,7 +15,7 @@ module Line
     module V2
       module Webhook
         class MemberLeftEvent < Event
-          attr_accessor :type # Type of the event
+          attr_reader :type # Type of the event
           attr_accessor :source
           attr_accessor :timestamp # Time of the event in milliseconds.
           attr_accessor :mode
@@ -32,7 +32,8 @@ module Line
             delivery_context:,
             left:
           )
-            @type = type
+            @type = "memberLeft"
+            
             @source = source
             @timestamp = timestamp
             @mode = mode

@@ -20,6 +20,7 @@ module Line
             width: nil,
             height: nil
           )
+            
             @width = width
             @height = height
           end

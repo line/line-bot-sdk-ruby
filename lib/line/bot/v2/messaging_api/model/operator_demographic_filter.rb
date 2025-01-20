@@ -14,18 +14,18 @@ module Line
     module V2
       module MessagingApi
         class OperatorDemographicFilter < DemographicFilter
-          attr_accessor :type # Type of demographic filter
+          attr_reader :type # Type of demographic filter
           attr_accessor :_and
           attr_accessor :_or
           attr_accessor :_not
 
           def initialize(
-            type: nil,
             _and: nil,
             _or: nil,
             _not: nil
           )
-            @type = type
+            @type = "operator"
+            
             @_and = _and
             @_or = _or
             @_not = _not

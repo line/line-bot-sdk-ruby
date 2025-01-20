@@ -18,6 +18,7 @@ module Line
           def initialize(
             richmenus:
           )
+            
             @richmenus = richmenus
           end
         end

@@ -14,18 +14,18 @@ module Line
     module V2
       module MessagingApi
         class OperatorRecipient < Recipient
-          attr_accessor :type # Type of recipient
+          attr_reader :type # Type of recipient
           attr_accessor :_and # Create a new recipient object by taking the logical conjunction (AND) of the specified array of recipient objects. 
           attr_accessor :_or # Create a new recipient object by taking the logical disjunction (OR) of the specified array of recipient objects. 
           attr_accessor :_not
 
           def initialize(
-            type: nil,
             _and: nil,
             _or: nil,
             _not: nil
           )
-            @type = type
+            @type = "operator"
+            
             @_and = _and
             @_or = _or
             @_not = _not

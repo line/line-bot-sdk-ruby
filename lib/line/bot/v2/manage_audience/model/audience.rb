@@ -18,6 +18,7 @@ module Line
           def initialize(
             id: nil
           )
+            
             @id = id
           end
         end

@@ -21,6 +21,7 @@ module Line
             bots:,
             _next: nil
           )
+            
             @bots = bots
             @_next = _next
           end

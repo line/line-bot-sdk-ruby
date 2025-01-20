@@ -14,7 +14,7 @@ module Line
     module V2
       module MessagingApi
         class FlexBubble < FlexContainer
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :direction
           attr_accessor :styles
           attr_accessor :header
@@ -25,7 +25,6 @@ module Line
           attr_accessor :action
 
           def initialize(
-            type:,
             direction: nil,
             styles: nil,
             header: nil,
@@ -35,7 +34,8 @@ module Line
             size: nil,
             action: nil
           )
-            @type = type
+            @type = "bubble"
+            
             @direction = direction
             @styles = styles
             @header = header

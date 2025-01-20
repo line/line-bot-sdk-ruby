@@ -15,7 +15,7 @@ module Line
     module V2
       module Webhook
         class UserMentionee < Mentionee
-          attr_accessor :type # Mentioned target.
+          attr_reader :type # Mentioned target.
           attr_accessor :index # Index position of the user mention for a character in text, with the first character being at position 0.
           attr_accessor :length # The length of the text of the mentioned user. For a mention @example, 8 is the length.
           attr_accessor :user_id # User ID of the mentioned user. Only included if mention.mentions[].type is user and the user consents to the LINE Official Account obtaining their user profile information.
@@ -28,7 +28,8 @@ module Line
             user_id: nil,
             is_self: nil
           )
-            @type = type
+            @type = "user"
+            
             @index = index
             @length = length
             @user_id = user_id

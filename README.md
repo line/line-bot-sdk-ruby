@@ -94,7 +94,7 @@ post '/callback' do
           request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
             reply_token: event.reply_token,
             messages: [
-              Line::Bot::V2::MessagingApi::TextMessage.new(type: 'text', text: "[ECHO] #{event.message.text}")
+              Line::Bot::V2::MessagingApi::TextMessage.new(text: "[ECHO] #{event.message.text}")
             ]
           )
           client.reply_message(reply_message_request: request)
@@ -148,7 +148,6 @@ end
 
 def main
   dummy_message = Line::Bot::V2::MessagingApi::TextMessage.new(
-    type: "text",
     text: "Hello, world!",
   )
 

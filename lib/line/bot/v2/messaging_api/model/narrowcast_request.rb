@@ -26,6 +26,7 @@ module Line
             limit: nil,
             notification_disabled: false
           )
+            
             @messages = messages
             @recipient = recipient
             @filter = filter

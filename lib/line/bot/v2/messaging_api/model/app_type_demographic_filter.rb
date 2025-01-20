@@ -14,14 +14,14 @@ module Line
     module V2
       module MessagingApi
         class AppTypeDemographicFilter < DemographicFilter
-          attr_accessor :type # Type of demographic filter
+          attr_reader :type # Type of demographic filter
           attr_accessor :one_of
 
           def initialize(
-            type: nil,
             one_of: nil
           )
-            @type = type
+            @type = "appType"
+            
             @one_of = one_of
           end
         end

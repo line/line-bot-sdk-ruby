@@ -21,6 +21,7 @@ module Line
             separator: nil,
             separator_color: nil
           )
+            
             @background_color = background_color
             @separator = separator
             @separator_color = separator_color

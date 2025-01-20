@@ -20,6 +20,7 @@ module Line
             endpoint:,
             active:
           )
+            
             @endpoint = endpoint
             @active = active
           end

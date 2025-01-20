@@ -19,6 +19,7 @@ module Line
           def initialize(
             kids:
           )
+            
             @kids = kids
           end
         end

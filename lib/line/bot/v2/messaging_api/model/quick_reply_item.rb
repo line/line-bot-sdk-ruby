@@ -22,6 +22,7 @@ module Line
             action: nil,
             type: 'action'
           )
+            
             @image_url = image_url
             @action = action
             @type = type

@@ -15,14 +15,14 @@ module Line
     module V2
       module MessagingApi
         class UserMentionTarget < MentionTarget
-          attr_accessor :type # Target to be mentioned
+          attr_reader :type # Target to be mentioned
           attr_accessor :user_id
 
           def initialize(
-            type:,
             user_id:
           )
-            @type = type
+            @type = "user"
+            
             @user_id = user_id
           end
         end

@@ -14,16 +14,16 @@ module Line
     module V2
       module MessagingApi
         class ConfirmTemplate < Template
-          attr_accessor :type
+          attr_reader :type
           attr_accessor :text
           attr_accessor :actions
 
           def initialize(
-            type:,
             text:,
             actions:
           )
-            @type = type
+            @type = "confirm"
+            
             @text = text
             @actions = actions
           end

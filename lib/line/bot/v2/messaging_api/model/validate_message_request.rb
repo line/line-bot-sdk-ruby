@@ -17,6 +17,7 @@ module Line
           def initialize(
             messages:
           )
+            
             @messages = messages
           end
         end

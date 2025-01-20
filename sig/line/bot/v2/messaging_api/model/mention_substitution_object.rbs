@@ -14,11 +14,10 @@ module Line
     module V2
       module MessagingApi
         class MentionSubstitutionObject < SubstitutionObject
-          attr_accessor type: String
+          attr_reader type: String
           attr_accessor mentionee: MentionTarget
           
           def initialize: (
-            type: String,
             mentionee: MentionTarget
           ) -> void
         end

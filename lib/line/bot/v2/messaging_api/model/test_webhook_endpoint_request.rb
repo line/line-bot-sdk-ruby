@@ -18,6 +18,7 @@ module Line
           def initialize(
             endpoint: nil
           )
+            
             @endpoint = endpoint
           end
         end

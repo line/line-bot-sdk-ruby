@@ -15,20 +15,20 @@ module Line
     module V2
       module MessagingApi
         class ImageMessage < Message
-          attr_accessor :type # Type of message
+          attr_reader :type # Type of message
           attr_accessor :quick_reply
           attr_accessor :sender
           attr_accessor :original_content_url
           attr_accessor :preview_image_url
 
           def initialize(
-            type:,
             quick_reply: nil,
             sender: nil,
             original_content_url:,
             preview_image_url:
           )
-            @type = type
+            @type = "image"
+            
             @quick_reply = quick_reply
             @sender = sender
             @original_content_url = original_content_url
