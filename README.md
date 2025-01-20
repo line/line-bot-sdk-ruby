@@ -198,6 +198,11 @@ See https://semver.org/
 v1 and v2 are completely different implementations, v1 is all deprecated and will be removed in the future.
 Migration to v2 is strongly recommended.
 
+#### Deprecation warnings
+When calling the API endpoint with v1, a deprecation warning will occur.\
+If you want to suppress this, please set any value to the environment variable `SUPRESS_V1_DEPRECATION_WARNINGS`.
+
+
 ## Contributing
 Please check [CONTRIBUTING](CONTRIBUTING.md) before making a contribution.
 

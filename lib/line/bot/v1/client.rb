@@ -89,7 +89,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def issue_channel_token(grant_type = 'client_credentials')
-        warn '[DEPRECATION] `Line::Bot::Client#issue_channel_token` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#issue_channel_token` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#issue_channel_token` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#issue_channel_token` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_id_required
         channel_secret_required
@@ -110,7 +110,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def revoke_channel_token(access_token)
-        warn '[DEPRECATION] `Line::Bot::Client#revoke_channel_token` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#revoke_channel_token` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#revoke_channel_token` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#revoke_channel_token` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         endpoint_path = '/oauth/revoke'
         payload = URI.encode_www_form(access_token: access_token)
@@ -126,7 +126,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def issue_channel_access_token_jwt(jwt)
-        warn '[DEPRECATION] `Line::Bot::Client#issue_channel_access_token_jwt` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#issue_channel_token_by_jwt` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#issue_channel_access_token_jwt` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#issue_channel_token_by_jwt` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         endpoint_path = '/oauth2/v2.1/token'
         payload = URI.encode_www_form(
@@ -146,7 +146,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def revoke_channel_access_token_jwt(access_token)
-        warn '[DEPRECATION] `Line::Bot::Client#revoke_channel_access_token_jwt` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#revoke_channel_token_by_jwt` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#revoke_channel_access_token_jwt` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#revoke_channel_token_by_jwt` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_id_required
         channel_secret_required
@@ -171,7 +171,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def verify_id_token(id_token, nonce: nil, user_id: nil)
-        warn '[DEPRECATION] `Line::Bot::Client#verify_id_token` is deprecated.'
+        warn '[DEPRECATION] `Line::Bot::Client#verify_id_token` is deprecated.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_id_required
 
@@ -194,7 +194,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def verify_access_token(access_token)
-        warn '[DEPRECATION] `Line::Bot::Client#verify_access_token` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#verify_channel_token` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#verify_access_token` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#verify_channel_token` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         payload = URI.encode_www_form(
           access_token: access_token
@@ -211,7 +211,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_channel_access_token_key_ids_jwt(jwt)
-        warn '[DEPRECATION] `Line::Bot::Client#get_channel_access_token_key_ids_jwt` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#gets_all_valid_channel_access_token_key_ids` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_channel_access_token_key_ids_jwt` is deprecated. Please use `Line::Bot::V2::ChannelAccessToken::ApiClient#gets_all_valid_channel_access_token_key_ids` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         payload = URI.encode_www_form(
           client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
@@ -231,7 +231,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_profile_by_access_token(access_token)
-        warn '[DEPRECATION] `Line::Bot::Client#get_profile_by_access_token` is deprecated.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_profile_by_access_token` is deprecated.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         headers = {
           "Authorization" => "Bearer #{access_token}",
@@ -250,7 +250,7 @@ module Line
       # @param payload [Hash] Additional request body
       # @return [Net::HTTPResponse]
       def push_message(user_id, messages, headers: {}, payload: {})
-        warn '[DEPRECATION] `Line::Bot::Client#push_message` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#push_message` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#push_message` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#push_message` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -284,7 +284,7 @@ module Line
       # @param messages [Hash, Array] Message Objects
       # @return [Net::HTTPResponse]
       def reply_message(token, messages)
-        warn '[DEPRECATION] `Line::Bot::Client#reply_message` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#reply_message` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#reply_message` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#reply_message` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -305,7 +305,7 @@ module Line
       # @param payload [Hash] Additional request body
       # @return [Net::HTTPResponse]
       def multicast(to, messages, headers: {}, payload: {})
-        warn '[DEPRECATION] `Line::Bot::Client#multicast` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#multicast` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#multicast` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#multicast` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -326,7 +326,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def broadcast(messages, headers: {})
-        warn '[DEPRECATION] `Line::Bot::Client#broadcast` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#broadcast` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#broadcast` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#broadcast` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -352,7 +352,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def narrowcast(messages, recipient: nil, filter: nil, limit: nil, headers: {})
-        warn '[DEPRECATION] `Line::Bot::Client#narrowcast` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#narrowcast` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#narrowcast` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#narrowcast` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -371,7 +371,7 @@ module Line
       # @deprecated
       #
       def leave_group(group_id)
-        warn '[DEPRECATION] `Line::Bot::Client#leave_group` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#leave_group` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#leave_group` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#leave_group` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -382,7 +382,7 @@ module Line
       # @deprecated
       #
       def leave_room(room_id)
-        warn '[DEPRECATION] `Line::Bot::Client#leave_room` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#leave_room` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#leave_room` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#leave_room` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -397,7 +397,7 @@ module Line
       # @param identifier [String] Message's identifier
       # @return [Net::HTTPResponse]
       def get_message_content(identifier)
-        warn '[DEPRECATION] `Line::Bot::Client#get_message_content` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiBlobClient#get_message_content` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_message_content` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiBlobClient#get_message_content` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -412,7 +412,7 @@ module Line
       # @param user_id [String] User Id user_id
       # @return [Net::HTTPResponse]
       def get_profile(user_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_profile` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_profile` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_profile` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_profile` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -429,7 +429,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_group_member_profile(group_id, user_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_group_member_profile` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_group_member_profile` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_group_member_profile` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_group_member_profile` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -446,7 +446,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_room_member_profile(room_id, user_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_room_member_profile` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_room_member_profile` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_room_member_profile` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_room_member_profile` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -463,7 +463,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_follower_ids(deprecated_continuation_token = nil, start: nil, limit: nil)
-        warn '[DEPRECATION] `Line::Bot::Client#get_follower_ids` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_followers` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_follower_ids` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_followers` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -489,7 +489,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_group_member_ids(group_id, continuation_token = nil)
-        warn '[DEPRECATION] `Line::Bot::Client#get_group_member_ids` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_group_members_ids` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_group_member_ids` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_group_members_ids` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -508,7 +508,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_room_member_ids(room_id, continuation_token = nil)
-        warn '[DEPRECATION] `Line::Bot::Client#get_room_member_ids` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_room_members_ids` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_room_member_ids` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_room_members_ids` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -525,7 +525,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_group_summary(group_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_group_summary` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_group_summary` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_group_summary` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_group_summary` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -541,7 +541,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_group_members_count(group_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_group_members_count` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_group_member_count` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_group_members_count` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_group_member_count` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -557,7 +557,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_room_members_count(room_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_room_members_count` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_room_member_count` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_room_members_count` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_room_member_count` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -571,7 +571,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_rich_menus
-        warn '[DEPRECATION] `Line::Bot::Client#get_rich_menus` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu_list` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_rich_menus` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu_list` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -587,7 +587,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_rich_menu(rich_menu_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -603,7 +603,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_delivery_reply(date)
-        warn '[DEPRECATION] `Line::Bot::Client#get_message_delivery_reply` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_number_of_sent_reply_messages` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_message_delivery_reply` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_number_of_sent_reply_messages` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -619,7 +619,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_delivery_push(date)
-        warn '[DEPRECATION] `Line::Bot::Client#` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_number_of_sent_push_messages` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_number_of_sent_push_messages` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -635,7 +635,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_delivery_multicast(date)
-        warn '[DEPRECATION] `Line::Bot::Client#get_message_delivery_multicast` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_number_of_sent_multicast_messages` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_message_delivery_multicast` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_number_of_sent_multicast_messages` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -651,7 +651,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_delivery_broadcast(date)
-        warn '[DEPRECATION] `Line::Bot::Client#get_message_delivery_broadcast` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_number_of_sent_broadcast_messages` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_message_delivery_broadcast` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_number_of_sent_broadcast_messages` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -667,7 +667,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def validate_reply_message_objects(messages)
-        warn '[DEPRECATION] `Line::Bot::Client#validate_reply_message_objects` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_reply` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#validate_reply_message_objects` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_reply` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -684,7 +684,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def validate_push_message_objects(messages)
-        warn '[DEPRECATION] `Line::Bot::Client#validate_push_message_objects` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_push` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#validate_push_message_objects` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_push` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -701,7 +701,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def validate_multicast_message_objects(messages)
-        warn '[DEPRECATION] `Line::Bot::Client#validate_multicast_message_objects` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_multicast` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#validate_multicast_message_objects` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_multicast` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -718,7 +718,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def validate_narrowcast_message_objects(messages)
-        warn '[DEPRECATION] `Line::Bot::Client#validate_narrowcast_message_objects` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_narrowcast` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#validate_narrowcast_message_objects` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_narrowcast` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -735,7 +735,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def validate_broadcast_message_objects(messages)
-        warn '[DEPRECATION] `Line::Bot::Client#validate_broadcast_message_objects` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_broadcast` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#validate_broadcast_message_objects` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_broadcast` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -752,7 +752,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def create_rich_menu(rich_menu)
-        warn '[DEPRECATION] `Line::Bot::Client#create_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#create_rich_menu` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#create_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#create_rich_menu` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -768,7 +768,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def validate_rich_menu_object(rich_menu)
-        warn '[DEPRECATION] `Line::Bot::Client#validate_rich_menu_object` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_rich_menu_object` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#validate_rich_menu_object` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#validate_rich_menu_object` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -784,7 +784,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def delete_rich_menu(rich_menu_id)
-        warn '[DEPRECATION] `Line::Bot::Client#delete_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#delete_rich_menu` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#delete_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#delete_rich_menu` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -800,7 +800,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_user_rich_menu(user_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_user_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu_id_of_user` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_user_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu_id_of_user` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -814,7 +814,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_default_rich_menu
-        warn '[DEPRECATION] `Line::Bot::Client#get_default_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_default_rich_menu_id` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_default_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_default_rich_menu_id` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -830,7 +830,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def set_default_rich_menu(rich_menu_id)
-        warn '[DEPRECATION] `Line::Bot::Client#set_default_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#set_default_rich_menu` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#set_default_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#set_default_rich_menu` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -844,7 +844,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def unset_default_rich_menu
-        warn '[DEPRECATION] `Line::Bot::Client#unset_default_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#cancel_default_rich_menu` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#unset_default_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#cancel_default_rich_menu` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -861,7 +861,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def set_rich_menus_alias(rich_menu_id, rich_menu_alias_id)
-        warn '[DEPRECATION] `Line::Bot::Client#unset_default_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#cancel_default_rich_menu` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#unset_default_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#cancel_default_rich_menu` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -877,7 +877,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def unset_rich_menus_alias(rich_menu_alias_id)
-        warn '[DEPRECATION] `Line::Bot::Client#unset_rich_menus_alias` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#delete_rich_menu_alias` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#unset_rich_menus_alias` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#delete_rich_menu_alias` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -894,7 +894,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def update_rich_menus_alias(rich_menu_id, rich_menu_alias_id)
-        warn '[DEPRECATION] `Line::Bot::Client#update_rich_menus_alias` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#update_rich_menu_alias` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#update_rich_menus_alias` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#update_rich_menu_alias` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -910,7 +910,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_rich_menus_alias(rich_menu_alias_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_rich_menus_alias` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu_alias` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_rich_menus_alias` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu_alias` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -924,7 +924,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_rich_menus_alias_list
-        warn '[DEPRECATION] `Line::Bot::Client#get_rich_menu_alias_list` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu_alias_list` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_rich_menu_alias_list` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu_alias_list` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -944,7 +944,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def link_user_rich_menu(user_id, rich_menu_id)
-        warn '[DEPRECATION] `Line::Bot::Client#link_user_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#link_rich_menu_id_to_user` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#link_user_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#link_rich_menu_id_to_user` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -960,7 +960,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def unlink_user_rich_menu(user_id)
-        warn '[DEPRECATION] `Line::Bot::Client#unlink_user_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#unlink_rich_menu_id_from_user` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#unlink_user_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#unlink_rich_menu_id_from_user` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -977,7 +977,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def bulk_link_rich_menus(user_ids, rich_menu_id)
-        warn '[DEPRECATION] `Line::Bot::Client#bulk_link_rich_menus` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#link_rich_menu_id_to_users` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#bulk_link_rich_menus` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#link_rich_menu_id_to_users` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -993,7 +993,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def bulk_unlink_rich_menus(user_ids)
-        warn '[DEPRECATION] `Line::Bot::Client#bulk_unlink_rich_menus` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#unlink_rich_menu_id_from_users` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#bulk_unlink_rich_menus` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#unlink_rich_menu_id_from_users` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1009,7 +1009,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_rich_menu_image(rich_menu_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_rich_menu_image` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiBlobClient#get_rich_menu_image` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_rich_menu_image` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiBlobClient#get_rich_menu_image` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1026,7 +1026,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def create_rich_menu_image(rich_menu_id, file)
-        warn '[DEPRECATION] `Line::Bot::Client#create_rich_menu_image` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiBlobClient#set_rich_menu_image` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#create_rich_menu_image` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiBlobClient#set_rich_menu_image` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1043,7 +1043,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def create_link_token(user_id)
-        warn '[DEPRECATION] `Line::Bot::Client#create_link_token` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#issue_link_token` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#create_link_token` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#issue_link_token` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1057,7 +1057,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_quota
-        warn '[DEPRECATION] `Line::Bot::Client#get_message_quota` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_message_quota` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_message_quota` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_message_quota` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1071,7 +1071,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_quota_consumption
-        warn '[DEPRECATION] `Line::Bot::Client#get_quota_consumption` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_message_quota_consumption` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_quota_consumption` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_message_quota_consumption` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1087,7 +1087,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_number_of_message_deliveries(date)
-        warn '[DEPRECATION] `Line::Bot::Client#get_number_of_message_deliveries` is deprecated. Please use `Line::Bot::V2::Insight::ApiClient#get_number_of_message_deliveries` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_number_of_message_deliveries` is deprecated. Please use `Line::Bot::V2::Insight::ApiClient#get_number_of_message_deliveries` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1103,7 +1103,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_user_interaction_statistics(request_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_user_interaction_statistics` is deprecated. Please use `Line::Bot::V2::Insight::ApiClient#get_message_event` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_user_interaction_statistics` is deprecated. Please use `Line::Bot::V2::Insight::ApiClient#get_message_event` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1119,7 +1119,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_number_of_followers(date)
-        warn '[DEPRECATION] `Line::Bot::Client#get_number_of_followers` is deprecated. Please use `Line::Bot::V2::Insight::ApiClient#get_number_of_followers` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_number_of_followers` is deprecated. Please use `Line::Bot::V2::Insight::ApiClient#get_number_of_followers` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1133,7 +1133,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_friend_demographics
-        warn '[DEPRECATION] `Line::Bot::Client#get_friends_demographics` is deprecated. Please use `Line::Bot::V2::Insight::ApiClient#get_friends_demographics` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_friends_demographics` is deprecated. Please use `Line::Bot::V2::Insight::ApiClient#get_friends_demographics` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1147,7 +1147,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_bot_info
-        warn '[DEPRECATION] `Line::Bot::Client#get_bot_info` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_bot_info` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_bot_info` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_bot_info` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1161,7 +1161,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_webhook_endpoint
-        warn '[DEPRECATION] `Line::Bot::Client#get_webhook_endpoint` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_webhook_endpoint` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_webhook_endpoint` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_webhook_endpoint` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1177,7 +1177,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def set_webhook_endpoint(webhook_endpoint)
-        warn '[DEPRECATION] `Line::Bot::Client#set_webhook_endpoint` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#set_webhook_endpoint` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#set_webhook_endpoint` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#set_webhook_endpoint` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1194,7 +1194,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def test_webhook_endpoint(webhook_endpoint = nil)
-        warn '[DEPRECATION] `Line::Bot::Client#test_webhook_endpoint` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#test_webhook_endpoint` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#test_webhook_endpoint` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#test_webhook_endpoint` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1210,7 +1210,7 @@ module Line
       # @deprecated
       #
       def get_liff_apps
-        warn '[DEPRECATION] `Line::Bot::Client#get_liff_apps` is deprecated. Please use `Line::Bot::V2::Liff::ApiClient#get_all_liff_apps` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_liff_apps` is deprecated. Please use `Line::Bot::V2::Liff::ApiClient#get_all_liff_apps` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1221,7 +1221,7 @@ module Line
       # @deprecated
       #
       def create_liff_app(app)
-        warn '[DEPRECATION] `Line::Bot::Client#create_liff_app` is deprecated. Please use `Line::Bot::V2::Liff::ApiClient#add_liff_app` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#create_liff_app` is deprecated. Please use `Line::Bot::V2::Liff::ApiClient#add_liff_app` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1232,7 +1232,7 @@ module Line
       # @deprecated
       #
       def update_liff_app(liff_id, app)
-        warn '[DEPRECATION] `Line::Bot::Client#update_liff_app` is deprecated. Please use `Line::Bot::V2::Liff::ApiClient#update_liff_app` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#update_liff_app` is deprecated. Please use `Line::Bot::V2::Liff::ApiClient#update_liff_app` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1243,7 +1243,7 @@ module Line
       # @deprecated
       #
       def delete_liff_app(liff_id)
-        warn '[DEPRECATION] `Line::Bot::Client#delete_liff_app` is deprecated. Please use `Line::Bot::V2::Liff::ApiClient#delete_liff_app` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#delete_liff_app` is deprecated. Please use `Line::Bot::V2::Liff::ApiClient#delete_liff_app` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1262,7 +1262,7 @@ module Line
       #
       # @return [Net::HTTPResponse] This response includes an audience_group_id.
       def create_user_id_audience(params)
-        warn '[DEPRECATION] `Line::Bot::Client#create_user_id_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#create_audience_group` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#create_user_id_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#create_audience_group` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1281,7 +1281,7 @@ module Line
       #
       # @return [Net::HTTPResponse] This response includes an audience_group_id.
       def update_user_id_audience(params)
-        warn '[DEPRECATION] `Line::Bot::Client#update_user_id_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#add_audience_to_audience_group` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#update_user_id_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#add_audience_to_audience_group` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1300,7 +1300,7 @@ module Line
       #
       # @return [Net::HTTPResponse] This response includes an audience_group_id.
       def create_click_audience(params)
-        warn '[DEPRECATION] `Line::Bot::Client#create_click_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#create_click_based_audience_group` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#create_click_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#create_click_based_audience_group` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1319,7 +1319,7 @@ module Line
       #
       # @return [Net::HTTPResponse] This response includes an audience_group_id.
       def create_impression_audience(params)
-        warn '[DEPRECATION] `Line::Bot::Client#create_impression_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#create_imp_based_audience_group` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#create_impression_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#create_imp_based_audience_group` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1336,7 +1336,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def rename_audience(audience_group_id, description)
-        warn '[DEPRECATION] `Line::Bot::Client#rename_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#update_audience_group_description` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#rename_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#update_audience_group_description` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1356,7 +1356,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def delete_audience(audience_group_id)
-        warn '[DEPRECATION] `Line::Bot::Client#rename_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#delete_audience_group` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#rename_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#delete_audience_group` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1375,7 +1375,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_audience(audience_group_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#get_audience_data` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_audience` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#get_audience_data` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1394,7 +1394,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_audiences(params)
-        warn '[DEPRECATION] `Line::Bot::Client#get_audiences` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#get_audience_groups` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_audiences` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#get_audience_groups` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1411,7 +1411,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_audience_authority_level
-        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#get_audience_group_authority_level` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#get_audience_group_authority_level` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1430,7 +1430,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def update_audience_authority_level(authority_level)
-        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#update_audience_group_authority_level` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::ManageAudience::ApiClient#update_audience_group_authority_level` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1449,7 +1449,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_statistics_per_unit(unit:, from:, to:)
-        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::Insight::ApiClient#get_statistics_per_unit` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::Insight::ApiClient#get_statistics_per_unit` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1464,7 +1464,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_aggregation_info
-        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_statistics_per_unit` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_statistics_per_unit` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1481,7 +1481,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_aggregation_list(limit: nil, start: nil)
-        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_statistics_per_unit` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_statistics_per_unit` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1498,7 +1498,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_narrowcast_message_status(request_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_narrowcast_message_status` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_statistics_per_unit` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_narrowcast_message_status` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_statistics_per_unit` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1517,7 +1517,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def multicast_by_phone_numbers(to, messages, headers: {}, payload: {})
-        warn '[DEPRECATION] `Line::Bot::Client#get_narrowcast_message_status` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_narrowcast_message_status` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1537,7 +1537,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_delivery_result_sent_by_phone_numbers(date)
-        warn '[DEPRECATION] `Line::Bot::Client#get_delivery_result_sent_by_phone_numbers` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_delivery_result_sent_by_phone_numbers` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1556,7 +1556,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def push_pnp(hashed_phone_number, messages, headers: {}, payload: {})
-        warn '[DEPRECATION] `Line::Bot::Client#push_pnp` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#push_pnp` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1575,7 +1575,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_delivery_pnp(date)
-        warn '[DEPRECATION] `Line::Bot::Client#get_message_delivery_pnp` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.'
+        warn '[DEPRECATION] `Line::Bot::Client#get_message_delivery_pnp` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
