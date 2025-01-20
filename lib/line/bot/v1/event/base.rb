@@ -17,6 +17,8 @@ module Line
     module Event
       class Base
         def initialize(src)
+          warn '[DEPRECATION] Webhook models in V1 is deprecated. Please use V2 instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
+
           @src = src
         end
 
