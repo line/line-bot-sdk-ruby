@@ -861,7 +861,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def set_rich_menus_alias(rich_menu_id, rich_menu_alias_id)
-        warn '[DEPRECATION] `Line::Bot::Client#unset_default_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#cancel_default_rich_menu` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
+        warn '[DEPRECATION] `Line::Bot::Client#unset_default_rich_menu` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_rich_menu_alias` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1464,7 +1464,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_aggregation_info
-        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_statistics_per_unit` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
+        warn '[DEPRECATION] `Line::Bot::Client#get_audience_authority_level` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_aggregation_unit_usage` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1498,7 +1498,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_narrowcast_message_status(request_id)
-        warn '[DEPRECATION] `Line::Bot::Client#get_narrowcast_message_status` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_statistics_per_unit` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
+        warn '[DEPRECATION] `Line::Bot::Client#get_narrowcast_message_status` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_narrowcast_progress` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1537,7 +1537,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_delivery_result_sent_by_phone_numbers(date)
-        warn '[DEPRECATION] `Line::Bot::Client#get_delivery_result_sent_by_phone_numbers` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
+        warn '[DEPRECATION] `Line::Bot::Client#get_delivery_result_sent_by_phone_numbers` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_ad_phone_message_statistics` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1556,7 +1556,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def push_pnp(hashed_phone_number, messages, headers: {}, payload: {})
-        warn '[DEPRECATION] `Line::Bot::Client#push_pnp` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
+        warn '[DEPRECATION] `Line::Bot::Client#push_pnp` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#push_messages_by_phone` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
@@ -1575,7 +1575,7 @@ module Line
       #
       # @return [Net::HTTPResponse]
       def get_message_delivery_pnp(date)
-        warn '[DEPRECATION] `Line::Bot::Client#get_message_delivery_pnp` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#audience_match` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
+        warn '[DEPRECATION] `Line::Bot::Client#get_message_delivery_pnp` is deprecated. Please use `Line::Bot::V2::MessagingApi::ApiClient#get_pnp_message_statistics` instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']
 
         channel_token_required
 
