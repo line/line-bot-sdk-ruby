@@ -1,0 +1,13 @@
+.openapi-generator-ignore
+api/liff_client.rb
+core.rb
+model/add_liff_app_request.rb
+model/add_liff_app_response.rb
+model/get_all_liff_apps_response.rb
+model/liff_app.rb
+model/liff_bot_prompt.rb
+model/liff_features.rb
+model/liff_scope.rb
+model/liff_view.rb
+model/update_liff_app_request.rb
+model/update_liff_view.rb

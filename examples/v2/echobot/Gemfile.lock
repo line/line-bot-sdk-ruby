@@ -1,0 +1,49 @@
+PATH
+  remote: ../../..
+  specs:
+    line-bot-api (2.0.0)
+      multipart-post (~> 2.4.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    base64 (0.2.0)
+    logger (1.6.2)
+    multipart-post (2.4.1)
+    mustermann (3.0.3)
+      ruby2_keywords (~> 0.0.1)
+    nio4r (2.7.4)
+    puma (6.5.0)
+      nio4r (~> 2.0)
+    rack (3.1.8)
+    rack-protection (4.1.1)
+      base64 (>= 0.1.0)
+      logger (>= 1.6.0)
+      rack (>= 3.0.0, < 4)
+    rack-session (2.0.0)
+      rack (>= 3.0.0)
+    rackup (2.2.1)
+      rack (>= 3)
+    ruby2_keywords (0.0.5)
+    sinatra (4.1.1)
+      logger (>= 1.6.0)
+      mustermann (~> 3.0)
+      rack (>= 3.0.0, < 4)
+      rack-protection (= 4.1.1)
+      rack-session (>= 2.0.0, < 3)
+      tilt (~> 2.0)
+    tilt (2.4.0)
+    webrick (1.9.1)
+
+PLATFORMS
+  arm64-darwin-22
+
+DEPENDENCIES
+  line-bot-api!
+  puma
+  rackup
+  sinatra
+  webrick
+
+BUNDLED WITH
+   2.4.10

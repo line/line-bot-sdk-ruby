@@ -1,0 +1,19 @@
+PATH
+  remote: ../../..
+  specs:
+    line-bot-api (2.0.0)
+      multipart-post (~> 2.4.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    multipart-post (2.4.1)
+
+PLATFORMS
+  arm64-darwin-22
+
+DEPENDENCIES
+  line-bot-api!
+
+BUNDLED WITH
+   2.4.10
