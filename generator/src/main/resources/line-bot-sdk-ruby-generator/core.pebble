@@ -1,0 +1,13 @@
+{# @pebvariable name="models" type="java.util.ArrayList<org.openapitools.codegen.model.ModelMap>" #}
+{# @pebvariable name="apiInfo" type="org.openapitools.codegen.model.ApiInfoMap" #}
+{%- include "./license.pebble" %}
+# Models
+{% for model in models -%}
+require_relative './model/{{ model.model.classFilename | underscore }}'
+{% endfor %}
+{%- if packageName != 'webhook' %}
+# APIs
+{% for api in apiInfo.apis -%}
+require_relative './api/{{ api.get("classFilename") | underscore }}'
+{% endfor -%}
+{% endif -%}

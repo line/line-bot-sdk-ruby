@@ -1,0 +1,127 @@
+{# @pebvariable name="operations" type="org.openapitools.codegen.model.OperationMap" -#}
+{# @pebvariable name="authMethods" type="java.util.ArrayList<org.openapitools.codegen.CodegenSecurity>" -#}
+{# @pebvariable name="packageName" type="String" #}
+{%- include "./license-info.pebble" %}
+require 'json'
+
+require 'line/bot/v2/http_client'
+require 'line/bot/v2/reserved_words'
+require 'line/bot/v2/utils'
+
+module Line
+  module Bot
+    module V2
+      module {{ packageName | camelize }}
+        class Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client
+          def initialize(base_url: nil{% if packageName == 'channel_access_token' %}{% elseif packageName == 'module_attach' %}, channel_id:, channel_secret:{% else %}, channel_access_token:{% endif %}, http_options: {})
+            @http_client = HttpClient.new(
+              base_url: base_url || '{{endpoint(operations.classname)}}'{% if packageName == 'channel_access_token' %}{% elseif packageName == 'module_attach' %},
+              http_headers: {
+                Authorization: 'Basic ' + Base64.encode64("#{channel_id}:#{channel_secret}")
+              }{% else %},
+              http_headers: {
+                Authorization: "Bearer #{channel_access_token}"
+              }{% endif %},
+              http_options: http_options
+            )
+          end
+          {%- for op in operations.operation %}
+
+          # {{ op.notes }}
+          #
+          {%  if op.summary -%}
+          # @summary {{ op.summary }}
+          {%  endif -%}
+          {% for param in op.allParams -%}
+          # @param {{param.paramName}} {{param.description}}
+          {% endfor -%}
+          {% if op.isDeprecated -%}
+          # @deprecated
+          {% endif -%}
+          {% if op.externalDocs.description != null -%}
+          # {{op.externalDocs.description}}
+          {% endif -%}
+          {% if op.externalDocs.url != null -%}
+          # @see {{op.externalDocs.url}}
+          {% endif -%}
+          def {{op.nickname}}_with_http_info({% for param in op.allParams %}
+            {{param.paramName}}:{{ param.required ? '' : ' nil' }}{{ loop.last ? '' : ',' -}}
+            {% endfor %}
+          )
+            path = "{{ op.path }}"{%  for param in op.pathParams %}
+              .gsub(/{{ "{" + param.baseName + "}" }}/, {{ param.paramName }})
+              {%- endfor %}{% if op.hasFormParams %}
+
+            form_params = {{ '{' }}{% for param in op.formParams %}
+              "{{ param.baseName }}": {{ param.paramName }}{{ loop.last ? '' : ',' -}}
+              {% endfor %}
+            }.compact{% elseif op.hasQueryParams %}
+            query_params = {{ '{' }}{% for param in op.queryParams %}
+              "{{ param.baseName }}": {{ param.paramName }}{{ loop.last ? '' : ',' -}}
+              {% endfor %}
+            }.compact{% endif %}{% if op.hasHeaderParams %}
+            header_params = {{ '{' }}{% for param in op.headerParams %}
+              "{{ param.baseName}}": {{ param.paramName }}{{ loop.last ? '' : ',' -}}
+              {% endfor %}
+            }.compact{% endif %}
+
+            response = @http_client.{{ op.httpMethod | lower }}{% if op.hasFormParams %}_form{% endif %}{% if op.isMultipart %}_multipart{% endif %}(
+              path: path,{% if op.hasBodyParam %}
+              body_params: {{ op.bodyParam.paramName }},{% elseif op.hasFormParams %}
+              form_params: form_params,{% elseif op.hasQueryParams %}
+              query_params: query_params,{% endif %}{% if op.hasHeaderParams %}
+              headers: header_params{% endif %}
+            )
+
+            body = case response.code.to_i
+                   {%- for response in op.responses %}
+                   when {{ response.code }}
+                     {%- if response.content['application/json'].schema.complexType != null %}
+                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+                     json.transform_keys! do |key|
+                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+                     end
+                     Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}.new(**json)
+                     {%- else %}
+                     response.body
+                     {%- endif %}{% endfor %}
+                   else
+                     response.body
+                   end
+
+            [body, response.code.to_i, response.each_header.to_h]
+          end
+
+          # {{ op.notes }}
+          #
+          {%  if op.summary -%}
+          # @summary {{ op.summary }}
+          {%  endif -%}
+          {% for param in op.allParams -%}
+          # @param {{param.paramName}} {{param.description}}
+          {% endfor -%}
+          {% if op.isDeprecated -%}
+          # @deprecated
+          {% endif -%}
+          {% if op.externalDocs.description != null -%}
+          # {{op.externalDocs.description}}
+          {% endif -%}
+          {% if op.externalDocs.url != null -%}
+          # @see {{op.externalDocs.url}}
+          {% endif -%}
+          def {{op.nickname}}({% for param in op.allParams %}
+            {{param.paramName}}:{{ param.required ? '' : ' nil' }}{{ loop.last ? '' : ',' -}}
+            {% endfor %}
+          )
+            body, _status_code, _headers = {{op.nickname}}_with_http_info({% for param in op.allParams %}
+              {{param.paramName}}: {{param.paramName}}{{ loop.last ? '' : ',' -}}
+            {% endfor %}
+            )
+
+            body
+          end{% endfor %}
+        end
+      end
+    end
+  end
+end

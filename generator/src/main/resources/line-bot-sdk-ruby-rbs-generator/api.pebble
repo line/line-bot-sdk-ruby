@@ -1,0 +1,69 @@
+{# @pebvariable name="operations" type="org.openapitools.codegen.model.OperationMap" -#}
+{# @pebvariable name="authMethods" type="java.util.ArrayList<org.openapitools.codegen.CodegenSecurity>" -#}
+{# @pebvariable name="typeMapping" type="java. util. Map<String, String>" -#}
+{# @pebvariable name="packageName" type="String" #}
+{%- include "./license.pebble" %}
+module Line
+  module Bot
+    module V2
+      module {{ packageName | camelize }}
+        class Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client
+          def initialize: (
+            base_url: String?{% if packageName == 'channel_access_token' %}{% elseif packageName == 'module_attach' %},
+            channel_id: String,
+            channel_secret: String{% else %},
+            channel_access_token: String{% endif %},
+            http_options: Hash[String|Symbol, untyped]
+          ) -> void
+          {%- for op in operations.operation %}
+
+          # {{ op.notes }}
+          #
+          {%  if op.summary -%}
+          # @summary {{ op.summary }}
+          {%  endif -%}
+          {% for param in op.allParams -%}
+          # @param {{ param.paramName }} {{ param.description }}
+          {% endfor -%}
+          {% if op.isDeprecated -%}
+           # @deprecated
+          {% endif -%}
+          {% if op.externalDocs.description != null -%}
+          # {{op.externalDocs.description}}
+          {% endif -%}
+          {% if op.externalDocs.url != null -%}
+          # @see {{op.externalDocs.url}}
+          {% endif -%}
+          def {{op.nickname}}_with_http_info: (
+            {%- for param in op.allParams %}
+            {{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
+            {% endfor %}
+          ) -> [({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null ? 'String?' : response.baseType }}{{ loop.last ? '' : '|' }}{% endfor %}), Integer, Hash[String, String]]
+
+          # {{ op.notes }}
+          #
+          {%  if op.summary -%}
+          # @summary {{ op.summary }}
+          {%  endif -%}
+          {% for param in op.allParams -%}
+           # @param {{ param.paramName }} {{ param.description }}
+          {% endfor -%}
+          {% if op.isDeprecated -%}
+           # @deprecated
+          {% endif -%}
+          {% if op.externalDocs.description != null -%}
+          # {{op.externalDocs.description}}
+          {% endif -%}
+          {% if op.externalDocs.url != null -%}
+          # @see {{op.externalDocs.url}}
+          {% endif -%}
+          def {{op.nickname}}: (
+            {%- for param in op.allParams %}
+            {{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
+            {% endfor %}
+          ) -> ({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null ? 'String?' : response.baseType }}{{ loop.last ? '' : '|' }}{% endfor %}){% endfor %}
+        end
+      end
+    end
+  end
+end
