@@ -12,5 +12,5 @@ end
 
 group :test do
   gem 'rspec', '~> 3.13.0'
-  gem 'webmock', '~> 3.14.0'
+  gem 'webmock', '~> 3.24.0'
 end

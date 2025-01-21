@@ -58,7 +58,7 @@ GEM
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
-    webmock (3.14.0)
+    webmock (3.24.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -75,7 +75,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rspec (~> 3.13.0)
   rubocop (~> 1.70.0)
-  webmock (~> 3.14.0)
+  webmock (~> 3.24.0)
   yard (~> 0.9.20)
 
 BUNDLED WITH
