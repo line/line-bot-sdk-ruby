@@ -23,6 +23,7 @@ require 'line/bot/v1/api/version'
 
 # V2
 require 'line/bot/v2/webhook_parser'
+require 'line/bot/v2/version'
 
 ## OpenAPI
 require 'line/bot/v2/channel_access_token/core'
