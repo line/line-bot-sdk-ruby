@@ -228,7 +228,7 @@ describe 'misc' do
         )
         .to_return(status: response_code, body: response_body.to_json, headers: { 'Content-Type' => 'application/json' })
 
-      body, status_code, headers = client.push_message_with_http_info(push_message_request: request_body, x_line_retry_key:)
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: request_body, x_line_retry_key: x_line_retry_key)
 
       expect(status_code).to eq(200)
       expect(body.sent_messages).to eq([{ id: "461230966842064897", quote_token: "IStG5h1Tz7b..." }])
