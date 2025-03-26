@@ -6,7 +6,7 @@ gem 'multipart-post', '~> 2.4.1', require: false
 
 group :development, :test do
   # ref: http://docs.rubocop.org/en/latest/installation/
-  gem 'rubocop', '~> 1.74.0', require: false
+  gem 'rubocop', '~> 1.75.0', require: false
   gem 'yard', '~> 0.9.20'
 end
 
