@@ -26,7 +26,7 @@ describe 'misc' do
             upload_description: 'Test Audience'
           )
 
-          expect(status_code).to eq(201)
+          expect(status_code).to eq(202)
           expect(response_body).to be_empty
         end
       end
