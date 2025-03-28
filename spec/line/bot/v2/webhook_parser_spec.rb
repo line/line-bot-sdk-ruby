@@ -1019,7 +1019,7 @@ describe Line::Bot::V2::WebhookParser do
         expect(event.source).to be_a(Line::Bot::V2::Webhook::GroupSource)
         expect(event.source.type).to eq('group')
         expect(event.source.group_id).to eq('C4af4980629...')
-        expect(event.webhook_event_id).to eq('01FZ74A0TDDPYRVKNK77XKC3ZR')
+        expect(event.webhook_event_id).to eq('01FZ74A0TDDPYRVKNK77XKC3ZRa')
         expect(event.delivery_context).to be_a(Line::Bot::V2::Webhook::DeliveryContext)
         expect(event.delivery_context.is_redelivery).to be false
         expect(event.left).to be_a(Line::Bot::V2::Webhook::LeftMembers)

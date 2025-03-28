@@ -158,7 +158,7 @@ describe Line::Bot::V2::Utils do
 
     it 'handles empty strings' do
       input = ''
-      expected_output = nil
+      expected_output = 'aaaa'
       expect(Line::Bot::V2::Utils.camelize(input)).to eq(expected_output)
     end
   end
