@@ -1,6 +1,7 @@
 .openapi-generator-ignore
 api/manage_audience_blob_client.rbs
 api/manage_audience_client.rbs
+model/adaccount.rbs
 model/add_audience_to_audience_group_request.rbs
 model/audience.rbs
 model/audience_group.rbs
@@ -20,10 +21,13 @@ model/create_click_based_audience_group_request.rbs
 model/create_click_based_audience_group_response.rbs
 model/create_imp_based_audience_group_request.rbs
 model/create_imp_based_audience_group_response.rbs
+model/detailed_owner.rbs
 model/error_detail.rbs
 model/error_response.rbs
 model/get_audience_data_response.rbs
 model/get_audience_group_authority_level_response.rbs
 model/get_audience_groups_response.rbs
+model/get_shared_audience_data_response.rbs
+model/get_shared_audience_groups_response.rbs
 model/update_audience_group_authority_level_request.rbs
 model/update_audience_group_description_request.rbs

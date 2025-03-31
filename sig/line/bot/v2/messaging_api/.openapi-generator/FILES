@@ -10,7 +10,6 @@ model/app_type_demographic.rbs
 model/app_type_demographic_filter.rbs
 model/area_demographic.rbs
 model/area_demographic_filter.rbs
-model/audience_match_messages_request.rbs
 model/audience_recipient.rbs
 model/audio_message.rbs
 model/bot_info_response.rbs
@@ -65,6 +64,7 @@ model/gender_demographic_filter.rbs
 model/get_aggregation_unit_name_list_response.rbs
 model/get_aggregation_unit_usage_response.rbs
 model/get_followers_response.rbs
+model/get_joined_membership_users_response.rbs
 model/get_membership_subscription_response.rbs
 model/get_message_content_transcoding_response.rbs
 model/get_webhook_endpoint_response.rbs

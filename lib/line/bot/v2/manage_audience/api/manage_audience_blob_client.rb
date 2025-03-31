@@ -110,7 +110,7 @@ module Line
             )
 
             body = case response.code.to_i
-                   when 200
+                   when 202
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key

@@ -178,6 +178,54 @@ module Line
             create_route: AudienceGroupCreateRoute?
           ) -> (GetAudienceGroupsResponse)
 
+          # Gets audience data.
+          #
+          # @param audience_group_id The audience ID.
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience
+          def get_shared_audience_data_with_http_info: (
+            audience_group_id: Integer
+          ) -> [(GetSharedAudienceDataResponse|ErrorResponse), Integer, Hash[String, String]]
+
+          # Gets audience data.
+          #
+          # @param audience_group_id The audience ID.
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience
+          def get_shared_audience_data: (
+            audience_group_id: Integer
+          ) -> (GetSharedAudienceDataResponse|ErrorResponse)
+
+          # Gets data for more than one audience, including those shared by the Business Manager.
+          #
+          # @param page The page to return when getting (paginated) results. Must be 1 or higher.
+          # @param description The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+          # @param status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+          # @param size The number of audiences per page. Default: 20 Max: 40 
+          # @param create_route How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
+          def get_shared_audience_groups_with_http_info: (
+            page: Integer, 
+            description: String?, 
+            status: AudienceGroupStatus?, 
+            size: Integer?, 
+            create_route: AudienceGroupCreateRoute?
+          ) -> [(GetSharedAudienceGroupsResponse), Integer, Hash[String, String]]
+
+          # Gets data for more than one audience, including those shared by the Business Manager.
+          #
+          # @param page The page to return when getting (paginated) results. Must be 1 or higher.
+          # @param description The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+          # @param status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+          # @param size The number of audiences per page. Default: 20 Max: 40 
+          # @param create_route How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
+          def get_shared_audience_groups: (
+            page: Integer, 
+            description: String?, 
+            status: AudienceGroupStatus?, 
+            size: Integer?, 
+            create_route: AudienceGroupCreateRoute?
+          ) -> (GetSharedAudienceGroupsResponse)
+
           # Change the authority level of the audience
           #
           # @param update_audience_group_authority_level_request 

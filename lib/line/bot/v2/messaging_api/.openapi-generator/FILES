@@ -11,7 +11,6 @@ model/app_type_demographic.rb
 model/app_type_demographic_filter.rb
 model/area_demographic.rb
 model/area_demographic_filter.rb
-model/audience_match_messages_request.rb
 model/audience_recipient.rb
 model/audio_message.rb
 model/bot_info_response.rb
@@ -66,6 +65,7 @@ model/gender_demographic_filter.rb
 model/get_aggregation_unit_name_list_response.rb
 model/get_aggregation_unit_usage_response.rb
 model/get_followers_response.rb
+model/get_joined_membership_users_response.rb
 model/get_membership_subscription_response.rb
 model/get_message_content_transcoding_response.rb
 model/get_webhook_endpoint_response.rb

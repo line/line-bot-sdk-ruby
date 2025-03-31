@@ -13,20 +13,20 @@ module Line
   module Bot
     module V2
       module ManageAudience
-        class GetAudienceDataResponse
+        class GetSharedAudienceDataResponse
           attr_accessor :audience_group
           attr_accessor :jobs # An array of jobs. This array is used to keep track of each attempt to add new user IDs or IFAs to an audience for uploading user IDs. Empty array is returned for any other type of audience. Max: 50 
-          attr_accessor :adaccount
+          attr_accessor :owner
 
           def initialize(
             audience_group: nil,
             jobs: nil,
-            adaccount: nil
+            owner: nil
           )
             
             @audience_group = audience_group
             @jobs = jobs
-            @adaccount = adaccount
+            @owner = owner
           end
         end
       end
