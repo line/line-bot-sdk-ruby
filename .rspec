@@ -1,2 +1,4 @@
 --format documentation
 --color
+--pattern 'spec/**/*.rb'
+--exclude-pattern 'spec/fixtures/**/*.rb'

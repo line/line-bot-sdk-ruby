@@ -24,7 +24,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-content
           def get_message_content_with_http_info: (
             message_id: String
-          ) -> [(file), Integer, Hash[String, String]]
+          ) -> [(File), Integer, Hash[String, String]]
 
           # Download image, video, and audio data sent from users.
           #
@@ -32,7 +32,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-content
           def get_message_content: (
             message_id: String
-          ) -> (file)
+          ) -> (File)
 
           # Get a preview image of the image or video
           #
@@ -40,7 +40,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-image-or-video-preview
           def get_message_content_preview_with_http_info: (
             message_id: String
-          ) -> [(file), Integer, Hash[String, String]]
+          ) -> [(File), Integer, Hash[String, String]]
 
           # Get a preview image of the image or video
           #
@@ -48,7 +48,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-image-or-video-preview
           def get_message_content_preview: (
             message_id: String
-          ) -> (file)
+          ) -> (File)
 
           # Verify the preparation status of a video or audio for getting
           #
@@ -72,7 +72,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#download-rich-menu-image
           def get_rich_menu_image_with_http_info: (
             rich_menu_id: String
-          ) -> [(file), Integer, Hash[String, String]]
+          ) -> [(File), Integer, Hash[String, String]]
 
           # Download rich menu image.
           #
@@ -80,7 +80,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#download-rich-menu-image
           def get_rich_menu_image: (
             rich_menu_id: String
-          ) -> (file)
+          ) -> (File)
 
           # Upload rich menu image
           #
