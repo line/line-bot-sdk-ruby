@@ -47,14 +47,14 @@ describe 'misc' do
                 'Content-Type'=>'application/json',
               }
             )
-            .to_return(status: 202, body: "", headers: {})
+            .to_return(status: 202, body: "{\"description\": \"Test Audience response\"}", headers: {})
 
           response_body, status_code, headers = client.create_audience_group_with_http_info(
             create_audience_group_request: create_audience_group_request
           )
 
           expect(status_code).to eq(202)
-          expect(response_body).to be_empty
+          expect(response_body.description).to eq('Test Audience response')
         end
       end
 
