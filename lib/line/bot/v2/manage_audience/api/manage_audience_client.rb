@@ -81,7 +81,7 @@ module Line
             )
 
             body = case response.code.to_i
-                   when 200
+                   when 202
                      response.body
                    else
                      response.body
@@ -119,7 +119,7 @@ module Line
             )
 
             body = case response.code.to_i
-                   when 200
+                   when 202
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
@@ -161,7 +161,7 @@ module Line
             )
 
             body = case response.code.to_i
-                   when 200
+                   when 202
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
@@ -203,7 +203,7 @@ module Line
             )
 
             body = case response.code.to_i
-                   when 200
+                   when 202
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
@@ -421,6 +421,123 @@ module Line
               status: status,
               size: size,
               includes_external_public_groups: includes_external_public_groups,
+              create_route: create_route
+            )
+
+            body
+          end
+
+          # Gets audience data.
+          #
+          # @param audience_group_id The audience ID.
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience
+          def get_shared_audience_data_with_http_info(
+            audience_group_id:
+          )
+            path = "/v2/bot/audienceGroup/shared/{audienceGroupId}"
+              .gsub(/{audienceGroupId}/, audience_group_id)
+
+            response = @http_client.get(
+              path: path,
+            )
+
+            body = case response.code.to_i
+                   when 200
+                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+                     json.transform_keys! do |key|
+                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+                     end
+                     Line::Bot::V2::ManageAudience::GetSharedAudienceDataResponse.new(**json)
+                   when 400
+                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+                     json.transform_keys! do |key|
+                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+                     end
+                     Line::Bot::V2::ManageAudience::ErrorResponse.new(**json)
+                   else
+                     response.body
+                   end
+
+            [body, response.code.to_i, response.each_header.to_h]
+          end
+
+          # Gets audience data.
+          #
+          # @param audience_group_id The audience ID.
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience
+          def get_shared_audience_data(
+            audience_group_id:
+          )
+            body, _status_code, _headers = get_shared_audience_data_with_http_info(
+              audience_group_id: audience_group_id
+            )
+
+            body
+          end
+
+          # Gets data for more than one audience, including those shared by the Business Manager.
+          #
+          # @param page The page to return when getting (paginated) results. Must be 1 or higher.
+          # @param description The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+          # @param status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+          # @param size The number of audiences per page. Default: 20 Max: 40 
+          # @param create_route How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
+          def get_shared_audience_groups_with_http_info(
+            page:,
+            description: nil,
+            status: nil,
+            size: nil,
+            create_route: nil
+          )
+            path = "/v2/bot/audienceGroup/shared/list"
+            query_params = {
+              "page": page,
+              "description": description,
+              "status": status,
+              "size": size,
+              "createRoute": create_route
+            }.compact
+
+            response = @http_client.get(
+              path: path,
+              query_params: query_params,
+            )
+
+            body = case response.code.to_i
+                   when 200
+                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+                     json.transform_keys! do |key|
+                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+                     end
+                     Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse.new(**json)
+                   else
+                     response.body
+                   end
+
+            [body, response.code.to_i, response.each_header.to_h]
+          end
+
+          # Gets data for more than one audience, including those shared by the Business Manager.
+          #
+          # @param page The page to return when getting (paginated) results. Must be 1 or higher.
+          # @param description The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+          # @param status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+          # @param size The number of audiences per page. Default: 20 Max: 40 
+          # @param create_route How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
+          def get_shared_audience_groups(
+            page:,
+            description: nil,
+            status: nil,
+            size: nil,
+            create_route: nil
+          )
+            body, _status_code, _headers = get_shared_audience_groups_with_http_info(
+              page: page,
+              description: description,
+              status: status,
+              size: size,
               create_route: create_route
             )
 

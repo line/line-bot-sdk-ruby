@@ -9,6 +9,7 @@
 # Do not edit the class manually.
 
 # Models
+require_relative './model/adaccount'
 require_relative './model/add_audience_to_audience_group_request'
 require_relative './model/audience'
 require_relative './model/audience_group'
@@ -28,11 +29,14 @@ require_relative './model/create_click_based_audience_group_request'
 require_relative './model/create_click_based_audience_group_response'
 require_relative './model/create_imp_based_audience_group_request'
 require_relative './model/create_imp_based_audience_group_response'
+require_relative './model/detailed_owner'
 require_relative './model/error_detail'
 require_relative './model/error_response'
 require_relative './model/get_audience_data_response'
 require_relative './model/get_audience_group_authority_level_response'
 require_relative './model/get_audience_groups_response'
+require_relative './model/get_shared_audience_data_response'
+require_relative './model/get_shared_audience_groups_response'
 require_relative './model/update_audience_group_authority_level_request'
 require_relative './model/update_audience_group_description_request'
 

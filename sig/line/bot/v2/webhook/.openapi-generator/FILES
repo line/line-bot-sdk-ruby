@@ -27,13 +27,17 @@ model/image_message_content.rbs
 model/image_set.rbs
 model/join_event.rbs
 model/joined_members.rbs
+model/joined_membership_content.rbs
 model/leave_event.rbs
 model/left_members.rbs
+model/left_membership_content.rbs
 model/link_content.rbs
 model/link_things_content.rbs
 model/location_message_content.rbs
 model/member_joined_event.rbs
 model/member_left_event.rbs
+model/membership_content.rbs
+model/membership_event.rbs
 model/mention.rbs
 model/mentionee.rbs
 model/message_content.rbs
@@ -44,6 +48,7 @@ model/pnp_delivery.rbs
 model/pnp_delivery_completion_event.rbs
 model/postback_content.rbs
 model/postback_event.rbs
+model/renewed_membership_content.rbs
 model/room_source.rbs
 model/scenario_result.rbs
 model/scenario_result_things_content.rbs

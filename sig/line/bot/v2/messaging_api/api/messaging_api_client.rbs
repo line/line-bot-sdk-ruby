@@ -18,22 +18,6 @@ module Line
             http_options: Hash[String|Symbol, untyped]
           ) -> void
 
-          # Send a message using phone number
-          #
-          # @param audience_match_messages_request 
-          # @see https://developers.line.biz/en/reference/partner-docs/#phone-audience-match
-          def audience_match_with_http_info: (
-            audience_match_messages_request: AudienceMatchMessagesRequest
-          ) -> [(String?), Integer, Hash[String, String]]
-
-          # Send a message using phone number
-          #
-          # @param audience_match_messages_request 
-          # @see https://developers.line.biz/en/reference/partner-docs/#phone-audience-match
-          def audience_match: (
-            audience_match_messages_request: AudienceMatchMessagesRequest
-          ) -> (String?)
-
           # Sends a message to multiple users at any time.
           #
           # @param broadcast_request 
@@ -129,22 +113,6 @@ module Line
           def delete_rich_menu_alias: (
             rich_menu_alias_id: String
           ) -> (String?|ErrorResponse)
-
-          # Get result of message delivery using phone number
-          #
-          # @param date Date the message was sent  Format: `yyyyMMdd` (e.g. `20190831`) Time Zone: UTC+9 
-          # @see https://developers.line.biz/en/reference/partner-docs/#get-phone-audience-match
-          def get_ad_phone_message_statistics_with_http_info: (
-            date: String
-          ) -> [(NumberOfMessagesResponse), Integer, Hash[String, String]]
-
-          # Get result of message delivery using phone number
-          #
-          # @param date Date the message was sent  Format: `yyyyMMdd` (e.g. `20190831`) Time Zone: UTC+9 
-          # @see https://developers.line.biz/en/reference/partner-docs/#get-phone-audience-match
-          def get_ad_phone_message_statistics: (
-            date: String
-          ) -> (NumberOfMessagesResponse)
 
           # Get name list of units used this month
           #
@@ -293,6 +261,30 @@ module Line
           def get_group_summary: (
             group_id: String
           ) -> (GroupSummaryResponse)
+
+          # Get a list of user IDs who joined the membership.
+          #
+          # @param membership_id Membership plan ID.
+          # @param start A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). 
+          # @param limit The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-membership-user-ids
+          def get_joined_membership_users_with_http_info: (
+            membership_id: Integer, 
+            start: String?, 
+            limit: Integer?
+          ) -> [(GetJoinedMembershipUsersResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
+
+          # Get a list of user IDs who joined the membership.
+          #
+          # @param membership_id Membership plan ID.
+          # @param start A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). 
+          # @param limit The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-membership-user-ids
+          def get_joined_membership_users: (
+            membership_id: Integer, 
+            start: String?, 
+            limit: Integer?
+          ) -> (GetJoinedMembershipUsersResponse|ErrorResponse|ErrorResponse)
 
           # Get a list of memberships.
           #

@@ -28,44 +28,6 @@ module Line
             )
           end
 
-          # Send a message using phone number
-          #
-          # @param audience_match_messages_request 
-          # @see https://developers.line.biz/en/reference/partner-docs/#phone-audience-match
-          def audience_match_with_http_info(
-            audience_match_messages_request:
-          )
-            path = "/bot/ad/multicast/phone"
-
-            response = @http_client.post(
-              path: path,
-              body_params: audience_match_messages_request,
-            )
-
-            body = case response.code.to_i
-                   when 200
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [body, response.code.to_i, response.each_header.to_h]
-          end
-
-          # Send a message using phone number
-          #
-          # @param audience_match_messages_request 
-          # @see https://developers.line.biz/en/reference/partner-docs/#phone-audience-match
-          def audience_match(
-            audience_match_messages_request:
-          )
-            body, _status_code, _headers = audience_match_with_http_info(
-              audience_match_messages_request: audience_match_messages_request
-            )
-
-            body
-          end
-
           # Sends a message to multiple users at any time.
           #
           # @param broadcast_request 
@@ -332,51 +294,6 @@ module Line
           )
             body, _status_code, _headers = delete_rich_menu_alias_with_http_info(
               rich_menu_alias_id: rich_menu_alias_id
-            )
-
-            body
-          end
-
-          # Get result of message delivery using phone number
-          #
-          # @param date Date the message was sent  Format: `yyyyMMdd` (e.g. `20190831`) Time Zone: UTC+9 
-          # @see https://developers.line.biz/en/reference/partner-docs/#get-phone-audience-match
-          def get_ad_phone_message_statistics_with_http_info(
-            date:
-          )
-            path = "/v2/bot/message/delivery/ad_phone"
-            query_params = {
-              "date": date
-            }.compact
-
-            response = @http_client.get(
-              path: path,
-              query_params: query_params,
-            )
-
-            body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.new(**json)
-                   else
-                     response.body
-                   end
-
-            [body, response.code.to_i, response.each_header.to_h]
-          end
-
-          # Get result of message delivery using phone number
-          #
-          # @param date Date the message was sent  Format: `yyyyMMdd` (e.g. `20190831`) Time Zone: UTC+9 
-          # @see https://developers.line.biz/en/reference/partner-docs/#get-phone-audience-match
-          def get_ad_phone_message_statistics(
-            date:
-          )
-            body, _status_code, _headers = get_ad_phone_message_statistics_with_http_info(
-              date: date
             )
 
             body
@@ -770,6 +687,75 @@ module Line
           )
             body, _status_code, _headers = get_group_summary_with_http_info(
               group_id: group_id
+            )
+
+            body
+          end
+
+          # Get a list of user IDs who joined the membership.
+          #
+          # @param membership_id Membership plan ID.
+          # @param start A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). 
+          # @param limit The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-membership-user-ids
+          def get_joined_membership_users_with_http_info(
+            membership_id:,
+            start: nil,
+            limit: nil
+          )
+            path = "/v2/bot/membership/{membershipId}/users/ids"
+              .gsub(/{membershipId}/, membership_id)
+            query_params = {
+              "start": start,
+              "limit": limit
+            }.compact
+
+            response = @http_client.get(
+              path: path,
+              query_params: query_params,
+            )
+
+            body = case response.code.to_i
+                   when 200
+                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+                     json.transform_keys! do |key|
+                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+                     end
+                     Line::Bot::V2::MessagingApi::GetJoinedMembershipUsersResponse.new(**json)
+                   when 400
+                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+                     json.transform_keys! do |key|
+                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+                     end
+                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json)
+                   when 404
+                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+                     json.transform_keys! do |key|
+                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+                     end
+                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json)
+                   else
+                     response.body
+                   end
+
+            [body, response.code.to_i, response.each_header.to_h]
+          end
+
+          # Get a list of user IDs who joined the membership.
+          #
+          # @param membership_id Membership plan ID.
+          # @param start A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). 
+          # @param limit The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-membership-user-ids
+          def get_joined_membership_users(
+            membership_id:,
+            start: nil,
+            limit: nil
+          )
+            body, _status_code, _headers = get_joined_membership_users_with_http_info(
+              membership_id: membership_id,
+              start: start,
+              limit: limit
             )
 
             body

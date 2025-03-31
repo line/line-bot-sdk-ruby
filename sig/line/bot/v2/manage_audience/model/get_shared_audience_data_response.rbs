@@ -13,15 +13,15 @@ module Line
   module Bot
     module V2
       module ManageAudience
-        class GetAudienceDataResponse
+        class GetSharedAudienceDataResponse
           attr_accessor audience_group: AudienceGroup?
           attr_accessor jobs: Array[AudienceGroupJob]?
-          attr_accessor adaccount: Adaccount?
+          attr_accessor owner: DetailedOwner?
           
           def initialize: (
             audience_group: AudienceGroup?,
             jobs: Array[AudienceGroupJob]?,
-            adaccount: Adaccount?
+            owner: DetailedOwner?
           ) -> void
         end
       end

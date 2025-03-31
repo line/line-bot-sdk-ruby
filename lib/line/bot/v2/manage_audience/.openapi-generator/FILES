@@ -2,6 +2,7 @@
 api/manage_audience_blob_client.rb
 api/manage_audience_client.rb
 core.rb
+model/adaccount.rb
 model/add_audience_to_audience_group_request.rb
 model/audience.rb
 model/audience_group.rb
@@ -21,10 +22,13 @@ model/create_click_based_audience_group_request.rb
 model/create_click_based_audience_group_response.rb
 model/create_imp_based_audience_group_request.rb
 model/create_imp_based_audience_group_response.rb
+model/detailed_owner.rb
 model/error_detail.rb
 model/error_response.rb
 model/get_audience_data_response.rb
 model/get_audience_group_authority_level_response.rb
 model/get_audience_groups_response.rb
+model/get_shared_audience_data_response.rb
+model/get_shared_audience_groups_response.rb
 model/update_audience_group_authority_level_request.rb
 model/update_audience_group_description_request.rb

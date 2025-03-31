@@ -28,13 +28,17 @@ model/image_message_content.rb
 model/image_set.rb
 model/join_event.rb
 model/joined_members.rb
+model/joined_membership_content.rb
 model/leave_event.rb
 model/left_members.rb
+model/left_membership_content.rb
 model/link_content.rb
 model/link_things_content.rb
 model/location_message_content.rb
 model/member_joined_event.rb
 model/member_left_event.rb
+model/membership_content.rb
+model/membership_event.rb
 model/mention.rb
 model/mentionee.rb
 model/message_content.rb
@@ -45,6 +49,7 @@ model/pnp_delivery.rb
 model/pnp_delivery_completion_event.rb
 model/postback_content.rb
 model/postback_event.rb
+model/renewed_membership_content.rb
 model/room_source.rb
 model/scenario_result.rb
 model/scenario_result_things_content.rb
