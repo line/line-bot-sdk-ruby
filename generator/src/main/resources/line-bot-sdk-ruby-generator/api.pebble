@@ -1,7 +1,7 @@
 {# @pebvariable name="operations" type="org.openapitools.codegen.model.OperationMap" -#}
 {# @pebvariable name="authMethods" type="java.util.ArrayList<org.openapitools.codegen.CodegenSecurity>" -#}
 {# @pebvariable name="packageName" type="String" #}
-{%- include "./license-info.pebble" %}
+{%- include "./license.pebble" %}
 require 'json'
 
 require 'line/bot/v2/http_client'
