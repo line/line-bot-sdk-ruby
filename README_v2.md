@@ -182,7 +182,7 @@ main
 See the [examples](examples/v2) directory for more examples.
 
 ### RBS
-This library provides RBS files for type checking.\
+This library provides [RBS](https://github.com/ruby/rbs) files for type checking.\
 You can code with type support in the corresponding IDE or editor.
 
 ## Media
