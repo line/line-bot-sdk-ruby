@@ -19,10 +19,6 @@ jobs:
           submodules: recursive
       - name: Update submodules
         run: git submodule update --remote --recursive
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
