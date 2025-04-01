@@ -19,8 +19,17 @@ require 'uri'
 
 module Line
   module Bot
-    # API Client of LINE Bot SDK Ruby
+    # @deprecated
+    # This is deprecated. Please use one of the following instead:
+    # * {Line::Bot::V2::MessagingApi::ApiClient}
+    # * {Line::Bot::V2::MessagingApi::ApiBlobClient}
+    # * {Line::Bot::V2::Liff::ApiClient}
+    # * {Line::Bot::V2::ChannelAccessToken::ApiClient}
+    # * {Line::Bot::V2::ManageAudience::ApiClient}
+    # * {Line::Bot::V2::ManageAudience::ApiBlobClient}
+    # * {Line::Bot::V2::Insight::ApiClient}
     #
+    # API Client of LINE Bot SDK Ruby (deprecated)
     #   @client ||= Line::Bot::Client.new do |config|
     #     config.channel_id = ENV["LINE_CHANNEL_ID"]
     #     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
@@ -36,6 +45,16 @@ module Line
       # @return [Hash]
       attr_accessor :http_options
 
+      # @deprecated
+      # This is deprecated. Please use one of the following instead:
+      # * {Line::Bot::V2::MessagingApi::ApiClient}
+      # * {Line::Bot::V2::MessagingApi::ApiBlobClient}
+      # * {Line::Bot::V2::Liff::ApiClient}
+      # * {Line::Bot::V2::ChannelAccessToken::ApiClient}
+      # * {Line::Bot::V2::ManageAudience::ApiClient}
+      # * {Line::Bot::V2::ManageAudience::ApiBlobClient}
+      # * {Line::Bot::V2::Insight::ApiClient}
+      #
       # Initialize a new client.
       #
       # @param options [Hash]
