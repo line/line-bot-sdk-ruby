@@ -41,7 +41,23 @@ module Line
 
         def verify_signature(body:, signature:)
           hash = OpenSSL::HMAC.digest(OpenSSL::Digest.new('SHA256'), @channel_secret, body)
-          signature == Base64.strict_encode64(hash.to_s)
+          expected = Base64.strict_encode64(hash)
+          variable_secure_compare(signature, expected)
+        end
+
+        # To avoid timing attacks
+        def variable_secure_compare(a, b)
+          secure_compare(::Digest::SHA256.hexdigest(a), ::Digest::SHA256.hexdigest(b))
+        end
+
+        def secure_compare(a, b)
+          return false unless a.bytesize == b.bytesize
+
+          l = a.unpack("C#{a.bytesize}")
+
+          res = 0
+          b.each_byte { |byte| res |= byte ^ l.shift }
+          res == 0
         end
 
         def create_instance(klass, attributes)
