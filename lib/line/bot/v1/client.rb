@@ -1652,6 +1652,10 @@ module Line
         httpclient.delete(endpoint_base + endpoint_path, headers)
       end
 
+      # @deprecated
+      # This method is deprecated.
+      # Please use `Line::Bot::V2::WebhookParser#parse` instead.
+      #
       # Parse events from request.body
       #
       # @param request_body [String]
@@ -1670,6 +1674,10 @@ module Line
         end
       end
 
+      # @deprecated
+      # This method is deprecated.
+      # Please use `Line::Bot::V2::WebhookParser#parse` instead.
+      #
       # Validate signature of a webhook event.
       #
       # https://developers.line.biz/en/reference/messaging-api/#signature-validation
