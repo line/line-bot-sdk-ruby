@@ -15,6 +15,8 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is obsolete.
       module ThingsType
         Link = 'link'
         Unlink = 'unlink'
@@ -22,6 +24,10 @@ module Line
         Unsupport = 'unsupport'
       end
 
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::ThingsEvent} instead.
+      #
       # LINE Things API related events.
       #
       # * https://developers.line.biz/en/reference/messaging-api/#device-link-event

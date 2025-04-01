@@ -1772,6 +1772,9 @@ module Line
       end
 
       # @deprecated
+      # This is obsolete.
+      # You may use {Line::Bot::V2::HttpClient#get} instead, but it is not recommended.
+      #
       # Fetch data, get content of specified URL.
       #
       # @param endpoint_base [String]
@@ -1785,6 +1788,9 @@ module Line
       end
 
       # @deprecated
+      # This is obsolete.
+      # You may use {Line::Bot::V2::HttpClient#post} instead, but it is not recommended.
+      #
       # Post data, get content of specified URL.
       #
       # @param endpoint_base [String]
@@ -1799,6 +1805,9 @@ module Line
       end
 
       # @deprecated
+      # This is obsolete.
+      # You may use {Line::Bot::V2::HttpClient#put} instead, but it is not recommended.
+      #
       # Put data, get content of specified URL.
       #
       # @param endpoint_base [String]
@@ -1813,6 +1822,9 @@ module Line
       end
 
       # @deprecated
+      # This is obsolete.
+      # You may use {Line::Bot::V2::HttpClient#delete} instead, but it is not recommended.
+      #
       # Delete content of specified URL.
       #
       # @param endpoint_base [String]

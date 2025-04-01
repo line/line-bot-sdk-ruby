@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::PostbackEvent} instead.
+      #
       # Event object for when a user performs a postback action which initiates a postback.
       #
       # https://developers.line.biz/en/reference/messaging-api/#postback-event

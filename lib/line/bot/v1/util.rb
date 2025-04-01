@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Util
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Utils::camelize} instead.
+      #
       # @return [String]
       def self.camelize(string)
         string.split(/_|(?=[A-Z])/).map(&:capitalize).join

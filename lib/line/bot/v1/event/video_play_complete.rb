@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::VideoPlayComplete} instead.
+      #
       # Event for when a user finishes viewing a video at least once with the specified trackingId sent by the LINE Official Account.
       #
       # https://developers.line.biz/en/reference/messaging-api/#video-viewing-complete

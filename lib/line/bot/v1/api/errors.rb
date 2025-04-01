@@ -15,6 +15,8 @@
 module Line
   module Bot
     module API
+      # @deprecated
+      # This is obsolete. (and there is no caller...)
       class Error < StandardError; end
     end
   end
