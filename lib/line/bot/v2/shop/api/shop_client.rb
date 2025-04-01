@@ -42,14 +42,14 @@ module Line
               body_params: mission_sticker_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Sends a mission sticker.
@@ -59,11 +59,11 @@ module Line
           def mission_sticker_v3(
             mission_sticker_request:
           )
-            body, _status_code, _headers = mission_sticker_v3_with_http_info(
+            response_body, _status_code, _headers = mission_sticker_v3_with_http_info(
               mission_sticker_request: mission_sticker_request
             )
 
-            body
+            response_body
           end
         end
       end

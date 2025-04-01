@@ -42,14 +42,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Download image, video, and audio data sent from users.
@@ -59,11 +59,11 @@ module Line
           def get_message_content(
             message_id:
           )
-            body, _status_code, _headers = get_message_content_with_http_info(
+            response_body, _status_code, _headers = get_message_content_with_http_info(
               message_id: message_id
             )
 
-            body
+            response_body
           end
 
           # Get a preview image of the image or video
@@ -80,14 +80,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get a preview image of the image or video
@@ -97,11 +97,11 @@ module Line
           def get_message_content_preview(
             message_id:
           )
-            body, _status_code, _headers = get_message_content_preview_with_http_info(
+            response_body, _status_code, _headers = get_message_content_preview_with_http_info(
               message_id: message_id
             )
 
-            body
+            response_body
           end
 
           # Verify the preparation status of a video or audio for getting
@@ -118,7 +118,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -129,7 +129,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Verify the preparation status of a video or audio for getting
@@ -139,11 +139,11 @@ module Line
           def get_message_content_transcoding_by_message_id(
             message_id:
           )
-            body, _status_code, _headers = get_message_content_transcoding_by_message_id_with_http_info(
+            response_body, _status_code, _headers = get_message_content_transcoding_by_message_id_with_http_info(
               message_id: message_id
             )
 
-            body
+            response_body
           end
 
           # Download rich menu image.
@@ -160,14 +160,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Download rich menu image.
@@ -177,11 +177,11 @@ module Line
           def get_rich_menu_image(
             rich_menu_id:
           )
-            body, _status_code, _headers = get_rich_menu_image_with_http_info(
+            response_body, _status_code, _headers = get_rich_menu_image_with_http_info(
               rich_menu_id: rich_menu_id
             )
 
-            body
+            response_body
           end
 
           # Upload rich menu image
@@ -201,14 +201,14 @@ module Line
               body_params: body,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Upload rich menu image
@@ -220,12 +220,12 @@ module Line
             rich_menu_id:,
             body: nil
           )
-            body, _status_code, _headers = set_rich_menu_image_with_http_info(
+            response_body, _status_code, _headers = set_rich_menu_image_with_http_info(
               rich_menu_id: rich_menu_id,
               body: body
             )
 
-            body
+            response_body
           end
         end
       end

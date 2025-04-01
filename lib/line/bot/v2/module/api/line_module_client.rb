@@ -45,14 +45,14 @@ module Line
               body_params: acquire_chat_control_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel. 
@@ -64,12 +64,12 @@ module Line
             chat_id:,
             acquire_chat_control_request: nil
           )
-            body, _status_code, _headers = acquire_chat_control_with_http_info(
+            response_body, _status_code, _headers = acquire_chat_control_with_http_info(
               chat_id: chat_id,
               acquire_chat_control_request: acquire_chat_control_request
             )
 
-            body
+            response_body
           end
 
           # The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.
@@ -86,14 +86,14 @@ module Line
               body_params: detach_module_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.
@@ -103,11 +103,11 @@ module Line
           def detach_module(
             detach_module_request: nil
           )
-            body, _status_code, _headers = detach_module_with_http_info(
+            response_body, _status_code, _headers = detach_module_with_http_info(
               detach_module_request: detach_module_request
             )
 
-            body
+            response_body
           end
 
           # Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.
@@ -130,7 +130,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -141,7 +141,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.
@@ -153,12 +153,12 @@ module Line
             start: nil,
             limit: nil
           )
-            body, _status_code, _headers = get_modules_with_http_info(
+            response_body, _status_code, _headers = get_modules_with_http_info(
               start: start,
               limit: limit
             )
 
-            body
+            response_body
           end
 
           # To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API. 
@@ -175,14 +175,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API. 
@@ -192,11 +192,11 @@ module Line
           def release_chat_control(
             chat_id:
           )
-            body, _status_code, _headers = release_chat_control_with_http_info(
+            response_body, _status_code, _headers = release_chat_control_with_http_info(
               chat_id: chat_id
             )
 
-            body
+            response_body
           end
         end
       end
