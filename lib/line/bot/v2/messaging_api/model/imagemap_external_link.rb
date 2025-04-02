@@ -17,11 +17,17 @@ module Line
 
           def initialize(
             link_uri: nil,
-            label: nil
+            label: nil,
+            **dynamic_attributes
           )
             
             @link_uri = link_uri
             @label = label
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

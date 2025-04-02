@@ -30,7 +30,8 @@ module Line
             result_code:,
             action_results: nil,
             ble_notification_payload: nil,
-            error_reason: nil
+            error_reason: nil,
+            **dynamic_attributes
           )
             
             @scenario_id = scenario_id
@@ -41,6 +42,11 @@ module Line
             @action_results = action_results
             @ble_notification_payload = ble_notification_payload
             @error_reason = error_reason
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -16,10 +16,16 @@ module Line
           attr_accessor :id # A user ID or IFA. You can specify an empty array.
 
           def initialize(
-            id: nil
+            id: nil,
+            **dynamic_attributes
           )
             
             @id = id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

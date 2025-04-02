@@ -23,13 +23,19 @@ module Line
             description: nil,
             is_ifa_audience: nil,
             upload_description: nil,
-            audiences: nil
+            audiences: nil,
+            **dynamic_attributes
           )
             
             @description = description
             @is_ifa_audience = is_ifa_audience
             @upload_description = upload_description
             @audiences = audiences
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -16,10 +16,16 @@ module Line
           attr_accessor :data # A hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
 
           def initialize(
-            data:
+            data:,
+            **dynamic_attributes
           )
             
             @data = data
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

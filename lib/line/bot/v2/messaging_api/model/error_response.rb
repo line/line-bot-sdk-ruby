@@ -20,12 +20,18 @@ module Line
           def initialize(
             message:,
             details: nil,
-            sent_messages: nil
+            sent_messages: nil,
+            **dynamic_attributes
           )
             
             @message = message
             @details = details
             @sent_messages = sent_messages
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

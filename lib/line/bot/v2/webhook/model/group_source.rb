@@ -21,12 +21,18 @@ module Line
           def initialize(
             type:,
             group_id:,
-            user_id: nil
+            user_id: nil,
+            **dynamic_attributes
           )
             @type = "group"
             
             @group_id = group_id
             @user_id = user_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

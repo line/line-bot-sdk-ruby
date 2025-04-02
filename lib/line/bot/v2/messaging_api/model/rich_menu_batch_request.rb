@@ -17,11 +17,17 @@ module Line
 
           def initialize(
             operations:,
-            resume_request_key: nil
+            resume_request_key: nil,
+            **dynamic_attributes
           )
             
             @operations = operations
             @resume_request_key = resume_request_key
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -16,10 +16,16 @@ module Line
           attr_accessor :richmenus # Rich menus
 
           def initialize(
-            richmenus:
+            richmenus:,
+            **dynamic_attributes
           )
             
             @richmenus = richmenus
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -37,7 +37,8 @@ module Line
             api_push: nil,
             api_multicast: nil,
             api_narrowcast: nil,
-            api_reply: nil
+            api_reply: nil,
+            **dynamic_attributes
           )
             
             @status = status
@@ -51,6 +52,11 @@ module Line
             @api_multicast = api_multicast
             @api_narrowcast = api_narrowcast
             @api_reply = api_reply
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

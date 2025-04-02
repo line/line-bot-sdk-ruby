@@ -21,12 +21,18 @@ module Line
           def initialize(
             access_token:,
             expires_in:,
-            token_type: 'Bearer'
+            token_type: 'Bearer',
+            **dynamic_attributes
           )
             
             @access_token = access_token
             @expires_in = expires_in
             @token_type = token_type
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

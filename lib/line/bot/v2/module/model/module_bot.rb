@@ -25,7 +25,8 @@ module Line
             basic_id:,
             premium_id: nil,
             display_name:,
-            picture_url: nil
+            picture_url: nil,
+            **dynamic_attributes
           )
             
             @user_id = user_id
@@ -33,6 +34,11 @@ module Line
             @premium_id = premium_id
             @display_name = display_name
             @picture_url = picture_url
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

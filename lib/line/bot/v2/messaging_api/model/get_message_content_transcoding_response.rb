@@ -17,10 +17,16 @@ module Line
           attr_accessor :status # The preparation status. One of:  `processing`: Preparing to get content. `succeeded`: Ready to get the content. You can get the content sent by users. `failed`: Failed to prepare to get the content. 
 
           def initialize(
-            status:
+            status:,
+            **dynamic_attributes
           )
             
             @status = status
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

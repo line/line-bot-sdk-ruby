@@ -17,11 +17,17 @@ module Line
 
           def initialize(
             image_url:,
-            action:
+            action:,
+            **dynamic_attributes
           )
             
             @image_url = image_url
             @action = action
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

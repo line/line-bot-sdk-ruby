@@ -18,11 +18,17 @@ module Line
           attr_accessor :audience_group_id
 
           def initialize(
-            audience_group_id: nil
+            audience_group_id: nil,
+            **dynamic_attributes
           )
             @type = "audience"
             
             @audience_group_id = audience_group_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

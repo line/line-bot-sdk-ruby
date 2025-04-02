@@ -21,12 +21,18 @@ module Line
           def initialize(
             type:,
             user_id: nil,
-            room_id:
+            room_id:,
+            **dynamic_attributes
           )
             @type = "room"
             
             @user_id = user_id
             @room_id = room_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

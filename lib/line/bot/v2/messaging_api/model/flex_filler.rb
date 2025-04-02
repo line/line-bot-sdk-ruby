@@ -18,11 +18,17 @@ module Line
           attr_accessor :flex
 
           def initialize(
-            flex: nil
+            flex: nil,
+            **dynamic_attributes
           )
             @type = "filler"
             
             @flex = flex
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

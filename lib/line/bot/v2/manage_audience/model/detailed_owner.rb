@@ -20,12 +20,18 @@ module Line
           def initialize(
             service_type: nil,
             id: nil,
-            name: nil
+            name: nil,
+            **dynamic_attributes
           )
             
             @service_type = service_type
             @id = id
             @name = name
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

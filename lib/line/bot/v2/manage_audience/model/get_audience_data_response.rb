@@ -21,12 +21,18 @@ module Line
           def initialize(
             audience_group: nil,
             jobs: nil,
-            adaccount: nil
+            adaccount: nil,
+            **dynamic_attributes
           )
             
             @audience_group = audience_group
             @jobs = jobs
             @adaccount = adaccount
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

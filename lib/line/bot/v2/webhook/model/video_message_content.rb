@@ -25,7 +25,8 @@ module Line
             id:,
             duration: nil,
             content_provider:,
-            quote_token:
+            quote_token:,
+            **dynamic_attributes
           )
             @type = "video"
             
@@ -33,6 +34,11 @@ module Line
             @duration = duration
             @content_provider = content_provider
             @quote_token = quote_token
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

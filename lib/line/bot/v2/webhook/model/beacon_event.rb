@@ -32,7 +32,8 @@ module Line
             webhook_event_id:,
             delivery_context:,
             reply_token:,
-            beacon:
+            beacon:,
+            **dynamic_attributes
           )
             @type = "beacon"
             
@@ -43,6 +44,11 @@ module Line
             @delivery_context = delivery_context
             @reply_token = reply_token
             @beacon = beacon
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

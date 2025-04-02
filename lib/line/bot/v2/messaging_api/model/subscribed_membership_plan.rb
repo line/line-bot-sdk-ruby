@@ -26,7 +26,8 @@ module Line
             description:,
             benefits:,
             price:,
-            currency:
+            currency:,
+            **dynamic_attributes
           )
             
             @membership_id = membership_id
@@ -35,6 +36,11 @@ module Line
             @benefits = benefits
             @price = price
             @currency = currency
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

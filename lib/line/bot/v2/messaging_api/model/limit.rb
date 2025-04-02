@@ -19,11 +19,17 @@ module Line
 
           def initialize(
             max: nil,
-            up_to_remaining_quota: false
+            up_to_remaining_quota: false,
+            **dynamic_attributes
           )
             
             @max = max
             @up_to_remaining_quota = up_to_remaining_quota
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

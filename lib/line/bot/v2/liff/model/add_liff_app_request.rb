@@ -26,7 +26,8 @@ module Line
             features: nil,
             permanent_link_pattern: nil,
             scope: nil,
-            bot_prompt: nil
+            bot_prompt: nil,
+            **dynamic_attributes
           )
             
             @view = view
@@ -35,6 +36,11 @@ module Line
             @permanent_link_pattern = permanent_link_pattern
             @scope = scope
             @bot_prompt = bot_prompt
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

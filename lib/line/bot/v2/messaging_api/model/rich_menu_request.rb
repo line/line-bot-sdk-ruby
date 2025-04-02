@@ -23,7 +23,8 @@ module Line
             selected: nil,
             name: nil,
             chat_bar_text: nil,
-            areas: nil
+            areas: nil,
+            **dynamic_attributes
           )
             
             @size = size
@@ -31,6 +32,11 @@ module Line
             @name = name
             @chat_bar_text = chat_bar_text
             @areas = areas
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

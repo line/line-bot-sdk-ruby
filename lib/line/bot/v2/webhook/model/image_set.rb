@@ -19,12 +19,18 @@ module Line
           def initialize(
             id:,
             index: nil,
-            total: nil
+            total: nil,
+            **dynamic_attributes
           )
             
             @id = id
             @index = index
             @total = total
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

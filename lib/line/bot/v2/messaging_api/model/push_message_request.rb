@@ -22,13 +22,19 @@ module Line
             to:,
             messages:,
             notification_disabled: false,
-            custom_aggregation_units: nil
+            custom_aggregation_units: nil,
+            **dynamic_attributes
           )
             
             @to = to
             @messages = messages
             @notification_disabled = notification_disabled
             @custom_aggregation_units = custom_aggregation_units
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -27,7 +27,8 @@ module Line
             ages: nil,
             areas: nil,
             app_types: nil,
-            subscription_periods: nil
+            subscription_periods: nil,
+            **dynamic_attributes
           )
             
             @available = available
@@ -36,6 +37,11 @@ module Line
             @areas = areas
             @app_types = app_types
             @subscription_periods = subscription_periods
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

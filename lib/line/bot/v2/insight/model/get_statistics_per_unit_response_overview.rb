@@ -23,13 +23,19 @@ module Line
             unique_impression: nil,
             unique_click: nil,
             unique_media_played: nil,
-            unique_media_played100_percent: nil
+            unique_media_played100_percent: nil,
+            **dynamic_attributes
           )
             
             @unique_impression = unique_impression
             @unique_click = unique_click
             @unique_media_played = unique_media_played
             @unique_media_played100_percent = unique_media_played100_percent
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -37,7 +37,8 @@ module Line
             offset_bottom: nil,
             offset_start: nil,
             offset_end: nil,
-            scaling: nil
+            scaling: nil,
+            **dynamic_attributes
           )
             @type = "icon"
             
@@ -51,6 +52,11 @@ module Line
             @offset_start = offset_start
             @offset_end = offset_end
             @scaling = scaling
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

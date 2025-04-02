@@ -17,11 +17,17 @@ module Line
 
           def initialize(
             subscription_period: nil,
-            percentage: nil
+            percentage: nil,
+            **dynamic_attributes
           )
             
             @subscription_period = subscription_period
             @percentage = percentage
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

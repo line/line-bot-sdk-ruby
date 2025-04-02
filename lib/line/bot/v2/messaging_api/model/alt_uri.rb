@@ -15,10 +15,16 @@ module Line
           attr_accessor :desktop
 
           def initialize(
-            desktop: nil
+            desktop: nil,
+            **dynamic_attributes
           )
             
             @desktop = desktop
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

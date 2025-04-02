@@ -21,13 +21,19 @@ module Line
             original_content_url: nil,
             preview_image_url: nil,
             area: nil,
-            external_link: nil
+            external_link: nil,
+            **dynamic_attributes
           )
             
             @original_content_url = original_content_url
             @preview_image_url = preview_image_url
             @area = area
             @external_link = external_link
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

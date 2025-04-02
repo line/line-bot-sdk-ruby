@@ -20,12 +20,18 @@ module Line
           def initialize(
             client_id:,
             expires_in:,
-            scope: nil
+            scope: nil,
+            **dynamic_attributes
           )
             
             @client_id = client_id
             @expires_in = expires_in
             @scope = scope
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -26,7 +26,8 @@ module Line
             title: nil,
             text:,
             default_action: nil,
-            actions:
+            actions:,
+            **dynamic_attributes
           )
             
             @thumbnail_image_url = thumbnail_image_url
@@ -35,6 +36,11 @@ module Line
             @text = text
             @default_action = default_action
             @actions = actions
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

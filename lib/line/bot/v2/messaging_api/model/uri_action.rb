@@ -22,13 +22,19 @@ module Line
           def initialize(
             label: nil,
             uri: nil,
-            alt_uri: nil
+            alt_uri: nil,
+            **dynamic_attributes
           )
             @type = "uri"
             
             @label = label
             @uri = uri
             @alt_uri = alt_uri
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -22,13 +22,19 @@ module Line
           def initialize(
             _and: nil,
             _or: nil,
-            _not: nil
+            _not: nil,
+            **dynamic_attributes
           )
             @type = "operator"
             
             @_and = _and
             @_or = _or
             @_not = _not
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -22,13 +22,19 @@ module Line
           def initialize(
             label: nil,
             data: nil,
-            rich_menu_alias_id: nil
+            rich_menu_alias_id: nil,
+            **dynamic_attributes
           )
             @type = "richmenuswitch"
             
             @label = label
             @data = data
             @rich_menu_alias_id = rich_menu_alias_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

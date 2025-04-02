@@ -31,7 +31,8 @@ module Line
             job_status: nil,
             failed_type: nil,
             audience_count: nil,
-            created: nil
+            created: nil,
+            **dynamic_attributes
           )
             
             @audience_group_job_id = audience_group_job_id
@@ -42,6 +43,11 @@ module Line
             @failed_type = failed_type
             @audience_count = audience_count
             @created = created
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

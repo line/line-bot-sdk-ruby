@@ -18,11 +18,17 @@ module Line
 
           def initialize(
             messages:,
-            notification_disabled: false
+            notification_disabled: false,
+            **dynamic_attributes
           )
             
             @messages = messages
             @notification_disabled = notification_disabled
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

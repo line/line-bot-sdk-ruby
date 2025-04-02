@@ -32,7 +32,8 @@ module Line
             body: nil,
             footer: nil,
             size: nil,
-            action: nil
+            action: nil,
+            **dynamic_attributes
           )
             @type = "bubble"
             
@@ -44,6 +45,11 @@ module Line
             @footer = footer
             @size = size
             @action = action
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

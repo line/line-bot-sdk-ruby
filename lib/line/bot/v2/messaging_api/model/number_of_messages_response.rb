@@ -17,11 +17,17 @@ module Line
 
           def initialize(
             status:,
-            success: nil
+            success: nil,
+            **dynamic_attributes
           )
             
             @status = status
             @success = success
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

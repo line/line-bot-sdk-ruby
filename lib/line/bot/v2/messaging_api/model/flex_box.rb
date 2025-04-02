@@ -70,7 +70,8 @@ module Line
             action: nil,
             justify_content: nil,
             align_items: nil,
-            background: nil
+            background: nil,
+            **dynamic_attributes
           )
             @type = "box"
             
@@ -101,6 +102,11 @@ module Line
             @justify_content = justify_content
             @align_items = align_items
             @background = background
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

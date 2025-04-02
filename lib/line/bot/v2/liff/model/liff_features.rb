@@ -17,11 +17,17 @@ module Line
 
           def initialize(
             ble: nil,
-            qr_code: false
+            qr_code: false,
+            **dynamic_attributes
           )
             
             @ble = ble
             @qr_code = qr_code
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

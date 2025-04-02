@@ -20,12 +20,18 @@ module Line
           def initialize(
             type:,
             quick_reply: nil,
-            sender: nil
+            sender: nil,
+            **dynamic_attributes
           )
             
             @type = type
             @quick_reply = quick_reply
             @sender = sender
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

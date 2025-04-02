@@ -22,13 +22,19 @@ module Line
           def initialize(
             columns:,
             image_aspect_ratio: nil,
-            image_size: nil
+            image_size: nil,
+            **dynamic_attributes
           )
             @type = "carousel"
             
             @columns = columns
             @image_aspect_ratio = image_aspect_ratio
             @image_size = image_size
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

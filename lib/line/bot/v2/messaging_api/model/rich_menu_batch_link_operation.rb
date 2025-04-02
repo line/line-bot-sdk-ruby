@@ -21,12 +21,18 @@ module Line
 
           def initialize(
             from:,
-            to:
+            to:,
+            **dynamic_attributes
           )
             @type = "link"
             
             @from = from
             @to = to
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

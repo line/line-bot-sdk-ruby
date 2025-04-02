@@ -22,13 +22,19 @@ module Line
             membership_no:,
             joined_time:,
             next_billing_date:,
-            total_subscription_months:
+            total_subscription_months:,
+            **dynamic_attributes
           )
             
             @membership_no = membership_no
             @joined_time = joined_time
             @next_billing_date = next_billing_date
             @total_subscription_months = total_subscription_months
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

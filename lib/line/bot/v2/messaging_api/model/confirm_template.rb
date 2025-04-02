@@ -20,12 +20,18 @@ module Line
 
           def initialize(
             text:,
-            actions:
+            actions:,
+            **dynamic_attributes
           )
             @type = "confirm"
             
             @text = text
             @actions = actions
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

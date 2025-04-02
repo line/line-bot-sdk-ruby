@@ -17,10 +17,16 @@ module Line
           attr_accessor :items # Quick reply button objects.
 
           def initialize(
-            items: nil
+            items: nil,
+            **dynamic_attributes
           )
             
             @items = items
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -18,11 +18,17 @@ module Line
           attr_accessor :one_of
 
           def initialize(
-            one_of: nil
+            one_of: nil,
+            **dynamic_attributes
           )
             @type = "area"
             
             @one_of = one_of
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

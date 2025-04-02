@@ -19,11 +19,17 @@ module Line
 
           def initialize(
             bots:,
-            _next: nil
+            _next: nil,
+            **dynamic_attributes
           )
             
             @bots = bots
             @_next = _next
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

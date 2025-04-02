@@ -27,7 +27,8 @@ module Line
             sender: nil,
             original_content_url:,
             preview_image_url:,
-            tracking_id: nil
+            tracking_id: nil,
+            **dynamic_attributes
           )
             @type = "video"
             
@@ -36,6 +37,11 @@ module Line
             @original_content_url = original_content_url
             @preview_image_url = preview_image_url
             @tracking_id = tracking_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

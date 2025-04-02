@@ -16,10 +16,16 @@ module Line
           attr_accessor :demographic
 
           def initialize(
-            demographic: nil
+            demographic: nil,
+            **dynamic_attributes
           )
             
             @demographic = demographic
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

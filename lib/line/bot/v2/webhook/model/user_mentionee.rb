@@ -26,7 +26,8 @@ module Line
             index:,
             length:,
             user_id: nil,
-            is_self: nil
+            is_self: nil,
+            **dynamic_attributes
           )
             @type = "user"
             
@@ -34,6 +35,11 @@ module Line
             @length = length
             @user_id = user_id
             @is_self = is_self
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

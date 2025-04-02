@@ -25,7 +25,8 @@ module Line
             selected:,
             name:,
             chat_bar_text:,
-            areas:
+            areas:,
+            **dynamic_attributes
           )
             
             @rich_menu_id = rich_menu_id
@@ -34,6 +35,11 @@ module Line
             @name = name
             @chat_bar_text = chat_bar_text
             @areas = areas
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -17,11 +17,17 @@ module Line
 
           def initialize(
             member_ids:,
-            _next: nil
+            _next: nil,
+            **dynamic_attributes
           )
             
             @member_ids = member_ids
             @_next = _next
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

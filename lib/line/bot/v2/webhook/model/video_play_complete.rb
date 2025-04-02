@@ -15,10 +15,16 @@ module Line
           attr_accessor :tracking_id # ID used to identify a video. Returns the same value as the trackingId assigned to the video message.
 
           def initialize(
-            tracking_id:
+            tracking_id:,
+            **dynamic_attributes
           )
             
             @tracking_id = tracking_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

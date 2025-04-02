@@ -18,11 +18,17 @@ module Line
 
           def initialize(
             custom_aggregation_units:,
-            _next: nil
+            _next: nil,
+            **dynamic_attributes
           )
             
             @custom_aggregation_units = custom_aggregation_units
             @_next = _next
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

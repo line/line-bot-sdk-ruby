@@ -15,10 +15,16 @@ module Line
           attr_accessor :messages # Array of message objects to validate
 
           def initialize(
-            messages:
+            messages:,
+            **dynamic_attributes
           )
             
             @messages = messages
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

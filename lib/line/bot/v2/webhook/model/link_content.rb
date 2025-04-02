@@ -18,11 +18,17 @@ module Line
 
           def initialize(
             result:,
-            nonce:
+            nonce:,
+            **dynamic_attributes
           )
             
             @result = result
             @nonce = nonce
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

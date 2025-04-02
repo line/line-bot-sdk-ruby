@@ -17,10 +17,16 @@ module Line
           attr_accessor :type # The type of operation to the rich menu linked to the user. One of link, unlink, or unlinkAll.
 
           def initialize(
-            type:
+            type:,
+            **dynamic_attributes
           )
             
             @type = type
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -18,11 +18,17 @@ module Line
 
           def initialize(
             name: nil,
-            icon_url: nil
+            icon_url: nil,
+            **dynamic_attributes
           )
             
             @name = name
             @icon_url = icon_url
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -19,11 +19,17 @@ module Line
 
           def initialize(
             expired: nil,
-            ttl: nil
+            ttl: nil,
+            **dynamic_attributes
           )
             
             @expired = expired
             @ttl = ttl
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

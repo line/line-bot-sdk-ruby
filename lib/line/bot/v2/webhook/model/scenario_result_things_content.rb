@@ -21,12 +21,18 @@ module Line
           def initialize(
             type:,
             device_id:,
-            result:
+            result:,
+            **dynamic_attributes
           )
             @type = "scenarioResult"
             
             @device_id = device_id
             @result = result
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

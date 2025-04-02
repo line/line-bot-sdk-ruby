@@ -21,12 +21,18 @@ module Line
           def initialize(
             type:,
             bot_id:,
-            reason:
+            reason:,
+            **dynamic_attributes
           )
             @type = "detached"
             
             @bot_id = bot_id
             @reason = reason
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

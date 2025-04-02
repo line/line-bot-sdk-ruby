@@ -24,7 +24,8 @@ module Line
             user_id:,
             picture_url: nil,
             status_message: nil,
-            language: nil
+            language: nil,
+            **dynamic_attributes
           )
             
             @display_name = display_name
@@ -32,6 +33,11 @@ module Line
             @picture_url = picture_url
             @status_message = status_message
             @language = language
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

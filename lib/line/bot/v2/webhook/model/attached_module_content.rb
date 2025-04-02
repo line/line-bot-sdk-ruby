@@ -21,12 +21,18 @@ module Line
           def initialize(
             type:,
             bot_id:,
-            scopes:
+            scopes:,
+            **dynamic_attributes
           )
             @type = "attached"
             
             @bot_id = bot_id
             @scopes = scopes
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

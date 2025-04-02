@@ -31,7 +31,8 @@ module Line
             alt_text:,
             base_size:,
             actions:,
-            video: nil
+            video: nil,
+            **dynamic_attributes
           )
             @type = "imagemap"
             
@@ -42,6 +43,11 @@ module Line
             @base_size = base_size
             @actions = actions
             @video = video
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

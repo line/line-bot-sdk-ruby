@@ -28,7 +28,8 @@ module Line
             color: nil,
             weight: nil,
             style: nil,
-            decoration: nil
+            decoration: nil,
+            **dynamic_attributes
           )
             @type = "span"
             
@@ -38,6 +39,11 @@ module Line
             @weight = weight
             @style = style
             @decoration = decoration
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

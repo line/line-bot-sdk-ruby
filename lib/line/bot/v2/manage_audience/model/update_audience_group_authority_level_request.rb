@@ -17,10 +17,16 @@ module Line
           attr_accessor :authority_level
 
           def initialize(
-            authority_level: nil
+            authority_level: nil,
+            **dynamic_attributes
           )
             
             @authority_level = authority_level
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

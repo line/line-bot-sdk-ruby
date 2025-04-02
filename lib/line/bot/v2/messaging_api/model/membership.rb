@@ -33,7 +33,8 @@ module Line
             member_count:,
             member_limit:,
             is_in_app_purchase:,
-            is_published:
+            is_published:,
+            **dynamic_attributes
           )
             
             @membership_id = membership_id
@@ -46,6 +47,11 @@ module Line
             @member_limit = member_limit
             @is_in_app_purchase = is_in_app_purchase
             @is_published = is_published
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

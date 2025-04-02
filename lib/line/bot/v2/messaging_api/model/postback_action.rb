@@ -28,7 +28,8 @@ module Line
             display_text: nil,
             text: nil,
             input_option: nil,
-            fill_in_text: nil
+            fill_in_text: nil,
+            **dynamic_attributes
           )
             @type = "postback"
             
@@ -38,6 +39,11 @@ module Line
             @text = text
             @input_option = input_option
             @fill_in_text = fill_in_text
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

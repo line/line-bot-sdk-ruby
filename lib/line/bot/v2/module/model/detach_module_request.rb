@@ -17,10 +17,16 @@ module Line
           attr_accessor :bot_id # User ID of the LINE Official Account bot attached to the module channel.
 
           def initialize(
-            bot_id: nil
+            bot_id: nil,
+            **dynamic_attributes
           )
             
             @bot_id = bot_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

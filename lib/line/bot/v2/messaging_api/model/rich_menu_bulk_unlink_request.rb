@@ -16,10 +16,16 @@ module Line
           attr_accessor :user_ids # Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
 
           def initialize(
-            user_ids:
+            user_ids:,
+            **dynamic_attributes
           )
             
             @user_ids = user_ids
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

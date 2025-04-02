@@ -29,7 +29,8 @@ module Line
             emojis: nil,
             mention: nil,
             quote_token:,
-            quoted_message_id: nil
+            quoted_message_id: nil,
+            **dynamic_attributes
           )
             @type = "text"
             
@@ -39,6 +40,11 @@ module Line
             @mention = mention
             @quote_token = quote_token
             @quoted_message_id = quoted_message_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

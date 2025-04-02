@@ -16,10 +16,16 @@ module Line
           attr_accessor :memberships # List of membership information
 
           def initialize(
-            memberships:
+            memberships:,
+            **dynamic_attributes
           )
             
             @memberships = memberships
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

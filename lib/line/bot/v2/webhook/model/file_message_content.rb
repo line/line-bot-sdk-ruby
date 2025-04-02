@@ -23,13 +23,19 @@ module Line
             type:,
             id:,
             file_name:,
-            file_size:
+            file_size:,
+            **dynamic_attributes
           )
             @type = "file"
             
             @id = id
             @file_name = file_name
             @file_size = file_size
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

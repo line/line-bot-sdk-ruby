@@ -19,11 +19,17 @@ module Line
           attr_accessor :from
 
           def initialize(
-            from:
+            from:,
+            **dynamic_attributes
           )
             @type = "unlink"
             
             @from = from
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

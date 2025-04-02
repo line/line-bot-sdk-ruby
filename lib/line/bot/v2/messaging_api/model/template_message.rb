@@ -25,7 +25,8 @@ module Line
             quick_reply: nil,
             sender: nil,
             alt_text:,
-            template:
+            template:,
+            **dynamic_attributes
           )
             @type = "template"
             
@@ -33,6 +34,11 @@ module Line
             @sender = sender
             @alt_text = alt_text
             @template = template
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

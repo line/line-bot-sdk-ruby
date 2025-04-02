@@ -28,7 +28,8 @@ module Line
             display_name:,
             picture_url: nil,
             chat_mode:,
-            mark_as_read_mode:
+            mark_as_read_mode:,
+            **dynamic_attributes
           )
             
             @user_id = user_id
@@ -38,6 +39,11 @@ module Line
             @picture_url = picture_url
             @chat_mode = chat_mode
             @mark_as_read_mode = mark_as_read_mode
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

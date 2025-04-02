@@ -21,12 +21,18 @@ module Line
           def initialize(
             overview:,
             messages:,
-            clicks:
+            clicks:,
+            **dynamic_attributes
           )
             
             @overview = overview
             @messages = messages
             @clicks = clicks
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end
