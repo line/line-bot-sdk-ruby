@@ -366,6 +366,31 @@ describe 'misc' do
     end
   end
 
+  describe 'HTTP Request' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:user_id) { 'u1234567890' }
+    let(:response_body) { { displayName: "LINE taro", userId: user_id, language: "en", pictureUrl: "https://profile.line-scdn.net/ch/v2/p/uf9da5ee2b...", statusMessage: "Hello, LINE!" }.to_json }
+    let(:response_code) { 200 }
+
+    it 'has correct User-Agent header' do
+      path = "https://api.line.me/v2/bot/profile/#{user_id}"
+      stub_request(:get, path)
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.get_profile_with_http_info(user_id: user_id)
+
+      expect(status_code).to eq(response_code)
+      expect(body.user_id).to eq(user_id)
+      expect(WebMock).to have_requested(:get, path).
+        with(headers: { 'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::V2::VERSION}" })
+    end
+  end
+
   describe 'Line::Bot::V2::MessagingApi::TemplateMessage#initialize' do
     it "contains fixed type attribute" do
       template_message = Line::Bot::V2::MessagingApi::TemplateMessage.new(
