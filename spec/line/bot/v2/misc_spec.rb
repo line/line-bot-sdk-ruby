@@ -342,6 +342,52 @@ describe 'misc' do
       expect(status_code).to eq(200)
       expect(body).to eq("{}")
     end
+
+    it 'request with  x-line-retry-key header - success' do
+      uuid = 'f03c3eb4-0267-4080-9e65-fffa184e1933'
+      stub_request(:post, "https://api.line.me/v2/bot/message/broadcast")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token",
+            'X-Line-Retry-Key' => uuid
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.broadcast_with_http_info(broadcast_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: uuid)
+
+      expect(status_code).to eq(200)
+      expect(body).to eq("{}")
+    end
+
+    it 'request with  x-line-retry-key header - conflicted' do
+      uuid = '2a6e07b0-0fcf-439f-908b-828ed527e882'
+      request_id = '3a785346-2cf3-482f-8469-c893117fcef8'
+      accepted_request_id = '4a6e07b0-0fcf-439f-908b-828ed527e882'
+
+      error_response_body = { "message" => "The retry key is already accepted" }.to_json
+      error_response_headers = {
+        'Content-Type' => 'application/json',
+        'x-line-request-id' => request_id,
+        'x-line-accepted-request-id' => accepted_request_id
+      }
+      stub_request(:post, "https://api.line.me/v2/bot/message/broadcast")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token",
+            'X-Line-Retry-Key' => uuid
+          }
+        )
+        .to_return(status: 409, body: error_response_body, headers: error_response_headers)
+
+      body, status_code, headers = client.broadcast_with_http_info(broadcast_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: uuid)
+
+      expect(status_code).to eq(409)
+      ## instance of Line::Bot::V2::MessagingApi::ErrorResponse
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::ErrorResponse)
+      expect(headers['x-line-request-id']).to eq(request_id)
+      expect(headers['x-line-accepted-request-id']).to eq(accepted_request_id)
+    end
   end
 
   describe 'GET /v2/bot/message/aggregation/list' do
