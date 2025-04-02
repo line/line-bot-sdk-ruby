@@ -43,8 +43,8 @@ describe 'misc' do
             .with(
               body: "{\"description\":\"Test Audience\"}",
               headers: {
-                'Authorization'=>"Bearer #{channel_access_token}",
-                'Content-Type'=>'application/json',
+                'Authorization' => "Bearer #{channel_access_token}",
+                'Content-Type' => 'application/json',
               }
             )
             .to_return(status: 202, body: "{\"description\": \"Test Audience response\"}", headers: {})
@@ -142,7 +142,7 @@ describe 'misc' do
     it "doesn't require bearer token" do
       stub_request(:post, "https://api.line.me/v2/oauth/accessToken")
         .with(
-          body: {"clientId"=>"test-client-id", "clientSecret"=>"test-client-secret", "grantType"=>"client_credentials" }
+          body: { "clientId" => "test-client-id", "clientSecret" => "test-client-secret", "grantType" => "client_credentials" }
         )
         .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
@@ -159,10 +159,10 @@ describe 'misc' do
 
   describe 'GET /v2/bot/followers/ids' do
     let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
-    let(:response_body) { { "user_ids" => ["U1234567890", "U0987654321"] }.to_json }
     let(:response_code) { 200 }
 
     it 'returns a list of followers successfully without optional parameters' do
+      response_body = { "user_ids" => ["U1234567890", "U0987654321"] }.to_json
       stub_request(:get, "https://api.line.me/v2/bot/followers/ids")
         .with(
           headers: {
@@ -175,6 +175,40 @@ describe 'misc' do
 
       expect(status_code).to eq(200)
       expect(body.user_ids).to eq(["U1234567890", "U0987654321"])
+    end
+
+    it 'query with only start' do
+      response_body = { "user_ids" => ["U1234567890", "U0987654321"], "next" => "nExT Token" }.to_json
+      stub_request(:get, "https://api.line.me/v2/bot/followers/ids?start=from%20previous%20NEXT")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.get_followers_with_http_info(start: "from previous NEXT")
+
+      expect(status_code).to eq(200)
+      expect(body.user_ids).to eq(["U1234567890", "U0987654321"])
+      expect(body._next).to eq("nExT Token")
+    end
+
+    it 'query with limit and start' do
+      response_body = { "user_ids" => ["U1234567890", "U0987654321"], "next" => "nExT Token" }.to_json
+      stub_request(:get, "https://api.line.me/v2/bot/followers/ids?limit=10&start=from%20previous%20NEXT")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.get_followers_with_http_info(start: "from previous NEXT", limit: 10)
+
+      expect(status_code).to eq(200)
+      expect(body.user_ids).to eq(["U1234567890", "U0987654321"])
+      expect(body._next).to eq("nExT Token")
     end
   end
 
