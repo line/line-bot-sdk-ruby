@@ -48,7 +48,7 @@ module Line
               headers: header_params
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    when 400
@@ -79,7 +79,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Sends a message to multiple users at any time.
@@ -91,12 +91,12 @@ module Line
             broadcast_request:,
             x_line_retry_key: nil
           )
-            body, _status_code, _headers = broadcast_with_http_info(
+            response_body, _status_code, _headers = broadcast_with_http_info(
               broadcast_request: broadcast_request,
               x_line_retry_key: x_line_retry_key
             )
 
-            body
+            response_body
           end
 
           # Cancel default rich menu
@@ -110,14 +110,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Cancel default rich menu
@@ -125,10 +125,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#cancel-default-rich-menu
           def cancel_default_rich_menu(
           )
-            body, _status_code, _headers = cancel_default_rich_menu_with_http_info(
+            response_body, _status_code, _headers = cancel_default_rich_menu_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Create rich menu
@@ -145,7 +145,7 @@ module Line
               body_params: rich_menu_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -156,7 +156,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Create rich menu
@@ -166,11 +166,11 @@ module Line
           def create_rich_menu(
             rich_menu_request:
           )
-            body, _status_code, _headers = create_rich_menu_with_http_info(
+            response_body, _status_code, _headers = create_rich_menu_with_http_info(
               rich_menu_request: rich_menu_request
             )
 
-            body
+            response_body
           end
 
           # Create rich menu alias
@@ -187,7 +187,7 @@ module Line
               body_params: create_rich_menu_alias_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    when 400
@@ -200,7 +200,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Create rich menu alias
@@ -210,11 +210,11 @@ module Line
           def create_rich_menu_alias(
             create_rich_menu_alias_request:
           )
-            body, _status_code, _headers = create_rich_menu_alias_with_http_info(
+            response_body, _status_code, _headers = create_rich_menu_alias_with_http_info(
               create_rich_menu_alias_request: create_rich_menu_alias_request
             )
 
-            body
+            response_body
           end
 
           # Deletes a rich menu.
@@ -231,14 +231,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Deletes a rich menu.
@@ -248,11 +248,11 @@ module Line
           def delete_rich_menu(
             rich_menu_id:
           )
-            body, _status_code, _headers = delete_rich_menu_with_http_info(
+            response_body, _status_code, _headers = delete_rich_menu_with_http_info(
               rich_menu_id: rich_menu_id
             )
 
-            body
+            response_body
           end
 
           # Delete rich menu alias
@@ -269,7 +269,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    when 400
@@ -282,7 +282,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Delete rich menu alias
@@ -292,11 +292,11 @@ module Line
           def delete_rich_menu_alias(
             rich_menu_alias_id:
           )
-            body, _status_code, _headers = delete_rich_menu_alias_with_http_info(
+            response_body, _status_code, _headers = delete_rich_menu_alias_with_http_info(
               rich_menu_alias_id: rich_menu_alias_id
             )
 
-            body
+            response_body
           end
 
           # Get name list of units used this month
@@ -319,7 +319,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -330,7 +330,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get name list of units used this month
@@ -342,12 +342,12 @@ module Line
             limit: nil,
             start: nil
           )
-            body, _status_code, _headers = get_aggregation_unit_name_list_with_http_info(
+            response_body, _status_code, _headers = get_aggregation_unit_name_list_with_http_info(
               limit: limit,
               start: start
             )
 
-            body
+            response_body
           end
 
           # Get number of units used this month
@@ -361,7 +361,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -372,7 +372,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get number of units used this month
@@ -380,10 +380,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-units-used-this-month
           def get_aggregation_unit_usage(
           )
-            body, _status_code, _headers = get_aggregation_unit_usage_with_http_info(
+            response_body, _status_code, _headers = get_aggregation_unit_usage_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Get bot info
@@ -397,7 +397,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -408,7 +408,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get bot info
@@ -416,10 +416,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-bot-info
           def get_bot_info(
           )
-            body, _status_code, _headers = get_bot_info_with_http_info(
+            response_body, _status_code, _headers = get_bot_info_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Gets the ID of the default rich menu set with the Messaging API.
@@ -433,7 +433,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -444,7 +444,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets the ID of the default rich menu set with the Messaging API.
@@ -452,10 +452,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id
           def get_default_rich_menu_id(
           )
-            body, _status_code, _headers = get_default_rich_menu_id_with_http_info(
+            response_body, _status_code, _headers = get_default_rich_menu_id_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Get a list of users who added your LINE Official Account as a friend
@@ -478,7 +478,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -489,7 +489,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get a list of users who added your LINE Official Account as a friend
@@ -501,12 +501,12 @@ module Line
             start: nil,
             limit: nil
           )
-            body, _status_code, _headers = get_followers_with_http_info(
+            response_body, _status_code, _headers = get_followers_with_http_info(
               start: start,
               limit: limit
             )
 
-            body
+            response_body
           end
 
           # Get number of users in a group chat
@@ -523,7 +523,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -534,7 +534,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get number of users in a group chat
@@ -544,11 +544,11 @@ module Line
           def get_group_member_count(
             group_id:
           )
-            body, _status_code, _headers = get_group_member_count_with_http_info(
+            response_body, _status_code, _headers = get_group_member_count_with_http_info(
               group_id: group_id
             )
 
-            body
+            response_body
           end
 
           # Get group chat member profile
@@ -568,7 +568,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -579,7 +579,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get group chat member profile
@@ -591,12 +591,12 @@ module Line
             group_id:,
             user_id:
           )
-            body, _status_code, _headers = get_group_member_profile_with_http_info(
+            response_body, _status_code, _headers = get_group_member_profile_with_http_info(
               group_id: group_id,
               user_id: user_id
             )
 
-            body
+            response_body
           end
 
           # Get group chat member user IDs
@@ -619,7 +619,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -630,7 +630,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get group chat member user IDs
@@ -642,12 +642,12 @@ module Line
             group_id:,
             start: nil
           )
-            body, _status_code, _headers = get_group_members_ids_with_http_info(
+            response_body, _status_code, _headers = get_group_members_ids_with_http_info(
               group_id: group_id,
               start: start
             )
 
-            body
+            response_body
           end
 
           # Get group chat summary
@@ -664,7 +664,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -675,7 +675,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get group chat summary
@@ -685,11 +685,11 @@ module Line
           def get_group_summary(
             group_id:
           )
-            body, _status_code, _headers = get_group_summary_with_http_info(
+            response_body, _status_code, _headers = get_group_summary_with_http_info(
               group_id: group_id
             )
 
-            body
+            response_body
           end
 
           # Get a list of user IDs who joined the membership.
@@ -715,7 +715,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -738,7 +738,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get a list of user IDs who joined the membership.
@@ -752,13 +752,13 @@ module Line
             start: nil,
             limit: nil
           )
-            body, _status_code, _headers = get_joined_membership_users_with_http_info(
+            response_body, _status_code, _headers = get_joined_membership_users_with_http_info(
               membership_id: membership_id,
               start: start,
               limit: limit
             )
 
-            body
+            response_body
           end
 
           # Get a list of memberships.
@@ -772,7 +772,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -789,7 +789,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get a list of memberships.
@@ -797,10 +797,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-membership-plans
           def get_membership_list(
           )
-            body, _status_code, _headers = get_membership_list_with_http_info(
+            response_body, _status_code, _headers = get_membership_list_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Get a user's membership subscription.
@@ -817,7 +817,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -840,7 +840,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get a user's membership subscription.
@@ -850,11 +850,11 @@ module Line
           def get_membership_subscription(
             user_id:
           )
-            body, _status_code, _headers = get_membership_subscription_with_http_info(
+            response_body, _status_code, _headers = get_membership_subscription_with_http_info(
               user_id: user_id
             )
 
-            body
+            response_body
           end
 
           # Gets the target limit for sending messages in the current month. The total number of the free messages and the additional messages is returned.
@@ -868,7 +868,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -879,7 +879,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets the target limit for sending messages in the current month. The total number of the free messages and the additional messages is returned.
@@ -887,10 +887,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-quota
           def get_message_quota(
           )
-            body, _status_code, _headers = get_message_quota_with_http_info(
+            response_body, _status_code, _headers = get_message_quota_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Gets the number of messages sent in the current month.
@@ -904,7 +904,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -915,7 +915,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets the number of messages sent in the current month.
@@ -923,10 +923,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-consumption
           def get_message_quota_consumption(
           )
-            body, _status_code, _headers = get_message_quota_consumption_with_http_info(
+            response_body, _status_code, _headers = get_message_quota_consumption_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Gets the status of a narrowcast message.
@@ -946,7 +946,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -957,7 +957,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets the status of a narrowcast message.
@@ -967,11 +967,11 @@ module Line
           def get_narrowcast_progress(
             request_id:
           )
-            body, _status_code, _headers = get_narrowcast_progress_with_http_info(
+            response_body, _status_code, _headers = get_narrowcast_progress_with_http_info(
               request_id: request_id
             )
 
-            body
+            response_body
           end
 
           # Get number of sent broadcast messages
@@ -991,7 +991,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1002,7 +1002,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get number of sent broadcast messages
@@ -1012,11 +1012,11 @@ module Line
           def get_number_of_sent_broadcast_messages(
             date:
           )
-            body, _status_code, _headers = get_number_of_sent_broadcast_messages_with_http_info(
+            response_body, _status_code, _headers = get_number_of_sent_broadcast_messages_with_http_info(
               date: date
             )
 
-            body
+            response_body
           end
 
           # Get number of sent multicast messages
@@ -1036,7 +1036,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1047,7 +1047,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get number of sent multicast messages
@@ -1057,11 +1057,11 @@ module Line
           def get_number_of_sent_multicast_messages(
             date:
           )
-            body, _status_code, _headers = get_number_of_sent_multicast_messages_with_http_info(
+            response_body, _status_code, _headers = get_number_of_sent_multicast_messages_with_http_info(
               date: date
             )
 
-            body
+            response_body
           end
 
           # Get number of sent push messages
@@ -1081,7 +1081,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1092,7 +1092,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get number of sent push messages
@@ -1102,11 +1102,11 @@ module Line
           def get_number_of_sent_push_messages(
             date:
           )
-            body, _status_code, _headers = get_number_of_sent_push_messages_with_http_info(
+            response_body, _status_code, _headers = get_number_of_sent_push_messages_with_http_info(
               date: date
             )
 
-            body
+            response_body
           end
 
           # Get number of sent reply messages
@@ -1126,7 +1126,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1137,7 +1137,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get number of sent reply messages
@@ -1147,11 +1147,11 @@ module Line
           def get_number_of_sent_reply_messages(
             date:
           )
-            body, _status_code, _headers = get_number_of_sent_reply_messages_with_http_info(
+            response_body, _status_code, _headers = get_number_of_sent_reply_messages_with_http_info(
               date: date
             )
 
-            body
+            response_body
           end
 
           # Get number of sent LINE notification messages　
@@ -1171,7 +1171,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1182,7 +1182,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get number of sent LINE notification messages　
@@ -1192,11 +1192,11 @@ module Line
           def get_pnp_message_statistics(
             date:
           )
-            body, _status_code, _headers = get_pnp_message_statistics_with_http_info(
+            response_body, _status_code, _headers = get_pnp_message_statistics_with_http_info(
               date: date
             )
 
-            body
+            response_body
           end
 
           # Get profile
@@ -1213,7 +1213,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1224,7 +1224,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get profile
@@ -1234,11 +1234,11 @@ module Line
           def get_profile(
             user_id:
           )
-            body, _status_code, _headers = get_profile_with_http_info(
+            response_body, _status_code, _headers = get_profile_with_http_info(
               user_id: user_id
             )
 
-            body
+            response_body
           end
 
           # Gets a rich menu via a rich menu ID.
@@ -1255,7 +1255,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1266,7 +1266,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets a rich menu via a rich menu ID.
@@ -1276,11 +1276,11 @@ module Line
           def get_rich_menu(
             rich_menu_id:
           )
-            body, _status_code, _headers = get_rich_menu_with_http_info(
+            response_body, _status_code, _headers = get_rich_menu_with_http_info(
               rich_menu_id: rich_menu_id
             )
 
-            body
+            response_body
           end
 
           # Get rich menu alias information
@@ -1297,7 +1297,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1308,7 +1308,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get rich menu alias information
@@ -1318,11 +1318,11 @@ module Line
           def get_rich_menu_alias(
             rich_menu_alias_id:
           )
-            body, _status_code, _headers = get_rich_menu_alias_with_http_info(
+            response_body, _status_code, _headers = get_rich_menu_alias_with_http_info(
               rich_menu_alias_id: rich_menu_alias_id
             )
 
-            body
+            response_body
           end
 
           # Get list of rich menu alias
@@ -1336,7 +1336,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1347,7 +1347,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get list of rich menu alias
@@ -1355,10 +1355,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-alias-list
           def get_rich_menu_alias_list(
           )
-            body, _status_code, _headers = get_rich_menu_alias_list_with_http_info(
+            response_body, _status_code, _headers = get_rich_menu_alias_list_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Get the status of Replace or unlink a linked rich menus in batches.
@@ -1378,7 +1378,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1389,7 +1389,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get the status of Replace or unlink a linked rich menus in batches.
@@ -1399,11 +1399,11 @@ module Line
           def get_rich_menu_batch_progress(
             request_id:
           )
-            body, _status_code, _headers = get_rich_menu_batch_progress_with_http_info(
+            response_body, _status_code, _headers = get_rich_menu_batch_progress_with_http_info(
               request_id: request_id
             )
 
-            body
+            response_body
           end
 
           # Get rich menu ID of user
@@ -1420,7 +1420,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1431,7 +1431,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get rich menu ID of user
@@ -1441,11 +1441,11 @@ module Line
           def get_rich_menu_id_of_user(
             user_id:
           )
-            body, _status_code, _headers = get_rich_menu_id_of_user_with_http_info(
+            response_body, _status_code, _headers = get_rich_menu_id_of_user_with_http_info(
               user_id: user_id
             )
 
-            body
+            response_body
           end
 
           # Get rich menu list
@@ -1459,7 +1459,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1470,7 +1470,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get rich menu list
@@ -1478,10 +1478,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-list
           def get_rich_menu_list(
           )
-            body, _status_code, _headers = get_rich_menu_list_with_http_info(
+            response_body, _status_code, _headers = get_rich_menu_list_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Get number of users in a multi-person chat
@@ -1498,7 +1498,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1509,7 +1509,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get number of users in a multi-person chat
@@ -1519,11 +1519,11 @@ module Line
           def get_room_member_count(
             room_id:
           )
-            body, _status_code, _headers = get_room_member_count_with_http_info(
+            response_body, _status_code, _headers = get_room_member_count_with_http_info(
               room_id: room_id
             )
 
-            body
+            response_body
           end
 
           # Get multi-person chat member profile
@@ -1543,7 +1543,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1554,7 +1554,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get multi-person chat member profile
@@ -1566,12 +1566,12 @@ module Line
             room_id:,
             user_id:
           )
-            body, _status_code, _headers = get_room_member_profile_with_http_info(
+            response_body, _status_code, _headers = get_room_member_profile_with_http_info(
               room_id: room_id,
               user_id: user_id
             )
 
-            body
+            response_body
           end
 
           # Get multi-person chat member user IDs
@@ -1594,7 +1594,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1605,7 +1605,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get multi-person chat member user IDs
@@ -1617,12 +1617,12 @@ module Line
             room_id:,
             start: nil
           )
-            body, _status_code, _headers = get_room_members_ids_with_http_info(
+            response_body, _status_code, _headers = get_room_members_ids_with_http_info(
               room_id: room_id,
               start: start
             )
 
-            body
+            response_body
           end
 
           # Get webhook endpoint information
@@ -1636,7 +1636,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1647,7 +1647,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get webhook endpoint information
@@ -1655,10 +1655,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information
           def get_webhook_endpoint(
           )
-            body, _status_code, _headers = get_webhook_endpoint_with_http_info(
+            response_body, _status_code, _headers = get_webhook_endpoint_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Issue link token
@@ -1675,7 +1675,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -1686,7 +1686,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Issue link token
@@ -1696,11 +1696,11 @@ module Line
           def issue_link_token(
             user_id:
           )
-            body, _status_code, _headers = issue_link_token_with_http_info(
+            response_body, _status_code, _headers = issue_link_token_with_http_info(
               user_id: user_id
             )
 
-            body
+            response_body
           end
 
           # Leave group chat
@@ -1717,7 +1717,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    when 400
@@ -1736,7 +1736,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Leave group chat
@@ -1746,11 +1746,11 @@ module Line
           def leave_group(
             group_id:
           )
-            body, _status_code, _headers = leave_group_with_http_info(
+            response_body, _status_code, _headers = leave_group_with_http_info(
               group_id: group_id
             )
 
-            body
+            response_body
           end
 
           # Leave multi-person chat
@@ -1767,14 +1767,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Leave multi-person chat
@@ -1784,11 +1784,11 @@ module Line
           def leave_room(
             room_id:
           )
-            body, _status_code, _headers = leave_room_with_http_info(
+            response_body, _status_code, _headers = leave_room_with_http_info(
               room_id: room_id
             )
 
-            body
+            response_body
           end
 
           # Link rich menu to user.
@@ -1808,14 +1808,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Link rich menu to user.
@@ -1827,12 +1827,12 @@ module Line
             user_id:,
             rich_menu_id:
           )
-            body, _status_code, _headers = link_rich_menu_id_to_user_with_http_info(
+            response_body, _status_code, _headers = link_rich_menu_id_to_user_with_http_info(
               user_id: user_id,
               rich_menu_id: rich_menu_id
             )
 
-            body
+            response_body
           end
 
           # Link rich menu to multiple users
@@ -1849,14 +1849,14 @@ module Line
               body_params: rich_menu_bulk_link_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Link rich menu to multiple users
@@ -1866,11 +1866,11 @@ module Line
           def link_rich_menu_id_to_users(
             rich_menu_bulk_link_request:
           )
-            body, _status_code, _headers = link_rich_menu_id_to_users_with_http_info(
+            response_body, _status_code, _headers = link_rich_menu_id_to_users_with_http_info(
               rich_menu_bulk_link_request: rich_menu_bulk_link_request
             )
 
-            body
+            response_body
           end
 
           # Mark messages from users as read
@@ -1887,14 +1887,14 @@ module Line
               body_params: mark_messages_as_read_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Mark messages from users as read
@@ -1904,11 +1904,11 @@ module Line
           def mark_messages_as_read(
             mark_messages_as_read_request:
           )
-            body, _status_code, _headers = mark_messages_as_read_with_http_info(
+            response_body, _status_code, _headers = mark_messages_as_read_with_http_info(
               mark_messages_as_read_request: mark_messages_as_read_request
             )
 
-            body
+            response_body
           end
 
           # An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.
@@ -1931,7 +1931,7 @@ module Line
               headers: header_params
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    when 400
@@ -1962,7 +1962,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.
@@ -1974,12 +1974,12 @@ module Line
             multicast_request:,
             x_line_retry_key: nil
           )
-            body, _status_code, _headers = multicast_with_http_info(
+            response_body, _status_code, _headers = multicast_with_http_info(
               multicast_request: multicast_request,
               x_line_retry_key: x_line_retry_key
             )
 
-            body
+            response_body
           end
 
           # Send narrowcast message
@@ -2002,7 +2002,7 @@ module Line
               headers: header_params
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      response.body
                    when 400
@@ -2033,7 +2033,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Send narrowcast message
@@ -2045,12 +2045,12 @@ module Line
             narrowcast_request:,
             x_line_retry_key: nil
           )
-            body, _status_code, _headers = narrowcast_with_http_info(
+            response_body, _status_code, _headers = narrowcast_with_http_info(
               narrowcast_request: narrowcast_request,
               x_line_retry_key: x_line_retry_key
             )
 
-            body
+            response_body
           end
 
           # Sends a message to a user, group chat, or multi-person chat at any time.
@@ -2073,7 +2073,7 @@ module Line
               headers: header_params
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -2108,7 +2108,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Sends a message to a user, group chat, or multi-person chat at any time.
@@ -2120,12 +2120,12 @@ module Line
             push_message_request:,
             x_line_retry_key: nil
           )
-            body, _status_code, _headers = push_message_with_http_info(
+            response_body, _status_code, _headers = push_message_with_http_info(
               push_message_request: push_message_request,
               x_line_retry_key: x_line_retry_key
             )
 
-            body
+            response_body
           end
 
           # Send LINE notification message
@@ -2148,7 +2148,7 @@ module Line
               headers: header_params
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    when 422
@@ -2161,7 +2161,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Send LINE notification message
@@ -2173,12 +2173,12 @@ module Line
             pnp_messages_request:,
             x_line_delivery_tag: nil
           )
-            body, _status_code, _headers = push_messages_by_phone_with_http_info(
+            response_body, _status_code, _headers = push_messages_by_phone_with_http_info(
               pnp_messages_request: pnp_messages_request,
               x_line_delivery_tag: x_line_delivery_tag
             )
 
-            body
+            response_body
           end
 
           # Send reply message
@@ -2195,7 +2195,7 @@ module Line
               body_params: reply_message_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -2218,7 +2218,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Send reply message
@@ -2228,11 +2228,11 @@ module Line
           def reply_message(
             reply_message_request:
           )
-            body, _status_code, _headers = reply_message_with_http_info(
+            response_body, _status_code, _headers = reply_message_with_http_info(
               reply_message_request: reply_message_request
             )
 
-            body
+            response_body
           end
 
           # You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu 
@@ -2249,14 +2249,14 @@ module Line
               body_params: rich_menu_batch_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu 
@@ -2266,11 +2266,11 @@ module Line
           def rich_menu_batch(
             rich_menu_batch_request:
           )
-            body, _status_code, _headers = rich_menu_batch_with_http_info(
+            response_body, _status_code, _headers = rich_menu_batch_with_http_info(
               rich_menu_batch_request: rich_menu_batch_request
             )
 
-            body
+            response_body
           end
 
           # Set default rich menu
@@ -2287,14 +2287,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Set default rich menu
@@ -2304,11 +2304,11 @@ module Line
           def set_default_rich_menu(
             rich_menu_id:
           )
-            body, _status_code, _headers = set_default_rich_menu_with_http_info(
+            response_body, _status_code, _headers = set_default_rich_menu_with_http_info(
               rich_menu_id: rich_menu_id
             )
 
-            body
+            response_body
           end
 
           # Set webhook endpoint URL
@@ -2325,14 +2325,14 @@ module Line
               body_params: set_webhook_endpoint_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Set webhook endpoint URL
@@ -2342,11 +2342,11 @@ module Line
           def set_webhook_endpoint(
             set_webhook_endpoint_request:
           )
-            body, _status_code, _headers = set_webhook_endpoint_with_http_info(
+            response_body, _status_code, _headers = set_webhook_endpoint_with_http_info(
               set_webhook_endpoint_request: set_webhook_endpoint_request
             )
 
-            body
+            response_body
           end
 
           # Display a loading animation in one-on-one chats between users and LINE Official Accounts.
@@ -2363,7 +2363,7 @@ module Line
               body_params: show_loading_animation_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      response.body
                    when 400
@@ -2376,7 +2376,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Display a loading animation in one-on-one chats between users and LINE Official Accounts.
@@ -2386,11 +2386,11 @@ module Line
           def show_loading_animation(
             show_loading_animation_request:
           )
-            body, _status_code, _headers = show_loading_animation_with_http_info(
+            response_body, _status_code, _headers = show_loading_animation_with_http_info(
               show_loading_animation_request: show_loading_animation_request
             )
 
-            body
+            response_body
           end
 
           # Test webhook endpoint
@@ -2407,7 +2407,7 @@ module Line
               body_params: test_webhook_endpoint_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -2418,7 +2418,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Test webhook endpoint
@@ -2428,11 +2428,11 @@ module Line
           def test_webhook_endpoint(
             test_webhook_endpoint_request: nil
           )
-            body, _status_code, _headers = test_webhook_endpoint_with_http_info(
+            response_body, _status_code, _headers = test_webhook_endpoint_with_http_info(
               test_webhook_endpoint_request: test_webhook_endpoint_request
             )
 
-            body
+            response_body
           end
 
           # Unlink rich menu from user
@@ -2449,14 +2449,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Unlink rich menu from user
@@ -2466,11 +2466,11 @@ module Line
           def unlink_rich_menu_id_from_user(
             user_id:
           )
-            body, _status_code, _headers = unlink_rich_menu_id_from_user_with_http_info(
+            response_body, _status_code, _headers = unlink_rich_menu_id_from_user_with_http_info(
               user_id: user_id
             )
 
-            body
+            response_body
           end
 
           # Unlink rich menus from multiple users
@@ -2487,14 +2487,14 @@ module Line
               body_params: rich_menu_bulk_unlink_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Unlink rich menus from multiple users
@@ -2504,11 +2504,11 @@ module Line
           def unlink_rich_menu_id_from_users(
             rich_menu_bulk_unlink_request:
           )
-            body, _status_code, _headers = unlink_rich_menu_id_from_users_with_http_info(
+            response_body, _status_code, _headers = unlink_rich_menu_id_from_users_with_http_info(
               rich_menu_bulk_unlink_request: rich_menu_bulk_unlink_request
             )
 
-            body
+            response_body
           end
 
           # Update rich menu alias
@@ -2528,7 +2528,7 @@ module Line
               body_params: update_rich_menu_alias_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    when 400
@@ -2541,7 +2541,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Update rich menu alias
@@ -2553,12 +2553,12 @@ module Line
             rich_menu_alias_id:,
             update_rich_menu_alias_request:
           )
-            body, _status_code, _headers = update_rich_menu_alias_with_http_info(
+            response_body, _status_code, _headers = update_rich_menu_alias_with_http_info(
               rich_menu_alias_id: rich_menu_alias_id,
               update_rich_menu_alias_request: update_rich_menu_alias_request
             )
 
-            body
+            response_body
           end
 
           # Validate message objects of a broadcast message
@@ -2575,14 +2575,14 @@ module Line
               body_params: validate_message_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Validate message objects of a broadcast message
@@ -2592,11 +2592,11 @@ module Line
           def validate_broadcast(
             validate_message_request:
           )
-            body, _status_code, _headers = validate_broadcast_with_http_info(
+            response_body, _status_code, _headers = validate_broadcast_with_http_info(
               validate_message_request: validate_message_request
             )
 
-            body
+            response_body
           end
 
           # Validate message objects of a multicast message
@@ -2613,14 +2613,14 @@ module Line
               body_params: validate_message_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Validate message objects of a multicast message
@@ -2630,11 +2630,11 @@ module Line
           def validate_multicast(
             validate_message_request:
           )
-            body, _status_code, _headers = validate_multicast_with_http_info(
+            response_body, _status_code, _headers = validate_multicast_with_http_info(
               validate_message_request: validate_message_request
             )
 
-            body
+            response_body
           end
 
           # Validate message objects of a narrowcast message
@@ -2651,14 +2651,14 @@ module Line
               body_params: validate_message_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Validate message objects of a narrowcast message
@@ -2668,11 +2668,11 @@ module Line
           def validate_narrowcast(
             validate_message_request:
           )
-            body, _status_code, _headers = validate_narrowcast_with_http_info(
+            response_body, _status_code, _headers = validate_narrowcast_with_http_info(
               validate_message_request: validate_message_request
             )
 
-            body
+            response_body
           end
 
           # Validate message objects of a push message
@@ -2689,14 +2689,14 @@ module Line
               body_params: validate_message_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Validate message objects of a push message
@@ -2706,11 +2706,11 @@ module Line
           def validate_push(
             validate_message_request:
           )
-            body, _status_code, _headers = validate_push_with_http_info(
+            response_body, _status_code, _headers = validate_push_with_http_info(
               validate_message_request: validate_message_request
             )
 
-            body
+            response_body
           end
 
           # Validate message objects of a reply message
@@ -2727,14 +2727,14 @@ module Line
               body_params: validate_message_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Validate message objects of a reply message
@@ -2744,11 +2744,11 @@ module Line
           def validate_reply(
             validate_message_request:
           )
-            body, _status_code, _headers = validate_reply_with_http_info(
+            response_body, _status_code, _headers = validate_reply_with_http_info(
               validate_message_request: validate_message_request
             )
 
-            body
+            response_body
           end
 
           # Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.
@@ -2765,14 +2765,14 @@ module Line
               body_params: rich_menu_batch_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.
@@ -2782,11 +2782,11 @@ module Line
           def validate_rich_menu_batch_request(
             rich_menu_batch_request:
           )
-            body, _status_code, _headers = validate_rich_menu_batch_request_with_http_info(
+            response_body, _status_code, _headers = validate_rich_menu_batch_request_with_http_info(
               rich_menu_batch_request: rich_menu_batch_request
             )
 
-            body
+            response_body
           end
 
           # Validate rich menu object
@@ -2803,14 +2803,14 @@ module Line
               body_params: rich_menu_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Validate rich menu object
@@ -2820,11 +2820,11 @@ module Line
           def validate_rich_menu_object(
             rich_menu_request:
           )
-            body, _status_code, _headers = validate_rich_menu_object_with_http_info(
+            response_body, _status_code, _headers = validate_rich_menu_object_with_http_info(
               rich_menu_request: rich_menu_request
             )
 
-            body
+            response_body
           end
         end
       end

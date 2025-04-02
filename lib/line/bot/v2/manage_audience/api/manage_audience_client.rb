@@ -42,14 +42,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Activate audience
@@ -59,11 +59,11 @@ module Line
           def activate_audience_group(
             audience_group_id:
           )
-            body, _status_code, _headers = activate_audience_group_with_http_info(
+            response_body, _status_code, _headers = activate_audience_group_with_http_info(
               audience_group_id: audience_group_id
             )
 
-            body
+            response_body
           end
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
@@ -80,14 +80,14 @@ module Line
               body_params: add_audience_to_audience_group_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
@@ -97,11 +97,11 @@ module Line
           def add_audience_to_audience_group(
             add_audience_to_audience_group_request:
           )
-            body, _status_code, _headers = add_audience_to_audience_group_with_http_info(
+            response_body, _status_code, _headers = add_audience_to_audience_group_with_http_info(
               add_audience_to_audience_group_request: add_audience_to_audience_group_request
             )
 
-            body
+            response_body
           end
 
           # Create audience for uploading user IDs (by JSON)
@@ -118,7 +118,7 @@ module Line
               body_params: create_audience_group_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -129,7 +129,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Create audience for uploading user IDs (by JSON)
@@ -139,11 +139,11 @@ module Line
           def create_audience_group(
             create_audience_group_request:
           )
-            body, _status_code, _headers = create_audience_group_with_http_info(
+            response_body, _status_code, _headers = create_audience_group_with_http_info(
               create_audience_group_request: create_audience_group_request
             )
 
-            body
+            response_body
           end
 
           # Create audience for click-based retargeting
@@ -160,7 +160,7 @@ module Line
               body_params: create_click_based_audience_group_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -171,7 +171,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Create audience for click-based retargeting
@@ -181,11 +181,11 @@ module Line
           def create_click_based_audience_group(
             create_click_based_audience_group_request:
           )
-            body, _status_code, _headers = create_click_based_audience_group_with_http_info(
+            response_body, _status_code, _headers = create_click_based_audience_group_with_http_info(
               create_click_based_audience_group_request: create_click_based_audience_group_request
             )
 
-            body
+            response_body
           end
 
           # Create audience for impression-based retargeting
@@ -202,7 +202,7 @@ module Line
               body_params: create_imp_based_audience_group_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -213,7 +213,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Create audience for impression-based retargeting
@@ -223,11 +223,11 @@ module Line
           def create_imp_based_audience_group(
             create_imp_based_audience_group_request:
           )
-            body, _status_code, _headers = create_imp_based_audience_group_with_http_info(
+            response_body, _status_code, _headers = create_imp_based_audience_group_with_http_info(
               create_imp_based_audience_group_request: create_imp_based_audience_group_request
             )
 
-            body
+            response_body
           end
 
           # Delete audience
@@ -244,14 +244,14 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Delete audience
@@ -261,11 +261,11 @@ module Line
           def delete_audience_group(
             audience_group_id:
           )
-            body, _status_code, _headers = delete_audience_group_with_http_info(
+            response_body, _status_code, _headers = delete_audience_group_with_http_info(
               audience_group_id: audience_group_id
             )
 
-            body
+            response_body
           end
 
           # Gets audience data.
@@ -282,7 +282,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -299,7 +299,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets audience data.
@@ -309,11 +309,11 @@ module Line
           def get_audience_data(
             audience_group_id:
           )
-            body, _status_code, _headers = get_audience_data_with_http_info(
+            response_body, _status_code, _headers = get_audience_data_with_http_info(
               audience_group_id: audience_group_id
             )
 
-            body
+            response_body
           end
 
           # Get the authority level of the audience
@@ -327,7 +327,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -338,7 +338,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Get the authority level of the audience
@@ -346,10 +346,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
           def get_audience_group_authority_level(
           )
-            body, _status_code, _headers = get_audience_group_authority_level_with_http_info(
+            response_body, _status_code, _headers = get_audience_group_authority_level_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Gets data for more than one audience.
@@ -384,7 +384,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -395,7 +395,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets data for more than one audience.
@@ -415,7 +415,7 @@ module Line
             includes_external_public_groups: nil,
             create_route: nil
           )
-            body, _status_code, _headers = get_audience_groups_with_http_info(
+            response_body, _status_code, _headers = get_audience_groups_with_http_info(
               page: page,
               description: description,
               status: status,
@@ -424,7 +424,7 @@ module Line
               create_route: create_route
             )
 
-            body
+            response_body
           end
 
           # Gets audience data.
@@ -441,7 +441,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -458,7 +458,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets audience data.
@@ -468,11 +468,11 @@ module Line
           def get_shared_audience_data(
             audience_group_id:
           )
-            body, _status_code, _headers = get_shared_audience_data_with_http_info(
+            response_body, _status_code, _headers = get_shared_audience_data_with_http_info(
               audience_group_id: audience_group_id
             )
 
-            body
+            response_body
           end
 
           # Gets data for more than one audience, including those shared by the Business Manager.
@@ -504,7 +504,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -515,7 +515,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets data for more than one audience, including those shared by the Business Manager.
@@ -533,7 +533,7 @@ module Line
             size: nil,
             create_route: nil
           )
-            body, _status_code, _headers = get_shared_audience_groups_with_http_info(
+            response_body, _status_code, _headers = get_shared_audience_groups_with_http_info(
               page: page,
               description: description,
               status: status,
@@ -541,7 +541,7 @@ module Line
               create_route: create_route
             )
 
-            body
+            response_body
           end
 
           # Change the authority level of the audience
@@ -558,14 +558,14 @@ module Line
               body_params: update_audience_group_authority_level_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Change the authority level of the audience
@@ -575,11 +575,11 @@ module Line
           def update_audience_group_authority_level(
             update_audience_group_authority_level_request:
           )
-            body, _status_code, _headers = update_audience_group_authority_level_with_http_info(
+            response_body, _status_code, _headers = update_audience_group_authority_level_with_http_info(
               update_audience_group_authority_level_request: update_audience_group_authority_level_request
             )
 
-            body
+            response_body
           end
 
           # Renames an existing audience.
@@ -599,14 +599,14 @@ module Line
               body_params: update_audience_group_description_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Renames an existing audience.
@@ -618,12 +618,12 @@ module Line
             audience_group_id:,
             update_audience_group_description_request:
           )
-            body, _status_code, _headers = update_audience_group_description_with_http_info(
+            response_body, _status_code, _headers = update_audience_group_description_with_http_info(
               audience_group_id: audience_group_id,
               update_audience_group_description_request: update_audience_group_description_request
             )
 
-            body
+            response_body
           end
         end
       end

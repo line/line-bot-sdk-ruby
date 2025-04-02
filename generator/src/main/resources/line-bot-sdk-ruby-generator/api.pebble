@@ -73,7 +73,7 @@ module Line
               headers: header_params{% endif %}
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    {%- for response in op.responses %}
                    when {{ response.code }}
                      {%- if response.content['application/json'].schema.complexType != null %}
@@ -89,7 +89,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # {{ op.notes }}
@@ -113,12 +113,12 @@ module Line
             {{param.paramName}}:{{ param.required ? '' : ' nil' }}{{ loop.last ? '' : ',' -}}
             {% endfor %}
           )
-            body, _status_code, _headers = {{op.nickname}}_with_http_info({% for param in op.allParams %}
+            response_body, _status_code, _headers = {{op.nickname}}_with_http_info({% for param in op.allParams %}
               {{param.paramName}}: {{param.paramName}}{{ loop.last ? '' : ',' -}}
             {% endfor %}
             )
 
-            body
+            response_body
           end{% endfor %}
         end
       end

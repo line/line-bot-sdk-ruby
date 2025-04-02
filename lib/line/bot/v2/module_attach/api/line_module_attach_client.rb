@@ -73,7 +73,7 @@ module Line
               form_params: form_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -84,7 +84,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Attach by operation of the module channel provider
@@ -112,7 +112,7 @@ module Line
             scope: nil,
             brand_type: nil
           )
-            body, _status_code, _headers = attach_module_with_http_info(
+            response_body, _status_code, _headers = attach_module_with_http_info(
               grant_type: grant_type,
               code: code,
               redirect_uri: redirect_uri,
@@ -125,7 +125,7 @@ module Line
               brand_type: brand_type
             )
 
-            body
+            response_body
           end
         end
       end

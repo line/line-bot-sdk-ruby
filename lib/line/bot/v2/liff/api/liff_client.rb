@@ -43,7 +43,7 @@ module Line
               body_params: add_liff_app_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -58,7 +58,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Adding the LIFF app to a channel
@@ -69,11 +69,11 @@ module Line
           def add_liff_app(
             add_liff_app_request:
           )
-            body, _status_code, _headers = add_liff_app_with_http_info(
+            response_body, _status_code, _headers = add_liff_app_with_http_info(
               add_liff_app_request: add_liff_app_request
             )
 
-            body
+            response_body
           end
 
           # Deletes a LIFF app from a channel. 
@@ -91,7 +91,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    when 401
@@ -102,7 +102,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Deletes a LIFF app from a channel. 
@@ -113,11 +113,11 @@ module Line
           def delete_liff_app(
             liff_id:
           )
-            body, _status_code, _headers = delete_liff_app_with_http_info(
+            response_body, _status_code, _headers = delete_liff_app_with_http_info(
               liff_id: liff_id
             )
 
-            body
+            response_body
           end
 
           # Gets information on all the LIFF apps added to the channel.
@@ -132,7 +132,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -147,7 +147,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets information on all the LIFF apps added to the channel.
@@ -156,10 +156,10 @@ module Line
           # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
           def get_all_liff_apps(
           )
-            body, _status_code, _headers = get_all_liff_apps_with_http_info(
+            response_body, _status_code, _headers = get_all_liff_apps_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Update LIFF app settings
@@ -180,7 +180,7 @@ module Line
               body_params: update_liff_app_request,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    when 400
@@ -193,7 +193,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Update LIFF app settings
@@ -206,12 +206,12 @@ module Line
             liff_id:,
             update_liff_app_request:
           )
-            body, _status_code, _headers = update_liff_app_with_http_info(
+            response_body, _status_code, _headers = update_liff_app_with_http_info(
               liff_id: liff_id,
               update_liff_app_request: update_liff_app_request
             )
 
-            body
+            response_body
           end
         end
       end

@@ -52,14 +52,14 @@ module Line
               form_params: form_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
@@ -73,13 +73,13 @@ module Line
             audience_group_id: nil,
             upload_description: nil
           )
-            body, _status_code, _headers = add_user_ids_to_audience_with_http_info(
+            response_body, _status_code, _headers = add_user_ids_to_audience_with_http_info(
               file: file,
               audience_group_id: audience_group_id,
               upload_description: upload_description
             )
 
-            body
+            response_body
           end
 
           # Create audience for uploading user IDs (by file).
@@ -109,7 +109,7 @@ module Line
               form_params: form_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 202
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -120,7 +120,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Create audience for uploading user IDs (by file).
@@ -136,14 +136,14 @@ module Line
             is_ifa_audience: nil,
             upload_description: nil
           )
-            body, _status_code, _headers = create_audience_for_uploading_user_ids_with_http_info(
+            response_body, _status_code, _headers = create_audience_for_uploading_user_ids_with_http_info(
               file: file,
               description: description,
               is_ifa_audience: is_ifa_audience,
               upload_description: upload_description
             )
 
-            body
+            response_body
           end
         end
       end

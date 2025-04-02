@@ -45,7 +45,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -56,7 +56,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Gets all valid channel access token key IDs.
@@ -68,12 +68,12 @@ module Line
             client_assertion_type:,
             client_assertion:
           )
-            body, _status_code, _headers = gets_all_valid_channel_access_token_key_ids_with_http_info(
+            response_body, _status_code, _headers = gets_all_valid_channel_access_token_key_ids_with_http_info(
               client_assertion_type: client_assertion_type,
               client_assertion: client_assertion
             )
 
-            body
+            response_body
           end
 
           # Issue short-lived channel access token
@@ -100,7 +100,7 @@ module Line
               form_params: form_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -117,7 +117,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Issue short-lived channel access token
@@ -131,13 +131,13 @@ module Line
             client_id:,
             client_secret:
           )
-            body, _status_code, _headers = issue_channel_token_with_http_info(
+            response_body, _status_code, _headers = issue_channel_token_with_http_info(
               grant_type: grant_type,
               client_id: client_id,
               client_secret: client_secret
             )
 
-            body
+            response_body
           end
 
           # Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
@@ -164,7 +164,7 @@ module Line
               form_params: form_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -175,7 +175,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
@@ -189,13 +189,13 @@ module Line
             client_assertion_type:,
             client_assertion:
           )
-            body, _status_code, _headers = issue_channel_token_by_jwt_with_http_info(
+            response_body, _status_code, _headers = issue_channel_token_by_jwt_with_http_info(
               grant_type: grant_type,
               client_assertion_type: client_assertion_type,
               client_assertion: client_assertion
             )
 
-            body
+            response_body
           end
 
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
@@ -228,7 +228,7 @@ module Line
               form_params: form_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -239,7 +239,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
@@ -257,7 +257,7 @@ module Line
             client_id: nil,
             client_secret: nil
           )
-            body, _status_code, _headers = issue_stateless_channel_token_with_http_info(
+            response_body, _status_code, _headers = issue_stateless_channel_token_with_http_info(
               grant_type: grant_type,
               client_assertion_type: client_assertion_type,
               client_assertion: client_assertion,
@@ -265,7 +265,7 @@ module Line
               client_secret: client_secret
             )
 
-            body
+            response_body
           end
 
           # Revoke short-lived or long-lived channel access token
@@ -286,14 +286,14 @@ module Line
               form_params: form_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Revoke short-lived or long-lived channel access token
@@ -303,11 +303,11 @@ module Line
           def revoke_channel_token(
             access_token:
           )
-            body, _status_code, _headers = revoke_channel_token_with_http_info(
+            response_body, _status_code, _headers = revoke_channel_token_with_http_info(
               access_token: access_token
             )
 
-            body
+            response_body
           end
 
           # Revoke channel access token v2.1
@@ -334,14 +334,14 @@ module Line
               form_params: form_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      response.body
                    else
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Revoke channel access token v2.1
@@ -355,13 +355,13 @@ module Line
             client_secret:,
             access_token:
           )
-            body, _status_code, _headers = revoke_channel_token_by_jwt_with_http_info(
+            response_body, _status_code, _headers = revoke_channel_token_by_jwt_with_http_info(
               client_id: client_id,
               client_secret: client_secret,
               access_token: access_token
             )
 
-            body
+            response_body
           end
 
           # Verify the validity of short-lived and long-lived channel access tokens
@@ -382,7 +382,7 @@ module Line
               form_params: form_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -393,7 +393,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Verify the validity of short-lived and long-lived channel access tokens
@@ -403,11 +403,11 @@ module Line
           def verify_channel_token(
             access_token:
           )
-            body, _status_code, _headers = verify_channel_token_with_http_info(
+            response_body, _status_code, _headers = verify_channel_token_with_http_info(
               access_token: access_token
             )
 
-            body
+            response_body
           end
 
           # You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
@@ -427,7 +427,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -438,7 +438,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
@@ -448,11 +448,11 @@ module Line
           def verify_channel_token_by_jwt(
             access_token:
           )
-            body, _status_code, _headers = verify_channel_token_by_jwt_with_http_info(
+            response_body, _status_code, _headers = verify_channel_token_by_jwt_with_http_info(
               access_token: access_token
             )
 
-            body
+            response_body
           end
         end
       end

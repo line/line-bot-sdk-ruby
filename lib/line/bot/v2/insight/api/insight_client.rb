@@ -39,7 +39,7 @@ module Line
               path: path,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -50,7 +50,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
@@ -58,10 +58,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
           def get_friends_demographics(
           )
-            body, _status_code, _headers = get_friends_demographics_with_http_info(
+            response_body, _status_code, _headers = get_friends_demographics_with_http_info(
             )
 
-            body
+            response_body
           end
 
           # Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
@@ -82,7 +82,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -93,7 +93,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
@@ -104,11 +104,11 @@ module Line
           def get_message_event(
             request_id:
           )
-            body, _status_code, _headers = get_message_event_with_http_info(
+            response_body, _status_code, _headers = get_message_event_with_http_info(
               request_id: request_id
             )
 
-            body
+            response_body
           end
 
           # Returns the number of users who have added the LINE Official Account on or before a specified date. 
@@ -129,7 +129,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -140,7 +140,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Returns the number of users who have added the LINE Official Account on or before a specified date. 
@@ -151,11 +151,11 @@ module Line
           def get_number_of_followers(
             date: nil
           )
-            body, _status_code, _headers = get_number_of_followers_with_http_info(
+            response_body, _status_code, _headers = get_number_of_followers_with_http_info(
               date: date
             )
 
-            body
+            response_body
           end
 
           # Returns the number of messages sent from LINE Official Account on a specified day. 
@@ -176,7 +176,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -187,7 +187,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # Returns the number of messages sent from LINE Official Account on a specified day. 
@@ -198,11 +198,11 @@ module Line
           def get_number_of_message_deliveries(
             date:
           )
-            body, _status_code, _headers = get_number_of_message_deliveries_with_http_info(
+            response_body, _status_code, _headers = get_number_of_message_deliveries_with_http_info(
               date: date
             )
 
-            body
+            response_body
           end
 
           # You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
@@ -228,7 +228,7 @@ module Line
               query_params: query_params,
             )
 
-            body = case response.code.to_i
+            response_body = case response.code.to_i
                    when 200
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
@@ -239,7 +239,7 @@ module Line
                      response.body
                    end
 
-            [body, response.code.to_i, response.each_header.to_h]
+            [response_body, response.code.to_i, response.each_header.to_h]
           end
 
           # You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
@@ -253,13 +253,13 @@ module Line
             from:,
             to:
           )
-            body, _status_code, _headers = get_statistics_per_unit_with_http_info(
+            response_body, _status_code, _headers = get_statistics_per_unit_with_http_info(
               custom_aggregation_unit: custom_aggregation_unit,
               from: from,
               to: to
             )
 
-            body
+            response_body
           end
         end
       end
