@@ -202,7 +202,7 @@ describe 'misc' do
       stub_request(:get, "https://api.line.me/v2/bot/message/progress/narrowcast?requestId=7d51557c-7ba0-4ed7-991f-36b2a340dc1a")
         .with(
           headers: {
-            'Authorization'=>'Bearer YOUR_CHANNEL_ACCESS_TOKEN',
+            'Authorization' => 'Bearer YOUR_CHANNEL_ACCESS_TOKEN',
           }
         )
         .to_return(status: response_code, body: response_body, headers: { 'x-line-request-id' => '3a785346-2cf3-482f-8469-c893117fcef8' })
@@ -313,7 +313,7 @@ describe 'misc' do
             'Authorization' => "Bearer test-channel-access-token"
           }
         )
-        .to_return(status: response_code, body: response_body, headers: {  })
+        .to_return(status: response_code, body: response_body, headers: {})
 
       request = Line::Bot::V2::Liff::UpdateLiffAppRequest.new(view: { url: 'https://example.com' })
       body, status_code, headers = client.update_liff_app_with_http_info(liff_id: 'test-liff-id', update_liff_app_request: request)
@@ -323,9 +323,119 @@ describe 'misc' do
     end
   end
 
+  describe 'POST /v2/bot/message/push' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:response_body) do
+      {
+        "sentMessages": [
+          {
+            "id": "461230966842064897",
+            "quoteToken": "IStG5h1Tz7b..."
+          }
+        ]
+      }.to_json
+    end
+    let(:response_code) { 200 }
+
+    it 'response - success' do
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: { type: 'text', text: 'Hello, world!' })
+
+      expect(status_code).to eq(200)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
+      # TODO: Add test after https://github.com/line/line-bot-sdk-ruby/issues/440 is resolved
+      # We should access body.sent_messages[0].id and body.sent_messages[0].quote_token, but it's not possible now.
+      expect(body.sent_messages).to eq([{ id: '461230966842064897', quote_token: 'IStG5h1Tz7b...' }])
+    end
+
+    it 'request with x_line_retry_key: nil' do
+      client = Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token-retry-key-nil')
+      retry_key = nil
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token-retry-key-nil",
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      client.push_message_with_http_info(push_message_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
+
+      expect(WebMock).to(have_requested(:post, "https://api.line.me/v2/bot/message/push")
+                           .with { |req| !req.headers.key?("X-Line-Retry-Key") })
+    end
+
+    it 'request with  x-line-retry-key header - success' do
+      retry_key = 'f03c3eb4-0267-4080-9e65-fffa184e1933'
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token",
+            'X-Line-Retry-Key' => retry_key
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
+
+      expect(status_code).to eq(200)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
+      # TODO: Add test after https://github.com/line/line-bot-sdk-ruby/issues/440 is resolved
+      # We should access body.sent_messages[0].id and body.sent_messages[0].quote_token, but it's not possible now.
+      expect(body.sent_messages).to eq([{ id: '461230966842064897', quote_token: 'IStG5h1Tz7b...' }])
+    end
+
+    it 'request with  x-line-retry-key header - conflicted' do
+      retry_key = '2a6e07b0-0fcf-439f-908b-828ed527e882'
+      request_id = '3a785346-2cf3-482f-8469-c893117fcef8'
+      accepted_request_id = '4a6e07b0-0fcf-439f-908b-828ed527e882'
+
+      error_response_body = {
+        "message" => "The retry key is already accepted",
+        "sentMessages" => [
+          {
+            "id" => "461230966842064897",
+            "quoteToken" => "IStG5h1Tz7b..."
+          }
+        ]
+      }.to_json
+      error_response_headers = {
+        'Content-Type' => 'application/json',
+        'x-line-request-id' => request_id,
+        'x-line-accepted-request-id' => accepted_request_id
+      }
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token",
+            'X-Line-Retry-Key' => retry_key
+          }
+        )
+        .to_return(status: 409, body: error_response_body, headers: error_response_headers)
+
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
+
+      expect(status_code).to eq(409)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::ErrorResponse)
+      expect(body.message).to eq("The retry key is already accepted")
+      # TODO: Add test after https://github.com/line/line-bot-sdk-ruby/issues/440 is resolved.
+      # We should access body.sent_messages[0].id and body.sent_messages[0].quote_token, but it's not possible now.
+      expect(body.sent_messages).to eq([{ id: '461230966842064897', quote_token: 'IStG5h1Tz7b...' }])
+      expect(headers['x-line-request-id']).to eq(request_id)
+      expect(headers['x-line-accepted-request-id']).to eq(accepted_request_id)
+    end
+  end
+
   describe 'POST /v2/bot/message/broadcast' do
     let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
-    let(:response_body) { {  }.to_json } # empty json
+    let(:response_body) { {}.to_json } # empty json
     let(:response_code) { 200 }
 
     it 'empty json as response body should not throw error' do
@@ -357,7 +467,7 @@ describe 'misc' do
       client.broadcast_with_http_info(broadcast_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
 
       expect(WebMock).to(have_requested(:post, "https://api.line.me/v2/bot/message/broadcast")
-        .with { |req| !req.headers.key?("X-Line-Retry-Key") })
+                           .with { |req| !req.headers.key?("X-Line-Retry-Key") })
     end
 
     it 'request with  x-line-retry-key header - success' do
@@ -400,8 +510,8 @@ describe 'misc' do
       body, status_code, headers = client.broadcast_with_http_info(broadcast_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
 
       expect(status_code).to eq(409)
-      ## instance of Line::Bot::V2::MessagingApi::ErrorResponse
       expect(body).to be_a(Line::Bot::V2::MessagingApi::ErrorResponse)
+      expect(body.message).to eq("The retry key is already accepted")
       expect(headers['x-line-request-id']).to eq(request_id)
       expect(headers['x-line-accepted-request-id']).to eq(accepted_request_id)
     end
