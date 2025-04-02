@@ -178,6 +178,49 @@ describe 'misc' do
     end
   end
 
+  describe 'PUT /liff/v1/apps/{liffId}' do
+    let(:client) { Line::Bot::V2::Liff::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:response_body) { "" } # not empty json, but empty string
+    let(:response_code) { 200 }
+
+    it 'empty response body should not throw error' do
+      stub_request(:put, "https://api.line.me/liff/v1/apps/test-liff-id")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: {  })
+
+      request = Line::Bot::V2::Liff::UpdateLiffAppRequest.new(view: { url: 'https://example.com' })
+      body, status_code, headers = client.update_liff_app_with_http_info(liff_id: 'test-liff-id', update_liff_app_request: request)
+
+      expect(status_code).to eq(200)
+      expect(body).to eq("")
+    end
+  end
+
+  describe 'POST /v2/bot/message/broadcast' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:response_body) { {  }.to_json } # empty json
+    let(:response_code) { 200 }
+
+    it 'empty json as response body should not throw error' do
+      stub_request(:post, "https://api.line.me/v2/bot/message/broadcast")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.broadcast_with_http_info(broadcast_request: { type: 'text', text: 'Hello, world!' })
+
+      expect(status_code).to eq(200)
+      expect(body).to eq("{}")
+    end
+  end
+
   describe 'GET /v2/bot/message/aggregation/list' do
     let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
     let(:response_body) { { "custom_aggregation_units" => ["unit1", "unit2"], "next" => "token" }.to_json }
