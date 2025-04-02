@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::AccountLinkEvent} instead.
+      #
       # Event object for when a user has linked his/her LINE account with a provider's service account.
       #
       # https://developers.line.biz/en/reference/messaging-api/#account-link-event

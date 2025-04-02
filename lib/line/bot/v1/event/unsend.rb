@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::UnsendEvent} instead.
+      #
       # Event object for when the user unsends a message in a group or room.
       #
       # No replyToken is generated for this event.

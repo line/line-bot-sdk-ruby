@@ -18,10 +18,17 @@ require 'uri'
 
 module Line
   module Bot
+    # @deprecated
+    # This is deprecated.
+    # Please use {Line::Bot::V2::HttpClient} instead.
     class HTTPClient
       # @return [Hash]
       attr_accessor :http_options
 
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::HttpClient#initialize} instead.
+      #
       # Initialize a new HTTPClient
       #
       # @param http_options [Hash]
@@ -31,6 +38,9 @@ module Line
         @http_options = http_options
       end
 
+      # @deprecated
+      # This is obsolete.
+      #
       # @return [Net::HTTP]
       def http(uri)
         http = Net::HTTP.new(uri.host, uri.port)
@@ -45,21 +55,33 @@ module Line
         http
       end
 
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::HttpClient#get} instead.
       def get(url, header = {})
         uri = URI(url)
         http(uri).get(uri.request_uri, header)
       end
 
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::HttpClient#post} instead.
       def post(url, payload, header = {})
         uri = URI(url)
         http(uri).post(uri.request_uri, payload, header)
       end
 
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::HttpClient#put} instead.
       def put(url, payload, header = {})
         uri = URI(url)
         http(uri).put(uri.request_uri, payload, header)
       end
 
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::HttpClient#delete} instead.
       def delete(url, header = {})
         uri = URI(url)
         http(uri).delete(uri.request_uri, header)

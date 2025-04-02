@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::JoinEvent} instead.
+      #
       # Event object for when your LINE official account joins a group or room.
       #
       # https://developers.line.biz/en/reference/messaging-api/#join-event

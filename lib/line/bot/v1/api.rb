@@ -16,6 +16,8 @@ require 'line/bot/v1/api/version'
 
 module Line
   module Bot
+    # @deprecated
+    # This is obsolete.
     module API
       DEFAULT_OAUTH_ENDPOINT = "https://api.line.me"
       DEFAULT_ENDPOINT = "https://api.line.me/v2"

@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::LeaveEvent} instead.
+      #
       # Event object for when a user removes your LINE official account from a group or when your LINE official account leaves a group or room.
       #
       # No replyToken is generated for this event.

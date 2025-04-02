@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::UnfollowEvent} instead.
+      #
       # Event object for when your LINE official account is blocked.
       #
       # No replyToken is generated for this event.

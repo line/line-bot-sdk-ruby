@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::FollowEvent} instead.
+      #
       # Event object for when your LINE official account is added as a friend (or unblocked).
       # You can reply to follow events.
       #

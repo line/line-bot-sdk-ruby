@@ -15,6 +15,10 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::Event} instead.
+
       class Base
         def initialize(src)
           warn '[DEPRECATION] Webhook models in V1 is deprecated. Please use V2 instead.' unless ENV['SUPRESS_V1_DEPRECATION_WARNINGS']

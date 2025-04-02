@@ -15,6 +15,8 @@
 module Line
   module Bot
     module Event
+      # @deprecated
+      # This is obsolete.
       module MessageType
         Text = 'text'
         Image = 'image'
@@ -26,6 +28,10 @@ module Line
         Unsupport = 'unsupport'
       end
 
+      # @deprecated
+      # This is deprecated.
+      # Please use {Line::Bot::V2::Webhook::MessageContent} instead.
+      #
       # Webhook event object which contains the sent message.
       #
       # https://developers.line.biz/en/reference/messaging-api/#message-event
