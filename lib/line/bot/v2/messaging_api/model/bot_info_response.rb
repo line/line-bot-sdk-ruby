@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#get-bot-info
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-bot-info
         class BotInfoResponse
           attr_accessor :user_id # Bot's user ID
           attr_accessor :basic_id # Bot's basic ID

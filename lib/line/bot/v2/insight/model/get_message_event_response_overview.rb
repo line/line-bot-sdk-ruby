@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Summary of message statistics.
 module Line
   module Bot
     module V2
       module Insight
+        # Summary of message statistics.
         class GetMessageEventResponseOverview
           attr_accessor :request_id # Request ID.
           attr_accessor :timestamp # UNIX timestamp for message delivery time in seconds.

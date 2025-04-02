@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
 module Line
   module Bot
     module V2
       module Liff
+        # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
         class LiffView
           attr_accessor :type # Size of the LIFF app view. Specify one of these values: - compact - tall - full 
           attr_accessor :url # Endpoint URL. This is the URL of the web app that implements the LIFF app (e.g. https://example.com). Used when the LIFF app is launched using the LIFF URL. The URL scheme must be https. URL fragments (#URL-fragment) can't be specified. 

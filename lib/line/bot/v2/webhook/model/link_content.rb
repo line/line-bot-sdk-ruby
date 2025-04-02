@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Content of the account link event.
 module Line
   module Bot
     module V2
       module Webhook
+        # Content of the account link event.
         class LinkContent
           attr_accessor :result # One of the following values to indicate whether linking the account was successful or not
           attr_accessor :nonce # Specified nonce (number used once) when verifying the user ID.

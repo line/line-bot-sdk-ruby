@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Object containing user membership subscription information.
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Object containing user membership subscription information.
         class SubscribedMembershipUser
           attr_accessor :membership_no # The user's member number in the membership plan.
           attr_accessor :joined_time # UNIX timestamp at which the user subscribed to the membership.

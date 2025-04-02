@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Create audience for uploading user IDs (by JSON)
-# @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Create audience for uploading user IDs (by JSON)
+        # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
         class CreateAudienceGroupResponse
           attr_accessor :audience_group_id # The audience ID.
           attr_accessor :create_route # How the audience was created.  `MESSAGING_API`: An audience created with Messaging API. 

@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#wh-text
 module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/messaging-api/#wh-text
         class Mentionee
           attr_accessor :type # Mentioned target.
           attr_accessor :index # Index position of the user mention for a character in text, with the first character being at position 0.

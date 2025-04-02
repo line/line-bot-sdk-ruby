@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Send mission stickers (v3)
-# @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
 module Line
   module Bot
     module V2
       module Shop
+        # Send mission stickers (v3)
+        # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
         class MissionStickerRequest
           attr_accessor to: String
           attr_accessor product_id: String

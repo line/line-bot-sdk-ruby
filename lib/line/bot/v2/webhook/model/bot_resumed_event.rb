@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# This event indicates that the LINE Official Account has returned from the suspended state. Sent to the webhook URL server of the module channel.
 module Line
   module Bot
     module V2
       module Webhook
+        # This event indicates that the LINE Official Account has returned from the suspended state. Sent to the webhook URL server of the module channel.
         class BotResumedEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

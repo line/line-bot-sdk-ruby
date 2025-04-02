@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Event object for when a user enters the range of a LINE Beacon. You can reply to beacon events.
 module Line
   module Bot
     module V2
       module Webhook
+        # Event object for when a user enters the range of a LINE Beacon. You can reply to beacon events.
         class BeaconEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

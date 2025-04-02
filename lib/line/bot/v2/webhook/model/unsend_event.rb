@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Event object for when the user unsends a message.
 module Line
   module Bot
     module V2
       module Webhook
+        # Event object for when the user unsends a message.
         class UnsendEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

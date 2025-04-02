@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Issued short-lived channel access token
-# @see https://developers.line.biz/en/reference/messaging-api/#issue-shortlived-channel-access-token
 module Line
   module Bot
     module V2
       module ChannelAccessToken
+        # Issued short-lived channel access token
+        # @see https://developers.line.biz/en/reference/messaging-api/#issue-shortlived-channel-access-token
         class IssueShortLivedChannelAccessTokenResponse
           attr_accessor :access_token # A short-lived channel access token. Valid for 30 days. Note: Channel access tokens cannot be refreshed. 
           attr_accessor :expires_in # Time until channel access token expires in seconds from time the token is issued.

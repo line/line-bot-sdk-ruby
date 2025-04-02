@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Get the authority level of the audience
-# @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Get the authority level of the audience
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
         class GetAudienceGroupAuthorityLevelResponse
           attr_accessor :authority_level
 

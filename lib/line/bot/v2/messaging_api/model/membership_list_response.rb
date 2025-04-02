@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# List of memberships
 module Line
   module Bot
     module V2
       module MessagingApi
+        # List of memberships
         class MembershipListResponse
           attr_accessor :memberships # List of membership information
 

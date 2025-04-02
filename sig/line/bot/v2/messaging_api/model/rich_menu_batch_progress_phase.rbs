@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# The current status. One of:  `ongoing`: Rich menu batch control is in progress. `succeeded`: Rich menu batch control is complete. `failed`: Rich menu batch control failed.           This means that the rich menu for one or more users couldn't be controlled.           There may also be users whose operations have been successfully completed. 
 module Line
   module Bot
     module V2
       module MessagingApi
+        # The current status. One of:  `ongoing`: Rich menu batch control is in progress. `succeeded`: Rich menu batch control is complete. `failed`: Rich menu batch control failed.           This means that the rich menu for one or more users couldn't be controlled.           There may also be users whose operations have been successfully completed. 
         class RichMenuBatchProgressPhase
           
         end

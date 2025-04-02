@@ -9,11 +9,11 @@
 
 require_relative './rich_menu_batch_operation'
 
-# Replace the rich menu with the rich menu specified in the `to` property for all users linked to the rich menu specified in the `from` property.
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Replace the rich menu with the rich menu specified in the `to` property for all users linked to the rich menu specified in the `from` property.
         class RichMenuBatchLinkOperation < RichMenuBatchOperation
           attr_reader :type # The type of operation to the rich menu linked to the user. One of link, unlink, or unlinkAll.
           attr_accessor :from

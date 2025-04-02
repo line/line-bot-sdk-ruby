@@ -9,12 +9,12 @@
 
 require_relative './substitution_object'
 
-# An object representing a emoji substitution.
-# @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2-emoji-object
 module Line
   module Bot
     module V2
       module MessagingApi
+        # An object representing a emoji substitution.
+        # @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2-emoji-object
         class EmojiSubstitutionObject < SubstitutionObject
           attr_reader :type # Type of substitution object
           attr_accessor :product_id

@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# You can specify the offset of a component with the `offset*` property, in pixels or with a keyword. You can also specify the percentage to the box width for `offsetStart` and `offsetEnd` and to the box height for `offsetTop` and `offsetBottom`. FlexOffset just provides only keywords. 
 module Line
   module Bot
     module V2
       module MessagingApi
+        # You can specify the offset of a component with the `offset*` property, in pixels or with a keyword. You can also specify the percentage to the box width for `offsetStart` and `offsetEnd` and to the box height for `offsetTop` and `offsetBottom`. FlexOffset just provides only keywords. 
         class FlexOffset
 
           def initialize(

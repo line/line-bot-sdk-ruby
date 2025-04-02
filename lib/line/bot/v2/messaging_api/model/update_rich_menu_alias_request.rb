@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
         class UpdateRichMenuAliasRequest
           attr_accessor :rich_menu_id # The rich menu ID to be associated with the rich menu alias.
 

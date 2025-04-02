@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Adaccount
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Adaccount
         class Adaccount
           attr_accessor name: String?
           

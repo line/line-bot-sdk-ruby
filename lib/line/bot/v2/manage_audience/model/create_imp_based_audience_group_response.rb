@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Create audience for impression-based retargeting
-# @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Create audience for impression-based retargeting
+        # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
         class CreateImpBasedAudienceGroupResponse
           attr_accessor :audience_group_id # The audience ID.
           attr_accessor :type

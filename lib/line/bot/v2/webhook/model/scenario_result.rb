@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#scenario-result-event
 module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/messaging-api/#scenario-result-event
         class ScenarioResult
           attr_accessor :scenario_id # Scenario ID executed
           attr_accessor :revision # Revision number of the scenario set containing the executed scenario

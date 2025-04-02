@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#get-members-room-count
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-members-room-count
         class RoomMemberCountResponse
           attr_accessor :count # The count of members in the multi-person chat. The number returned excludes the LINE Official Account.
 

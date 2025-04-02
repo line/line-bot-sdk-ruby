@@ -9,11 +9,11 @@
 
 require_relative './mention_target'
 
-# @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2-mentionee-all
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2-mentionee-all
         class AllMentionTarget < MentionTarget
           attr_reader :type # Target to be mentioned
 

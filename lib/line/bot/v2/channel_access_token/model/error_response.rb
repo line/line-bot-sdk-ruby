@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Error response of the Channel access token
 module Line
   module Bot
     module V2
       module ChannelAccessToken
+        # Error response of the Channel access token
         class ErrorResponse
           attr_accessor :error # Error summary
           attr_accessor :error_description # Details of the error. Not returned in certain situations.

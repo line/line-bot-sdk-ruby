@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# When a request is made to the LINE notification messages API and delivery of the LINE notification message to the user is completed, a dedicated webhook event (delivery completion event) is sent from the LINE Platform to the webhook URL of the bot server.
 module Line
   module Bot
     module V2
       module Webhook
+        # When a request is made to the LINE notification messages API and delivery of the LINE notification message to the user is completed, a dedicated webhook event (delivery completion event) is sent from the LINE Platform to the webhook URL of the bot server.
         class PnpDeliveryCompletionEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.
-# @see https://developers.line.biz/en/reference/messaging-api/#get-insight-message-event-response
 module Line
   module Bot
     module V2
       module Insight
+        # Statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-insight-message-event-response
         class GetMessageEventResponse
           attr_accessor :overview
           attr_accessor :messages # Array of information about individual message bubbles.

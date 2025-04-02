@@ -9,11 +9,11 @@
 
 require_relative './rich_menu_batch_operation'
 
-# Unlink the rich menu from all users linked to the rich menu.
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Unlink the rich menu from all users linked to the rich menu.
         class RichMenuBatchUnlinkAllOperation < RichMenuBatchOperation
           attr_reader :type # The type of operation to the rich menu linked to the user. One of link, unlink, or unlinkAll.
 

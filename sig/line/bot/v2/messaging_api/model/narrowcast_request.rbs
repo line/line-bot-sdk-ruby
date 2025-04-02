@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
         class NarrowcastRequest
           attr_accessor messages: Array[Message]
           attr_accessor recipient: Recipient?

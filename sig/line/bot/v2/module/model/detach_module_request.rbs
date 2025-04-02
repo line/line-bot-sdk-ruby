@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Unlink (detach) the module channel by the operation of the module channel administrator
-# @see https://developers.line.biz/en/reference/partner-docs/#unlink-detach-module-channel-by-operation-mc-admin
 module Line
   module Bot
     module V2
       module Module
+        # Unlink (detach) the module channel by the operation of the module channel administrator
+        # @see https://developers.line.biz/en/reference/partner-docs/#unlink-detach-module-channel-by-operation-mc-admin
         class DetachModuleRequest
           attr_accessor bot_id: String?
           

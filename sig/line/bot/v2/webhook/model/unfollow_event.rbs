@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Event object for when your LINE Official Account is blocked.
 module Line
   module Bot
     module V2
       module Webhook
+        # Event object for when your LINE Official Account is blocked.
         class UnfollowEvent < Event
           attr_reader type: String
           attr_accessor source: Source?

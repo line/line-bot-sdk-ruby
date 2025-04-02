@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit-response
 module Line
   module Bot
     module V2
       module Insight
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit-response
         class GetStatisticsPerUnitResponseClick
           attr_accessor :seq # The URL's serial number.
           attr_accessor :url # URL.

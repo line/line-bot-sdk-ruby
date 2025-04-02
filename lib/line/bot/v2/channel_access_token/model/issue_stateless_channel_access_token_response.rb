@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Issued stateless channel access token
-# @see https://developers.line.biz/en/reference/messaging-api/#issue-stateless-channel-access-token
 module Line
   module Bot
     module V2
       module ChannelAccessToken
+        # Issued stateless channel access token
+        # @see https://developers.line.biz/en/reference/messaging-api/#issue-stateless-channel-access-token
         class IssueStatelessChannelAccessTokenResponse
           attr_accessor :access_token # A stateless channel access token. The token is an opaque string which means its format is an implementation detail and the consumer of this token should never try to use the data parsed from the token. 
           attr_accessor :expires_in # Duration in seconds after which the issued access token expires

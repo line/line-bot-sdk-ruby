@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# webhook's delivery context information
 module Line
   module Bot
     module V2
       module Webhook
+        # webhook's delivery context information
         class DeliveryContext
           attr_accessor :is_redelivery # Whether the webhook event is a redelivered one or not.
 

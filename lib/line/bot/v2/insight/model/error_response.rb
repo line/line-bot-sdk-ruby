@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#error-responses
 module Line
   module Bot
     module V2
       module Insight
+        # @see https://developers.line.biz/en/reference/messaging-api/#error-responses
         class ErrorResponse
           attr_accessor :message # Message containing information about the error.
           attr_accessor :details # An array of error details. If the array is empty, this property will not be included in the response.

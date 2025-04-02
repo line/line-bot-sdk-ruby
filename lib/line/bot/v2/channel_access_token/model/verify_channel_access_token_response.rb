@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Verification result
 module Line
   module Bot
     module V2
       module ChannelAccessToken
+        # Verification result
         class VerifyChannelAccessTokenResponse
           attr_accessor :client_id # The channel ID for which the channel access token was issued.
           attr_accessor :expires_in # Number of seconds before the channel access token expires.

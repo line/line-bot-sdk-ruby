@@ -9,11 +9,11 @@
 
 require_relative './message'
 
-# @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2
         class TextMessageV2 < Message
           attr_reader :type # Type of message
           attr_accessor :quick_reply

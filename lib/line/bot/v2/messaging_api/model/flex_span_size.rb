@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Font size in the `size` property of the Flex span component. You can specify the size in pixels or with a keyword. FlexSpanSize just provides only keywords. 
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Font size in the `size` property of the Flex span component. You can specify the size in pixels or with a keyword. FlexSpanSize just provides only keywords. 
         class FlexSpanSize
 
           def initialize(

@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Audience group job
-# @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Audience group job
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
         class AudienceGroupJob
           attr_accessor audience_group_job_id: Integer?
           attr_accessor audience_group_id: Integer?

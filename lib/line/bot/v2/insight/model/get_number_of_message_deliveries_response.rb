@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Get number of message deliveries
-# @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-delivery-messages
 module Line
   module Bot
     module V2
       module Insight
+        # Get number of message deliveries
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-delivery-messages
         class GetNumberOfMessageDeliveriesResponse
           attr_accessor :status # Status of the counting process.
           attr_accessor :broadcast # Number of messages sent to all of this LINE Official Account's friends (broadcast messages).

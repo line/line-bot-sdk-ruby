@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#issue-link-token
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#issue-link-token
         class IssueLinkTokenResponse
           attr_accessor :link_token # Link token. Link tokens are valid for 10 minutes and can only be used once.  
 

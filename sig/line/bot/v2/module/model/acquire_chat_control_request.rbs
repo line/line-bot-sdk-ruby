@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Request entity of the Acquire Control API
-# @see https://developers.line.biz/en/reference/partner-docs/#acquire-control-api
 module Line
   module Bot
     module V2
       module Module
+        # Request entity of the Acquire Control API
+        # @see https://developers.line.biz/en/reference/partner-docs/#acquire-control-api
         class AcquireChatControlRequest
           attr_accessor expired: bool?
           attr_accessor ttl: Integer?

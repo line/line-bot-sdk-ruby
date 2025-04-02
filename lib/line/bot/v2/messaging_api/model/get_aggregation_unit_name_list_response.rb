@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#get-name-list-of-units-used-this-month
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-name-list-of-units-used-this-month
         class GetAggregationUnitNameListResponse
           attr_accessor :custom_aggregation_units # An array of strings indicating the names of aggregation units used this month.
           attr_accessor :_next # A continuation token to get the next array of unit names. Returned only when there are remaining aggregation units that weren't returned in customAggregationUnits in the original request.  

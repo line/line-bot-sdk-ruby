@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-users
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-users
         class RichMenuBulkLinkRequest
           attr_accessor :rich_menu_id # ID of a rich menu
           attr_accessor :user_ids # Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.

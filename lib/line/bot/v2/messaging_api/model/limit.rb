@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Limit of the Narrowcast
-# @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Limit of the Narrowcast
+        # @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
         class Limit
           attr_accessor :max # The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. 
           attr_accessor :up_to_remaining_quota # If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 

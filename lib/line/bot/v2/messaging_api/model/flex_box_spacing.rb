@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# You can specify the minimum space between two components with the `spacing` property of the parent box component, in pixels or with a keyword. FlexBoxSpacing just provides only keywords. 
 module Line
   module Bot
     module V2
       module MessagingApi
+        # You can specify the minimum space between two components with the `spacing` property of the parent box component, in pixels or with a keyword. FlexBoxSpacing just provides only keywords. 
         class FlexBoxSpacing
 
           def initialize(

@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#get-group-member-profile
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-group-member-profile
         class GroupUserProfileResponse
           attr_accessor :display_name # User's display name
           attr_accessor :user_id # User ID

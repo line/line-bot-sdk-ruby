@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# List of users who have joined the membership
-# @see https://developers.line.biz/en/reference/messaging-api/#get-membership-user-ids
 module Line
   module Bot
     module V2
       module MessagingApi
+        # List of users who have joined the membership
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-membership-user-ids
         class GetJoinedMembershipUsersResponse
           attr_accessor :user_ids # A list of user IDs who joined the membership. Users who have not agreed to the bot user agreement, are not following the bot, or are not active will be excluded. If there are no users in the membership, an empty list will be returned. 
           attr_accessor :_next # A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds).  

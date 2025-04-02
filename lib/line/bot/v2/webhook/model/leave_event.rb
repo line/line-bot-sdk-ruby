@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Event object for when a user removes your LINE Official Account from a group chat or when your LINE Official Account leaves a group chat or multi-person chat.
 module Line
   module Bot
     module V2
       module Webhook
+        # Event object for when a user removes your LINE Official Account from a group chat or when your LINE Official Account leaves a group chat or multi-person chat.
         class LeaveEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Quick reply
-# @see https://developers.line.biz/en/reference/messaging-api/#items-object
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Quick reply
+        # @see https://developers.line.biz/en/reference/messaging-api/#items-object
         class QuickReply
           attr_accessor :items # Quick reply button objects.
 

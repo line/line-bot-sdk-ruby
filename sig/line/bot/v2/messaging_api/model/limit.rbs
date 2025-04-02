@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Limit of the Narrowcast
-# @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Limit of the Narrowcast
+        # @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
         class Limit
           attr_accessor max: Integer?
           attr_accessor up_to_remaining_quota: bool?

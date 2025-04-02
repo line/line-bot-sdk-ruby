@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Audience
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Audience
         class Audience
           attr_accessor :id # A user ID or IFA. You can specify an empty array.
 

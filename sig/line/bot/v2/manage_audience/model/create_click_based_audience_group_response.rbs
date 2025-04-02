@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Create audience for click-based retargeting
-# @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Create audience for click-based retargeting
+        # @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
         class CreateClickBasedAudienceGroupResponse
           attr_accessor audience_group_id: Integer?
           attr_accessor type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?

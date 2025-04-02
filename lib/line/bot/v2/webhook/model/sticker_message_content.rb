@@ -9,11 +9,11 @@
 
 require_relative './message_content'
 
-# @see https://developers.line.biz/en/reference/messaging-api/#wh-sticker
 module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/messaging-api/#wh-sticker
         class StickerMessageContent < MessageContent
           attr_reader :type # Type
           attr_accessor :id # Message ID

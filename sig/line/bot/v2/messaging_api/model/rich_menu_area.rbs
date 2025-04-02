@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Rich menu area
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Rich menu area
         class RichMenuArea
           attr_accessor bounds: RichMenuBounds?
           attr_accessor action: Action?

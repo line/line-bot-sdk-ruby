@@ -9,11 +9,11 @@
 
 require_relative './mentionee'
 
-# Mentioned target is user
 module Line
   module Bot
     module V2
       module Webhook
+        # Mentioned target is user
         class UserMentionee < Mentionee
           attr_reader :type # Mentioned target.
           attr_accessor :index # Index position of the user mention for a character in text, with the first character being at position 0.

@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
         class TestWebhookEndpointRequest
           attr_accessor :endpoint # A webhook URL to be validated.
 

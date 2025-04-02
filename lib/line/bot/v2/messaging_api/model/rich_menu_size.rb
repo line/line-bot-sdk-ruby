@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Rich menu size
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Rich menu size
         class RichMenuSize
           attr_accessor :width # width
           attr_accessor :height # height

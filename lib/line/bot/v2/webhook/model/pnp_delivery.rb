@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# A delivery object containing a hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
 module Line
   module Bot
     module V2
       module Webhook
+        # A delivery object containing a hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
         class PnpDelivery
           attr_accessor :data # A hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
 

@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
 module Line
   module Bot
     module V2
       module Liff
+        # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
         class UpdateLiffAppRequest
           attr_accessor :view
           attr_accessor :description # Name of the LIFF app.  The LIFF app name can't include \"LINE\" or similar strings, or inappropriate strings. 

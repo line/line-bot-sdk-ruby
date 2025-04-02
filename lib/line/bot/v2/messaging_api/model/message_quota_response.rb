@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#get-quota
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-quota
         class MessageQuotaResponse
           attr_accessor :type
           attr_accessor :value # The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 

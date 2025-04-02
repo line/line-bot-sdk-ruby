@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Get friend demographics
-# @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
 module Line
   module Bot
     module V2
       module Insight
+        # Get friend demographics
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
         class GetFriendsDemographicsResponse
           attr_accessor :available # true if friend demographic information is available.
           attr_accessor :genders # Percentage per gender.

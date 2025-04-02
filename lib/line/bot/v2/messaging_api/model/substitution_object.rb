@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# An object that defines the replacement value for a placeholder in the text.
 module Line
   module Bot
     module V2
       module MessagingApi
+        # An object that defines the replacement value for a placeholder in the text.
         class SubstitutionObject
           attr_accessor :type # Type of substitution object
 

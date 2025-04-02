@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
         class MulticastRequest
           attr_accessor :messages # Messages to send
           attr_accessor :to # Array of user IDs. Use userId values which are returned in webhook event objects. Do not use LINE IDs found on LINE.

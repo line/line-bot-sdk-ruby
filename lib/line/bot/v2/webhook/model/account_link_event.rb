@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Event object for when a user has linked their LINE account with a provider's service account. You can reply to account link events.
 module Line
   module Bot
     module V2
       module Webhook
+        # Event object for when a user has linked their LINE account with a provider's service account. You can reply to account link events.
         class AccountLinkEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

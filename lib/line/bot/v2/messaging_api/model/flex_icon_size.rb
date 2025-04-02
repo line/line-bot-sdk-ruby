@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# You can set the width of an Flex icon component with the `size` property, in pixels, as a percentage, or with a keyword. FlexIconSize just provides only keywords. 
 module Line
   module Bot
     module V2
       module MessagingApi
+        # You can set the width of an Flex icon component with the `size` property, in pixels, as a percentage, or with a keyword. FlexIconSize just provides only keywords. 
         class FlexIconSize
 
           def initialize(
