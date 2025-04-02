@@ -458,6 +458,44 @@ describe 'misc' do
     end
   end
 
+  describe 'Unknown responses' do
+    describe 'like unknown fields' do
+      describe 'POST /v2/bot/message/reply' do
+        let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+        let(:response_body) { { sentMessages: [{ id: "461230966842064897", quoteToken: "IStG5h1Tz7b..." }], invalidField: "foobar" }.to_json }
+        let(:response_code) { 200 }
+
+        it 'handles unknown fields in the response' do
+          stub_request(:post, "https://api.line.me/v2/bot/message/reply")
+            .with(
+              headers: {
+                'Authorization' => "Bearer test-channel-access-token",
+                'Content-Type' => 'application/json'
+              },
+              body: anything
+            )
+            .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+          request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+            reply_token: 'test-reply-token',
+            messages: [
+              Line::Bot::V2::MessagingApi::TextMessage.new(
+                text: 'Hello, world!'
+              )
+            ]
+          )
+
+          body, status_code, headers = client.reply_message_with_http_info(
+            reply_message_request: request
+          )
+
+          expect(status_code).to eq(response_code)
+          expect(body.invalid_field).to eq("foobar")
+        end
+      end
+    end
+  end
+
   describe 'Line::Bot::V2::MessagingApi::TemplateMessage#initialize' do
     it "contains fixed type attribute" do
       template_message = Line::Bot::V2::MessagingApi::TemplateMessage.new(
