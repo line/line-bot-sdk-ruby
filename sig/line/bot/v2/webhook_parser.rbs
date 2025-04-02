@@ -8,6 +8,10 @@ module Line
 
         private
 
+        def variable_secure_compare: (a: String, b: String) -> bool
+
+        def secure_compare: (a: String, b: String) -> bool
+
         def verify_signature: (body: String, signature: String) -> bool
 
         def create_instance: (untyped klass, Hash[Symbol, untyped] attributes) -> untyped
