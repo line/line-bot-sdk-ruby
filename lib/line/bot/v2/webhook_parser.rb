@@ -15,6 +15,35 @@ module Line
           @channel_secret = channel_secret
         end
 
+        # Parse events from the raw request body and validate the signature.
+        #
+        # @param body [String]
+        #   The unmodified request body (exactly as received).
+        # @param signature [String]
+        #   The value of the 'X-LINE-Signature' header.
+        # @return [Array<Line::Bot::V2::Webhook::Event, OpenStruct>]
+        #   An array of event objects. Recognized events become instances of classes
+        #   under `Line::Bot::V2::Webhook::*Event`; otherwise, they're returned as `OpenStruct`.
+        # @raise [InvalidSignatureError]
+        #   If the signature fails verification.
+        #
+        # @example Sinatra usage
+        #   def parser
+        #     @parser ||= Line::Bot::V2::WebhookParser.new(channel_secret: ENV.fetch("LINE_CHANNEL_SECRET"))
+        #   end
+        #
+        #   post '/callback' do
+        #     body = request.body.read
+        #     signature = request.env['HTTP_X_LINE_SIGNATURE']
+        #
+        #     begin
+        #       events = parser.parse(body, signature)
+        #     rescue Line::Bot::V2::WebhookParser::InvalidSignatureError
+        #       halt 400, { 'Content-Type' => 'text/plain' }, 'Bad Request'
+        #     end
+        #
+        #     # Handle events...
+        #   end
         def parse(body, signature)
           raise InvalidSignatureError.new("Invalid signature: #{signature}") unless verify_signature(body: body, signature: signature)
 

@@ -2,9 +2,16 @@ module Line
   module Bot
     module V2
       class WebhookParser
+        class InvalidSignatureError < ::StandardError
+        end
+
         def initialize: (channel_secret: String) -> void
 
-        def parse: (String body, String signature) -> Hash[Symbol, untyped]
+        def parse: (
+            body: String,
+            signature: String
+          ) -> Array[Webhook::Event | ::OpenStruct]
+
 
         private
 
@@ -21,6 +28,8 @@ module Line
         def pascalize: (String|Symbol str) -> String
 
         def singularize: (String|Symbol str) -> String
+
+        def deep_hash_to_ostruct: (untyped) -> untyped
       end
     end
   end
