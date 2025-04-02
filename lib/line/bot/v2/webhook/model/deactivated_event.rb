@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# This event indicates that the module channel has been switched to Standby Channel by calling Acquire Control API or Release Control API. Sent to the webhook URL server of the module channel.
 module Line
   module Bot
     module V2
       module Webhook
+        # This event indicates that the module channel has been switched to Standby Channel by calling Acquire Control API or Release Control API. Sent to the webhook URL server of the module channel.
         class DeactivatedEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

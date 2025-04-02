@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Create audience for uploading user IDs (by JSON)
-# @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Create audience for uploading user IDs (by JSON)
+        # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
         class CreateAudienceGroupRequest
           attr_accessor :description # The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           attr_accessor :is_ifa_audience # To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 

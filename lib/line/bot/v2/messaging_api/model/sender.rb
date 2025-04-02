@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Change icon and display name
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Change icon and display name
         class Sender
           attr_accessor :name # Display name. Certain words such as `LINE` may not be used.
           attr_accessor :icon_url # URL of the image to display as an icon when sending a message

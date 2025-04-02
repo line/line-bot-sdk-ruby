@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Attach by operation of the module channel provider
 module Line
   module Bot
     module V2
       module ModuleAttach
+        # Attach by operation of the module channel provider
         class AttachModuleResponse
           attr_accessor bot_id: String
           attr_accessor scopes: Array[String]

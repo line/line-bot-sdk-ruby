@@ -6,14 +6,20 @@
 {% if model.model.parent != null %}
 require_relative './{{ model.model.parent | underscore }}'
 {% endif -%}
-{% if model.model.description != null %}
-# {{ model.model.description }}{% endif %}{% if model.model.externalDocumentation.description != null %}
-# {{ model.model.externalDocumentation.description }}{% endif %}{% if model.model.externalDocumentation.url != null %}
-# @see {{ model.model.externalDocumentation.url }}{% endif %}
+{{ "" | raw }}{# To break line #}
 module Line
   module Bot
     module V2
       module {{ packageName | camelize }}
+        {% if model.model.description != null -%}
+        # {{ model.model.description }}
+        {% endif -%}
+        {% if model.model.externalDocumentation.description != null -%}
+        # {{ model.model.externalDocumentation.description }}
+        {% endif -%}
+        {% if model.model.externalDocumentation.url != null -%}
+        # @see {{ model.model.externalDocumentation.url }}
+        {% endif -%}
         class {{ model.model.classname }}{% if model.model.parent != null %} < {{ model.model.parent }}{% endif %}
           {%- for property in model.model.vars %}
           {% if model.model.vendorExtensions.get("x-selector").propertyName != property.name %}attr_accessor{% else %}attr_reader{% endif %} :{{ property.name }}{% if property.description != null %} # {{ property.description }}{% endif %}

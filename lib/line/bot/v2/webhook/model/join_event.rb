@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Event object for when your LINE Official Account joins a group chat or multi-person chat. You can reply to join events.
 module Line
   module Bot
     module V2
       module Webhook
+        # Event object for when your LINE Official Account joins a group chat or multi-person chat. You can reply to join events.
         class JoinEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

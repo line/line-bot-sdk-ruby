@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/partner-docs/#send-line-notification-message
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/partner-docs/#send-line-notification-message
         class PnpMessagesRequest
           attr_accessor :messages # Message to be sent.
           attr_accessor :to # Message destination. Specify a phone number that has been normalized to E.164 format and hashed with SHA256.

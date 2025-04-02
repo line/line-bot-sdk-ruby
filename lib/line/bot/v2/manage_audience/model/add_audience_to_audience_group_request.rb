@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
-# @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
+        # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
         class AddAudienceToAudienceGroupRequest
           attr_accessor :audience_group_id # The audience ID.
           attr_accessor :upload_description # The audience's name.

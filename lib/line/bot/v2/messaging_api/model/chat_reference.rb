@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Chat reference
-# @see https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Chat reference
+        # @see https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read
         class ChatReference
           attr_accessor :user_id # The target user ID
 

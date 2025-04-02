@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Get number of followers
-# @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
 module Line
   module Bot
     module V2
       module Insight
+        # Get number of followers
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
         class GetNumberOfFollowersResponse
           attr_accessor :status # Calculation status.
           attr_accessor :followers # The number of times, as of the specified date, that a user added this LINE Official Account as a friend for the first time. The number doesn't decrease even if a user later blocks the account or when they delete their LINE account. 

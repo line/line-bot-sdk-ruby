@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# This event indicates that a user has subscribed (joined), unsubscribed (left), or renewed the bot's membership.
 module Line
   module Bot
     module V2
       module Webhook
+        # This event indicates that a user has subscribed (joined), unsubscribed (left), or renewed the bot's membership.
         class MembershipEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

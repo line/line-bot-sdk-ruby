@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# A user's membership subscription status
-# @see https://developers.line.biz/en/reference/messaging-api/#get-a-users-membership-subscription-status
 module Line
   module Bot
     module V2
       module MessagingApi
+        # A user's membership subscription status
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-a-users-membership-subscription-status
         class GetMembershipSubscriptionResponse
           attr_accessor :subscriptions # List of subscription information
 

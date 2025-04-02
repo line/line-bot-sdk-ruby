@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Event object for when your LINE Official Account is blocked.
 module Line
   module Bot
     module V2
       module Webhook
+        # Event object for when your LINE Official Account is blocked.
         class UnfollowEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

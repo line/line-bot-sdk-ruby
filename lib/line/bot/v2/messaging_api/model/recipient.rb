@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Recipient
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Recipient
         class Recipient
           attr_accessor :type # Type of recipient
 

@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Indicates that a user linked a device with LINE.
 module Line
   module Bot
     module V2
       module Webhook
+        # Indicates that a user linked a device with LINE.
         class ThingsEvent < Event
           attr_reader type: String
           attr_accessor source: Source?

@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Webhook event
 module Line
   module Bot
     module V2
       module Webhook
+        # Webhook event
         class Event
           attr_accessor :type # Type of the event
           attr_accessor :source

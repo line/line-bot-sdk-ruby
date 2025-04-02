@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
 module Line
   module Bot
     module V2
       module Shop
+        # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
         class ErrorResponse
           attr_accessor :message # Message containing information about the error.
 

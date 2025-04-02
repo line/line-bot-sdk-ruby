@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#display-a-loading-indicator-request-body
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#display-a-loading-indicator-request-body
         class ShowLoadingAnimationRequest
           attr_accessor :chat_id # User ID of the target user for whom the loading animation is to be displayed.
           attr_accessor :loading_seconds # The number of seconds to display the loading indicator. It must be a multiple of 5. The maximum value is 60 seconds. 

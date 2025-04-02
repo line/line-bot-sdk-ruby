@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#get-group-summary
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-group-summary
         class GroupSummaryResponse
           attr_accessor group_id: String
           attr_accessor group_name: String

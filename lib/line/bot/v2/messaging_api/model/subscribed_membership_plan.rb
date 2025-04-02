@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Object containing information about the membership plan.
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Object containing information about the membership plan.
         class SubscribedMembershipPlan
           attr_accessor :membership_id # Membership plan ID.
           attr_accessor :title # Membership plan name.

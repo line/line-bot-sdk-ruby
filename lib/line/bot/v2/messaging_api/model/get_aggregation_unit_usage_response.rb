@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-units-used-this-month
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-units-used-this-month
         class GetAggregationUnitUsageResponse
           attr_accessor :num_of_custom_aggregation_units # Number of aggregation units used this month.
 

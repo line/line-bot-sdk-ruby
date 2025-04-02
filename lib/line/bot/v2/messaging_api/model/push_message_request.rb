@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#send-push-message
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#send-push-message
         class PushMessageRequest
           attr_accessor :to # ID of the receiver.
           attr_accessor :messages # List of Message objects.

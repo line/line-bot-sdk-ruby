@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Event for when a user finishes viewing a video at least once with the specified trackingId sent by the LINE Official Account.
 module Line
   module Bot
     module V2
       module Webhook
+        # Event for when a user finishes viewing a video at least once with the specified trackingId sent by the LINE Official Account.
         class VideoPlayCompleteEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

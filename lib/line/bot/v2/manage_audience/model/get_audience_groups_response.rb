@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Gets data for more than one audience.
-# @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Gets data for more than one audience.
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
         class GetAudienceGroupsResponse
           attr_accessor :audience_groups # An array of audience data. If there are no audiences that match the specified filter, an empty array will be returned.
           attr_accessor :has_next_page # true when this is not the last page.

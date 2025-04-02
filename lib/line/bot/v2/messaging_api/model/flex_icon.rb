@@ -9,11 +9,11 @@
 
 require_relative './flex_component'
 
-# @see https://developers.line.biz/en/reference/messaging-api/#icon
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#icon
         class FlexIcon < FlexComponent
           attr_reader :type
           attr_accessor :url

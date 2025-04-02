@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Content of the membership event.
 module Line
   module Bot
     module V2
       module Webhook
+        # Content of the membership event.
         class MembershipContent
           attr_accessor :type # Type of membership event.
 

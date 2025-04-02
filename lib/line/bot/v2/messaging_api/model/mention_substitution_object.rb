@@ -9,12 +9,12 @@
 
 require_relative './substitution_object'
 
-# An object representing a mention substitution.
-# @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2-mention-object
 module Line
   module Bot
     module V2
       module MessagingApi
+        # An object representing a mention substitution.
+        # @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2-mention-object
         class MentionSubstitutionObject < SubstitutionObject
           attr_reader :type # Type of substitution object
           attr_accessor :mentionee

@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#get-narrowcast-progress-status
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-narrowcast-progress-status
         class NarrowcastProgressResponse
           attr_accessor :phase # The current status. One of:  `waiting`: Messages are not yet ready to be sent. They are currently being filtered or processed in some way. `sending`: Messages are currently being sent. `succeeded`: Messages were sent successfully. This may not mean the messages were successfully received. `failed`: Messages failed to be sent. Use the failedDescription property to find the cause of the failure. 
           attr_accessor :success_count # The number of users who successfully received the message.

@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# basic information about the bot.
-# @see https://developers.line.biz/en/reference/partner-docs/#get-multiple-bot-info-api
 module Line
   module Bot
     module V2
       module Module
+        # basic information about the bot.
+        # @see https://developers.line.biz/en/reference/partner-docs/#get-multiple-bot-info-api
         class ModuleBot
           attr_accessor :user_id # Bot's user ID
           attr_accessor :basic_id # Bot's basic ID

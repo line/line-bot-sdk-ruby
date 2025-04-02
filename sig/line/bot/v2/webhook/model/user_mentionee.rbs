@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Mentioned target is user
 module Line
   module Bot
     module V2
       module Webhook
+        # Mentioned target is user
         class UserMentionee < Mentionee
           attr_reader type: String
           attr_accessor index: Integer

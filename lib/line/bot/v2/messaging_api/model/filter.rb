@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Filter for narrowcast
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Filter for narrowcast
         class Filter
           attr_accessor :demographic
 

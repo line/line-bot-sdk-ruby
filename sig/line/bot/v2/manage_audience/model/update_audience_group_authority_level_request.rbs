@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Change the authority level of the audience
-# @see https://developers.line.biz/en/reference/messaging-api/#change-authority-level
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Change the authority level of the audience
+        # @see https://developers.line.biz/en/reference/messaging-api/#change-authority-level
         class UpdateAudienceGroupAuthorityLevelRequest
           attr_accessor authority_level: 'PUBLIC'|'PRIVATE'?
           

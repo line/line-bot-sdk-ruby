@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Create audience for click-based retargeting
-# @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Create audience for click-based retargeting
+        # @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
         class CreateClickBasedAudienceGroupRequest
           attr_accessor :description # The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           attr_accessor :request_id # The request ID of a broadcast or narrowcast message sent in the past 60 days. Each Messaging API request has a request ID. 

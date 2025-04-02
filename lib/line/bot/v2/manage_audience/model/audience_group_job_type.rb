@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Job Type
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Job Type
         class AudienceGroupJobType
 
           def initialize(

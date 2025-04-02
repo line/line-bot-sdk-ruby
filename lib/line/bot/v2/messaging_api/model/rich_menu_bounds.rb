@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Rich menu bounds
-# @see https://developers.line.biz/en/reference/messaging-api/#bounds-object
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Rich menu bounds
+        # @see https://developers.line.biz/en/reference/messaging-api/#bounds-object
         class RichMenuBounds
           attr_accessor :x # Horizontal position relative to the top-left corner of the area.
           attr_accessor :y # Vertical position relative to the top-left corner of the area.

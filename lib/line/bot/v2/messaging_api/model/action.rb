@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Action
-# @see https://developers.line.biz/en/reference/messaging-api/#action-objects
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Action
+        # @see https://developers.line.biz/en/reference/messaging-api/#action-objects
         class Action
           attr_accessor :type # Type of action
           attr_accessor :label # Label for the action.

@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Audience group
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Audience group
         class AudienceGroup
           attr_accessor :audience_group_id # The audience ID.
           attr_accessor :type

@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Aspect ratio of the image. This is only for the `imageAspectRatio` in ButtonsTemplate. Specify one of the following values:  `rectangle`: 1.51:1 `square`: 1:1 
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Aspect ratio of the image. This is only for the `imageAspectRatio` in ButtonsTemplate. Specify one of the following values:  `rectangle`: 1.51:1 `square`: 1:1 
         class TemplateImageAspectRatio
           
         end

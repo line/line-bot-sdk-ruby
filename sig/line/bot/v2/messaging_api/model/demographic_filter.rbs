@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Demographic filter
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Demographic filter
         class DemographicFilter
           attr_accessor type: String?
           

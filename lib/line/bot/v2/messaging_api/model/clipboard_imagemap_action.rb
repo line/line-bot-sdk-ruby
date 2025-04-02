@@ -9,11 +9,11 @@
 
 require_relative './imagemap_action'
 
-# @see https://developers.line.biz/en/reference/messaging-api/#imagemap-clipboard-action-object
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#imagemap-clipboard-action-object
         class ClipboardImagemapAction < ImagemapAction
           attr_reader :type
           attr_accessor :area

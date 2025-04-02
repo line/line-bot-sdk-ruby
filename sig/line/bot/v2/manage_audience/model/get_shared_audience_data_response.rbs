@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Get audience data
-# @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
 module Line
   module Bot
     module V2
       module ManageAudience
+        # Get audience data
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
         class GetSharedAudienceDataResponse
           attr_accessor audience_group: AudienceGroup?
           attr_accessor jobs: Array[AudienceGroupJob]?

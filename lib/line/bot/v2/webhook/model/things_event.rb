@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Indicates that a user linked a device with LINE.
 module Line
   module Bot
     module V2
       module Webhook
+        # Indicates that a user linked a device with LINE.
         class ThingsEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

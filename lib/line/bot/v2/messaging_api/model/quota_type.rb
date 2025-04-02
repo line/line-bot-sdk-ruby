@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# One of the following values to indicate whether a target limit is set or not.
-# @see https://developers.line.biz/en/reference/messaging-api/#get-quota
 module Line
   module Bot
     module V2
       module MessagingApi
+        # One of the following values to indicate whether a target limit is set or not.
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-quota
         class QuotaType
 
           def initialize(

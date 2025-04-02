@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Issued channel access token
-# @see https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token-v2-1
 module Line
   module Bot
     module V2
       module ChannelAccessToken
+        # Issued channel access token
+        # @see https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token-v2-1
         class IssueChannelAccessTokenResponse
           attr_accessor :access_token # Channel access token. 
           attr_accessor :expires_in # Amount of time in seconds from issue to expiration of the channel access token

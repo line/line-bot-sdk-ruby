@@ -9,11 +9,11 @@
 
 require_relative './action'
 
-# @see https://developers.line.biz/en/reference/messaging-api/#clipboard-action
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#clipboard-action
         class ClipboardAction < Action
           attr_reader :type # Type of action
           attr_accessor :label # Label for the action.

@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Channel access token key IDs
-# @see https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
 module Line
   module Bot
     module V2
       module ChannelAccessToken
+        # Channel access token key IDs
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
         class ChannelAccessTokenKeyIdsResponse
           attr_accessor :kids # Array of channel access token key IDs.
 

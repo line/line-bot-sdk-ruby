@@ -9,11 +9,11 @@
 
 require_relative './flex_component'
 
-# @see https://developers.line.biz/en/reference/messaging-api/#f-image
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#f-image
         class FlexImage < FlexComponent
           attr_reader :type
           attr_accessor :url # Image URL (Max character limit: 2000) Protocol: HTTPS (TLS 1.2 or later) Image format: JPEG or PNG Maximum image size: 1024×1024 pixels Maximum file size: 10 MB (300 KB when the animated property is true) 

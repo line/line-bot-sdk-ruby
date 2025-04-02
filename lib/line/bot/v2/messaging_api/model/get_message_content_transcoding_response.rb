@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Transcoding response
-# @see https://developers.line.biz/en/reference/messaging-api/#verify-video-or-audio-preparation-status
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Transcoding response
+        # @see https://developers.line.biz/en/reference/messaging-api/#verify-video-or-audio-preparation-status
         class GetMessageContentTranscodingResponse
           attr_accessor :status # The preparation status. One of:  `processing`: Preparing to get content. `succeeded`: Ready to get the content. You can get the content sent by users. `failed`: Failed to prepare to get the content. 
 

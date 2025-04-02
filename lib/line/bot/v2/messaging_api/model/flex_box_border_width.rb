@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Width of box border. This is only for `borderWidth` in FlexBox. A value of none means that borders are not rendered; the other values are listed in order of increasing width. 
 module Line
   module Bot
     module V2
       module MessagingApi
+        # Width of box border. This is only for `borderWidth` in FlexBox. A value of none means that borders are not rendered; the other values are listed in order of increasing width. 
         class FlexBoxBorderWidth
 
           def initialize(

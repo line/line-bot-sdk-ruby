@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Attach by operation of the module channel provider
 module Line
   module Bot
     module V2
       module ModuleAttach
+        # Attach by operation of the module channel provider
         class AttachModuleResponse
           attr_accessor :bot_id # User ID of the bot on the LINE Official Account.
           attr_accessor :scopes # Permissions (scope) granted by the LINE Official Account admin.

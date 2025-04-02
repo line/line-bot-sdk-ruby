@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Response object for `get statistics per unit`
-# @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit-response
 module Line
   module Bot
     module V2
       module Insight
+        # Response object for `get statistics per unit`
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit-response
         class GetStatisticsPerUnitResponse
           attr_accessor overview: GetStatisticsPerUnitResponseOverview
           attr_accessor messages: Array[GetStatisticsPerUnitResponseMessage]

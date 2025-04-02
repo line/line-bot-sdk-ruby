@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Event object for when your LINE Official Account is added as a friend (or unblocked). You can reply to follow events.
 module Line
   module Bot
     module V2
       module Webhook
+        # Event object for when your LINE Official Account is added as a friend (or unblocked). You can reply to follow events.
         class FollowEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

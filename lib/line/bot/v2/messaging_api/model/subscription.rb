@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# An array of memberships.
 module Line
   module Bot
     module V2
       module MessagingApi
+        # An array of memberships.
         class Subscription
           attr_accessor :membership
           attr_accessor :user

@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Event object for when a user performs a postback action which initiates a postback. You can reply to postback events.
 module Line
   module Bot
     module V2
       module Webhook
+        # Event object for when a user performs a postback action which initiates a postback. You can reply to postback events.
         class PostbackEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source

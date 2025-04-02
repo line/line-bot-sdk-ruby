@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
 module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
         class TestWebhookEndpointResponse
           attr_accessor :success # Result of the communication from the LINE platform to the webhook URL.
           attr_accessor :timestamp # Time of the event in milliseconds. Even in the case of a redelivered webhook, it represents the time the event occurred, not the time it was redelivered. 

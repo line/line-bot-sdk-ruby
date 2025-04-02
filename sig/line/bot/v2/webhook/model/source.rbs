@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# the source of the event.
-# @see https://developers.line.biz/en/reference/messaging-api/#source-user
 module Line
   module Bot
     module V2
       module Webhook
+        # the source of the event.
+        # @see https://developers.line.biz/en/reference/messaging-api/#source-user
         class Source
           attr_accessor type: String?
           

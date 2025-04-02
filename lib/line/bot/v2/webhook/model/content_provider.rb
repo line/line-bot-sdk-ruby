@@ -7,11 +7,11 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# Provider of the media file.
 module Line
   module Bot
     module V2
       module Webhook
+        # Provider of the media file.
         class ContentProvider
           attr_accessor :type # Provider of the image file.
           attr_accessor :original_content_url # URL of the image file. Only included when contentProvider.type is external.

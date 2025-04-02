@@ -7,12 +7,12 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-# List of bots to which the module is attached
-# @see https://developers.line.biz/en/reference/partner-docs/#get-multiple-bot-info-api
 module Line
   module Bot
     module V2
       module Module
+        # List of bots to which the module is attached
+        # @see https://developers.line.biz/en/reference/partner-docs/#get-multiple-bot-info-api
         class GetModulesResponse
           attr_accessor bots: Array[ModuleBot]
           attr_accessor _next: String?

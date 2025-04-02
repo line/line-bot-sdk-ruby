@@ -9,11 +9,11 @@
 
 require_relative './event'
 
-# Webhook event object which contains the sent message.
 module Line
   module Bot
     module V2
       module Webhook
+        # Webhook event object which contains the sent message.
         class MessageEvent < Event
           attr_reader :type # Type of the event
           attr_accessor :source
