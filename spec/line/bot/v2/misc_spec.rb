@@ -131,6 +131,95 @@ describe 'misc' do
     end
   end
 
+  describe 'GET /v2/bot/insight/followers' do
+    let(:client) { Line::Bot::V2::Insight::ApiClient.new(channel_access_token: channel_access_token) }
+    let(:response_code) { 200 }
+
+    it 'returns the number of followers successfully (ready status)' do
+      response_body = {
+        "status" => "ready",
+        "followers" => 1000,
+        "targetedReaches" => 900,
+        "blocks" => 100
+      }.to_json
+
+      stub_request(:get, "https://api.line.me/v2/bot/insight/followers")
+        .with(
+          headers: {
+            'Authorization' => "Bearer #{channel_access_token}"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, = client.get_number_of_followers_with_http_info
+
+      expect(status_code).to eq(200)
+      expect(body.status).to eq('ready')
+      expect(body.followers).to eq(1000)
+      expect(body.targeted_reaches).to eq(900)
+      expect(body.blocks).to eq(100)
+    end
+
+    it 'handles the null fields properly (unready status)' do
+      response_body = {
+        "status" => "unready",
+        "followers" => nil,
+        "targetedReaches" => nil,
+        "blocks" => nil
+      }.to_json
+
+      stub_request(:get, "https://api.line.me/v2/bot/insight/followers")
+        .with(
+          headers: {
+            'Authorization' => "Bearer #{channel_access_token}"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, = client.get_number_of_followers_with_http_info
+
+      expect(status_code).to eq(200)
+      expect(body.status).to eq('unready')
+      expect(body.followers).to be_nil
+      expect(body.targeted_reaches).to be_nil
+      expect(body.blocks).to be_nil
+    end
+  end
+
+  describe 'GET /v2/bot/message/progress/narrowcast' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: channel_access_token) }
+    let(:response_body) do
+      # missing errorCode, completedTime, targetCount
+      {
+        "phase" => "waiting",
+        "acceptedTime" => "2020-12-03T10:15:30.121Z"
+      }
+        .to_json
+    end
+    let(:response_code) { 200 }
+
+    it 'no problem even when response does not contain some JSON keys' do
+      stub_request(:get, "https://api.line.me/v2/bot/message/progress/narrowcast?requestId=7d51557c-7ba0-4ed7-991f-36b2a340dc1a")
+        .with(
+          headers: {
+            'Authorization'=>'Bearer YOUR_CHANNEL_ACCESS_TOKEN',
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'x-line-request-id' => '3a785346-2cf3-482f-8469-c893117fcef8' })
+
+      body, status_code, headers = client.get_narrowcast_progress_with_http_info(
+        request_id: '7d51557c-7ba0-4ed7-991f-36b2a340dc1a'
+      )
+
+      expect(status_code).to eq(200)
+      expect(body.phase).to eq('waiting')
+      expect(body.accepted_time).to eq('2020-12-03T10:15:30.121Z')
+      expect(body.error_code).to be_nil
+      expect(body.completed_time).to be_nil
+      expect(body.target_count).to be_nil
+    end
+  end
+
   describe 'POST /v2/oauth/accessToken' do
     let(:client) { Line::Bot::V2::ChannelAccessToken::ApiClient.new }
     let(:grant_type) { 'client_credentials' }
