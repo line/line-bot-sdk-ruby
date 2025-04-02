@@ -2,19 +2,19 @@
 {# @pebvariable name="packageName" type="String" #}
 {%- for model in models -%}
 {% include "./license.pebble" %}
-{% if model.model.description != null -%}
-# {{ model.model.description }}
-{% endif -%}
-{% if model.model.externalDocumentation.description != null -%}
-# {{ model.model.externalDocumentation.description }}
-{% endif -%}
-{% if model.model.externalDocumentation.url != null -%}
-# @see {{ model.model.externalDocumentation.url }}
-{% endif -%}
 module Line
   module Bot
     module V2
       module {{ packageName | camelize }}
+        {% if model.model.description != null -%}
+        # {{ model.model.description }}
+        {% endif -%}
+        {% if model.model.externalDocumentation.description != null -%}
+        # {{ model.model.externalDocumentation.description }}
+        {% endif -%}
+        {% if model.model.externalDocumentation.url != null -%}
+        # @see {{ model.model.externalDocumentation.url }}
+        {% endif -%}
         class {{ model.model.classname }}{% if model.model.parent != null %} < {{ model.model.parent }}{% endif %}
           {% if not model.model.isEnum -%}
           {% for variable in model.model.vars -%}
