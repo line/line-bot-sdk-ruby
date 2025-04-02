@@ -102,7 +102,23 @@ describe Line::Bot::V2::WebhookParser do
       end
     end
 
-    context 'with a text MessageEvent' do
+    context 'with empty event (for webhook test)' do
+      let(:webhook) do
+        <<~JSON
+          {
+            "destination": "xxxxxxxxxx",
+            "events": []
+          }
+        JSON
+      end
+
+      it 'parses the webhook with no error' do
+        events = parser.parse(webhook, signature)
+        expect(events).to be_empty
+      end
+    end
+
+    context 'with a full text MessageEvent' do
       let(:webhook) do
         <<~JSON
           {
@@ -198,6 +214,63 @@ describe Line::Bot::V2::WebhookParser do
         expect(event.message.mention.mentionees.last.length).to eq(8)
         expect(event.message.mention.mentionees.last.user_id).to eq('U49585cd0d5...')
         expect(event.message.mention.mentionees.last.type).to eq('user')
+      end
+    end
+
+    context 'with a minimum text MessageEvent' do
+      let(:webhook) do
+        <<~JSON
+          {
+            "destination": "xxxxxxxxxx",
+            "events": [
+              {
+                "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+                "type": "message",
+                "mode": "active",
+                "timestamp": 1462629479859,
+                "source": {
+                  "type": "user",
+                  "userId": "U4af4980629..."
+                },
+                "webhookEventId": "01FZ74A0TDDPYRVKNK77XKC3ZR",
+                "deliveryContext": {
+                  "isRedelivery": false
+                },
+                "message": {
+                  "id": "444573844083572737",
+                  "type": "text",
+                  "quoteToken": "q3Plxr4AgKd...",
+                  "text": " Hi "
+                }
+              }
+            ]
+          }
+        JSON
+      end
+
+      it 'parses the webhook as a text MessageEvent' do
+        events = parser.parse(webhook, signature)
+        expect(events).not_to be_empty
+
+        event = events.first
+        expect(event).to be_a(Line::Bot::V2::Webhook::MessageEvent)
+        expect(event.reply_token).to eq('nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        expect(event.type).to eq('message')
+        expect(event.mode).to eq('active')
+        expect(event.timestamp).to eq(1462629479859)
+        expect(event.source).to be_a(Line::Bot::V2::Webhook::UserSource)
+        expect(event.source.type).to eq('user')
+        expect(event.source.user_id).to eq('U4af4980629...')
+        expect(event.webhook_event_id).to eq('01FZ74A0TDDPYRVKNK77XKC3ZR')
+        expect(event.delivery_context).to be_a(Line::Bot::V2::Webhook::DeliveryContext)
+        expect(event.delivery_context.is_redelivery).to be false
+        expect(event.message).to be_a(Line::Bot::V2::Webhook::TextMessageContent)
+        expect(event.message.id).to eq('444573844083572737')
+        expect(event.message.type).to eq('text')
+        expect(event.message.quote_token).to eq('q3Plxr4AgKd...')
+        expect(event.message.text).to eq(' Hi ')
+        expect(event.message.emojis).to be_nil
+        expect(event.message.mention).to be_nil
       end
     end
 
