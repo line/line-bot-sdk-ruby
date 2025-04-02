@@ -199,4 +199,39 @@ describe 'misc' do
       expect(body._next).to eq("token")
     end
   end
+
+  describe 'POST /v2/bot/message/push' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:response_body) { { "sentMessages" => [{ "id" => "461230966842064897", "quoteToken" => "IStG5h1Tz7b..." }] } }
+    let(:response_code) { 200 }
+    let(:x_line_retry_key) { SecureRandom.uuid }
+    let(:request_body) do
+      {
+        "to" => "U4af4980629",
+        "messages" => [
+          {
+            "type" => "text",
+            "text" => "Hello, world1"
+          }
+        ]
+      }
+    end
+
+    it 'returns a sentMessages id' do
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            "Authorization" => "Bearer test-channel-access-token",
+            "X-Line-Retry-Key" => x_line_retry_key
+          },
+          body: request_body.to_json
+        )
+        .to_return(status: response_code, body: response_body.to_json, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: request_body, x_line_retry_key: x_line_retry_key)
+
+      expect(status_code).to eq(200)
+      expect(body.sent_messages).to eq([{ id: "461230966842064897", quote_token: "IStG5h1Tz7b..." }])
+    end
+  end
 end
