@@ -21,15 +21,13 @@ module Line
           if object.is_a?(Array)
             object.map { |item| deep_to_hash(item) }
           elsif object.is_a?(Hash)
-            object.
-              transform_keys { |k| camelize(k) }.
-              transform_values { |v| deep_to_hash(v) }
+            object.transform_keys(&:to_sym).transform_values { |v| deep_to_hash(v) }
           elsif object.instance_variables.empty?
             object
           else
             object.instance_variables.each_with_object({}) do |var, hash|
               value = object.instance_variable_get(var)
-              key = camelize(var.to_s.delete('@')).to_sym
+              key = var.to_s.delete('@').to_sym
               hash[key] = deep_to_hash(value)
             end
           end
