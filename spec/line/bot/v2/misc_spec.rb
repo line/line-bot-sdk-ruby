@@ -199,4 +199,19 @@ describe 'misc' do
       expect(body._next).to eq("token")
     end
   end
+
+  describe 'Line::Bot::V2::MessagingApi::TemplateMessage#initialize' do
+    it "contains fixed type attribute" do
+      template_message = Line::Bot::V2::MessagingApi::TemplateMessage.new(
+        alt_text: 'Test Alt Text',
+        template: Line::Bot::V2::MessagingApi::ButtonsTemplate.new(
+          text: 'Test Text',
+          actions: [],
+          title: 'Test Title'
+        )
+      )
+
+      expect(template_message.type).to eq('template')
+    end
+  end
 end
