@@ -251,7 +251,7 @@ describe 'misc' do
     let(:response_code) { 200 }
 
     it 'returns a list of followers successfully without optional parameters' do
-      response_body = { "user_ids" => ["U1234567890", "U0987654321"] }.to_json
+      response_body = { "userIds" => ["U1234567890", "U0987654321"] }.to_json
       stub_request(:get, "https://api.line.me/v2/bot/followers/ids")
         .with(
           headers: {
@@ -267,7 +267,7 @@ describe 'misc' do
     end
 
     it 'query with only start' do
-      response_body = { "user_ids" => ["U1234567890", "U0987654321"], "next" => "nExT Token" }.to_json
+      response_body = { "userIds" => ["U1234567890", "U0987654321"], "next" => "nExT Token" }.to_json
       stub_request(:get, "https://api.line.me/v2/bot/followers/ids?start=from%20previous%20NEXT")
         .with(
           headers: {
@@ -284,7 +284,7 @@ describe 'misc' do
     end
 
     it 'query with limit and start' do
-      response_body = { "user_ids" => ["U1234567890", "U0987654321"], "next" => "nExT Token" }.to_json
+      response_body = { "userIds" => ["U1234567890", "U0987654321"], "next" => "nExT Token" }.to_json
       stub_request(:get, "https://api.line.me/v2/bot/followers/ids?limit=10&start=from%20previous%20NEXT")
         .with(
           headers: {
@@ -346,7 +346,7 @@ describe 'misc' do
 
   describe 'GET /v2/bot/message/aggregation/list' do
     let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
-    let(:response_body) { { "custom_aggregation_units" => ["unit1", "unit2"], "next" => "token" }.to_json }
+    let(:response_body) { { "customAggregationUnits" => ["unit1", "unit2"], "next" => "token" }.to_json }
     let(:response_code) { 200 }
 
     it 'returns a list of aggregation units successfully without optional parameters' do
