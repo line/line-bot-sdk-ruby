@@ -366,6 +366,73 @@ describe 'misc' do
     end
   end
 
+  describe 'Same endpoint but different HTTP method' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:rich_menu_id) { "richmenuid" }
+
+    describe 'GET /v2/bot/user/all/richmenu' do
+      let(:response_body) { { richMenuId: rich_menu_id }.to_json }
+      let(:response_code) { 200 }
+
+      it 'returns a default rich menu ID successfully' do
+        stub_request(:get, "https://api.line.me/v2/bot/user/all/richmenu")
+          .with(
+            headers: {
+              'Authorization' => "Bearer test-channel-access-token"
+            }
+          )
+          .to_return(status: response_code, body: response_body, headers: {})
+
+        body, status_code, headers = client.get_default_rich_menu_id_with_http_info
+
+        expect(status_code).to eq(response_code)
+        expect(body.rich_menu_id).to eq(rich_menu_id)
+      end
+    end
+
+    describe 'POST /v2/bot/user/all/richmenu' do
+      let(:response_body) { {}.to_json }
+      let(:response_code) { 200 }
+
+      it 'sets the default rich menu successfully' do
+        stub_request(:post, "https://api.line.me/v2/bot/user/all/richmenu/#{rich_menu_id}")
+          .with(
+            headers: {
+              'Authorization' => "Bearer test-channel-access-token"
+            }
+          )
+          .to_return(status: response_code, body: '{}', headers: {})
+
+        body, status_code, headers = client.set_default_rich_menu_with_http_info(rich_menu_id: rich_menu_id)
+
+        expect(status_code).to eq(response_code)
+        expect(body).to eq(response_body)
+      end
+    end
+
+    describe 'DELETE /v2/bot/user/all/richmenu' do
+      let(:response_body) { {}.to_json }
+      let(:response_code) { 200 }
+
+      it 'deletes the default rich menu successfully' do
+        stub_request(:delete, "https://api.line.me/v2/bot/user/all/richmenu")
+          .with(
+            headers: {
+              'Authorization' => "Bearer test-channel-access-token"
+            }
+          )
+          .to_return(status: response_code, body: '{}', headers: {})
+
+        # Call the API method
+        body, status_code, headers = client.cancel_default_rich_menu_with_http_info
+
+        # Assertions
+        expect(status_code).to eq(200)
+        expect(body).to eq(response_body)
+      end
+    end
+  end
+
   describe 'HTTP Request' do
     let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
     let(:user_id) { 'u1234567890' }
