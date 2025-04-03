@@ -231,7 +231,10 @@ describe 'misc' do
     it "doesn't require bearer token" do
       stub_request(:post, "https://api.line.me/v2/oauth/accessToken")
         .with(
-          body: { client_id: "test-client-id", client_secret: "test-client-secret", grant_type: "client_credentials" }
+          body: { client_id: "test-client-id", client_secret: "test-client-secret", grant_type: "client_credentials" },
+          headers: {
+            'Content-Type' => 'application/x-www-form-urlencoded'
+          }
         )
         .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
