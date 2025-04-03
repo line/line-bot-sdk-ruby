@@ -29,7 +29,7 @@ module Line
 
         def singularize: (String|Symbol str) -> String
 
-        def deep_hash_to_ostruct: (untyped) -> untyped
+        def deep_hash_to_struct: (untyped) -> untyped
       end
     end
   end
