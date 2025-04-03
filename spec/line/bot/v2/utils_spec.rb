@@ -104,6 +104,12 @@ describe Line::Bot::V2::Utils do
       expect(Line::Bot::V2::Utils.deep_camelize(input)).to eq(expected_output)
     end
 
+    it 'converts hashes in array with snake_case keys' do
+      input = [{ outer_key: { inner_key: 'value', inner_array: [{ core_key: 'value' }] } }]
+      expected_output = [{ outerKey: { innerKey: 'value', innerArray: [{ coreKey: 'value' }] } }]
+      expect(Line::Bot::V2::Utils.deep_camelize(input)).to eq(expected_output)
+    end
+
     it 'handles empty hashes' do
       input = {}
       expected_output = {}
