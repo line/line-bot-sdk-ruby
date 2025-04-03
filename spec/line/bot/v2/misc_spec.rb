@@ -340,22 +340,68 @@ describe 'misc' do
     end
     let(:response_code) { 200 }
 
-    it 'response - success' do
+    it 'response - success - using Line::Bot::V2::MessagingApi::PushMessageRequest' do
       stub_request(:post, "https://api.line.me/v2/bot/message/push")
         .with(
           headers: {
             'Authorization' => "Bearer test-channel-access-token"
-          }
+          },
+          body: {
+            "to" => "USER_ID",
+            "messages" => [
+              {
+                "type" => "text",
+                "text" => " Hello, world! "
+              }
+            ],
+            "notificationDisabled" => false,
+          }.to_json
         )
         .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      body, status_code, headers = client.push_message_with_http_info(push_message_request: { type: 'text', text: 'Hello, world!' })
+      request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
+        to: 'USER_ID',
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: ' Hello, world! '
+          )
+        ]
+      )
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: request)
 
       expect(status_code).to eq(200)
       expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
       # TODO: Add test after https://github.com/line/line-bot-sdk-ruby/issues/440 is resolved
       # We should access body.sent_messages[0].id and body.sent_messages[0].quote_token, but it's not possible now.
       expect(body.sent_messages).to eq([{ id: '461230966842064897', quote_token: 'IStG5h1Tz7b...' }])
+    end
+
+    it 'response - success - using hash' do
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          },
+          body: {
+            "to" => "USER_ID",
+            "messages" => [
+              {
+                "type" => "text",
+                "text" => " Hello, world! "
+              }
+            ],
+          }.to_json
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      request = {
+        "to" => "USER_ID",
+        "messages" => [{ type: 'text', text: ' Hello, world! ' }]
+      }
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: request)
+
+      expect(status_code).to eq(200)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
     end
 
     it 'request with x_line_retry_key: nil' do
@@ -365,11 +411,32 @@ describe 'misc' do
         .with(
           headers: {
             'Authorization' => "Bearer test-channel-access-token-retry-key-nil",
-          }
+          },
+          body: {
+            "to" => "USER_ID",
+            "messages" => [
+              {
+                "type" => "text",
+                "text" => "Hello, world!"
+              }
+            ],
+            "notificationDisabled" => false,
+          }.to_json
         )
         .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      client.push_message_with_http_info(push_message_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
+      request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
+        to: 'USER_ID',
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: 'Hello, world!'
+          )
+        ]
+      )
+      client.push_message_with_http_info(
+        push_message_request: request,
+        x_line_retry_key: retry_key
+      )
 
       expect(WebMock).to(have_requested(:post, "https://api.line.me/v2/bot/message/push")
                            .with { |req| !req.headers.key?("X-Line-Retry-Key") })
@@ -382,12 +449,32 @@ describe 'misc' do
           headers: {
             'Authorization' => "Bearer test-channel-access-token",
             'X-Line-Retry-Key' => retry_key
-          }
+          },
+          body: {
+            "to" => "USER_ID",
+            "messages" => [
+              {
+                "type" => "text",
+                "text" => "Hello, world!"
+              }
+            ],
+            "notificationDisabled" => false,
+          }.to_json
         )
         .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      body, status_code, headers = client.push_message_with_http_info(push_message_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
-
+      request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
+        to: 'USER_ID',
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: 'Hello, world!'
+          )
+        ]
+      )
+      body, status_code, headers = client.push_message_with_http_info(
+        push_message_request: request,
+        x_line_retry_key: retry_key
+      )
       expect(status_code).to eq(200)
       expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
       # TODO: Add test after https://github.com/line/line-bot-sdk-ruby/issues/440 is resolved
@@ -419,12 +506,32 @@ describe 'misc' do
           headers: {
             'Authorization' => "Bearer test-channel-access-token",
             'X-Line-Retry-Key' => retry_key
-          }
+          },
+          body: {
+            "to" => "USER_ID",
+            "messages" => [
+              {
+                "type" => "text",
+                "text" => "Hello, world!"
+              }
+            ],
+            "notificationDisabled" => false,
+          }.to_json
         )
         .to_return(status: 409, body: error_response_body, headers: error_response_headers)
 
-      body, status_code, headers = client.push_message_with_http_info(push_message_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
-
+      request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
+        to: 'USER_ID',
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: 'Hello, world!'
+          )
+        ]
+      )
+      body, status_code, headers = client.push_message_with_http_info(
+        push_message_request: request,
+        x_line_retry_key: retry_key
+      )
       expect(status_code).to eq(409)
       expect(body).to be_a(Line::Bot::V2::MessagingApi::ErrorResponse)
       expect(body.message).to eq("The retry key is already accepted")
@@ -446,11 +553,28 @@ describe 'misc' do
         .with(
           headers: {
             'Authorization' => "Bearer test-channel-access-token"
-          }
+          },
+          body: {
+            "messages" => [
+              {
+                "type" => "text",
+                "text" => "Hello, world!"
+              }
+            ],
+            "notificationDisabled" => false,
+          }.to_json
         )
         .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      body, status_code, headers = client.broadcast_with_http_info(broadcast_request: { type: 'text', text: 'Hello, world!' })
+      request = Line::Bot::V2::MessagingApi::BroadcastRequest.new(
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: 'Hello, world!'
+          )
+        ]
+      )
+
+      body, status_code, headers = client.broadcast_with_http_info(broadcast_request: request)
 
       expect(status_code).to eq(200)
       expect(body).to eq("{}")
@@ -467,7 +591,14 @@ describe 'misc' do
         )
         .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      client.broadcast_with_http_info(broadcast_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
+      request = Line::Bot::V2::MessagingApi::BroadcastRequest.new(
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: 'Hello, world!'
+          )
+        ]
+      )
+      client.broadcast_with_http_info(broadcast_request: request, x_line_retry_key: retry_key)
 
       expect(WebMock).to(have_requested(:post, "https://api.line.me/v2/bot/message/broadcast")
                            .with { |req| !req.headers.key?("X-Line-Retry-Key") })
@@ -484,7 +615,14 @@ describe 'misc' do
         )
         .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      body, status_code, headers = client.broadcast_with_http_info(broadcast_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
+      request = Line::Bot::V2::MessagingApi::BroadcastRequest.new(
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: 'Hello, world!'
+          )
+        ]
+      )
+      body, status_code, headers = client.broadcast_with_http_info(broadcast_request: request, x_line_retry_key: retry_key)
 
       expect(status_code).to eq(200)
       expect(body).to eq("{}")
@@ -510,7 +648,14 @@ describe 'misc' do
         )
         .to_return(status: 409, body: error_response_body, headers: error_response_headers)
 
-      body, status_code, headers = client.broadcast_with_http_info(broadcast_request: { type: 'text', text: 'Hello, world!' }, x_line_retry_key: retry_key)
+      request = Line::Bot::V2::MessagingApi::BroadcastRequest.new(
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: 'Hello, world!'
+          )
+        ]
+      )
+      body, status_code, headers = client.broadcast_with_http_info(broadcast_request: request, x_line_retry_key: retry_key)
 
       expect(status_code).to eq(409)
       expect(body).to be_a(Line::Bot::V2::MessagingApi::ErrorResponse)
