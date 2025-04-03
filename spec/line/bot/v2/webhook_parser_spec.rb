@@ -35,11 +35,11 @@ describe Line::Bot::V2::WebhookParser do
         expect(events).not_to be_empty
 
         event = events.first
-        expect(event).to be_a(OpenStruct)
+        expect(event).to be_a(Struct)
         expect(event.type).to eq('hoge')
         expect(event.webhook_event_id).to eq('01G17EJCGAVV66J5WNA7ZCTF6H')
         expect(event.timestamp).to eq(1650591346705)
-        expect(event.foo).to be_a(OpenStruct)
+        expect(event.foo).to be_a(Struct)
         expect(event.foo.bar).to eq('baz')
         expect(event.mode).to eq('active')
       end
@@ -94,7 +94,7 @@ describe Line::Bot::V2::WebhookParser do
         expect(event.webhook_event_id).to eq('01FZ74A0TDDPYRVKNK77XKC3ZR')
         expect(event.delivery_context).to be_a(Line::Bot::V2::Webhook::DeliveryContext)
         expect(event.delivery_context.is_redelivery).to be false
-        expect(event.message).to be_a(OpenStruct)
+        expect(event.message).to be_a(Struct)
         expect(event.message.id).to eq('444573844083572737')
         expect(event.message.type).to eq('hoge')
         expect(event.message.quote_token).to eq('q3Plxr4AgKd...')
@@ -1212,7 +1212,7 @@ describe Line::Bot::V2::WebhookParser do
         expect(event.delivery_context.is_redelivery).to be false
         expect(event.postback).to be_a(Line::Bot::V2::Webhook::PostbackContent)
         expect(event.postback.data).to eq('storeId=12345')
-        expect(event.postback.params).to be_a(OpenStruct)
+        expect(event.postback.params).to be_a(Struct)
         expect(event.postback.params.datetime).to eq('2017-12-25T01:00')
       end
     end
@@ -1266,7 +1266,7 @@ describe Line::Bot::V2::WebhookParser do
         expect(event.delivery_context.is_redelivery).to be false
         expect(event.postback).to be_a(Line::Bot::V2::Webhook::PostbackContent)
         expect(event.postback.data).to eq('richmenu-changed-to-b')
-        expect(event.postback.params).to be_a(OpenStruct)
+        expect(event.postback.params).to be_a(Struct)
         expect(event.postback.params.new_rich_menu_alias_id).to eq('richmenu-alias-b')
         expect(event.postback.params.status).to eq('SUCCESS')
       end
