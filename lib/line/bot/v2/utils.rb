@@ -33,13 +33,18 @@ module Line
           end
         end
 
-        def self.deep_camelize(hash)
-          return hash unless hash.is_a?(Hash)
-
-          hash.each_with_object({}) do |(k, v), new_hash|
-            camel_key = camelize(k).to_sym
-            new_value = v.is_a?(Hash) ? deep_camelize(v) : v
-            new_hash[camel_key] = new_value
+        def self.deep_camelize(object)
+          case object
+          when Array
+            object.map { |item| deep_camelize(item) }
+          when Hash
+            object.each_with_object({}) do |(k, v), new_object|
+              camel_key = camelize(k).to_sym
+              new_value = v.is_a?(Array) || v.is_a?(Hash) ? deep_camelize(v) : v
+              new_object[camel_key] = new_value
+            end
+          else
+            object
           end
         end
 
