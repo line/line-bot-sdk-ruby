@@ -686,4 +686,56 @@ describe 'misc' do
       expect(template_message.type).to eq('template')
     end
   end
+
+  describe 'Line::Bot::V2::MessagingApi::FlexMessage#initialize' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+
+    it "contains fixed type attribute (check in request body), and optional fields don't require input on initialize" do
+      flex_message = Line::Bot::V2::MessagingApi::FlexMessage.new(
+        alt_text: 'Test Alt Text',
+        contents: Line::Bot::V2::MessagingApi::FlexBubble.new( # FlexBubble has many optional fields
+          direction: 'ltr',
+          body: Line::Bot::V2::MessagingApi::FlexText.new(
+            text: 'Test Text',
+            weight: 'bold',
+            size: 'xl'
+          )
+        ),
+        quick_reply: Line::Bot::V2::MessagingApi::QuickReply.new(
+          items: []
+        )
+      )
+
+      expected_body = {
+        messages: [
+          {
+            type: 'flex',
+            altText: 'Test Alt Text',
+            contents: {
+              type: 'bubble',
+              direction: 'ltr',
+              body: {
+                type: 'text',
+                text: 'Test Text',
+                size: 'xl',
+                weight: 'bold'
+              }
+            }
+          }
+        ],
+        notificationDisabled: false
+      }.to_json
+
+      stub_request(:post, "https://api.line.me/v2/bot/message/broadcast")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          },
+          body: expected_body
+        )
+        .to_return(status: 200, body: "{}", headers: { 'Content-Type' => 'application/json' })
+
+      client.broadcast_with_http_info(broadcast_request: Line::Bot::V2::MessagingApi::BroadcastRequest.new(messages: [flex_message]))
+    end
+  end
 end
