@@ -1,6 +1,5 @@
 require 'json'
 require 'openssl'
-require 'ostruct'
 
 require 'line/bot/v2/reserved_words'
 require 'line/bot/v2/messaging_api/core'
@@ -33,7 +32,7 @@ module Line
             # If there is no specific webhook class, leave the value as is
             event_instance = event_class ? create_instance(event_class, event) : event
 
-            deep_hash_to_ostruct(event_instance)
+            deep_hash_to_struct(event_instance)
           end
         end
 
@@ -166,18 +165,20 @@ module Line
           end
         end
 
-        def deep_hash_to_ostruct(obj)
+        def deep_hash_to_struct(obj)
           case obj
           when Hash
-            OpenStruct.new(obj.transform_values { |value| deep_hash_to_ostruct(value) })
+            keys = obj.keys.map(&:to_sym)
+            struct_class = Struct.new(*keys)
+            struct_class.new(*obj.values.map { |value| deep_hash_to_struct(value) })
           when Array
-            obj.map { |item| deep_hash_to_ostruct(item) }
+            obj.map { |item| deep_hash_to_struct(item) }
           else
             if obj.respond_to?(:instance_variables)
               obj.instance_variables.each do |var|
                 value = obj.instance_variable_get(var)
                 if value.is_a?(Hash) || value.is_a?(Array) || value.respond_to?(:instance_variables)
-                  obj.instance_variable_set(var, deep_hash_to_ostruct(value))
+                  obj.instance_variable_set(var, deep_hash_to_struct(value))
                 end
               end
             end
