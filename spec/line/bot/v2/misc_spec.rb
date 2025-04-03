@@ -376,7 +376,7 @@ describe 'misc' do
       expect(body.sent_messages).to eq([{ id: '461230966842064897', quote_token: 'IStG5h1Tz7b...' }])
     end
 
-    it 'response - success - using hash' do
+    it 'response - success - using hash (not recommended way)' do
       stub_request(:post, "https://api.line.me/v2/bot/message/push")
         .with(
           headers: {
