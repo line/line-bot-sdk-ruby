@@ -405,6 +405,58 @@ describe 'misc' do
       expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
     end
 
+    it 'request - text message v2' do
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          },
+          body: {
+            "to" => "USER_ID",
+            "messages" => [
+              {
+                "type" => "textV2",
+                "text" => " Hello, world! {name} san!",
+                "substitution" => {
+                  "name" => {
+                    "type" => "mention",
+                    "mentionee" => {
+                      "type" => "user",
+                      "userId" => "U1234567890"
+                    }
+                  }
+                }
+              }
+            ],
+            "notificationDisabled" => false,
+          }.to_json
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
+        to: 'USER_ID',
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessageV2.new(
+            text: ' Hello, world! {name} san!',
+            substitution: {
+              "name": Line::Bot::V2::MessagingApi::MentionSubstitutionObject.new(
+                mentionee: Line::Bot::V2::MessagingApi::UserMentionTarget.new(
+                  user_id: 'U1234567890'
+                )
+              )
+            }
+          )
+        ]
+      )
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: request)
+
+      expect(status_code).to eq(200)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
+      # TODO: Add test after https://github.com/line/line-bot-sdk-ruby/issues/440 is resolved
+      # We should access body.sent_messages[0].id and body.sent_messages[0].quote_token, but it's not possible now.
+      expect(body.sent_messages).to eq([{ id: '461230966842064897', quote_token: 'IStG5h1Tz7b...' }])
+    end
+
     it 'request with x_line_retry_key: nil' do
       client = Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token-retry-key-nil')
       retry_key = nil
