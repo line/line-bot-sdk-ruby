@@ -10,7 +10,7 @@ module Line
         def parse: (
             body: String,
             signature: String
-          ) -> Array[Webhook::Event | ::OpenStruct]
+          ) -> Array[Webhook::Event | ::Struct[untyped]]
 
 
         private

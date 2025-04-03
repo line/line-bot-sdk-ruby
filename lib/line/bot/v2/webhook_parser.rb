@@ -21,9 +21,11 @@ module Line
         #   The unmodified request body (exactly as received).
         # @param signature [String]
         #   The value of the 'X-LINE-Signature' header.
-        # @return [Array<Line::Bot::V2::Webhook::Event, OpenStruct>]
+        # @return [Array<Line::Bot::V2::Webhook::Event, Struct>]
         #   An array of event objects. Recognized events become instances of classes
-        #   under `Line::Bot::V2::Webhook::*Event`; otherwise, they're returned as `OpenStruct`.
+        #   under `Line::Bot::V2::Webhook::*Event`; otherwise, they're returned as `Struct`.
+        #   `Struct` is returned as fallback only when the event class is not defined in line-bot-sdk library.
+        #   When you update the SDK, you may not need to handle `Struct` anymore.
         # @raise [InvalidSignatureError]
         #   If the signature fails verification.
         #
@@ -43,6 +45,13 @@ module Line
         #     end
         #
         #     # Handle events...
+        #     events.each do |event|
+        #       case event
+        #       when Line::Bot::V2::Webhook::MessageEvent
+        #         handle_message_event(event)
+        #       ...
+        #     end
+        #     "OK"
         #   end
         def parse(body, signature)
           raise InvalidSignatureError.new("Invalid signature: #{signature}") unless verify_signature(body: body, signature: signature)
