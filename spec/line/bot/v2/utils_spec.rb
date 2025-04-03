@@ -71,9 +71,9 @@ describe Line::Bot::V2::Utils do
   end
 
   describe '.deep_to_hash' do
-    it 'converts an object with instance variables to a hash with camelCase keys' do
+    it 'converts an object with instance variables to a hash' do
       input = TestObject.new('John', 'Doe')
-      expected_output = { firstName: 'John', lastName: 'Doe' }
+      expected_output = { first_name: 'John', last_name: 'Doe' }
       expect(Line::Bot::V2::Utils.deep_to_hash(input)).to eq(expected_output)
     end
 
