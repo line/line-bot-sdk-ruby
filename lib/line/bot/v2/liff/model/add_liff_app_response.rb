@@ -15,10 +15,16 @@ module Line
           attr_accessor :liff_id
 
           def initialize(
-            liff_id:
+            liff_id:,
+            **dynamic_attributes
           )
             
             @liff_id = liff_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

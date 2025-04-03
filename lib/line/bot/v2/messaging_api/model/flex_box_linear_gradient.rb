@@ -26,7 +26,8 @@ module Line
             start_color: nil,
             end_color: nil,
             center_color: nil,
-            center_position: nil
+            center_position: nil,
+            **dynamic_attributes
           )
             @type = "linearGradient"
             
@@ -35,6 +36,11 @@ module Line
             @end_color = end_color
             @center_color = center_color
             @center_position = center_position
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

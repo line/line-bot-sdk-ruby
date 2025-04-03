@@ -16,10 +16,16 @@ module Line
           attr_accessor :endpoint # A valid webhook URL.
 
           def initialize(
-            endpoint:
+            endpoint:,
+            **dynamic_attributes
           )
             
             @endpoint = endpoint
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

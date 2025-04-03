@@ -22,13 +22,19 @@ module Line
           def initialize(
             area:,
             text:,
-            label: nil
+            label: nil,
+            **dynamic_attributes
           )
             @type = "message"
             
             @area = area
             @text = text
             @label = label
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

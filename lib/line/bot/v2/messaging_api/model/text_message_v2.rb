@@ -27,7 +27,8 @@ module Line
             sender: nil,
             text:,
             substitution: nil,
-            quote_token: nil
+            quote_token: nil,
+            **dynamic_attributes
           )
             @type = "textV2"
             
@@ -36,6 +37,11 @@ module Line
             @text = text
             @substitution = substitution
             @quote_token = quote_token
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

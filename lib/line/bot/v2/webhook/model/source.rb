@@ -17,10 +17,16 @@ module Line
           attr_accessor :type # source type
 
           def initialize(
-            type: nil
+            type: nil,
+            **dynamic_attributes
           )
             
             @type = type
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

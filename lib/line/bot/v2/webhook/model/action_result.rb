@@ -17,11 +17,17 @@ module Line
 
           def initialize(
             type:,
-            data: nil
+            data: nil,
+            **dynamic_attributes
           )
             
             @type = type
             @data = data
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

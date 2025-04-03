@@ -16,10 +16,16 @@ module Line
           attr_accessor :num_of_custom_aggregation_units # Number of aggregation units used this month.
 
           def initialize(
-            num_of_custom_aggregation_units:
+            num_of_custom_aggregation_units:,
+            **dynamic_attributes
           )
             
             @num_of_custom_aggregation_units = num_of_custom_aggregation_units
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

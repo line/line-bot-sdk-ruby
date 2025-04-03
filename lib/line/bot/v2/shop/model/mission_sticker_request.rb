@@ -23,13 +23,19 @@ module Line
             to:,
             product_id:,
             product_type:,
-            send_present_message:
+            send_present_message:,
+            **dynamic_attributes
           )
             
             @to = to
             @product_id = product_id
             @product_type = product_type
             @send_present_message = send_present_message
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

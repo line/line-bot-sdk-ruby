@@ -17,10 +17,16 @@ module Line
           attr_accessor :kids # Array of channel access token key IDs.
 
           def initialize(
-            kids:
+            kids:,
+            **dynamic_attributes
           )
             
             @kids = kids
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

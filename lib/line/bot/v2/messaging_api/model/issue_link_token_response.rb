@@ -16,10 +16,16 @@ module Line
           attr_accessor :link_token # Link token. Link tokens are valid for 10 minutes and can only be used once.  
 
           def initialize(
-            link_token:
+            link_token:,
+            **dynamic_attributes
           )
             
             @link_token = link_token
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -38,7 +38,8 @@ module Line
             click_url: nil,
             is_ifa_audience: nil,
             permission: nil,
-            create_route: nil
+            create_route: nil,
+            **dynamic_attributes
           )
             
             @audience_group_id = audience_group_id
@@ -53,6 +54,11 @@ module Line
             @is_ifa_audience = is_ifa_audience
             @permission = permission
             @create_route = create_route
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

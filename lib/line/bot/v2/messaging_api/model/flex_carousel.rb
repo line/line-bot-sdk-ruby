@@ -18,11 +18,17 @@ module Line
           attr_accessor :contents
 
           def initialize(
-            contents:
+            contents:,
+            **dynamic_attributes
           )
             @type = "carousel"
             
             @contents = contents
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

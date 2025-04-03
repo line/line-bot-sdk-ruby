@@ -17,11 +17,17 @@ module Line
 
           def initialize(
             app_type: nil,
-            percentage: nil
+            percentage: nil,
+            **dynamic_attributes
           )
             
             @app_type = app_type
             @percentage = percentage
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

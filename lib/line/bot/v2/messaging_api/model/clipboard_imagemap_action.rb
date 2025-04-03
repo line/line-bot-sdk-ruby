@@ -23,13 +23,19 @@ module Line
           def initialize(
             area:,
             clipboard_text:,
-            label: nil
+            label: nil,
+            **dynamic_attributes
           )
             @type = "clipboard"
             
             @area = area
             @clipboard_text = clipboard_text
             @label = label
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -37,7 +37,8 @@ module Line
             unique_media_played25_percent: nil,
             unique_media_played50_percent: nil,
             unique_media_played75_percent: nil,
-            unique_media_played100_percent: nil
+            unique_media_played100_percent: nil,
+            **dynamic_attributes
           )
             
             @seq = seq
@@ -52,6 +53,11 @@ module Line
             @unique_media_played50_percent = unique_media_played50_percent
             @unique_media_played75_percent = unique_media_played75_percent
             @unique_media_played100_percent = unique_media_played100_percent
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

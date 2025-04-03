@@ -49,7 +49,8 @@ module Line
             aspect_mode: nil,
             background_color: nil,
             action: nil,
-            animated: false
+            animated: false,
+            **dynamic_attributes
           )
             @type = "image"
             
@@ -69,6 +70,11 @@ module Line
             @background_color = background_color
             @action = action
             @animated = animated
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

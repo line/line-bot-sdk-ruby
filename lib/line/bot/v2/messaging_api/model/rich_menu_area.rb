@@ -18,11 +18,17 @@ module Line
 
           def initialize(
             bounds: nil,
-            action: nil
+            action: nil,
+            **dynamic_attributes
           )
             
             @bounds = bounds
             @action = action
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -21,13 +21,19 @@ module Line
             header: nil,
             hero: nil,
             body: nil,
-            footer: nil
+            footer: nil,
+            **dynamic_attributes
           )
             
             @header = header
             @hero = hero
             @body = body
             @footer = footer
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -20,12 +20,18 @@ module Line
           def initialize(
             phase:,
             accepted_time:,
-            completed_time: nil
+            completed_time: nil,
+            **dynamic_attributes
           )
             
             @phase = phase
             @accepted_time = accepted_time
             @completed_time = completed_time
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

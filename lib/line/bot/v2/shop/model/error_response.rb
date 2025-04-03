@@ -16,10 +16,16 @@ module Line
           attr_accessor :message # Message containing information about the error.
 
           def initialize(
-            message:
+            message:,
+            **dynamic_attributes
           )
             
             @message = message
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

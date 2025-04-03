@@ -18,11 +18,17 @@ module Line
 
           def initialize(
             rich_menu_id:,
-            user_ids:
+            user_ids:,
+            **dynamic_attributes
           )
             
             @rich_menu_id = rich_menu_id
             @user_ids = user_ids
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

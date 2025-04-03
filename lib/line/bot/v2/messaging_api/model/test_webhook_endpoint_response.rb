@@ -24,7 +24,8 @@ module Line
             timestamp:,
             status_code:,
             reason:,
-            detail:
+            detail:,
+            **dynamic_attributes
           )
             
             @success = success
@@ -32,6 +33,11 @@ module Line
             @status_code = status_code
             @reason = reason
             @detail = detail
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

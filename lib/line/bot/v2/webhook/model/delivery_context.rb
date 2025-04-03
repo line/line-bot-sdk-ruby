@@ -16,10 +16,16 @@ module Line
           attr_accessor :is_redelivery # Whether the webhook event is a redelivered one or not.
 
           def initialize(
-            is_redelivery:
+            is_redelivery:,
+            **dynamic_attributes
           )
             
             @is_redelivery = is_redelivery
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

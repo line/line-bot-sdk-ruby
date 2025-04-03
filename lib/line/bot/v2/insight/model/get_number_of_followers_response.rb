@@ -23,13 +23,19 @@ module Line
             status: nil,
             followers: nil,
             targeted_reaches: nil,
-            blocks: nil
+            blocks: nil,
+            **dynamic_attributes
           )
             
             @status = status
             @followers = followers
             @targeted_reaches = targeted_reaches
             @blocks = blocks
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

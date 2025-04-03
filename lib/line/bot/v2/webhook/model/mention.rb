@@ -15,10 +15,16 @@ module Line
           attr_accessor :mentionees # Array of one or more mention objects. Max: 20 mentions
 
           def initialize(
-            mentionees:
+            mentionees:,
+            **dynamic_attributes
           )
             
             @mentionees = mentionees
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

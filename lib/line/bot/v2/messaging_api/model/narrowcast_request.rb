@@ -24,7 +24,8 @@ module Line
             recipient: nil,
             filter: nil,
             limit: nil,
-            notification_disabled: false
+            notification_disabled: false,
+            **dynamic_attributes
           )
             
             @messages = messages
@@ -32,6 +33,11 @@ module Line
             @filter = filter
             @limit = limit
             @notification_disabled = notification_disabled
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

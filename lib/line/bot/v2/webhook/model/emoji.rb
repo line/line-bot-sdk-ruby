@@ -21,13 +21,19 @@ module Line
             index:,
             length:,
             product_id:,
-            emoji_id:
+            emoji_id:,
+            **dynamic_attributes
           )
             
             @index = index
             @length = length
             @product_id = product_id
             @emoji_id = emoji_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

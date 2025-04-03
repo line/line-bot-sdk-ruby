@@ -27,7 +27,8 @@ module Line
             total_count: nil,
             read_write_audience_group_total_count: nil,
             page: nil,
-            size: nil
+            size: nil,
+            **dynamic_attributes
           )
             
             @audience_groups = audience_groups
@@ -36,6 +37,11 @@ module Line
             @read_write_audience_group_total_count = read_write_audience_group_total_count
             @page = page
             @size = size
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

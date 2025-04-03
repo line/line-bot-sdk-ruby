@@ -20,12 +20,18 @@ module Line
           def initialize(
             group_id:,
             group_name:,
-            picture_url: nil
+            picture_url: nil,
+            **dynamic_attributes
           )
             
             @group_id = group_id
             @group_name = group_name
             @picture_url = picture_url
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

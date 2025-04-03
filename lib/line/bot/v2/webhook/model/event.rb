@@ -26,7 +26,8 @@ module Line
             timestamp:,
             mode:,
             webhook_event_id:,
-            delivery_context:
+            delivery_context:,
+            **dynamic_attributes
           )
             
             @type = type
@@ -35,6 +36,11 @@ module Line
             @mode = mode
             @webhook_event_id = webhook_event_id
             @delivery_context = delivery_context
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

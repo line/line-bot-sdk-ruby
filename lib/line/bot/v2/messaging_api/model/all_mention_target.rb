@@ -18,9 +18,15 @@ module Line
           attr_reader :type # Target to be mentioned
 
           def initialize(
+            **dynamic_attributes
           )
             @type = "all"
             
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

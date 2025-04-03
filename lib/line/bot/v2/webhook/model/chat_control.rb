@@ -15,10 +15,16 @@ module Line
           attr_accessor :expire_at
 
           def initialize(
-            expire_at:
+            expire_at:,
+            **dynamic_attributes
           )
             
             @expire_at = expire_at
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

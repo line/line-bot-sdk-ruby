@@ -19,12 +19,18 @@ module Line
           def initialize(
             background_color: nil,
             separator: nil,
-            separator_color: nil
+            separator_color: nil,
+            **dynamic_attributes
           )
             
             @background_color = background_color
             @separator = separator
             @separator_color = separator_color
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

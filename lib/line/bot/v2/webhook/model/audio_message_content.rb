@@ -23,13 +23,19 @@ module Line
             type:,
             id:,
             content_provider:,
-            duration: nil
+            duration: nil,
+            **dynamic_attributes
           )
             @type = "audio"
             
             @id = id
             @content_provider = content_provider
             @duration = duration
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

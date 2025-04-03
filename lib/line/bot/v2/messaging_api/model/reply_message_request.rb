@@ -20,12 +20,18 @@ module Line
           def initialize(
             reply_token:,
             messages:,
-            notification_disabled: false
+            notification_disabled: false,
+            **dynamic_attributes
           )
             
             @reply_token = reply_token
             @messages = messages
             @notification_disabled = notification_disabled
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

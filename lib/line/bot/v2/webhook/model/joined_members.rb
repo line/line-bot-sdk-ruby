@@ -15,10 +15,16 @@ module Line
           attr_accessor :members # Users who joined. Array of source user objects.
 
           def initialize(
-            members:
+            members:,
+            **dynamic_attributes
           )
             
             @members = members
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

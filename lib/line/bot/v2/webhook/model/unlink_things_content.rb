@@ -19,11 +19,17 @@ module Line
 
           def initialize(
             type:,
-            device_id:
+            device_id:,
+            **dynamic_attributes
           )
             @type = "unlink"
             
             @device_id = device_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

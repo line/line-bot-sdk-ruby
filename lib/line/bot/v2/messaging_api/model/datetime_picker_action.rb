@@ -29,7 +29,8 @@ module Line
             mode: nil,
             initial: nil,
             max: nil,
-            min: nil
+            min: nil,
+            **dynamic_attributes
           )
             @type = "datetimepicker"
             
@@ -39,6 +40,11 @@ module Line
             @initial = initial
             @max = max
             @min = min
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

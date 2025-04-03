@@ -25,7 +25,8 @@ module Line
             quick_reply: nil,
             sender: nil,
             original_content_url:,
-            preview_image_url:
+            preview_image_url:,
+            **dynamic_attributes
           )
             @type = "image"
             
@@ -33,6 +34,11 @@ module Line
             @sender = sender
             @original_content_url = original_content_url
             @preview_image_url = preview_image_url
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

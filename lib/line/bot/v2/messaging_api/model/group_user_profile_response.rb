@@ -20,12 +20,18 @@ module Line
           def initialize(
             display_name:,
             user_id:,
-            picture_url: nil
+            picture_url: nil,
+            **dynamic_attributes
           )
             
             @display_name = display_name
             @user_id = user_id
             @picture_url = picture_url
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

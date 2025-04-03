@@ -30,7 +30,8 @@ module Line
             mode:,
             webhook_event_id:,
             delivery_context:,
-            chat_control:
+            chat_control:,
+            **dynamic_attributes
           )
             @type = "activated"
             
@@ -40,6 +41,11 @@ module Line
             @webhook_event_id = webhook_event_id
             @delivery_context = delivery_context
             @chat_control = chat_control
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

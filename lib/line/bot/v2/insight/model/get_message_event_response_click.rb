@@ -23,7 +23,8 @@ module Line
             url: nil,
             click: nil,
             unique_click: nil,
-            unique_click_of_request: nil
+            unique_click_of_request: nil,
+            **dynamic_attributes
           )
             
             @seq = seq
@@ -31,6 +32,11 @@ module Line
             @click = click
             @unique_click = unique_click
             @unique_click_of_request = unique_click_of_request
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

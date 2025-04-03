@@ -60,7 +60,8 @@ module Line
             max_lines: nil,
             contents: nil,
             adjust_mode: nil,
-            scaling: nil
+            scaling: nil,
+            **dynamic_attributes
           )
             @type = "text"
             
@@ -86,6 +87,11 @@ module Line
             @contents = contents
             @adjust_mode = adjust_mode
             @scaling = scaling
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

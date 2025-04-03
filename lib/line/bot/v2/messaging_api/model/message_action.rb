@@ -20,12 +20,18 @@ module Line
 
           def initialize(
             label: nil,
-            text: nil
+            text: nil,
+            **dynamic_attributes
           )
             @type = "message"
             
             @label = label
             @text = text
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

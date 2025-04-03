@@ -27,7 +27,8 @@ module Line
             title: nil,
             address: nil,
             latitude:,
-            longitude:
+            longitude:,
+            **dynamic_attributes
           )
             @type = "location"
             
@@ -36,6 +37,11 @@ module Line
             @address = address
             @latitude = latitude
             @longitude = longitude
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

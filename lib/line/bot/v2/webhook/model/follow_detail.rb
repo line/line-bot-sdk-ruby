@@ -15,10 +15,16 @@ module Line
           attr_accessor :is_unblocked # Whether a user has added your LINE Official Account as a friend or unblocked.
 
           def initialize(
-            is_unblocked:
+            is_unblocked:,
+            **dynamic_attributes
           )
             
             @is_unblocked = is_unblocked
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

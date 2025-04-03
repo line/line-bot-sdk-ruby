@@ -18,11 +18,17 @@ module Line
 
           def initialize(
             error: nil,
-            error_description: nil
+            error_description: nil,
+            **dynamic_attributes
           )
             
             @error = error
             @error_description = error_description
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -25,7 +25,8 @@ module Line
             id:,
             content_provider:,
             image_set: nil,
-            quote_token:
+            quote_token:,
+            **dynamic_attributes
           )
             @type = "image"
             
@@ -33,6 +34,11 @@ module Line
             @content_provider = content_provider
             @image_set = image_set
             @quote_token = quote_token
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

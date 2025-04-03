@@ -18,11 +18,17 @@ module Line
 
           def initialize(
             chat_id:,
-            loading_seconds: nil
+            loading_seconds: nil,
+            **dynamic_attributes
           )
             
             @chat_id = chat_id
             @loading_seconds = loading_seconds
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

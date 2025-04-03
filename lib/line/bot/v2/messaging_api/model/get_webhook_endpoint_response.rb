@@ -18,11 +18,17 @@ module Line
 
           def initialize(
             endpoint:,
-            active:
+            active:,
+            **dynamic_attributes
           )
             
             @endpoint = endpoint
             @active = active
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

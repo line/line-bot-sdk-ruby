@@ -44,7 +44,8 @@ module Line
             offset_end: nil,
             height: nil,
             adjust_mode: nil,
-            scaling: nil
+            scaling: nil,
+            **dynamic_attributes
           )
             @type = "button"
             
@@ -62,6 +63,11 @@ module Line
             @height = height
             @adjust_mode = adjust_mode
             @scaling = scaling
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -20,12 +20,18 @@ module Line
 
           def initialize(
             margin: nil,
-            color: nil
+            color: nil,
+            **dynamic_attributes
           )
             @type = "separator"
             
             @margin = margin
             @color = color
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

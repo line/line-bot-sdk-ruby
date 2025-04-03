@@ -19,11 +19,17 @@ module Line
           attr_accessor :user_id
 
           def initialize(
-            user_id:
+            user_id:,
+            **dynamic_attributes
           )
             @type = "user"
             
             @user_id = user_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

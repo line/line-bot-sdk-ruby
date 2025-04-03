@@ -20,12 +20,18 @@ module Line
 
           def initialize(
             gte: nil,
-            lt: nil
+            lt: nil,
+            **dynamic_attributes
           )
             @type = "age"
             
             @gte = gte
             @lt = lt
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

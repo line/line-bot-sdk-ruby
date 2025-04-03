@@ -23,13 +23,19 @@ module Line
             x: nil,
             y: nil,
             width: nil,
-            height: nil
+            height: nil,
+            **dynamic_attributes
           )
             
             @x = x
             @y = y
             @width = width
             @height = height
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

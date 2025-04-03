@@ -15,10 +15,16 @@ module Line
           attr_accessor :message_id # The message ID of the unsent message
 
           def initialize(
-            message_id:
+            message_id:,
+            **dynamic_attributes
           )
             
             @message_id = message_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

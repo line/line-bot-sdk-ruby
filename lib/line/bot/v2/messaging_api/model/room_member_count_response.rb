@@ -16,10 +16,16 @@ module Line
           attr_accessor :count # The count of members in the multi-person chat. The number returned excludes the LINE Official Account.
 
           def initialize(
-            count:
+            count:,
+            **dynamic_attributes
           )
             
             @count = count
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -17,11 +17,17 @@ module Line
 
           def initialize(
             height:,
-            width:
+            width:,
+            **dynamic_attributes
           )
             
             @height = height
             @width = width
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

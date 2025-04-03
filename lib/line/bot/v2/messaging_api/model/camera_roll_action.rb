@@ -18,11 +18,17 @@ module Line
           attr_accessor :label # Label for the action.
 
           def initialize(
-            label: nil
+            label: nil,
+            **dynamic_attributes
           )
             @type = "cameraRoll"
             
             @label = label
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

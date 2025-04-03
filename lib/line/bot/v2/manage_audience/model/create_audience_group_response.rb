@@ -31,7 +31,8 @@ module Line
             created: nil,
             permission: nil,
             expire_timestamp: nil,
-            is_ifa_audience: nil
+            is_ifa_audience: nil,
+            **dynamic_attributes
           )
             
             @audience_group_id = audience_group_id
@@ -42,6 +43,11 @@ module Line
             @permission = permission
             @expire_timestamp = expire_timestamp
             @is_ifa_audience = is_ifa_audience
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

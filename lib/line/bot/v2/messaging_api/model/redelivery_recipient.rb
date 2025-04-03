@@ -18,11 +18,17 @@ module Line
           attr_accessor :request_id
 
           def initialize(
-            request_id: nil
+            request_id: nil,
+            **dynamic_attributes
           )
             @type = "redelivery"
             
             @request_id = request_id
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

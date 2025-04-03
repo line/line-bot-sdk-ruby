@@ -18,11 +18,17 @@ module Line
 
           def initialize(
             membership:,
-            user:
+            user:,
+            **dynamic_attributes
           )
             
             @membership = membership
             @user = user
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

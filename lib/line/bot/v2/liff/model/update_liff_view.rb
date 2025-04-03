@@ -20,12 +20,18 @@ module Line
           def initialize(
             type: nil,
             url: nil,
-            module_mode: nil
+            module_mode: nil,
+            **dynamic_attributes
           )
             
             @type = type
             @url = url
             @module_mode = module_mode
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end

@@ -17,10 +17,16 @@ module Line
           attr_accessor :description # The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
 
           def initialize(
-            description: nil
+            description: nil,
+            **dynamic_attributes
           )
             
             @description = description
+
+            dynamic_attributes.each do |key, value|
+              self.class.attr_accessor key
+              instance_variable_set("@#{key}", value)
+            end
           end
         end
       end
