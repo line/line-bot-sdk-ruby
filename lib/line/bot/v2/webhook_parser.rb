@@ -21,11 +21,11 @@ module Line
         #   The unmodified request body (exactly as received).
         # @param signature [String]
         #   The value of the 'X-LINE-Signature' header.
-        # @return [Array<Line::Bot::V2::Webhook::Event, Struct>]
+        # @return [Array<Line::Bot::V2::Webhook::Event>]
         #   An array of event objects. Recognized events become instances of classes
-        #   under `Line::Bot::V2::Webhook::*Event`; otherwise, they're returned as `Struct`.
-        #   `Struct` is returned as fallback only when the event class is not defined in line-bot-sdk library.
-        #   When you update the SDK, you may not need to handle `Struct` anymore.
+        #   under `Line::Bot::V2::Webhook::*Event`;
+        #   `Line::Bot::V2::Webhook::Event` is returned as fallback only when the event class is not defined in line-bot-sdk library.
+        #   When you update the SDK, you may not need to handle `Line::Bot::V2::Webhook::Event` anymore.
         # @raise [InvalidSignatureError]
         #   If the signature fails verification.
         #
