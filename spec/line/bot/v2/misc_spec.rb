@@ -6,20 +6,34 @@ describe 'misc' do
 
   describe 'Uploading' do
     describe 'Uploading' do
-      describe 'POST /v2/bot/audienceGroup/upload/byFile' do
+      describe 'PUT /v2/bot/audienceGroup/upload/byFile' do
         let(:client) { Line::Bot::V2::ManageAudience::ApiBlobClient.new(channel_access_token: channel_access_token) }
         let(:file_path) { 'spec/fixtures/line/bot/v2/sample_user_ids.txt' }
         let(:file) { File.open(file_path) }
 
         it 'uploads a file to the audience successfully' do
           stub_request(:put, "https://api-data.line.me/v2/bot/audienceGroup/upload/byFile")
-            .with(
-              headers: {
-                'Authorization' => "Bearer #{channel_access_token}",
-                'Content-Type' => %r{multipart/form-data} # webmock doesn't support multipart/form-data so we use regex
-              }
-            )
-            .to_return(status: 202, body: '', headers: {})
+            .with do |request|
+            expect(request.headers['Authorization']).to eq("Bearer #{channel_access_token}")
+            # Ensure it's multipart/form-data (with boundary)
+            expect(request.headers['Content-Type']).to match(%r{\Amultipart/form-data; boundary=.+})
+
+            # Check if 'uploadDescription' part exists
+            expect(request.body).to include('Content-Disposition: form-data; name="uploadDescription"')
+            expect(request.body).to include('Test Audience')
+
+            # Check if 'audienceGroupId' part exists
+            expect(request.body).to include('Content-Disposition: form-data; name="audienceGroupId"')
+            expect(request.body).to include('1234')
+
+            # file part
+            expect(request.body).to include('Content-Disposition: form-data; name="file"; filename="sample_user_ids.txt"')
+            # body must contain content type text/plain
+            expect(request.body).to include('Content-Type: text/plain')
+            expect(request.body).to include('U4af4980627')
+            expect(request.body).to include('U4af4980628')
+          end
+            .to_return(status: 202, body: '{}', headers: {})
 
           response_body, status_code, headers = client.add_user_ids_to_audience_with_http_info(
             file: file,
@@ -28,7 +42,54 @@ describe 'misc' do
           )
 
           expect(status_code).to eq(202)
-          expect(response_body).to be_empty
+          expect(response_body).to eq("{}")
+        end
+      end
+
+      describe 'POST /v2/bot/audienceGroup/upload/byFile' do
+        let(:client) { Line::Bot::V2::ManageAudience::ApiBlobClient.new(channel_access_token: channel_access_token) }
+        let(:file_path) { 'spec/fixtures/line/bot/v2/sample_user_ids.txt' }
+        let(:file) { File.open(file_path) }
+        let(:response_body) do
+          {
+            "audienceGroupId": 1234567890123,
+            "createRoute": "MESSAGING_API",
+            "type": "UPLOAD",
+            "description": "audienceGroupName_01",
+            "created": 1613700237,
+            "permission": "READ_WRITE",
+            "expireTimestamp": 1629252237,
+            "isIfaAudience": false
+          }.to_json
+        end
+
+        it 'uploads a file to the audience successfully' do
+          stub_request(:post, "https://api-data.line.me/v2/bot/audienceGroup/upload/byFile")
+            .with do |request|
+            expect(request.headers['Authorization']).to eq("Bearer #{channel_access_token}")
+            # Ensure it's multipart/form-data (with boundary)
+            expect(request.headers['Content-Type']).to match(%r{\Amultipart/form-data; boundary=.+})
+
+            # Check if 'uploadDescription' part exists
+            expect(request.body).to include('Content-Disposition: form-data; name="uploadDescription"')
+            expect(request.body).to include('Test Audience')
+
+            # file part
+            expect(request.body).to include('Content-Disposition: form-data; name="file"; filename="sample_user_ids.txt"')
+            # body must contain content type text/plain
+            expect(request.body).to include('Content-Type: text/plain')
+            expect(request.body).to include('U4af4980627')
+            expect(request.body).to include('U4af4980628')
+          end
+            .to_return(status: 202, body: response_body, headers: {})
+
+          body, status_code, headers = client.create_audience_for_uploading_user_ids_with_http_info(
+            file: file,
+            upload_description: 'Test Audience'
+          )
+
+          expect(status_code).to eq(202)
+          expect(body.audience_group_id).to eq(1234567890123)
         end
       end
 
