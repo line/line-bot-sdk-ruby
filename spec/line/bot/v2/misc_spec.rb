@@ -295,54 +295,110 @@ describe 'misc' do
     let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
     let(:response_code) { 200 }
 
-    it 'returns a list of followers successfully without optional parameters' do
-      response_body = { "userIds" => ["U1234567890", "U0987654321"] }.to_json
-      stub_request(:get, "https://api.line.me/v2/bot/followers/ids")
-        .with(
-          headers: {
-            'Authorization' => "Bearer test-channel-access-token"
-          }
-        )
-        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+    context 'when no optional parameters given' do
+      it 'returns a list of followers successfully (strict check without any query params)' do
+        response_body = { "userIds" => ["U1234567890", "U0987654321"] }.to_json
 
-      body, status_code, headers = client.get_followers_with_http_info
+        stub_request(:get, "https://api.line.me/v2/bot/followers/ids")
+          .with(
+            headers: {
+              'Authorization' => "Bearer test-channel-access-token"
+            },
+            query: {}
+          )
+          .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      expect(status_code).to eq(200)
-      expect(body.user_ids).to eq(["U1234567890", "U0987654321"])
+        body, status_code, headers = client.get_followers_with_http_info
+
+        expect(status_code).to eq(200)
+        expect(body.user_ids).to eq(["U1234567890", "U0987654321"])
+      end
     end
 
-    it 'query with only start' do
-      response_body = { "userIds" => ["U1234567890", "U0987654321"], "next" => "nExT Token" }.to_json
-      stub_request(:get, "https://api.line.me/v2/bot/followers/ids?start=from%20previous%20NEXT")
-        .with(
-          headers: {
-            'Authorization' => "Bearer test-channel-access-token"
-          }
-        )
-        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+    context 'when only start parameter is given' do
+      it 'returns a list of followers with next token (strict check with only "start")' do
+        response_body = { "userIds" => ["U1234567890", "U0987654321"], "next" => "nExT Token" }.to_json
 
-      body, status_code, headers = client.get_followers_with_http_info(start: "from previous NEXT")
+        stub_request(:get, "https://api.line.me/v2/bot/followers/ids")
+          .with(
+            headers: { 'Authorization' => "Bearer test-channel-access-token" },
+            query: { "start" => "from previous NEXT" }
+          )
+          .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      expect(status_code).to eq(200)
-      expect(body.user_ids).to eq(["U1234567890", "U0987654321"])
-      expect(body._next).to eq("nExT Token")
+        body, status_code, headers = client.get_followers_with_http_info(start: "from previous NEXT")
+
+        expect(status_code).to eq(200)
+        expect(body.user_ids).to eq(["U1234567890", "U0987654321"])
+        expect(body._next).to eq("nExT Token")
+      end
     end
 
-    it 'query with limit and start' do
-      response_body = { "userIds" => ["U1234567890", "U0987654321"], "next" => "nExT Token" }.to_json
-      stub_request(:get, "https://api.line.me/v2/bot/followers/ids?limit=10&start=from%20previous%20NEXT")
-        .with(
-          headers: {
-            'Authorization' => "Bearer test-channel-access-token"
-          }
-        )
-        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+    context 'when limit and start parameters are both given' do
+      it 'returns a list of followers with next token (strict check with "limit" and "start")' do
+        response_body = { "userIds" => ["U1234567890", "U0987654321"], "next" => "nExT Token" }.to_json
 
-      body, status_code, headers = client.get_followers_with_http_info(start: "from previous NEXT", limit: 10)
+        stub_request(:get, "https://api.line.me/v2/bot/followers/ids")
+          .with(
+            headers: { 'Authorization' => "Bearer test-channel-access-token" },
+            query: { "limit" => "10", "start" => "from previous NEXT" }
+          )
+          .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      expect(status_code).to eq(200)
-      expect(body.user_ids).to eq(["U1234567890", "U0987654321"])
-      expect(body._next).to eq("nExT Token")
+        body, status_code, headers = client.get_followers_with_http_info(start: "from previous NEXT", limit: 10)
+
+        expect(status_code).to eq(200)
+        expect(body.user_ids).to eq(["U1234567890", "U0987654321"])
+        expect(body._next).to eq("nExT Token")
+      end
+    end
+
+    context 'when making two consecutive requests in one test' do
+      it 'handles two requests, first with the same params and second with different params' do
+        first_response_body = {
+          "userIds" => ["U1111111111", "U2222222222"],
+          "next" => "firstNextToken"
+        }.to_json
+        second_response_body = {
+          "userIds" => ["U3333333333", "U4444444444"],
+        }.to_json
+
+        # First request: using start="from previous NEXT", limit=10
+        stub_request(:get, "https://api.line.me/v2/bot/followers/ids")
+          .with(
+            headers: { 'Authorization' => "Bearer test-channel-access-token" },
+            query: { "start" => "from previous NEXT", "limit" => "10" }
+          )
+          .to_return(
+            status: 200,
+            body: first_response_body,
+            headers: { 'Content-Type' => 'application/json' }
+          )
+
+        # Second request: using start="anotherParam", limit=5
+        stub_request(:get, "https://api.line.me/v2/bot/followers/ids")
+          .with(
+            headers: { 'Authorization' => "Bearer test-channel-access-token" },
+            query: { "start" => "anotherParam", "limit" => "5" }
+          )
+          .to_return(
+            status: 200,
+            body: second_response_body,
+            headers: { 'Content-Type' => 'application/json' }
+          )
+
+        # ---- First access ----
+        body1, status_code1, headers1 = client.get_followers_with_http_info(start: "from previous NEXT", limit: 10)
+        expect(status_code1).to eq(200)
+        expect(body1.user_ids).to eq(["U1111111111", "U2222222222"])
+        expect(body1._next).to eq("firstNextToken")
+
+        # ---- Second access ----
+        body2, status_code2, headers2 = client.get_followers_with_http_info(start: "anotherParam", limit: 5)
+        expect(status_code2).to eq(200)
+        expect(body2.user_ids).to eq(["U3333333333", "U4444444444"])
+        expect(body2._next).to be_nil
+      end
     end
   end
 
