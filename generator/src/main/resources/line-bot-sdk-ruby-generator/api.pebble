@@ -55,12 +55,10 @@ module Line
           {%- for op in operations.operation %}
 
           # {{ op.notes }}
+          # This requests to <code>{{ op.httpMethod }} {{ endpoint(operations.classname) }}{{ op.path }}</code>
           #
-          {%  if op.summary -%}
-          # @summary {{ op.summary }}
-          {%  endif -%}
           {% for param in op.allParams -%}
-          # @param {{param.paramName}} {{param.description}}
+          # @param {{param.paramName}} [{{ param.dataType }}{{ param.required ? '' : ', nil' }}] {{param.description}}
           {% endfor -%}
           {% if op.isDeprecated -%}
           # @deprecated
@@ -70,7 +68,15 @@ module Line
           {% endif -%}
           {% if op.externalDocs.url != null -%}
           # @see {{op.externalDocs.url}}
-          {% endif -%}
+          {%- endif %}
+          # @return [response body, response status code, and response headers]
+          {%- for response in op.responses %}
+          {%- if response.content['application/json'].schema.complexType != null %}
+          # @return [Array(Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}, Integer, Hash{String => String})] when HTTP status code is {{ response.code }}
+          {%- else %}
+          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is {{ response.code }}
+          {%- endif %}
+          {%- endfor %}
           def {{op.nickname}}_with_http_info({% for param in op.allParams %}
             {{param.paramName}}:{{ param.required ? '' : ' nil' }}{{ loop.last ? '' : ',' -}}
             {% endfor %}
@@ -120,12 +126,11 @@ module Line
           end
 
           # {{ op.notes }}
+          # This requests to <code>{{ op.httpMethod }} {{ endpoint(operations.classname) }}{{ op.path }}</code>
+          # When you want to get HTTP status code or response headers, use {{ '{#' }}{{op.nickname}}_with_http_info} instead of this.
           #
-          {%  if op.summary -%}
-          # @summary {{ op.summary }}
-          {%  endif -%}
           {% for param in op.allParams -%}
-          # @param {{param.paramName}} {{param.description}}
+          # @param {{param.paramName}} [{{ param.dataType }}{{ param.required ? '' : ', nil' }}] {{param.description}}
           {% endfor -%}
           {% if op.isDeprecated -%}
           # @deprecated
@@ -135,7 +140,14 @@ module Line
           {% endif -%}
           {% if op.externalDocs.url != null -%}
           # @see {{op.externalDocs.url}}
-          {% endif -%}
+          {%- endif %}
+          {%- for response in op.responses %}
+          {%- if response.content['application/json'].schema.complexType != null %}
+          # @return [Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}] when HTTP status code is {{ response.code }}
+          {%- else %}
+          # @return [String, nil] when HTTP status code is {{ response.code }}
+          {%- endif %}
+          {%- endfor %}
           def {{op.nickname}}({% for param in op.allParams %}
             {{param.paramName}}:{{ param.required ? '' : ' nil' }}{{ loop.last ? '' : ',' -}}
             {% endfor %}
