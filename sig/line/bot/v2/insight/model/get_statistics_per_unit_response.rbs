@@ -23,6 +23,8 @@ module Line
             messages: Array[GetStatisticsPerUnitResponseMessage],
             clicks: Array[GetStatisticsPerUnitResponseClick]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponse
         end
       end
     end

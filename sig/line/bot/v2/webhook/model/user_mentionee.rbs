@@ -26,6 +26,8 @@ module Line
             user_id: String?,
             is_self: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> UserMentionee
         end
       end
     end

@@ -21,6 +21,12 @@ module Line
             type: String?,
             label: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> Action
+
+          private
+
+          def self.detect_class: (type: String) -> Class
         end
       end
     end

@@ -20,6 +20,12 @@ module Line
             type: String,
             id: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> MessageContent
+
+          private
+
+          def self.detect_class: (type: String) -> Class
         end
       end
     end

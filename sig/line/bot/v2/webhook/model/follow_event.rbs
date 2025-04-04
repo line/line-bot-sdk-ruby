@@ -32,6 +32,8 @@ module Line
             reply_token: String,
             follow: FollowDetail
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FollowEvent
         end
       end
     end

@@ -44,6 +44,8 @@ module Line
             adjust_mode: 'shrink-to-fit'?,
             scaling: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexButton
         end
       end
     end

@@ -22,6 +22,8 @@ module Line
             data: String?,
             rich_menu_alias_id: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuSwitchAction
         end
       end
     end

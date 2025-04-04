@@ -39,6 +39,8 @@ module Line
             unique_media_played75_percent: Integer?,
             unique_media_played100_percent: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetMessageEventResponseMessage
         end
       end
     end

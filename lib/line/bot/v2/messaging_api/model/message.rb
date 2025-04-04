@@ -25,13 +25,44 @@ module Line
           )
             
             @type = type
-            @quick_reply = quick_reply
-            @sender = sender
+            @quick_reply = quick_reply.is_a?(Line::Bot::V2::MessagingApi::QuickReply) || quick_reply.nil? ? quick_reply : Line::Bot::V2::MessagingApi::QuickReply.create(**quick_reply)
+            @sender = sender.is_a?(Line::Bot::V2::MessagingApi::Sender) || sender.nil? ? sender : Line::Bot::V2::MessagingApi::Sender.create(**sender)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            klass = detect_class(args[:type])
+            return klass.new(**args) if klass
+            
+            return new(**args)
+          end
+
+          private
+
+          def self.detect_class(type)
+            {
+              audio: Line::Bot::V2::MessagingApi::AudioMessage,
+              flex: Line::Bot::V2::MessagingApi::FlexMessage,
+              image: Line::Bot::V2::MessagingApi::ImageMessage,
+              imagemap: Line::Bot::V2::MessagingApi::ImagemapMessage,
+              location: Line::Bot::V2::MessagingApi::LocationMessage,
+              sticker: Line::Bot::V2::MessagingApi::StickerMessage,
+              template: Line::Bot::V2::MessagingApi::TemplateMessage,
+              text: Line::Bot::V2::MessagingApi::TextMessage,
+              textV2: Line::Bot::V2::MessagingApi::TextMessageV2,
+              video: Line::Bot::V2::MessagingApi::VideoMessage,
+            }[type.to_sym]
           end
         end
       end

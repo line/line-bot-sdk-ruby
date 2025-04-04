@@ -18,6 +18,8 @@ module Line
           def initialize: (
             richmenus: Array[RichMenuResponse]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuListResponse
         end
       end
     end

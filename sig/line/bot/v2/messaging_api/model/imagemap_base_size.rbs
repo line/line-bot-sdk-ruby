@@ -19,6 +19,8 @@ module Line
             height: Integer,
             width: Integer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapBaseSize
         end
       end
     end

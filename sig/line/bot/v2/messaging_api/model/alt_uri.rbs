@@ -17,6 +17,8 @@ module Line
           def initialize: (
             desktop: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AltUri
         end
       end
     end

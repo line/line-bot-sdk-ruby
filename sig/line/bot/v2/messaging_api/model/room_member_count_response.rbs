@@ -18,6 +18,8 @@ module Line
           def initialize: (
             count: Integer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RoomMemberCountResponse
         end
       end
     end

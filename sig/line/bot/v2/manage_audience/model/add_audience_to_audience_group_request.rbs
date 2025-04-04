@@ -23,6 +23,8 @@ module Line
             upload_description: String?,
             audiences: Array[Audience]?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AddAudienceToAudienceGroupRequest
         end
       end
     end

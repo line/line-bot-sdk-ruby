@@ -30,6 +30,8 @@ module Line
             delivery_context: DeliveryContext,
             delivery: PnpDelivery
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> PnpDeliveryCompletionEvent
         end
       end
     end

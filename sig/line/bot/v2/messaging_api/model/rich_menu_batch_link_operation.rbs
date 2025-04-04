@@ -21,6 +21,8 @@ module Line
             from: String,
             to: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBatchLinkOperation
         end
       end
     end

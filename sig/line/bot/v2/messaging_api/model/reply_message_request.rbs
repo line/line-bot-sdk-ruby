@@ -22,6 +22,8 @@ module Line
             messages: Array[Message],
             notification_disabled: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ReplyMessageRequest
         end
       end
     end

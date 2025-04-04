@@ -19,7 +19,6 @@ module Line
           attr_accessor :user_id # ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
 
           def initialize(
-            type:,
             group_id:,
             user_id: nil,
             **dynamic_attributes
@@ -31,8 +30,19 @@ module Line
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

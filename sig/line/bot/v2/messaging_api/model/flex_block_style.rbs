@@ -21,6 +21,8 @@ module Line
             separator: bool?,
             separator_color: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexBlockStyle
         end
       end
     end

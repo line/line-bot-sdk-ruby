@@ -25,15 +25,26 @@ module Line
             **dynamic_attributes
           )
             
-            @header = header
-            @hero = hero
-            @body = body
-            @footer = footer
+            @header = header.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || header.nil? ? header : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**header)
+            @hero = hero.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || hero.nil? ? hero : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**hero)
+            @body = body.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || body.nil? ? body : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**body)
+            @footer = footer.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || footer.nil? ? footer : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**footer)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

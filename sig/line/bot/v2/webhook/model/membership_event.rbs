@@ -32,6 +32,8 @@ module Line
             reply_token: String,
             membership: MembershipContent
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> MembershipEvent
         end
       end
     end

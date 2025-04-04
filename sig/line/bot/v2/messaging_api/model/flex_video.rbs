@@ -26,6 +26,8 @@ module Line
             aspect_ratio: String?,
             action: Action?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexVideo
         end
       end
     end

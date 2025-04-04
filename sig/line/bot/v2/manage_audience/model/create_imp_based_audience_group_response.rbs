@@ -27,6 +27,8 @@ module Line
             created: Integer?,
             request_id: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> CreateImpBasedAudienceGroupResponse
         end
       end
     end

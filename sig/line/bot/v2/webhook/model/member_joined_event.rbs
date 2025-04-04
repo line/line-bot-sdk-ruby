@@ -32,6 +32,8 @@ module Line
             reply_token: String,
             joined: JoinedMembers
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> MemberJoinedEvent
         end
       end
     end

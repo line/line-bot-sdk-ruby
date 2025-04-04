@@ -18,6 +18,8 @@ module Line
           def initialize: (
             contents: Array[FlexBubble]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexCarousel
         end
       end
     end

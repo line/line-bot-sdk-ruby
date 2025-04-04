@@ -22,6 +22,8 @@ module Line
             id: String?,
             name: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> DetailedOwner
         end
       end
     end

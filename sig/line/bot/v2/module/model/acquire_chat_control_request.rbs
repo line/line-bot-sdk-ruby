@@ -21,6 +21,8 @@ module Line
             expired: bool?,
             ttl: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AcquireChatControlRequest
         end
       end
     end

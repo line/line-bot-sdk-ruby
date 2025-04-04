@@ -21,6 +21,8 @@ module Line
             index: Integer?,
             total: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ImageSet
         end
       end
     end

@@ -23,6 +23,8 @@ module Line
             clipboard_text: String,
             label: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ClipboardImagemapAction
         end
       end
     end

@@ -28,6 +28,8 @@ module Line
             style: 'normal'|'italic'?,
             decoration: 'none'|'underline'|'line-through'?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexSpan
         end
       end
     end

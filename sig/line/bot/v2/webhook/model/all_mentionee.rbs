@@ -22,6 +22,8 @@ module Line
             index: Integer,
             length: Integer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AllMentionee
         end
       end
     end

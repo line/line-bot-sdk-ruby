@@ -33,14 +33,31 @@ module Line
             @membership_id = membership_id
             @title = title
             @description = description
-            @benefits = benefits
+            @benefits = benefits.map do |item|
+              if item.is_a?(Hash)
+                Line::Bot::V2::MessagingApi::string.create(**item)
+              else
+                item
+              end
+            end
             @price = price
             @currency = currency
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

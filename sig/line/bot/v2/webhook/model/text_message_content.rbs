@@ -29,6 +29,8 @@ module Line
             quote_token: String,
             quoted_message_id: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> TextMessageContent
         end
       end
     end

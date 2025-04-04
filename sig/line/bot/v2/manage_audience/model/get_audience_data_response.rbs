@@ -23,6 +23,8 @@ module Line
             jobs: Array[AudienceGroupJob]?,
             adaccount: Adaccount?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetAudienceDataResponse
         end
       end
     end

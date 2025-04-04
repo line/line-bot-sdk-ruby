@@ -23,6 +23,8 @@ module Line
             jobs: Array[AudienceGroupJob]?,
             owner: DetailedOwner?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetSharedAudienceDataResponse
         end
       end
     end

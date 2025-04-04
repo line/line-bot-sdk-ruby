@@ -18,6 +18,8 @@ module Line
           def initialize: (
             num_of_custom_aggregation_units: Integer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetAggregationUnitUsageResponse
         end
       end
     end

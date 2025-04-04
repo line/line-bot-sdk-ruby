@@ -22,6 +22,8 @@ module Line
             url: String?,
             module_mode: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> UpdateLiffView
         end
       end
     end

@@ -39,6 +39,8 @@ module Line
             api_narrowcast: Integer?,
             api_reply: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetNumberOfMessageDeliveriesResponse
         end
       end
     end

@@ -29,6 +29,8 @@ module Line
             max: String?,
             min: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> DatetimePickerAction
         end
       end
     end

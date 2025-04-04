@@ -26,6 +26,8 @@ module Line
             status_message: String?,
             language: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> UserProfileResponse
         end
       end
     end

@@ -25,6 +25,8 @@ module Line
             content_provider: ContentProvider,
             quote_token: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> VideoMessageContent
         end
       end
     end

@@ -26,6 +26,8 @@ module Line
             reason: String,
             detail: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> TestWebhookEndpointResponse
         end
       end
     end

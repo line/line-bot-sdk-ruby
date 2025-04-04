@@ -19,6 +19,8 @@ module Line
           def initialize: (
             subscriptions: Array[Subscription]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetMembershipSubscriptionResponse
         end
       end
     end

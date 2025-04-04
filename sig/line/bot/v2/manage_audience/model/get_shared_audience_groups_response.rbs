@@ -29,6 +29,8 @@ module Line
             page: Integer?,
             size: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetSharedAudienceGroupsResponse
         end
       end
     end

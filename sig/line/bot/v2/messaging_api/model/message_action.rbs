@@ -20,6 +20,8 @@ module Line
             label: String?,
             text: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> MessageAction
         end
       end
     end

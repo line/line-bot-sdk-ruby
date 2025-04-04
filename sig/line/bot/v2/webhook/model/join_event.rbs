@@ -30,6 +30,8 @@ module Line
             delivery_context: DeliveryContext,
             reply_token: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> JoinEvent
         end
       end
     end

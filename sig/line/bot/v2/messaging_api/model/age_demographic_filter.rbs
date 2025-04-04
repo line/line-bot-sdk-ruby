@@ -20,6 +20,8 @@ module Line
             gte: 'age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70'?,
             lt: 'age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70'?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AgeDemographicFilter
         end
       end
     end

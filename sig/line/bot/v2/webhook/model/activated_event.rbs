@@ -30,6 +30,8 @@ module Line
             delivery_context: DeliveryContext,
             chat_control: ChatControl
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ActivatedEvent
         end
       end
     end

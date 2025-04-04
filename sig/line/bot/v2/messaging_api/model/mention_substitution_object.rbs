@@ -20,6 +20,8 @@ module Line
           def initialize: (
             mentionee: MentionTarget
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> MentionSubstitutionObject
         end
       end
     end

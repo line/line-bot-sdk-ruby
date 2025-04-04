@@ -26,6 +26,8 @@ module Line
             center_color: String?,
             center_position: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexBoxLinearGradient
         end
       end
     end

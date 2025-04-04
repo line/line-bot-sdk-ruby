@@ -25,7 +25,6 @@ module Line
           attr_accessor :things
 
           def initialize(
-            type:,
             source: nil,
             timestamp:,
             mode:,
@@ -37,18 +36,29 @@ module Line
           )
             @type = "things"
             
-            @source = source
+            @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source)
             @timestamp = timestamp
             @mode = mode
             @webhook_event_id = webhook_event_id
-            @delivery_context = delivery_context
+            @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context)
             @reply_token = reply_token
-            @things = things
+            @things = things.is_a?(Line::Bot::V2::Webhook::ThingsContent) ? things : Line::Bot::V2::Webhook::ThingsContent.create(**things)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

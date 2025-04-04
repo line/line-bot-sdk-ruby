@@ -22,6 +22,8 @@ module Line
             _or: Array[DemographicFilter]?,
             _not: DemographicFilter?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> OperatorDemographicFilter
         end
       end
     end

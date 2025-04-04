@@ -22,6 +22,8 @@ module Line
             user_id: String,
             picture_url: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GroupUserProfileResponse
         end
       end
     end

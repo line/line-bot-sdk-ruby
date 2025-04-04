@@ -20,6 +20,8 @@ module Line
             endpoint: String,
             active: bool
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetWebhookEndpointResponse
         end
       end
     end

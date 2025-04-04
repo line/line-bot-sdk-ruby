@@ -32,6 +32,8 @@ module Line
             reply_token: String,
             things: ThingsContent
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ThingsEvent
         end
       end
     end

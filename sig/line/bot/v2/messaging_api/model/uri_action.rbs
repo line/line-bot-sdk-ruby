@@ -22,6 +22,8 @@ module Line
             uri: String?,
             alt_uri: AltUri?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> URIAction
         end
       end
     end

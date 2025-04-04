@@ -22,6 +22,8 @@ module Line
             accepted_time: String,
             completed_time: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBatchProgressResponse
         end
       end
     end

@@ -37,6 +37,8 @@ module Line
             expire_timestamp: Integer?,
             is_ifa_audience: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> CreateClickBasedAudienceGroupResponse
         end
       end
     end

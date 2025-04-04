@@ -22,6 +22,8 @@ module Line
             action: Action?,
             type: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> QuickReplyItem
         end
       end
     end

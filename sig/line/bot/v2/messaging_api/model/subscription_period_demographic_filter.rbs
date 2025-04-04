@@ -20,6 +20,8 @@ module Line
             gte: 'day_7'|'day_30'|'day_90'|'day_180'|'day_365'?,
             lt: 'day_7'|'day_30'|'day_90'|'day_180'|'day_365'?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> SubscriptionPeriodDemographicFilter
         end
       end
     end

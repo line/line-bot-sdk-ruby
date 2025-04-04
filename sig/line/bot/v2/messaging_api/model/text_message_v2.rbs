@@ -27,6 +27,8 @@ module Line
             substitution: Object?,
             quote_token: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> TextMessageV2
         end
       end
     end

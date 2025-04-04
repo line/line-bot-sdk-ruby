@@ -2,8 +2,10 @@ package line.bot.generator;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.openapitools.codegen.CodegenDiscriminator;
 import org.openapitools.codegen.CodegenModel;
@@ -80,6 +82,7 @@ public class LineBotSdkRubyRbsGenerator extends AbstractRubyCodegen {
         for (ModelsMap entry : result.values()) {
             for (ModelMap mo : entry.getModels()) {
                 CodegenModel cm = mo.getModel();
+                final Map<String, Object> selector = new HashMap<>();
 
                 if (cm.getParentModel() != null) {
                     final CodegenDiscriminator discriminator = cm.getParentModel().getDiscriminator();
@@ -87,11 +90,33 @@ public class LineBotSdkRubyRbsGenerator extends AbstractRubyCodegen {
                             it -> it.getModelName().equals(cm.name)
                     ).map(CodegenDiscriminator.MappedModel::getMappingName).findFirst();
                     mappingNameOptional.ifPresent(mappingName -> {
-                        final Map<String, Object> selector = new HashMap<>();
                         selector.put("propertyName", discriminator.getPropertyName());
                         selector.put("mappingName", mappingName);
                         cm.getVendorExtensions().put("x-selector", selector);
                     });
+                }
+
+                if (cm.getChildren() != null && cm.getDiscriminator() != null) {
+                    final List<Map<String, String>> childMappings =
+                            cm.getChildren().stream()
+                              .map(child -> {
+                                  Map<String, String> childInfo = new HashMap<>();
+                                  childInfo.put("className", child.name);
+
+                                  final CodegenDiscriminator discriminator = cm.getDiscriminator();
+                                  if (discriminator != null) {
+                                      discriminator.getMappedModels().stream()
+                                                   .filter(mappedModel -> mappedModel.getModelName().equals(child.name))
+                                                   .findFirst()
+                                                   .ifPresent(mappedModel -> childInfo.put("typeName", mappedModel.getMappingName()));
+                                  }
+
+                                  return childInfo;
+                              })
+                              .collect(Collectors.toList());
+
+                    cm.getVendorExtensions().put("x-children", childMappings);
+                    cm.getVendorExtensions().put("x-discriminator-property", cm.getDiscriminator().getPropertyName());
                 }
             }
         }

@@ -30,17 +30,34 @@ module Line
             **dynamic_attributes
           )
             
-            @view = view
+            @view = view.is_a?(Line::Bot::V2::Liff::LiffView) ? view : Line::Bot::V2::Liff::LiffView.create(**view)
             @description = description
-            @features = features
+            @features = features.is_a?(Line::Bot::V2::Liff::LiffFeatures) || features.nil? ? features : Line::Bot::V2::Liff::LiffFeatures.create(**features)
             @permanent_link_pattern = permanent_link_pattern
-            @scope = scope
+            @scope = scope&.map do |item|
+              if item.is_a?(Hash)
+                Line::Bot::V2::Liff::LiffScope.create(**item)
+              else
+                item
+              end
+            end
             @bot_prompt = bot_prompt
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

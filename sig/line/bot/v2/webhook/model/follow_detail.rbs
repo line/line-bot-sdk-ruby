@@ -17,6 +17,8 @@ module Line
           def initialize: (
             is_unblocked: bool
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FollowDetail
         end
       end
     end

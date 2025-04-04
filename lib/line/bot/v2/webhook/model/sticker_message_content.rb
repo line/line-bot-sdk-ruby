@@ -26,7 +26,6 @@ module Line
           attr_accessor :quoted_message_id # Message ID of a quoted message. Only included when the received message quotes a past message.  
 
           def initialize(
-            type:,
             id:,
             package_id:,
             sticker_id:,
@@ -43,15 +42,32 @@ module Line
             @package_id = package_id
             @sticker_id = sticker_id
             @sticker_resource_type = sticker_resource_type
-            @keywords = keywords
+            @keywords = keywords&.map do |item|
+              if item.is_a?(Hash)
+                Line::Bot::V2::Webhook::string.create(**item)
+              else
+                item
+              end
+            end
             @text = text
             @quote_token = quote_token
             @quoted_message_id = quoted_message_id
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

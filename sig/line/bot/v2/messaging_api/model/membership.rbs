@@ -35,6 +35,8 @@ module Line
             is_in_app_purchase: bool,
             is_published: bool
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> Membership
         end
       end
     end

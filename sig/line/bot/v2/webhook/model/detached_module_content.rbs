@@ -21,6 +21,8 @@ module Line
             bot_id: String,
             reason: 'bot_deleted'
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> DetachedModuleContent
         end
       end
     end

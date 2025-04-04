@@ -58,6 +58,14 @@ module Line
             {% endif %}{{ loop.last ? '' : ",
             " }}{% endif %}{% endfor %}
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> {{ model.model.classname }}
+          {%- if model.model.vendorExtensions.get("x-children") != null %}
+
+          private
+
+          def self.detect_class: (type: String) -> Class
+          {%- endif %}
           {%- endif %}
         end
       end

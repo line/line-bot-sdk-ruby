@@ -19,6 +19,8 @@ module Line
             subscription_period: 'within7days'|'within30days'|'within90days'|'within180days'|'within365days'|'over365days'|'unknown'?,
             percentage: Float?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> SubscriptionPeriodTile
         end
       end
     end

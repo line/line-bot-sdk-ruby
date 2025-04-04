@@ -18,6 +18,8 @@ module Line
           def initialize: (
             one_of: Array['ios'|'android']?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AppTypeDemographicFilter
         end
       end
     end

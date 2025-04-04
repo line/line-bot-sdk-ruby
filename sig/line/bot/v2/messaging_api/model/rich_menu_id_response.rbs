@@ -17,6 +17,8 @@ module Line
           def initialize: (
             rich_menu_id: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuIdResponse
         end
       end
     end

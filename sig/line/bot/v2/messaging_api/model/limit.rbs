@@ -21,6 +21,8 @@ module Line
             max: Integer?,
             up_to_remaining_quota: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> Limit
         end
       end
     end

@@ -17,6 +17,8 @@ module Line
           def initialize: (
             apps: Array[LiffApp]?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetAllLiffAppsResponse
         end
       end
     end

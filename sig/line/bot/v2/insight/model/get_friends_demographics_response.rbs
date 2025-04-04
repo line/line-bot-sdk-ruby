@@ -29,6 +29,8 @@ module Line
             app_types: Array[AppTypeTile]?,
             subscription_periods: Array[SubscriptionPeriodTile]?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetFriendsDemographicsResponse
         end
       end
     end

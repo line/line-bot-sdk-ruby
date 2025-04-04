@@ -25,6 +25,8 @@ module Line
             original_content_url: String,
             preview_image_url: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ImageMessage
         end
       end
     end

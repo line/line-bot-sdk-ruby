@@ -25,6 +25,8 @@ module Line
             width: Integer?,
             height: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBounds
         end
       end
     end

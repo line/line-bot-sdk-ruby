@@ -372,9 +372,10 @@ describe 'misc' do
 
       expect(status_code).to eq(200)
       expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
-      # TODO: Add test after https://github.com/line/line-bot-sdk-ruby/issues/440 is resolved
-      # We should access body.sent_messages[0].id and body.sent_messages[0].quote_token, but it's not possible now.
-      expect(body.sent_messages).to eq([{ id: '461230966842064897', quote_token: 'IStG5h1Tz7b...' }])
+      expect(body.sent_messages).to be_a(Array)
+      expect(body.sent_messages[0]).to be_a(Line::Bot::V2::MessagingApi::SentMessage)
+      expect(body.sent_messages[0].id).to eq('461230966842064897')
+      expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
     end
 
     it 'response - success - using hash (not recommended way)' do
@@ -452,9 +453,10 @@ describe 'misc' do
 
       expect(status_code).to eq(200)
       expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
-      # TODO: Add test after https://github.com/line/line-bot-sdk-ruby/issues/440 is resolved
-      # We should access body.sent_messages[0].id and body.sent_messages[0].quote_token, but it's not possible now.
-      expect(body.sent_messages).to eq([{ id: '461230966842064897', quote_token: 'IStG5h1Tz7b...' }])
+      expect(body.sent_messages).to be_a(Array)
+      expect(body.sent_messages[0]).to be_a(Line::Bot::V2::MessagingApi::SentMessage)
+      expect(body.sent_messages[0].id).to eq('461230966842064897')
+      expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
     end
 
     it 'request with x_line_retry_key: nil' do
@@ -530,9 +532,10 @@ describe 'misc' do
       )
       expect(status_code).to eq(200)
       expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
-      # TODO: Add test after https://github.com/line/line-bot-sdk-ruby/issues/440 is resolved
-      # We should access body.sent_messages[0].id and body.sent_messages[0].quote_token, but it's not possible now.
-      expect(body.sent_messages).to eq([{ id: '461230966842064897', quote_token: 'IStG5h1Tz7b...' }])
+      expect(body.sent_messages).to be_a(Array)
+      expect(body.sent_messages[0]).to be_a(Line::Bot::V2::MessagingApi::SentMessage)
+      expect(body.sent_messages[0].id).to eq('461230966842064897')
+      expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
     end
 
     it 'request with  x-line-retry-key header - conflicted' do
@@ -588,9 +591,10 @@ describe 'misc' do
       expect(status_code).to eq(409)
       expect(body).to be_a(Line::Bot::V2::MessagingApi::ErrorResponse)
       expect(body.message).to eq("The retry key is already accepted")
-      # TODO: Add test after https://github.com/line/line-bot-sdk-ruby/issues/440 is resolved.
-      # We should access body.sent_messages[0].id and body.sent_messages[0].quote_token, but it's not possible now.
-      expect(body.sent_messages).to eq([{ id: '461230966842064897', quote_token: 'IStG5h1Tz7b...' }])
+      expect(body.sent_messages).to be_a(Array)
+      expect(body.sent_messages[0]).to be_a(Line::Bot::V2::MessagingApi::SentMessage)
+      expect(body.sent_messages[0].id).to eq('461230966842064897')
+      expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
       expect(headers['x-line-request-id']).to eq(request_id)
       expect(headers['x-line-accepted-request-id']).to eq(accepted_request_id)
     end
@@ -975,10 +979,14 @@ describe 'misc' do
         alt_text: 'Test Alt Text',
         contents: Line::Bot::V2::MessagingApi::FlexBubble.new( # FlexBubble has many optional fields
           direction: 'ltr',
-          body: Line::Bot::V2::MessagingApi::FlexText.new(
-            text: 'Test Text',
-            weight: 'bold',
-            size: 'xl'
+          body: Line::Bot::V2::MessagingApi::FlexBox.new(
+            layout: 'vertical',
+            contents: [
+              Line::Bot::V2::MessagingApi::FlexText.new(
+                text: 'Test Text',
+                weight: 'bold'
+              )
+            ]
           )
         ),
         quick_reply: Line::Bot::V2::MessagingApi::QuickReply.new(
@@ -995,10 +1003,15 @@ describe 'misc' do
               type: 'bubble',
               direction: 'ltr',
               body: {
-                type: 'text',
-                text: 'Test Text',
-                size: 'xl',
-                weight: 'bold'
+                type: 'box',
+                layout: 'vertical',
+                contents: [
+                  {
+                    type: 'text',
+                    text: 'Test Text',
+                    weight: 'bold'
+                  }
+                ]
               }
             }
           }

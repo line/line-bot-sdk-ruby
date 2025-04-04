@@ -20,6 +20,8 @@ module Line
             rich_menu_id: String,
             user_ids: Array[String]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBulkLinkRequest
         end
       end
     end

@@ -28,6 +28,8 @@ module Line
             scope: Array['openid'|'email'|'profile'|'chat_message.write']?,
             bot_prompt: 'normal'|'aggressive'|'none'?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AddLiffAppRequest
         end
       end
     end

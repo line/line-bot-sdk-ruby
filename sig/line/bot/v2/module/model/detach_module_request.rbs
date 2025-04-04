@@ -19,6 +19,8 @@ module Line
           def initialize: (
             bot_id: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> DetachModuleRequest
         end
       end
     end

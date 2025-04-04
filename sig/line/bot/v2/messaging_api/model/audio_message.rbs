@@ -25,6 +25,8 @@ module Line
             original_content_url: String,
             duration: Integer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AudioMessage
         end
       end
     end

@@ -28,6 +28,8 @@ module Line
             price: Float,
             currency: 'JPY'|'TWD'|'THB'
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> SubscribedMembershipPlan
         end
       end
     end

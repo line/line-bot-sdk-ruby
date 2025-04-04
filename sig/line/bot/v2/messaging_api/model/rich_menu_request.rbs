@@ -25,6 +25,8 @@ module Line
             chat_bar_text: String?,
             areas: Array[RichMenuArea]?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuRequest
         end
       end
     end

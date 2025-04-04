@@ -38,18 +38,29 @@ module Line
             @type = "bubble"
             
             @direction = direction
-            @styles = styles
-            @header = header
-            @hero = hero
-            @body = body
-            @footer = footer
+            @styles = styles.is_a?(Line::Bot::V2::MessagingApi::FlexBubbleStyles) || styles.nil? ? styles : Line::Bot::V2::MessagingApi::FlexBubbleStyles.create(**styles)
+            @header = header.is_a?(Line::Bot::V2::MessagingApi::FlexBox) || header.nil? ? header : Line::Bot::V2::MessagingApi::FlexBox.create(**header)
+            @hero = hero.is_a?(Line::Bot::V2::MessagingApi::FlexComponent) || hero.nil? ? hero : Line::Bot::V2::MessagingApi::FlexComponent.create(**hero)
+            @body = body.is_a?(Line::Bot::V2::MessagingApi::FlexBox) || body.nil? ? body : Line::Bot::V2::MessagingApi::FlexBox.create(**body)
+            @footer = footer.is_a?(Line::Bot::V2::MessagingApi::FlexBox) || footer.nil? ? footer : Line::Bot::V2::MessagingApi::FlexBox.create(**footer)
             @size = size
-            @action = action
+            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

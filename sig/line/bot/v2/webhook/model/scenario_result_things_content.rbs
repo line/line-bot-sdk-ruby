@@ -21,6 +21,8 @@ module Line
             device_id: String,
             result: ScenarioResult
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ScenarioResultThingsContent
         end
       end
     end

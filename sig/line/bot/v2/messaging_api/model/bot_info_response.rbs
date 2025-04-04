@@ -30,6 +30,8 @@ module Line
             chat_mode: 'chat'|'bot',
             mark_as_read_mode: 'auto'|'manual'
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> BotInfoResponse
         end
       end
     end

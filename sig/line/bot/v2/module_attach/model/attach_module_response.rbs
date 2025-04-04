@@ -20,6 +20,8 @@ module Line
             bot_id: String,
             scopes: Array[String]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AttachModuleResponse
         end
       end
     end

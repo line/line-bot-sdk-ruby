@@ -27,6 +27,8 @@ module Line
             display_name: String,
             picture_url: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ModuleBot
         end
       end
     end

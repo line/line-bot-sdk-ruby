@@ -19,6 +19,8 @@ module Line
             type: String,
             device_id: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> UnlinkThingsContent
         end
       end
     end

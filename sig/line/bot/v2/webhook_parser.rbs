@@ -10,8 +10,7 @@ module Line
         def parse: (
             body: String,
             signature: String
-          ) -> Array[Webhook::Event | ::Struct[untyped]]
-
+          ) -> Array[Webhook::Event]
 
         private
 
@@ -20,16 +19,6 @@ module Line
         def secure_compare: (a: String, b: String) -> bool
 
         def verify_signature: (body: String, signature: String) -> bool
-
-        def create_instance: (untyped klass, Hash[Symbol, untyped] attributes) -> untyped
-
-        def determine_class_name: (Symbol key, untyped value) -> (String | nil)
-
-        def pascalize: (String|Symbol str) -> String
-
-        def singularize: (String|Symbol str) -> String
-
-        def deep_hash_to_struct: (untyped) -> untyped
       end
     end
   end

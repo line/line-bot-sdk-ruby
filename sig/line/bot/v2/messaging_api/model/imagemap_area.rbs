@@ -23,6 +23,8 @@ module Line
             width: Integer,
             height: Integer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapArea
         end
       end
     end

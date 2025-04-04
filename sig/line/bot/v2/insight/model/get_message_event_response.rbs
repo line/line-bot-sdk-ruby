@@ -23,6 +23,8 @@ module Line
             messages: Array[GetMessageEventResponseMessage]?,
             clicks: Array[GetMessageEventResponseClick]?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetMessageEventResponse
         end
       end
     end

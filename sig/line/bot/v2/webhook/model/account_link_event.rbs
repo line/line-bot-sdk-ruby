@@ -32,6 +32,8 @@ module Line
             reply_token: String?,
             link: LinkContent
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AccountLinkEvent
         end
       end
     end

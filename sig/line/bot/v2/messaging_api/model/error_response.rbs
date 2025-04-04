@@ -22,6 +22,8 @@ module Line
             details: Array[ErrorDetail]?,
             sent_messages: Array[SentMessage]?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ErrorResponse
         end
       end
     end

@@ -20,6 +20,12 @@ module Line
             type: String,
             area: ImagemapArea
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapAction
+
+          private
+
+          def self.detect_class: (type: String) -> Class
         end
       end
     end

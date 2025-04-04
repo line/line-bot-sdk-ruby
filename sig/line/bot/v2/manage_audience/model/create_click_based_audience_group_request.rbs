@@ -23,6 +23,8 @@ module Line
             request_id: String?,
             click_url: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> CreateClickBasedAudienceGroupRequest
         end
       end
     end

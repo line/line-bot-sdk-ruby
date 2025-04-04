@@ -33,6 +33,8 @@ module Line
             audience_count: Integer?,
             created: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AudienceGroupJob
         end
       end
     end

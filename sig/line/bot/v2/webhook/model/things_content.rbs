@@ -17,6 +17,12 @@ module Line
           def initialize: (
             type: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ThingsContent
+
+          private
+
+          def self.detect_class: (type: String) -> Class
         end
       end
     end

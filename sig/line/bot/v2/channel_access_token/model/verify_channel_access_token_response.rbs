@@ -22,6 +22,8 @@ module Line
             expires_in: Integer,
             scope: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> VerifyChannelAccessTokenResponse
         end
       end
     end
