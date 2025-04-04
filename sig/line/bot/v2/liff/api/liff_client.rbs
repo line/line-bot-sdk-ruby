@@ -20,7 +20,6 @@ module Line
 
           # Adding the LIFF app to a channel
           #
-          # @summary Create LIFF app
           # @param add_liff_app_request 
           # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
           def add_liff_app_with_http_info: (
@@ -29,7 +28,6 @@ module Line
 
           # Adding the LIFF app to a channel
           #
-          # @summary Create LIFF app
           # @param add_liff_app_request 
           # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
           def add_liff_app: (
@@ -38,7 +36,6 @@ module Line
 
           # Deletes a LIFF app from a channel. 
           #
-          # @summary Delete LIFF app from a channel
           # @param liff_id ID of the LIFF app to be updated
           # @see https://developers.line.biz/en/reference/liff-server/#delete-liff-app
           def delete_liff_app_with_http_info: (
@@ -47,7 +44,6 @@ module Line
 
           # Deletes a LIFF app from a channel. 
           #
-          # @summary Delete LIFF app from a channel
           # @param liff_id ID of the LIFF app to be updated
           # @see https://developers.line.biz/en/reference/liff-server/#delete-liff-app
           def delete_liff_app: (
@@ -56,21 +52,18 @@ module Line
 
           # Gets information on all the LIFF apps added to the channel.
           #
-          # @summary Get all LIFF apps
           # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
           def get_all_liff_apps_with_http_info: (
           ) -> [(GetAllLiffAppsResponse|String?|String?), Integer, Hash[String, String]]
 
           # Gets information on all the LIFF apps added to the channel.
           #
-          # @summary Get all LIFF apps
           # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
           def get_all_liff_apps: (
           ) -> (GetAllLiffAppsResponse|String?|String?)
 
           # Update LIFF app settings
           #
-          # @summary Update LIFF app from a channel
           # @param liff_id ID of the LIFF app to be updated
           # @param update_liff_app_request 
           # @see https://developers.line.biz/en/reference/liff-server/#update-liff-app
@@ -81,7 +74,6 @@ module Line
 
           # Update LIFF app settings
           #
-          # @summary Update LIFF app from a channel
           # @param liff_id ID of the LIFF app to be updated
           # @param update_liff_app_request 
           # @see https://developers.line.biz/en/reference/liff-server/#update-liff-app
