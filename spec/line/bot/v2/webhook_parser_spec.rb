@@ -1853,5 +1853,56 @@ describe Line::Bot::V2::WebhookParser do
         expect(event.things.result.action_results[2].type).to eq('void')
       end
     end
+
+    context 'with a MembershioEvent' do
+      let(:webhook) do
+        <<~JSON
+          {
+            "destination": "xxxxxxxxxx",
+            "events": [
+              {
+                "type": "membership",
+                "source": {
+                  "type": "user",
+                  "userId": "U4af4980629..."
+                },
+                "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+                "membership": {
+                  "type": "joined",
+                  "membershipId": 3189
+                },
+                "timestamp": 1462629479859,
+                "mode": "active",
+                "webhookEventId": "01FZ74A0TDDPYRVKNK77XKC3ZR",
+                "deliveryContext": {
+                  "isRedelivery": false
+                }
+              }
+            ]
+          }
+        JSON
+      end
+
+      it 'parses the webhook as a MembershipEvent' do
+        events = parser.parse(webhook, signature)
+        expect(events).not_to be_empty
+
+        event = events.first
+        expect(event).to be_a(Line::Bot::V2::Webhook::MembershipEvent)
+        expect(event.type).to eq('membership')
+        expect(event.source).to be_a(Line::Bot::V2::Webhook::UserSource)
+        expect(event.source.type).to eq('user')
+        expect(event.source.user_id).to eq('U4af4980629...')
+        expect(event.reply_token).to eq('nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        expect(event.membership).to be_a(Line::Bot::V2::Webhook::MembershipContent)
+        expect(event.membership.type).to eq('joined')
+        expect(event.membership.membership_id).to eq(3189)
+        expect(event.timestamp).to eq(1462629479859)
+        expect(event.mode).to eq('active')
+        expect(event.webhook_event_id).to eq('01FZ74A0TDDPYRVKNK77XKC3ZR')
+        expect(event.delivery_context).to be_a(Line::Bot::V2::Webhook::DeliveryContext)
+        expect(event.delivery_context.is_redelivery).to be false
+      end
+    end
   end
 end
