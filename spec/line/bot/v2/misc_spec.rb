@@ -70,10 +70,10 @@ describe 'misc' do
             .with(
               headers: {
                 'Authorization' => "Bearer #{channel_access_token}",
-                'Content-Type' => 'image/jpeg' # webmock doesn't support specific image content types so we use regex
+                'Content-Type' => 'image/jpeg'
               }
             )
-            .to_return(status: 200, body: 'Success', headers: { 'Content-Type' => 'application/json' })
+            .to_return(status: 200, body: '{}', headers: { 'Content-Type' => 'application/json' })
 
           response_body, status_code, headers = client.set_rich_menu_image_with_http_info(
             rich_menu_id: rich_menu_id,
@@ -81,6 +81,9 @@ describe 'misc' do
           )
 
           expect(status_code).to eq(200)
+          expect(response_body).to eq("{}")
+          expect(headers['Content-Type']).to eq(nil)
+          expect(headers['content-type']).to eq('application/json')
         end
       end
     end
@@ -109,6 +112,7 @@ describe 'misc' do
 
         expect(status_code).to eq(200)
         expect(body.status).to eq('ready')
+        expect(headers['content-type']).to eq('application/json')
       end
     end
 
@@ -128,6 +132,7 @@ describe 'misc' do
 
         expect(status_code).to eq(200)
         expect(body).to eq('binary data')
+        expect(headers['content-type']).to eq('image/jpeg')
       end
     end
   end
