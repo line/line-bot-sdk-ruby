@@ -168,4 +168,116 @@ describe Line::Bot::V2::Utils do
       expect(Line::Bot::V2::Utils.camelize(input)).to eq(expected_output)
     end
   end
+
+  describe '.deep_convert_reserved_words' do
+    before do
+      stub_const('Line::Bot::V2::RESERVED_WORDS', %i(id type))
+    end
+
+    it 'prefixes reserved keys with an underscore' do
+      input = { 'id' => 123, 'other' => 'value', 'type' => 'example' }
+      expected_output = { '_id' => 123, 'other' => 'value', '_type' => 'example' }
+      expect(Line::Bot::V2::Utils.deep_convert_reserved_words(input)).to eq(expected_output)
+    end
+
+    it 'handles nested hashes' do
+      input = {
+        'id' => 123,
+        'nested' => { 'type' => 'inner', 'normalKey' => 'value' }
+      }
+      expected_output = {
+        '_id' => 123,
+        'nested' => { '_type' => 'inner', 'normalKey' => 'value' }
+      }
+      expect(Line::Bot::V2::Utils.deep_convert_reserved_words(input)).to eq(expected_output)
+    end
+
+    it 'handles arrays of hashes' do
+      input = [
+        { 'id' => 1, 'type' => 'one' },
+        { 'id' => 2, 'otherKey' => 'value' }
+      ]
+      expected_output = [
+        { '_id' => 1, '_type' => 'one' },
+        { '_id' => 2, 'otherKey' => 'value' }
+      ]
+      expect(Line::Bot::V2::Utils.deep_convert_reserved_words(input)).to eq(expected_output)
+    end
+
+    it 'does not modify non-reserved words' do
+      input = { 'hello' => 'world' }
+      expected_output = { 'hello' => 'world' }
+      expect(Line::Bot::V2::Utils.deep_convert_reserved_words(input)).to eq(expected_output)
+    end
+  end
+
+  describe '.hash_to_struct' do
+    it 'converts a simple hash to a struct' do
+      input = { foo: 'bar', baz: 'qux' }
+      result = Line::Bot::V2::Utils.hash_to_struct(input)
+
+      expect(result).to be_a(Struct)
+      expect(result.foo).to eq('bar')
+      expect(result.baz).to eq('qux')
+    end
+
+    it 'handles nested hashes' do
+      input = {
+        outer: {
+          inner: 'value'
+        },
+        another_key: 123
+      }
+      result = Line::Bot::V2::Utils.hash_to_struct(input)
+
+      expect(result.outer).to be_a(Struct)
+      expect(result.outer.inner).to eq('value')
+      expect(result.another_key).to eq(123)
+    end
+
+    it 'includes arrays as-is' do
+      input = {
+        list: [1, 2, 3],
+        info: {
+          data: [4, 5]
+        }
+      }
+      result = Line::Bot::V2::Utils.hash_to_struct(input)
+
+      expect(result.list).to eq([1, 2, 3])
+      expect(result.info.data).to eq([4, 5])
+    end
+  end
+
+  describe '.deep_symbolize' do
+    it 'converts string keys to symbol keys' do
+      input = { 'foo' => 'bar', 'baz' => 'qux' }
+      expected_output = { foo: 'bar', baz: 'qux' }
+      expect(Line::Bot::V2::Utils.deep_symbolize(input)).to eq(expected_output)
+    end
+
+    it 'handles nested hashes' do
+      input = { 'outer' => { 'inner' => 'value' } }
+      expected_output = { outer: { inner: 'value' } }
+      expect(Line::Bot::V2::Utils.deep_symbolize(input)).to eq(expected_output)
+    end
+
+    it 'handles arrays of hashes' do
+      input = [
+        { 'foo' => 'bar' },
+        { 'baz' => 'qux' }
+      ]
+      expected_output = [
+        { foo: 'bar' },
+        { baz: 'qux' }
+      ]
+      expect(Line::Bot::V2::Utils.deep_symbolize(input)).to eq(expected_output)
+    end
+
+    it 'does not modify non-hash values' do
+      input = 'string'
+      expected_output = 'string'
+      expect(Line::Bot::V2::Utils.deep_symbolize(input)).to eq(expected_output)
+    end
+  end
 end

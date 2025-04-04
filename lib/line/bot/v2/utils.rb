@@ -17,6 +17,20 @@ module Line
           end
         end
 
+        def self.deep_symbolize(object)
+          case object
+          when Hash
+            object.each_with_object({}) do |(key, value), new_hash|
+              sym_key = key.is_a?(String) ? key.to_sym : key
+              new_hash[sym_key] = deep_symbolize(value)
+            end
+          when Array
+            object.map { |element| deep_symbolize(element) }
+          else
+            object
+          end
+        end
+
         def self.deep_to_hash(object)
           if object.is_a?(Array)
             object.map { |item| deep_to_hash(item) }
@@ -60,6 +74,30 @@ module Line
           else
             object
           end
+        end
+
+        def self.deep_convert_reserved_words(object)
+          case object
+          when Hash
+            object.each_with_object({}) do |(key, value), new_hash|
+              new_key = if Line::Bot::V2::RESERVED_WORDS.include?(key.to_sym)
+                          "_#{key}"
+                        else
+                          key
+                        end
+              new_hash[new_key] = deep_convert_reserved_words(value)
+            end
+          when Array
+            object.map { |element| deep_convert_reserved_words(element) }
+          else
+            object
+          end
+        end
+
+        def self.hash_to_struct(hash)
+          struct_klass = Struct.new(*hash.keys.map(&:to_sym))
+          struct_values = hash.map { |_k, v| v.is_a?(Hash) ? hash_to_struct(v) : v }
+          struct_klass.new(*struct_values)
         end
 
         def self.camelize(str)
