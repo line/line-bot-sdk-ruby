@@ -46,9 +46,12 @@ module Line
           end
 
           # Sends a mission sticker.
+          # This requests to <code>POST https://api.line.me/shop/v3/mission</code>
           #
-          # @param mission_sticker_request 
+          # @param mission_sticker_request [MissionStickerRequest] 
           # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
+          # @return [response body, response status code, and response headers]
+          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
           def mission_sticker_v3_with_http_info(
             mission_sticker_request:
           )
@@ -70,9 +73,12 @@ module Line
           end
 
           # Sends a mission sticker.
+          # This requests to <code>POST https://api.line.me/shop/v3/mission</code>
+          # When you want to get HTTP status code or response headers, use {#mission_sticker_v3_with_http_info} instead of this.
           #
-          # @param mission_sticker_request 
+          # @param mission_sticker_request [MissionStickerRequest] 
           # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
+          # @return [String, nil] when HTTP status code is 200
           def mission_sticker_v3(
             mission_sticker_request:
           )

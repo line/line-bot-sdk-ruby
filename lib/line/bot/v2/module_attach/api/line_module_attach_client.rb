@@ -48,18 +48,21 @@ module Line
           end
 
           # Attach by operation of the module channel provider
+          # This requests to <code>POST https://manager.line.biz/module/auth/v1/token</code>
           #
-          # @param grant_type authorization_code
-          # @param code Authorization code received from the LINE Platform.
-          # @param redirect_uri Specify the redirect_uri specified in the URL for authentication and authorization.
-          # @param code_verifier Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.
-          # @param client_id Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. 
-          # @param client_secret Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. 
-          # @param region If you specified a value for region in the URL for authentication and authorization, specify the same value. 
-          # @param basic_search_id If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.
-          # @param scope If you specified a value for scope in the URL for authentication and authorization, specify the same value.
-          # @param brand_type If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
+          # @param grant_type [String] authorization_code
+          # @param code [String] Authorization code received from the LINE Platform.
+          # @param redirect_uri [String] Specify the redirect_uri specified in the URL for authentication and authorization.
+          # @param code_verifier [String, nil] Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.
+          # @param client_id [String, nil] Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. 
+          # @param client_secret [String, nil] Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. 
+          # @param region [String, nil] If you specified a value for region in the URL for authentication and authorization, specify the same value. 
+          # @param basic_search_id [String, nil] If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.
+          # @param scope [String, nil] If you specified a value for scope in the URL for authentication and authorization, specify the same value.
+          # @param brand_type [String, nil] If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
           # @see https://developers.line.biz/en/reference/partner-docs/#link-attach-by-operation-module-channel-provider
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ModuleAttach::AttachModuleResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def attach_module_with_http_info(
             grant_type:,
             code:,
@@ -107,18 +110,21 @@ module Line
           end
 
           # Attach by operation of the module channel provider
+          # This requests to <code>POST https://manager.line.biz/module/auth/v1/token</code>
+          # When you want to get HTTP status code or response headers, use {#attach_module_with_http_info} instead of this.
           #
-          # @param grant_type authorization_code
-          # @param code Authorization code received from the LINE Platform.
-          # @param redirect_uri Specify the redirect_uri specified in the URL for authentication and authorization.
-          # @param code_verifier Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.
-          # @param client_id Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. 
-          # @param client_secret Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. 
-          # @param region If you specified a value for region in the URL for authentication and authorization, specify the same value. 
-          # @param basic_search_id If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.
-          # @param scope If you specified a value for scope in the URL for authentication and authorization, specify the same value.
-          # @param brand_type If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
+          # @param grant_type [String] authorization_code
+          # @param code [String] Authorization code received from the LINE Platform.
+          # @param redirect_uri [String] Specify the redirect_uri specified in the URL for authentication and authorization.
+          # @param code_verifier [String, nil] Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.
+          # @param client_id [String, nil] Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. 
+          # @param client_secret [String, nil] Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. 
+          # @param region [String, nil] If you specified a value for region in the URL for authentication and authorization, specify the same value. 
+          # @param basic_search_id [String, nil] If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.
+          # @param scope [String, nil] If you specified a value for scope in the URL for authentication and authorization, specify the same value.
+          # @param brand_type [String, nil] If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
           # @see https://developers.line.biz/en/reference/partner-docs/#link-attach-by-operation-module-channel-provider
+          # @return [Line::Bot::V2::ModuleAttach::AttachModuleResponse] when HTTP status code is 200
           def attach_module(
             grant_type:,
             code:,
