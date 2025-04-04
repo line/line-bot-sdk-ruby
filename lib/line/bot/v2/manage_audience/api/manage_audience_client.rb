@@ -18,6 +18,23 @@ module Line
     module V2
       module ManageAudience
         class ApiClient
+          # Initializes a new {Line::Bot::V2::ManageAudience::ApiClient} instance.
+          #
+          # @param base_url [String] The base URL for requests (optional).
+          #   Defaults to 'https://api.line.me' if none is provided.
+          #   You can override this for testing or to use a mock server.
+          # @param channel_access_token [String] The channel access token for authorization.
+          # @param http_options [Hash] HTTP options (same as Net::HTTP options).
+          #   See: https://docs.ruby-lang.org/en/3.4/Net/HTTP.html to understand the options.
+          #
+          # @example
+          #   @client ||= Line::Bot::V2::ManageAudience::ApiClient.new(
+          #     channel_access_token: "YOUR_CHANNEL_ACCESS_TOKEN",
+          #     http_options: {
+          #       open_timeout: 5,
+          #       read_timeout: 5,
+          #     }
+          #   )
           def initialize(base_url: nil, channel_access_token:, http_options: {})
             @http_client = HttpClient.new(
               base_url: base_url || 'https://api.line.me',

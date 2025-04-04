@@ -2,6 +2,7 @@ module Line
   module Bot
     module V2
       module Utils
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.deep_underscore(hash)
           hash.each_with_object({}) do |(key, value), result|
             # Convert key to string if it's a symbol, then apply the regex
@@ -17,6 +18,7 @@ module Line
           end
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.deep_symbolize(object)
           case object
           when Hash
@@ -31,6 +33,7 @@ module Line
           end
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.deep_to_hash(object)
           if object.is_a?(Array)
             object.map { |item| deep_to_hash(item) }
@@ -47,6 +50,7 @@ module Line
           end
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.deep_camelize(object)
           case object
           when Array
@@ -62,6 +66,7 @@ module Line
           end
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.deep_compact(object)
           case object
           when Hash
@@ -76,6 +81,7 @@ module Line
           end
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.deep_convert_reserved_words(object)
           case object
           when Hash
@@ -94,12 +100,14 @@ module Line
           end
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.hash_to_struct(hash)
           struct_klass = Struct.new(*hash.keys.map(&:to_sym))
           struct_values = hash.map { |_k, v| v.is_a?(Hash) ? hash_to_struct(v) : v }
           struct_klass.new(*struct_values)
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.camelize(str)
           str.to_s.split('_').inject { |memo, word| memo + word.capitalize }
         end
