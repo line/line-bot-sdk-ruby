@@ -22,6 +22,8 @@ module Line
             to: String,
             notification_disabled: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> PnpMessagesRequest
         end
       end
     end

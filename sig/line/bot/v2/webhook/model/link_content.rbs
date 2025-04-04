@@ -20,6 +20,8 @@ module Line
             result: 'ok'|'failed',
             nonce: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> LinkContent
         end
       end
     end

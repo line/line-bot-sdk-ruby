@@ -82,16 +82,33 @@ module Line
             @offset_bottom = offset_bottom
             @offset_start = offset_start
             @offset_end = offset_end
-            @action = action
+            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action)
             @max_lines = max_lines
-            @contents = contents
+            @contents = contents&.map do |item|
+              if item.is_a?(Hash)
+                Line::Bot::V2::MessagingApi::FlexSpan.create(**item)
+              else
+                item
+              end
+            end
             @adjust_mode = adjust_mode
             @scaling = scaling
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

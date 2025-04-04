@@ -26,6 +26,8 @@ module Line
             limit: Limit?,
             notification_disabled: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> NarrowcastRequest
         end
       end
     end

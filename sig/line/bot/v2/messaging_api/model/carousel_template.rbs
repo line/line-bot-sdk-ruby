@@ -22,6 +22,8 @@ module Line
             image_aspect_ratio: String?,
             image_size: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> CarouselTemplate
         end
       end
     end

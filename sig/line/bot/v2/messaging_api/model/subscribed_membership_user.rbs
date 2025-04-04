@@ -24,6 +24,8 @@ module Line
             next_billing_date: String,
             total_subscription_months: Integer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> SubscribedMembershipUser
         end
       end
     end

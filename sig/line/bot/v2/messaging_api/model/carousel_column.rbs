@@ -28,6 +28,8 @@ module Line
             default_action: Action?,
             actions: Array[Action]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> CarouselColumn
         end
       end
     end

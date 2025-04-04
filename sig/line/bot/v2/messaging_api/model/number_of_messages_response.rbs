@@ -19,6 +19,8 @@ module Line
             status: 'ready'|'unready'|'unavailable_for_privacy'|'out_of_service',
             success: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> NumberOfMessagesResponse
         end
       end
     end

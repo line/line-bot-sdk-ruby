@@ -37,6 +37,8 @@ module Line
             offset_end: String?,
             scaling: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexIcon
         end
       end
     end

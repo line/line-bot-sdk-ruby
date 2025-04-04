@@ -19,6 +19,8 @@ module Line
             gender: 'male'|'female'|'unknown'?,
             percentage: Float?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GenderTile
         end
       end
     end

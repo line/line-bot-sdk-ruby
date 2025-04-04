@@ -19,6 +19,8 @@ module Line
             data: String,
             params: Object?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> PostbackContent
         end
       end
     end

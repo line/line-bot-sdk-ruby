@@ -20,6 +20,8 @@ module Line
             membership: SubscribedMembershipPlan,
             user: SubscribedMembershipUser
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> Subscription
         end
       end
     end

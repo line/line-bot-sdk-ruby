@@ -17,6 +17,8 @@ module Line
           def initialize: (
             messages: Array[Message]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ValidateMessageRequest
         end
       end
     end

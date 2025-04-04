@@ -20,6 +20,8 @@ module Line
             chat_id: String,
             loading_seconds: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ShowLoadingAnimationRequest
         end
       end
     end

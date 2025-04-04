@@ -20,6 +20,8 @@ module Line
             messages: Array[Message],
             notification_disabled: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> BroadcastRequest
         end
       end
     end

@@ -22,6 +22,12 @@ module Line
             quick_reply: QuickReply?,
             sender: Sender?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> Message
+
+          private
+
+          def self.detect_class: (type: String) -> Class
         end
       end
     end

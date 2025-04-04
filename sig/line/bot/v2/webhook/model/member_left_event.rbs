@@ -30,6 +30,8 @@ module Line
             delivery_context: DeliveryContext,
             left: LeftMembers
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> MemberLeftEvent
         end
       end
     end

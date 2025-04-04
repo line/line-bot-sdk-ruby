@@ -22,6 +22,8 @@ module Line
             group_name: String,
             picture_url: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GroupSummaryResponse
         end
       end
     end

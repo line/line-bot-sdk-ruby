@@ -29,6 +29,8 @@ module Line
             latitude: Float,
             longitude: Float
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> LocationMessage
         end
       end
     end

@@ -18,6 +18,8 @@ module Line
           def initialize: (
             flex: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexFiller
         end
       end
     end

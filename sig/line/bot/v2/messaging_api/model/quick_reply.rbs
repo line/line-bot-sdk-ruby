@@ -19,6 +19,8 @@ module Line
           def initialize: (
             items: Array[QuickReplyItem]?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> QuickReply
         end
       end
     end

@@ -28,16 +28,33 @@ module Line
             **dynamic_attributes
           )
             
-            @messages = messages
-            @recipient = recipient
-            @filter = filter
-            @limit = limit
+            @messages = messages.map do |item|
+              if item.is_a?(Hash)
+                Line::Bot::V2::MessagingApi::Message.create(**item)
+              else
+                item
+              end
+            end
+            @recipient = recipient.is_a?(Line::Bot::V2::MessagingApi::Recipient) || recipient.nil? ? recipient : Line::Bot::V2::MessagingApi::Recipient.create(**recipient)
+            @filter = filter.is_a?(Line::Bot::V2::MessagingApi::Filter) || filter.nil? ? filter : Line::Bot::V2::MessagingApi::Filter.create(**filter)
+            @limit = limit.is_a?(Line::Bot::V2::MessagingApi::Limit) || limit.nil? ? limit : Line::Bot::V2::MessagingApi::Limit.create(**limit)
             @notification_disabled = notification_disabled
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

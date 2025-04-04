@@ -18,6 +18,8 @@ module Line
           def initialize: (
             one_of: Array['male'|'female']?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GenderDemographicFilter
         end
       end
     end

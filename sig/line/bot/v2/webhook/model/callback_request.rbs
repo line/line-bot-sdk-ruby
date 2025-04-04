@@ -21,6 +21,8 @@ module Line
             destination: String,
             events: Array[Event]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> CallbackRequest
         end
       end
     end

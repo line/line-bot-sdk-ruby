@@ -17,6 +17,8 @@ module Line
           def initialize: (
             members: Array[UserSource]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> JoinedMembers
         end
       end
     end

@@ -20,6 +20,8 @@ module Line
             margin: String?,
             color: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexSeparator
         end
       end
     end

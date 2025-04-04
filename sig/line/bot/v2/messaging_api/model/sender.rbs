@@ -20,6 +20,8 @@ module Line
             name: String?,
             icon_url: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> Sender
         end
       end
     end

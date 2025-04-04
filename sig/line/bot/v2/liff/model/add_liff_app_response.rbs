@@ -17,6 +17,8 @@ module Line
           def initialize: (
             liff_id: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AddLiffAppResponse
         end
       end
     end

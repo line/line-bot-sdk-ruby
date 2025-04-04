@@ -23,6 +23,8 @@ module Line
             expires_in: Integer,
             token_type: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> IssueShortLivedChannelAccessTokenResponse
         end
       end
     end

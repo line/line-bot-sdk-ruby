@@ -32,6 +32,8 @@ module Line
             reply_token: String,
             beacon: BeaconContent
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> BeaconEvent
         end
       end
     end

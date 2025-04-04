@@ -19,6 +19,8 @@ module Line
             type: 'void'|'binary',
             data: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ActionResult
         end
       end
     end

@@ -21,6 +21,8 @@ module Line
             group_id: String,
             user_id: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GroupSource
         end
       end
     end

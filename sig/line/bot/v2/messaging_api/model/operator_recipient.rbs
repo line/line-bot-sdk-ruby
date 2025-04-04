@@ -22,6 +22,8 @@ module Line
             _or: Array[Recipient]?,
             _not: Recipient?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> OperatorRecipient
         end
       end
     end

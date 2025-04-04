@@ -19,6 +19,8 @@ module Line
           def initialize: (
             authority_level: 'PUBLIC'|'PRIVATE'?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> UpdateAudienceGroupAuthorityLevelRequest
         end
       end
     end

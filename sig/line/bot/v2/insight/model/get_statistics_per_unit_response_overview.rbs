@@ -25,6 +25,8 @@ module Line
             unique_media_played: Integer?,
             unique_media_played100_percent: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponseOverview
         end
       end
     end

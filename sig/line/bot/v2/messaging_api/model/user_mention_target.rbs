@@ -19,6 +19,8 @@ module Line
           def initialize: (
             user_id: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> UserMentionTarget
         end
       end
     end

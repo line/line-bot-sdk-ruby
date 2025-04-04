@@ -23,6 +23,8 @@ module Line
             area: ImagemapArea?,
             external_link: ImagemapExternalLink?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapVideo
         end
       end
     end

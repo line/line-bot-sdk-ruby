@@ -28,6 +28,8 @@ module Line
             input_option: 'closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice'?,
             fill_in_text: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> PostbackAction
         end
       end
     end

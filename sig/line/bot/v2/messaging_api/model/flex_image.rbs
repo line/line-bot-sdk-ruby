@@ -49,6 +49,8 @@ module Line
             action: Action?,
             animated: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexImage
         end
       end
     end

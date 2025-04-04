@@ -33,6 +33,8 @@ module Line
             expire_timestamp: Float?,
             is_ifa_audience: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> CreateAudienceGroupResponse
         end
       end
     end

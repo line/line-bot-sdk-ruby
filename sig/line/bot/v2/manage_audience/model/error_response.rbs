@@ -20,6 +20,8 @@ module Line
             message: String,
             details: Array[ErrorDetail]?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ErrorResponse
         end
       end
     end

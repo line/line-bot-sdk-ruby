@@ -21,6 +21,8 @@ module Line
             bots: Array[ModuleBot],
             _next: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetModulesResponse
         end
       end
     end

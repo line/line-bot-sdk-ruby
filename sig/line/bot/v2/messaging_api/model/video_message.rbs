@@ -27,6 +27,8 @@ module Line
             preview_image_url: String,
             tracking_id: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> VideoMessage
         end
       end
     end

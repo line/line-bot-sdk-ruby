@@ -20,6 +20,8 @@ module Line
             bounds: RichMenuBounds?,
             action: Action?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuArea
         end
       end
     end

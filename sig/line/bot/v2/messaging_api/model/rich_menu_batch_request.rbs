@@ -19,6 +19,8 @@ module Line
             operations: Array[RichMenuBatchOperation],
             resume_request_key: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBatchRequest
         end
       end
     end

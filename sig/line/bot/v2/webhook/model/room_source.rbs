@@ -21,6 +21,8 @@ module Line
             user_id: String?,
             room_id: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RoomSource
         end
       end
     end

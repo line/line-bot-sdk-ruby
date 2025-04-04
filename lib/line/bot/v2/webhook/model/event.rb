@@ -31,16 +31,57 @@ module Line
           )
             
             @type = type
-            @source = source
+            @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source)
             @timestamp = timestamp
             @mode = mode
             @webhook_event_id = webhook_event_id
-            @delivery_context = delivery_context
+            @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            klass = detect_class(args[:type])
+            return klass.new(**args) if klass
+            
+            return new(**args)
+          end
+
+          private
+
+          def self.detect_class(type)
+            {
+              accountLink: Line::Bot::V2::Webhook::AccountLinkEvent,
+              activated: Line::Bot::V2::Webhook::ActivatedEvent,
+              beacon: Line::Bot::V2::Webhook::BeaconEvent,
+              botResumed: Line::Bot::V2::Webhook::BotResumedEvent,
+              botSuspended: Line::Bot::V2::Webhook::BotSuspendedEvent,
+              deactivated: Line::Bot::V2::Webhook::DeactivatedEvent,
+              follow: Line::Bot::V2::Webhook::FollowEvent,
+              join: Line::Bot::V2::Webhook::JoinEvent,
+              leave: Line::Bot::V2::Webhook::LeaveEvent,
+              memberJoined: Line::Bot::V2::Webhook::MemberJoinedEvent,
+              memberLeft: Line::Bot::V2::Webhook::MemberLeftEvent,
+              membership: Line::Bot::V2::Webhook::MembershipEvent,
+              message: Line::Bot::V2::Webhook::MessageEvent,
+              module: Line::Bot::V2::Webhook::ModuleEvent,
+              delivery: Line::Bot::V2::Webhook::PnpDeliveryCompletionEvent,
+              postback: Line::Bot::V2::Webhook::PostbackEvent,
+              things: Line::Bot::V2::Webhook::ThingsEvent,
+              unfollow: Line::Bot::V2::Webhook::UnfollowEvent,
+              unsend: Line::Bot::V2::Webhook::UnsendEvent,
+              videoPlayComplete: Line::Bot::V2::Webhook::VideoPlayCompleteEvent,
+            }[type.to_sym]
           end
         end
       end

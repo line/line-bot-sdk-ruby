@@ -22,6 +22,8 @@ module Line
             text: String,
             label: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> MessageImagemapAction
         end
       end
     end

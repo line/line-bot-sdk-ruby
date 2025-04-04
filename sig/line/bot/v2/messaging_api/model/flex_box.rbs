@@ -70,6 +70,8 @@ module Line
             align_items: 'center'|'flex-start'|'flex-end'?,
             background: FlexBoxBackground?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexBox
         end
       end
     end

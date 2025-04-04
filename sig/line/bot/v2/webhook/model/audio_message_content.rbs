@@ -23,6 +23,8 @@ module Line
             content_provider: ContentProvider,
             duration: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AudioMessageContent
         end
       end
     end

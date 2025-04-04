@@ -17,6 +17,8 @@ module Line
           def initialize: (
             expire_at: Integer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ChatControl
         end
       end
     end

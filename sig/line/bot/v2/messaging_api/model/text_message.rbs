@@ -27,6 +27,8 @@ module Line
             emojis: Array[Emoji]?,
             quote_token: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> TextMessage
         end
       end
     end

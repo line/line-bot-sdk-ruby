@@ -31,6 +31,8 @@ module Line
             actions: Array[ImagemapAction],
             video: ImagemapVideo?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapMessage
         end
       end
     end

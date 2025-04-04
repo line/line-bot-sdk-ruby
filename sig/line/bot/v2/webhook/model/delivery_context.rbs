@@ -18,6 +18,8 @@ module Line
           def initialize: (
             is_redelivery: bool
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> DeliveryContext
         end
       end
     end

@@ -20,6 +20,8 @@ module Line
             error: String?,
             error_description: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ErrorResponse
         end
       end
     end

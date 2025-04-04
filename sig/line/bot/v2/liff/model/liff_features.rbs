@@ -19,6 +19,8 @@ module Line
             ble: bool?,
             qr_code: bool?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> LiffFeatures
         end
       end
     end

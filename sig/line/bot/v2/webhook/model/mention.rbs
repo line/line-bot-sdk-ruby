@@ -17,6 +17,8 @@ module Line
           def initialize: (
             mentionees: Array[Mentionee]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> Mention
         end
       end
     end

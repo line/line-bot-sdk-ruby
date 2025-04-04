@@ -28,6 +28,8 @@ module Line
             webhook_event_id: String,
             delivery_context: DeliveryContext
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> DeactivatedEvent
         end
       end
     end

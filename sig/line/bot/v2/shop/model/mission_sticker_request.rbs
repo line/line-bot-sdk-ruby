@@ -25,6 +25,8 @@ module Line
             product_type: String,
             send_present_message: bool
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> MissionStickerRequest
         end
       end
     end

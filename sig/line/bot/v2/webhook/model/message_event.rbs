@@ -32,6 +32,8 @@ module Line
             reply_token: String?,
             message: MessageContent
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> MessageEvent
         end
       end
     end

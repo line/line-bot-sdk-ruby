@@ -77,7 +77,13 @@ module Line
             
             @layout = layout
             @flex = flex
-            @contents = contents
+            @contents = contents.map do |item|
+              if item.is_a?(Hash)
+                Line::Bot::V2::MessagingApi::FlexComponent.create(**item)
+              else
+                item
+              end
+            end
             @spacing = spacing
             @margin = margin
             @position = position
@@ -98,15 +104,26 @@ module Line
             @padding_bottom = padding_bottom
             @padding_start = padding_start
             @padding_end = padding_end
-            @action = action
+            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action)
             @justify_content = justify_content
             @align_items = align_items
-            @background = background
+            @background = background.is_a?(Line::Bot::V2::MessagingApi::FlexBoxBackground) || background.nil? ? background : Line::Bot::V2::MessagingApi::FlexBoxBackground.create(**background)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

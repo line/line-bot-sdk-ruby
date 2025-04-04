@@ -17,6 +17,8 @@ module Line
           def initialize: (
             tracking_id: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> VideoPlayComplete
         end
       end
     end

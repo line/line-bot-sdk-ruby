@@ -18,6 +18,8 @@ module Line
           def initialize: (
             request_id: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RedeliveryRecipient
         end
       end
     end

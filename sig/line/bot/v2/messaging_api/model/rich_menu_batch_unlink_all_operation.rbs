@@ -18,6 +18,8 @@ module Line
           def initialize: (
             
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBatchUnlinkAllOperation
         end
       end
     end

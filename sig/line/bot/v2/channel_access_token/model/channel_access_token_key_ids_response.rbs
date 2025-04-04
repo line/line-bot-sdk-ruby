@@ -19,6 +19,8 @@ module Line
           def initialize: (
             kids: Array[String]
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ChannelAccessTokenKeyIdsResponse
         end
       end
     end

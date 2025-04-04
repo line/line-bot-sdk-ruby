@@ -19,6 +19,8 @@ module Line
             type: String,
             membership_id: Integer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RenewedMembershipContent
         end
       end
     end

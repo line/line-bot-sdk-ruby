@@ -28,6 +28,12 @@ module Line
             webhook_event_id: String,
             delivery_context: DeliveryContext
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> Event
+
+          private
+
+          def self.detect_class: (type: String) -> Class
         end
       end
     end

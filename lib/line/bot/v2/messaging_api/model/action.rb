@@ -28,8 +28,38 @@ module Line
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            klass = detect_class(args[:type])
+            return klass.new(**args) if klass
+            
+            return new(**args)
+          end
+
+          private
+
+          def self.detect_class(type)
+            {
+              camera: Line::Bot::V2::MessagingApi::CameraAction,
+              cameraRoll: Line::Bot::V2::MessagingApi::CameraRollAction,
+              clipboard: Line::Bot::V2::MessagingApi::ClipboardAction,
+              datetimepicker: Line::Bot::V2::MessagingApi::DatetimePickerAction,
+              location: Line::Bot::V2::MessagingApi::LocationAction,
+              message: Line::Bot::V2::MessagingApi::MessageAction,
+              postback: Line::Bot::V2::MessagingApi::PostbackAction,
+              richmenuswitch: Line::Bot::V2::MessagingApi::RichMenuSwitchAction,
+              uri: Line::Bot::V2::MessagingApi::URIAction,
+            }[type.to_sym]
           end
         end
       end

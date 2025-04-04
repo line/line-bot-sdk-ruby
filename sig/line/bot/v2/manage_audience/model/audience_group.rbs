@@ -40,6 +40,8 @@ module Line
             permission: 'READ'|'READ_WRITE'?,
             create_route: 'OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER'?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> AudienceGroup
         end
       end
     end

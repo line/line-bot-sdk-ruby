@@ -23,6 +23,8 @@ module Line
             body: FlexBlockStyle?,
             footer: FlexBlockStyle?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexBubbleStyles
         end
       end
     end

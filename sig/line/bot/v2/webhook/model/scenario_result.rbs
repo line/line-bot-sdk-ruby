@@ -32,6 +32,8 @@ module Line
             ble_notification_payload: String?,
             error_reason: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ScenarioResult
         end
       end
     end

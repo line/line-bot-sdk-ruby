@@ -36,18 +36,35 @@ module Line
           )
             @type = "imagemap"
             
-            @quick_reply = quick_reply
-            @sender = sender
+            @quick_reply = quick_reply.is_a?(Line::Bot::V2::MessagingApi::QuickReply) || quick_reply.nil? ? quick_reply : Line::Bot::V2::MessagingApi::QuickReply.create(**quick_reply)
+            @sender = sender.is_a?(Line::Bot::V2::MessagingApi::Sender) || sender.nil? ? sender : Line::Bot::V2::MessagingApi::Sender.create(**sender)
             @base_url = base_url
             @alt_text = alt_text
-            @base_size = base_size
-            @actions = actions
-            @video = video
+            @base_size = base_size.is_a?(Line::Bot::V2::MessagingApi::ImagemapBaseSize) ? base_size : Line::Bot::V2::MessagingApi::ImagemapBaseSize.create(**base_size)
+            @actions = actions.map do |item|
+              if item.is_a?(Hash)
+                Line::Bot::V2::MessagingApi::ImagemapAction.create(**item)
+              else
+                item
+              end
+            end
+            @video = video.is_a?(Line::Bot::V2::MessagingApi::ImagemapVideo) || video.nil? ? video : Line::Bot::V2::MessagingApi::ImagemapVideo.create(**video)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
-              instance_variable_set("@#{key}", value)
+
+              if value.is_a?(Hash)
+                struct_klass = Struct.new(*value.keys.map(&:to_sym))
+                struct_values = value.map { |_k, v| v.is_a?(Hash) ? Line::Bot::V2::Utils.hash_to_struct(v) : v }
+                instance_variable_set("@#{key}", struct_klass.new(*struct_values))
+              else
+                instance_variable_set("@#{key}", value)
+              end
             end
+          end
+
+          def self.create(args)
+            return new(**args)
           end
         end
       end

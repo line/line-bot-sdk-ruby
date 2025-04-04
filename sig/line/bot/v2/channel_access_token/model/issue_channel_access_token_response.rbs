@@ -25,6 +25,8 @@ module Line
             token_type: String,
             key_id: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> IssueChannelAccessTokenResponse
         end
       end
     end

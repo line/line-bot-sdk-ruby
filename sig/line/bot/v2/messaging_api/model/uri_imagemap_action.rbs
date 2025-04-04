@@ -22,6 +22,8 @@ module Line
             link_uri: String,
             label: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> URIImagemapAction
         end
       end
     end

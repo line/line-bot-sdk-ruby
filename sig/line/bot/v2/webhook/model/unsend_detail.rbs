@@ -17,6 +17,8 @@ module Line
           def initialize: (
             message_id: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> UnsendDetail
         end
       end
     end

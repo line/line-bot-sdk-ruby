@@ -25,6 +25,8 @@ module Line
             alt_text: String,
             template: Template
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> TemplateMessage
         end
       end
     end

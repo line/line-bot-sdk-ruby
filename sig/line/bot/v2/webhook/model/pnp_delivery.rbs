@@ -18,6 +18,8 @@ module Line
           def initialize: (
             data: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> PnpDelivery
         end
       end
     end

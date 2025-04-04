@@ -32,6 +32,8 @@ module Line
             reply_token: String,
             video_play_complete: VideoPlayComplete
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> VideoPlayCompleteEvent
         end
       end
     end

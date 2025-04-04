@@ -22,6 +22,12 @@ module Line
             index: Integer,
             length: Integer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> Mentionee
+
+          private
+
+          def self.detect_class: (type: String) -> Class
         end
       end
     end

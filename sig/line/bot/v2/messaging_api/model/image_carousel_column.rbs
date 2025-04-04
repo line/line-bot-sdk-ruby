@@ -19,6 +19,8 @@ module Line
             image_url: String,
             action: Action
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ImageCarouselColumn
         end
       end
     end

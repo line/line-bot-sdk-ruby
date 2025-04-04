@@ -19,6 +19,8 @@ module Line
             rich_menu_alias_id: String,
             rich_menu_id: String
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuAliasResponse
         end
       end
     end

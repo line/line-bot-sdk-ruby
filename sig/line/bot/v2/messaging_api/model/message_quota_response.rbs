@@ -20,6 +20,8 @@ module Line
             type: 'none'|'limited',
             value: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> MessageQuotaResponse
         end
       end
     end

@@ -25,6 +25,8 @@ module Line
             targeted_reaches: Integer?,
             blocks: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetNumberOfFollowersResponse
         end
       end
     end

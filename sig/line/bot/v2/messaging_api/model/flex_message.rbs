@@ -25,6 +25,8 @@ module Line
             alt_text: String,
             contents: FlexContainer
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> FlexMessage
         end
       end
     end

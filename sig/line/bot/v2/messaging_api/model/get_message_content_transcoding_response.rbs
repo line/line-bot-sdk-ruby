@@ -19,6 +19,8 @@ module Line
           def initialize: (
             status: 'processing'|'succeeded'|'failed'
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetMessageContentTranscodingResponse
         end
       end
     end

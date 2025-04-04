@@ -25,6 +25,8 @@ module Line
             unique_click: Integer?,
             unique_click_of_request: Integer?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> GetMessageEventResponseClick
         end
       end
     end

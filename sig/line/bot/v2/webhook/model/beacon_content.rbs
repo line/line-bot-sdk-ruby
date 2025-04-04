@@ -21,6 +21,8 @@ module Line
             type: 'enter'|'banner'|'stay',
             dm: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> BeaconContent
         end
       end
     end

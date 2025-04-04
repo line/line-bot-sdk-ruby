@@ -19,6 +19,8 @@ module Line
             link_uri: String?,
             label: String?
           ) -> void
+
+          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapExternalLink
         end
       end
     end
