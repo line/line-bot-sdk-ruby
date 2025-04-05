@@ -12,8 +12,14 @@ module Line
     module V2
       module MessagingApi
         class Emoji
+          # @!attribute [rw] index
+          #   @return [Integer] 
           attr_accessor :index
+          # @!attribute [rw] product_id
+          #   @return [String] 
           attr_accessor :product_id
+          # @!attribute [rw] emoji_id
+          #   @return [String] 
           attr_accessor :emoji_id
 
           # @param index [Integer] 

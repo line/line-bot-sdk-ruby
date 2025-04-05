@@ -13,7 +13,9 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-list
         class RichMenuListResponse
-          attr_accessor :richmenus # Rich menus
+          # @!attribute [rw] richmenus
+          #   @return [Array[RichMenuResponse]] Rich menus
+          attr_accessor :richmenus
 
           # @param richmenus [Array[RichMenuResponse]] Rich menus
           def initialize(

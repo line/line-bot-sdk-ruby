@@ -14,6 +14,8 @@ module Line
         # Get the authority level of the audience
         # @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
         class GetAudienceGroupAuthorityLevelResponse
+          # @!attribute [rw] authority_level
+          #   @return [String] ('PUBLIC'|'PRIVATE') 
           attr_accessor :authority_level
 
           # @param authority_level [String] ('PUBLIC'|'PRIVATE') 

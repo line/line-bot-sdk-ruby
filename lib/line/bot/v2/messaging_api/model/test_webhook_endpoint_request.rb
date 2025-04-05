@@ -13,7 +13,9 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
         class TestWebhookEndpointRequest
-          attr_accessor :endpoint # A webhook URL to be validated.
+          # @!attribute [rw] endpoint
+          #   @return [String] A webhook URL to be validated.
+          attr_accessor :endpoint
 
           # @param endpoint [String] A webhook URL to be validated.
           def initialize(

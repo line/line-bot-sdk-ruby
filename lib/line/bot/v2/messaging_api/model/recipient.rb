@@ -13,7 +13,9 @@ module Line
       module MessagingApi
         # Recipient
         class Recipient
-          attr_accessor :type # Type of recipient
+          # @!attribute [rw] type
+          #   @return [String] Type of recipient
+          attr_accessor :type
 
           # @param type [String] Type of recipient
           def initialize(

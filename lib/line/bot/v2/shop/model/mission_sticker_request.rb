@@ -14,10 +14,18 @@ module Line
         # Send mission stickers (v3)
         # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
         class MissionStickerRequest
-          attr_accessor :to # Destination user ID
-          attr_accessor :product_id # Package ID for a set of stickers
-          attr_accessor :product_type # `STICKER`
-          attr_accessor :send_present_message # `false`
+          # @!attribute [rw] to
+          #   @return [String] Destination user ID
+          attr_accessor :to
+          # @!attribute [rw] product_id
+          #   @return [String] Package ID for a set of stickers
+          attr_accessor :product_id
+          # @!attribute [rw] product_type
+          #   @return [String] `STICKER`
+          attr_accessor :product_type
+          # @!attribute [rw] send_present_message
+          #   @return [Boolean] `false`
+          attr_accessor :send_present_message
 
           # @param to [String] Destination user ID
           # @param product_id [String] Package ID for a set of stickers

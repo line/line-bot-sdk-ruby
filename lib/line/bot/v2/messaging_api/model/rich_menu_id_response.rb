@@ -12,7 +12,9 @@ module Line
     module V2
       module MessagingApi
         class RichMenuIdResponse
-          attr_accessor :rich_menu_id # Rich menu ID
+          # @!attribute [rw] rich_menu_id
+          #   @return [String] Rich menu ID
+          attr_accessor :rich_menu_id
 
           # @param rich_menu_id [String] Rich menu ID
           def initialize(

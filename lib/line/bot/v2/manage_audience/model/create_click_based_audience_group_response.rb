@@ -14,16 +14,36 @@ module Line
         # Create audience for click-based retargeting
         # @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
         class CreateClickBasedAudienceGroupResponse
-          attr_accessor :audience_group_id # The audience ID.
+          # @!attribute [rw] audience_group_id
+          #   @return [Integer] The audience ID.
+          attr_accessor :audience_group_id
+          # @!attribute [rw] type
+          #   @return [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
           attr_accessor :type
-          attr_accessor :description # The audience's name.
-          attr_accessor :created # When the audience was created (in UNIX time).
-          attr_accessor :request_id # The request ID that was specified when the audience was created.
-          attr_accessor :click_url # The URL that was specified when the audience was created.
-          attr_accessor :create_route # How the audience was created. `MESSAGING_API`: An audience created with Messaging API. 
-          attr_accessor :permission # Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  - `READ`: Can use only. - `READ_WRITE`: Can use and update. 
-          attr_accessor :expire_timestamp # Time of audience expiration. Only returned for specific audiences.
-          attr_accessor :is_ifa_audience # The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  true: Accounts are specified with IFAs. false (default): Accounts are specified with user IDs. 
+          # @!attribute [rw] description
+          #   @return [String] The audience's name.
+          attr_accessor :description
+          # @!attribute [rw] created
+          #   @return [Integer] When the audience was created (in UNIX time).
+          attr_accessor :created
+          # @!attribute [rw] request_id
+          #   @return [String] The request ID that was specified when the audience was created.
+          attr_accessor :request_id
+          # @!attribute [rw] click_url
+          #   @return [String] The URL that was specified when the audience was created.
+          attr_accessor :click_url
+          # @!attribute [rw] create_route
+          #   @return [String] ('MESSAGING_API') How the audience was created. `MESSAGING_API`: An audience created with Messaging API. 
+          attr_accessor :create_route
+          # @!attribute [rw] permission
+          #   @return [String] ('READ'|'READ_WRITE') Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  - `READ`: Can use only. - `READ_WRITE`: Can use and update. 
+          attr_accessor :permission
+          # @!attribute [rw] expire_timestamp
+          #   @return [Integer] Time of audience expiration. Only returned for specific audiences.
+          attr_accessor :expire_timestamp
+          # @!attribute [rw] is_ifa_audience
+          #   @return [Boolean] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  true: Accounts are specified with IFAs. false (default): Accounts are specified with user IDs. 
+          attr_accessor :is_ifa_audience
 
           # @param audience_group_id [Integer] The audience ID.
           # @param type [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 

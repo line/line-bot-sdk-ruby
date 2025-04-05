@@ -14,11 +14,21 @@ module Line
     module V2
       module Webhook
         class ImageMessageContent < MessageContent
-          attr_reader :type # Type
-          attr_accessor :id # Message ID
+          # @!attribute [r] type
+          #   @return [String] Type
+          attr_reader :type
+          # @!attribute [rw] id
+          #   @return [String] Message ID
+          attr_accessor :id
+          # @!attribute [rw] content_provider
+          #   @return [ContentProvider] 
           attr_accessor :content_provider
+          # @!attribute [rw] image_set
+          #   @return [ImageSet] 
           attr_accessor :image_set
-          attr_accessor :quote_token # Quote token to quote this message. 
+          # @!attribute [rw] quote_token
+          #   @return [String] Quote token to quote this message. 
+          attr_accessor :quote_token
 
           # @param id [String] Message ID
           # @param content_provider [ContentProvider] 

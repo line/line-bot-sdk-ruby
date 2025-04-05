@@ -14,7 +14,11 @@ module Line
     module V2
       module MessagingApi
         class AudienceRecipient < Recipient
-          attr_reader :type # Type of recipient
+          # @!attribute [r] type
+          #   @return [String] Type of recipient
+          attr_reader :type
+          # @!attribute [rw] audience_group_id
+          #   @return [Integer] 
           attr_accessor :audience_group_id
 
           # @param audience_group_id [Integer] 

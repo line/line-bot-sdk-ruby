@@ -12,6 +12,8 @@ module Line
     module V2
       module MessagingApi
         class AltUri
+          # @!attribute [rw] desktop
+          #   @return [String] 
           attr_accessor :desktop
 
           # @param desktop [String] 

@@ -12,8 +12,12 @@ module Line
     module V2
       module MessagingApi
         class ErrorDetail
-          attr_accessor :message # Details of the error. Not included in the response under certain situations.
-          attr_accessor :property # Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.
+          # @!attribute [rw] message
+          #   @return [String] Details of the error. Not included in the response under certain situations.
+          attr_accessor :message
+          # @!attribute [rw] property
+          #   @return [String] Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.
+          attr_accessor :property
 
           # @param message [String] Details of the error. Not included in the response under certain situations.
           # @param property [String] Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.

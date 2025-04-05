@@ -13,6 +13,8 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read
         class MarkMessagesAsReadRequest
+          # @!attribute [rw] chat
+          #   @return [ChatReference] 
           attr_accessor :chat
 
           # @param chat [ChatReference] 

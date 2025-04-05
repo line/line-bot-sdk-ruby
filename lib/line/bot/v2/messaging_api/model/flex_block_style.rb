@@ -12,8 +12,14 @@ module Line
     module V2
       module MessagingApi
         class FlexBlockStyle
+          # @!attribute [rw] background_color
+          #   @return [String] 
           attr_accessor :background_color
+          # @!attribute [rw] separator
+          #   @return [Boolean] 
           attr_accessor :separator
+          # @!attribute [rw] separator_color
+          #   @return [String] 
           attr_accessor :separator_color
 
           # @param background_color [String] 

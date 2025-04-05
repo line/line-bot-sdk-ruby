@@ -15,13 +15,29 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#imagemap-message
         class ImagemapMessage < Message
-          attr_reader :type # Type of message
+          # @!attribute [r] type
+          #   @return [String] Type of message
+          attr_reader :type
+          # @!attribute [rw] quick_reply
+          #   @return [QuickReply] 
           attr_accessor :quick_reply
+          # @!attribute [rw] sender
+          #   @return [Sender] 
           attr_accessor :sender
+          # @!attribute [rw] base_url
+          #   @return [String] 
           attr_accessor :base_url
+          # @!attribute [rw] alt_text
+          #   @return [String] 
           attr_accessor :alt_text
+          # @!attribute [rw] base_size
+          #   @return [ImagemapBaseSize] 
           attr_accessor :base_size
+          # @!attribute [rw] actions
+          #   @return [Array[ImagemapAction]] 
           attr_accessor :actions
+          # @!attribute [rw] video
+          #   @return [ImagemapVideo] 
           attr_accessor :video
 
           # @param quick_reply [QuickReply] 

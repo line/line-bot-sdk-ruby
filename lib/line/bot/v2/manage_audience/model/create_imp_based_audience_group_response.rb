@@ -14,11 +14,21 @@ module Line
         # Create audience for impression-based retargeting
         # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
         class CreateImpBasedAudienceGroupResponse
-          attr_accessor :audience_group_id # The audience ID.
+          # @!attribute [rw] audience_group_id
+          #   @return [Integer] The audience ID.
+          attr_accessor :audience_group_id
+          # @!attribute [rw] type
+          #   @return [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
           attr_accessor :type
-          attr_accessor :description # The audience's name.
-          attr_accessor :created # When the audience was created (in UNIX time).
-          attr_accessor :request_id # The request ID that was specified when the audience was created.
+          # @!attribute [rw] description
+          #   @return [String] The audience's name.
+          attr_accessor :description
+          # @!attribute [rw] created
+          #   @return [Integer] When the audience was created (in UNIX time).
+          attr_accessor :created
+          # @!attribute [rw] request_id
+          #   @return [String] The request ID that was specified when the audience was created.
+          attr_accessor :request_id
 
           # @param audience_group_id [Integer] The audience ID.
           # @param type [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 

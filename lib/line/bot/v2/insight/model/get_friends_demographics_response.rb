@@ -14,12 +14,24 @@ module Line
         # Get friend demographics
         # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
         class GetFriendsDemographicsResponse
-          attr_accessor :available # true if friend demographic information is available.
-          attr_accessor :genders # Percentage per gender.
-          attr_accessor :ages # Percentage per age group.
-          attr_accessor :areas # Percentage per area.
-          attr_accessor :app_types # Percentage by OS.
-          attr_accessor :subscription_periods # Percentage per friendship duration.
+          # @!attribute [rw] available
+          #   @return [Boolean] true if friend demographic information is available.
+          attr_accessor :available
+          # @!attribute [rw] genders
+          #   @return [Array[GenderTile]] Percentage per gender.
+          attr_accessor :genders
+          # @!attribute [rw] ages
+          #   @return [Array[AgeTile]] Percentage per age group.
+          attr_accessor :ages
+          # @!attribute [rw] areas
+          #   @return [Array[AreaTile]] Percentage per area.
+          attr_accessor :areas
+          # @!attribute [rw] app_types
+          #   @return [Array[AppTypeTile]] Percentage by OS.
+          attr_accessor :app_types
+          # @!attribute [rw] subscription_periods
+          #   @return [Array[SubscriptionPeriodTile]] Percentage per friendship duration.
+          attr_accessor :subscription_periods
 
           # @param available [Boolean] true if friend demographic information is available.
           # @param genders [Array[GenderTile]] Percentage per gender.

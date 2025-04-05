@@ -14,8 +14,14 @@ module Line
     module V2
       module MessagingApi
         class MessageAction < Action
-          attr_reader :type # Type of action
-          attr_accessor :label # Label for the action.
+          # @!attribute [r] type
+          #   @return [String] Type of action
+          attr_reader :type
+          # @!attribute [rw] label
+          #   @return [String] Label for the action.
+          attr_accessor :label
+          # @!attribute [rw] text
+          #   @return [String] 
           attr_accessor :text
 
           # @param label [String] Label for the action.

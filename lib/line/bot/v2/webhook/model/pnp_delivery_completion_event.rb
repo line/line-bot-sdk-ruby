@@ -15,12 +15,26 @@ module Line
       module Webhook
         # When a request is made to the LINE notification messages API and delivery of the LINE notification message to the user is completed, a dedicated webhook event (delivery completion event) is sent from the LINE Platform to the webhook URL of the bot server.
         class PnpDeliveryCompletionEvent < Event
-          attr_reader :type # Type of the event
+          # @!attribute [r] type
+          #   @return [String] Type of the event
+          attr_reader :type
+          # @!attribute [rw] source
+          #   @return [Source] 
           attr_accessor :source
-          attr_accessor :timestamp # Time of the event in milliseconds.
+          # @!attribute [rw] timestamp
+          #   @return [Integer] Time of the event in milliseconds.
+          attr_accessor :timestamp
+          # @!attribute [rw] mode
+          #   @return [String] ('active'|'standby') 
           attr_accessor :mode
-          attr_accessor :webhook_event_id # Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
+          # @!attribute [rw] webhook_event_id
+          #   @return [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
+          attr_accessor :webhook_event_id
+          # @!attribute [rw] delivery_context
+          #   @return [DeliveryContext] 
           attr_accessor :delivery_context
+          # @!attribute [rw] delivery
+          #   @return [PnpDelivery] 
           attr_accessor :delivery
 
           # @param source [Source] 

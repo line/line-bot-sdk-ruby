@@ -13,11 +13,23 @@ module Line
       module MessagingApi
         # Column object for carousel template.
         class CarouselColumn
+          # @!attribute [rw] thumbnail_image_url
+          #   @return [String] 
           attr_accessor :thumbnail_image_url
+          # @!attribute [rw] image_background_color
+          #   @return [String] 
           attr_accessor :image_background_color
+          # @!attribute [rw] title
+          #   @return [String] 
           attr_accessor :title
+          # @!attribute [rw] text
+          #   @return [String] 
           attr_accessor :text
+          # @!attribute [rw] default_action
+          #   @return [Action] 
           attr_accessor :default_action
+          # @!attribute [rw] actions
+          #   @return [Array[Action]] 
           attr_accessor :actions
 
           # @param thumbnail_image_url [String] 

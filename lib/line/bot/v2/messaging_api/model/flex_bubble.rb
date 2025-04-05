@@ -14,14 +14,32 @@ module Line
     module V2
       module MessagingApi
         class FlexBubble < FlexContainer
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] direction
+          #   @return [String] ('ltr'|'rtl') 
           attr_accessor :direction
+          # @!attribute [rw] styles
+          #   @return [FlexBubbleStyles] 
           attr_accessor :styles
+          # @!attribute [rw] header
+          #   @return [FlexBox] 
           attr_accessor :header
+          # @!attribute [rw] hero
+          #   @return [FlexComponent] 
           attr_accessor :hero
+          # @!attribute [rw] body
+          #   @return [FlexBox] 
           attr_accessor :body
+          # @!attribute [rw] footer
+          #   @return [FlexBox] 
           attr_accessor :footer
+          # @!attribute [rw] size
+          #   @return [String] ('nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga') 
           attr_accessor :size
+          # @!attribute [rw] action
+          #   @return [Action] 
           attr_accessor :action
 
           # @param direction [String] ('ltr'|'rtl') 

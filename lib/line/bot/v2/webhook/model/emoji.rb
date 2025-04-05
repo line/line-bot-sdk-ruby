@@ -12,10 +12,18 @@ module Line
     module V2
       module Webhook
         class Emoji
-          attr_accessor :index # Index position for a character in text, with the first character being at position 0.
-          attr_accessor :length # The length of the LINE emoji string. For LINE emoji (hello), 7 is the length.
-          attr_accessor :product_id # Product ID for a LINE emoji set.
-          attr_accessor :emoji_id # ID for a LINE emoji inside a set.
+          # @!attribute [rw] index
+          #   @return [Integer] Index position for a character in text, with the first character being at position 0.
+          attr_accessor :index
+          # @!attribute [rw] length
+          #   @return [Integer] The length of the LINE emoji string. For LINE emoji (hello), 7 is the length.
+          attr_accessor :length
+          # @!attribute [rw] product_id
+          #   @return [String] Product ID for a LINE emoji set.
+          attr_accessor :product_id
+          # @!attribute [rw] emoji_id
+          #   @return [String] ID for a LINE emoji inside a set.
+          attr_accessor :emoji_id
 
           # @param index [Integer] Index position for a character in text, with the first character being at position 0.
           # @param length [Integer] The length of the LINE emoji string. For LINE emoji (hello), 7 is the length.

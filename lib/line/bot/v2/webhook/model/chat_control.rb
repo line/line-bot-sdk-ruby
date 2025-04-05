@@ -12,6 +12,8 @@ module Line
     module V2
       module Webhook
         class ChatControl
+          # @!attribute [rw] expire_at
+          #   @return [Integer] 
           attr_accessor :expire_at
 
           # @param expire_at [Integer] 

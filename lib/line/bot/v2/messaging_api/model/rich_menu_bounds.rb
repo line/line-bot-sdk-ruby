@@ -14,10 +14,18 @@ module Line
         # Rich menu bounds
         # @see https://developers.line.biz/en/reference/messaging-api/#bounds-object
         class RichMenuBounds
-          attr_accessor :x # Horizontal position relative to the top-left corner of the area.
-          attr_accessor :y # Vertical position relative to the top-left corner of the area.
-          attr_accessor :width # Width of the area.
-          attr_accessor :height # Height of the area.
+          # @!attribute [rw] x
+          #   @return [Integer] Horizontal position relative to the top-left corner of the area.
+          attr_accessor :x
+          # @!attribute [rw] y
+          #   @return [Integer] Vertical position relative to the top-left corner of the area.
+          attr_accessor :y
+          # @!attribute [rw] width
+          #   @return [Integer] Width of the area.
+          attr_accessor :width
+          # @!attribute [rw] height
+          #   @return [Integer] Height of the area.
+          attr_accessor :height
 
           # @param x [Integer] Horizontal position relative to the top-left corner of the area.
           # @param y [Integer] Vertical position relative to the top-left corner of the area.

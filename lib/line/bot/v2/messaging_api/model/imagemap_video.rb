@@ -12,9 +12,17 @@ module Line
     module V2
       module MessagingApi
         class ImagemapVideo
+          # @!attribute [rw] original_content_url
+          #   @return [String] 
           attr_accessor :original_content_url
+          # @!attribute [rw] preview_image_url
+          #   @return [String] 
           attr_accessor :preview_image_url
+          # @!attribute [rw] area
+          #   @return [ImagemapArea] 
           attr_accessor :area
+          # @!attribute [rw] external_link
+          #   @return [ImagemapExternalLink] 
           attr_accessor :external_link
 
           # @param original_content_url [String] 

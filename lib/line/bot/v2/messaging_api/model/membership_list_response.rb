@@ -13,7 +13,9 @@ module Line
       module MessagingApi
         # List of memberships
         class MembershipListResponse
-          attr_accessor :memberships # List of membership information
+          # @!attribute [rw] memberships
+          #   @return [Array[Membership]] List of membership information
+          attr_accessor :memberships
 
           # @param memberships [Array[Membership]] List of membership information
           def initialize(

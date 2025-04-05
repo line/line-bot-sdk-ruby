@@ -13,9 +13,15 @@ module Line
       module ManageAudience
         # Owner of this audience group.
         class DetailedOwner
-          attr_accessor :service_type # Service name where the audience group has been created.
-          attr_accessor :id # Owner ID in the service.
-          attr_accessor :name # Owner account name.
+          # @!attribute [rw] service_type
+          #   @return [String] Service name where the audience group has been created.
+          attr_accessor :service_type
+          # @!attribute [rw] id
+          #   @return [String] Owner ID in the service.
+          attr_accessor :id
+          # @!attribute [rw] name
+          #   @return [String] Owner account name.
+          attr_accessor :name
 
           # @param service_type [String] Service name where the audience group has been created.
           # @param id [String] Owner ID in the service.

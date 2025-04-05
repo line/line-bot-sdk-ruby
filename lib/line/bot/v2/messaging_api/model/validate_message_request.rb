@@ -12,7 +12,9 @@ module Line
     module V2
       module MessagingApi
         class ValidateMessageRequest
-          attr_accessor :messages # Array of message objects to validate
+          # @!attribute [rw] messages
+          #   @return [Array[Message]] Array of message objects to validate
+          attr_accessor :messages
 
           # @param messages [Array[Message]] Array of message objects to validate
           def initialize(

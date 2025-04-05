@@ -13,8 +13,14 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#message-common-properties
         class Message
-          attr_accessor :type # Type of message
+          # @!attribute [rw] type
+          #   @return [String] Type of message
+          attr_accessor :type
+          # @!attribute [rw] quick_reply
+          #   @return [QuickReply] 
           attr_accessor :quick_reply
+          # @!attribute [rw] sender
+          #   @return [Sender] 
           attr_accessor :sender
 
           # @param type [String] Type of message

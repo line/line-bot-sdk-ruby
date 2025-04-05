@@ -14,10 +14,18 @@ module Line
     module V2
       module Webhook
         class FileMessageContent < MessageContent
-          attr_reader :type # Type
-          attr_accessor :id # Message ID
-          attr_accessor :file_name # File name
-          attr_accessor :file_size # File size in bytes
+          # @!attribute [r] type
+          #   @return [String] Type
+          attr_reader :type
+          # @!attribute [rw] id
+          #   @return [String] Message ID
+          attr_accessor :id
+          # @!attribute [rw] file_name
+          #   @return [String] File name
+          attr_accessor :file_name
+          # @!attribute [rw] file_size
+          #   @return [Integer] File size in bytes
+          attr_accessor :file_size
 
           # @param id [String] Message ID
           # @param file_name [String] File name

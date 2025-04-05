@@ -13,13 +13,27 @@ module Line
       module Insight
         # Summary of message statistics.
         class GetMessageEventResponseOverview
-          attr_accessor :request_id # Request ID.
-          attr_accessor :timestamp # UNIX timestamp for message delivery time in seconds.
-          attr_accessor :delivered # Number of messages delivered. This property shows values of less than 20. However, if all messages have not been sent, it will be null. 
-          attr_accessor :unique_impression # Number of users who opened the message, meaning they displayed at least 1 bubble.
-          attr_accessor :unique_click # Number of users who opened any URL in the message.
-          attr_accessor :unique_media_played # Number of users who started playing any video or audio in the message.
-          attr_accessor :unique_media_played100_percent # Number of users who played the entirety of any video or audio in the message.
+          # @!attribute [rw] request_id
+          #   @return [String] Request ID.
+          attr_accessor :request_id
+          # @!attribute [rw] timestamp
+          #   @return [Integer] UNIX timestamp for message delivery time in seconds.
+          attr_accessor :timestamp
+          # @!attribute [rw] delivered
+          #   @return [Integer] Number of messages delivered. This property shows values of less than 20. However, if all messages have not been sent, it will be null. 
+          attr_accessor :delivered
+          # @!attribute [rw] unique_impression
+          #   @return [Integer] Number of users who opened the message, meaning they displayed at least 1 bubble.
+          attr_accessor :unique_impression
+          # @!attribute [rw] unique_click
+          #   @return [Integer] Number of users who opened any URL in the message.
+          attr_accessor :unique_click
+          # @!attribute [rw] unique_media_played
+          #   @return [Integer] Number of users who started playing any video or audio in the message.
+          attr_accessor :unique_media_played
+          # @!attribute [rw] unique_media_played100_percent
+          #   @return [Integer] Number of users who played the entirety of any video or audio in the message.
+          attr_accessor :unique_media_played100_percent
 
           # @param request_id [String] Request ID.
           # @param timestamp [Integer] UNIX timestamp for message delivery time in seconds.

@@ -13,13 +13,27 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-bot-info
         class BotInfoResponse
-          attr_accessor :user_id # Bot's user ID
-          attr_accessor :basic_id # Bot's basic ID
-          attr_accessor :premium_id # Bot's premium ID. Not included in the response if the premium ID isn't set.
-          attr_accessor :display_name # Bot's display name
-          attr_accessor :picture_url # Profile image URL. `https` image URL. Not included in the response if the bot doesn't have a profile image.
-          attr_accessor :chat_mode # Chat settings set in the LINE Official Account Manager. One of:  `chat`: Chat is set to \"On\". `bot`: Chat is set to \"Off\". 
-          attr_accessor :mark_as_read_mode # Automatic read setting for messages. If the chat is set to \"Off\", auto is returned. If the chat is set to \"On\", manual is returned.  `auto`: Auto read setting is enabled. `manual`: Auto read setting is disabled.  
+          # @!attribute [rw] user_id
+          #   @return [String] Bot's user ID
+          attr_accessor :user_id
+          # @!attribute [rw] basic_id
+          #   @return [String] Bot's basic ID
+          attr_accessor :basic_id
+          # @!attribute [rw] premium_id
+          #   @return [String] Bot's premium ID. Not included in the response if the premium ID isn't set.
+          attr_accessor :premium_id
+          # @!attribute [rw] display_name
+          #   @return [String] Bot's display name
+          attr_accessor :display_name
+          # @!attribute [rw] picture_url
+          #   @return [String] Profile image URL. `https` image URL. Not included in the response if the bot doesn't have a profile image.
+          attr_accessor :picture_url
+          # @!attribute [rw] chat_mode
+          #   @return [String] ('chat'|'bot') Chat settings set in the LINE Official Account Manager. One of:  `chat`: Chat is set to \"On\". `bot`: Chat is set to \"Off\". 
+          attr_accessor :chat_mode
+          # @!attribute [rw] mark_as_read_mode
+          #   @return [String] ('auto'|'manual') Automatic read setting for messages. If the chat is set to \"Off\", auto is returned. If the chat is set to \"On\", manual is returned.  `auto`: Auto read setting is enabled. `manual`: Auto read setting is disabled.  
+          attr_accessor :mark_as_read_mode
 
           # @param user_id [String] Bot's user ID
           # @param basic_id [String] Bot's basic ID

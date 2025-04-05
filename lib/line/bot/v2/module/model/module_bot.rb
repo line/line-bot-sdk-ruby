@@ -14,11 +14,21 @@ module Line
         # basic information about the bot.
         # @see https://developers.line.biz/en/reference/partner-docs/#get-multiple-bot-info-api
         class ModuleBot
-          attr_accessor :user_id # Bot's user ID
-          attr_accessor :basic_id # Bot's basic ID
-          attr_accessor :premium_id # Bot's premium ID. Not included in the response if the premium ID isn't set.
-          attr_accessor :display_name # Bot's display name
-          attr_accessor :picture_url # Profile image URL. Image URL starting with `https://`. Not included in the response if the bot doesn't have a profile image.
+          # @!attribute [rw] user_id
+          #   @return [String] Bot's user ID
+          attr_accessor :user_id
+          # @!attribute [rw] basic_id
+          #   @return [String] Bot's basic ID
+          attr_accessor :basic_id
+          # @!attribute [rw] premium_id
+          #   @return [String] Bot's premium ID. Not included in the response if the premium ID isn't set.
+          attr_accessor :premium_id
+          # @!attribute [rw] display_name
+          #   @return [String] Bot's display name
+          attr_accessor :display_name
+          # @!attribute [rw] picture_url
+          #   @return [String] Profile image URL. Image URL starting with `https://`. Not included in the response if the bot doesn't have a profile image.
+          attr_accessor :picture_url
 
           # @param user_id [String] Bot's user ID
           # @param basic_id [String] Bot's basic ID

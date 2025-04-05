@@ -15,16 +15,38 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#icon
         class FlexIcon < FlexComponent
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] url
+          #   @return [String] 
           attr_accessor :url
+          # @!attribute [rw] size
+          #   @return [String] 
           attr_accessor :size
+          # @!attribute [rw] aspect_ratio
+          #   @return [String] 
           attr_accessor :aspect_ratio
+          # @!attribute [rw] margin
+          #   @return [String] 
           attr_accessor :margin
+          # @!attribute [rw] position
+          #   @return [String] ('relative'|'absolute') 
           attr_accessor :position
+          # @!attribute [rw] offset_top
+          #   @return [String] 
           attr_accessor :offset_top
+          # @!attribute [rw] offset_bottom
+          #   @return [String] 
           attr_accessor :offset_bottom
+          # @!attribute [rw] offset_start
+          #   @return [String] 
           attr_accessor :offset_start
+          # @!attribute [rw] offset_end
+          #   @return [String] 
           attr_accessor :offset_end
+          # @!attribute [rw] scaling
+          #   @return [Boolean] 
           attr_accessor :scaling
 
           # @param url [String] 

@@ -15,8 +15,14 @@ module Line
       module MessagingApi
         # Replace the rich menu with the rich menu specified in the `to` property for all users linked to the rich menu specified in the `from` property.
         class RichMenuBatchLinkOperation < RichMenuBatchOperation
-          attr_reader :type # The type of operation to the rich menu linked to the user. One of link, unlink, or unlinkAll.
+          # @!attribute [r] type
+          #   @return [String] The type of operation to the rich menu linked to the user. One of link, unlink, or unlinkAll.
+          attr_reader :type
+          # @!attribute [rw] from
+          #   @return [String] 
           attr_accessor :from
+          # @!attribute [rw] to
+          #   @return [String] 
           attr_accessor :to
 
           # @param from [String] 

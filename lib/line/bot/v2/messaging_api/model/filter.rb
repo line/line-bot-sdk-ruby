@@ -13,6 +13,8 @@ module Line
       module MessagingApi
         # Filter for narrowcast
         class Filter
+          # @!attribute [rw] demographic
+          #   @return [DemographicFilter] 
           attr_accessor :demographic
 
           # @param demographic [DemographicFilter] 

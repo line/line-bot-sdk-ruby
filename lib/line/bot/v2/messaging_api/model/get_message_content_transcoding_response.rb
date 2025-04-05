@@ -14,7 +14,9 @@ module Line
         # Transcoding response
         # @see https://developers.line.biz/en/reference/messaging-api/#verify-video-or-audio-preparation-status
         class GetMessageContentTranscodingResponse
-          attr_accessor :status # The preparation status. One of:  `processing`: Preparing to get content. `succeeded`: Ready to get the content. You can get the content sent by users. `failed`: Failed to prepare to get the content. 
+          # @!attribute [rw] status
+          #   @return [String] ('processing'|'succeeded'|'failed') The preparation status. One of:  `processing`: Preparing to get content. `succeeded`: Ready to get the content. You can get the content sent by users. `failed`: Failed to prepare to get the content. 
+          attr_accessor :status
 
           # @param status [String] ('processing'|'succeeded'|'failed') The preparation status. One of:  `processing`: Preparing to get content. `succeeded`: Ready to get the content. You can get the content sent by users. `failed`: Failed to prepare to get the content. 
           def initialize(

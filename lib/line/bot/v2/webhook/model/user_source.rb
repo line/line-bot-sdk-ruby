@@ -14,8 +14,12 @@ module Line
     module V2
       module Webhook
         class UserSource < Source
-          attr_reader :type # source type
-          attr_accessor :user_id # ID of the source user
+          # @!attribute [r] type
+          #   @return [String] source type
+          attr_reader :type
+          # @!attribute [rw] user_id
+          #   @return [String] ID of the source user
+          attr_accessor :user_id
 
           # @param user_id [String] ID of the source user
           def initialize(

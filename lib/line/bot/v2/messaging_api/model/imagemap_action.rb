@@ -13,7 +13,11 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#imagemap-action-objects
         class ImagemapAction
+          # @!attribute [rw] type
+          #   @return [String] 
           attr_accessor :type
+          # @!attribute [rw] area
+          #   @return [ImagemapArea] 
           attr_accessor :area
 
           # @param type [String] 

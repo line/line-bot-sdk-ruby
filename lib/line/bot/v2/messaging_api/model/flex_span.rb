@@ -14,12 +14,26 @@ module Line
     module V2
       module MessagingApi
         class FlexSpan < FlexComponent
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] text
+          #   @return [String] 
           attr_accessor :text
+          # @!attribute [rw] size
+          #   @return [String] 
           attr_accessor :size
+          # @!attribute [rw] color
+          #   @return [String] 
           attr_accessor :color
+          # @!attribute [rw] weight
+          #   @return [String] ('regular'|'bold') 
           attr_accessor :weight
+          # @!attribute [rw] style
+          #   @return [String] ('normal'|'italic') 
           attr_accessor :style
+          # @!attribute [rw] decoration
+          #   @return [String] ('none'|'underline'|'line-through') 
           attr_accessor :decoration
 
           # @param text [String] 

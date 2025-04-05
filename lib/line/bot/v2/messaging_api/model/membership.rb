@@ -12,16 +12,36 @@ module Line
     module V2
       module MessagingApi
         class Membership
-          attr_accessor :membership_id # Membership plan ID.
-          attr_accessor :title # Membership plan name.
-          attr_accessor :description # Membership plan description.
-          attr_accessor :benefits # List of membership plan perks.
-          attr_accessor :price # Monthly fee for membership plan. (e.g. 1500.00)
-          attr_accessor :currency # The currency of membership.price.
-          attr_accessor :member_count # Number of members subscribed to the membership plan.
-          attr_accessor :member_limit # The upper limit of members who can subscribe. If no upper limit is set, it will be null.
-          attr_accessor :is_in_app_purchase # Payment method for users who subscribe to a membership plan.
-          attr_accessor :is_published # Membership plan status.
+          # @!attribute [rw] membership_id
+          #   @return [Integer] Membership plan ID.
+          attr_accessor :membership_id
+          # @!attribute [rw] title
+          #   @return [String] Membership plan name.
+          attr_accessor :title
+          # @!attribute [rw] description
+          #   @return [String] Membership plan description.
+          attr_accessor :description
+          # @!attribute [rw] benefits
+          #   @return [Array[String]] List of membership plan perks.
+          attr_accessor :benefits
+          # @!attribute [rw] price
+          #   @return [Float] Monthly fee for membership plan. (e.g. 1500.00)
+          attr_accessor :price
+          # @!attribute [rw] currency
+          #   @return [String] ('JPY'|'TWD'|'THB') The currency of membership.price.
+          attr_accessor :currency
+          # @!attribute [rw] member_count
+          #   @return [Integer] Number of members subscribed to the membership plan.
+          attr_accessor :member_count
+          # @!attribute [rw] member_limit
+          #   @return [Integer] The upper limit of members who can subscribe. If no upper limit is set, it will be null.
+          attr_accessor :member_limit
+          # @!attribute [rw] is_in_app_purchase
+          #   @return [Boolean] Payment method for users who subscribe to a membership plan.
+          attr_accessor :is_in_app_purchase
+          # @!attribute [rw] is_published
+          #   @return [Boolean] Membership plan status.
+          attr_accessor :is_published
 
           # @param membership_id [Integer] Membership plan ID.
           # @param title [String] Membership plan name.

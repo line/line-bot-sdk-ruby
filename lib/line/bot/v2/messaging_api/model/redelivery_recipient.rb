@@ -14,7 +14,11 @@ module Line
     module V2
       module MessagingApi
         class RedeliveryRecipient < Recipient
-          attr_reader :type # Type of recipient
+          # @!attribute [r] type
+          #   @return [String] Type of recipient
+          attr_reader :type
+          # @!attribute [rw] request_id
+          #   @return [String] 
           attr_accessor :request_id
 
           # @param request_id [String] 

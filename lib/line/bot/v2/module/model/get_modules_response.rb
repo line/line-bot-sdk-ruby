@@ -14,8 +14,12 @@ module Line
         # List of bots to which the module is attached
         # @see https://developers.line.biz/en/reference/partner-docs/#get-multiple-bot-info-api
         class GetModulesResponse
-          attr_accessor :bots # Array of Bot list Item objects representing basic information about the bot.
-          attr_accessor :_next # Continuation token. Used to get the next array of basic bot information. This property is only returned if there are more unreturned results. 
+          # @!attribute [rw] bots
+          #   @return [Array[ModuleBot]] Array of Bot list Item objects representing basic information about the bot.
+          attr_accessor :bots
+          # @!attribute [rw] _next
+          #   @return [String] Continuation token. Used to get the next array of basic bot information. This property is only returned if there are more unreturned results. 
+          attr_accessor :_next
 
           # @param bots [Array[ModuleBot]] Array of Bot list Item objects representing basic information about the bot.
           # @param _next [String] Continuation token. Used to get the next array of basic bot information. This property is only returned if there are more unreturned results. 

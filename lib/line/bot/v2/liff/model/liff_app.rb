@@ -12,12 +12,26 @@ module Line
     module V2
       module Liff
         class LiffApp
-          attr_accessor :liff_id # LIFF app ID
+          # @!attribute [rw] liff_id
+          #   @return [String] LIFF app ID
+          attr_accessor :liff_id
+          # @!attribute [rw] view
+          #   @return [LiffView] 
           attr_accessor :view
-          attr_accessor :description # Name of the LIFF app
+          # @!attribute [rw] description
+          #   @return [String] Name of the LIFF app
+          attr_accessor :description
+          # @!attribute [rw] features
+          #   @return [LiffFeatures] 
           attr_accessor :features
-          attr_accessor :permanent_link_pattern # How additional information in LIFF URLs is handled. concat is returned. 
+          # @!attribute [rw] permanent_link_pattern
+          #   @return [String] How additional information in LIFF URLs is handled. concat is returned. 
+          attr_accessor :permanent_link_pattern
+          # @!attribute [rw] scope
+          #   @return [Array['openid'|'email'|'profile'|'chat_message.write']] 
           attr_accessor :scope
+          # @!attribute [rw] bot_prompt
+          #   @return [String] ('normal'|'aggressive'|'none') 
           attr_accessor :bot_prompt
 
           # @param liff_id [String] LIFF app ID

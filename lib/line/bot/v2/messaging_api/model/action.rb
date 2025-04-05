@@ -14,8 +14,12 @@ module Line
         # Action
         # @see https://developers.line.biz/en/reference/messaging-api/#action-objects
         class Action
-          attr_accessor :type # Type of action
-          attr_accessor :label # Label for the action.
+          # @!attribute [rw] type
+          #   @return [String] Type of action
+          attr_accessor :type
+          # @!attribute [rw] label
+          #   @return [String] Label for the action.
+          attr_accessor :label
 
           # @param type [String] Type of action
           # @param label [String] Label for the action.

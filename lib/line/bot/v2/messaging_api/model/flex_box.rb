@@ -14,33 +14,89 @@ module Line
     module V2
       module MessagingApi
         class FlexBox < FlexComponent
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] layout
+          #   @return [String] ('horizontal'|'vertical'|'baseline') 
           attr_accessor :layout
+          # @!attribute [rw] flex
+          #   @return [Integer] 
           attr_accessor :flex
+          # @!attribute [rw] contents
+          #   @return [Array[FlexComponent]] 
           attr_accessor :contents
+          # @!attribute [rw] spacing
+          #   @return [String] 
           attr_accessor :spacing
+          # @!attribute [rw] margin
+          #   @return [String] 
           attr_accessor :margin
+          # @!attribute [rw] position
+          #   @return [String] ('relative'|'absolute') 
           attr_accessor :position
+          # @!attribute [rw] offset_top
+          #   @return [String] 
           attr_accessor :offset_top
+          # @!attribute [rw] offset_bottom
+          #   @return [String] 
           attr_accessor :offset_bottom
+          # @!attribute [rw] offset_start
+          #   @return [String] 
           attr_accessor :offset_start
+          # @!attribute [rw] offset_end
+          #   @return [String] 
           attr_accessor :offset_end
+          # @!attribute [rw] background_color
+          #   @return [String] 
           attr_accessor :background_color
+          # @!attribute [rw] border_color
+          #   @return [String] 
           attr_accessor :border_color
+          # @!attribute [rw] border_width
+          #   @return [String] 
           attr_accessor :border_width
+          # @!attribute [rw] corner_radius
+          #   @return [String] 
           attr_accessor :corner_radius
+          # @!attribute [rw] width
+          #   @return [String] 
           attr_accessor :width
+          # @!attribute [rw] max_width
+          #   @return [String] 
           attr_accessor :max_width
+          # @!attribute [rw] height
+          #   @return [String] 
           attr_accessor :height
+          # @!attribute [rw] max_height
+          #   @return [String] 
           attr_accessor :max_height
+          # @!attribute [rw] padding_all
+          #   @return [String] 
           attr_accessor :padding_all
+          # @!attribute [rw] padding_top
+          #   @return [String] 
           attr_accessor :padding_top
+          # @!attribute [rw] padding_bottom
+          #   @return [String] 
           attr_accessor :padding_bottom
+          # @!attribute [rw] padding_start
+          #   @return [String] 
           attr_accessor :padding_start
+          # @!attribute [rw] padding_end
+          #   @return [String] 
           attr_accessor :padding_end
+          # @!attribute [rw] action
+          #   @return [Action] 
           attr_accessor :action
+          # @!attribute [rw] justify_content
+          #   @return [String] ('center'|'flex-start'|'flex-end'|'space-between'|'space-around'|'space-evenly') 
           attr_accessor :justify_content
+          # @!attribute [rw] align_items
+          #   @return [String] ('center'|'flex-start'|'flex-end') 
           attr_accessor :align_items
+          # @!attribute [rw] background
+          #   @return [FlexBoxBackground] 
           attr_accessor :background
 
           # @param layout [String] ('horizontal'|'vertical'|'baseline') 

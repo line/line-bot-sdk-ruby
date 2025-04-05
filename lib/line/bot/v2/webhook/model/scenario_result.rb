@@ -13,14 +13,30 @@ module Line
       module Webhook
         # @see https://developers.line.biz/en/reference/messaging-api/#scenario-result-event
         class ScenarioResult
-          attr_accessor :scenario_id # Scenario ID executed
-          attr_accessor :revision # Revision number of the scenario set containing the executed scenario
-          attr_accessor :start_time # Timestamp for when execution of scenario action started (milliseconds, LINE app time)
-          attr_accessor :end_time # Timestamp for when execution of scenario was completed (milliseconds, LINE app time)
-          attr_accessor :result_code # Scenario execution completion status
-          attr_accessor :action_results # Execution result of individual operations specified in action. Only included when things.result.resultCode is success.
-          attr_accessor :ble_notification_payload # Data contained in notification.
-          attr_accessor :error_reason # Error reason.
+          # @!attribute [rw] scenario_id
+          #   @return [String] Scenario ID executed
+          attr_accessor :scenario_id
+          # @!attribute [rw] revision
+          #   @return [Integer] Revision number of the scenario set containing the executed scenario
+          attr_accessor :revision
+          # @!attribute [rw] start_time
+          #   @return [Integer] Timestamp for when execution of scenario action started (milliseconds, LINE app time)
+          attr_accessor :start_time
+          # @!attribute [rw] end_time
+          #   @return [Integer] Timestamp for when execution of scenario was completed (milliseconds, LINE app time)
+          attr_accessor :end_time
+          # @!attribute [rw] result_code
+          #   @return [String] Scenario execution completion status
+          attr_accessor :result_code
+          # @!attribute [rw] action_results
+          #   @return [Array[ActionResult]] Execution result of individual operations specified in action. Only included when things.result.resultCode is success.
+          attr_accessor :action_results
+          # @!attribute [rw] ble_notification_payload
+          #   @return [String] Data contained in notification.
+          attr_accessor :ble_notification_payload
+          # @!attribute [rw] error_reason
+          #   @return [String] Error reason.
+          attr_accessor :error_reason
 
           # @param scenario_id [String] Scenario ID executed
           # @param revision [Integer] Revision number of the scenario set containing the executed scenario

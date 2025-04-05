@@ -14,7 +14,9 @@ module Line
         # Chat reference
         # @see https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read
         class ChatReference
-          attr_accessor :user_id # The target user ID
+          # @!attribute [rw] user_id
+          #   @return [String] The target user ID
+          attr_accessor :user_id
 
           # @param user_id [String] The target user ID
           def initialize(

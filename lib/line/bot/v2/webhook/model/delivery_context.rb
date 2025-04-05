@@ -13,7 +13,9 @@ module Line
       module Webhook
         # webhook's delivery context information
         class DeliveryContext
-          attr_accessor :is_redelivery # Whether the webhook event is a redelivered one or not.
+          # @!attribute [rw] is_redelivery
+          #   @return [Boolean] Whether the webhook event is a redelivered one or not.
+          attr_accessor :is_redelivery
 
           # @param is_redelivery [Boolean] Whether the webhook event is a redelivered one or not.
           def initialize(

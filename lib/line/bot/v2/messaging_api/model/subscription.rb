@@ -13,7 +13,11 @@ module Line
       module MessagingApi
         # An array of memberships.
         class Subscription
+          # @!attribute [rw] membership
+          #   @return [SubscribedMembershipPlan] 
           attr_accessor :membership
+          # @!attribute [rw] user
+          #   @return [SubscribedMembershipUser] 
           attr_accessor :user
 
           # @param membership [SubscribedMembershipPlan] 

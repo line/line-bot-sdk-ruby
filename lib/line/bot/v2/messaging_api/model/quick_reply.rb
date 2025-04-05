@@ -14,7 +14,9 @@ module Line
         # Quick reply
         # @see https://developers.line.biz/en/reference/messaging-api/#items-object
         class QuickReply
-          attr_accessor :items # Quick reply button objects.
+          # @!attribute [rw] items
+          #   @return [Array[QuickReplyItem]] Quick reply button objects.
+          attr_accessor :items
 
           # @param items [Array[QuickReplyItem]] Quick reply button objects.
           def initialize(

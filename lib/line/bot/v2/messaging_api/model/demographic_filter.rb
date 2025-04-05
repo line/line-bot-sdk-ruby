@@ -13,7 +13,9 @@ module Line
       module MessagingApi
         # Demographic filter
         class DemographicFilter
-          attr_accessor :type # Type of demographic filter
+          # @!attribute [rw] type
+          #   @return [String] Type of demographic filter
+          attr_accessor :type
 
           # @param type [String] Type of demographic filter
           def initialize(

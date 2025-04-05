@@ -14,7 +14,9 @@ module Line
         # A user's membership subscription status
         # @see https://developers.line.biz/en/reference/messaging-api/#get-a-users-membership-subscription-status
         class GetMembershipSubscriptionResponse
-          attr_accessor :subscriptions # List of subscription information
+          # @!attribute [rw] subscriptions
+          #   @return [Array[Subscription]] List of subscription information
+          attr_accessor :subscriptions
 
           # @param subscriptions [Array[Subscription]] List of subscription information
           def initialize(

@@ -15,12 +15,24 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#sticker-message
         class StickerMessage < Message
-          attr_reader :type # Type of message
+          # @!attribute [r] type
+          #   @return [String] Type of message
+          attr_reader :type
+          # @!attribute [rw] quick_reply
+          #   @return [QuickReply] 
           attr_accessor :quick_reply
+          # @!attribute [rw] sender
+          #   @return [Sender] 
           attr_accessor :sender
+          # @!attribute [rw] package_id
+          #   @return [String] 
           attr_accessor :package_id
+          # @!attribute [rw] sticker_id
+          #   @return [String] 
           attr_accessor :sticker_id
-          attr_accessor :quote_token # Quote token of the message you want to quote.
+          # @!attribute [rw] quote_token
+          #   @return [String] Quote token of the message you want to quote.
+          attr_accessor :quote_token
 
           # @param quick_reply [QuickReply] 
           # @param sender [Sender] 

@@ -15,13 +15,29 @@ module Line
       module Webhook
         # Event object for when a user has linked their LINE account with a provider's service account. You can reply to account link events.
         class AccountLinkEvent < Event
-          attr_reader :type # Type of the event
+          # @!attribute [r] type
+          #   @return [String] Type of the event
+          attr_reader :type
+          # @!attribute [rw] source
+          #   @return [Source] 
           attr_accessor :source
-          attr_accessor :timestamp # Time of the event in milliseconds.
+          # @!attribute [rw] timestamp
+          #   @return [Integer] Time of the event in milliseconds.
+          attr_accessor :timestamp
+          # @!attribute [rw] mode
+          #   @return [String] ('active'|'standby') 
           attr_accessor :mode
-          attr_accessor :webhook_event_id # Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
+          # @!attribute [rw] webhook_event_id
+          #   @return [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
+          attr_accessor :webhook_event_id
+          # @!attribute [rw] delivery_context
+          #   @return [DeliveryContext] 
           attr_accessor :delivery_context
-          attr_accessor :reply_token # Reply token used to send reply message to this event. This property won't be included if linking the account has failed.
+          # @!attribute [rw] reply_token
+          #   @return [String] Reply token used to send reply message to this event. This property won't be included if linking the account has failed.
+          attr_accessor :reply_token
+          # @!attribute [rw] link
+          #   @return [LinkContent] 
           attr_accessor :link
 
           # @param source [Source] 

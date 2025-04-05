@@ -12,9 +12,17 @@ module Line
     module V2
       module MessagingApi
         class ImagemapArea
+          # @!attribute [rw] x
+          #   @return [Integer] 
           attr_accessor :x
+          # @!attribute [rw] y
+          #   @return [Integer] 
           attr_accessor :y
+          # @!attribute [rw] width
+          #   @return [Integer] 
           attr_accessor :width
+          # @!attribute [rw] height
+          #   @return [Integer] 
           attr_accessor :height
 
           # @param x [Integer] 

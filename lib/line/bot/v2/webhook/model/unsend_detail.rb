@@ -12,7 +12,9 @@ module Line
     module V2
       module Webhook
         class UnsendDetail
-          attr_accessor :message_id # The message ID of the unsent message
+          # @!attribute [rw] message_id
+          #   @return [String] The message ID of the unsent message
+          attr_accessor :message_id
 
           # @param message_id [String] The message ID of the unsent message
           def initialize(

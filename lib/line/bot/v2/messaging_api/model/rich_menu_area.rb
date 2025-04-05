@@ -13,7 +13,11 @@ module Line
       module MessagingApi
         # Rich menu area
         class RichMenuArea
+          # @!attribute [rw] bounds
+          #   @return [RichMenuBounds] 
           attr_accessor :bounds
+          # @!attribute [rw] action
+          #   @return [Action] 
           attr_accessor :action
 
           # @param bounds [RichMenuBounds] 

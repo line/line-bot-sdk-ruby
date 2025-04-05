@@ -13,11 +13,23 @@ module Line
       module Liff
         # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
         class UpdateLiffAppRequest
+          # @!attribute [rw] view
+          #   @return [UpdateLiffView] 
           attr_accessor :view
-          attr_accessor :description # Name of the LIFF app.  The LIFF app name can't include \"LINE\" or similar strings, or inappropriate strings. 
+          # @!attribute [rw] description
+          #   @return [String] Name of the LIFF app.  The LIFF app name can't include \"LINE\" or similar strings, or inappropriate strings. 
+          attr_accessor :description
+          # @!attribute [rw] features
+          #   @return [LiffFeatures] 
           attr_accessor :features
-          attr_accessor :permanent_link_pattern # How additional information in LIFF URLs is handled. Specify `concat`. 
+          # @!attribute [rw] permanent_link_pattern
+          #   @return [String] How additional information in LIFF URLs is handled. Specify `concat`. 
+          attr_accessor :permanent_link_pattern
+          # @!attribute [rw] scope
+          #   @return [Array['openid'|'email'|'profile'|'chat_message.write']] 
           attr_accessor :scope
+          # @!attribute [rw] bot_prompt
+          #   @return [String] ('normal'|'aggressive'|'none') 
           attr_accessor :bot_prompt
 
           # @param view [UpdateLiffView] 

@@ -15,10 +15,20 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#template-messages
         class TemplateMessage < Message
-          attr_reader :type # Type of message
+          # @!attribute [r] type
+          #   @return [String] Type of message
+          attr_reader :type
+          # @!attribute [rw] quick_reply
+          #   @return [QuickReply] 
           attr_accessor :quick_reply
+          # @!attribute [rw] sender
+          #   @return [Sender] 
           attr_accessor :sender
+          # @!attribute [rw] alt_text
+          #   @return [String] 
           attr_accessor :alt_text
+          # @!attribute [rw] template
+          #   @return [Template] 
           attr_accessor :template
 
           # @param quick_reply [QuickReply] 

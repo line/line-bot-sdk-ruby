@@ -14,8 +14,12 @@ module Line
         # The request body contains a JSON object with the user ID of a bot that should receive webhook events and an array of webhook event objects. 
         # @see https://developers.line.biz/en/reference/messaging-api/#request-body
         class CallbackRequest
-          attr_accessor :destination # User ID of a bot that should receive webhook events. The user ID value is a string that matches the regular expression, `U[0-9a-f]{32}`. 
-          attr_accessor :events # Array of webhook event objects. The LINE Platform may send an empty array that doesn't include a webhook event object to confirm communication. 
+          # @!attribute [rw] destination
+          #   @return [String] User ID of a bot that should receive webhook events. The user ID value is a string that matches the regular expression, `U[0-9a-f]{32}`. 
+          attr_accessor :destination
+          # @!attribute [rw] events
+          #   @return [Array[Event]] Array of webhook event objects. The LINE Platform may send an empty array that doesn't include a webhook event object to confirm communication. 
+          attr_accessor :events
 
           # @param destination [String] User ID of a bot that should receive webhook events. The user ID value is a string that matches the regular expression, `U[0-9a-f]{32}`. 
           # @param events [Array[Event]] Array of webhook event objects. The LINE Platform may send an empty array that doesn't include a webhook event object to confirm communication. 

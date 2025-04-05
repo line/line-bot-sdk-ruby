@@ -14,9 +14,17 @@ module Line
     module V2
       module MessagingApi
         class URIAction < Action
-          attr_reader :type # Type of action
-          attr_accessor :label # Label for the action.
+          # @!attribute [r] type
+          #   @return [String] Type of action
+          attr_reader :type
+          # @!attribute [rw] label
+          #   @return [String] Label for the action.
+          attr_accessor :label
+          # @!attribute [rw] uri
+          #   @return [String] 
           attr_accessor :uri
+          # @!attribute [rw] alt_uri
+          #   @return [AltUri] 
           attr_accessor :alt_uri
 
           # @param label [String] Label for the action.

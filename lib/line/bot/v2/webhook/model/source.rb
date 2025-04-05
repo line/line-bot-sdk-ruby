@@ -14,7 +14,9 @@ module Line
         # the source of the event.
         # @see https://developers.line.biz/en/reference/messaging-api/#source-user
         class Source
-          attr_accessor :type # source type
+          # @!attribute [rw] type
+          #   @return [String] source type
+          attr_accessor :type
 
           # @param type [String] source type
           def initialize(

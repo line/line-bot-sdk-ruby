@@ -12,8 +12,12 @@ module Line
     module V2
       module Insight
         class AreaTile
-          attr_accessor :area # users' country and region
-          attr_accessor :percentage # Percentage
+          # @!attribute [rw] area
+          #   @return [String] users' country and region
+          attr_accessor :area
+          # @!attribute [rw] percentage
+          #   @return [Float] Percentage
+          attr_accessor :percentage
 
           # @param area [String] users' country and region
           # @param percentage [Float] Percentage

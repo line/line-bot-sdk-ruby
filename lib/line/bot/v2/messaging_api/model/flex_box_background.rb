@@ -12,6 +12,8 @@ module Line
     module V2
       module MessagingApi
         class FlexBoxBackground
+          # @!attribute [rw] type
+          #   @return [String] 
           attr_accessor :type
 
           # @param type [String] 

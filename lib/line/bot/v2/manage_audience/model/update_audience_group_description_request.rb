@@ -14,7 +14,9 @@ module Line
         # Rename an audience
         # @see https://developers.line.biz/en/reference/messaging-api/#set-description-audience-group
         class UpdateAudienceGroupDescriptionRequest
-          attr_accessor :description # The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          # @!attribute [rw] description
+          #   @return [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          attr_accessor :description
 
           # @param description [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           def initialize(

@@ -12,8 +12,12 @@ module Line
     module V2
       module Insight
         class SubscriptionPeriodTile
-          attr_accessor :subscription_period # Subscription period. Possible values: `within7days`, `within90days`, `unknown` etc.
-          attr_accessor :percentage # Percentage. Possible values: [0.0,100.0] e.g. 0, 2.9, 37.6.
+          # @!attribute [rw] subscription_period
+          #   @return [String] ('within7days'|'within30days'|'within90days'|'within180days'|'within365days'|'over365days'|'unknown') Subscription period. Possible values: `within7days`, `within90days`, `unknown` etc.
+          attr_accessor :subscription_period
+          # @!attribute [rw] percentage
+          #   @return [Float] Percentage. Possible values: [0.0,100.0] e.g. 0, 2.9, 37.6.
+          attr_accessor :percentage
 
           # @param subscription_period [String] ('within7days'|'within30days'|'within90days'|'within180days'|'within365days'|'over365days'|'unknown') Subscription period. Possible values: `within7days`, `within90days`, `unknown` etc.
           # @param percentage [Float] Percentage. Possible values: [0.0,100.0] e.g. 0, 2.9, 37.6.

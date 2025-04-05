@@ -13,8 +13,12 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#create-rich-menu-alias
         class CreateRichMenuAliasRequest
-          attr_accessor :rich_menu_alias_id # Rich menu alias ID, which can be any ID, unique for each channel.
-          attr_accessor :rich_menu_id # The rich menu ID to be associated with the rich menu alias.
+          # @!attribute [rw] rich_menu_alias_id
+          #   @return [String] Rich menu alias ID, which can be any ID, unique for each channel.
+          attr_accessor :rich_menu_alias_id
+          # @!attribute [rw] rich_menu_id
+          #   @return [String] The rich menu ID to be associated with the rich menu alias.
+          attr_accessor :rich_menu_id
 
           # @param rich_menu_alias_id [String] Rich menu alias ID, which can be any ID, unique for each channel.
           # @param rich_menu_id [String] The rich menu ID to be associated with the rich menu alias.

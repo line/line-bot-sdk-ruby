@@ -13,9 +13,15 @@ module Line
       module ChannelAccessToken
         # Verification result
         class VerifyChannelAccessTokenResponse
-          attr_accessor :client_id # The channel ID for which the channel access token was issued.
-          attr_accessor :expires_in # Number of seconds before the channel access token expires.
-          attr_accessor :scope # Permissions granted to the channel access token.
+          # @!attribute [rw] client_id
+          #   @return [String] The channel ID for which the channel access token was issued.
+          attr_accessor :client_id
+          # @!attribute [rw] expires_in
+          #   @return [Integer] Number of seconds before the channel access token expires.
+          attr_accessor :expires_in
+          # @!attribute [rw] scope
+          #   @return [String] Permissions granted to the channel access token.
+          attr_accessor :scope
 
           # @param client_id [String] The channel ID for which the channel access token was issued.
           # @param expires_in [Integer] Number of seconds before the channel access token expires.

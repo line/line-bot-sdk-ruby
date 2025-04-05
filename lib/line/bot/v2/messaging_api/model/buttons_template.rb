@@ -14,14 +14,32 @@ module Line
     module V2
       module MessagingApi
         class ButtonsTemplate < Template
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] thumbnail_image_url
+          #   @return [String] 
           attr_accessor :thumbnail_image_url
+          # @!attribute [rw] image_aspect_ratio
+          #   @return [String] 
           attr_accessor :image_aspect_ratio
+          # @!attribute [rw] image_size
+          #   @return [String] 
           attr_accessor :image_size
+          # @!attribute [rw] image_background_color
+          #   @return [String] 
           attr_accessor :image_background_color
+          # @!attribute [rw] title
+          #   @return [String] 
           attr_accessor :title
+          # @!attribute [rw] text
+          #   @return [String] 
           attr_accessor :text
+          # @!attribute [rw] default_action
+          #   @return [Action] 
           attr_accessor :default_action
+          # @!attribute [rw] actions
+          #   @return [Array[Action]] 
           attr_accessor :actions
 
           # @param thumbnail_image_url [String] 

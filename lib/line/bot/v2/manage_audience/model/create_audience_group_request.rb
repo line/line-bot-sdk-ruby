@@ -14,10 +14,18 @@ module Line
         # Create audience for uploading user IDs (by JSON)
         # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
         class CreateAudienceGroupRequest
-          attr_accessor :description # The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
-          attr_accessor :is_ifa_audience # To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 
-          attr_accessor :upload_description # The description to register for the job (in jobs[].description). 
-          attr_accessor :audiences # An array of user IDs or IFAs. Max number: 10,000 
+          # @!attribute [rw] description
+          #   @return [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          attr_accessor :description
+          # @!attribute [rw] is_ifa_audience
+          #   @return [Boolean] To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 
+          attr_accessor :is_ifa_audience
+          # @!attribute [rw] upload_description
+          #   @return [String] The description to register for the job (in jobs[].description). 
+          attr_accessor :upload_description
+          # @!attribute [rw] audiences
+          #   @return [Array[Audience]] An array of user IDs or IFAs. Max number: 10,000 
+          attr_accessor :audiences
 
           # @param description [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           # @param is_ifa_audience [Boolean] To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 

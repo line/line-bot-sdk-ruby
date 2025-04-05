@@ -13,9 +13,15 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/partner-docs/#send-line-notification-message
         class PnpMessagesRequest
-          attr_accessor :messages # Message to be sent.
-          attr_accessor :to # Message destination. Specify a phone number that has been normalized to E.164 format and hashed with SHA256.
-          attr_accessor :notification_disabled # `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          # @!attribute [rw] messages
+          #   @return [Array[Message]] Message to be sent.
+          attr_accessor :messages
+          # @!attribute [rw] to
+          #   @return [String] Message destination. Specify a phone number that has been normalized to E.164 format and hashed with SHA256.
+          attr_accessor :to
+          # @!attribute [rw] notification_disabled
+          #   @return [Boolean] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          attr_accessor :notification_disabled
 
           # @param messages [Array[Message]] Message to be sent.
           # @param to [String] Message destination. Specify a phone number that has been normalized to E.164 format and hashed with SHA256.

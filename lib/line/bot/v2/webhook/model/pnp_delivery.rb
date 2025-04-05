@@ -13,7 +13,9 @@ module Line
       module Webhook
         # A delivery object containing a hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
         class PnpDelivery
-          attr_accessor :data # A hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
+          # @!attribute [rw] data
+          #   @return [String] A hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
+          attr_accessor :data
 
           # @param data [String] A hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
           def initialize(

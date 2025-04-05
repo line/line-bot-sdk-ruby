@@ -13,8 +13,12 @@ module Line
       module ModuleAttach
         # Attach by operation of the module channel provider
         class AttachModuleResponse
-          attr_accessor :bot_id # User ID of the bot on the LINE Official Account.
-          attr_accessor :scopes # Permissions (scope) granted by the LINE Official Account admin.
+          # @!attribute [rw] bot_id
+          #   @return [String] User ID of the bot on the LINE Official Account.
+          attr_accessor :bot_id
+          # @!attribute [rw] scopes
+          #   @return [Array[String]] Permissions (scope) granted by the LINE Official Account admin.
+          attr_accessor :scopes
 
           # @param bot_id [String] User ID of the bot on the LINE Official Account.
           # @param scopes [Array[String]] Permissions (scope) granted by the LINE Official Account admin.

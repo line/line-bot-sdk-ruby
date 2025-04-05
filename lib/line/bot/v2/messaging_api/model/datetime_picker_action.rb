@@ -15,12 +15,26 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#datetime-picker-action
         class DatetimePickerAction < Action
-          attr_reader :type # Type of action
-          attr_accessor :label # Label for the action.
+          # @!attribute [r] type
+          #   @return [String] Type of action
+          attr_reader :type
+          # @!attribute [rw] label
+          #   @return [String] Label for the action.
+          attr_accessor :label
+          # @!attribute [rw] data
+          #   @return [String] 
           attr_accessor :data
+          # @!attribute [rw] mode
+          #   @return [String] ('date'|'time'|'datetime') 
           attr_accessor :mode
+          # @!attribute [rw] initial
+          #   @return [String] 
           attr_accessor :initial
+          # @!attribute [rw] max
+          #   @return [String] 
           attr_accessor :max
+          # @!attribute [rw] min
+          #   @return [String] 
           attr_accessor :min
 
           # @param label [String] Label for the action.

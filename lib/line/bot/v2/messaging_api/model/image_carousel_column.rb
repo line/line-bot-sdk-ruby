@@ -12,7 +12,11 @@ module Line
     module V2
       module MessagingApi
         class ImageCarouselColumn
+          # @!attribute [rw] image_url
+          #   @return [String] 
           attr_accessor :image_url
+          # @!attribute [rw] action
+          #   @return [Action] 
           attr_accessor :action
 
           # @param image_url [String] 

@@ -12,11 +12,21 @@ module Line
     module V2
       module MessagingApi
         class RichMenuRequest
+          # @!attribute [rw] size
+          #   @return [RichMenuSize] 
           attr_accessor :size
-          attr_accessor :selected # `true` to display the rich menu by default. Otherwise, `false`.
-          attr_accessor :name # Name of the rich menu. This value can be used to help manage your rich menus and is not displayed to users.
-          attr_accessor :chat_bar_text # Text displayed in the chat bar
-          attr_accessor :areas # Array of area objects which define the coordinates and size of tappable areas
+          # @!attribute [rw] selected
+          #   @return [Boolean] `true` to display the rich menu by default. Otherwise, `false`.
+          attr_accessor :selected
+          # @!attribute [rw] name
+          #   @return [String] Name of the rich menu. This value can be used to help manage your rich menus and is not displayed to users.
+          attr_accessor :name
+          # @!attribute [rw] chat_bar_text
+          #   @return [String] Text displayed in the chat bar
+          attr_accessor :chat_bar_text
+          # @!attribute [rw] areas
+          #   @return [Array[RichMenuArea]] Array of area objects which define the coordinates and size of tappable areas
+          attr_accessor :areas
 
           # @param size [RichMenuSize] 
           # @param selected [Boolean] `true` to display the rich menu by default. Otherwise, `false`.

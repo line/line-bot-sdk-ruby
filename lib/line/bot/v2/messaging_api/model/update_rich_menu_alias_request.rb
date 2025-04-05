@@ -13,7 +13,9 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
         class UpdateRichMenuAliasRequest
-          attr_accessor :rich_menu_id # The rich menu ID to be associated with the rich menu alias.
+          # @!attribute [rw] rich_menu_id
+          #   @return [String] The rich menu ID to be associated with the rich menu alias.
+          attr_accessor :rich_menu_id
 
           # @param rich_menu_id [String] The rich menu ID to be associated with the rich menu alias.
           def initialize(

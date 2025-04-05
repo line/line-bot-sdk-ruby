@@ -12,8 +12,12 @@ module Line
     module V2
       module Insight
         class AppTypeTile
-          attr_accessor :app_type # users' OS
-          attr_accessor :percentage # Percentage
+          # @!attribute [rw] app_type
+          #   @return [String] ('ios'|'android'|'others') users' OS
+          attr_accessor :app_type
+          # @!attribute [rw] percentage
+          #   @return [Float] Percentage
+          attr_accessor :percentage
 
           # @param app_type [String] ('ios'|'android'|'others') users' OS
           # @param percentage [Float] Percentage

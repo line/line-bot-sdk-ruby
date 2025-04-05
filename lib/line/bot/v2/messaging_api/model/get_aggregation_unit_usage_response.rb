@@ -13,7 +13,9 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-units-used-this-month
         class GetAggregationUnitUsageResponse
-          attr_accessor :num_of_custom_aggregation_units # Number of aggregation units used this month.
+          # @!attribute [rw] num_of_custom_aggregation_units
+          #   @return [Integer] Number of aggregation units used this month.
+          attr_accessor :num_of_custom_aggregation_units
 
           # @param num_of_custom_aggregation_units [Integer] Number of aggregation units used this month.
           def initialize(

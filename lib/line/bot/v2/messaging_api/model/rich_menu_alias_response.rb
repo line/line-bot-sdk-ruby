@@ -12,8 +12,12 @@ module Line
     module V2
       module MessagingApi
         class RichMenuAliasResponse
-          attr_accessor :rich_menu_alias_id # Rich menu alias ID.
-          attr_accessor :rich_menu_id # The rich menu ID associated with the rich menu alias.
+          # @!attribute [rw] rich_menu_alias_id
+          #   @return [String] Rich menu alias ID.
+          attr_accessor :rich_menu_alias_id
+          # @!attribute [rw] rich_menu_id
+          #   @return [String] The rich menu ID associated with the rich menu alias.
+          attr_accessor :rich_menu_id
 
           # @param rich_menu_alias_id [String] Rich menu alias ID.
           # @param rich_menu_id [String] The rich menu ID associated with the rich menu alias.

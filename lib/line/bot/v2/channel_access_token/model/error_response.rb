@@ -13,8 +13,12 @@ module Line
       module ChannelAccessToken
         # Error response of the Channel access token
         class ErrorResponse
-          attr_accessor :error # Error summary
-          attr_accessor :error_description # Details of the error. Not returned in certain situations.
+          # @!attribute [rw] error
+          #   @return [String] Error summary
+          attr_accessor :error
+          # @!attribute [rw] error_description
+          #   @return [String] Details of the error. Not returned in certain situations.
+          attr_accessor :error_description
 
           # @param error [String] Error summary
           # @param error_description [String] Details of the error. Not returned in certain situations.

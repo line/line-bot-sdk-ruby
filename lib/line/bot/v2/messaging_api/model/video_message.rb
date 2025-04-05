@@ -15,11 +15,23 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#video-message
         class VideoMessage < Message
-          attr_reader :type # Type of message
+          # @!attribute [r] type
+          #   @return [String] Type of message
+          attr_reader :type
+          # @!attribute [rw] quick_reply
+          #   @return [QuickReply] 
           attr_accessor :quick_reply
+          # @!attribute [rw] sender
+          #   @return [Sender] 
           attr_accessor :sender
+          # @!attribute [rw] original_content_url
+          #   @return [String] 
           attr_accessor :original_content_url
+          # @!attribute [rw] preview_image_url
+          #   @return [String] 
           attr_accessor :preview_image_url
+          # @!attribute [rw] tracking_id
+          #   @return [String] 
           attr_accessor :tracking_id
 
           # @param quick_reply [QuickReply] 

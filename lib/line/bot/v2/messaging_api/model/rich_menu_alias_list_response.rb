@@ -13,7 +13,9 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-alias-list
         class RichMenuAliasListResponse
-          attr_accessor :aliases # Rich menu aliases.
+          # @!attribute [rw] aliases
+          #   @return [Array[RichMenuAliasResponse]] Rich menu aliases.
+          attr_accessor :aliases
 
           # @param aliases [Array[RichMenuAliasResponse]] Rich menu aliases.
           def initialize(

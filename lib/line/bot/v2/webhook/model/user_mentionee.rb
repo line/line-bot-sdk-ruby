@@ -15,11 +15,21 @@ module Line
       module Webhook
         # Mentioned target is user
         class UserMentionee < Mentionee
-          attr_reader :type # Mentioned target.
-          attr_accessor :index # Index position of the user mention for a character in text, with the first character being at position 0.
-          attr_accessor :length # The length of the text of the mentioned user. For a mention @example, 8 is the length.
-          attr_accessor :user_id # User ID of the mentioned user. Only included if mention.mentions[].type is user and the user consents to the LINE Official Account obtaining their user profile information.
-          attr_accessor :is_self # Whether the mentioned user is the bot that receives the webhook.
+          # @!attribute [r] type
+          #   @return [String] Mentioned target.
+          attr_reader :type
+          # @!attribute [rw] index
+          #   @return [Integer] Index position of the user mention for a character in text, with the first character being at position 0.
+          attr_accessor :index
+          # @!attribute [rw] length
+          #   @return [Integer] The length of the text of the mentioned user. For a mention @example, 8 is the length.
+          attr_accessor :length
+          # @!attribute [rw] user_id
+          #   @return [String] User ID of the mentioned user. Only included if mention.mentions[].type is user and the user consents to the LINE Official Account obtaining their user profile information.
+          attr_accessor :user_id
+          # @!attribute [rw] is_self
+          #   @return [Boolean] Whether the mentioned user is the bot that receives the webhook.
+          attr_accessor :is_self
 
           # @param index [Integer] Index position of the user mention for a character in text, with the first character being at position 0.
           # @param length [Integer] The length of the text of the mentioned user. For a mention @example, 8 is the length.

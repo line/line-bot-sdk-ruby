@@ -13,11 +13,21 @@ module Line
       module Insight
         # @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit-response
         class GetStatisticsPerUnitResponseClick
-          attr_accessor :seq # The URL's serial number.
-          attr_accessor :url # URL.
-          attr_accessor :click # Number of times the URL in the bubble was opened.
-          attr_accessor :unique_click # Number of users that opened the URL in the bubble.
-          attr_accessor :unique_click_of_request # Number of users who opened this url through any link in the message. If another message bubble contains the same URL and a user opens both links, it's counted only once. 
+          # @!attribute [rw] seq
+          #   @return [Integer] The URL's serial number.
+          attr_accessor :seq
+          # @!attribute [rw] url
+          #   @return [String] URL.
+          attr_accessor :url
+          # @!attribute [rw] click
+          #   @return [Integer] Number of times the URL in the bubble was opened.
+          attr_accessor :click
+          # @!attribute [rw] unique_click
+          #   @return [Integer] Number of users that opened the URL in the bubble.
+          attr_accessor :unique_click
+          # @!attribute [rw] unique_click_of_request
+          #   @return [Integer] Number of users who opened this url through any link in the message. If another message bubble contains the same URL and a user opens both links, it's counted only once. 
+          attr_accessor :unique_click_of_request
 
           # @param seq [Integer] The URL's serial number.
           # @param url [String] URL.

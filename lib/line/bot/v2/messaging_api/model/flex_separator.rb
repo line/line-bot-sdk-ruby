@@ -14,8 +14,14 @@ module Line
     module V2
       module MessagingApi
         class FlexSeparator < FlexComponent
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] margin
+          #   @return [String] 
           attr_accessor :margin
+          # @!attribute [rw] color
+          #   @return [String] 
           attr_accessor :color
 
           # @param margin [String] 

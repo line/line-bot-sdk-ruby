@@ -12,6 +12,8 @@ module Line
     module V2
       module Liff
         class GetAllLiffAppsResponse
+          # @!attribute [rw] apps
+          #   @return [Array[LiffApp]] 
           attr_accessor :apps
 
           # @param apps [Array[LiffApp]] 

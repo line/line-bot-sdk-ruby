@@ -14,14 +14,30 @@ module Line
         # Audience group job
         # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
         class AudienceGroupJob
-          attr_accessor :audience_group_job_id # A job ID.
-          attr_accessor :audience_group_id # An audience ID.
-          attr_accessor :description # The job's description.
+          # @!attribute [rw] audience_group_job_id
+          #   @return [Integer] A job ID.
+          attr_accessor :audience_group_job_id
+          # @!attribute [rw] audience_group_id
+          #   @return [Integer] An audience ID.
+          attr_accessor :audience_group_id
+          # @!attribute [rw] description
+          #   @return [String] The job's description.
+          attr_accessor :description
+          # @!attribute [rw] type
+          #   @return [String] ('DIFF_ADD') 
           attr_accessor :type
+          # @!attribute [rw] job_status
+          #   @return [String] ('QUEUED'|'WORKING'|'FINISHED'|'FAILED') 
           attr_accessor :job_status
+          # @!attribute [rw] failed_type
+          #   @return [String] ('INTERNAL_ERROR'|'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT') 
           attr_accessor :failed_type
-          attr_accessor :audience_count # The number of accounts (recipients) that were added or removed.
-          attr_accessor :created # When the job was created (in UNIX time).
+          # @!attribute [rw] audience_count
+          #   @return [Integer] The number of accounts (recipients) that were added or removed.
+          attr_accessor :audience_count
+          # @!attribute [rw] created
+          #   @return [Integer] When the job was created (in UNIX time).
+          attr_accessor :created
 
           # @param audience_group_job_id [Integer] A job ID.
           # @param audience_group_id [Integer] An audience ID.

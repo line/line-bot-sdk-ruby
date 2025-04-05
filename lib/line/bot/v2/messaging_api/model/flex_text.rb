@@ -14,28 +14,74 @@ module Line
     module V2
       module MessagingApi
         class FlexText < FlexComponent
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] flex
+          #   @return [Integer] 
           attr_accessor :flex
+          # @!attribute [rw] text
+          #   @return [String] 
           attr_accessor :text
+          # @!attribute [rw] size
+          #   @return [String] 
           attr_accessor :size
+          # @!attribute [rw] align
+          #   @return [String] ('start'|'end'|'center') 
           attr_accessor :align
+          # @!attribute [rw] gravity
+          #   @return [String] ('top'|'bottom'|'center') 
           attr_accessor :gravity
+          # @!attribute [rw] color
+          #   @return [String] 
           attr_accessor :color
+          # @!attribute [rw] weight
+          #   @return [String] ('regular'|'bold') 
           attr_accessor :weight
+          # @!attribute [rw] style
+          #   @return [String] ('normal'|'italic') 
           attr_accessor :style
+          # @!attribute [rw] decoration
+          #   @return [String] ('none'|'underline'|'line-through') 
           attr_accessor :decoration
+          # @!attribute [rw] wrap
+          #   @return [Boolean] 
           attr_accessor :wrap
+          # @!attribute [rw] line_spacing
+          #   @return [String] 
           attr_accessor :line_spacing
+          # @!attribute [rw] margin
+          #   @return [String] 
           attr_accessor :margin
+          # @!attribute [rw] position
+          #   @return [String] ('relative'|'absolute') 
           attr_accessor :position
+          # @!attribute [rw] offset_top
+          #   @return [String] 
           attr_accessor :offset_top
+          # @!attribute [rw] offset_bottom
+          #   @return [String] 
           attr_accessor :offset_bottom
+          # @!attribute [rw] offset_start
+          #   @return [String] 
           attr_accessor :offset_start
+          # @!attribute [rw] offset_end
+          #   @return [String] 
           attr_accessor :offset_end
+          # @!attribute [rw] action
+          #   @return [Action] 
           attr_accessor :action
+          # @!attribute [rw] max_lines
+          #   @return [Integer] 
           attr_accessor :max_lines
+          # @!attribute [rw] contents
+          #   @return [Array[FlexSpan]] 
           attr_accessor :contents
+          # @!attribute [rw] adjust_mode
+          #   @return [String] ('shrink-to-fit') 
           attr_accessor :adjust_mode
+          # @!attribute [rw] scaling
+          #   @return [Boolean] 
           attr_accessor :scaling
 
           # @param flex [Integer] 

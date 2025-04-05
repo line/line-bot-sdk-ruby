@@ -13,12 +13,24 @@ module Line
       module MessagingApi
         # Object containing information about the membership plan.
         class SubscribedMembershipPlan
-          attr_accessor :membership_id # Membership plan ID.
-          attr_accessor :title # Membership plan name.
-          attr_accessor :description # Membership plan description.
-          attr_accessor :benefits # List of membership plan perks.
-          attr_accessor :price # Monthly fee for membership plan. (e.g. 1500.00)
-          attr_accessor :currency # The currency of membership.price.
+          # @!attribute [rw] membership_id
+          #   @return [Integer] Membership plan ID.
+          attr_accessor :membership_id
+          # @!attribute [rw] title
+          #   @return [String] Membership plan name.
+          attr_accessor :title
+          # @!attribute [rw] description
+          #   @return [String] Membership plan description.
+          attr_accessor :description
+          # @!attribute [rw] benefits
+          #   @return [Array[String]] List of membership plan perks.
+          attr_accessor :benefits
+          # @!attribute [rw] price
+          #   @return [Float] Monthly fee for membership plan. (e.g. 1500.00)
+          attr_accessor :price
+          # @!attribute [rw] currency
+          #   @return [String] ('JPY'|'TWD'|'THB') The currency of membership.price.
+          attr_accessor :currency
 
           # @param membership_id [Integer] Membership plan ID.
           # @param title [String] Membership plan name.

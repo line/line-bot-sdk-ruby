@@ -12,7 +12,11 @@ module Line
     module V2
       module Webhook
         class PostbackContent
-          attr_accessor :data # Postback data
+          # @!attribute [rw] data
+          #   @return [String] Postback data
+          attr_accessor :data
+          # @!attribute [rw] params
+          #   @return [Object] 
           attr_accessor :params
 
           # @param data [String] Postback data

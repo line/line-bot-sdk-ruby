@@ -13,9 +13,15 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-batch-control-rich-menus-progress-status-response
         class RichMenuBatchProgressResponse
+          # @!attribute [rw] phase
+          #   @return [String] ('ongoing'|'succeeded'|'failed') 
           attr_accessor :phase
-          attr_accessor :accepted_time # The accepted time in milliseconds of the request of batch control the rich menu.  Format: ISO 8601 (e.g. 2023-06-08T10:15:30.121Z) Timezone: UTC 
-          attr_accessor :completed_time # The completed time in milliseconds of rich menu batch control. Returned when the phase property is succeeded or failed.  Format: ISO 8601 (e.g. 2023-06-08T10:15:30.121Z) Timezone: UTC 
+          # @!attribute [rw] accepted_time
+          #   @return [String] The accepted time in milliseconds of the request of batch control the rich menu.  Format: ISO 8601 (e.g. 2023-06-08T10:15:30.121Z) Timezone: UTC 
+          attr_accessor :accepted_time
+          # @!attribute [rw] completed_time
+          #   @return [String] The completed time in milliseconds of rich menu batch control. Returned when the phase property is succeeded or failed.  Format: ISO 8601 (e.g. 2023-06-08T10:15:30.121Z) Timezone: UTC 
+          attr_accessor :completed_time
 
           # @param phase [String] ('ongoing'|'succeeded'|'failed') 
           # @param accepted_time [String] The accepted time in milliseconds of the request of batch control the rich menu.  Format: ISO 8601 (e.g. 2023-06-08T10:15:30.121Z) Timezone: UTC 

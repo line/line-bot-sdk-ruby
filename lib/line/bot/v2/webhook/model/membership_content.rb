@@ -13,7 +13,9 @@ module Line
       module Webhook
         # Content of the membership event.
         class MembershipContent
-          attr_accessor :type # Type of membership event.
+          # @!attribute [rw] type
+          #   @return [String] Type of membership event.
+          attr_accessor :type
 
           # @param type [String] Type of membership event.
           def initialize(

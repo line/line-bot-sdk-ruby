@@ -14,11 +14,23 @@ module Line
     module V2
       module MessagingApi
         class FlexBoxLinearGradient < FlexBoxBackground
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] angle
+          #   @return [String] 
           attr_accessor :angle
+          # @!attribute [rw] start_color
+          #   @return [String] 
           attr_accessor :start_color
+          # @!attribute [rw] end_color
+          #   @return [String] 
           attr_accessor :end_color
+          # @!attribute [rw] center_color
+          #   @return [String] 
           attr_accessor :center_color
+          # @!attribute [rw] center_position
+          #   @return [String] 
           attr_accessor :center_position
 
           # @param angle [String] 

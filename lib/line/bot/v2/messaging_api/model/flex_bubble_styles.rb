@@ -12,9 +12,17 @@ module Line
     module V2
       module MessagingApi
         class FlexBubbleStyles
+          # @!attribute [rw] header
+          #   @return [FlexBlockStyle] 
           attr_accessor :header
+          # @!attribute [rw] hero
+          #   @return [FlexBlockStyle] 
           attr_accessor :hero
+          # @!attribute [rw] body
+          #   @return [FlexBlockStyle] 
           attr_accessor :body
+          # @!attribute [rw] footer
+          #   @return [FlexBlockStyle] 
           attr_accessor :footer
 
           # @param header [FlexBlockStyle] 

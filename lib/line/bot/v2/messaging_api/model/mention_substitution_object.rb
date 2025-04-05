@@ -16,7 +16,11 @@ module Line
         # An object representing a mention substitution.
         # @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2-mention-object
         class MentionSubstitutionObject < SubstitutionObject
-          attr_reader :type # Type of substitution object
+          # @!attribute [r] type
+          #   @return [String] Type of substitution object
+          attr_reader :type
+          # @!attribute [rw] mentionee
+          #   @return [MentionTarget] 
           attr_accessor :mentionee
 
           # @param mentionee [MentionTarget] 

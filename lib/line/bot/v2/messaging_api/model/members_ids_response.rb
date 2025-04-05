@@ -12,8 +12,12 @@ module Line
     module V2
       module MessagingApi
         class MembersIdsResponse
-          attr_accessor :member_ids # List of user IDs of members in the group chat. Only users of LINE for iOS and LINE for Android are included in `memberIds`.
-          attr_accessor :_next # A continuation token to get the next array of user IDs of the members in the group chat. Returned only when there are remaining user IDs that were not returned in `memberIds` in the original request. 
+          # @!attribute [rw] member_ids
+          #   @return [Array[String]] List of user IDs of members in the group chat. Only users of LINE for iOS and LINE for Android are included in `memberIds`.
+          attr_accessor :member_ids
+          # @!attribute [rw] _next
+          #   @return [String] A continuation token to get the next array of user IDs of the members in the group chat. Returned only when there are remaining user IDs that were not returned in `memberIds` in the original request. 
+          attr_accessor :_next
 
           # @param member_ids [Array[String]] List of user IDs of members in the group chat. Only users of LINE for iOS and LINE for Android are included in `memberIds`.
           # @param _next [String] A continuation token to get the next array of user IDs of the members in the group chat. Returned only when there are remaining user IDs that were not returned in `memberIds` in the original request. 

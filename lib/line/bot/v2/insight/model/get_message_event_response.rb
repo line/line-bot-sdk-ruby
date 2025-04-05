@@ -14,9 +14,15 @@ module Line
         # Statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.
         # @see https://developers.line.biz/en/reference/messaging-api/#get-insight-message-event-response
         class GetMessageEventResponse
+          # @!attribute [rw] overview
+          #   @return [GetMessageEventResponseOverview] 
           attr_accessor :overview
-          attr_accessor :messages # Array of information about individual message bubbles.
-          attr_accessor :clicks # Array of information about opened URLs in the message.
+          # @!attribute [rw] messages
+          #   @return [Array[GetMessageEventResponseMessage]] Array of information about individual message bubbles.
+          attr_accessor :messages
+          # @!attribute [rw] clicks
+          #   @return [Array[GetMessageEventResponseClick]] Array of information about opened URLs in the message.
+          attr_accessor :clicks
 
           # @param overview [GetMessageEventResponseOverview] 
           # @param messages [Array[GetMessageEventResponseMessage]] Array of information about individual message bubbles.

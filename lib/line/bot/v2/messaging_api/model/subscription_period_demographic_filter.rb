@@ -14,8 +14,14 @@ module Line
     module V2
       module MessagingApi
         class SubscriptionPeriodDemographicFilter < DemographicFilter
-          attr_reader :type # Type of demographic filter
+          # @!attribute [r] type
+          #   @return [String] Type of demographic filter
+          attr_reader :type
+          # @!attribute [rw] gte
+          #   @return [String] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
           attr_accessor :gte
+          # @!attribute [rw] lt
+          #   @return [String] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
           attr_accessor :lt
 
           # @param gte [String] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 

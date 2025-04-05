@@ -13,7 +13,9 @@ module Line
       module Shop
         # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
         class ErrorResponse
-          attr_accessor :message # Message containing information about the error.
+          # @!attribute [rw] message
+          #   @return [String] Message containing information about the error.
+          attr_accessor :message
 
           # @param message [String] Message containing information about the error.
           def initialize(

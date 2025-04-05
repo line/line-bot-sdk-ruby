@@ -13,7 +13,9 @@ module Line
       module MessagingApi
         # An object that defines the replacement value for a placeholder in the text.
         class SubstitutionObject
-          attr_accessor :type # Type of substitution object
+          # @!attribute [rw] type
+          #   @return [String] Type of substitution object
+          attr_accessor :type
 
           # @param type [String] Type of substitution object
           def initialize(

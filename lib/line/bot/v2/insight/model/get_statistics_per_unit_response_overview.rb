@@ -14,10 +14,18 @@ module Line
         # Statistics related to messages.
         # @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit-response
         class GetStatisticsPerUnitResponseOverview
-          attr_accessor :unique_impression # Number of users who opened the message, meaning they displayed at least 1 bubble.
-          attr_accessor :unique_click # Number of users who opened any URL in the message.
-          attr_accessor :unique_media_played # Number of users who started playing any video or audio in the message.
-          attr_accessor :unique_media_played100_percent # Number of users who played the entirety of any video or audio in the message.
+          # @!attribute [rw] unique_impression
+          #   @return [Integer] Number of users who opened the message, meaning they displayed at least 1 bubble.
+          attr_accessor :unique_impression
+          # @!attribute [rw] unique_click
+          #   @return [Integer] Number of users who opened any URL in the message.
+          attr_accessor :unique_click
+          # @!attribute [rw] unique_media_played
+          #   @return [Integer] Number of users who started playing any video or audio in the message.
+          attr_accessor :unique_media_played
+          # @!attribute [rw] unique_media_played100_percent
+          #   @return [Integer] Number of users who played the entirety of any video or audio in the message.
+          attr_accessor :unique_media_played100_percent
 
           # @param unique_impression [Integer] Number of users who opened the message, meaning they displayed at least 1 bubble.
           # @param unique_click [Integer] Number of users who opened any URL in the message.

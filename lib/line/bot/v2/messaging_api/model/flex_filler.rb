@@ -14,7 +14,11 @@ module Line
     module V2
       module MessagingApi
         class FlexFiller < FlexComponent
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] flex
+          #   @return [Integer] 
           attr_accessor :flex
 
           # @param flex [Integer] 

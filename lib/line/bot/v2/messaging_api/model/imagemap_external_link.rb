@@ -12,7 +12,11 @@ module Line
     module V2
       module MessagingApi
         class ImagemapExternalLink
+          # @!attribute [rw] link_uri
+          #   @return [String] 
           attr_accessor :link_uri
+          # @!attribute [rw] label
+          #   @return [String] 
           attr_accessor :label
 
           # @param link_uri [String] 

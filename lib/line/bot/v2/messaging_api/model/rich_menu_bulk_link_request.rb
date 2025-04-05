@@ -13,8 +13,12 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-users
         class RichMenuBulkLinkRequest
-          attr_accessor :rich_menu_id # ID of a rich menu
-          attr_accessor :user_ids # Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
+          # @!attribute [rw] rich_menu_id
+          #   @return [String] ID of a rich menu
+          attr_accessor :rich_menu_id
+          # @!attribute [rw] user_ids
+          #   @return [Array[String]] Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
+          attr_accessor :user_ids
 
           # @param rich_menu_id [String] ID of a rich menu
           # @param user_ids [Array[String]] Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.

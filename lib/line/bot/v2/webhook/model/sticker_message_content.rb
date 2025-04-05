@@ -15,15 +15,33 @@ module Line
       module Webhook
         # @see https://developers.line.biz/en/reference/messaging-api/#wh-sticker
         class StickerMessageContent < MessageContent
-          attr_reader :type # Type
-          attr_accessor :id # Message ID
-          attr_accessor :package_id # Package ID
-          attr_accessor :sticker_id # Sticker ID
+          # @!attribute [r] type
+          #   @return [String] Type
+          attr_reader :type
+          # @!attribute [rw] id
+          #   @return [String] Message ID
+          attr_accessor :id
+          # @!attribute [rw] package_id
+          #   @return [String] Package ID
+          attr_accessor :package_id
+          # @!attribute [rw] sticker_id
+          #   @return [String] Sticker ID
+          attr_accessor :sticker_id
+          # @!attribute [rw] sticker_resource_type
+          #   @return [String] ('STATIC'|'ANIMATION'|'SOUND'|'ANIMATION_SOUND'|'POPUP'|'POPUP_SOUND'|'CUSTOM'|'MESSAGE'|'NAME_TEXT'|'PER_STICKER_TEXT') 
           attr_accessor :sticker_resource_type
-          attr_accessor :keywords # Array of up to 15 keywords describing the sticker. If a sticker has 16 or more keywords, a random selection of 15 keywords will be returned. The keyword selection is random for each event, so different keywords may be returned for the same sticker. 
-          attr_accessor :text # Any text entered by the user. This property is only included for message stickers. Max character limit: 100 
-          attr_accessor :quote_token # Quote token to quote this message. 
-          attr_accessor :quoted_message_id # Message ID of a quoted message. Only included when the received message quotes a past message.  
+          # @!attribute [rw] keywords
+          #   @return [Array[String]] Array of up to 15 keywords describing the sticker. If a sticker has 16 or more keywords, a random selection of 15 keywords will be returned. The keyword selection is random for each event, so different keywords may be returned for the same sticker. 
+          attr_accessor :keywords
+          # @!attribute [rw] text
+          #   @return [String] Any text entered by the user. This property is only included for message stickers. Max character limit: 100 
+          attr_accessor :text
+          # @!attribute [rw] quote_token
+          #   @return [String] Quote token to quote this message. 
+          attr_accessor :quote_token
+          # @!attribute [rw] quoted_message_id
+          #   @return [String] Message ID of a quoted message. Only included when the received message quotes a past message.  
+          attr_accessor :quoted_message_id
 
           # @param id [String] Message ID
           # @param package_id [String] Package ID
