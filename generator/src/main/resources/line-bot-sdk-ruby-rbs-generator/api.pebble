@@ -19,9 +19,6 @@ module Line
 
           # {{ op.notes }}
           #
-          {%  if op.summary -%}
-          # @summary {{ op.summary }}
-          {%  endif -%}
           {% for param in op.allParams -%}
           # @param {{ param.paramName }} {{ param.description }}
           {% endfor -%}
@@ -42,9 +39,6 @@ module Line
 
           # {{ op.notes }}
           #
-          {%  if op.summary -%}
-          # @summary {{ op.summary }}
-          {%  endif -%}
           {% for param in op.allParams -%}
            # @param {{ param.paramName }} {{ param.description }}
           {% endfor -%}

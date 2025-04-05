@@ -18,6 +18,23 @@ module Line
     module V2
       module Shop
         class ApiClient
+          # Initializes a new {Line::Bot::V2::Shop::ApiClient} instance.
+          #
+          # @param base_url [String] The base URL for requests (optional).
+          #   Defaults to 'https://api.line.me' if none is provided.
+          #   You can override this for testing or to use a mock server.
+          # @param channel_access_token [String] The channel access token for authorization.
+          # @param http_options [Hash] HTTP options (same as Net::HTTP options).
+          #   See: https://docs.ruby-lang.org/en/3.4/Net/HTTP.html to understand the options.
+          #
+          # @example
+          #   @client ||= Line::Bot::V2::Shop::ApiClient.new(
+          #     channel_access_token: "YOUR_CHANNEL_ACCESS_TOKEN",
+          #     http_options: {
+          #       open_timeout: 5,
+          #       read_timeout: 5,
+          #     }
+          #   )
           def initialize(base_url: nil, channel_access_token:, http_options: {})
             @http_client = HttpClient.new(
               base_url: base_url || 'https://api.line.me',
@@ -29,9 +46,12 @@ module Line
           end
 
           # Sends a mission sticker.
+          # This requests to <tt>POST https://api.line.me/shop/v3/mission</tt>
           #
-          # @param mission_sticker_request 
+          # @param mission_sticker_request [MissionStickerRequest] 
           # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 200
           def mission_sticker_v3_with_http_info(
             mission_sticker_request:
           )
@@ -53,9 +73,12 @@ module Line
           end
 
           # Sends a mission sticker.
+          # This requests to <tt>POST https://api.line.me/shop/v3/mission</tt>
+          # When you want to get HTTP status code or response headers, use {#mission_sticker_v3_with_http_info} instead of this.
           #
-          # @param mission_sticker_request 
+          # @param mission_sticker_request [MissionStickerRequest] 
           # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
+          # @return [Net::ReadAdapter | String] when HTTP status code is 200
           def mission_sticker_v3(
             mission_sticker_request:
           )

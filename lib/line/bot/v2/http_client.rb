@@ -6,43 +6,60 @@ require 'net/http/post/multipart'
 module Line
   module Bot
     module V2
+      # This class is not intended for line-bot-sdk-ruby users. Breaking changes may occur; use at your own risk.
+
       class HttpClient
+        # Initializes a new HttpClient instance.
+        #
+        # @param base_url [String] The base URL for requests.
+        # @param http_headers [Hash] The default HTTP headers.
+        # @param http_options [Hash] The HTTP options (same as Net::HTTP options).
+        # https://docs.ruby-lang.org/en/3.4/Net/HTTP.html#method-i-options
+        #
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def initialize(base_url:, http_headers: {}, http_options: {})
           @base_url = base_url
           @http_headers = { 'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::V2::VERSION}" }.merge(http_headers)
           @http_options = http_options
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def get(path:, query_params: nil, headers: nil)
           request = build_request(Net::HTTP::Get, path, query_params, headers)
           perform_request(request)
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def post(path:, query_params: nil, body_params: nil, headers: nil)
           request = build_request(Net::HTTP::Post, path, query_params, headers, body_params)
           perform_request(request)
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def put(path:, query_params: nil, body_params: nil, headers: nil)
           request = build_request(Net::HTTP::Put, path, query_params, headers, body_params)
           perform_request(request)
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def delete(path:, query_params: nil, headers: nil)
           request = build_request(Net::HTTP::Delete, path, query_params, headers)
           perform_request(request)
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def post_form(path:, query_params: nil, form_params: nil, headers: nil)
           request = build_form_request(Net::HTTP::Post, path, query_params, form_params, headers)
           perform_request(request)
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def post_form_multipart(path:, query_params: nil, form_params: nil, headers: nil)
           request = build_multipart_request(Net::HTTP::Post::Multipart, path, query_params, form_params, headers)
           perform_request(request)
         end
 
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def put_form_multipart(path:, query_params: nil, form_params: nil, headers: nil)
           request = build_multipart_request(Net::HTTP::Put::Multipart, path, query_params, form_params, headers)
           perform_request(request)

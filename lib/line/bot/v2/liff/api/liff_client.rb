@@ -18,6 +18,23 @@ module Line
     module V2
       module Liff
         class ApiClient
+          # Initializes a new {Line::Bot::V2::Liff::ApiClient} instance.
+          #
+          # @param base_url [String] The base URL for requests (optional).
+          #   Defaults to 'https://api.line.me' if none is provided.
+          #   You can override this for testing or to use a mock server.
+          # @param channel_access_token [String] The channel access token for authorization.
+          # @param http_options [Hash] HTTP options (same as Net::HTTP options).
+          #   See: https://docs.ruby-lang.org/en/3.4/Net/HTTP.html to understand the options.
+          #
+          # @example
+          #   @client ||= Line::Bot::V2::Liff::ApiClient.new(
+          #     channel_access_token: "YOUR_CHANNEL_ACCESS_TOKEN",
+          #     http_options: {
+          #       open_timeout: 5,
+          #       read_timeout: 5,
+          #     }
+          #   )
           def initialize(base_url: nil, channel_access_token:, http_options: {})
             @http_client = HttpClient.new(
               base_url: base_url || 'https://api.line.me',
@@ -29,10 +46,14 @@ module Line
           end
 
           # Adding the LIFF app to a channel
+          # This requests to <tt>POST https://api.line.me/liff/v1/apps</tt>
           #
-          # @summary Create LIFF app
-          # @param add_liff_app_request 
+          # @param add_liff_app_request [AddLiffAppRequest] 
           # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::Liff::AddLiffAppResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 401
           def add_liff_app_with_http_info(
             add_liff_app_request:
           )
@@ -62,10 +83,14 @@ module Line
           end
 
           # Adding the LIFF app to a channel
+          # This requests to <tt>POST https://api.line.me/liff/v1/apps</tt>
+          # When you want to get HTTP status code or response headers, use {#add_liff_app_with_http_info} instead of this.
           #
-          # @summary Create LIFF app
-          # @param add_liff_app_request 
+          # @param add_liff_app_request [AddLiffAppRequest] 
           # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
+          # @return [Line::Bot::V2::Liff::AddLiffAppResponse] when HTTP status code is 200
+          # @return [Net::ReadAdapter | String] when HTTP status code is 400
+          # @return [Net::ReadAdapter | String] when HTTP status code is 401
           def add_liff_app(
             add_liff_app_request:
           )
@@ -77,10 +102,14 @@ module Line
           end
 
           # Deletes a LIFF app from a channel. 
+          # This requests to <tt>DELETE https://api.line.me/liff/v1/apps/{liffId}</tt>
           #
-          # @summary Delete LIFF app from a channel
-          # @param liff_id ID of the LIFF app to be updated
+          # @param liff_id [String] ID of the LIFF app to be updated
           # @see https://developers.line.biz/en/reference/liff-server/#delete-liff-app
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 401
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 404
           def delete_liff_app_with_http_info(
             liff_id:
           )
@@ -106,10 +135,14 @@ module Line
           end
 
           # Deletes a LIFF app from a channel. 
+          # This requests to <tt>DELETE https://api.line.me/liff/v1/apps/{liffId}</tt>
+          # When you want to get HTTP status code or response headers, use {#delete_liff_app_with_http_info} instead of this.
           #
-          # @summary Delete LIFF app from a channel
-          # @param liff_id ID of the LIFF app to be updated
+          # @param liff_id [String] ID of the LIFF app to be updated
           # @see https://developers.line.biz/en/reference/liff-server/#delete-liff-app
+          # @return [Net::ReadAdapter | String] when HTTP status code is 200
+          # @return [Net::ReadAdapter | String] when HTTP status code is 401
+          # @return [Net::ReadAdapter | String] when HTTP status code is 404
           def delete_liff_app(
             liff_id:
           )
@@ -121,9 +154,13 @@ module Line
           end
 
           # Gets information on all the LIFF apps added to the channel.
+          # This requests to <tt>GET https://api.line.me/liff/v1/apps</tt>
           #
-          # @summary Get all LIFF apps
           # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::Liff::GetAllLiffAppsResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 401
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 404
           def get_all_liff_apps_with_http_info(
           )
             path = "/liff/v1/apps"
@@ -151,9 +188,13 @@ module Line
           end
 
           # Gets information on all the LIFF apps added to the channel.
+          # This requests to <tt>GET https://api.line.me/liff/v1/apps</tt>
+          # When you want to get HTTP status code or response headers, use {#get_all_liff_apps_with_http_info} instead of this.
           #
-          # @summary Get all LIFF apps
           # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
+          # @return [Line::Bot::V2::Liff::GetAllLiffAppsResponse] when HTTP status code is 200
+          # @return [Net::ReadAdapter | String] when HTTP status code is 401
+          # @return [Net::ReadAdapter | String] when HTTP status code is 404
           def get_all_liff_apps(
           )
             response_body, _status_code, _headers = get_all_liff_apps_with_http_info(
@@ -163,11 +204,16 @@ module Line
           end
 
           # Update LIFF app settings
+          # This requests to <tt>PUT https://api.line.me/liff/v1/apps/{liffId}</tt>
           #
-          # @summary Update LIFF app from a channel
-          # @param liff_id ID of the LIFF app to be updated
-          # @param update_liff_app_request 
+          # @param liff_id [String] ID of the LIFF app to be updated
+          # @param update_liff_app_request [UpdateLiffAppRequest] 
           # @see https://developers.line.biz/en/reference/liff-server/#update-liff-app
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 401
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 404
           def update_liff_app_with_http_info(
             liff_id:,
             update_liff_app_request:
@@ -197,11 +243,16 @@ module Line
           end
 
           # Update LIFF app settings
+          # This requests to <tt>PUT https://api.line.me/liff/v1/apps/{liffId}</tt>
+          # When you want to get HTTP status code or response headers, use {#update_liff_app_with_http_info} instead of this.
           #
-          # @summary Update LIFF app from a channel
-          # @param liff_id ID of the LIFF app to be updated
-          # @param update_liff_app_request 
+          # @param liff_id [String] ID of the LIFF app to be updated
+          # @param update_liff_app_request [UpdateLiffAppRequest] 
           # @see https://developers.line.biz/en/reference/liff-server/#update-liff-app
+          # @return [Net::ReadAdapter | String] when HTTP status code is 200
+          # @return [Net::ReadAdapter | String] when HTTP status code is 400
+          # @return [Net::ReadAdapter | String] when HTTP status code is 401
+          # @return [Net::ReadAdapter | String] when HTTP status code is 404
           def update_liff_app(
             liff_id:,
             update_liff_app_request:

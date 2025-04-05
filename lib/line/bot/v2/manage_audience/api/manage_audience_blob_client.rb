@@ -18,6 +18,23 @@ module Line
     module V2
       module ManageAudience
         class ApiBlobClient
+          # Initializes a new {Line::Bot::V2::ManageAudience::ApiBlobClient} instance.
+          #
+          # @param base_url [String] The base URL for requests (optional).
+          #   Defaults to 'https://api-data.line.me' if none is provided.
+          #   You can override this for testing or to use a mock server.
+          # @param channel_access_token [String] The channel access token for authorization.
+          # @param http_options [Hash] HTTP options (same as Net::HTTP options).
+          #   See: https://docs.ruby-lang.org/en/3.4/Net/HTTP.html to understand the options.
+          #
+          # @example
+          #   @client ||= Line::Bot::V2::ManageAudience::ApiBlobClient.new(
+          #     channel_access_token: "YOUR_CHANNEL_ACCESS_TOKEN",
+          #     http_options: {
+          #       open_timeout: 5,
+          #       read_timeout: 5,
+          #     }
+          #   )
           def initialize(base_url: nil, channel_access_token:, http_options: {})
             @http_client = HttpClient.new(
               base_url: base_url || 'https://api-data.line.me',
@@ -29,11 +46,14 @@ module Line
           end
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
+          # This requests to <tt>PUT https://api-data.line.me/v2/bot/audienceGroup/upload/byFile</tt>
           #
-          # @param file A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
-          # @param audience_group_id The audience ID.
-          # @param upload_description The description to register with the job
+          # @param file [File] A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
+          # @param audience_group_id [Integer] The audience ID.
+          # @param upload_description [String] The description to register with the job
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group-by-file
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Net::ReadAdapter | String, Integer, Hash{String => String})] when HTTP status code is 202
           def add_user_ids_to_audience_with_http_info(
             file:,
             audience_group_id: nil,
@@ -63,11 +83,14 @@ module Line
           end
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
+          # This requests to <tt>PUT https://api-data.line.me/v2/bot/audienceGroup/upload/byFile</tt>
+          # When you want to get HTTP status code or response headers, use {#add_user_ids_to_audience_with_http_info} instead of this.
           #
-          # @param file A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
-          # @param audience_group_id The audience ID.
-          # @param upload_description The description to register with the job
+          # @param file [File] A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
+          # @param audience_group_id [Integer] The audience ID.
+          # @param upload_description [String] The description to register with the job
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group-by-file
+          # @return [Net::ReadAdapter | String] when HTTP status code is 202
           def add_user_ids_to_audience(
             file:,
             audience_group_id: nil,
@@ -83,12 +106,15 @@ module Line
           end
 
           # Create audience for uploading user IDs (by file).
+          # This requests to <tt>POST https://api-data.line.me/v2/bot/audienceGroup/upload/byFile</tt>
           #
-          # @param file A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
-          # @param description The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
-          # @param is_ifa_audience To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
-          # @param upload_description The description to register for the job (in `jobs[].description`). 
+          # @param file [File] A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
+          # @param description [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          # @param is_ifa_audience [Boolean] To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
+          # @param upload_description [String] The description to register for the job (in `jobs[].description`). 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group-by-file
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse, Integer, Hash{String => String})] when HTTP status code is 202
           def create_audience_for_uploading_user_ids_with_http_info(
             file:,
             description: nil,
@@ -124,12 +150,15 @@ module Line
           end
 
           # Create audience for uploading user IDs (by file).
+          # This requests to <tt>POST https://api-data.line.me/v2/bot/audienceGroup/upload/byFile</tt>
+          # When you want to get HTTP status code or response headers, use {#create_audience_for_uploading_user_ids_with_http_info} instead of this.
           #
-          # @param file A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
-          # @param description The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
-          # @param is_ifa_audience To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
-          # @param upload_description The description to register for the job (in `jobs[].description`). 
+          # @param file [File] A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
+          # @param description [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          # @param is_ifa_audience [Boolean] To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
+          # @param upload_description [String] The description to register for the job (in `jobs[].description`). 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group-by-file
+          # @return [Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse] when HTTP status code is 202
           def create_audience_for_uploading_user_ids(
             file:,
             description: nil,
