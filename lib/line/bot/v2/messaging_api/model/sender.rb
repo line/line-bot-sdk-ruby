@@ -16,6 +16,8 @@ module Line
           attr_accessor :name # Display name. Certain words such as `LINE` may not be used.
           attr_accessor :icon_url # URL of the image to display as an icon when sending a message
 
+          # @param name [String] Display name. Certain words such as `LINE` may not be used.
+          # @param icon_url [String] URL of the image to display as an icon when sending a message
           def initialize(
             name: nil,
             icon_url: nil,

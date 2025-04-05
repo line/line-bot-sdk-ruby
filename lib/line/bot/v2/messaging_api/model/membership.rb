@@ -23,6 +23,16 @@ module Line
           attr_accessor :is_in_app_purchase # Payment method for users who subscribe to a membership plan.
           attr_accessor :is_published # Membership plan status.
 
+          # @param membership_id [Integer] Membership plan ID.
+          # @param title [String] Membership plan name.
+          # @param description [String] Membership plan description.
+          # @param benefits [Array[String]] List of membership plan perks.
+          # @param price [Float] Monthly fee for membership plan. (e.g. 1500.00)
+          # @param currency [String] ('JPY'|'TWD'|'THB') The currency of membership.price.
+          # @param member_count [Integer] Number of members subscribed to the membership plan.
+          # @param member_limit [Integer] The upper limit of members who can subscribe. If no upper limit is set, it will be null.
+          # @param is_in_app_purchase [Boolean] Payment method for users who subscribe to a membership plan.
+          # @param is_published [Boolean] Membership plan status.
           def initialize(
             membership_id:,
             title:,

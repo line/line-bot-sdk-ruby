@@ -18,6 +18,9 @@ module Line
           attr_accessor :expires_in # Time until channel access token expires in seconds from time the token is issued.
           attr_accessor :token_type # Token type. The value is always `Bearer`.
 
+          # @param access_token [String] A short-lived channel access token. Valid for 30 days. Note: Channel access tokens cannot be refreshed. 
+          # @param expires_in [Integer] Time until channel access token expires in seconds from time the token is issued.
+          # @param token_type [String] Token type. The value is always `Bearer`.
           def initialize(
             access_token:,
             expires_in:,

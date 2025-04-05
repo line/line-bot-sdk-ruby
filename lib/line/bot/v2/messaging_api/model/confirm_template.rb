@@ -18,6 +18,8 @@ module Line
           attr_accessor :text
           attr_accessor :actions
 
+          # @param text [String] 
+          # @param actions [Array[Action]] 
           def initialize(
             text:,
             actions:,

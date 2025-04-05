@@ -21,6 +21,10 @@ module Line
           attr_accessor :original_content_url
           attr_accessor :duration
 
+          # @param quick_reply [QuickReply] 
+          # @param sender [Sender] 
+          # @param original_content_url [String] 
+          # @param duration [Integer] 
           def initialize(
             quick_reply: nil,
             sender: nil,

@@ -16,6 +16,7 @@ module Line
         class QuickReply
           attr_accessor :items # Quick reply button objects.
 
+          # @param items [Array[QuickReplyItem]] Quick reply button objects.
           def initialize(
             items: nil,
             **dynamic_attributes

@@ -15,6 +15,8 @@ module Line
           attr_accessor :gender # users' gender
           attr_accessor :percentage # Percentage
 
+          # @param gender [String] ('male'|'female'|'unknown') users' gender
+          # @param percentage [Float] Percentage
           def initialize(
             gender: nil,
             percentage: nil,

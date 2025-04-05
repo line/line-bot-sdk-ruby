@@ -21,6 +21,12 @@ module Line
           attr_accessor :app_types # Percentage by OS.
           attr_accessor :subscription_periods # Percentage per friendship duration.
 
+          # @param available [Boolean] true if friend demographic information is available.
+          # @param genders [Array[GenderTile]] Percentage per gender.
+          # @param ages [Array[AgeTile]] Percentage per age group.
+          # @param areas [Array[AreaTile]] Percentage per area.
+          # @param app_types [Array[AppTypeTile]] Percentage by OS.
+          # @param subscription_periods [Array[SubscriptionPeriodTile]] Percentage per friendship duration.
           def initialize(
             available: nil,
             genders: nil,

@@ -18,6 +18,8 @@ module Line
           attr_accessor :gte
           attr_accessor :lt
 
+          # @param gte [String] ('age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70') 
+          # @param lt [String] ('age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70') 
           def initialize(
             gte: nil,
             lt: nil,

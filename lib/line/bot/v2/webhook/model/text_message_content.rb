@@ -22,6 +22,12 @@ module Line
           attr_accessor :quote_token # Quote token to quote this message. 
           attr_accessor :quoted_message_id # Message ID of a quoted message. Only included when the received message quotes a past message.
 
+          # @param id [String] Message ID
+          # @param text [String] Message text.
+          # @param emojis [Array[Emoji]] Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
+          # @param mention [Mention] 
+          # @param quote_token [String] Quote token to quote this message. 
+          # @param quoted_message_id [String] Message ID of a quoted message. Only included when the received message quotes a past message.
           def initialize(
             id:,
             text:,

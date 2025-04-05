@@ -19,6 +19,9 @@ module Line
           attr_accessor :image_aspect_ratio
           attr_accessor :image_size
 
+          # @param columns [Array[CarouselColumn]] 
+          # @param image_aspect_ratio [String] 
+          # @param image_size [String] 
           def initialize(
             columns:,
             image_aspect_ratio: nil,

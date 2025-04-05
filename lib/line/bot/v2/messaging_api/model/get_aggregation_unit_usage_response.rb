@@ -15,6 +15,7 @@ module Line
         class GetAggregationUnitUsageResponse
           attr_accessor :num_of_custom_aggregation_units # Number of aggregation units used this month.
 
+          # @param num_of_custom_aggregation_units [Integer] Number of aggregation units used this month.
           def initialize(
             num_of_custom_aggregation_units:,
             **dynamic_attributes

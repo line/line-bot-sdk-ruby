@@ -19,6 +19,7 @@ module Line
           attr_reader :type # Type of substitution object
           attr_accessor :mentionee
 
+          # @param mentionee [MentionTarget] 
           def initialize(
             mentionee:,
             **dynamic_attributes

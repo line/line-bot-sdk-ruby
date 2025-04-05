@@ -16,6 +16,8 @@ module Line
           attr_accessor :rich_menu_id # ID of a rich menu
           attr_accessor :user_ids # Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
 
+          # @param rich_menu_id [String] ID of a rich menu
+          # @param user_ids [Array[String]] Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
           def initialize(
             rich_menu_id:,
             user_ids:,

@@ -14,6 +14,7 @@ module Line
         class Template
           attr_accessor :type
 
+          # @param type [String] 
           def initialize(
             type:,
             **dynamic_attributes

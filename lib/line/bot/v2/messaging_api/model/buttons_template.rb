@@ -24,6 +24,14 @@ module Line
           attr_accessor :default_action
           attr_accessor :actions
 
+          # @param thumbnail_image_url [String] 
+          # @param image_aspect_ratio [String] 
+          # @param image_size [String] 
+          # @param image_background_color [String] 
+          # @param title [String] 
+          # @param text [String] 
+          # @param default_action [Action] 
+          # @param actions [Array[Action]] 
           def initialize(
             thumbnail_image_url: nil,
             image_aspect_ratio: nil,

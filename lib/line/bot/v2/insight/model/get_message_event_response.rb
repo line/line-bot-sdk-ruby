@@ -18,6 +18,9 @@ module Line
           attr_accessor :messages # Array of information about individual message bubbles.
           attr_accessor :clicks # Array of information about opened URLs in the message.
 
+          # @param overview [GetMessageEventResponseOverview] 
+          # @param messages [Array[GetMessageEventResponseMessage]] Array of information about individual message bubbles.
+          # @param clicks [Array[GetMessageEventResponseClick]] Array of information about opened URLs in the message.
           def initialize(
             overview: nil,
             messages: nil,

@@ -16,6 +16,7 @@ module Line
         class UpdateAudienceGroupDescriptionRequest
           attr_accessor :description # The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
 
+          # @param description [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           def initialize(
             description: nil,
             **dynamic_attributes

@@ -27,6 +27,16 @@ module Line
           attr_accessor :offset_end
           attr_accessor :scaling
 
+          # @param url [String] 
+          # @param size [String] 
+          # @param aspect_ratio [String] 
+          # @param margin [String] 
+          # @param position [String] ('relative'|'absolute') 
+          # @param offset_top [String] 
+          # @param offset_bottom [String] 
+          # @param offset_start [String] 
+          # @param offset_end [String] 
+          # @param scaling [Boolean] 
           def initialize(
             url:,
             size: nil,

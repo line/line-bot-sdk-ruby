@@ -18,6 +18,9 @@ module Line
           attr_accessor :upload_description # The audience's name.
           attr_accessor :audiences # An array of up to 10,000 user IDs or IFAs.
 
+          # @param audience_group_id [Integer] The audience ID.
+          # @param upload_description [String] The audience's name.
+          # @param audiences [Array[Audience]] An array of up to 10,000 user IDs or IFAs.
           def initialize(
             audience_group_id: nil,
             upload_description: nil,

@@ -17,6 +17,9 @@ module Line
           attr_accessor :quick_reply
           attr_accessor :sender
 
+          # @param type [String] Type of message
+          # @param quick_reply [QuickReply] 
+          # @param sender [Sender] 
           def initialize(
             type:,
             quick_reply: nil,

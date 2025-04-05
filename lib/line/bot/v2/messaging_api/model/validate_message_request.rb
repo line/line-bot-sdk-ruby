@@ -14,6 +14,7 @@ module Line
         class ValidateMessageRequest
           attr_accessor :messages # Array of message objects to validate
 
+          # @param messages [Array[Message]] Array of message objects to validate
           def initialize(
             messages:,
             **dynamic_attributes

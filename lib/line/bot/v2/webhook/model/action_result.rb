@@ -15,6 +15,8 @@ module Line
           attr_accessor :type
           attr_accessor :data # Base64-encoded binary data
 
+          # @param type [String] ('void'|'binary') 
+          # @param data [String] Base64-encoded binary data
           def initialize(
             type:,
             data: nil,

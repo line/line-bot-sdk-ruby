@@ -14,6 +14,7 @@ module Line
         class ModuleContent
           attr_accessor :type # Type
 
+          # @param type [String] Type
           def initialize(
             type:,
             **dynamic_attributes

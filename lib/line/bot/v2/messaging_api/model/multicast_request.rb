@@ -18,6 +18,10 @@ module Line
           attr_accessor :notification_disabled # `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           attr_accessor :custom_aggregation_units # Name of aggregation unit. Case-sensitive.
 
+          # @param messages [Array[Message]] Messages to send
+          # @param to [Array[String]] Array of user IDs. Use userId values which are returned in webhook event objects. Do not use LINE IDs found on LINE.
+          # @param notification_disabled [Boolean] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          # @param custom_aggregation_units [Array[String]] Name of aggregation unit. Case-sensitive.
           def initialize(
             messages:,
             to:,

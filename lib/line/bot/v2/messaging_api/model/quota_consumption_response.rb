@@ -15,6 +15,7 @@ module Line
         class QuotaConsumptionResponse
           attr_accessor :total_usage # The number of sent messages in the current month
 
+          # @param total_usage [Integer] The number of sent messages in the current month
           def initialize(
             total_usage:,
             **dynamic_attributes

@@ -21,6 +21,10 @@ module Line
           attr_accessor :original_content_url
           attr_accessor :preview_image_url
 
+          # @param quick_reply [QuickReply] 
+          # @param sender [Sender] 
+          # @param original_content_url [String] 
+          # @param preview_image_url [String] 
           def initialize(
             quick_reply: nil,
             sender: nil,

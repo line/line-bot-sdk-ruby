@@ -20,6 +20,8 @@ module Line
           attr_accessor :product_id
           attr_accessor :emoji_id
 
+          # @param product_id [String] 
+          # @param emoji_id [String] 
           def initialize(
             product_id:,
             emoji_id:,

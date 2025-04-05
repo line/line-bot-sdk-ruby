@@ -15,6 +15,7 @@ module Line
         class SubstitutionObject
           attr_accessor :type # Type of substitution object
 
+          # @param type [String] Type of substitution object
           def initialize(
             type:,
             **dynamic_attributes

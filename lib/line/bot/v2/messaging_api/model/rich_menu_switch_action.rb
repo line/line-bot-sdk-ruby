@@ -19,6 +19,9 @@ module Line
           attr_accessor :data
           attr_accessor :rich_menu_alias_id
 
+          # @param label [String] Label for the action.
+          # @param data [String] 
+          # @param rich_menu_alias_id [String] 
           def initialize(
             label: nil,
             data: nil,

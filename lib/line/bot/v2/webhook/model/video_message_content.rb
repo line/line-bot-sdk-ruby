@@ -20,6 +20,10 @@ module Line
           attr_accessor :content_provider
           attr_accessor :quote_token # Quote token to quote this message. 
 
+          # @param id [String] Message ID
+          # @param duration [Integer] Length of video file (milliseconds)
+          # @param content_provider [ContentProvider] 
+          # @param quote_token [String] Quote token to quote this message. 
           def initialize(
             id:,
             duration: nil,

@@ -21,6 +21,11 @@ module Line
           attr_accessor :aspect_ratio
           attr_accessor :action
 
+          # @param url [String] 
+          # @param preview_url [String] 
+          # @param alt_content [FlexComponent] 
+          # @param aspect_ratio [String] 
+          # @param action [Action] 
           def initialize(
             url:,
             preview_url:,

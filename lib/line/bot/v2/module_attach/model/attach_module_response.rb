@@ -16,6 +16,8 @@ module Line
           attr_accessor :bot_id # User ID of the bot on the LINE Official Account.
           attr_accessor :scopes # Permissions (scope) granted by the LINE Official Account admin.
 
+          # @param bot_id [String] User ID of the bot on the LINE Official Account.
+          # @param scopes [Array[String]] Permissions (scope) granted by the LINE Official Account admin.
           def initialize(
             bot_id:,
             scopes:,

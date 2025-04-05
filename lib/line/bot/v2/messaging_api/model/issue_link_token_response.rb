@@ -15,6 +15,7 @@ module Line
         class IssueLinkTokenResponse
           attr_accessor :link_token # Link token. Link tokens are valid for 10 minutes and can only be used once.  
 
+          # @param link_token [String] Link token. Link tokens are valid for 10 minutes and can only be used once.  
           def initialize(
             link_token:,
             **dynamic_attributes

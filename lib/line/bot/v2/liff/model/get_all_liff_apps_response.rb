@@ -14,6 +14,7 @@ module Line
         class GetAllLiffAppsResponse
           attr_accessor :apps
 
+          # @param apps [Array[LiffApp]] 
           def initialize(
             apps: nil,
             **dynamic_attributes

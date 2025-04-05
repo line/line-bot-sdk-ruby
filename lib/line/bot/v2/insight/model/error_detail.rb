@@ -15,6 +15,8 @@ module Line
           attr_accessor :message # Details of the error. Not included in the response under certain situations.
           attr_accessor :property # Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.
 
+          # @param message [String] Details of the error. Not included in the response under certain situations.
+          # @param property [String] Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.
           def initialize(
             message: nil,
             property: nil,

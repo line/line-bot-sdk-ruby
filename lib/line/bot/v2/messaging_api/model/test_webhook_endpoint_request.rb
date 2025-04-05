@@ -15,6 +15,7 @@ module Line
         class TestWebhookEndpointRequest
           attr_accessor :endpoint # A webhook URL to be validated.
 
+          # @param endpoint [String] A webhook URL to be validated.
           def initialize(
             endpoint: nil,
             **dynamic_attributes

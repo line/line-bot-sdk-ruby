@@ -20,6 +20,9 @@ module Line
           attr_accessor :clipboard_text # Text that is copied to the clipboard. Max character limit: 1000 
           attr_accessor :label
 
+          # @param area [ImagemapArea] 
+          # @param clipboard_text [String] Text that is copied to the clipboard. Max character limit: 1000 
+          # @param label [String] 
           def initialize(
             area:,
             clipboard_text:,

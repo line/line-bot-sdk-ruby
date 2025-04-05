@@ -19,6 +19,9 @@ module Line
           attr_accessor :link_uri
           attr_accessor :label
 
+          # @param area [ImagemapArea] 
+          # @param link_uri [String] 
+          # @param label [String] 
           def initialize(
             area:,
             link_uri:,

@@ -17,6 +17,7 @@ module Line
           attr_reader :type
           attr_accessor :flex
 
+          # @param flex [Integer] 
           def initialize(
             flex: nil,
             **dynamic_attributes

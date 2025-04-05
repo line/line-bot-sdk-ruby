@@ -19,6 +19,9 @@ module Line
           attr_accessor :_or # Create a new recipient object by taking the logical disjunction (OR) of the specified array of recipient objects. 
           attr_accessor :_not
 
+          # @param _and [Array[Recipient]] Create a new recipient object by taking the logical conjunction (AND) of the specified array of recipient objects. 
+          # @param _or [Array[Recipient]] Create a new recipient object by taking the logical disjunction (OR) of the specified array of recipient objects. 
+          # @param _not [Recipient] 
           def initialize(
             _and: nil,
             _or: nil,

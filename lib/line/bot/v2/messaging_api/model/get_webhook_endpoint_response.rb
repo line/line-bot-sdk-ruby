@@ -16,6 +16,8 @@ module Line
           attr_accessor :endpoint # Webhook URL
           attr_accessor :active # Webhook usage status. Send a webhook event from the LINE Platform to the webhook URL only if enabled.  `true`: Webhook usage is enabled. `false`: Webhook usage is disabled. 
 
+          # @param endpoint [String] Webhook URL
+          # @param active [Boolean] Webhook usage status. Send a webhook event from the LINE Platform to the webhook URL only if enabled.  `true`: Webhook usage is enabled. `false`: Webhook usage is disabled. 
           def initialize(
             endpoint:,
             active:,

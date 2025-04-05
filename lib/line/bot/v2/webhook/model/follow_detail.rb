@@ -14,6 +14,7 @@ module Line
         class FollowDetail
           attr_accessor :is_unblocked # Whether a user has added your LINE Official Account as a friend or unblocked.
 
+          # @param is_unblocked [Boolean] Whether a user has added your LINE Official Account as a friend or unblocked.
           def initialize(
             is_unblocked:,
             **dynamic_attributes

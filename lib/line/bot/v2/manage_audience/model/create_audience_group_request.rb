@@ -19,6 +19,10 @@ module Line
           attr_accessor :upload_description # The description to register for the job (in jobs[].description). 
           attr_accessor :audiences # An array of user IDs or IFAs. Max number: 10,000 
 
+          # @param description [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          # @param is_ifa_audience [Boolean] To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 
+          # @param upload_description [String] The description to register for the job (in jobs[].description). 
+          # @param audiences [Array[Audience]] An array of user IDs or IFAs. Max number: 10,000 
           def initialize(
             description: nil,
             is_ifa_audience: nil,

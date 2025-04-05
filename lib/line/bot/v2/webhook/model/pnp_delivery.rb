@@ -15,6 +15,7 @@ module Line
         class PnpDelivery
           attr_accessor :data # A hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
 
+          # @param data [String] A hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
           def initialize(
             data:,
             **dynamic_attributes

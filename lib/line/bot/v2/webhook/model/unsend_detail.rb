@@ -14,6 +14,7 @@ module Line
         class UnsendDetail
           attr_accessor :message_id # The message ID of the unsent message
 
+          # @param message_id [String] The message ID of the unsent message
           def initialize(
             message_id:,
             **dynamic_attributes

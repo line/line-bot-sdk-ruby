@@ -21,6 +21,11 @@ module Line
           attr_accessor :center_color
           attr_accessor :center_position
 
+          # @param angle [String] 
+          # @param start_color [String] 
+          # @param end_color [String] 
+          # @param center_color [String] 
+          # @param center_position [String] 
           def initialize(
             angle: nil,
             start_color: nil,

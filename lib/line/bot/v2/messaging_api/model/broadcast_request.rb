@@ -16,6 +16,8 @@ module Line
           attr_accessor :messages # List of Message objects.
           attr_accessor :notification_disabled # `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
 
+          # @param messages [Array[Message]] List of Message objects.
+          # @param notification_disabled [Boolean] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           def initialize(
             messages:,
             notification_disabled: false,

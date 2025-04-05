@@ -15,6 +15,7 @@ module Line
         class PushMessageResponse
           attr_accessor :sent_messages # Array of sent messages.
 
+          # @param sent_messages [Array[SentMessage]] Array of sent messages.
           def initialize(
             sent_messages:,
             **dynamic_attributes

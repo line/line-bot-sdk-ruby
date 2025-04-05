@@ -15,6 +15,7 @@ module Line
         class Recipient
           attr_accessor :type # Type of recipient
 
+          # @param type [String] Type of recipient
           def initialize(
             type: nil,
             **dynamic_attributes

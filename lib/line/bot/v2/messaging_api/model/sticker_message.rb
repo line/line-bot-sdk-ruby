@@ -22,6 +22,11 @@ module Line
           attr_accessor :sticker_id
           attr_accessor :quote_token # Quote token of the message you want to quote.
 
+          # @param quick_reply [QuickReply] 
+          # @param sender [Sender] 
+          # @param package_id [String] 
+          # @param sticker_id [String] 
+          # @param quote_token [String] Quote token of the message you want to quote.
           def initialize(
             quick_reply: nil,
             sender: nil,

@@ -17,6 +17,7 @@ module Line
           attr_reader :type # Type of recipient
           attr_accessor :audience_group_id
 
+          # @param audience_group_id [Integer] 
           def initialize(
             audience_group_id: nil,
             **dynamic_attributes

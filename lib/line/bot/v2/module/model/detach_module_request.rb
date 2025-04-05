@@ -16,6 +16,7 @@ module Line
         class DetachModuleRequest
           attr_accessor :bot_id # User ID of the LINE Official Account bot attached to the module channel.
 
+          # @param bot_id [String] User ID of the LINE Official Account bot attached to the module channel.
           def initialize(
             bot_id: nil,
             **dynamic_attributes

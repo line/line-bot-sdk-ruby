@@ -15,6 +15,7 @@ module Line
         class ErrorResponse
           attr_accessor :message # Message containing information about the error.
 
+          # @param message [String] Message containing information about the error.
           def initialize(
             message:,
             **dynamic_attributes

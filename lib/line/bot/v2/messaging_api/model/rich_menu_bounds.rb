@@ -19,6 +19,10 @@ module Line
           attr_accessor :width # Width of the area.
           attr_accessor :height # Height of the area.
 
+          # @param x [Integer] Horizontal position relative to the top-left corner of the area.
+          # @param y [Integer] Vertical position relative to the top-left corner of the area.
+          # @param width [Integer] Width of the area.
+          # @param height [Integer] Height of the area.
           def initialize(
             x: nil,
             y: nil,

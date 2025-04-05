@@ -19,6 +19,10 @@ module Line
           attr_accessor :product_type # `STICKER`
           attr_accessor :send_present_message # `false`
 
+          # @param to [String] Destination user ID
+          # @param product_id [String] Package ID for a set of stickers
+          # @param product_type [String] `STICKER`
+          # @param send_present_message [Boolean] `false`
           def initialize(
             to:,
             product_id:,

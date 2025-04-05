@@ -22,6 +22,14 @@ module Line
           attr_accessor :ble_notification_payload # Data contained in notification.
           attr_accessor :error_reason # Error reason.
 
+          # @param scenario_id [String] Scenario ID executed
+          # @param revision [Integer] Revision number of the scenario set containing the executed scenario
+          # @param start_time [Integer] Timestamp for when execution of scenario action started (milliseconds, LINE app time)
+          # @param end_time [Integer] Timestamp for when execution of scenario was completed (milliseconds, LINE app time)
+          # @param result_code [String] Scenario execution completion status
+          # @param action_results [Array[ActionResult]] Execution result of individual operations specified in action. Only included when things.result.resultCode is success.
+          # @param ble_notification_payload [String] Data contained in notification.
+          # @param error_reason [String] Error reason.
           def initialize(
             scenario_id: nil,
             revision: nil,

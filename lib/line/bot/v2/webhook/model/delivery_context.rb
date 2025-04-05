@@ -15,6 +15,7 @@ module Line
         class DeliveryContext
           attr_accessor :is_redelivery # Whether the webhook event is a redelivered one or not.
 
+          # @param is_redelivery [Boolean] Whether the webhook event is a redelivered one or not.
           def initialize(
             is_redelivery:,
             **dynamic_attributes

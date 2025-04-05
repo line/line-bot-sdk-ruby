@@ -20,6 +20,11 @@ module Line
           attr_accessor :display_name # Bot's display name
           attr_accessor :picture_url # Profile image URL. Image URL starting with `https://`. Not included in the response if the bot doesn't have a profile image.
 
+          # @param user_id [String] Bot's user ID
+          # @param basic_id [String] Bot's basic ID
+          # @param premium_id [String] Bot's premium ID. Not included in the response if the premium ID isn't set.
+          # @param display_name [String] Bot's display name
+          # @param picture_url [String] Profile image URL. Image URL starting with `https://`. Not included in the response if the bot doesn't have a profile image.
           def initialize(
             user_id:,
             basic_id:,

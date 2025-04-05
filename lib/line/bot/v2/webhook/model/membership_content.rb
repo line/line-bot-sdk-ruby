@@ -15,6 +15,7 @@ module Line
         class MembershipContent
           attr_accessor :type # Type of membership event.
 
+          # @param type [String] Type of membership event.
           def initialize(
             type:,
             **dynamic_attributes

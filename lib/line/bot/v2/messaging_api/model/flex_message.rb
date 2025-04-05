@@ -21,6 +21,10 @@ module Line
           attr_accessor :alt_text
           attr_accessor :contents
 
+          # @param quick_reply [QuickReply] 
+          # @param sender [Sender] 
+          # @param alt_text [String] 
+          # @param contents [FlexContainer] 
           def initialize(
             quick_reply: nil,
             sender: nil,

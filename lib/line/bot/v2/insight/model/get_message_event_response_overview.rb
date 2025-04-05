@@ -21,6 +21,13 @@ module Line
           attr_accessor :unique_media_played # Number of users who started playing any video or audio in the message.
           attr_accessor :unique_media_played100_percent # Number of users who played the entirety of any video or audio in the message.
 
+          # @param request_id [String] Request ID.
+          # @param timestamp [Integer] UNIX timestamp for message delivery time in seconds.
+          # @param delivered [Integer] Number of messages delivered. This property shows values of less than 20. However, if all messages have not been sent, it will be null. 
+          # @param unique_impression [Integer] Number of users who opened the message, meaning they displayed at least 1 bubble.
+          # @param unique_click [Integer] Number of users who opened any URL in the message.
+          # @param unique_media_played [Integer] Number of users who started playing any video or audio in the message.
+          # @param unique_media_played100_percent [Integer] Number of users who played the entirety of any video or audio in the message.
           def initialize(
             request_id: nil,
             timestamp: nil,

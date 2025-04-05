@@ -15,6 +15,7 @@ module Line
         class Adaccount
           attr_accessor :name # Ad account name.
 
+          # @param name [String] Ad account name.
           def initialize(
             name: nil,
             **dynamic_attributes

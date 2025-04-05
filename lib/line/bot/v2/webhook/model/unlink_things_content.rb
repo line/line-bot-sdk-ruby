@@ -17,6 +17,7 @@ module Line
           attr_reader :type # Type
           attr_accessor :device_id # Device ID of the device that has been linked with LINE.
 
+          # @param device_id [String] Device ID of the device that has been linked with LINE.
           def initialize(
             device_id:,
             **dynamic_attributes

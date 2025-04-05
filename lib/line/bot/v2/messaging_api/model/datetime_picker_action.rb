@@ -23,6 +23,12 @@ module Line
           attr_accessor :max
           attr_accessor :min
 
+          # @param label [String] Label for the action.
+          # @param data [String] 
+          # @param mode [String] ('date'|'time'|'datetime') 
+          # @param initial [String] 
+          # @param max [String] 
+          # @param min [String] 
           def initialize(
             label: nil,
             data: nil,

@@ -22,6 +22,11 @@ module Line
           attr_accessor :preview_image_url
           attr_accessor :tracking_id
 
+          # @param quick_reply [QuickReply] 
+          # @param sender [Sender] 
+          # @param original_content_url [String] 
+          # @param preview_image_url [String] 
+          # @param tracking_id [String] 
           def initialize(
             quick_reply: nil,
             sender: nil,

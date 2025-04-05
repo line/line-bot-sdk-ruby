@@ -19,6 +19,9 @@ module Line
           attr_accessor :file_name # File name
           attr_accessor :file_size # File size in bytes
 
+          # @param id [String] Message ID
+          # @param file_name [String] File name
+          # @param file_size [Integer] File size in bytes
           def initialize(
             id:,
             file_name:,

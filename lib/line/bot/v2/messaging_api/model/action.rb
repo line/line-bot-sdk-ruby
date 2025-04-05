@@ -17,6 +17,8 @@ module Line
           attr_accessor :type # Type of action
           attr_accessor :label # Label for the action.
 
+          # @param type [String] Type of action
+          # @param label [String] Label for the action.
           def initialize(
             type: nil,
             label: nil,

@@ -16,6 +16,9 @@ module Line
           attr_accessor :separator
           attr_accessor :separator_color
 
+          # @param background_color [String] 
+          # @param separator [Boolean] 
+          # @param separator_color [String] 
           def initialize(
             background_color: nil,
             separator: nil,

@@ -43,6 +43,33 @@ module Line
           attr_accessor :align_items
           attr_accessor :background
 
+          # @param layout [String] ('horizontal'|'vertical'|'baseline') 
+          # @param flex [Integer] 
+          # @param contents [Array[FlexComponent]] 
+          # @param spacing [String] 
+          # @param margin [String] 
+          # @param position [String] ('relative'|'absolute') 
+          # @param offset_top [String] 
+          # @param offset_bottom [String] 
+          # @param offset_start [String] 
+          # @param offset_end [String] 
+          # @param background_color [String] 
+          # @param border_color [String] 
+          # @param border_width [String] 
+          # @param corner_radius [String] 
+          # @param width [String] 
+          # @param max_width [String] 
+          # @param height [String] 
+          # @param max_height [String] 
+          # @param padding_all [String] 
+          # @param padding_top [String] 
+          # @param padding_bottom [String] 
+          # @param padding_start [String] 
+          # @param padding_end [String] 
+          # @param action [Action] 
+          # @param justify_content [String] ('center'|'flex-start'|'flex-end'|'space-between'|'space-around'|'space-evenly') 
+          # @param align_items [String] ('center'|'flex-start'|'flex-end') 
+          # @param background [FlexBoxBackground] 
           def initialize(
             layout:,
             flex: nil,

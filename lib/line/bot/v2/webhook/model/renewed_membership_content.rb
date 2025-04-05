@@ -17,6 +17,7 @@ module Line
           attr_reader :type # Type of membership event.
           attr_accessor :membership_id # The ID of the membership that the user renewed. This is defined for each membership.
 
+          # @param membership_id [Integer] The ID of the membership that the user renewed. This is defined for each membership.
           def initialize(
             membership_id:,
             **dynamic_attributes

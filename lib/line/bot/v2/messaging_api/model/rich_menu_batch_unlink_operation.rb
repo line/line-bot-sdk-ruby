@@ -18,6 +18,7 @@ module Line
           attr_reader :type # The type of operation to the rich menu linked to the user. One of link, unlink, or unlinkAll.
           attr_accessor :from
 
+          # @param from [String] 
           def initialize(
             from:,
             **dynamic_attributes

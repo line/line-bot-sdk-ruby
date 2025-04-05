@@ -17,6 +17,7 @@ module Line
           attr_reader :type # Type of recipient
           attr_accessor :request_id
 
+          # @param request_id [String] 
           def initialize(
             request_id: nil,
             **dynamic_attributes

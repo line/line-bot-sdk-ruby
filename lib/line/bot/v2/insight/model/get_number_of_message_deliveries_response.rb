@@ -26,6 +26,17 @@ module Line
           attr_accessor :api_narrowcast # Number of narrowcast messages sent with the `Send narrowcast message` Messaging API operation.
           attr_accessor :api_reply # Number of replies sent with the `Send reply message` Messaging API operation.
 
+          # @param status [String] ('ready'|'unready'|'out_of_service') Status of the counting process.
+          # @param broadcast [Integer] Number of messages sent to all of this LINE Official Account's friends (broadcast messages).
+          # @param targeting [Integer] Number of messages sent to some of this LINE Official Account's friends, based on specific attributes (targeted messages).
+          # @param auto_response [Integer] Number of auto-response messages sent.
+          # @param welcome_response [Integer] Number of greeting messages sent.
+          # @param chat [Integer] Number of messages sent from LINE Official Account Manager [Chat screen](https://www.linebiz.com/jp/manual/OfficialAccountManager/chats/) (only available in Japanese).
+          # @param api_broadcast [Integer] Number of broadcast messages sent with the `Send broadcast message` Messaging API operation.
+          # @param api_push [Integer] Number of push messages sent with the `Send push message` Messaging API operation.
+          # @param api_multicast [Integer] Number of multicast messages sent with the `Send multicast message` Messaging API operation.
+          # @param api_narrowcast [Integer] Number of narrowcast messages sent with the `Send narrowcast message` Messaging API operation.
+          # @param api_reply [Integer] Number of replies sent with the `Send reply message` Messaging API operation.
           def initialize(
             status: nil,
             broadcast: nil,

@@ -25,6 +25,16 @@ module Line
           attr_accessor :expire_timestamp # Time of audience expiration. Only returned for specific audiences.
           attr_accessor :is_ifa_audience # The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  true: Accounts are specified with IFAs. false (default): Accounts are specified with user IDs. 
 
+          # @param audience_group_id [Integer] The audience ID.
+          # @param type [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String] The audience's name.
+          # @param created [Integer] When the audience was created (in UNIX time).
+          # @param request_id [String] The request ID that was specified when the audience was created.
+          # @param click_url [String] The URL that was specified when the audience was created.
+          # @param create_route [String] ('MESSAGING_API') How the audience was created. `MESSAGING_API`: An audience created with Messaging API. 
+          # @param permission [String] ('READ'|'READ_WRITE') Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  - `READ`: Can use only. - `READ_WRITE`: Can use and update. 
+          # @param expire_timestamp [Integer] Time of audience expiration. Only returned for specific audiences.
+          # @param is_ifa_audience [Boolean] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  true: Accounts are specified with IFAs. false (default): Accounts are specified with user IDs. 
           def initialize(
             audience_group_id: nil,
             type: nil,

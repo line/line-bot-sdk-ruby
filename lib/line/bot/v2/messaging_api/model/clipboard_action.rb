@@ -19,6 +19,8 @@ module Line
           attr_accessor :label # Label for the action.
           attr_accessor :clipboard_text # Text that is copied to the clipboard. Max character limit: 1000 
 
+          # @param label [String] Label for the action.
+          # @param clipboard_text [String] Text that is copied to the clipboard. Max character limit: 1000 
           def initialize(
             label: nil,
             clipboard_text:,

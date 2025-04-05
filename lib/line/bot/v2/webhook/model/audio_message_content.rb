@@ -19,6 +19,9 @@ module Line
           attr_accessor :content_provider
           attr_accessor :duration # Length of audio file (milliseconds)
 
+          # @param id [String] Message ID
+          # @param content_provider [ContentProvider] 
+          # @param duration [Integer] Length of audio file (milliseconds)
           def initialize(
             id:,
             content_provider:,

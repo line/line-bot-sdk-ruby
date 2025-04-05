@@ -17,6 +17,7 @@ module Line
           attr_reader :type
           attr_accessor :contents
 
+          # @param contents [Array[FlexBubble]] 
           def initialize(
             contents:,
             **dynamic_attributes

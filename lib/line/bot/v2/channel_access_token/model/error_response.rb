@@ -16,6 +16,8 @@ module Line
           attr_accessor :error # Error summary
           attr_accessor :error_description # Details of the error. Not returned in certain situations.
 
+          # @param error [String] Error summary
+          # @param error_description [String] Details of the error. Not returned in certain situations.
           def initialize(
             error: nil,
             error_description: nil,

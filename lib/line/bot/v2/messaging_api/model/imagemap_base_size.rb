@@ -15,6 +15,8 @@ module Line
           attr_accessor :height
           attr_accessor :width
 
+          # @param height [Integer] 
+          # @param width [Integer] 
           def initialize(
             height:,
             width:,

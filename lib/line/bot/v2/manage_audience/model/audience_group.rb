@@ -26,6 +26,18 @@ module Line
           attr_accessor :permission
           attr_accessor :create_route
 
+          # @param audience_group_id [Integer] The audience ID.
+          # @param type [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String] The audience's name.
+          # @param status [String] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
+          # @param failed_type [String] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
+          # @param audience_count [Integer] The number of users included in the audience.
+          # @param created [Integer] When the audience was created (in UNIX time).
+          # @param request_id [String] The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
+          # @param click_url [String] The URL that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK and link URL is specified. 
+          # @param is_ifa_audience [Boolean] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. 
+          # @param permission [String] ('READ'|'READ_WRITE') 
+          # @param create_route [String] ('OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER') 
           def initialize(
             audience_group_id: nil,
             type: nil,

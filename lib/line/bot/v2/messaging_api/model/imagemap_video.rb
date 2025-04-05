@@ -17,6 +17,10 @@ module Line
           attr_accessor :area
           attr_accessor :external_link
 
+          # @param original_content_url [String] 
+          # @param preview_image_url [String] 
+          # @param area [ImagemapArea] 
+          # @param external_link [ImagemapExternalLink] 
           def initialize(
             original_content_url: nil,
             preview_image_url: nil,

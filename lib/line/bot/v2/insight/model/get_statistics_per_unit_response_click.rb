@@ -19,6 +19,11 @@ module Line
           attr_accessor :unique_click # Number of users that opened the URL in the bubble.
           attr_accessor :unique_click_of_request # Number of users who opened this url through any link in the message. If another message bubble contains the same URL and a user opens both links, it's counted only once. 
 
+          # @param seq [Integer] The URL's serial number.
+          # @param url [String] URL.
+          # @param click [Integer] Number of times the URL in the bubble was opened.
+          # @param unique_click [Integer] Number of users that opened the URL in the bubble.
+          # @param unique_click_of_request [Integer] Number of users who opened this url through any link in the message. If another message bubble contains the same URL and a user opens both links, it's counted only once. 
           def initialize(
             seq:,
             url:,

@@ -15,6 +15,7 @@ module Line
         class RichMenuAliasListResponse
           attr_accessor :aliases # Rich menu aliases.
 
+          # @param aliases [Array[RichMenuAliasResponse]] Rich menu aliases.
           def initialize(
             aliases:,
             **dynamic_attributes

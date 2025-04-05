@@ -30,6 +30,20 @@ module Line
           attr_accessor :adjust_mode
           attr_accessor :scaling
 
+          # @param flex [Integer] 
+          # @param color [String] 
+          # @param style [String] ('primary'|'secondary'|'link') 
+          # @param action [Action] 
+          # @param gravity [String] ('top'|'bottom'|'center') 
+          # @param margin [String] 
+          # @param position [String] ('relative'|'absolute') 
+          # @param offset_top [String] 
+          # @param offset_bottom [String] 
+          # @param offset_start [String] 
+          # @param offset_end [String] 
+          # @param height [String] ('md'|'sm') 
+          # @param adjust_mode [String] ('shrink-to-fit') 
+          # @param scaling [Boolean] 
           def initialize(
             flex: nil,
             color: nil,

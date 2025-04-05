@@ -17,6 +17,7 @@ module Line
           attr_reader :type # Type of action
           attr_accessor :label # Label for the action.
 
+          # @param label [String] Label for the action.
           def initialize(
             label: nil,
             **dynamic_attributes

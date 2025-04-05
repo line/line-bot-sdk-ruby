@@ -15,6 +15,7 @@ module Line
         class MarkMessagesAsReadRequest
           attr_accessor :chat
 
+          # @param chat [ChatReference] 
           def initialize(
             chat:,
             **dynamic_attributes

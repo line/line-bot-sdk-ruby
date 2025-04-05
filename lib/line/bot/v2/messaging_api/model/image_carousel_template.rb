@@ -17,6 +17,7 @@ module Line
           attr_reader :type
           attr_accessor :columns
 
+          # @param columns [Array[ImageCarouselColumn]] 
           def initialize(
             columns:,
             **dynamic_attributes

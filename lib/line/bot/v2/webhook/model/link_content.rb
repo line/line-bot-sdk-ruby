@@ -16,6 +16,8 @@ module Line
           attr_accessor :result # One of the following values to indicate whether linking the account was successful or not
           attr_accessor :nonce # Specified nonce (number used once) when verifying the user ID.
 
+          # @param result [String] ('ok'|'failed') One of the following values to indicate whether linking the account was successful or not
+          # @param nonce [String] Specified nonce (number used once) when verifying the user ID.
           def initialize(
             result:,
             nonce:,

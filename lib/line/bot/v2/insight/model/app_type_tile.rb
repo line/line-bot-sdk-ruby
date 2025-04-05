@@ -15,6 +15,8 @@ module Line
           attr_accessor :app_type # users' OS
           attr_accessor :percentage # Percentage
 
+          # @param app_type [String] ('ios'|'android'|'others') users' OS
+          # @param percentage [Float] Percentage
           def initialize(
             app_type: nil,
             percentage: nil,

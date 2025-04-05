@@ -18,6 +18,7 @@ module Line
           attr_reader :type # Target to be mentioned
           attr_accessor :user_id
 
+          # @param user_id [String] 
           def initialize(
             user_id:,
             **dynamic_attributes

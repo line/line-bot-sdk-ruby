@@ -20,6 +20,12 @@ module Line
           attr_accessor :scope
           attr_accessor :bot_prompt
 
+          # @param view [LiffView] 
+          # @param description [String] Name of the LIFF app.  The LIFF app name can't include \"LINE\" or similar strings, or inappropriate strings. 
+          # @param features [LiffFeatures] 
+          # @param permanent_link_pattern [String] How additional information in LIFF URLs is handled. Specify `concat`. 
+          # @param scope [Array['openid'|'email'|'profile'|'chat_message.write']] 
+          # @param bot_prompt [String] ('normal'|'aggressive'|'none') 
           def initialize(
             view:,
             description: nil,

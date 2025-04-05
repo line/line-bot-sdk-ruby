@@ -24,6 +24,14 @@ module Line
           attr_accessor :size
           attr_accessor :action
 
+          # @param direction [String] ('ltr'|'rtl') 
+          # @param styles [FlexBubbleStyles] 
+          # @param header [FlexBox] 
+          # @param hero [FlexComponent] 
+          # @param body [FlexBox] 
+          # @param footer [FlexBox] 
+          # @param size [String] ('nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga') 
+          # @param action [Action] 
           def initialize(
             direction: nil,
             styles: nil,

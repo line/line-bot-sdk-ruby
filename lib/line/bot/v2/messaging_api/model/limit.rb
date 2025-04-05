@@ -17,6 +17,8 @@ module Line
           attr_accessor :max # The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. 
           attr_accessor :up_to_remaining_quota # If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 
 
+          # @param max [Integer] The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. 
+          # @param up_to_remaining_quota [Boolean] If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 
           def initialize(
             max: nil,
             up_to_remaining_quota: false,

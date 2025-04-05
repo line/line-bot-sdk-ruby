@@ -15,6 +15,8 @@ module Line
           attr_accessor :image_url
           attr_accessor :action
 
+          # @param image_url [String] 
+          # @param action [Action] 
           def initialize(
             image_url:,
             action:,

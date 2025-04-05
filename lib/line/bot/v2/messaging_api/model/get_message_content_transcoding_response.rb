@@ -16,6 +16,7 @@ module Line
         class GetMessageContentTranscodingResponse
           attr_accessor :status # The preparation status. One of:  `processing`: Preparing to get content. `succeeded`: Ready to get the content. You can get the content sent by users. `failed`: Failed to prepare to get the content. 
 
+          # @param status [String] ('processing'|'succeeded'|'failed') The preparation status. One of:  `processing`: Preparing to get content. `succeeded`: Ready to get the content. You can get the content sent by users. `failed`: Failed to prepare to get the content. 
           def initialize(
             status:,
             **dynamic_attributes

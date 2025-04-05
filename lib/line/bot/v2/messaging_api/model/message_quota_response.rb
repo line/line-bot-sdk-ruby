@@ -16,6 +16,8 @@ module Line
           attr_accessor :type
           attr_accessor :value # The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 
 
+          # @param type [String] ('none'|'limited') 
+          # @param value [Integer] The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 
           def initialize(
             type:,
             value: nil,

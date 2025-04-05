@@ -18,6 +18,11 @@ module Line
           attr_accessor :unique_click # Number of users that opened the URL.
           attr_accessor :unique_click_of_request # Number of users who opened this url through any link in the message. If a message contains two links to the same URL and a user opens both links, they're counted only once.
 
+          # @param seq [Integer] The URL's serial number.
+          # @param url [String] URL.
+          # @param click [Integer] Number of times the URL was opened.
+          # @param unique_click [Integer] Number of users that opened the URL.
+          # @param unique_click_of_request [Integer] Number of users who opened this url through any link in the message. If a message contains two links to the same URL and a user opens both links, they're counted only once.
           def initialize(
             seq: nil,
             url: nil,

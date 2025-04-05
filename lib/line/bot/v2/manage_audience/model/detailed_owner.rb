@@ -17,6 +17,9 @@ module Line
           attr_accessor :id # Owner ID in the service.
           attr_accessor :name # Owner account name.
 
+          # @param service_type [String] Service name where the audience group has been created.
+          # @param id [String] Owner ID in the service.
+          # @param name [String] Owner account name.
           def initialize(
             service_type: nil,
             id: nil,

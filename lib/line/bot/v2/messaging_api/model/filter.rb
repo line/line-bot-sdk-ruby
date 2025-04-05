@@ -15,6 +15,7 @@ module Line
         class Filter
           attr_accessor :demographic
 
+          # @param demographic [DemographicFilter] 
           def initialize(
             demographic: nil,
             **dynamic_attributes

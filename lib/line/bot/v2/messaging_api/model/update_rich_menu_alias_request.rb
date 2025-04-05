@@ -15,6 +15,7 @@ module Line
         class UpdateRichMenuAliasRequest
           attr_accessor :rich_menu_id # The rich menu ID to be associated with the rich menu alias.
 
+          # @param rich_menu_id [String] The rich menu ID to be associated with the rich menu alias.
           def initialize(
             rich_menu_id:,
             **dynamic_attributes

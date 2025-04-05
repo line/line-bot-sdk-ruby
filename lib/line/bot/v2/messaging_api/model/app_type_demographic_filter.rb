@@ -17,6 +17,7 @@ module Line
           attr_reader :type # Type of demographic filter
           attr_accessor :one_of
 
+          # @param one_of [Array['ios'|'android']] 
           def initialize(
             one_of: nil,
             **dynamic_attributes

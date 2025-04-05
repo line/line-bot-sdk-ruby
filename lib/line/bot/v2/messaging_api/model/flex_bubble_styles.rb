@@ -17,6 +17,10 @@ module Line
           attr_accessor :body
           attr_accessor :footer
 
+          # @param header [FlexBlockStyle] 
+          # @param hero [FlexBlockStyle] 
+          # @param body [FlexBlockStyle] 
+          # @param footer [FlexBlockStyle] 
           def initialize(
             header: nil,
             hero: nil,

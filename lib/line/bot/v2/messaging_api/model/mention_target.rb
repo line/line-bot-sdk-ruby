@@ -14,6 +14,7 @@ module Line
         class MentionTarget
           attr_accessor :type # Target to be mentioned
 
+          # @param type [String] Target to be mentioned
           def initialize(
             type:,
             **dynamic_attributes

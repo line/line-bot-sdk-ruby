@@ -17,6 +17,9 @@ module Line
           attr_accessor :action
           attr_accessor :type # `action`
 
+          # @param image_url [String] URL of the icon that is displayed at the beginning of the button
+          # @param action [Action] 
+          # @param type [String] `action`
           def initialize(
             image_url: nil,
             action: nil,

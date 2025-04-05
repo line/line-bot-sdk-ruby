@@ -23,6 +23,14 @@ module Line
           attr_accessor :audience_count # The number of accounts (recipients) that were added or removed.
           attr_accessor :created # When the job was created (in UNIX time).
 
+          # @param audience_group_job_id [Integer] A job ID.
+          # @param audience_group_id [Integer] An audience ID.
+          # @param description [String] The job's description.
+          # @param type [String] ('DIFF_ADD') 
+          # @param job_status [String] ('QUEUED'|'WORKING'|'FINISHED'|'FAILED') 
+          # @param failed_type [String] ('INTERNAL_ERROR'|'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT') 
+          # @param audience_count [Integer] The number of accounts (recipients) that were added or removed.
+          # @param created [Integer] When the job was created (in UNIX time).
           def initialize(
             audience_group_job_id: nil,
             audience_group_id: nil,

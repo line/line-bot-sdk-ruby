@@ -17,6 +17,9 @@ module Line
           attr_accessor :messages # List of messages.
           attr_accessor :notification_disabled # `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
 
+          # @param reply_token [String] replyToken received via webhook.
+          # @param messages [Array[Message]] List of messages.
+          # @param notification_disabled [Boolean] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           def initialize(
             reply_token:,
             messages:,

@@ -22,6 +22,11 @@ module Line
           attr_accessor :substitution # A mapping that specifies substitutions for parts enclosed in {} within the `text` field.
           attr_accessor :quote_token # Quote token of the message you want to quote.
 
+          # @param quick_reply [QuickReply] 
+          # @param sender [Sender] 
+          # @param text [String] 
+          # @param substitution [Object] A mapping that specifies substitutions for parts enclosed in {} within the `text` field.
+          # @param quote_token [String] Quote token of the message you want to quote.
           def initialize(
             quick_reply: nil,
             sender: nil,

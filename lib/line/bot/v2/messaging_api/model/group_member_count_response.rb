@@ -15,6 +15,7 @@ module Line
         class GroupMemberCountResponse
           attr_accessor :count # The count of members in the group chat. The number returned excludes the LINE Official Account.
 
+          # @param count [Integer] The count of members in the group chat. The number returned excludes the LINE Official Account.
           def initialize(
             count:,
             **dynamic_attributes

@@ -18,6 +18,8 @@ module Line
           attr_accessor :user_id # ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
           attr_accessor :room_id # Room ID of the source multi-person chat
 
+          # @param user_id [String] ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
+          # @param room_id [String] Room ID of the source multi-person chat
           def initialize(
             user_id: nil,
             room_id:,

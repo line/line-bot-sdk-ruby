@@ -24,6 +24,13 @@ module Line
           attr_accessor :actions
           attr_accessor :video
 
+          # @param quick_reply [QuickReply] 
+          # @param sender [Sender] 
+          # @param base_url [String] 
+          # @param alt_text [String] 
+          # @param base_size [ImagemapBaseSize] 
+          # @param actions [Array[ImagemapAction]] 
+          # @param video [ImagemapVideo] 
           def initialize(
             quick_reply: nil,
             sender: nil,

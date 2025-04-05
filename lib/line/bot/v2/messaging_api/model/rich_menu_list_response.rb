@@ -15,6 +15,7 @@ module Line
         class RichMenuListResponse
           attr_accessor :richmenus # Rich menus
 
+          # @param richmenus [Array[RichMenuResponse]] Rich menus
           def initialize(
             richmenus:,
             **dynamic_attributes

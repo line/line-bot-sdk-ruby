@@ -19,6 +19,10 @@ module Line
           attr_accessor :token_type # A token type.
           attr_accessor :key_id # Unique key ID for identifying the channel access token.
 
+          # @param access_token [String] Channel access token. 
+          # @param expires_in [Integer] Amount of time in seconds from issue to expiration of the channel access token
+          # @param token_type [String] A token type.
+          # @param key_id [String] Unique key ID for identifying the channel access token.
           def initialize(
             access_token:,
             expires_in:,

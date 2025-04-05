@@ -19,6 +19,8 @@ module Line
           attr_accessor :from
           attr_accessor :to
 
+          # @param from [String] 
+          # @param to [String] 
           def initialize(
             from:,
             to:,

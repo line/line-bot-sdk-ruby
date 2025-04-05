@@ -16,6 +16,8 @@ module Line
           attr_accessor :message # Message containing information about the error.
           attr_accessor :details # An array of error details. If the array is empty, this property will not be included in the response.
 
+          # @param message [String] Message containing information about the error.
+          # @param details [Array[ErrorDetail]] An array of error details. If the array is empty, this property will not be included in the response.
           def initialize(
             message:,
             details: nil,

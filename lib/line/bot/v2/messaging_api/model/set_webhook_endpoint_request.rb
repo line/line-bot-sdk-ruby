@@ -15,6 +15,7 @@ module Line
         class SetWebhookEndpointRequest
           attr_accessor :endpoint # A valid webhook URL.
 
+          # @param endpoint [String] A valid webhook URL.
           def initialize(
             endpoint:,
             **dynamic_attributes

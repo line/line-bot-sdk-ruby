@@ -22,6 +22,12 @@ module Line
           attr_accessor :input_option
           attr_accessor :fill_in_text
 
+          # @param label [String] Label for the action.
+          # @param data [String] 
+          # @param display_text [String] 
+          # @param text [String] 
+          # @param input_option [String] ('closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice') 
+          # @param fill_in_text [String] 
           def initialize(
             label: nil,
             data: nil,

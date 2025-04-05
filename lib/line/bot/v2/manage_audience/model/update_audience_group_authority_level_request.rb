@@ -16,6 +16,7 @@ module Line
         class UpdateAudienceGroupAuthorityLevelRequest
           attr_accessor :authority_level
 
+          # @param authority_level [String] ('PUBLIC'|'PRIVATE') 
           def initialize(
             authority_level: nil,
             **dynamic_attributes

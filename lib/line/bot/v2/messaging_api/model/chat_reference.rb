@@ -16,6 +16,7 @@ module Line
         class ChatReference
           attr_accessor :user_id # The target user ID
 
+          # @param user_id [String] The target user ID
           def initialize(
             user_id:,
             **dynamic_attributes

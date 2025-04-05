@@ -19,6 +19,11 @@ module Line
           attr_accessor :status_message # User's status message. Not included in the response if the user doesn't have a status message.
           attr_accessor :language # User's language, as a BCP 47 language tag. Not included in the response if the user hasn't yet consented to the LINE Privacy Policy.
 
+          # @param display_name [String] User's display name
+          # @param user_id [String] User ID
+          # @param picture_url [String] Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.
+          # @param status_message [String] User's status message. Not included in the response if the user doesn't have a status message.
+          # @param language [String] User's language, as a BCP 47 language tag. Not included in the response if the user hasn't yet consented to the LINE Privacy Policy.
           def initialize(
             display_name:,
             user_id:,

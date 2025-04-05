@@ -14,6 +14,7 @@ module Line
         class AddLiffAppResponse
           attr_accessor :liff_id
 
+          # @param liff_id [String] 
           def initialize(
             liff_id:,
             **dynamic_attributes

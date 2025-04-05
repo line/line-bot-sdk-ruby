@@ -21,6 +21,10 @@ module Line
           attr_accessor :alt_text
           attr_accessor :template
 
+          # @param quick_reply [QuickReply] 
+          # @param sender [Sender] 
+          # @param alt_text [String] 
+          # @param template [Template] 
           def initialize(
             quick_reply: nil,
             sender: nil,

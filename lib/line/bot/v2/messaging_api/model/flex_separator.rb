@@ -18,6 +18,8 @@ module Line
           attr_accessor :margin
           attr_accessor :color
 
+          # @param margin [String] 
+          # @param color [String] 
           def initialize(
             margin: nil,
             color: nil,

@@ -19,6 +19,9 @@ module Line
           attr_accessor :text
           attr_accessor :label
 
+          # @param area [ImagemapArea] 
+          # @param text [String] 
+          # @param label [String] 
           def initialize(
             area:,
             text:,

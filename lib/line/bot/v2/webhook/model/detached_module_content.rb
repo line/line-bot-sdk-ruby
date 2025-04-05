@@ -18,6 +18,8 @@ module Line
           attr_accessor :bot_id # Detached LINE Official Account bot user ID
           attr_accessor :reason # Reason for detaching
 
+          # @param bot_id [String] Detached LINE Official Account bot user ID
+          # @param reason [String] ('bot_deleted') Reason for detaching
           def initialize(
             bot_id:,
             reason:,

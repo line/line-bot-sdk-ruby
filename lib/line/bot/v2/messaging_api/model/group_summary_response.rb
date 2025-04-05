@@ -17,6 +17,9 @@ module Line
           attr_accessor :group_name # Group name
           attr_accessor :picture_url # Group icon URL. Not included in the response if the user doesn't set a group profile icon.
 
+          # @param group_id [String] Group ID
+          # @param group_name [String] Group name
+          # @param picture_url [String] Group icon URL. Not included in the response if the user doesn't set a group profile icon.
           def initialize(
             group_id:,
             group_name:,

@@ -14,6 +14,7 @@ module Line
         class RichMenuIdResponse
           attr_accessor :rich_menu_id # Rich menu ID
 
+          # @param rich_menu_id [String] Rich menu ID
           def initialize(
             rich_menu_id:,
             **dynamic_attributes

@@ -19,6 +19,8 @@ module Line
           attr_accessor :index # Index position of the user mention for a character in text, with the first character being at position 0.
           attr_accessor :length # The length of the text of the mentioned user. For a mention @example, 8 is the length.
 
+          # @param index [Integer] Index position of the user mention for a character in text, with the first character being at position 0.
+          # @param length [Integer] The length of the text of the mentioned user. For a mention @example, 8 is the length.
           def initialize(
             index:,
             length:,

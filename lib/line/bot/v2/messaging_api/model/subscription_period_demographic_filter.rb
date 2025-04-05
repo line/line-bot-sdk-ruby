@@ -18,6 +18,8 @@ module Line
           attr_accessor :gte
           attr_accessor :lt
 
+          # @param gte [String] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
+          # @param lt [String] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
           def initialize(
             gte: nil,
             lt: nil,

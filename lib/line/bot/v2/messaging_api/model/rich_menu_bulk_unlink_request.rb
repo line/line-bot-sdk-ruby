@@ -15,6 +15,7 @@ module Line
         class RichMenuBulkUnlinkRequest
           attr_accessor :user_ids # Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
 
+          # @param user_ids [Array[String]] Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
           def initialize(
             user_ids:,
             **dynamic_attributes

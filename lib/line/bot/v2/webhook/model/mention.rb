@@ -14,6 +14,7 @@ module Line
         class Mention
           attr_accessor :mentionees # Array of one or more mention objects. Max: 20 mentions
 
+          # @param mentionees [Array[Mentionee]] Array of one or more mention objects. Max: 20 mentions
           def initialize(
             mentionees:,
             **dynamic_attributes

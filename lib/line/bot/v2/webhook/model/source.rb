@@ -16,6 +16,7 @@ module Line
         class Source
           attr_accessor :type # source type
 
+          # @param type [String] source type
           def initialize(
             type: nil,
             **dynamic_attributes

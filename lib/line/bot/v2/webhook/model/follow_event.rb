@@ -24,6 +24,13 @@ module Line
           attr_accessor :reply_token # Reply token used to send reply message to this event
           attr_accessor :follow
 
+          # @param source [Source] 
+          # @param timestamp [Integer] Time of the event in milliseconds.
+          # @param mode [String] ('active'|'standby') 
+          # @param webhook_event_id [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
+          # @param delivery_context [DeliveryContext] 
+          # @param reply_token [String] Reply token used to send reply message to this event
+          # @param follow [FollowDetail] 
           def initialize(
             source: nil,
             timestamp:,

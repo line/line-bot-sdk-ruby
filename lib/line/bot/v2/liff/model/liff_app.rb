@@ -20,6 +20,13 @@ module Line
           attr_accessor :scope
           attr_accessor :bot_prompt
 
+          # @param liff_id [String] LIFF app ID
+          # @param view [LiffView] 
+          # @param description [String] Name of the LIFF app
+          # @param features [LiffFeatures] 
+          # @param permanent_link_pattern [String] How additional information in LIFF URLs is handled. concat is returned. 
+          # @param scope [Array['openid'|'email'|'profile'|'chat_message.write']] 
+          # @param bot_prompt [String] ('normal'|'aggressive'|'none') 
           def initialize(
             liff_id: nil,
             view: nil,

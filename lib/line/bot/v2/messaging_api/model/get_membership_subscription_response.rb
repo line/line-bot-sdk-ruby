@@ -16,6 +16,7 @@ module Line
         class GetMembershipSubscriptionResponse
           attr_accessor :subscriptions # List of subscription information
 
+          # @param subscriptions [Array[Subscription]] List of subscription information
           def initialize(
             subscriptions:,
             **dynamic_attributes

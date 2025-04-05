@@ -17,6 +17,7 @@ module Line
           attr_reader :type # source type
           attr_accessor :user_id # ID of the source user
 
+          # @param user_id [String] ID of the source user
           def initialize(
             user_id: nil,
             **dynamic_attributes

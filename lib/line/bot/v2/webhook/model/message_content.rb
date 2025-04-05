@@ -16,6 +16,8 @@ module Line
           attr_accessor :type # Type
           attr_accessor :id # Message ID
 
+          # @param type [String] Type
+          # @param id [String] Message ID
           def initialize(
             type:,
             id:,

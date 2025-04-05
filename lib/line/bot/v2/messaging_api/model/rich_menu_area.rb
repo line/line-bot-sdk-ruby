@@ -16,6 +16,8 @@ module Line
           attr_accessor :bounds
           attr_accessor :action
 
+          # @param bounds [RichMenuBounds] 
+          # @param action [Action] 
           def initialize(
             bounds: nil,
             action: nil,

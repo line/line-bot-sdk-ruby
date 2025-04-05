@@ -14,6 +14,7 @@ module Line
         class JoinedMembers
           attr_accessor :members # Users who joined. Array of source user objects.
 
+          # @param members [Array[UserSource]] Users who joined. Array of source user objects.
           def initialize(
             members:,
             **dynamic_attributes

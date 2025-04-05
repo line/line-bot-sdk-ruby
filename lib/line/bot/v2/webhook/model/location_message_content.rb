@@ -21,6 +21,11 @@ module Line
           attr_accessor :latitude # Latitude
           attr_accessor :longitude # Longitude
 
+          # @param id [String] Message ID
+          # @param title [String] Title
+          # @param address [String] Address
+          # @param latitude [Float] Latitude
+          # @param longitude [Float] Longitude
           def initialize(
             id:,
             title: nil,

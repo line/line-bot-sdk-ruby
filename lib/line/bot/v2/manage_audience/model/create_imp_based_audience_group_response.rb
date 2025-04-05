@@ -20,6 +20,11 @@ module Line
           attr_accessor :created # When the audience was created (in UNIX time).
           attr_accessor :request_id # The request ID that was specified when the audience was created.
 
+          # @param audience_group_id [Integer] The audience ID.
+          # @param type [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String] The audience's name.
+          # @param created [Integer] When the audience was created (in UNIX time).
+          # @param request_id [String] The request ID that was specified when the audience was created.
           def initialize(
             audience_group_id: nil,
             type: nil,

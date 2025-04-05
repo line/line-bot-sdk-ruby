@@ -18,6 +18,8 @@ module Line
           attr_accessor :group_id # Group ID of the source group chat
           attr_accessor :user_id # ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
 
+          # @param group_id [String] Group ID of the source group chat
+          # @param user_id [String] ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
           def initialize(
             group_id:,
             user_id: nil,

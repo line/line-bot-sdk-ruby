@@ -14,6 +14,7 @@ module Line
         class AltUri
           attr_accessor :desktop
 
+          # @param desktop [String] 
           def initialize(
             desktop: nil,
             **dynamic_attributes

@@ -14,6 +14,7 @@ module Line
         class LeftMembers
           attr_accessor :members # Users who left. Array of source user objects.
 
+          # @param members [Array[UserSource]] Users who left. Array of source user objects.
           def initialize(
             members:,
             **dynamic_attributes

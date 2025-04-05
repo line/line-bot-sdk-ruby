@@ -19,6 +19,11 @@ module Line
           attr_accessor :reason # Reason for the response.
           attr_accessor :detail # Details of the response.
 
+          # @param success [Boolean] Result of the communication from the LINE platform to the webhook URL.
+          # @param timestamp [String] Time of the event in milliseconds. Even in the case of a redelivered webhook, it represents the time the event occurred, not the time it was redelivered. 
+          # @param status_code [Integer] The HTTP status code. If the webhook response isn't received, the status code is set to zero or a negative number.
+          # @param reason [String] Reason for the response.
+          # @param detail [String] Details of the response.
           def initialize(
             success: nil,
             timestamp:,

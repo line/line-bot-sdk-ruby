@@ -22,6 +22,12 @@ module Line
           attr_accessor :style
           attr_accessor :decoration
 
+          # @param text [String] 
+          # @param size [String] 
+          # @param color [String] 
+          # @param weight [String] ('regular'|'bold') 
+          # @param style [String] ('normal'|'italic') 
+          # @param decoration [String] ('none'|'underline'|'line-through') 
           def initialize(
             text: nil,
             size: nil,

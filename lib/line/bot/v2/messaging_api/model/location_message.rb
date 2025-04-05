@@ -23,6 +23,12 @@ module Line
           attr_accessor :latitude
           attr_accessor :longitude
 
+          # @param quick_reply [QuickReply] 
+          # @param sender [Sender] 
+          # @param title [String] 
+          # @param address [String] 
+          # @param latitude [Float] 
+          # @param longitude [Float] 
           def initialize(
             quick_reply: nil,
             sender: nil,

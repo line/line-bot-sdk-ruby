@@ -16,6 +16,8 @@ module Line
           attr_accessor :membership
           attr_accessor :user
 
+          # @param membership [SubscribedMembershipPlan] 
+          # @param user [SubscribedMembershipUser] 
           def initialize(
             membership:,
             user:,

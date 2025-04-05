@@ -19,6 +19,9 @@ module Line
           attr_accessor :uri
           attr_accessor :alt_uri
 
+          # @param label [String] Label for the action.
+          # @param uri [String] 
+          # @param alt_uri [AltUri] 
           def initialize(
             label: nil,
             uri: nil,

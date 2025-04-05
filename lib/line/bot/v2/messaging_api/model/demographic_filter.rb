@@ -15,6 +15,7 @@ module Line
         class DemographicFilter
           attr_accessor :type # Type of demographic filter
 
+          # @param type [String] Type of demographic filter
           def initialize(
             type: nil,
             **dynamic_attributes

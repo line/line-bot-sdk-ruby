@@ -15,6 +15,7 @@ module Line
         class MembershipListResponse
           attr_accessor :memberships # List of membership information
 
+          # @param memberships [Array[Membership]] List of membership information
           def initialize(
             memberships:,
             **dynamic_attributes

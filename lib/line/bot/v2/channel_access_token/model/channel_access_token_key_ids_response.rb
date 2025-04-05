@@ -16,6 +16,7 @@ module Line
         class ChannelAccessTokenKeyIdsResponse
           attr_accessor :kids # Array of channel access token key IDs.
 
+          # @param kids [Array[String]] Array of channel access token key IDs.
           def initialize(
             kids:,
             **dynamic_attributes

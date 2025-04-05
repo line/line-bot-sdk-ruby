@@ -18,6 +18,10 @@ module Line
           attr_accessor :next_billing_date # Next payment date for membership plan. - Format: yyyy-MM-dd (e.g. 2024-02-08) - Timezone: UTC+9 
           attr_accessor :total_subscription_months # The period of time in months that the user has been subscribed to a membership plan. If a user previously canceled and then re-subscribed to the same membership plan, only the period after the re-subscription will be counted.
 
+          # @param membership_no [Integer] The user's member number in the membership plan.
+          # @param joined_time [Integer] UNIX timestamp at which the user subscribed to the membership.
+          # @param next_billing_date [String] Next payment date for membership plan. - Format: yyyy-MM-dd (e.g. 2024-02-08) - Timezone: UTC+9 
+          # @param total_subscription_months [Integer] The period of time in months that the user has been subscribed to a membership plan. If a user previously canceled and then re-subscribed to the same membership plan, only the period after the re-subscription will be counted.
           def initialize(
             membership_no:,
             joined_time:,

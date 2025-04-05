@@ -14,6 +14,7 @@ module Line
         class ChatControl
           attr_accessor :expire_at
 
+          # @param expire_at [Integer] 
           def initialize(
             expire_at:,
             **dynamic_attributes

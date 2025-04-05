@@ -17,6 +17,9 @@ module Line
           attr_accessor :user_id # User ID
           attr_accessor :picture_url # Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.
 
+          # @param display_name [String] User's display name
+          # @param user_id [String] User ID
+          # @param picture_url [String] Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.
           def initialize(
             display_name:,
             user_id:,

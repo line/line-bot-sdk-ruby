@@ -22,6 +22,11 @@ module Line
           attr_accessor :webhook_event_id # Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
           attr_accessor :delivery_context
 
+          # @param source [Source] 
+          # @param timestamp [Integer] Time of the event in milliseconds.
+          # @param mode [String] ('active'|'standby') 
+          # @param webhook_event_id [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
+          # @param delivery_context [DeliveryContext] 
           def initialize(
             source: nil,
             timestamp:,

@@ -15,6 +15,8 @@ module Line
           attr_accessor :area # users' country and region
           attr_accessor :percentage # Percentage
 
+          # @param area [String] users' country and region
+          # @param percentage [Float] Percentage
           def initialize(
             area: nil,
             percentage: nil,

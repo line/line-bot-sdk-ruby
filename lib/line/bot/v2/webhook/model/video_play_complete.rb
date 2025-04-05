@@ -14,6 +14,7 @@ module Line
         class VideoPlayComplete
           attr_accessor :tracking_id # ID used to identify a video. Returns the same value as the trackingId assigned to the video message.
 
+          # @param tracking_id [String] ID used to identify a video. Returns the same value as the trackingId assigned to the video message.
           def initialize(
             tracking_id:,
             **dynamic_attributes

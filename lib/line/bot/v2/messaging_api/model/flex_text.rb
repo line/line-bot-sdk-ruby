@@ -38,6 +38,28 @@ module Line
           attr_accessor :adjust_mode
           attr_accessor :scaling
 
+          # @param flex [Integer] 
+          # @param text [String] 
+          # @param size [String] 
+          # @param align [String] ('start'|'end'|'center') 
+          # @param gravity [String] ('top'|'bottom'|'center') 
+          # @param color [String] 
+          # @param weight [String] ('regular'|'bold') 
+          # @param style [String] ('normal'|'italic') 
+          # @param decoration [String] ('none'|'underline'|'line-through') 
+          # @param wrap [Boolean] 
+          # @param line_spacing [String] 
+          # @param margin [String] 
+          # @param position [String] ('relative'|'absolute') 
+          # @param offset_top [String] 
+          # @param offset_bottom [String] 
+          # @param offset_start [String] 
+          # @param offset_end [String] 
+          # @param action [Action] 
+          # @param max_lines [Integer] 
+          # @param contents [Array[FlexSpan]] 
+          # @param adjust_mode [String] ('shrink-to-fit') 
+          # @param scaling [Boolean] 
           def initialize(
             flex: nil,
             text: nil,

@@ -18,6 +18,9 @@ module Line
           attr_accessor :request_id # The request ID of a broadcast or narrowcast message sent in the past 60 days. Each Messaging API request has a request ID. 
           attr_accessor :click_url # The URL clicked by the user. If empty, users who clicked any URL in the message are added to the list of recipients. Max character limit: 2,000 
 
+          # @param description [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          # @param request_id [String] The request ID of a broadcast or narrowcast message sent in the past 60 days. Each Messaging API request has a request ID. 
+          # @param click_url [String] The URL clicked by the user. If empty, users who clicked any URL in the message are added to the list of recipients. Max character limit: 2,000 
           def initialize(
             description: nil,
             request_id: nil,

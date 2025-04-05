@@ -20,6 +20,10 @@ module Line
           attr_accessor :image_set
           attr_accessor :quote_token # Quote token to quote this message. 
 
+          # @param id [String] Message ID
+          # @param content_provider [ContentProvider] 
+          # @param image_set [ImageSet] 
+          # @param quote_token [String] Quote token to quote this message. 
           def initialize(
             id:,
             content_provider:,

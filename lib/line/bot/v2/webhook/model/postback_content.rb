@@ -15,6 +15,8 @@ module Line
           attr_accessor :data # Postback data
           attr_accessor :params
 
+          # @param data [String] Postback data
+          # @param params [Object] 
           def initialize(
             data:,
             params: nil,

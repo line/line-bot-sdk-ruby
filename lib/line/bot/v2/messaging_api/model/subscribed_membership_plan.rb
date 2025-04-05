@@ -20,6 +20,12 @@ module Line
           attr_accessor :price # Monthly fee for membership plan. (e.g. 1500.00)
           attr_accessor :currency # The currency of membership.price.
 
+          # @param membership_id [Integer] Membership plan ID.
+          # @param title [String] Membership plan name.
+          # @param description [String] Membership plan description.
+          # @param benefits [Array[String]] List of membership plan perks.
+          # @param price [Float] Monthly fee for membership plan. (e.g. 1500.00)
+          # @param currency [String] ('JPY'|'TWD'|'THB') The currency of membership.price.
           def initialize(
             membership_id:,
             title:,

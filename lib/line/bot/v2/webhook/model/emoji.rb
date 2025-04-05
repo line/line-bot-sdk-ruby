@@ -17,6 +17,10 @@ module Line
           attr_accessor :product_id # Product ID for a LINE emoji set.
           attr_accessor :emoji_id # ID for a LINE emoji inside a set.
 
+          # @param index [Integer] Index position for a character in text, with the first character being at position 0.
+          # @param length [Integer] The length of the LINE emoji string. For LINE emoji (hello), 7 is the length.
+          # @param product_id [String] Product ID for a LINE emoji set.
+          # @param emoji_id [String] ID for a LINE emoji inside a set.
           def initialize(
             index:,
             length:,

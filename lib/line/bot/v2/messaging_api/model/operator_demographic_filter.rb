@@ -19,6 +19,9 @@ module Line
           attr_accessor :_or
           attr_accessor :_not
 
+          # @param _and [Array[DemographicFilter]] 
+          # @param _or [Array[DemographicFilter]] 
+          # @param _not [DemographicFilter] 
           def initialize(
             _and: nil,
             _or: nil,
