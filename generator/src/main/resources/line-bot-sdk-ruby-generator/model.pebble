@@ -25,19 +25,19 @@ module Line
           # @!attribute [{% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}rw{% else %}r{% endif %}] {{ variable.name }}
           {% if variable.openApiType == 'array' -%}
           {% if variable.items.isModel -%}
-          #   @return [{{ "Array[#{variable.items.openApiType}]" }}] {{ variable.description }}
+          #   @return [{{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% elseif variable.items.allowableValues != null -%}
           #   @return [Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]] {{ variable.description }}
           {% else -%}
-          #   @return [{{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}] {{ variable.description }}
+          #   @return [{{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% endif -%}
           {% elseif variable.isModel -%}
-          #   @return [{{ variable.openApiType }}] {{ variable.description }}
+          #   @return [{{ variable.openApiType }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% else -%}
           {% if variable.allowableValues != null -%}
-          #   @return [String] ({% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}) {{ variable.description }}
+          #   @return [String{% if not variable.required %},nil{% endif -%}] ({% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}) {{ variable.description }}
           {% else -%}
-          #   @return [{{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}] {{ variable.description }}
+          #   @return [{{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% endif -%}
           {% endif -%}
           {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}attr_accessor{% else %}attr_reader{% endif %} :{{ variable.name }}
@@ -48,19 +48,19 @@ module Line
           {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name -%}
           {% if variable.openApiType == 'array' -%}
           {% if variable.items.isModel -%}
-          # @param {{ variable.name }} [{{ "Array[#{variable.items.openApiType}]" }}] {{ variable.description }}
+          # @param {{ variable.name }} [{{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% elseif variable.items.allowableValues != null -%}
-          # @param {{ variable.name }} [Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]] {{ variable.description }}
+          # @param {{ variable.name }} [Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% else -%}
-          # @param {{ variable.name }} [{{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}] {{ variable.description }}
+          # @param {{ variable.name }} [{{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% endif -%}
           {% elseif variable.isModel -%}
-          # @param {{ variable.name }} [{{ variable.openApiType }}] {{ variable.description }}
+          # @param {{ variable.name }} [{{ variable.openApiType }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% else -%}
           {% if variable.allowableValues != null -%}
-          # @param {{ variable.name }} [String] ({% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}) {{ variable.description }}
+          # @param {{ variable.name }} [String{% if not variable.required %},nil{% endif -%}] ({% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}) {{ variable.description }}
           {% else -%}
-          # @param {{ variable.name }} [{{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}] {{ variable.description }}
+          # @param {{ variable.name }} [{{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% endif -%}
           {% endif -%}
           {% endif -%}
