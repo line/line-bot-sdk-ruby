@@ -15,17 +15,17 @@ module Line
       module MessagingApi
         class AgeDemographicFilter < DemographicFilter
           # @!attribute [r] type
-          #   @return [String] Type of demographic filter
+          #   @return [String,nil] Type of demographic filter
           attr_reader :type
           # @!attribute [rw] gte
-          #   @return [String] ('age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70') 
+          #   @return [String,nil] ('age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70') 
           attr_accessor :gte
           # @!attribute [rw] lt
-          #   @return [String] ('age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70') 
+          #   @return [String,nil] ('age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70') 
           attr_accessor :lt
 
-          # @param gte [String] ('age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70') 
-          # @param lt [String] ('age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70') 
+          # @param gte [String,nil] ('age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70') 
+          # @param lt [String,nil] ('age_15'|'age_20'|'age_25'|'age_30'|'age_35'|'age_40'|'age_45'|'age_50'|'age_55'|'age_60'|'age_65'|'age_70') 
           def initialize(
             gte: nil,
             lt: nil,

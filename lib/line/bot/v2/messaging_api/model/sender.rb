@@ -14,14 +14,14 @@ module Line
         # Change icon and display name
         class Sender
           # @!attribute [rw] name
-          #   @return [String] Display name. Certain words such as `LINE` may not be used.
+          #   @return [String,nil] Display name. Certain words such as `LINE` may not be used.
           attr_accessor :name
           # @!attribute [rw] icon_url
-          #   @return [String] URL of the image to display as an icon when sending a message
+          #   @return [String,nil] URL of the image to display as an icon when sending a message
           attr_accessor :icon_url
 
-          # @param name [String] Display name. Certain words such as `LINE` may not be used.
-          # @param icon_url [String] URL of the image to display as an icon when sending a message
+          # @param name [String,nil] Display name. Certain words such as `LINE` may not be used.
+          # @param icon_url [String,nil] URL of the image to display as an icon when sending a message
           def initialize(
             name: nil,
             icon_url: nil,

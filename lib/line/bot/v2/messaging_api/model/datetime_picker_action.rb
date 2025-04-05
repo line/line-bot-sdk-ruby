@@ -16,33 +16,33 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#datetime-picker-action
         class DatetimePickerAction < Action
           # @!attribute [r] type
-          #   @return [String] Type of action
+          #   @return [String,nil] Type of action
           attr_reader :type
           # @!attribute [rw] label
-          #   @return [String] Label for the action.
+          #   @return [String,nil] Label for the action.
           attr_accessor :label
           # @!attribute [rw] data
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :data
           # @!attribute [rw] mode
-          #   @return [String] ('date'|'time'|'datetime') 
+          #   @return [String,nil] ('date'|'time'|'datetime') 
           attr_accessor :mode
           # @!attribute [rw] initial
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :initial
           # @!attribute [rw] max
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :max
           # @!attribute [rw] min
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :min
 
-          # @param label [String] Label for the action.
-          # @param data [String] 
-          # @param mode [String] ('date'|'time'|'datetime') 
-          # @param initial [String] 
-          # @param max [String] 
-          # @param min [String] 
+          # @param label [String,nil] Label for the action.
+          # @param data [String,nil] 
+          # @param mode [String,nil] ('date'|'time'|'datetime') 
+          # @param initial [String,nil] 
+          # @param max [String,nil] 
+          # @param min [String,nil] 
           def initialize(
             label: nil,
             data: nil,

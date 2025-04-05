@@ -19,7 +19,7 @@ module Line
           #   @return [String] Type of the event
           attr_reader :type
           # @!attribute [rw] source
-          #   @return [Source] 
+          #   @return [Source,nil] 
           attr_accessor :source
           # @!attribute [rw] timestamp
           #   @return [Integer] Time of the event in milliseconds.
@@ -34,18 +34,18 @@ module Line
           #   @return [DeliveryContext] 
           attr_accessor :delivery_context
           # @!attribute [rw] reply_token
-          #   @return [String] Reply token used to send reply message to this event
+          #   @return [String,nil] Reply token used to send reply message to this event
           attr_accessor :reply_token
           # @!attribute [rw] postback
           #   @return [PostbackContent] 
           attr_accessor :postback
 
-          # @param source [Source] 
+          # @param source [Source,nil] 
           # @param timestamp [Integer] Time of the event in milliseconds.
           # @param mode [String] ('active'|'standby') 
           # @param webhook_event_id [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
           # @param delivery_context [DeliveryContext] 
-          # @param reply_token [String] Reply token used to send reply message to this event
+          # @param reply_token [String,nil] Reply token used to send reply message to this event
           # @param postback [PostbackContent] 
           def initialize(
             source: nil,

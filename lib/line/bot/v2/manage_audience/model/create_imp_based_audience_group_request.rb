@@ -15,14 +15,14 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
         class CreateImpBasedAudienceGroupRequest
           # @!attribute [rw] description
-          #   @return [String] The audience's name. This is case-insensitive, meaning `AUDIENCE` and `audience` are considered identical. Max character limit: 120 
+          #   @return [String,nil] The audience's name. This is case-insensitive, meaning `AUDIENCE` and `audience` are considered identical. Max character limit: 120 
           attr_accessor :description
           # @!attribute [rw] request_id
-          #   @return [String] The request ID of a broadcast or narrowcast message sent in the past 60 days. Each Messaging API request has a request ID. 
+          #   @return [String,nil] The request ID of a broadcast or narrowcast message sent in the past 60 days. Each Messaging API request has a request ID. 
           attr_accessor :request_id
 
-          # @param description [String] The audience's name. This is case-insensitive, meaning `AUDIENCE` and `audience` are considered identical. Max character limit: 120 
-          # @param request_id [String] The request ID of a broadcast or narrowcast message sent in the past 60 days. Each Messaging API request has a request ID. 
+          # @param description [String,nil] The audience's name. This is case-insensitive, meaning `AUDIENCE` and `audience` are considered identical. Max character limit: 120 
+          # @param request_id [String,nil] The request ID of a broadcast or narrowcast message sent in the past 60 days. Each Messaging API request has a request ID. 
           def initialize(
             description: nil,
             request_id: nil,

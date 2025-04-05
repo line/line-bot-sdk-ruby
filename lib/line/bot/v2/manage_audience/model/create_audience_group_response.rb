@@ -15,38 +15,38 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
         class CreateAudienceGroupResponse
           # @!attribute [rw] audience_group_id
-          #   @return [Integer] The audience ID.
+          #   @return [Integer,nil] The audience ID.
           attr_accessor :audience_group_id
           # @!attribute [rw] create_route
-          #   @return [String] ('MESSAGING_API') How the audience was created.  `MESSAGING_API`: An audience created with Messaging API. 
+          #   @return [String,nil] ('MESSAGING_API') How the audience was created.  `MESSAGING_API`: An audience created with Messaging API. 
           attr_accessor :create_route
           # @!attribute [rw] type
-          #   @return [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          #   @return [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
           attr_accessor :type
           # @!attribute [rw] description
-          #   @return [String] The audience's name.
+          #   @return [String,nil] The audience's name.
           attr_accessor :description
           # @!attribute [rw] created
-          #   @return [Integer] When the audience was created (in UNIX time).
+          #   @return [Integer,nil] When the audience was created (in UNIX time).
           attr_accessor :created
           # @!attribute [rw] permission
-          #   @return [String] ('READ'|'READ_WRITE') Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  `READ`: Can use only. `READ_WRITE`: Can use and update. 
+          #   @return [String,nil] ('READ'|'READ_WRITE') Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  `READ`: Can use only. `READ_WRITE`: Can use and update. 
           attr_accessor :permission
           # @!attribute [rw] expire_timestamp
-          #   @return [Float] Time of audience expiration. Only returned for specific audiences. 
+          #   @return [Float,nil] Time of audience expiration. Only returned for specific audiences. 
           attr_accessor :expire_timestamp
           # @!attribute [rw] is_ifa_audience
-          #   @return [Boolean] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  `true`: Accounts are specified with IFAs. `false` (default): Accounts are specified with user IDs. 
+          #   @return [Boolean,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  `true`: Accounts are specified with IFAs. `false` (default): Accounts are specified with user IDs. 
           attr_accessor :is_ifa_audience
 
-          # @param audience_group_id [Integer] The audience ID.
-          # @param create_route [String] ('MESSAGING_API') How the audience was created.  `MESSAGING_API`: An audience created with Messaging API. 
-          # @param type [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
-          # @param description [String] The audience's name.
-          # @param created [Integer] When the audience was created (in UNIX time).
-          # @param permission [String] ('READ'|'READ_WRITE') Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  `READ`: Can use only. `READ_WRITE`: Can use and update. 
-          # @param expire_timestamp [Float] Time of audience expiration. Only returned for specific audiences. 
-          # @param is_ifa_audience [Boolean] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  `true`: Accounts are specified with IFAs. `false` (default): Accounts are specified with user IDs. 
+          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param create_route [String,nil] ('MESSAGING_API') How the audience was created.  `MESSAGING_API`: An audience created with Messaging API. 
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String,nil] The audience's name.
+          # @param created [Integer,nil] When the audience was created (in UNIX time).
+          # @param permission [String,nil] ('READ'|'READ_WRITE') Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  `READ`: Can use only. `READ_WRITE`: Can use and update. 
+          # @param expire_timestamp [Float,nil] Time of audience expiration. Only returned for specific audiences. 
+          # @param is_ifa_audience [Boolean,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  `true`: Accounts are specified with IFAs. `false` (default): Accounts are specified with user IDs. 
           def initialize(
             audience_group_id: nil,
             create_route: nil,

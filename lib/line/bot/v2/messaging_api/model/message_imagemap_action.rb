@@ -24,12 +24,12 @@ module Line
           #   @return [String] 
           attr_accessor :text
           # @!attribute [rw] label
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :label
 
           # @param area [ImagemapArea] 
           # @param text [String] 
-          # @param label [String] 
+          # @param label [String,nil] 
           def initialize(
             area:,
             text:,

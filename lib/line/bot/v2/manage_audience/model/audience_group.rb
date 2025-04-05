@@ -14,54 +14,54 @@ module Line
         # Audience group
         class AudienceGroup
           # @!attribute [rw] audience_group_id
-          #   @return [Integer] The audience ID.
+          #   @return [Integer,nil] The audience ID.
           attr_accessor :audience_group_id
           # @!attribute [rw] type
-          #   @return [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          #   @return [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
           attr_accessor :type
           # @!attribute [rw] description
-          #   @return [String] The audience's name.
+          #   @return [String,nil] The audience's name.
           attr_accessor :description
           # @!attribute [rw] status
-          #   @return [String] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
+          #   @return [String,nil] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
           attr_accessor :status
           # @!attribute [rw] failed_type
-          #   @return [String] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
+          #   @return [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
           attr_accessor :failed_type
           # @!attribute [rw] audience_count
-          #   @return [Integer] The number of users included in the audience.
+          #   @return [Integer,nil] The number of users included in the audience.
           attr_accessor :audience_count
           # @!attribute [rw] created
-          #   @return [Integer] When the audience was created (in UNIX time).
+          #   @return [Integer,nil] When the audience was created (in UNIX time).
           attr_accessor :created
           # @!attribute [rw] request_id
-          #   @return [String] The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
+          #   @return [String,nil] The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
           attr_accessor :request_id
           # @!attribute [rw] click_url
-          #   @return [String] The URL that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK and link URL is specified. 
+          #   @return [String,nil] The URL that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK and link URL is specified. 
           attr_accessor :click_url
           # @!attribute [rw] is_ifa_audience
-          #   @return [Boolean] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. 
+          #   @return [Boolean,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. 
           attr_accessor :is_ifa_audience
           # @!attribute [rw] permission
-          #   @return [String] ('READ'|'READ_WRITE') 
+          #   @return [String,nil] ('READ'|'READ_WRITE') 
           attr_accessor :permission
           # @!attribute [rw] create_route
-          #   @return [String] ('OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER') 
+          #   @return [String,nil] ('OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER') 
           attr_accessor :create_route
 
-          # @param audience_group_id [Integer] The audience ID.
-          # @param type [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
-          # @param description [String] The audience's name.
-          # @param status [String] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
-          # @param failed_type [String] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
-          # @param audience_count [Integer] The number of users included in the audience.
-          # @param created [Integer] When the audience was created (in UNIX time).
-          # @param request_id [String] The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
-          # @param click_url [String] The URL that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK and link URL is specified. 
-          # @param is_ifa_audience [Boolean] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. 
-          # @param permission [String] ('READ'|'READ_WRITE') 
-          # @param create_route [String] ('OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER') 
+          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String,nil] The audience's name.
+          # @param status [String,nil] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
+          # @param failed_type [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
+          # @param audience_count [Integer,nil] The number of users included in the audience.
+          # @param created [Integer,nil] When the audience was created (in UNIX time).
+          # @param request_id [String,nil] The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
+          # @param click_url [String,nil] The URL that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK and link URL is specified. 
+          # @param is_ifa_audience [Boolean,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. 
+          # @param permission [String,nil] ('READ'|'READ_WRITE') 
+          # @param create_route [String,nil] ('OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER') 
           def initialize(
             audience_group_id: nil,
             type: nil,

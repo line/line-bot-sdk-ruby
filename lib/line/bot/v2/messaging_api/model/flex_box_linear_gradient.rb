@@ -18,26 +18,26 @@ module Line
           #   @return [String] 
           attr_reader :type
           # @!attribute [rw] angle
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :angle
           # @!attribute [rw] start_color
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :start_color
           # @!attribute [rw] end_color
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :end_color
           # @!attribute [rw] center_color
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :center_color
           # @!attribute [rw] center_position
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :center_position
 
-          # @param angle [String] 
-          # @param start_color [String] 
-          # @param end_color [String] 
-          # @param center_color [String] 
-          # @param center_position [String] 
+          # @param angle [String,nil] 
+          # @param start_color [String,nil] 
+          # @param end_color [String,nil] 
+          # @param center_color [String,nil] 
+          # @param center_position [String,nil] 
           def initialize(
             angle: nil,
             start_color: nil,

@@ -13,14 +13,14 @@ module Line
       module Insight
         class AreaTile
           # @!attribute [rw] area
-          #   @return [String] users' country and region
+          #   @return [String,nil] users' country and region
           attr_accessor :area
           # @!attribute [rw] percentage
-          #   @return [Float] Percentage
+          #   @return [Float,nil] Percentage
           attr_accessor :percentage
 
-          # @param area [String] users' country and region
-          # @param percentage [Float] Percentage
+          # @param area [String,nil] users' country and region
+          # @param percentage [Float,nil] Percentage
           def initialize(
             area: nil,
             percentage: nil,

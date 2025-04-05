@@ -14,18 +14,18 @@ module Line
         # @see https://developers.line.biz/en/reference/liff-server/#update-liff-app
         class UpdateLiffView
           # @!attribute [rw] type
-          #   @return [String] ('compact'|'tall'|'full') Size of the LIFF app view. Specify one of these values: - compact - tall - full 
+          #   @return [String,nil] ('compact'|'tall'|'full') Size of the LIFF app view. Specify one of these values: - compact - tall - full 
           attr_accessor :type
           # @!attribute [rw] url
-          #   @return [String] Endpoint URL. This is the URL of the web app that implements the LIFF app (e.g. https://example.com). Used when the LIFF app is launched using the LIFF URL. The URL scheme must be https. URL fragments (#URL-fragment) can't be specified. 
+          #   @return [String,nil] Endpoint URL. This is the URL of the web app that implements the LIFF app (e.g. https://example.com). Used when the LIFF app is launched using the LIFF URL. The URL scheme must be https. URL fragments (#URL-fragment) can't be specified. 
           attr_accessor :url
           # @!attribute [rw] module_mode
-          #   @return [Boolean] `true` to use the LIFF app in modular mode. When in modular mode, the action button in the header is not displayed. 
+          #   @return [Boolean,nil] `true` to use the LIFF app in modular mode. When in modular mode, the action button in the header is not displayed. 
           attr_accessor :module_mode
 
-          # @param type [String] ('compact'|'tall'|'full') Size of the LIFF app view. Specify one of these values: - compact - tall - full 
-          # @param url [String] Endpoint URL. This is the URL of the web app that implements the LIFF app (e.g. https://example.com). Used when the LIFF app is launched using the LIFF URL. The URL scheme must be https. URL fragments (#URL-fragment) can't be specified. 
-          # @param module_mode [Boolean] `true` to use the LIFF app in modular mode. When in modular mode, the action button in the header is not displayed. 
+          # @param type [String,nil] ('compact'|'tall'|'full') Size of the LIFF app view. Specify one of these values: - compact - tall - full 
+          # @param url [String,nil] Endpoint URL. This is the URL of the web app that implements the LIFF app (e.g. https://example.com). Used when the LIFF app is launched using the LIFF URL. The URL scheme must be https. URL fragments (#URL-fragment) can't be specified. 
+          # @param module_mode [Boolean,nil] `true` to use the LIFF app in modular mode. When in modular mode, the action button in the header is not displayed. 
           def initialize(
             type: nil,
             url: nil,

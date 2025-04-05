@@ -20,20 +20,20 @@ module Line
           #   @return [String] URL.
           attr_accessor :url
           # @!attribute [rw] click
-          #   @return [Integer] Number of times the URL in the bubble was opened.
+          #   @return [Integer,nil] Number of times the URL in the bubble was opened.
           attr_accessor :click
           # @!attribute [rw] unique_click
-          #   @return [Integer] Number of users that opened the URL in the bubble.
+          #   @return [Integer,nil] Number of users that opened the URL in the bubble.
           attr_accessor :unique_click
           # @!attribute [rw] unique_click_of_request
-          #   @return [Integer] Number of users who opened this url through any link in the message. If another message bubble contains the same URL and a user opens both links, it's counted only once. 
+          #   @return [Integer,nil] Number of users who opened this url through any link in the message. If another message bubble contains the same URL and a user opens both links, it's counted only once. 
           attr_accessor :unique_click_of_request
 
           # @param seq [Integer] The URL's serial number.
           # @param url [String] URL.
-          # @param click [Integer] Number of times the URL in the bubble was opened.
-          # @param unique_click [Integer] Number of users that opened the URL in the bubble.
-          # @param unique_click_of_request [Integer] Number of users who opened this url through any link in the message. If another message bubble contains the same URL and a user opens both links, it's counted only once. 
+          # @param click [Integer,nil] Number of times the URL in the bubble was opened.
+          # @param unique_click [Integer,nil] Number of users that opened the URL in the bubble.
+          # @param unique_click_of_request [Integer,nil] Number of users who opened this url through any link in the message. If another message bubble contains the same URL and a user opens both links, it's counted only once. 
           def initialize(
             seq:,
             url:,

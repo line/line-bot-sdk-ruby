@@ -24,12 +24,12 @@ module Line
           #   @return [String] 
           attr_accessor :link_uri
           # @!attribute [rw] label
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :label
 
           # @param area [ImagemapArea] 
           # @param link_uri [String] 
-          # @param label [String] 
+          # @param label [String,nil] 
           def initialize(
             area:,
             link_uri:,

@@ -17,11 +17,11 @@ module Line
           #   @return [Array[String]] An array of strings indicating the names of aggregation units used this month.
           attr_accessor :custom_aggregation_units
           # @!attribute [rw] _next
-          #   @return [String] A continuation token to get the next array of unit names. Returned only when there are remaining aggregation units that weren't returned in customAggregationUnits in the original request.  
+          #   @return [String,nil] A continuation token to get the next array of unit names. Returned only when there are remaining aggregation units that weren't returned in customAggregationUnits in the original request.  
           attr_accessor :_next
 
           # @param custom_aggregation_units [Array[String]] An array of strings indicating the names of aggregation units used this month.
-          # @param _next [String] A continuation token to get the next array of unit names. Returned only when there are remaining aggregation units that weren't returned in customAggregationUnits in the original request.  
+          # @param _next [String,nil] A continuation token to get the next array of unit names. Returned only when there are remaining aggregation units that weren't returned in customAggregationUnits in the original request.  
           def initialize(
             custom_aggregation_units:,
             _next: nil,

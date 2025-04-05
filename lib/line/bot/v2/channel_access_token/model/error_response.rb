@@ -14,14 +14,14 @@ module Line
         # Error response of the Channel access token
         class ErrorResponse
           # @!attribute [rw] error
-          #   @return [String] Error summary
+          #   @return [String,nil] Error summary
           attr_accessor :error
           # @!attribute [rw] error_description
-          #   @return [String] Details of the error. Not returned in certain situations.
+          #   @return [String,nil] Details of the error. Not returned in certain situations.
           attr_accessor :error_description
 
-          # @param error [String] Error summary
-          # @param error_description [String] Details of the error. Not returned in certain situations.
+          # @param error [String,nil] Error summary
+          # @param error_description [String,nil] Details of the error. Not returned in certain situations.
           def initialize(
             error: nil,
             error_description: nil,

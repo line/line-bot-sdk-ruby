@@ -15,10 +15,10 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#source-user
         class Source
           # @!attribute [rw] type
-          #   @return [String] source type
+          #   @return [String,nil] source type
           attr_accessor :type
 
-          # @param type [String] source type
+          # @param type [String,nil] source type
           def initialize(
             type: nil,
             **dynamic_attributes

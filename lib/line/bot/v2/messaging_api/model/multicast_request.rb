@@ -20,16 +20,16 @@ module Line
           #   @return [Array[String]] Array of user IDs. Use userId values which are returned in webhook event objects. Do not use LINE IDs found on LINE.
           attr_accessor :to
           # @!attribute [rw] notification_disabled
-          #   @return [Boolean] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          #   @return [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           attr_accessor :notification_disabled
           # @!attribute [rw] custom_aggregation_units
-          #   @return [Array[String]] Name of aggregation unit. Case-sensitive.
+          #   @return [Array[String],nil] Name of aggregation unit. Case-sensitive.
           attr_accessor :custom_aggregation_units
 
           # @param messages [Array[Message]] Messages to send
           # @param to [Array[String]] Array of user IDs. Use userId values which are returned in webhook event objects. Do not use LINE IDs found on LINE.
-          # @param notification_disabled [Boolean] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
-          # @param custom_aggregation_units [Array[String]] Name of aggregation unit. Case-sensitive.
+          # @param notification_disabled [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          # @param custom_aggregation_units [Array[String],nil] Name of aggregation unit. Case-sensitive.
           def initialize(
             messages:,
             to:,

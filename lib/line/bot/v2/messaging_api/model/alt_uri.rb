@@ -13,10 +13,10 @@ module Line
       module MessagingApi
         class AltUri
           # @!attribute [rw] desktop
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :desktop
 
-          # @param desktop [String] 
+          # @param desktop [String,nil] 
           def initialize(
             desktop: nil,
             **dynamic_attributes

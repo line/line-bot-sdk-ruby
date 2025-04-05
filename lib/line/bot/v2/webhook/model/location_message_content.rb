@@ -21,10 +21,10 @@ module Line
           #   @return [String] Message ID
           attr_accessor :id
           # @!attribute [rw] title
-          #   @return [String] Title
+          #   @return [String,nil] Title
           attr_accessor :title
           # @!attribute [rw] address
-          #   @return [String] Address
+          #   @return [String,nil] Address
           attr_accessor :address
           # @!attribute [rw] latitude
           #   @return [Float] Latitude
@@ -34,8 +34,8 @@ module Line
           attr_accessor :longitude
 
           # @param id [String] Message ID
-          # @param title [String] Title
-          # @param address [String] Address
+          # @param title [String,nil] Title
+          # @param address [String,nil] Address
           # @param latitude [Float] Latitude
           # @param longitude [Float] Longitude
           def initialize(

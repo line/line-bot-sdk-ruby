@@ -21,15 +21,15 @@ module Line
           #   @return [Array[CarouselColumn]] 
           attr_accessor :columns
           # @!attribute [rw] image_aspect_ratio
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :image_aspect_ratio
           # @!attribute [rw] image_size
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :image_size
 
           # @param columns [Array[CarouselColumn]] 
-          # @param image_aspect_ratio [String] 
-          # @param image_size [String] 
+          # @param image_aspect_ratio [String,nil] 
+          # @param image_size [String,nil] 
           def initialize(
             columns:,
             image_aspect_ratio: nil,

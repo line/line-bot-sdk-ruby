@@ -16,11 +16,11 @@ module Line
           #   @return [String] ID of the sent message.
           attr_accessor :id
           # @!attribute [rw] quote_token
-          #   @return [String] Quote token of the message. Only included when a message object that can be specified as a quote target was sent as a push or reply message. 
+          #   @return [String,nil] Quote token of the message. Only included when a message object that can be specified as a quote target was sent as a push or reply message. 
           attr_accessor :quote_token
 
           # @param id [String] ID of the sent message.
-          # @param quote_token [String] Quote token of the message. Only included when a message object that can be specified as a quote target was sent as a push or reply message. 
+          # @param quote_token [String,nil] Quote token of the message. Only included when a message object that can be specified as a quote target was sent as a push or reply message. 
           def initialize(
             id:,
             quote_token: nil,

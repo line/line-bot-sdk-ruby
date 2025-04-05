@@ -24,12 +24,12 @@ module Line
           #   @return [ContentProvider] 
           attr_accessor :content_provider
           # @!attribute [rw] duration
-          #   @return [Integer] Length of audio file (milliseconds)
+          #   @return [Integer,nil] Length of audio file (milliseconds)
           attr_accessor :duration
 
           # @param id [String] Message ID
           # @param content_provider [ContentProvider] 
-          # @param duration [Integer] Length of audio file (milliseconds)
+          # @param duration [Integer,nil] Length of audio file (milliseconds)
           def initialize(
             id:,
             content_provider:,

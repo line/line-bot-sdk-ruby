@@ -19,12 +19,12 @@ module Line
           #   @return [String] ('enter'|'banner'|'stay') Type of beacon event.
           attr_accessor :type
           # @!attribute [rw] dm
-          #   @return [String] Device message of beacon that was detected.
+          #   @return [String,nil] Device message of beacon that was detected.
           attr_accessor :dm
 
           # @param hwid [String] Hardware ID of the beacon that was detected
           # @param type [String] ('enter'|'banner'|'stay') Type of beacon event.
-          # @param dm [String] Device message of beacon that was detected.
+          # @param dm [String,nil] Device message of beacon that was detected.
           def initialize(
             hwid:,
             type:,

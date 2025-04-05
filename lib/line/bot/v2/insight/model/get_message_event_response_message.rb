@@ -13,54 +13,54 @@ module Line
       module Insight
         class GetMessageEventResponseMessage
           # @!attribute [rw] seq
-          #   @return [Integer] Bubble's serial number.
+          #   @return [Integer,nil] Bubble's serial number.
           attr_accessor :seq
           # @!attribute [rw] impression
-          #   @return [Integer] Number of times the bubble was displayed.
+          #   @return [Integer,nil] Number of times the bubble was displayed.
           attr_accessor :impression
           # @!attribute [rw] media_played
-          #   @return [Integer] Number of times audio or video in the bubble started playing.
+          #   @return [Integer,nil] Number of times audio or video in the bubble started playing.
           attr_accessor :media_played
           # @!attribute [rw] media_played25_percent
-          #   @return [Integer] Number of times audio or video in the bubble started playing and was played 25% of the total time.
+          #   @return [Integer,nil] Number of times audio or video in the bubble started playing and was played 25% of the total time.
           attr_accessor :media_played25_percent
           # @!attribute [rw] media_played50_percent
-          #   @return [Integer] Number of times audio or video in the bubble started playing and was played 50% of the total time.
+          #   @return [Integer,nil] Number of times audio or video in the bubble started playing and was played 50% of the total time.
           attr_accessor :media_played50_percent
           # @!attribute [rw] media_played75_percent
-          #   @return [Integer] Number of times audio or video in the bubble started playing and was played 75% of the total time.
+          #   @return [Integer,nil] Number of times audio or video in the bubble started playing and was played 75% of the total time.
           attr_accessor :media_played75_percent
           # @!attribute [rw] media_played100_percent
-          #   @return [Integer] Number of times audio or video in the bubble started playing and was played 100% of the total time.
+          #   @return [Integer,nil] Number of times audio or video in the bubble started playing and was played 100% of the total time.
           attr_accessor :media_played100_percent
           # @!attribute [rw] unique_media_played
-          #   @return [Integer] Number of users that started playing audio or video in the bubble.
+          #   @return [Integer,nil] Number of users that started playing audio or video in the bubble.
           attr_accessor :unique_media_played
           # @!attribute [rw] unique_media_played25_percent
-          #   @return [Integer] Number of users that started playing audio or video in the bubble and played 25% of the total time.
+          #   @return [Integer,nil] Number of users that started playing audio or video in the bubble and played 25% of the total time.
           attr_accessor :unique_media_played25_percent
           # @!attribute [rw] unique_media_played50_percent
-          #   @return [Integer] Number of users that started playing audio or video in the bubble and played 50% of the total time.
+          #   @return [Integer,nil] Number of users that started playing audio or video in the bubble and played 50% of the total time.
           attr_accessor :unique_media_played50_percent
           # @!attribute [rw] unique_media_played75_percent
-          #   @return [Integer] Number of users that started playing audio or video in the bubble and played 75% of the total time.
+          #   @return [Integer,nil] Number of users that started playing audio or video in the bubble and played 75% of the total time.
           attr_accessor :unique_media_played75_percent
           # @!attribute [rw] unique_media_played100_percent
-          #   @return [Integer] Number of users that started playing audio or video in the bubble and played 100% of the total time.
+          #   @return [Integer,nil] Number of users that started playing audio or video in the bubble and played 100% of the total time.
           attr_accessor :unique_media_played100_percent
 
-          # @param seq [Integer] Bubble's serial number.
-          # @param impression [Integer] Number of times the bubble was displayed.
-          # @param media_played [Integer] Number of times audio or video in the bubble started playing.
-          # @param media_played25_percent [Integer] Number of times audio or video in the bubble started playing and was played 25% of the total time.
-          # @param media_played50_percent [Integer] Number of times audio or video in the bubble started playing and was played 50% of the total time.
-          # @param media_played75_percent [Integer] Number of times audio or video in the bubble started playing and was played 75% of the total time.
-          # @param media_played100_percent [Integer] Number of times audio or video in the bubble started playing and was played 100% of the total time.
-          # @param unique_media_played [Integer] Number of users that started playing audio or video in the bubble.
-          # @param unique_media_played25_percent [Integer] Number of users that started playing audio or video in the bubble and played 25% of the total time.
-          # @param unique_media_played50_percent [Integer] Number of users that started playing audio or video in the bubble and played 50% of the total time.
-          # @param unique_media_played75_percent [Integer] Number of users that started playing audio or video in the bubble and played 75% of the total time.
-          # @param unique_media_played100_percent [Integer] Number of users that started playing audio or video in the bubble and played 100% of the total time.
+          # @param seq [Integer,nil] Bubble's serial number.
+          # @param impression [Integer,nil] Number of times the bubble was displayed.
+          # @param media_played [Integer,nil] Number of times audio or video in the bubble started playing.
+          # @param media_played25_percent [Integer,nil] Number of times audio or video in the bubble started playing and was played 25% of the total time.
+          # @param media_played50_percent [Integer,nil] Number of times audio or video in the bubble started playing and was played 50% of the total time.
+          # @param media_played75_percent [Integer,nil] Number of times audio or video in the bubble started playing and was played 75% of the total time.
+          # @param media_played100_percent [Integer,nil] Number of times audio or video in the bubble started playing and was played 100% of the total time.
+          # @param unique_media_played [Integer,nil] Number of users that started playing audio or video in the bubble.
+          # @param unique_media_played25_percent [Integer,nil] Number of users that started playing audio or video in the bubble and played 25% of the total time.
+          # @param unique_media_played50_percent [Integer,nil] Number of users that started playing audio or video in the bubble and played 50% of the total time.
+          # @param unique_media_played75_percent [Integer,nil] Number of users that started playing audio or video in the bubble and played 75% of the total time.
+          # @param unique_media_played100_percent [Integer,nil] Number of users that started playing audio or video in the bubble and played 100% of the total time.
           def initialize(
             seq: nil,
             impression: nil,

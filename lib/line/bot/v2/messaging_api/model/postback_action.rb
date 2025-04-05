@@ -15,33 +15,33 @@ module Line
       module MessagingApi
         class PostbackAction < Action
           # @!attribute [r] type
-          #   @return [String] Type of action
+          #   @return [String,nil] Type of action
           attr_reader :type
           # @!attribute [rw] label
-          #   @return [String] Label for the action.
+          #   @return [String,nil] Label for the action.
           attr_accessor :label
           # @!attribute [rw] data
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :data
           # @!attribute [rw] display_text
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :display_text
           # @!attribute [rw] text
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :text
           # @!attribute [rw] input_option
-          #   @return [String] ('closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice') 
+          #   @return [String,nil] ('closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice') 
           attr_accessor :input_option
           # @!attribute [rw] fill_in_text
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :fill_in_text
 
-          # @param label [String] Label for the action.
-          # @param data [String] 
-          # @param display_text [String] 
-          # @param text [String] 
-          # @param input_option [String] ('closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice') 
-          # @param fill_in_text [String] 
+          # @param label [String,nil] Label for the action.
+          # @param data [String,nil] 
+          # @param display_text [String,nil] 
+          # @param text [String,nil] 
+          # @param input_option [String,nil] ('closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice') 
+          # @param fill_in_text [String,nil] 
           def initialize(
             label: nil,
             data: nil,

@@ -14,10 +14,10 @@ module Line
         # Audience
         class Audience
           # @!attribute [rw] id
-          #   @return [String] A user ID or IFA. You can specify an empty array.
+          #   @return [String,nil] A user ID or IFA. You can specify an empty array.
           attr_accessor :id
 
-          # @param id [String] A user ID or IFA. You can specify an empty array.
+          # @param id [String,nil] A user ID or IFA. You can specify an empty array.
           def initialize(
             id: nil,
             **dynamic_attributes

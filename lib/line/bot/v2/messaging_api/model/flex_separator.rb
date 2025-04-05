@@ -18,14 +18,14 @@ module Line
           #   @return [String] 
           attr_reader :type
           # @!attribute [rw] margin
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :margin
           # @!attribute [rw] color
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :color
 
-          # @param margin [String] 
-          # @param color [String] 
+          # @param margin [String,nil] 
+          # @param color [String,nil] 
           def initialize(
             margin: nil,
             color: nil,

@@ -15,14 +15,14 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#action-objects
         class Action
           # @!attribute [rw] type
-          #   @return [String] Type of action
+          #   @return [String,nil] Type of action
           attr_accessor :type
           # @!attribute [rw] label
-          #   @return [String] Label for the action.
+          #   @return [String,nil] Label for the action.
           attr_accessor :label
 
-          # @param type [String] Type of action
-          # @param label [String] Label for the action.
+          # @param type [String,nil] Type of action
+          # @param label [String,nil] Label for the action.
           def initialize(
             type: nil,
             label: nil,

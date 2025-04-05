@@ -14,7 +14,7 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
         class TestWebhookEndpointResponse
           # @!attribute [rw] success
-          #   @return [Boolean] Result of the communication from the LINE platform to the webhook URL.
+          #   @return [Boolean,nil] Result of the communication from the LINE platform to the webhook URL.
           attr_accessor :success
           # @!attribute [rw] timestamp
           #   @return [String] Time of the event in milliseconds. Even in the case of a redelivered webhook, it represents the time the event occurred, not the time it was redelivered. 
@@ -29,7 +29,7 @@ module Line
           #   @return [String] Details of the response.
           attr_accessor :detail
 
-          # @param success [Boolean] Result of the communication from the LINE platform to the webhook URL.
+          # @param success [Boolean,nil] Result of the communication from the LINE platform to the webhook URL.
           # @param timestamp [String] Time of the event in milliseconds. Even in the case of a redelivered webhook, it represents the time the event occurred, not the time it was redelivered. 
           # @param status_code [Integer] The HTTP status code. If the webhook response isn't received, the status code is set to zero or a negative number.
           # @param reason [String] Reason for the response.

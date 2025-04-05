@@ -16,11 +16,11 @@ module Line
           #   @return [String] Postback data
           attr_accessor :data
           # @!attribute [rw] params
-          #   @return [Object] 
+          #   @return [Object,nil] 
           attr_accessor :params
 
           # @param data [String] Postback data
-          # @param params [Object] 
+          # @param params [Object,nil] 
           def initialize(
             data:,
             params: nil,

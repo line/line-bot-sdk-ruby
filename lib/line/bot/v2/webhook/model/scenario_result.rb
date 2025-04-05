@@ -14,10 +14,10 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#scenario-result-event
         class ScenarioResult
           # @!attribute [rw] scenario_id
-          #   @return [String] Scenario ID executed
+          #   @return [String,nil] Scenario ID executed
           attr_accessor :scenario_id
           # @!attribute [rw] revision
-          #   @return [Integer] Revision number of the scenario set containing the executed scenario
+          #   @return [Integer,nil] Revision number of the scenario set containing the executed scenario
           attr_accessor :revision
           # @!attribute [rw] start_time
           #   @return [Integer] Timestamp for when execution of scenario action started (milliseconds, LINE app time)
@@ -29,23 +29,23 @@ module Line
           #   @return [String] Scenario execution completion status
           attr_accessor :result_code
           # @!attribute [rw] action_results
-          #   @return [Array[ActionResult]] Execution result of individual operations specified in action. Only included when things.result.resultCode is success.
+          #   @return [Array[ActionResult],nil] Execution result of individual operations specified in action. Only included when things.result.resultCode is success.
           attr_accessor :action_results
           # @!attribute [rw] ble_notification_payload
-          #   @return [String] Data contained in notification.
+          #   @return [String,nil] Data contained in notification.
           attr_accessor :ble_notification_payload
           # @!attribute [rw] error_reason
-          #   @return [String] Error reason.
+          #   @return [String,nil] Error reason.
           attr_accessor :error_reason
 
-          # @param scenario_id [String] Scenario ID executed
-          # @param revision [Integer] Revision number of the scenario set containing the executed scenario
+          # @param scenario_id [String,nil] Scenario ID executed
+          # @param revision [Integer,nil] Revision number of the scenario set containing the executed scenario
           # @param start_time [Integer] Timestamp for when execution of scenario action started (milliseconds, LINE app time)
           # @param end_time [Integer] Timestamp for when execution of scenario was completed (milliseconds, LINE app time)
           # @param result_code [String] Scenario execution completion status
-          # @param action_results [Array[ActionResult]] Execution result of individual operations specified in action. Only included when things.result.resultCode is success.
-          # @param ble_notification_payload [String] Data contained in notification.
-          # @param error_reason [String] Error reason.
+          # @param action_results [Array[ActionResult],nil] Execution result of individual operations specified in action. Only included when things.result.resultCode is success.
+          # @param ble_notification_payload [String,nil] Data contained in notification.
+          # @param error_reason [String,nil] Error reason.
           def initialize(
             scenario_id: nil,
             revision: nil,

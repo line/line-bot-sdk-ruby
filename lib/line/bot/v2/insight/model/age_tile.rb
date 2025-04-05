@@ -13,14 +13,14 @@ module Line
       module Insight
         class AgeTile
           # @!attribute [rw] age
-          #   @return [String] ('from0to14'|'from15to19'|'from20to24'|'from25to29'|'from30to34'|'from35to39'|'from40to44'|'from45to49'|'from50'|'from50to54'|'from55to59'|'from60to64'|'from65to69'|'from70'|'unknown') users' age
+          #   @return [String,nil] ('from0to14'|'from15to19'|'from20to24'|'from25to29'|'from30to34'|'from35to39'|'from40to44'|'from45to49'|'from50'|'from50to54'|'from55to59'|'from60to64'|'from65to69'|'from70'|'unknown') users' age
           attr_accessor :age
           # @!attribute [rw] percentage
-          #   @return [Float] Percentage
+          #   @return [Float,nil] Percentage
           attr_accessor :percentage
 
-          # @param age [String] ('from0to14'|'from15to19'|'from20to24'|'from25to29'|'from30to34'|'from35to39'|'from40to44'|'from45to49'|'from50'|'from50to54'|'from55to59'|'from60to64'|'from65to69'|'from70'|'unknown') users' age
-          # @param percentage [Float] Percentage
+          # @param age [String,nil] ('from0to14'|'from15to19'|'from20to24'|'from25to29'|'from30to34'|'from35to39'|'from40to44'|'from45to49'|'from50'|'from50to54'|'from55to59'|'from60to64'|'from65to69'|'from70'|'unknown') users' age
+          # @param percentage [Float,nil] Percentage
           def initialize(
             age: nil,
             percentage: nil,

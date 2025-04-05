@@ -20,12 +20,12 @@ module Line
           #   @return [String] Group name
           attr_accessor :group_name
           # @!attribute [rw] picture_url
-          #   @return [String] Group icon URL. Not included in the response if the user doesn't set a group profile icon.
+          #   @return [String,nil] Group icon URL. Not included in the response if the user doesn't set a group profile icon.
           attr_accessor :picture_url
 
           # @param group_id [String] Group ID
           # @param group_name [String] Group name
-          # @param picture_url [String] Group icon URL. Not included in the response if the user doesn't set a group profile icon.
+          # @param picture_url [String,nil] Group icon URL. Not included in the response if the user doesn't set a group profile icon.
           def initialize(
             group_id:,
             group_name:,

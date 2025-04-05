@@ -14,18 +14,18 @@ module Line
         # Owner of this audience group.
         class DetailedOwner
           # @!attribute [rw] service_type
-          #   @return [String] Service name where the audience group has been created.
+          #   @return [String,nil] Service name where the audience group has been created.
           attr_accessor :service_type
           # @!attribute [rw] id
-          #   @return [String] Owner ID in the service.
+          #   @return [String,nil] Owner ID in the service.
           attr_accessor :id
           # @!attribute [rw] name
-          #   @return [String] Owner account name.
+          #   @return [String,nil] Owner account name.
           attr_accessor :name
 
-          # @param service_type [String] Service name where the audience group has been created.
-          # @param id [String] Owner ID in the service.
-          # @param name [String] Owner account name.
+          # @param service_type [String,nil] Service name where the audience group has been created.
+          # @param id [String,nil] Owner ID in the service.
+          # @param name [String,nil] Owner account name.
           def initialize(
             service_type: nil,
             id: nil,

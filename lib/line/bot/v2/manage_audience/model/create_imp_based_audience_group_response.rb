@@ -15,26 +15,26 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
         class CreateImpBasedAudienceGroupResponse
           # @!attribute [rw] audience_group_id
-          #   @return [Integer] The audience ID.
+          #   @return [Integer,nil] The audience ID.
           attr_accessor :audience_group_id
           # @!attribute [rw] type
-          #   @return [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          #   @return [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
           attr_accessor :type
           # @!attribute [rw] description
-          #   @return [String] The audience's name.
+          #   @return [String,nil] The audience's name.
           attr_accessor :description
           # @!attribute [rw] created
-          #   @return [Integer] When the audience was created (in UNIX time).
+          #   @return [Integer,nil] When the audience was created (in UNIX time).
           attr_accessor :created
           # @!attribute [rw] request_id
-          #   @return [String] The request ID that was specified when the audience was created.
+          #   @return [String,nil] The request ID that was specified when the audience was created.
           attr_accessor :request_id
 
-          # @param audience_group_id [Integer] The audience ID.
-          # @param type [String] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
-          # @param description [String] The audience's name.
-          # @param created [Integer] When the audience was created (in UNIX time).
-          # @param request_id [String] The request ID that was specified when the audience was created.
+          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String,nil] The audience's name.
+          # @param created [Integer,nil] When the audience was created (in UNIX time).
+          # @param request_id [String,nil] The request ID that was specified when the audience was created.
           def initialize(
             audience_group_id: nil,
             type: nil,

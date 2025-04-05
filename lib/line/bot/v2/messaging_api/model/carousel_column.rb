@@ -14,29 +14,29 @@ module Line
         # Column object for carousel template.
         class CarouselColumn
           # @!attribute [rw] thumbnail_image_url
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :thumbnail_image_url
           # @!attribute [rw] image_background_color
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :image_background_color
           # @!attribute [rw] title
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :title
           # @!attribute [rw] text
           #   @return [String] 
           attr_accessor :text
           # @!attribute [rw] default_action
-          #   @return [Action] 
+          #   @return [Action,nil] 
           attr_accessor :default_action
           # @!attribute [rw] actions
           #   @return [Array[Action]] 
           attr_accessor :actions
 
-          # @param thumbnail_image_url [String] 
-          # @param image_background_color [String] 
-          # @param title [String] 
+          # @param thumbnail_image_url [String,nil] 
+          # @param image_background_color [String,nil] 
+          # @param title [String,nil] 
           # @param text [String] 
-          # @param default_action [Action] 
+          # @param default_action [Action,nil] 
           # @param actions [Array[Action]] 
           def initialize(
             thumbnail_image_url: nil,

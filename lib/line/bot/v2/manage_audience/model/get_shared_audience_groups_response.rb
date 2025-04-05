@@ -15,30 +15,30 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
         class GetSharedAudienceGroupsResponse
           # @!attribute [rw] audience_groups
-          #   @return [Array[AudienceGroup]] An array of audience data. If there are no audiences that match the specified filter, an empty array will be returned.
+          #   @return [Array[AudienceGroup],nil] An array of audience data. If there are no audiences that match the specified filter, an empty array will be returned.
           attr_accessor :audience_groups
           # @!attribute [rw] has_next_page
-          #   @return [Boolean] true when this is not the last page.
+          #   @return [Boolean,nil] true when this is not the last page.
           attr_accessor :has_next_page
           # @!attribute [rw] total_count
-          #   @return [Integer] The total number of audiences that can be returned with the specified filter.
+          #   @return [Integer,nil] The total number of audiences that can be returned with the specified filter.
           attr_accessor :total_count
           # @!attribute [rw] read_write_audience_group_total_count
-          #   @return [Integer] Of the audiences you can get with the specified filter, the number of audiences with the update permission set to READ_WRITE.
+          #   @return [Integer,nil] Of the audiences you can get with the specified filter, the number of audiences with the update permission set to READ_WRITE.
           attr_accessor :read_write_audience_group_total_count
           # @!attribute [rw] page
-          #   @return [Integer] The current page number.
+          #   @return [Integer,nil] The current page number.
           attr_accessor :page
           # @!attribute [rw] size
-          #   @return [Integer] The maximum number of audiences on the current page.
+          #   @return [Integer,nil] The maximum number of audiences on the current page.
           attr_accessor :size
 
-          # @param audience_groups [Array[AudienceGroup]] An array of audience data. If there are no audiences that match the specified filter, an empty array will be returned.
-          # @param has_next_page [Boolean] true when this is not the last page.
-          # @param total_count [Integer] The total number of audiences that can be returned with the specified filter.
-          # @param read_write_audience_group_total_count [Integer] Of the audiences you can get with the specified filter, the number of audiences with the update permission set to READ_WRITE.
-          # @param page [Integer] The current page number.
-          # @param size [Integer] The maximum number of audiences on the current page.
+          # @param audience_groups [Array[AudienceGroup],nil] An array of audience data. If there are no audiences that match the specified filter, an empty array will be returned.
+          # @param has_next_page [Boolean,nil] true when this is not the last page.
+          # @param total_count [Integer,nil] The total number of audiences that can be returned with the specified filter.
+          # @param read_write_audience_group_total_count [Integer,nil] Of the audiences you can get with the specified filter, the number of audiences with the update permission set to READ_WRITE.
+          # @param page [Integer,nil] The current page number.
+          # @param size [Integer,nil] The maximum number of audiences on the current page.
           def initialize(
             audience_groups: nil,
             has_next_page: nil,

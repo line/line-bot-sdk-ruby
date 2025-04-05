@@ -14,10 +14,10 @@ module Line
         # Recipient
         class Recipient
           # @!attribute [rw] type
-          #   @return [String] Type of recipient
+          #   @return [String,nil] Type of recipient
           attr_accessor :type
 
-          # @param type [String] Type of recipient
+          # @param type [String,nil] Type of recipient
           def initialize(
             type: nil,
             **dynamic_attributes

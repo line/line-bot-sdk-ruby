@@ -19,26 +19,26 @@ module Line
           #   @return [String] Type of message
           attr_reader :type
           # @!attribute [rw] quick_reply
-          #   @return [QuickReply] 
+          #   @return [QuickReply,nil] 
           attr_accessor :quick_reply
           # @!attribute [rw] sender
-          #   @return [Sender] 
+          #   @return [Sender,nil] 
           attr_accessor :sender
           # @!attribute [rw] text
           #   @return [String] 
           attr_accessor :text
           # @!attribute [rw] emojis
-          #   @return [Array[Emoji]] 
+          #   @return [Array[Emoji],nil] 
           attr_accessor :emojis
           # @!attribute [rw] quote_token
-          #   @return [String] Quote token of the message you want to quote.
+          #   @return [String,nil] Quote token of the message you want to quote.
           attr_accessor :quote_token
 
-          # @param quick_reply [QuickReply] 
-          # @param sender [Sender] 
+          # @param quick_reply [QuickReply,nil] 
+          # @param sender [Sender,nil] 
           # @param text [String] 
-          # @param emojis [Array[Emoji]] 
-          # @param quote_token [String] Quote token of the message you want to quote.
+          # @param emojis [Array[Emoji],nil] 
+          # @param quote_token [String,nil] Quote token of the message you want to quote.
           def initialize(
             quick_reply: nil,
             sender: nil,

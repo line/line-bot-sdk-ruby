@@ -20,16 +20,16 @@ module Line
           #   @return [Array[Message]] List of Message objects.
           attr_accessor :messages
           # @!attribute [rw] notification_disabled
-          #   @return [Boolean] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          #   @return [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           attr_accessor :notification_disabled
           # @!attribute [rw] custom_aggregation_units
-          #   @return [Array[String]] List of aggregation unit name. Case-sensitive. This functions can only be used by corporate users who have submitted the required applications. 
+          #   @return [Array[String],nil] List of aggregation unit name. Case-sensitive. This functions can only be used by corporate users who have submitted the required applications. 
           attr_accessor :custom_aggregation_units
 
           # @param to [String] ID of the receiver.
           # @param messages [Array[Message]] List of Message objects.
-          # @param notification_disabled [Boolean] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
-          # @param custom_aggregation_units [Array[String]] List of aggregation unit name. Case-sensitive. This functions can only be used by corporate users who have submitted the required applications. 
+          # @param notification_disabled [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          # @param custom_aggregation_units [Array[String],nil] List of aggregation unit name. Case-sensitive. This functions can only be used by corporate users who have submitted the required applications. 
           def initialize(
             to:,
             messages:,

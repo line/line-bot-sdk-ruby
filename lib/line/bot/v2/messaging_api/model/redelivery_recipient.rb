@@ -15,13 +15,13 @@ module Line
       module MessagingApi
         class RedeliveryRecipient < Recipient
           # @!attribute [r] type
-          #   @return [String] Type of recipient
+          #   @return [String,nil] Type of recipient
           attr_reader :type
           # @!attribute [rw] request_id
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :request_id
 
-          # @param request_id [String] 
+          # @param request_id [String,nil] 
           def initialize(
             request_id: nil,
             **dynamic_attributes

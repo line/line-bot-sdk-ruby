@@ -15,18 +15,18 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#get-insight-message-event-response
         class GetMessageEventResponse
           # @!attribute [rw] overview
-          #   @return [GetMessageEventResponseOverview] 
+          #   @return [GetMessageEventResponseOverview,nil] 
           attr_accessor :overview
           # @!attribute [rw] messages
-          #   @return [Array[GetMessageEventResponseMessage]] Array of information about individual message bubbles.
+          #   @return [Array[GetMessageEventResponseMessage],nil] Array of information about individual message bubbles.
           attr_accessor :messages
           # @!attribute [rw] clicks
-          #   @return [Array[GetMessageEventResponseClick]] Array of information about opened URLs in the message.
+          #   @return [Array[GetMessageEventResponseClick],nil] Array of information about opened URLs in the message.
           attr_accessor :clicks
 
-          # @param overview [GetMessageEventResponseOverview] 
-          # @param messages [Array[GetMessageEventResponseMessage]] Array of information about individual message bubbles.
-          # @param clicks [Array[GetMessageEventResponseClick]] Array of information about opened URLs in the message.
+          # @param overview [GetMessageEventResponseOverview,nil] 
+          # @param messages [Array[GetMessageEventResponseMessage],nil] Array of information about individual message bubbles.
+          # @param clicks [Array[GetMessageEventResponseClick],nil] Array of information about opened URLs in the message.
           def initialize(
             overview: nil,
             messages: nil,

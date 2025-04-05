@@ -18,13 +18,13 @@ module Line
           #   @return [String] source type
           attr_reader :type
           # @!attribute [rw] user_id
-          #   @return [String] ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
+          #   @return [String,nil] ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
           attr_accessor :user_id
           # @!attribute [rw] room_id
           #   @return [String] Room ID of the source multi-person chat
           attr_accessor :room_id
 
-          # @param user_id [String] ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
+          # @param user_id [String,nil] ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
           # @param room_id [String] Room ID of the source multi-person chat
           def initialize(
             user_id: nil,

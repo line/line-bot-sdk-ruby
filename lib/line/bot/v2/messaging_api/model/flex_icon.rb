@@ -22,43 +22,43 @@ module Line
           #   @return [String] 
           attr_accessor :url
           # @!attribute [rw] size
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :size
           # @!attribute [rw] aspect_ratio
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :aspect_ratio
           # @!attribute [rw] margin
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :margin
           # @!attribute [rw] position
-          #   @return [String] ('relative'|'absolute') 
+          #   @return [String,nil] ('relative'|'absolute') 
           attr_accessor :position
           # @!attribute [rw] offset_top
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :offset_top
           # @!attribute [rw] offset_bottom
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :offset_bottom
           # @!attribute [rw] offset_start
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :offset_start
           # @!attribute [rw] offset_end
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :offset_end
           # @!attribute [rw] scaling
-          #   @return [Boolean] 
+          #   @return [Boolean,nil] 
           attr_accessor :scaling
 
           # @param url [String] 
-          # @param size [String] 
-          # @param aspect_ratio [String] 
-          # @param margin [String] 
-          # @param position [String] ('relative'|'absolute') 
-          # @param offset_top [String] 
-          # @param offset_bottom [String] 
-          # @param offset_start [String] 
-          # @param offset_end [String] 
-          # @param scaling [Boolean] 
+          # @param size [String,nil] 
+          # @param aspect_ratio [String,nil] 
+          # @param margin [String,nil] 
+          # @param position [String,nil] ('relative'|'absolute') 
+          # @param offset_top [String,nil] 
+          # @param offset_bottom [String,nil] 
+          # @param offset_start [String,nil] 
+          # @param offset_end [String,nil] 
+          # @param scaling [Boolean,nil] 
           def initialize(
             url:,
             size: nil,

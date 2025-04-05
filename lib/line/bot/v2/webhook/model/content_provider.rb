@@ -17,15 +17,15 @@ module Line
           #   @return [String] ('line'|'external') Provider of the image file.
           attr_accessor :type
           # @!attribute [rw] original_content_url
-          #   @return [String] URL of the image file. Only included when contentProvider.type is external.
+          #   @return [String,nil] URL of the image file. Only included when contentProvider.type is external.
           attr_accessor :original_content_url
           # @!attribute [rw] preview_image_url
-          #   @return [String] URL of the preview image. Only included when contentProvider.type is external.
+          #   @return [String,nil] URL of the preview image. Only included when contentProvider.type is external.
           attr_accessor :preview_image_url
 
           # @param type [String] ('line'|'external') Provider of the image file.
-          # @param original_content_url [String] URL of the image file. Only included when contentProvider.type is external.
-          # @param preview_image_url [String] URL of the preview image. Only included when contentProvider.type is external.
+          # @param original_content_url [String,nil] URL of the image file. Only included when contentProvider.type is external.
+          # @param preview_image_url [String,nil] URL of the preview image. Only included when contentProvider.type is external.
           def initialize(
             type:,
             original_content_url: nil,

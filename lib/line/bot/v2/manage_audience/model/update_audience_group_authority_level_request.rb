@@ -15,10 +15,10 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#change-authority-level
         class UpdateAudienceGroupAuthorityLevelRequest
           # @!attribute [rw] authority_level
-          #   @return [String] ('PUBLIC'|'PRIVATE') 
+          #   @return [String,nil] ('PUBLIC'|'PRIVATE') 
           attr_accessor :authority_level
 
-          # @param authority_level [String] ('PUBLIC'|'PRIVATE') 
+          # @param authority_level [String,nil] ('PUBLIC'|'PRIVATE') 
           def initialize(
             authority_level: nil,
             **dynamic_attributes

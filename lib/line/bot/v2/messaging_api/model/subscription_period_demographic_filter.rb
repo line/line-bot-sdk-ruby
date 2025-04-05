@@ -15,17 +15,17 @@ module Line
       module MessagingApi
         class SubscriptionPeriodDemographicFilter < DemographicFilter
           # @!attribute [r] type
-          #   @return [String] Type of demographic filter
+          #   @return [String,nil] Type of demographic filter
           attr_reader :type
           # @!attribute [rw] gte
-          #   @return [String] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
+          #   @return [String,nil] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
           attr_accessor :gte
           # @!attribute [rw] lt
-          #   @return [String] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
+          #   @return [String,nil] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
           attr_accessor :lt
 
-          # @param gte [String] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
-          # @param lt [String] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
+          # @param gte [String,nil] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
+          # @param lt [String,nil] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
           def initialize(
             gte: nil,
             lt: nil,

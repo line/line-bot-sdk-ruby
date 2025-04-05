@@ -19,10 +19,10 @@ module Line
           #   @return [String] Type of message
           attr_reader :type
           # @!attribute [rw] quick_reply
-          #   @return [QuickReply] 
+          #   @return [QuickReply,nil] 
           attr_accessor :quick_reply
           # @!attribute [rw] sender
-          #   @return [Sender] 
+          #   @return [Sender,nil] 
           attr_accessor :sender
           # @!attribute [rw] alt_text
           #   @return [String] 
@@ -31,8 +31,8 @@ module Line
           #   @return [Template] 
           attr_accessor :template
 
-          # @param quick_reply [QuickReply] 
-          # @param sender [Sender] 
+          # @param quick_reply [QuickReply,nil] 
+          # @param sender [Sender,nil] 
           # @param alt_text [String] 
           # @param template [Template] 
           def initialize(

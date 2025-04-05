@@ -19,7 +19,7 @@ module Line
           #   @return [String] Type of the event
           attr_reader :type
           # @!attribute [rw] source
-          #   @return [Source] 
+          #   @return [Source,nil] 
           attr_accessor :source
           # @!attribute [rw] timestamp
           #   @return [Integer] Time of the event in milliseconds.
@@ -40,7 +40,7 @@ module Line
           #   @return [FollowDetail] 
           attr_accessor :follow
 
-          # @param source [Source] 
+          # @param source [Source,nil] 
           # @param timestamp [Integer] Time of the event in milliseconds.
           # @param mode [String] ('active'|'standby') 
           # @param webhook_event_id [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.

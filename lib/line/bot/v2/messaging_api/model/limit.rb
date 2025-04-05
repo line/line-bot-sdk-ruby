@@ -15,14 +15,14 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
         class Limit
           # @!attribute [rw] max
-          #   @return [Integer] The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. 
+          #   @return [Integer,nil] The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. 
           attr_accessor :max
           # @!attribute [rw] up_to_remaining_quota
-          #   @return [Boolean] If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 
+          #   @return [Boolean,nil] If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 
           attr_accessor :up_to_remaining_quota
 
-          # @param max [Integer] The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. 
-          # @param up_to_remaining_quota [Boolean] If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 
+          # @param max [Integer,nil] The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. 
+          # @param up_to_remaining_quota [Boolean,nil] If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 
           def initialize(
             max: nil,
             up_to_remaining_quota: false,

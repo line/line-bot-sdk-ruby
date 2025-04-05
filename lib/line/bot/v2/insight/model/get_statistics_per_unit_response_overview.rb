@@ -15,22 +15,22 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit-response
         class GetStatisticsPerUnitResponseOverview
           # @!attribute [rw] unique_impression
-          #   @return [Integer] Number of users who opened the message, meaning they displayed at least 1 bubble.
+          #   @return [Integer,nil] Number of users who opened the message, meaning they displayed at least 1 bubble.
           attr_accessor :unique_impression
           # @!attribute [rw] unique_click
-          #   @return [Integer] Number of users who opened any URL in the message.
+          #   @return [Integer,nil] Number of users who opened any URL in the message.
           attr_accessor :unique_click
           # @!attribute [rw] unique_media_played
-          #   @return [Integer] Number of users who started playing any video or audio in the message.
+          #   @return [Integer,nil] Number of users who started playing any video or audio in the message.
           attr_accessor :unique_media_played
           # @!attribute [rw] unique_media_played100_percent
-          #   @return [Integer] Number of users who played the entirety of any video or audio in the message.
+          #   @return [Integer,nil] Number of users who played the entirety of any video or audio in the message.
           attr_accessor :unique_media_played100_percent
 
-          # @param unique_impression [Integer] Number of users who opened the message, meaning they displayed at least 1 bubble.
-          # @param unique_click [Integer] Number of users who opened any URL in the message.
-          # @param unique_media_played [Integer] Number of users who started playing any video or audio in the message.
-          # @param unique_media_played100_percent [Integer] Number of users who played the entirety of any video or audio in the message.
+          # @param unique_impression [Integer,nil] Number of users who opened the message, meaning they displayed at least 1 bubble.
+          # @param unique_click [Integer,nil] Number of users who opened any URL in the message.
+          # @param unique_media_played [Integer,nil] Number of users who started playing any video or audio in the message.
+          # @param unique_media_played100_percent [Integer,nil] Number of users who played the entirety of any video or audio in the message.
           def initialize(
             unique_impression: nil,
             unique_click: nil,

@@ -15,13 +15,13 @@ module Line
       module MessagingApi
         class CameraRollAction < Action
           # @!attribute [r] type
-          #   @return [String] Type of action
+          #   @return [String,nil] Type of action
           attr_reader :type
           # @!attribute [rw] label
-          #   @return [String] Label for the action.
+          #   @return [String,nil] Label for the action.
           attr_accessor :label
 
-          # @param label [String] Label for the action.
+          # @param label [String,nil] Label for the action.
           def initialize(
             label: nil,
             **dynamic_attributes

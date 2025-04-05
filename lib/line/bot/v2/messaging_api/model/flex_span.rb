@@ -18,30 +18,30 @@ module Line
           #   @return [String] 
           attr_reader :type
           # @!attribute [rw] text
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :text
           # @!attribute [rw] size
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :size
           # @!attribute [rw] color
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :color
           # @!attribute [rw] weight
-          #   @return [String] ('regular'|'bold') 
+          #   @return [String,nil] ('regular'|'bold') 
           attr_accessor :weight
           # @!attribute [rw] style
-          #   @return [String] ('normal'|'italic') 
+          #   @return [String,nil] ('normal'|'italic') 
           attr_accessor :style
           # @!attribute [rw] decoration
-          #   @return [String] ('none'|'underline'|'line-through') 
+          #   @return [String,nil] ('none'|'underline'|'line-through') 
           attr_accessor :decoration
 
-          # @param text [String] 
-          # @param size [String] 
-          # @param color [String] 
-          # @param weight [String] ('regular'|'bold') 
-          # @param style [String] ('normal'|'italic') 
-          # @param decoration [String] ('none'|'underline'|'line-through') 
+          # @param text [String,nil] 
+          # @param size [String,nil] 
+          # @param color [String,nil] 
+          # @param weight [String,nil] ('regular'|'bold') 
+          # @param style [String,nil] ('normal'|'italic') 
+          # @param decoration [String,nil] ('none'|'underline'|'line-through') 
           def initialize(
             text: nil,
             size: nil,

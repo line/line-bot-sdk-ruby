@@ -16,15 +16,15 @@ module Line
           #   @return [String] Image set ID. Only included when multiple images are sent simultaneously.
           attr_accessor :id
           # @!attribute [rw] index
-          #   @return [Integer] An index starting from 1, indicating the image number in a set of images sent simultaneously. Only included when multiple images are sent simultaneously. However, it won't be included if the sender is using LINE 11.15 or earlier for Android.
+          #   @return [Integer,nil] An index starting from 1, indicating the image number in a set of images sent simultaneously. Only included when multiple images are sent simultaneously. However, it won't be included if the sender is using LINE 11.15 or earlier for Android.
           attr_accessor :index
           # @!attribute [rw] total
-          #   @return [Integer] The total number of images sent simultaneously.
+          #   @return [Integer,nil] The total number of images sent simultaneously.
           attr_accessor :total
 
           # @param id [String] Image set ID. Only included when multiple images are sent simultaneously.
-          # @param index [Integer] An index starting from 1, indicating the image number in a set of images sent simultaneously. Only included when multiple images are sent simultaneously. However, it won't be included if the sender is using LINE 11.15 or earlier for Android.
-          # @param total [Integer] The total number of images sent simultaneously.
+          # @param index [Integer,nil] An index starting from 1, indicating the image number in a set of images sent simultaneously. Only included when multiple images are sent simultaneously. However, it won't be included if the sender is using LINE 11.15 or earlier for Android.
+          # @param total [Integer,nil] The total number of images sent simultaneously.
           def initialize(
             id:,
             index: nil,

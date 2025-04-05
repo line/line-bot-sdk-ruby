@@ -24,24 +24,24 @@ module Line
           #   @return [String] Message text.
           attr_accessor :text
           # @!attribute [rw] emojis
-          #   @return [Array[Emoji]] Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
+          #   @return [Array[Emoji],nil] Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
           attr_accessor :emojis
           # @!attribute [rw] mention
-          #   @return [Mention] 
+          #   @return [Mention,nil] 
           attr_accessor :mention
           # @!attribute [rw] quote_token
           #   @return [String] Quote token to quote this message. 
           attr_accessor :quote_token
           # @!attribute [rw] quoted_message_id
-          #   @return [String] Message ID of a quoted message. Only included when the received message quotes a past message.
+          #   @return [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.
           attr_accessor :quoted_message_id
 
           # @param id [String] Message ID
           # @param text [String] Message text.
-          # @param emojis [Array[Emoji]] Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
-          # @param mention [Mention] 
+          # @param emojis [Array[Emoji],nil] Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
+          # @param mention [Mention,nil] 
           # @param quote_token [String] Quote token to quote this message. 
-          # @param quoted_message_id [String] Message ID of a quoted message. Only included when the received message quotes a past message.
+          # @param quoted_message_id [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.
           def initialize(
             id:,
             text:,

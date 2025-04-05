@@ -21,7 +21,7 @@ module Line
           #   @return [String] Message ID
           attr_accessor :id
           # @!attribute [rw] duration
-          #   @return [Integer] Length of video file (milliseconds)
+          #   @return [Integer,nil] Length of video file (milliseconds)
           attr_accessor :duration
           # @!attribute [rw] content_provider
           #   @return [ContentProvider] 
@@ -31,7 +31,7 @@ module Line
           attr_accessor :quote_token
 
           # @param id [String] Message ID
-          # @param duration [Integer] Length of video file (milliseconds)
+          # @param duration [Integer,nil] Length of video file (milliseconds)
           # @param content_provider [ContentProvider] 
           # @param quote_token [String] Quote token to quote this message. 
           def initialize(

@@ -18,38 +18,38 @@ module Line
           #   @return [String] 
           attr_reader :type
           # @!attribute [rw] direction
-          #   @return [String] ('ltr'|'rtl') 
+          #   @return [String,nil] ('ltr'|'rtl') 
           attr_accessor :direction
           # @!attribute [rw] styles
-          #   @return [FlexBubbleStyles] 
+          #   @return [FlexBubbleStyles,nil] 
           attr_accessor :styles
           # @!attribute [rw] header
-          #   @return [FlexBox] 
+          #   @return [FlexBox,nil] 
           attr_accessor :header
           # @!attribute [rw] hero
-          #   @return [FlexComponent] 
+          #   @return [FlexComponent,nil] 
           attr_accessor :hero
           # @!attribute [rw] body
-          #   @return [FlexBox] 
+          #   @return [FlexBox,nil] 
           attr_accessor :body
           # @!attribute [rw] footer
-          #   @return [FlexBox] 
+          #   @return [FlexBox,nil] 
           attr_accessor :footer
           # @!attribute [rw] size
-          #   @return [String] ('nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga') 
+          #   @return [String,nil] ('nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga') 
           attr_accessor :size
           # @!attribute [rw] action
-          #   @return [Action] 
+          #   @return [Action,nil] 
           attr_accessor :action
 
-          # @param direction [String] ('ltr'|'rtl') 
-          # @param styles [FlexBubbleStyles] 
-          # @param header [FlexBox] 
-          # @param hero [FlexComponent] 
-          # @param body [FlexBox] 
-          # @param footer [FlexBox] 
-          # @param size [String] ('nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga') 
-          # @param action [Action] 
+          # @param direction [String,nil] ('ltr'|'rtl') 
+          # @param styles [FlexBubbleStyles,nil] 
+          # @param header [FlexBox,nil] 
+          # @param hero [FlexComponent,nil] 
+          # @param body [FlexBox,nil] 
+          # @param footer [FlexBox,nil] 
+          # @param size [String,nil] ('nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga') 
+          # @param action [Action,nil] 
           def initialize(
             direction: nil,
             styles: nil,

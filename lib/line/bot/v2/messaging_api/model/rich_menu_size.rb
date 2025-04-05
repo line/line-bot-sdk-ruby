@@ -14,14 +14,14 @@ module Line
         # Rich menu size
         class RichMenuSize
           # @!attribute [rw] width
-          #   @return [Integer] width
+          #   @return [Integer,nil] width
           attr_accessor :width
           # @!attribute [rw] height
-          #   @return [Integer] height
+          #   @return [Integer,nil] height
           attr_accessor :height
 
-          # @param width [Integer] width
-          # @param height [Integer] height
+          # @param width [Integer,nil] width
+          # @param height [Integer,nil] height
           def initialize(
             width: nil,
             height: nil,

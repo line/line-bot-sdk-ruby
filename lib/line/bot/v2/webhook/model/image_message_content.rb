@@ -24,7 +24,7 @@ module Line
           #   @return [ContentProvider] 
           attr_accessor :content_provider
           # @!attribute [rw] image_set
-          #   @return [ImageSet] 
+          #   @return [ImageSet,nil] 
           attr_accessor :image_set
           # @!attribute [rw] quote_token
           #   @return [String] Quote token to quote this message. 
@@ -32,7 +32,7 @@ module Line
 
           # @param id [String] Message ID
           # @param content_provider [ContentProvider] 
-          # @param image_set [ImageSet] 
+          # @param image_set [ImageSet,nil] 
           # @param quote_token [String] Quote token to quote this message. 
           def initialize(
             id:,

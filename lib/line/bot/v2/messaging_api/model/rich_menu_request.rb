@@ -13,26 +13,26 @@ module Line
       module MessagingApi
         class RichMenuRequest
           # @!attribute [rw] size
-          #   @return [RichMenuSize] 
+          #   @return [RichMenuSize,nil] 
           attr_accessor :size
           # @!attribute [rw] selected
-          #   @return [Boolean] `true` to display the rich menu by default. Otherwise, `false`.
+          #   @return [Boolean,nil] `true` to display the rich menu by default. Otherwise, `false`.
           attr_accessor :selected
           # @!attribute [rw] name
-          #   @return [String] Name of the rich menu. This value can be used to help manage your rich menus and is not displayed to users.
+          #   @return [String,nil] Name of the rich menu. This value can be used to help manage your rich menus and is not displayed to users.
           attr_accessor :name
           # @!attribute [rw] chat_bar_text
-          #   @return [String] Text displayed in the chat bar
+          #   @return [String,nil] Text displayed in the chat bar
           attr_accessor :chat_bar_text
           # @!attribute [rw] areas
-          #   @return [Array[RichMenuArea]] Array of area objects which define the coordinates and size of tappable areas
+          #   @return [Array[RichMenuArea],nil] Array of area objects which define the coordinates and size of tappable areas
           attr_accessor :areas
 
-          # @param size [RichMenuSize] 
-          # @param selected [Boolean] `true` to display the rich menu by default. Otherwise, `false`.
-          # @param name [String] Name of the rich menu. This value can be used to help manage your rich menus and is not displayed to users.
-          # @param chat_bar_text [String] Text displayed in the chat bar
-          # @param areas [Array[RichMenuArea]] Array of area objects which define the coordinates and size of tappable areas
+          # @param size [RichMenuSize,nil] 
+          # @param selected [Boolean,nil] `true` to display the rich menu by default. Otherwise, `false`.
+          # @param name [String,nil] Name of the rich menu. This value can be used to help manage your rich menus and is not displayed to users.
+          # @param chat_bar_text [String,nil] Text displayed in the chat bar
+          # @param areas [Array[RichMenuArea],nil] Array of area objects which define the coordinates and size of tappable areas
           def initialize(
             size: nil,
             selected: nil,

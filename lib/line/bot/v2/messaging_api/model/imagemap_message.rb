@@ -19,10 +19,10 @@ module Line
           #   @return [String] Type of message
           attr_reader :type
           # @!attribute [rw] quick_reply
-          #   @return [QuickReply] 
+          #   @return [QuickReply,nil] 
           attr_accessor :quick_reply
           # @!attribute [rw] sender
-          #   @return [Sender] 
+          #   @return [Sender,nil] 
           attr_accessor :sender
           # @!attribute [rw] base_url
           #   @return [String] 
@@ -37,16 +37,16 @@ module Line
           #   @return [Array[ImagemapAction]] 
           attr_accessor :actions
           # @!attribute [rw] video
-          #   @return [ImagemapVideo] 
+          #   @return [ImagemapVideo,nil] 
           attr_accessor :video
 
-          # @param quick_reply [QuickReply] 
-          # @param sender [Sender] 
+          # @param quick_reply [QuickReply,nil] 
+          # @param sender [Sender,nil] 
           # @param base_url [String] 
           # @param alt_text [String] 
           # @param base_size [ImagemapBaseSize] 
           # @param actions [Array[ImagemapAction]] 
-          # @param video [ImagemapVideo] 
+          # @param video [ImagemapVideo,nil] 
           def initialize(
             quick_reply: nil,
             sender: nil,

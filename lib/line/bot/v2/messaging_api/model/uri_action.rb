@@ -15,21 +15,21 @@ module Line
       module MessagingApi
         class URIAction < Action
           # @!attribute [r] type
-          #   @return [String] Type of action
+          #   @return [String,nil] Type of action
           attr_reader :type
           # @!attribute [rw] label
-          #   @return [String] Label for the action.
+          #   @return [String,nil] Label for the action.
           attr_accessor :label
           # @!attribute [rw] uri
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :uri
           # @!attribute [rw] alt_uri
-          #   @return [AltUri] 
+          #   @return [AltUri,nil] 
           attr_accessor :alt_uri
 
-          # @param label [String] Label for the action.
-          # @param uri [String] 
-          # @param alt_uri [AltUri] 
+          # @param label [String,nil] Label for the action.
+          # @param uri [String,nil] 
+          # @param alt_uri [AltUri,nil] 
           def initialize(
             label: nil,
             uri: nil,

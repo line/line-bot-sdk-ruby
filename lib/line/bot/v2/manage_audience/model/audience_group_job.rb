@@ -15,38 +15,38 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
         class AudienceGroupJob
           # @!attribute [rw] audience_group_job_id
-          #   @return [Integer] A job ID.
+          #   @return [Integer,nil] A job ID.
           attr_accessor :audience_group_job_id
           # @!attribute [rw] audience_group_id
-          #   @return [Integer] An audience ID.
+          #   @return [Integer,nil] An audience ID.
           attr_accessor :audience_group_id
           # @!attribute [rw] description
-          #   @return [String] The job's description.
+          #   @return [String,nil] The job's description.
           attr_accessor :description
           # @!attribute [rw] type
-          #   @return [String] ('DIFF_ADD') 
+          #   @return [String,nil] ('DIFF_ADD') 
           attr_accessor :type
           # @!attribute [rw] job_status
-          #   @return [String] ('QUEUED'|'WORKING'|'FINISHED'|'FAILED') 
+          #   @return [String,nil] ('QUEUED'|'WORKING'|'FINISHED'|'FAILED') 
           attr_accessor :job_status
           # @!attribute [rw] failed_type
-          #   @return [String] ('INTERNAL_ERROR'|'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT') 
+          #   @return [String,nil] ('INTERNAL_ERROR'|'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT') 
           attr_accessor :failed_type
           # @!attribute [rw] audience_count
-          #   @return [Integer] The number of accounts (recipients) that were added or removed.
+          #   @return [Integer,nil] The number of accounts (recipients) that were added or removed.
           attr_accessor :audience_count
           # @!attribute [rw] created
-          #   @return [Integer] When the job was created (in UNIX time).
+          #   @return [Integer,nil] When the job was created (in UNIX time).
           attr_accessor :created
 
-          # @param audience_group_job_id [Integer] A job ID.
-          # @param audience_group_id [Integer] An audience ID.
-          # @param description [String] The job's description.
-          # @param type [String] ('DIFF_ADD') 
-          # @param job_status [String] ('QUEUED'|'WORKING'|'FINISHED'|'FAILED') 
-          # @param failed_type [String] ('INTERNAL_ERROR'|'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT') 
-          # @param audience_count [Integer] The number of accounts (recipients) that were added or removed.
-          # @param created [Integer] When the job was created (in UNIX time).
+          # @param audience_group_job_id [Integer,nil] A job ID.
+          # @param audience_group_id [Integer,nil] An audience ID.
+          # @param description [String,nil] The job's description.
+          # @param type [String,nil] ('DIFF_ADD') 
+          # @param job_status [String,nil] ('QUEUED'|'WORKING'|'FINISHED'|'FAILED') 
+          # @param failed_type [String,nil] ('INTERNAL_ERROR'|'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT') 
+          # @param audience_count [Integer,nil] The number of accounts (recipients) that were added or removed.
+          # @param created [Integer,nil] When the job was created (in UNIX time).
           def initialize(
             audience_group_job_id: nil,
             audience_group_id: nil,

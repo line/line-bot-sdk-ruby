@@ -15,22 +15,22 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#bounds-object
         class RichMenuBounds
           # @!attribute [rw] x
-          #   @return [Integer] Horizontal position relative to the top-left corner of the area.
+          #   @return [Integer,nil] Horizontal position relative to the top-left corner of the area.
           attr_accessor :x
           # @!attribute [rw] y
-          #   @return [Integer] Vertical position relative to the top-left corner of the area.
+          #   @return [Integer,nil] Vertical position relative to the top-left corner of the area.
           attr_accessor :y
           # @!attribute [rw] width
-          #   @return [Integer] Width of the area.
+          #   @return [Integer,nil] Width of the area.
           attr_accessor :width
           # @!attribute [rw] height
-          #   @return [Integer] Height of the area.
+          #   @return [Integer,nil] Height of the area.
           attr_accessor :height
 
-          # @param x [Integer] Horizontal position relative to the top-left corner of the area.
-          # @param y [Integer] Vertical position relative to the top-left corner of the area.
-          # @param width [Integer] Width of the area.
-          # @param height [Integer] Height of the area.
+          # @param x [Integer,nil] Horizontal position relative to the top-left corner of the area.
+          # @param y [Integer,nil] Vertical position relative to the top-left corner of the area.
+          # @param width [Integer,nil] Width of the area.
+          # @param height [Integer,nil] Height of the area.
           def initialize(
             x: nil,
             y: nil,

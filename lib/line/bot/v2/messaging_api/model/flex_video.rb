@@ -27,17 +27,17 @@ module Line
           #   @return [FlexComponent] 
           attr_accessor :alt_content
           # @!attribute [rw] aspect_ratio
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :aspect_ratio
           # @!attribute [rw] action
-          #   @return [Action] 
+          #   @return [Action,nil] 
           attr_accessor :action
 
           # @param url [String] 
           # @param preview_url [String] 
           # @param alt_content [FlexComponent] 
-          # @param aspect_ratio [String] 
-          # @param action [Action] 
+          # @param aspect_ratio [String,nil] 
+          # @param action [Action,nil] 
           def initialize(
             url:,
             preview_url:,

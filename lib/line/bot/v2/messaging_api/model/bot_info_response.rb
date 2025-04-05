@@ -20,13 +20,13 @@ module Line
           #   @return [String] Bot's basic ID
           attr_accessor :basic_id
           # @!attribute [rw] premium_id
-          #   @return [String] Bot's premium ID. Not included in the response if the premium ID isn't set.
+          #   @return [String,nil] Bot's premium ID. Not included in the response if the premium ID isn't set.
           attr_accessor :premium_id
           # @!attribute [rw] display_name
           #   @return [String] Bot's display name
           attr_accessor :display_name
           # @!attribute [rw] picture_url
-          #   @return [String] Profile image URL. `https` image URL. Not included in the response if the bot doesn't have a profile image.
+          #   @return [String,nil] Profile image URL. `https` image URL. Not included in the response if the bot doesn't have a profile image.
           attr_accessor :picture_url
           # @!attribute [rw] chat_mode
           #   @return [String] ('chat'|'bot') Chat settings set in the LINE Official Account Manager. One of:  `chat`: Chat is set to \"On\". `bot`: Chat is set to \"Off\". 
@@ -37,9 +37,9 @@ module Line
 
           # @param user_id [String] Bot's user ID
           # @param basic_id [String] Bot's basic ID
-          # @param premium_id [String] Bot's premium ID. Not included in the response if the premium ID isn't set.
+          # @param premium_id [String,nil] Bot's premium ID. Not included in the response if the premium ID isn't set.
           # @param display_name [String] Bot's display name
-          # @param picture_url [String] Profile image URL. `https` image URL. Not included in the response if the bot doesn't have a profile image.
+          # @param picture_url [String,nil] Profile image URL. `https` image URL. Not included in the response if the bot doesn't have a profile image.
           # @param chat_mode [String] ('chat'|'bot') Chat settings set in the LINE Official Account Manager. One of:  `chat`: Chat is set to \"On\". `bot`: Chat is set to \"Off\". 
           # @param mark_as_read_mode [String] ('auto'|'manual') Automatic read setting for messages. If the chat is set to \"Off\", auto is returned. If the chat is set to \"On\", manual is returned.  `auto`: Auto read setting is enabled. `manual`: Auto read setting is disabled.  
           def initialize(

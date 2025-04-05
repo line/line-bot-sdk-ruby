@@ -14,14 +14,14 @@ module Line
         # Rich menu area
         class RichMenuArea
           # @!attribute [rw] bounds
-          #   @return [RichMenuBounds] 
+          #   @return [RichMenuBounds,nil] 
           attr_accessor :bounds
           # @!attribute [rw] action
-          #   @return [Action] 
+          #   @return [Action,nil] 
           attr_accessor :action
 
-          # @param bounds [RichMenuBounds] 
-          # @param action [Action] 
+          # @param bounds [RichMenuBounds,nil] 
+          # @param action [Action,nil] 
           def initialize(
             bounds: nil,
             action: nil,

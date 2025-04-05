@@ -25,16 +25,16 @@ module Line
           #   @return [Integer] The length of the text of the mentioned user. For a mention @example, 8 is the length.
           attr_accessor :length
           # @!attribute [rw] user_id
-          #   @return [String] User ID of the mentioned user. Only included if mention.mentions[].type is user and the user consents to the LINE Official Account obtaining their user profile information.
+          #   @return [String,nil] User ID of the mentioned user. Only included if mention.mentions[].type is user and the user consents to the LINE Official Account obtaining their user profile information.
           attr_accessor :user_id
           # @!attribute [rw] is_self
-          #   @return [Boolean] Whether the mentioned user is the bot that receives the webhook.
+          #   @return [Boolean,nil] Whether the mentioned user is the bot that receives the webhook.
           attr_accessor :is_self
 
           # @param index [Integer] Index position of the user mention for a character in text, with the first character being at position 0.
           # @param length [Integer] The length of the text of the mentioned user. For a mention @example, 8 is the length.
-          # @param user_id [String] User ID of the mentioned user. Only included if mention.mentions[].type is user and the user consents to the LINE Official Account obtaining their user profile information.
-          # @param is_self [Boolean] Whether the mentioned user is the bot that receives the webhook.
+          # @param user_id [String,nil] User ID of the mentioned user. Only included if mention.mentions[].type is user and the user consents to the LINE Official Account obtaining their user profile information.
+          # @param is_self [Boolean,nil] Whether the mentioned user is the bot that receives the webhook.
           def initialize(
             index:,
             length:,

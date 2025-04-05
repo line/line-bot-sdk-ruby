@@ -14,34 +14,34 @@ module Line
         # Summary of message statistics.
         class GetMessageEventResponseOverview
           # @!attribute [rw] request_id
-          #   @return [String] Request ID.
+          #   @return [String,nil] Request ID.
           attr_accessor :request_id
           # @!attribute [rw] timestamp
-          #   @return [Integer] UNIX timestamp for message delivery time in seconds.
+          #   @return [Integer,nil] UNIX timestamp for message delivery time in seconds.
           attr_accessor :timestamp
           # @!attribute [rw] delivered
-          #   @return [Integer] Number of messages delivered. This property shows values of less than 20. However, if all messages have not been sent, it will be null. 
+          #   @return [Integer,nil] Number of messages delivered. This property shows values of less than 20. However, if all messages have not been sent, it will be null. 
           attr_accessor :delivered
           # @!attribute [rw] unique_impression
-          #   @return [Integer] Number of users who opened the message, meaning they displayed at least 1 bubble.
+          #   @return [Integer,nil] Number of users who opened the message, meaning they displayed at least 1 bubble.
           attr_accessor :unique_impression
           # @!attribute [rw] unique_click
-          #   @return [Integer] Number of users who opened any URL in the message.
+          #   @return [Integer,nil] Number of users who opened any URL in the message.
           attr_accessor :unique_click
           # @!attribute [rw] unique_media_played
-          #   @return [Integer] Number of users who started playing any video or audio in the message.
+          #   @return [Integer,nil] Number of users who started playing any video or audio in the message.
           attr_accessor :unique_media_played
           # @!attribute [rw] unique_media_played100_percent
-          #   @return [Integer] Number of users who played the entirety of any video or audio in the message.
+          #   @return [Integer,nil] Number of users who played the entirety of any video or audio in the message.
           attr_accessor :unique_media_played100_percent
 
-          # @param request_id [String] Request ID.
-          # @param timestamp [Integer] UNIX timestamp for message delivery time in seconds.
-          # @param delivered [Integer] Number of messages delivered. This property shows values of less than 20. However, if all messages have not been sent, it will be null. 
-          # @param unique_impression [Integer] Number of users who opened the message, meaning they displayed at least 1 bubble.
-          # @param unique_click [Integer] Number of users who opened any URL in the message.
-          # @param unique_media_played [Integer] Number of users who started playing any video or audio in the message.
-          # @param unique_media_played100_percent [Integer] Number of users who played the entirety of any video or audio in the message.
+          # @param request_id [String,nil] Request ID.
+          # @param timestamp [Integer,nil] UNIX timestamp for message delivery time in seconds.
+          # @param delivered [Integer,nil] Number of messages delivered. This property shows values of less than 20. However, if all messages have not been sent, it will be null. 
+          # @param unique_impression [Integer,nil] Number of users who opened the message, meaning they displayed at least 1 bubble.
+          # @param unique_click [Integer,nil] Number of users who opened any URL in the message.
+          # @param unique_media_played [Integer,nil] Number of users who started playing any video or audio in the message.
+          # @param unique_media_played100_percent [Integer,nil] Number of users who played the entirety of any video or audio in the message.
           def initialize(
             request_id: nil,
             timestamp: nil,

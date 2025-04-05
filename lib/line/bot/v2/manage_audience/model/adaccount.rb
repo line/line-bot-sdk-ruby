@@ -14,10 +14,10 @@ module Line
         # Adaccount
         class Adaccount
           # @!attribute [rw] name
-          #   @return [String] Ad account name.
+          #   @return [String,nil] Ad account name.
           attr_accessor :name
 
-          # @param name [String] Ad account name.
+          # @param name [String,nil] Ad account name.
           def initialize(
             name: nil,
             **dynamic_attributes

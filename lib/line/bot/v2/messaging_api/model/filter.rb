@@ -14,10 +14,10 @@ module Line
         # Filter for narrowcast
         class Filter
           # @!attribute [rw] demographic
-          #   @return [DemographicFilter] 
+          #   @return [DemographicFilter,nil] 
           attr_accessor :demographic
 
-          # @param demographic [DemographicFilter] 
+          # @param demographic [DemographicFilter,nil] 
           def initialize(
             demographic: nil,
             **dynamic_attributes

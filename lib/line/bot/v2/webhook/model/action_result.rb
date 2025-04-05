@@ -16,11 +16,11 @@ module Line
           #   @return [String] ('void'|'binary') 
           attr_accessor :type
           # @!attribute [rw] data
-          #   @return [String] Base64-encoded binary data
+          #   @return [String,nil] Base64-encoded binary data
           attr_accessor :data
 
           # @param type [String] ('void'|'binary') 
-          # @param data [String] Base64-encoded binary data
+          # @param data [String,nil] Base64-encoded binary data
           def initialize(
             type:,
             data: nil,

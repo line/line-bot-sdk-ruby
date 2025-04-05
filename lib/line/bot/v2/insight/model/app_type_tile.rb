@@ -13,14 +13,14 @@ module Line
       module Insight
         class AppTypeTile
           # @!attribute [rw] app_type
-          #   @return [String] ('ios'|'android'|'others') users' OS
+          #   @return [String,nil] ('ios'|'android'|'others') users' OS
           attr_accessor :app_type
           # @!attribute [rw] percentage
-          #   @return [Float] Percentage
+          #   @return [Float,nil] Percentage
           attr_accessor :percentage
 
-          # @param app_type [String] ('ios'|'android'|'others') users' OS
-          # @param percentage [Float] Percentage
+          # @param app_type [String,nil] ('ios'|'android'|'others') users' OS
+          # @param percentage [Float,nil] Percentage
           def initialize(
             app_type: nil,
             percentage: nil,

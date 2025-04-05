@@ -15,13 +15,13 @@ module Line
       module MessagingApi
         class GenderDemographicFilter < DemographicFilter
           # @!attribute [r] type
-          #   @return [String] Type of demographic filter
+          #   @return [String,nil] Type of demographic filter
           attr_reader :type
           # @!attribute [rw] one_of
           #   @return [Array['male'|'female']] 
           attr_accessor :one_of
 
-          # @param one_of [Array['male'|'female']] 
+          # @param one_of [Array['male'|'female'],nil] 
           def initialize(
             one_of: nil,
             **dynamic_attributes

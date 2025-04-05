@@ -18,10 +18,10 @@ module Line
           #   @return [String] 
           attr_reader :type
           # @!attribute [rw] flex
-          #   @return [Integer] 
+          #   @return [Integer,nil] 
           attr_accessor :flex
 
-          # @param flex [Integer] 
+          # @param flex [Integer,nil] 
           def initialize(
             flex: nil,
             **dynamic_attributes

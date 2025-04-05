@@ -13,34 +13,34 @@ module Line
       module Liff
         class LiffApp
           # @!attribute [rw] liff_id
-          #   @return [String] LIFF app ID
+          #   @return [String,nil] LIFF app ID
           attr_accessor :liff_id
           # @!attribute [rw] view
-          #   @return [LiffView] 
+          #   @return [LiffView,nil] 
           attr_accessor :view
           # @!attribute [rw] description
-          #   @return [String] Name of the LIFF app
+          #   @return [String,nil] Name of the LIFF app
           attr_accessor :description
           # @!attribute [rw] features
-          #   @return [LiffFeatures] 
+          #   @return [LiffFeatures,nil] 
           attr_accessor :features
           # @!attribute [rw] permanent_link_pattern
-          #   @return [String] How additional information in LIFF URLs is handled. concat is returned. 
+          #   @return [String,nil] How additional information in LIFF URLs is handled. concat is returned. 
           attr_accessor :permanent_link_pattern
           # @!attribute [rw] scope
           #   @return [Array['openid'|'email'|'profile'|'chat_message.write']] 
           attr_accessor :scope
           # @!attribute [rw] bot_prompt
-          #   @return [String] ('normal'|'aggressive'|'none') 
+          #   @return [String,nil] ('normal'|'aggressive'|'none') 
           attr_accessor :bot_prompt
 
-          # @param liff_id [String] LIFF app ID
-          # @param view [LiffView] 
-          # @param description [String] Name of the LIFF app
-          # @param features [LiffFeatures] 
-          # @param permanent_link_pattern [String] How additional information in LIFF URLs is handled. concat is returned. 
-          # @param scope [Array['openid'|'email'|'profile'|'chat_message.write']] 
-          # @param bot_prompt [String] ('normal'|'aggressive'|'none') 
+          # @param liff_id [String,nil] LIFF app ID
+          # @param view [LiffView,nil] 
+          # @param description [String,nil] Name of the LIFF app
+          # @param features [LiffFeatures,nil] 
+          # @param permanent_link_pattern [String,nil] How additional information in LIFF URLs is handled. concat is returned. 
+          # @param scope [Array['openid'|'email'|'profile'|'chat_message.write'],nil] 
+          # @param bot_prompt [String,nil] ('normal'|'aggressive'|'none') 
           def initialize(
             liff_id: nil,
             view: nil,

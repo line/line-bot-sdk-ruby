@@ -15,22 +15,22 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
         class CreateAudienceGroupRequest
           # @!attribute [rw] description
-          #   @return [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          #   @return [String,nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           attr_accessor :description
           # @!attribute [rw] is_ifa_audience
-          #   @return [Boolean] To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 
+          #   @return [Boolean,nil] To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 
           attr_accessor :is_ifa_audience
           # @!attribute [rw] upload_description
-          #   @return [String] The description to register for the job (in jobs[].description). 
+          #   @return [String,nil] The description to register for the job (in jobs[].description). 
           attr_accessor :upload_description
           # @!attribute [rw] audiences
-          #   @return [Array[Audience]] An array of user IDs or IFAs. Max number: 10,000 
+          #   @return [Array[Audience],nil] An array of user IDs or IFAs. Max number: 10,000 
           attr_accessor :audiences
 
-          # @param description [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
-          # @param is_ifa_audience [Boolean] To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 
-          # @param upload_description [String] The description to register for the job (in jobs[].description). 
-          # @param audiences [Array[Audience]] An array of user IDs or IFAs. Max number: 10,000 
+          # @param description [String,nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          # @param is_ifa_audience [Boolean,nil] To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 
+          # @param upload_description [String,nil] The description to register for the job (in jobs[].description). 
+          # @param audiences [Array[Audience],nil] An array of user IDs or IFAs. Max number: 10,000 
           def initialize(
             description: nil,
             is_ifa_audience: nil,

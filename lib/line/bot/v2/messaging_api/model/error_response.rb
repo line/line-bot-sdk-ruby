@@ -17,15 +17,15 @@ module Line
           #   @return [String] Message containing information about the error.
           attr_accessor :message
           # @!attribute [rw] details
-          #   @return [Array[ErrorDetail]] An array of error details. If the array is empty, this property will not be included in the response.
+          #   @return [Array[ErrorDetail],nil] An array of error details. If the array is empty, this property will not be included in the response.
           attr_accessor :details
           # @!attribute [rw] sent_messages
-          #   @return [Array[SentMessage]] Array of sent messages.
+          #   @return [Array[SentMessage],nil] Array of sent messages.
           attr_accessor :sent_messages
 
           # @param message [String] Message containing information about the error.
-          # @param details [Array[ErrorDetail]] An array of error details. If the array is empty, this property will not be included in the response.
-          # @param sent_messages [Array[SentMessage]] Array of sent messages.
+          # @param details [Array[ErrorDetail],nil] An array of error details. If the array is empty, this property will not be included in the response.
+          # @param sent_messages [Array[SentMessage],nil] Array of sent messages.
           def initialize(
             message:,
             details: nil,

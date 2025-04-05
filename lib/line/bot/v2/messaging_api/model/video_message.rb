@@ -19,10 +19,10 @@ module Line
           #   @return [String] Type of message
           attr_reader :type
           # @!attribute [rw] quick_reply
-          #   @return [QuickReply] 
+          #   @return [QuickReply,nil] 
           attr_accessor :quick_reply
           # @!attribute [rw] sender
-          #   @return [Sender] 
+          #   @return [Sender,nil] 
           attr_accessor :sender
           # @!attribute [rw] original_content_url
           #   @return [String] 
@@ -31,14 +31,14 @@ module Line
           #   @return [String] 
           attr_accessor :preview_image_url
           # @!attribute [rw] tracking_id
-          #   @return [String] 
+          #   @return [String,nil] 
           attr_accessor :tracking_id
 
-          # @param quick_reply [QuickReply] 
-          # @param sender [Sender] 
+          # @param quick_reply [QuickReply,nil] 
+          # @param sender [Sender,nil] 
           # @param original_content_url [String] 
           # @param preview_image_url [String] 
-          # @param tracking_id [String] 
+          # @param tracking_id [String,nil] 
           def initialize(
             quick_reply: nil,
             sender: nil,

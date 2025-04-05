@@ -14,10 +14,10 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
         class TestWebhookEndpointRequest
           # @!attribute [rw] endpoint
-          #   @return [String] A webhook URL to be validated.
+          #   @return [String,nil] A webhook URL to be validated.
           attr_accessor :endpoint
 
-          # @param endpoint [String] A webhook URL to be validated.
+          # @param endpoint [String,nil] A webhook URL to be validated.
           def initialize(
             endpoint: nil,
             **dynamic_attributes

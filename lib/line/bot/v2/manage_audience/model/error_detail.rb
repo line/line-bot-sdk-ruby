@@ -13,14 +13,14 @@ module Line
       module ManageAudience
         class ErrorDetail
           # @!attribute [rw] message
-          #   @return [String] Details of the error. Not included in the response under certain situations.
+          #   @return [String,nil] Details of the error. Not included in the response under certain situations.
           attr_accessor :message
           # @!attribute [rw] property
-          #   @return [String] Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.
+          #   @return [String,nil] Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.
           attr_accessor :property
 
-          # @param message [String] Details of the error. Not included in the response under certain situations.
-          # @param property [String] Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.
+          # @param message [String,nil] Details of the error. Not included in the response under certain situations.
+          # @param property [String,nil] Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.
           def initialize(
             message: nil,
             property: nil,

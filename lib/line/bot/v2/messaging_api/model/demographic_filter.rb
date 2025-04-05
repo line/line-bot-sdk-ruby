@@ -14,10 +14,10 @@ module Line
         # Demographic filter
         class DemographicFilter
           # @!attribute [rw] type
-          #   @return [String] Type of demographic filter
+          #   @return [String,nil] Type of demographic filter
           attr_accessor :type
 
-          # @param type [String] Type of demographic filter
+          # @param type [String,nil] Type of demographic filter
           def initialize(
             type: nil,
             **dynamic_attributes

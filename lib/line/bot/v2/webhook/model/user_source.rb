@@ -18,10 +18,10 @@ module Line
           #   @return [String] source type
           attr_reader :type
           # @!attribute [rw] user_id
-          #   @return [String] ID of the source user
+          #   @return [String,nil] ID of the source user
           attr_accessor :user_id
 
-          # @param user_id [String] ID of the source user
+          # @param user_id [String,nil] ID of the source user
           def initialize(
             user_id: nil,
             **dynamic_attributes

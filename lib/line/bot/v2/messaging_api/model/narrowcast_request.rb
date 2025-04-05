@@ -17,23 +17,23 @@ module Line
           #   @return [Array[Message]] List of Message objects.
           attr_accessor :messages
           # @!attribute [rw] recipient
-          #   @return [Recipient] 
+          #   @return [Recipient,nil] 
           attr_accessor :recipient
           # @!attribute [rw] filter
-          #   @return [Filter] 
+          #   @return [Filter,nil] 
           attr_accessor :filter
           # @!attribute [rw] limit
-          #   @return [Limit] 
+          #   @return [Limit,nil] 
           attr_accessor :limit
           # @!attribute [rw] notification_disabled
-          #   @return [Boolean] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          #   @return [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           attr_accessor :notification_disabled
 
           # @param messages [Array[Message]] List of Message objects.
-          # @param recipient [Recipient] 
-          # @param filter [Filter] 
-          # @param limit [Limit] 
-          # @param notification_disabled [Boolean] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          # @param recipient [Recipient,nil] 
+          # @param filter [Filter,nil] 
+          # @param limit [Limit,nil] 
+          # @param notification_disabled [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           def initialize(
             messages:,
             recipient: nil,

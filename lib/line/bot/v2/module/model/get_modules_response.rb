@@ -18,11 +18,11 @@ module Line
           #   @return [Array[ModuleBot]] Array of Bot list Item objects representing basic information about the bot.
           attr_accessor :bots
           # @!attribute [rw] _next
-          #   @return [String] Continuation token. Used to get the next array of basic bot information. This property is only returned if there are more unreturned results. 
+          #   @return [String,nil] Continuation token. Used to get the next array of basic bot information. This property is only returned if there are more unreturned results. 
           attr_accessor :_next
 
           # @param bots [Array[ModuleBot]] Array of Bot list Item objects representing basic information about the bot.
-          # @param _next [String] Continuation token. Used to get the next array of basic bot information. This property is only returned if there are more unreturned results. 
+          # @param _next [String,nil] Continuation token. Used to get the next array of basic bot information. This property is only returned if there are more unreturned results. 
           def initialize(
             bots:,
             _next: nil,

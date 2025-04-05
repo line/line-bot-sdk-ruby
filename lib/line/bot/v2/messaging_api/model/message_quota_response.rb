@@ -17,11 +17,11 @@ module Line
           #   @return [String] ('none'|'limited') 
           attr_accessor :type
           # @!attribute [rw] value
-          #   @return [Integer] The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 
+          #   @return [Integer,nil] The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 
           attr_accessor :value
 
           # @param type [String] ('none'|'limited') 
-          # @param value [Integer] The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 
+          # @param value [Integer,nil] The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 
           def initialize(
             type:,
             value: nil,
