@@ -25,6 +25,28 @@ module Line
           {% if model.model.vendorExtensions.get("x-selector").propertyName != property.name %}attr_accessor{% else %}attr_reader{% endif %} :{{ property.name }}{% if property.description != null %} # {{ property.description }}{% endif %}
           {%- endfor %}
 
+          {# @param #}
+          {%- for variable in model.model.vars -%}
+          {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name -%}
+          {% if variable.openApiType == 'array' -%}
+          {% if variable.items.isModel -%}
+          # @param {{ variable.name }} [{{ "Array[#{variable.items.openApiType}]" }}] {{ variable.description }}
+          {% elseif variable.items.allowableValues != null -%}
+          # @param {{ variable.name }} [Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]] {{ variable.description }}
+          {% else -%}
+          # @param {{ variable.name }} [{{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}] {{ variable.description }}
+          {% endif -%}
+          {% elseif variable.isModel -%}
+          # @param {{ variable.name }} [{{ variable.openApiType }}] {{ variable.description }}
+          {% else -%}
+          {% if variable.allowableValues != null -%}
+          # @param {{ variable.name }} [String] ({% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}) {{ variable.description }}
+          {% else -%}
+          # @param {{ variable.name }} [{{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}] {{ variable.description }}
+          {% endif -%}
+          {% endif -%}
+          {% endif -%}
+          {% endfor -%}
           def initialize({% for property in model.model.vars %}{% if model.model.vendorExtensions.get("x-selector").propertyName != property.name %}
             {{ property.name }}:{% if property.defaultValue == null %}{{ property.required ? '' : ' nil'  }}{% else %}{{ ' ' + property.defaultValue }}{% endif %},{% endif %}{% endfor %}
             **dynamic_attributes
