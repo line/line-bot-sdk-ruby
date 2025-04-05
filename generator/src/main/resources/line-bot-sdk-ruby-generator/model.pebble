@@ -21,8 +21,26 @@ module Line
         # @see {{ model.model.externalDocumentation.url }}
         {% endif -%}
         class {{ model.model.classname }}{% if model.model.parent != null %} < {{ model.model.parent }}{% endif %}
-          {%- for property in model.model.vars %}
-          {% if model.model.vendorExtensions.get("x-selector").propertyName != property.name %}attr_accessor{% else %}attr_reader{% endif %} :{{ property.name }}{% if property.description != null %} # {{ property.description }}{% endif %}
+          {%- for variable in model.model.vars %}
+          # @!attribute [{% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}rw{% else %}r{% endif %}] {{ variable.name }}
+          {% if variable.openApiType == 'array' -%}
+          {% if variable.items.isModel -%}
+          #   @return [{{ "Array[#{variable.items.openApiType}]" }}] {{ variable.description }}
+          {% elseif variable.items.allowableValues != null -%}
+          #   @return [Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]] {{ variable.description }}
+          {% else -%}
+          #   @return [{{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}] {{ variable.description }}
+          {% endif -%}
+          {% elseif variable.isModel -%}
+          #   @return [{{ variable.openApiType }}] {{ variable.description }}
+          {% else -%}
+          {% if variable.allowableValues != null -%}
+          #   @return [String] ({% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}) {{ variable.description }}
+          {% else -%}
+          #   @return [{{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}] {{ variable.description }}
+          {% endif -%}
+          {% endif -%}
+          {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}attr_accessor{% else %}attr_reader{% endif %} :{{ variable.name }}
           {%- endfor %}
 
           {# @param #}
