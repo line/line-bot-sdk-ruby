@@ -38,7 +38,7 @@ module Line
           {% endfor %}
           def initialize: (
             {% for variable in model.model.vars -%}
-            {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name or packageName == 'webhook' -%}
+            {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name  -%}
             {% if variable.openApiType == 'array' -%}
             {% if variable.items.isModel -%}
             {{ variable.name }}: {{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %}?{% endif -%}
