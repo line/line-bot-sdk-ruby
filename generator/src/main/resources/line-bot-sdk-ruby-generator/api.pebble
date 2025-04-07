@@ -13,6 +13,33 @@ module Line
     module V2
       module {{ packageName | camelize }}
         class Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client
+          # Initializes a new {Line::Bot::V2::{{ packageName | camelize }}::Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client} instance.
+          #
+          # @param base_url [String] The base URL for requests (optional).
+          #   Defaults to '{{endpoint(operations.classname)}}' if none is provided.
+          #   You can override this for testing or to use a mock server.
+            {%- if packageName == 'module_attach' %}
+          # @param channel_id [String] The channel ID for Basic authentication.
+          # @param channel_secret [String] The channel secret for Basic authentication.
+            {%- elseif packageName != 'channel_access_token' %}
+          # @param channel_access_token [String] The channel access token for authorization.
+            {%- endif %}
+          # @param http_options [Hash] HTTP options (same as Net::HTTP options).
+          #   See: https://docs.ruby-lang.org/en/3.4/Net/HTTP.html to understand the options.
+          #
+          # @example
+          #   @client ||= Line::Bot::V2::{{ packageName | camelize }}::Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client.new(
+            {%- if packageName == 'module_attach' %}
+          #     channel_id: "YOUR_CHANNEL_ID",
+          #     channel_secret: "YOUR_CHANNEL_SECRET",
+            {%- elseif packageName != 'channel_access_token' %}
+          #     channel_access_token: "YOUR_CHANNEL_ACCESS_TOKEN",
+            {%- endif %}
+          #     http_options: {
+          #       open_timeout: 5,
+          #       read_timeout: 5,
+          #     }
+          #   )
           def initialize(base_url: nil{% if packageName == 'channel_access_token' %}{% elseif packageName == 'module_attach' %}, channel_id:, channel_secret:{% else %}, channel_access_token:{% endif %}, http_options: {})
             @http_client = HttpClient.new(
               base_url: base_url || '{{endpoint(operations.classname)}}'{% if packageName == 'channel_access_token' %}{% elseif packageName == 'module_attach' %},
