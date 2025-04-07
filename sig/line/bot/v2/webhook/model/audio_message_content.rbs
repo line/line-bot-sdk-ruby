@@ -18,7 +18,6 @@ module Line
           attr_accessor duration: Integer?
           
           def initialize: (
-            type: String,
             id: String,
             content_provider: ContentProvider,
             duration: Integer?

@@ -17,7 +17,6 @@ module Line
           attr_accessor room_id: String
           
           def initialize: (
-            type: String,
             user_id: String?,
             room_id: String
           ) -> void

@@ -19,7 +19,6 @@ module Line
           attr_accessor quote_token: String
           
           def initialize: (
-            type: String,
             id: String,
             duration: Integer?,
             content_provider: ContentProvider,
