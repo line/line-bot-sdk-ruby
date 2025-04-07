@@ -18,6 +18,25 @@ module Line
     module V2
       module ModuleAttach
         class ApiClient
+          # Initializes a new {Line::Bot::V2::ModuleAttach::ApiClient} instance.
+          #
+          # @param base_url [String] The base URL for requests (optional).
+          #   Defaults to 'https://manager.line.biz' if none is provided.
+          #   You can override this for testing or to use a mock server.
+          # @param channel_id [String] The channel ID for Basic authentication.
+          # @param channel_secret [String] The channel secret for Basic authentication.
+          # @param http_options [Hash] HTTP options (same as Net::HTTP options).
+          #   See: https://docs.ruby-lang.org/en/3.4/Net/HTTP.html to understand the options.
+          #
+          # @example
+          #   @client ||= Line::Bot::V2::ModuleAttach::ApiClient.new(
+          #     channel_id: "YOUR_CHANNEL_ID",
+          #     channel_secret: "YOUR_CHANNEL_SECRET",
+          #     http_options: {
+          #       open_timeout: 5,
+          #       read_timeout: 5,
+          #     }
+          #   )
           def initialize(base_url: nil, channel_id:, channel_secret:, http_options: {})
             @http_client = HttpClient.new(
               base_url: base_url || 'https://manager.line.biz',
