@@ -131,10 +131,10 @@ describe 'misc' do
             .with(
               headers: {
                 'Authorization' => "Bearer #{channel_access_token}",
-                'Content-Type' => 'image/jpeg' # webmock doesn't support specific image content types so we use regex
+                'Content-Type' => 'image/jpeg'
               }
             )
-            .to_return(status: 200, body: 'Success', headers: { 'Content-Type' => 'application/json' })
+            .to_return(status: 200, body: '{}', headers: { 'Content-Type' => 'application/json' })
 
           response_body, status_code, headers = client.set_rich_menu_image_with_http_info(
             rich_menu_id: rich_menu_id,
@@ -142,6 +142,9 @@ describe 'misc' do
           )
 
           expect(status_code).to eq(200)
+          expect(response_body).to eq("{}")
+          expect(headers['Content-Type']).to eq(nil)
+          expect(headers['content-type']).to eq('application/json')
         end
       end
     end
@@ -170,6 +173,7 @@ describe 'misc' do
 
         expect(status_code).to eq(200)
         expect(body.status).to eq('ready')
+        expect(headers['content-type']).to eq('application/json')
       end
     end
 
@@ -189,6 +193,7 @@ describe 'misc' do
 
         expect(status_code).to eq(200)
         expect(body).to eq('binary data')
+        expect(headers['content-type']).to eq('image/jpeg')
       end
     end
   end
@@ -308,6 +313,42 @@ describe 'misc' do
 
       expect(status_code).to eq(200)
       expect(body.access_token).to eq('test-access-token')
+
+      expect(WebMock).to(have_requested(:post, "https://api.line.me/v2/oauth/accessToken")
+                            .with { |req| !req.headers.key?("Authorization") })
+    end
+  end
+
+  describe 'POST /oauth2/v3/token' do
+    let(:client) { Line::Bot::V2::ChannelAccessToken::ApiClient.new }
+    let(:grant_type) { 'client_credentials' }
+    let(:client_id) { 'test-client-id' }
+    let(:client_secret) { 'test-client-secret' }
+    let(:response_body) { { "access_token" => "test-access-token", "expires_in" => 2592000, "token_type" => "Bearer" }.to_json }
+    let(:response_code) { 200 }
+
+    it "when the two parameters are nil, they will not be sent" do
+      stub_request(:post, "https://api.line.me/oauth2/v3/token")
+        .with(
+          body: { client_id: "test-client-id", client_secret: "test-client-secret", grant_type: "client_credentials" },
+          headers: {
+            'Content-Type' => 'application/x-www-form-urlencoded'
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.issue_stateless_channel_token_with_http_info(
+        grant_type: grant_type,
+        client_id: client_id,
+        client_secret: client_secret
+      )
+
+      expect(status_code).to eq(200)
+      expect(body.access_token).to eq('test-access-token')
+      expect(body.token_type).to eq('Bearer')
+
+      expect(WebMock).to(have_requested(:post, "https://api.line.me/oauth2/v3/token")
+                           .with { |req| !req.headers.key?("Authorization") })
     end
   end
 
@@ -558,7 +599,7 @@ describe 'misc' do
                            .with { |req| !req.headers.key?("X-Line-Retry-Key") })
     end
 
-    it 'request with  x-line-retry-key header - success' do
+    it 'request with x-line-retry-key header - success' do
       retry_key = 'f03c3eb4-0267-4080-9e65-fffa184e1933'
       stub_request(:post, "https://api.line.me/v2/bot/message/push")
         .with(
@@ -1090,6 +1131,63 @@ describe 'misc' do
         .to_return(status: 200, body: "{}", headers: { 'Content-Type' => 'application/json' })
 
       client.broadcast_with_http_info(broadcast_request: Line::Bot::V2::MessagingApi::BroadcastRequest.new(messages: [flex_message]))
+    end
+  end
+
+  describe 'GET /v2/bot/audienceGroup/list' do
+    let(:client) { Line::Bot::V2::ManageAudience::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:response_body) do
+      { "audienceGroups" => [
+          {
+            "audienceGroupId" => 1234567890123,
+            "createRoute" => "OA_MANAGER",
+            "type": "CLICK",
+            "description": "audienceGroup Name",
+            "status": "IN_PROGRESS",
+            "audienceCount": 8619,
+            "created": 1611114828,
+            "permission": "READ",
+            "isIfaAudience": false,
+            "expireTimestamp": 1626753228,
+            "requestId": "c10c3d86-f565-...",
+            "clickUrl": "https://example.com/"
+          },
+          {
+            "audienceGroupId": 2345678901234,
+            "createRoute": "AD_MANAGER",
+            "type": "APP_EVENT",
+            "description": "audienceGroup Name",
+            "status": "READY",
+            "audienceCount": 3368,
+            "created": 1608619802,
+            "permission": "READ",
+            "activated": 1610068515,
+            "inactiveTimestamp": 1625620516,
+            "isIfaAudience": false
+          }
+        ],
+        "hasNextPage": false,
+        "totalCount": 2,
+        "readWriteAudienceGroupTotalCount": 0,
+        "size": 40,
+        "page": 1}.to_json
+    end
+    let(:response_code) { 200 }
+
+    it 'query parameter is encoded' do
+      stub_request(:get, "https://api.line.me/v2/bot/audienceGroup/list?size=40&page=1&description=audienceGroup%20Name")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.get_audience_groups_with_http_info(page: 1, size: 40, description: 'audienceGroup Name')
+
+      expect(status_code).to eq(200)
+      expect(body.audience_groups.size).to eq(2)
+      expect(body.audience_groups[0].description).to eq('audienceGroup Name')
     end
   end
 end
