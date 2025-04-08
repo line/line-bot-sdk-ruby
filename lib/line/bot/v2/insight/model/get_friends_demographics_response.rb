@@ -52,35 +52,35 @@ module Line
             @available = available
             @genders = genders&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::GenderTile.create(**item)
+                Line::Bot::V2::Insight::GenderTile.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end
             end
             @ages = ages&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::AgeTile.create(**item)
+                Line::Bot::V2::Insight::AgeTile.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end
             end
             @areas = areas&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::AreaTile.create(**item)
+                Line::Bot::V2::Insight::AreaTile.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end
             end
             @app_types = app_types&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::AppTypeTile.create(**item)
+                Line::Bot::V2::Insight::AppTypeTile.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end
             end
             @subscription_periods = subscription_periods&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::SubscriptionPeriodTile.create(**item)
+                Line::Bot::V2::Insight::SubscriptionPeriodTile.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

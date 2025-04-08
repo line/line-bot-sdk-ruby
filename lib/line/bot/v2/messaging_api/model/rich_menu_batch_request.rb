@@ -29,7 +29,7 @@ module Line
             
             @operations = operations.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::RichMenuBatchOperation.create(**item)
+                Line::Bot::V2::MessagingApi::RichMenuBatchOperation.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end
