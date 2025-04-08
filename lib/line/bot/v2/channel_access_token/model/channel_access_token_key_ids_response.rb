@@ -14,8 +14,11 @@ module Line
         # Channel access token key IDs
         # @see https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
         class ChannelAccessTokenKeyIdsResponse
-          attr_accessor :kids # Array of channel access token key IDs.
+          # @!attribute [rw] kids
+          #   @return [Array[String]] Array of channel access token key IDs.
+          attr_accessor :kids
 
+          # @param kids [Array[String]] Array of channel access token key IDs.
           def initialize(
             kids:,
             **dynamic_attributes

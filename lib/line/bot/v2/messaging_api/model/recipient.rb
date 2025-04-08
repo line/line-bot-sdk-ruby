@@ -13,8 +13,11 @@ module Line
       module MessagingApi
         # Recipient
         class Recipient
-          attr_accessor :type # Type of recipient
+          # @!attribute [rw] type
+          #   @return [String,nil] Type of recipient
+          attr_accessor :type
 
+          # @param type [String,nil] Type of recipient
           def initialize(
             type: nil,
             **dynamic_attributes

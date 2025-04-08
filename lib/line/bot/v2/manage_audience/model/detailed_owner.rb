@@ -13,10 +13,19 @@ module Line
       module ManageAudience
         # Owner of this audience group.
         class DetailedOwner
-          attr_accessor :service_type # Service name where the audience group has been created.
-          attr_accessor :id # Owner ID in the service.
-          attr_accessor :name # Owner account name.
+          # @!attribute [rw] service_type
+          #   @return [String,nil] Service name where the audience group has been created.
+          attr_accessor :service_type
+          # @!attribute [rw] id
+          #   @return [String,nil] Owner ID in the service.
+          attr_accessor :id
+          # @!attribute [rw] name
+          #   @return [String,nil] Owner account name.
+          attr_accessor :name
 
+          # @param service_type [String,nil] Service name where the audience group has been created.
+          # @param id [String,nil] Owner ID in the service.
+          # @param name [String,nil] Owner account name.
           def initialize(
             service_type: nil,
             id: nil,

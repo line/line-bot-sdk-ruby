@@ -14,10 +14,19 @@ module Line
         # Response object for `get statistics per unit`
         # @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit-response
         class GetStatisticsPerUnitResponse
+          # @!attribute [rw] overview
+          #   @return [GetStatisticsPerUnitResponseOverview] 
           attr_accessor :overview
-          attr_accessor :messages # Array of information about individual message bubbles.
-          attr_accessor :clicks # Array of information about opened URLs in the message.
+          # @!attribute [rw] messages
+          #   @return [Array[GetStatisticsPerUnitResponseMessage]] Array of information about individual message bubbles.
+          attr_accessor :messages
+          # @!attribute [rw] clicks
+          #   @return [Array[GetStatisticsPerUnitResponseClick]] Array of information about opened URLs in the message.
+          attr_accessor :clicks
 
+          # @param overview [GetStatisticsPerUnitResponseOverview] 
+          # @param messages [Array[GetStatisticsPerUnitResponseMessage]] Array of information about individual message bubbles.
+          # @param clicks [Array[GetStatisticsPerUnitResponseClick]] Array of information about opened URLs in the message.
           def initialize(
             overview:,
             messages:,

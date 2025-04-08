@@ -12,9 +12,15 @@ module Line
     module V2
       module MessagingApi
         class ImagemapBaseSize
+          # @!attribute [rw] height
+          #   @return [Integer] 
           attr_accessor :height
+          # @!attribute [rw] width
+          #   @return [Integer] 
           attr_accessor :width
 
+          # @param height [Integer] 
+          # @param width [Integer] 
           def initialize(
             height:,
             width:,

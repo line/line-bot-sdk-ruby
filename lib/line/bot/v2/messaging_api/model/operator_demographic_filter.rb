@@ -14,11 +14,22 @@ module Line
     module V2
       module MessagingApi
         class OperatorDemographicFilter < DemographicFilter
-          attr_reader :type # Type of demographic filter
+          # @!attribute [r] type
+          #   @return [String,nil] Type of demographic filter
+          attr_reader :type
+          # @!attribute [rw] _and
+          #   @return [Array[DemographicFilter],nil] 
           attr_accessor :_and
+          # @!attribute [rw] _or
+          #   @return [Array[DemographicFilter],nil] 
           attr_accessor :_or
+          # @!attribute [rw] _not
+          #   @return [DemographicFilter,nil] 
           attr_accessor :_not
 
+          # @param _and [Array[DemographicFilter],nil] 
+          # @param _or [Array[DemographicFilter],nil] 
+          # @param _not [DemographicFilter,nil] 
           def initialize(
             _and: nil,
             _or: nil,

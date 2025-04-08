@@ -14,11 +14,22 @@ module Line
     module V2
       module MessagingApi
         class CarouselTemplate < Template
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] columns
+          #   @return [Array[CarouselColumn]] 
           attr_accessor :columns
+          # @!attribute [rw] image_aspect_ratio
+          #   @return [String,nil] 
           attr_accessor :image_aspect_ratio
+          # @!attribute [rw] image_size
+          #   @return [String,nil] 
           attr_accessor :image_size
 
+          # @param columns [Array[CarouselColumn]] 
+          # @param image_aspect_ratio [String,nil] 
+          # @param image_size [String,nil] 
           def initialize(
             columns:,
             image_aspect_ratio: nil,

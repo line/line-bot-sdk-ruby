@@ -13,9 +13,15 @@ module Line
       module Webhook
         # Content of the account link event.
         class LinkContent
-          attr_accessor :result # One of the following values to indicate whether linking the account was successful or not
-          attr_accessor :nonce # Specified nonce (number used once) when verifying the user ID.
+          # @!attribute [rw] result
+          #   @return [String] ('ok'|'failed') One of the following values to indicate whether linking the account was successful or not
+          attr_accessor :result
+          # @!attribute [rw] nonce
+          #   @return [String] Specified nonce (number used once) when verifying the user ID.
+          attr_accessor :nonce
 
+          # @param result [String] ('ok'|'failed') One of the following values to indicate whether linking the account was successful or not
+          # @param nonce [String] Specified nonce (number used once) when verifying the user ID.
           def initialize(
             result:,
             nonce:,

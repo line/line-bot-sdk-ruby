@@ -13,9 +13,15 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#display-a-loading-indicator-request-body
         class ShowLoadingAnimationRequest
-          attr_accessor :chat_id # User ID of the target user for whom the loading animation is to be displayed.
-          attr_accessor :loading_seconds # The number of seconds to display the loading indicator. It must be a multiple of 5. The maximum value is 60 seconds. 
+          # @!attribute [rw] chat_id
+          #   @return [String] User ID of the target user for whom the loading animation is to be displayed.
+          attr_accessor :chat_id
+          # @!attribute [rw] loading_seconds
+          #   @return [Integer,nil] The number of seconds to display the loading indicator. It must be a multiple of 5. The maximum value is 60 seconds. 
+          attr_accessor :loading_seconds
 
+          # @param chat_id [String] User ID of the target user for whom the loading animation is to be displayed.
+          # @param loading_seconds [Integer,nil] The number of seconds to display the loading indicator. It must be a multiple of 5. The maximum value is 60 seconds. 
           def initialize(
             chat_id:,
             loading_seconds: nil,

@@ -14,10 +14,18 @@ module Line
     module V2
       module MessagingApi
         class ConfirmTemplate < Template
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] text
+          #   @return [String] 
           attr_accessor :text
+          # @!attribute [rw] actions
+          #   @return [Array[Action]] 
           attr_accessor :actions
 
+          # @param text [String] 
+          # @param actions [Array[Action]] 
           def initialize(
             text:,
             actions:,

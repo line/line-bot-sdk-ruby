@@ -14,30 +14,98 @@ module Line
     module V2
       module MessagingApi
         class FlexText < FlexComponent
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] flex
+          #   @return [Integer,nil] 
           attr_accessor :flex
+          # @!attribute [rw] text
+          #   @return [String,nil] 
           attr_accessor :text
+          # @!attribute [rw] size
+          #   @return [String,nil] 
           attr_accessor :size
+          # @!attribute [rw] align
+          #   @return [String,nil] ('start'|'end'|'center') 
           attr_accessor :align
+          # @!attribute [rw] gravity
+          #   @return [String,nil] ('top'|'bottom'|'center') 
           attr_accessor :gravity
+          # @!attribute [rw] color
+          #   @return [String,nil] 
           attr_accessor :color
+          # @!attribute [rw] weight
+          #   @return [String,nil] ('regular'|'bold') 
           attr_accessor :weight
+          # @!attribute [rw] style
+          #   @return [String,nil] ('normal'|'italic') 
           attr_accessor :style
+          # @!attribute [rw] decoration
+          #   @return [String,nil] ('none'|'underline'|'line-through') 
           attr_accessor :decoration
+          # @!attribute [rw] wrap
+          #   @return [Boolean,nil] 
           attr_accessor :wrap
+          # @!attribute [rw] line_spacing
+          #   @return [String,nil] 
           attr_accessor :line_spacing
+          # @!attribute [rw] margin
+          #   @return [String,nil] 
           attr_accessor :margin
+          # @!attribute [rw] position
+          #   @return [String,nil] ('relative'|'absolute') 
           attr_accessor :position
+          # @!attribute [rw] offset_top
+          #   @return [String,nil] 
           attr_accessor :offset_top
+          # @!attribute [rw] offset_bottom
+          #   @return [String,nil] 
           attr_accessor :offset_bottom
+          # @!attribute [rw] offset_start
+          #   @return [String,nil] 
           attr_accessor :offset_start
+          # @!attribute [rw] offset_end
+          #   @return [String,nil] 
           attr_accessor :offset_end
+          # @!attribute [rw] action
+          #   @return [Action,nil] 
           attr_accessor :action
+          # @!attribute [rw] max_lines
+          #   @return [Integer,nil] 
           attr_accessor :max_lines
+          # @!attribute [rw] contents
+          #   @return [Array[FlexSpan],nil] 
           attr_accessor :contents
+          # @!attribute [rw] adjust_mode
+          #   @return [String,nil] ('shrink-to-fit') 
           attr_accessor :adjust_mode
+          # @!attribute [rw] scaling
+          #   @return [Boolean,nil] 
           attr_accessor :scaling
 
+          # @param flex [Integer,nil] 
+          # @param text [String,nil] 
+          # @param size [String,nil] 
+          # @param align [String,nil] ('start'|'end'|'center') 
+          # @param gravity [String,nil] ('top'|'bottom'|'center') 
+          # @param color [String,nil] 
+          # @param weight [String,nil] ('regular'|'bold') 
+          # @param style [String,nil] ('normal'|'italic') 
+          # @param decoration [String,nil] ('none'|'underline'|'line-through') 
+          # @param wrap [Boolean,nil] 
+          # @param line_spacing [String,nil] 
+          # @param margin [String,nil] 
+          # @param position [String,nil] ('relative'|'absolute') 
+          # @param offset_top [String,nil] 
+          # @param offset_bottom [String,nil] 
+          # @param offset_start [String,nil] 
+          # @param offset_end [String,nil] 
+          # @param action [Action,nil] 
+          # @param max_lines [Integer,nil] 
+          # @param contents [Array[FlexSpan],nil] 
+          # @param adjust_mode [String,nil] ('shrink-to-fit') 
+          # @param scaling [Boolean,nil] 
           def initialize(
             flex: nil,
             text: nil,

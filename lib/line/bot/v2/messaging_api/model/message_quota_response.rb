@@ -13,9 +13,15 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-quota
         class MessageQuotaResponse
+          # @!attribute [rw] type
+          #   @return [String] ('none'|'limited') 
           attr_accessor :type
-          attr_accessor :value # The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 
+          # @!attribute [rw] value
+          #   @return [Integer,nil] The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 
+          attr_accessor :value
 
+          # @param type [String] ('none'|'limited') 
+          # @param value [Integer,nil] The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 
           def initialize(
             type:,
             value: nil,

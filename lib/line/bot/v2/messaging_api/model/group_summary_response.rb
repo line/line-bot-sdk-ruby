@@ -13,10 +13,19 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-group-summary
         class GroupSummaryResponse
-          attr_accessor :group_id # Group ID
-          attr_accessor :group_name # Group name
-          attr_accessor :picture_url # Group icon URL. Not included in the response if the user doesn't set a group profile icon.
+          # @!attribute [rw] group_id
+          #   @return [String] Group ID
+          attr_accessor :group_id
+          # @!attribute [rw] group_name
+          #   @return [String] Group name
+          attr_accessor :group_name
+          # @!attribute [rw] picture_url
+          #   @return [String,nil] Group icon URL. Not included in the response if the user doesn't set a group profile icon.
+          attr_accessor :picture_url
 
+          # @param group_id [String] Group ID
+          # @param group_name [String] Group name
+          # @param picture_url [String,nil] Group icon URL. Not included in the response if the user doesn't set a group profile icon.
           def initialize(
             group_id:,
             group_name:,

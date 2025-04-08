@@ -14,10 +14,18 @@ module Line
     module V2
       module Webhook
         class DetachedModuleContent < ModuleContent
-          attr_reader :type # Type
-          attr_accessor :bot_id # Detached LINE Official Account bot user ID
-          attr_accessor :reason # Reason for detaching
+          # @!attribute [r] type
+          #   @return [String] Type
+          attr_reader :type
+          # @!attribute [rw] bot_id
+          #   @return [String] Detached LINE Official Account bot user ID
+          attr_accessor :bot_id
+          # @!attribute [rw] reason
+          #   @return [String] ('bot_deleted') Reason for detaching
+          attr_accessor :reason
 
+          # @param bot_id [String] Detached LINE Official Account bot user ID
+          # @param reason [String] ('bot_deleted') Reason for detaching
           def initialize(
             bot_id:,
             reason:,

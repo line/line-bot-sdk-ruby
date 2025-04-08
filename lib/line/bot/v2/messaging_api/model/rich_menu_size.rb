@@ -13,9 +13,15 @@ module Line
       module MessagingApi
         # Rich menu size
         class RichMenuSize
-          attr_accessor :width # width
-          attr_accessor :height # height
+          # @!attribute [rw] width
+          #   @return [Integer,nil] width
+          attr_accessor :width
+          # @!attribute [rw] height
+          #   @return [Integer,nil] height
+          attr_accessor :height
 
+          # @param width [Integer,nil] width
+          # @param height [Integer,nil] height
           def initialize(
             width: nil,
             height: nil,

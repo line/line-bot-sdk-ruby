@@ -13,9 +13,15 @@ module Line
       module Webhook
         # @see https://developers.line.biz/en/reference/messaging-api/#message-event
         class MessageContent
-          attr_accessor :type # Type
-          attr_accessor :id # Message ID
+          # @!attribute [rw] type
+          #   @return [String] Type
+          attr_accessor :type
+          # @!attribute [rw] id
+          #   @return [String] Message ID
+          attr_accessor :id
 
+          # @param type [String] Type
+          # @param id [String] Message ID
           def initialize(
             type:,
             id:,

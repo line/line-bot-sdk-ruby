@@ -13,10 +13,19 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#message-common-properties
         class Message
-          attr_accessor :type # Type of message
+          # @!attribute [rw] type
+          #   @return [String] Type of message
+          attr_accessor :type
+          # @!attribute [rw] quick_reply
+          #   @return [QuickReply,nil] 
           attr_accessor :quick_reply
+          # @!attribute [rw] sender
+          #   @return [Sender,nil] 
           attr_accessor :sender
 
+          # @param type [String] Type of message
+          # @param quick_reply [QuickReply,nil] 
+          # @param sender [Sender,nil] 
           def initialize(
             type:,
             quick_reply: nil,

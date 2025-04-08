@@ -12,8 +12,11 @@ module Line
     module V2
       module Liff
         class AddLiffAppResponse
+          # @!attribute [rw] liff_id
+          #   @return [String] 
           attr_accessor :liff_id
 
+          # @param liff_id [String] 
           def initialize(
             liff_id:,
             **dynamic_attributes

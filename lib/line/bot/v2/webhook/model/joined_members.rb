@@ -12,8 +12,11 @@ module Line
     module V2
       module Webhook
         class JoinedMembers
-          attr_accessor :members # Users who joined. Array of source user objects.
+          # @!attribute [rw] members
+          #   @return [Array[UserSource]] Users who joined. Array of source user objects.
+          attr_accessor :members
 
+          # @param members [Array[UserSource]] Users who joined. Array of source user objects.
           def initialize(
             members:,
             **dynamic_attributes

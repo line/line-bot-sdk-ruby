@@ -14,9 +14,14 @@ module Line
     module V2
       module MessagingApi
         class AudienceRecipient < Recipient
-          attr_reader :type # Type of recipient
+          # @!attribute [r] type
+          #   @return [String,nil] Type of recipient
+          attr_reader :type
+          # @!attribute [rw] audience_group_id
+          #   @return [Integer,nil] 
           attr_accessor :audience_group_id
 
+          # @param audience_group_id [Integer,nil] 
           def initialize(
             audience_group_id: nil,
             **dynamic_attributes

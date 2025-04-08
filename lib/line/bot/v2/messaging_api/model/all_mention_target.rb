@@ -15,7 +15,9 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2-mentionee-all
         class AllMentionTarget < MentionTarget
-          attr_reader :type # Target to be mentioned
+          # @!attribute [r] type
+          #   @return [String] Target to be mentioned
+          attr_reader :type
 
           def initialize(
             **dynamic_attributes

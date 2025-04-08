@@ -12,10 +12,19 @@ module Line
     module V2
       module MessagingApi
         class FlexBlockStyle
+          # @!attribute [rw] background_color
+          #   @return [String,nil] 
           attr_accessor :background_color
+          # @!attribute [rw] separator
+          #   @return [Boolean,nil] 
           attr_accessor :separator
+          # @!attribute [rw] separator_color
+          #   @return [String,nil] 
           attr_accessor :separator_color
 
+          # @param background_color [String,nil] 
+          # @param separator [Boolean,nil] 
+          # @param separator_color [String,nil] 
           def initialize(
             background_color: nil,
             separator: nil,

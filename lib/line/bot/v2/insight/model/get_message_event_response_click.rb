@@ -12,12 +12,27 @@ module Line
     module V2
       module Insight
         class GetMessageEventResponseClick
-          attr_accessor :seq # The URL's serial number.
-          attr_accessor :url # URL.
-          attr_accessor :click # Number of times the URL was opened.
-          attr_accessor :unique_click # Number of users that opened the URL.
-          attr_accessor :unique_click_of_request # Number of users who opened this url through any link in the message. If a message contains two links to the same URL and a user opens both links, they're counted only once.
+          # @!attribute [rw] seq
+          #   @return [Integer,nil] The URL's serial number.
+          attr_accessor :seq
+          # @!attribute [rw] url
+          #   @return [String,nil] URL.
+          attr_accessor :url
+          # @!attribute [rw] click
+          #   @return [Integer,nil] Number of times the URL was opened.
+          attr_accessor :click
+          # @!attribute [rw] unique_click
+          #   @return [Integer,nil] Number of users that opened the URL.
+          attr_accessor :unique_click
+          # @!attribute [rw] unique_click_of_request
+          #   @return [Integer,nil] Number of users who opened this url through any link in the message. If a message contains two links to the same URL and a user opens both links, they're counted only once.
+          attr_accessor :unique_click_of_request
 
+          # @param seq [Integer,nil] The URL's serial number.
+          # @param url [String,nil] URL.
+          # @param click [Integer,nil] Number of times the URL was opened.
+          # @param unique_click [Integer,nil] Number of users that opened the URL.
+          # @param unique_click_of_request [Integer,nil] Number of users who opened this url through any link in the message. If a message contains two links to the same URL and a user opens both links, they're counted only once.
           def initialize(
             seq: nil,
             url: nil,

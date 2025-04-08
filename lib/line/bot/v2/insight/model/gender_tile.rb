@@ -12,9 +12,15 @@ module Line
     module V2
       module Insight
         class GenderTile
-          attr_accessor :gender # users' gender
-          attr_accessor :percentage # Percentage
+          # @!attribute [rw] gender
+          #   @return [String,nil] ('male'|'female'|'unknown') users' gender
+          attr_accessor :gender
+          # @!attribute [rw] percentage
+          #   @return [Float,nil] Percentage
+          attr_accessor :percentage
 
+          # @param gender [String,nil] ('male'|'female'|'unknown') users' gender
+          # @param percentage [Float,nil] Percentage
           def initialize(
             gender: nil,
             percentage: nil,

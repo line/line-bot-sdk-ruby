@@ -13,15 +13,39 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-narrowcast-progress-status
         class NarrowcastProgressResponse
-          attr_accessor :phase # The current status. One of:  `waiting`: Messages are not yet ready to be sent. They are currently being filtered or processed in some way. `sending`: Messages are currently being sent. `succeeded`: Messages were sent successfully. This may not mean the messages were successfully received. `failed`: Messages failed to be sent. Use the failedDescription property to find the cause of the failure. 
-          attr_accessor :success_count # The number of users who successfully received the message.
-          attr_accessor :failure_count # The number of users who failed to send the message.
-          attr_accessor :target_count # The number of intended recipients of the message.
-          attr_accessor :failed_description # The reason the message failed to be sent. This is only included with a `phase` property value of `failed`.
-          attr_accessor :error_code # Error summary. This is only included with a phase property value of failed. One of:  `1`: An internal error occurred. `2`: An error occurred because there weren't enough recipients. `3`: A conflict error of requests occurs because a request that has already been accepted is retried. `4`: An audience of less than 50 recipients is included as a condition of sending. 
-          attr_accessor :accepted_time # Narrowcast message request accepted time in milliseconds.  Format: ISO 8601 (e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC 
-          attr_accessor :completed_time # Processing of narrowcast message request completion time in milliseconds. Returned when the phase property is succeeded or failed.  Format: ISO 8601 (e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC 
+          # @!attribute [rw] phase
+          #   @return [String] ('waiting'|'sending'|'succeeded'|'failed') The current status. One of:  `waiting`: Messages are not yet ready to be sent. They are currently being filtered or processed in some way. `sending`: Messages are currently being sent. `succeeded`: Messages were sent successfully. This may not mean the messages were successfully received. `failed`: Messages failed to be sent. Use the failedDescription property to find the cause of the failure. 
+          attr_accessor :phase
+          # @!attribute [rw] success_count
+          #   @return [Integer,nil] The number of users who successfully received the message.
+          attr_accessor :success_count
+          # @!attribute [rw] failure_count
+          #   @return [Integer,nil] The number of users who failed to send the message.
+          attr_accessor :failure_count
+          # @!attribute [rw] target_count
+          #   @return [Integer,nil] The number of intended recipients of the message.
+          attr_accessor :target_count
+          # @!attribute [rw] failed_description
+          #   @return [String,nil] The reason the message failed to be sent. This is only included with a `phase` property value of `failed`.
+          attr_accessor :failed_description
+          # @!attribute [rw] error_code
+          #   @return [Integer,nil] Error summary. This is only included with a phase property value of failed. One of:  `1`: An internal error occurred. `2`: An error occurred because there weren't enough recipients. `3`: A conflict error of requests occurs because a request that has already been accepted is retried. `4`: An audience of less than 50 recipients is included as a condition of sending. 
+          attr_accessor :error_code
+          # @!attribute [rw] accepted_time
+          #   @return [String] Narrowcast message request accepted time in milliseconds.  Format: ISO 8601 (e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC 
+          attr_accessor :accepted_time
+          # @!attribute [rw] completed_time
+          #   @return [String,nil] Processing of narrowcast message request completion time in milliseconds. Returned when the phase property is succeeded or failed.  Format: ISO 8601 (e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC 
+          attr_accessor :completed_time
 
+          # @param phase [String] ('waiting'|'sending'|'succeeded'|'failed') The current status. One of:  `waiting`: Messages are not yet ready to be sent. They are currently being filtered or processed in some way. `sending`: Messages are currently being sent. `succeeded`: Messages were sent successfully. This may not mean the messages were successfully received. `failed`: Messages failed to be sent. Use the failedDescription property to find the cause of the failure. 
+          # @param success_count [Integer,nil] The number of users who successfully received the message.
+          # @param failure_count [Integer,nil] The number of users who failed to send the message.
+          # @param target_count [Integer,nil] The number of intended recipients of the message.
+          # @param failed_description [String,nil] The reason the message failed to be sent. This is only included with a `phase` property value of `failed`.
+          # @param error_code [Integer,nil] Error summary. This is only included with a phase property value of failed. One of:  `1`: An internal error occurred. `2`: An error occurred because there weren't enough recipients. `3`: A conflict error of requests occurs because a request that has already been accepted is retried. `4`: An audience of less than 50 recipients is included as a condition of sending. 
+          # @param accepted_time [String] Narrowcast message request accepted time in milliseconds.  Format: ISO 8601 (e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC 
+          # @param completed_time [String,nil] Processing of narrowcast message request completion time in milliseconds. Returned when the phase property is succeeded or failed.  Format: ISO 8601 (e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC 
           def initialize(
             phase:,
             success_count: nil,

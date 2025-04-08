@@ -14,10 +14,19 @@ module Line
         # Get audience data
         # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
         class GetAudienceDataResponse
+          # @!attribute [rw] audience_group
+          #   @return [AudienceGroup,nil] 
           attr_accessor :audience_group
-          attr_accessor :jobs # An array of jobs. This array is used to keep track of each attempt to add new user IDs or IFAs to an audience for uploading user IDs. Empty array is returned for any other type of audience. Max: 50 
+          # @!attribute [rw] jobs
+          #   @return [Array[AudienceGroupJob],nil] An array of jobs. This array is used to keep track of each attempt to add new user IDs or IFAs to an audience for uploading user IDs. Empty array is returned for any other type of audience. Max: 50 
+          attr_accessor :jobs
+          # @!attribute [rw] adaccount
+          #   @return [Adaccount,nil] 
           attr_accessor :adaccount
 
+          # @param audience_group [AudienceGroup,nil] 
+          # @param jobs [Array[AudienceGroupJob],nil] An array of jobs. This array is used to keep track of each attempt to add new user IDs or IFAs to an audience for uploading user IDs. Empty array is returned for any other type of audience. Max: 50 
+          # @param adaccount [Adaccount,nil] 
           def initialize(
             audience_group: nil,
             jobs: nil,

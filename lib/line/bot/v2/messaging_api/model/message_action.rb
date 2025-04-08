@@ -14,10 +14,18 @@ module Line
     module V2
       module MessagingApi
         class MessageAction < Action
-          attr_reader :type # Type of action
-          attr_accessor :label # Label for the action.
+          # @!attribute [r] type
+          #   @return [String,nil] Type of action
+          attr_reader :type
+          # @!attribute [rw] label
+          #   @return [String,nil] Label for the action.
+          attr_accessor :label
+          # @!attribute [rw] text
+          #   @return [String,nil] 
           attr_accessor :text
 
+          # @param label [String,nil] Label for the action.
+          # @param text [String,nil] 
           def initialize(
             label: nil,
             text: nil,

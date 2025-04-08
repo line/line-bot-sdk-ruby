@@ -12,10 +12,19 @@ module Line
     module V2
       module MessagingApi
         class Emoji
+          # @!attribute [rw] index
+          #   @return [Integer,nil] 
           attr_accessor :index
+          # @!attribute [rw] product_id
+          #   @return [String,nil] 
           attr_accessor :product_id
+          # @!attribute [rw] emoji_id
+          #   @return [String,nil] 
           attr_accessor :emoji_id
 
+          # @param index [Integer,nil] 
+          # @param product_id [String,nil] 
+          # @param emoji_id [String,nil] 
           def initialize(
             index: nil,
             product_id: nil,

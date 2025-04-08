@@ -15,10 +15,18 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#clipboard-action
         class ClipboardAction < Action
-          attr_reader :type # Type of action
-          attr_accessor :label # Label for the action.
-          attr_accessor :clipboard_text # Text that is copied to the clipboard. Max character limit: 1000 
+          # @!attribute [r] type
+          #   @return [String,nil] Type of action
+          attr_reader :type
+          # @!attribute [rw] label
+          #   @return [String,nil] Label for the action.
+          attr_accessor :label
+          # @!attribute [rw] clipboard_text
+          #   @return [String] Text that is copied to the clipboard. Max character limit: 1000 
+          attr_accessor :clipboard_text
 
+          # @param label [String,nil] Label for the action.
+          # @param clipboard_text [String] Text that is copied to the clipboard. Max character limit: 1000 
           def initialize(
             label: nil,
             clipboard_text:,

@@ -12,9 +12,15 @@ module Line
     module V2
       module Liff
         class LiffFeatures
-          attr_accessor :ble # `true` if the LIFF app supports Bluetooth® Low Energy for LINE Things. `false` otherwise. 
-          attr_accessor :qr_code # `true` to use the 2D code reader in the LIFF app. false otherwise. The default value is `false`. 
+          # @!attribute [rw] ble
+          #   @return [Boolean,nil] `true` if the LIFF app supports Bluetooth® Low Energy for LINE Things. `false` otherwise. 
+          attr_accessor :ble
+          # @!attribute [rw] qr_code
+          #   @return [Boolean,nil] `true` to use the 2D code reader in the LIFF app. false otherwise. The default value is `false`. 
+          attr_accessor :qr_code
 
+          # @param ble [Boolean,nil] `true` if the LIFF app supports Bluetooth® Low Energy for LINE Things. `false` otherwise. 
+          # @param qr_code [Boolean,nil] `true` to use the 2D code reader in the LIFF app. false otherwise. The default value is `false`. 
           def initialize(
             ble: nil,
             qr_code: false,

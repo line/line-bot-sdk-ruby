@@ -15,13 +15,30 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2
         class TextMessageV2 < Message
-          attr_reader :type # Type of message
+          # @!attribute [r] type
+          #   @return [String] Type of message
+          attr_reader :type
+          # @!attribute [rw] quick_reply
+          #   @return [QuickReply,nil] 
           attr_accessor :quick_reply
+          # @!attribute [rw] sender
+          #   @return [Sender,nil] 
           attr_accessor :sender
+          # @!attribute [rw] text
+          #   @return [String] 
           attr_accessor :text
-          attr_accessor :substitution # A mapping that specifies substitutions for parts enclosed in {} within the `text` field.
-          attr_accessor :quote_token # Quote token of the message you want to quote.
+          # @!attribute [rw] substitution
+          #   @return [Object,nil] A mapping that specifies substitutions for parts enclosed in {} within the `text` field.
+          attr_accessor :substitution
+          # @!attribute [rw] quote_token
+          #   @return [String,nil] Quote token of the message you want to quote.
+          attr_accessor :quote_token
 
+          # @param quick_reply [QuickReply,nil] 
+          # @param sender [Sender,nil] 
+          # @param text [String] 
+          # @param substitution [Object,nil] A mapping that specifies substitutions for parts enclosed in {} within the `text` field.
+          # @param quote_token [String,nil] Quote token of the message you want to quote.
           def initialize(
             quick_reply: nil,
             sender: nil,

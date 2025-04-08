@@ -13,8 +13,11 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-members-room-count
         class RoomMemberCountResponse
-          attr_accessor :count # The count of members in the multi-person chat. The number returned excludes the LINE Official Account.
+          # @!attribute [rw] count
+          #   @return [Integer] The count of members in the multi-person chat. The number returned excludes the LINE Official Account.
+          attr_accessor :count
 
+          # @param count [Integer] The count of members in the multi-person chat. The number returned excludes the LINE Official Account.
           def initialize(
             count:,
             **dynamic_attributes

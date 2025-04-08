@@ -14,14 +14,34 @@ module Line
     module V2
       module MessagingApi
         class PostbackAction < Action
-          attr_reader :type # Type of action
-          attr_accessor :label # Label for the action.
+          # @!attribute [r] type
+          #   @return [String,nil] Type of action
+          attr_reader :type
+          # @!attribute [rw] label
+          #   @return [String,nil] Label for the action.
+          attr_accessor :label
+          # @!attribute [rw] data
+          #   @return [String,nil] 
           attr_accessor :data
+          # @!attribute [rw] display_text
+          #   @return [String,nil] 
           attr_accessor :display_text
+          # @!attribute [rw] text
+          #   @return [String,nil] 
           attr_accessor :text
+          # @!attribute [rw] input_option
+          #   @return [String,nil] ('closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice') 
           attr_accessor :input_option
+          # @!attribute [rw] fill_in_text
+          #   @return [String,nil] 
           attr_accessor :fill_in_text
 
+          # @param label [String,nil] Label for the action.
+          # @param data [String,nil] 
+          # @param display_text [String,nil] 
+          # @param text [String,nil] 
+          # @param input_option [String,nil] ('closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice') 
+          # @param fill_in_text [String,nil] 
           def initialize(
             label: nil,
             data: nil,

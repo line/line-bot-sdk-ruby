@@ -14,10 +14,18 @@ module Line
     module V2
       module Webhook
         class ScenarioResultThingsContent < ThingsContent
-          attr_reader :type # Type
-          attr_accessor :device_id # Device ID of the device that has been linked with LINE.
+          # @!attribute [r] type
+          #   @return [String] Type
+          attr_reader :type
+          # @!attribute [rw] device_id
+          #   @return [String] Device ID of the device that has been linked with LINE.
+          attr_accessor :device_id
+          # @!attribute [rw] result
+          #   @return [ScenarioResult] 
           attr_accessor :result
 
+          # @param device_id [String] Device ID of the device that has been linked with LINE.
+          # @param result [ScenarioResult] 
           def initialize(
             device_id:,
             result:,

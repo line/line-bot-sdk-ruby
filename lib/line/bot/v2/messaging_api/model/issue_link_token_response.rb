@@ -13,8 +13,11 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#issue-link-token
         class IssueLinkTokenResponse
-          attr_accessor :link_token # Link token. Link tokens are valid for 10 minutes and can only be used once.  
+          # @!attribute [rw] link_token
+          #   @return [String] Link token. Link tokens are valid for 10 minutes and can only be used once.  
+          attr_accessor :link_token
 
+          # @param link_token [String] Link token. Link tokens are valid for 10 minutes and can only be used once.  
           def initialize(
             link_token:,
             **dynamic_attributes

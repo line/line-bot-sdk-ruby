@@ -12,9 +12,15 @@ module Line
     module V2
       module Webhook
         class ActionResult
+          # @!attribute [rw] type
+          #   @return [String] ('void'|'binary') 
           attr_accessor :type
-          attr_accessor :data # Base64-encoded binary data
+          # @!attribute [rw] data
+          #   @return [String,nil] Base64-encoded binary data
+          attr_accessor :data
 
+          # @param type [String] ('void'|'binary') 
+          # @param data [String,nil] Base64-encoded binary data
           def initialize(
             type:,
             data: nil,

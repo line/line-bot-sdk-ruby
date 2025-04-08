@@ -14,14 +14,34 @@ module Line
     module V2
       module Webhook
         class TextMessageContent < MessageContent
-          attr_reader :type # Type
-          attr_accessor :id # Message ID
-          attr_accessor :text # Message text.
-          attr_accessor :emojis # Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
+          # @!attribute [r] type
+          #   @return [String] Type
+          attr_reader :type
+          # @!attribute [rw] id
+          #   @return [String] Message ID
+          attr_accessor :id
+          # @!attribute [rw] text
+          #   @return [String] Message text.
+          attr_accessor :text
+          # @!attribute [rw] emojis
+          #   @return [Array[Emoji],nil] Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
+          attr_accessor :emojis
+          # @!attribute [rw] mention
+          #   @return [Mention,nil] 
           attr_accessor :mention
-          attr_accessor :quote_token # Quote token to quote this message. 
-          attr_accessor :quoted_message_id # Message ID of a quoted message. Only included when the received message quotes a past message.
+          # @!attribute [rw] quote_token
+          #   @return [String] Quote token to quote this message. 
+          attr_accessor :quote_token
+          # @!attribute [rw] quoted_message_id
+          #   @return [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.
+          attr_accessor :quoted_message_id
 
+          # @param id [String] Message ID
+          # @param text [String] Message text.
+          # @param emojis [Array[Emoji],nil] Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
+          # @param mention [Mention,nil] 
+          # @param quote_token [String] Quote token to quote this message. 
+          # @param quoted_message_id [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.
           def initialize(
             id:,
             text:,

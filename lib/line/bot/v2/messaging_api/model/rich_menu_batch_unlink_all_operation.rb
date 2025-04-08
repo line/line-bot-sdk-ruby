@@ -15,7 +15,9 @@ module Line
       module MessagingApi
         # Unlink the rich menu from all users linked to the rich menu.
         class RichMenuBatchUnlinkAllOperation < RichMenuBatchOperation
-          attr_reader :type # The type of operation to the rich menu linked to the user. One of link, unlink, or unlinkAll.
+          # @!attribute [r] type
+          #   @return [String] The type of operation to the rich menu linked to the user. One of link, unlink, or unlinkAll.
+          attr_reader :type
 
           def initialize(
             **dynamic_attributes

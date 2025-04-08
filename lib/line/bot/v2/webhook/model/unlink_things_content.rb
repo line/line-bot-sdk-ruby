@@ -14,9 +14,14 @@ module Line
     module V2
       module Webhook
         class UnlinkThingsContent < ThingsContent
-          attr_reader :type # Type
-          attr_accessor :device_id # Device ID of the device that has been linked with LINE.
+          # @!attribute [r] type
+          #   @return [String] Type
+          attr_reader :type
+          # @!attribute [rw] device_id
+          #   @return [String] Device ID of the device that has been linked with LINE.
+          attr_accessor :device_id
 
+          # @param device_id [String] Device ID of the device that has been linked with LINE.
           def initialize(
             device_id:,
             **dynamic_attributes

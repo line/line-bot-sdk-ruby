@@ -12,11 +12,23 @@ module Line
     module V2
       module MessagingApi
         class ImagemapVideo
+          # @!attribute [rw] original_content_url
+          #   @return [String,nil] 
           attr_accessor :original_content_url
+          # @!attribute [rw] preview_image_url
+          #   @return [String,nil] 
           attr_accessor :preview_image_url
+          # @!attribute [rw] area
+          #   @return [ImagemapArea,nil] 
           attr_accessor :area
+          # @!attribute [rw] external_link
+          #   @return [ImagemapExternalLink,nil] 
           attr_accessor :external_link
 
+          # @param original_content_url [String,nil] 
+          # @param preview_image_url [String,nil] 
+          # @param area [ImagemapArea,nil] 
+          # @param external_link [ImagemapExternalLink,nil] 
           def initialize(
             original_content_url: nil,
             preview_image_url: nil,

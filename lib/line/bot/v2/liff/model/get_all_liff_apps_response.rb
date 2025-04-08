@@ -12,8 +12,11 @@ module Line
     module V2
       module Liff
         class GetAllLiffAppsResponse
+          # @!attribute [rw] apps
+          #   @return [Array[LiffApp],nil] 
           attr_accessor :apps
 
+          # @param apps [Array[LiffApp],nil] 
           def initialize(
             apps: nil,
             **dynamic_attributes

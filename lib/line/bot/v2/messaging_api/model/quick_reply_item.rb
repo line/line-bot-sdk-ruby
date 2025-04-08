@@ -13,10 +13,19 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#items-object
         class QuickReplyItem
-          attr_accessor :image_url # URL of the icon that is displayed at the beginning of the button
+          # @!attribute [rw] image_url
+          #   @return [String,nil] URL of the icon that is displayed at the beginning of the button
+          attr_accessor :image_url
+          # @!attribute [rw] action
+          #   @return [Action,nil] 
           attr_accessor :action
-          attr_accessor :type # `action`
+          # @!attribute [rw] type
+          #   @return [String,nil] `action`
+          attr_accessor :type
 
+          # @param image_url [String,nil] URL of the icon that is displayed at the beginning of the button
+          # @param action [Action,nil] 
+          # @param type [String,nil] `action`
           def initialize(
             image_url: nil,
             action: nil,

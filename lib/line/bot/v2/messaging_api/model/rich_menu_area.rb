@@ -13,9 +13,15 @@ module Line
       module MessagingApi
         # Rich menu area
         class RichMenuArea
+          # @!attribute [rw] bounds
+          #   @return [RichMenuBounds,nil] 
           attr_accessor :bounds
+          # @!attribute [rw] action
+          #   @return [Action,nil] 
           attr_accessor :action
 
+          # @param bounds [RichMenuBounds,nil] 
+          # @param action [Action,nil] 
           def initialize(
             bounds: nil,
             action: nil,

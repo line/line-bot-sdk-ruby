@@ -13,10 +13,19 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#error-responses
         class ErrorResponse
-          attr_accessor :message # Message containing information about the error.
-          attr_accessor :details # An array of error details. If the array is empty, this property will not be included in the response.
-          attr_accessor :sent_messages # Array of sent messages.
+          # @!attribute [rw] message
+          #   @return [String] Message containing information about the error.
+          attr_accessor :message
+          # @!attribute [rw] details
+          #   @return [Array[ErrorDetail],nil] An array of error details. If the array is empty, this property will not be included in the response.
+          attr_accessor :details
+          # @!attribute [rw] sent_messages
+          #   @return [Array[SentMessage],nil] Array of sent messages.
+          attr_accessor :sent_messages
 
+          # @param message [String] Message containing information about the error.
+          # @param details [Array[ErrorDetail],nil] An array of error details. If the array is empty, this property will not be included in the response.
+          # @param sent_messages [Array[SentMessage],nil] Array of sent messages.
           def initialize(
             message:,
             details: nil,

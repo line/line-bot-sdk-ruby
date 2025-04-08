@@ -13,12 +13,27 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-profile
         class UserProfileResponse
-          attr_accessor :display_name # User's display name
-          attr_accessor :user_id # User ID
-          attr_accessor :picture_url # Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.
-          attr_accessor :status_message # User's status message. Not included in the response if the user doesn't have a status message.
-          attr_accessor :language # User's language, as a BCP 47 language tag. Not included in the response if the user hasn't yet consented to the LINE Privacy Policy.
+          # @!attribute [rw] display_name
+          #   @return [String] User's display name
+          attr_accessor :display_name
+          # @!attribute [rw] user_id
+          #   @return [String] User ID
+          attr_accessor :user_id
+          # @!attribute [rw] picture_url
+          #   @return [String,nil] Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.
+          attr_accessor :picture_url
+          # @!attribute [rw] status_message
+          #   @return [String,nil] User's status message. Not included in the response if the user doesn't have a status message.
+          attr_accessor :status_message
+          # @!attribute [rw] language
+          #   @return [String,nil] User's language, as a BCP 47 language tag. Not included in the response if the user hasn't yet consented to the LINE Privacy Policy.
+          attr_accessor :language
 
+          # @param display_name [String] User's display name
+          # @param user_id [String] User ID
+          # @param picture_url [String,nil] Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.
+          # @param status_message [String,nil] User's status message. Not included in the response if the user doesn't have a status message.
+          # @param language [String,nil] User's language, as a BCP 47 language tag. Not included in the response if the user hasn't yet consented to the LINE Privacy Policy.
           def initialize(
             display_name:,
             user_id:,

@@ -12,8 +12,11 @@ module Line
     module V2
       module Webhook
         class ModuleContent
-          attr_accessor :type # Type
+          # @!attribute [rw] type
+          #   @return [String] Type
+          attr_accessor :type
 
+          # @param type [String] Type
           def initialize(
             type:,
             **dynamic_attributes

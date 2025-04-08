@@ -16,10 +16,18 @@ module Line
         # An object representing a emoji substitution.
         # @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2-emoji-object
         class EmojiSubstitutionObject < SubstitutionObject
-          attr_reader :type # Type of substitution object
+          # @!attribute [r] type
+          #   @return [String] Type of substitution object
+          attr_reader :type
+          # @!attribute [rw] product_id
+          #   @return [String] 
           attr_accessor :product_id
+          # @!attribute [rw] emoji_id
+          #   @return [String] 
           attr_accessor :emoji_id
 
+          # @param product_id [String] 
+          # @param emoji_id [String] 
           def initialize(
             product_id:,
             emoji_id:,

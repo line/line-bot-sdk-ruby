@@ -14,16 +14,42 @@ module Line
     module V2
       module MessagingApi
         class ButtonsTemplate < Template
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] thumbnail_image_url
+          #   @return [String,nil] 
           attr_accessor :thumbnail_image_url
+          # @!attribute [rw] image_aspect_ratio
+          #   @return [String,nil] 
           attr_accessor :image_aspect_ratio
+          # @!attribute [rw] image_size
+          #   @return [String,nil] 
           attr_accessor :image_size
+          # @!attribute [rw] image_background_color
+          #   @return [String,nil] 
           attr_accessor :image_background_color
+          # @!attribute [rw] title
+          #   @return [String,nil] 
           attr_accessor :title
+          # @!attribute [rw] text
+          #   @return [String] 
           attr_accessor :text
+          # @!attribute [rw] default_action
+          #   @return [Action,nil] 
           attr_accessor :default_action
+          # @!attribute [rw] actions
+          #   @return [Array[Action]] 
           attr_accessor :actions
 
+          # @param thumbnail_image_url [String,nil] 
+          # @param image_aspect_ratio [String,nil] 
+          # @param image_size [String,nil] 
+          # @param image_background_color [String,nil] 
+          # @param title [String,nil] 
+          # @param text [String] 
+          # @param default_action [Action,nil] 
+          # @param actions [Array[Action]] 
           def initialize(
             thumbnail_image_url: nil,
             image_aspect_ratio: nil,

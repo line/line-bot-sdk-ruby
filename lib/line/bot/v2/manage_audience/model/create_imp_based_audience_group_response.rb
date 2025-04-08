@@ -14,12 +14,27 @@ module Line
         # Create audience for impression-based retargeting
         # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
         class CreateImpBasedAudienceGroupResponse
-          attr_accessor :audience_group_id # The audience ID.
+          # @!attribute [rw] audience_group_id
+          #   @return [Integer,nil] The audience ID.
+          attr_accessor :audience_group_id
+          # @!attribute [rw] type
+          #   @return [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
           attr_accessor :type
-          attr_accessor :description # The audience's name.
-          attr_accessor :created # When the audience was created (in UNIX time).
-          attr_accessor :request_id # The request ID that was specified when the audience was created.
+          # @!attribute [rw] description
+          #   @return [String,nil] The audience's name.
+          attr_accessor :description
+          # @!attribute [rw] created
+          #   @return [Integer,nil] When the audience was created (in UNIX time).
+          attr_accessor :created
+          # @!attribute [rw] request_id
+          #   @return [String,nil] The request ID that was specified when the audience was created.
+          attr_accessor :request_id
 
+          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String,nil] The audience's name.
+          # @param created [Integer,nil] When the audience was created (in UNIX time).
+          # @param request_id [String,nil] The request ID that was specified when the audience was created.
           def initialize(
             audience_group_id: nil,
             type: nil,

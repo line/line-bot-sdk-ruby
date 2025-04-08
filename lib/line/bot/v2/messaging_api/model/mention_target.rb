@@ -12,8 +12,11 @@ module Line
     module V2
       module MessagingApi
         class MentionTarget
-          attr_accessor :type # Target to be mentioned
+          # @!attribute [rw] type
+          #   @return [String] Target to be mentioned
+          attr_accessor :type
 
+          # @param type [String] Target to be mentioned
           def initialize(
             type:,
             **dynamic_attributes

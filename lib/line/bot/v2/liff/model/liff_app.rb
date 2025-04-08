@@ -12,14 +12,35 @@ module Line
     module V2
       module Liff
         class LiffApp
-          attr_accessor :liff_id # LIFF app ID
+          # @!attribute [rw] liff_id
+          #   @return [String,nil] LIFF app ID
+          attr_accessor :liff_id
+          # @!attribute [rw] view
+          #   @return [LiffView,nil] 
           attr_accessor :view
-          attr_accessor :description # Name of the LIFF app
+          # @!attribute [rw] description
+          #   @return [String,nil] Name of the LIFF app
+          attr_accessor :description
+          # @!attribute [rw] features
+          #   @return [LiffFeatures,nil] 
           attr_accessor :features
-          attr_accessor :permanent_link_pattern # How additional information in LIFF URLs is handled. concat is returned. 
+          # @!attribute [rw] permanent_link_pattern
+          #   @return [String,nil] How additional information in LIFF URLs is handled. concat is returned. 
+          attr_accessor :permanent_link_pattern
+          # @!attribute [rw] scope
+          #   @return [Array['openid'|'email'|'profile'|'chat_message.write']] 
           attr_accessor :scope
+          # @!attribute [rw] bot_prompt
+          #   @return [String,nil] ('normal'|'aggressive'|'none') 
           attr_accessor :bot_prompt
 
+          # @param liff_id [String,nil] LIFF app ID
+          # @param view [LiffView,nil] 
+          # @param description [String,nil] Name of the LIFF app
+          # @param features [LiffFeatures,nil] 
+          # @param permanent_link_pattern [String,nil] How additional information in LIFF URLs is handled. concat is returned. 
+          # @param scope [Array['openid'|'email'|'profile'|'chat_message.write'],nil] 
+          # @param bot_prompt [String,nil] ('normal'|'aggressive'|'none') 
           def initialize(
             liff_id: nil,
             view: nil,

@@ -14,10 +14,18 @@ module Line
     module V2
       module Webhook
         class AttachedModuleContent < ModuleContent
-          attr_reader :type # Type
-          attr_accessor :bot_id # User ID of the bot on the attached LINE Official Account
-          attr_accessor :scopes # An array of strings indicating the scope permitted by the admin of the LINE Official Account.
+          # @!attribute [r] type
+          #   @return [String] Type
+          attr_reader :type
+          # @!attribute [rw] bot_id
+          #   @return [String] User ID of the bot on the attached LINE Official Account
+          attr_accessor :bot_id
+          # @!attribute [rw] scopes
+          #   @return [Array[String]] An array of strings indicating the scope permitted by the admin of the LINE Official Account.
+          attr_accessor :scopes
 
+          # @param bot_id [String] User ID of the bot on the attached LINE Official Account
+          # @param scopes [Array[String]] An array of strings indicating the scope permitted by the admin of the LINE Official Account.
           def initialize(
             bot_id:,
             scopes:,

@@ -14,10 +14,19 @@ module Line
         # Issued stateless channel access token
         # @see https://developers.line.biz/en/reference/messaging-api/#issue-stateless-channel-access-token
         class IssueStatelessChannelAccessTokenResponse
-          attr_accessor :access_token # A stateless channel access token. The token is an opaque string which means its format is an implementation detail and the consumer of this token should never try to use the data parsed from the token. 
-          attr_accessor :expires_in # Duration in seconds after which the issued access token expires
-          attr_accessor :token_type # Token type. The value is always `Bearer`.
+          # @!attribute [rw] access_token
+          #   @return [String] A stateless channel access token. The token is an opaque string which means its format is an implementation detail and the consumer of this token should never try to use the data parsed from the token. 
+          attr_accessor :access_token
+          # @!attribute [rw] expires_in
+          #   @return [Integer] Duration in seconds after which the issued access token expires
+          attr_accessor :expires_in
+          # @!attribute [rw] token_type
+          #   @return [String] Token type. The value is always `Bearer`.
+          attr_accessor :token_type
 
+          # @param access_token [String] A stateless channel access token. The token is an opaque string which means its format is an implementation detail and the consumer of this token should never try to use the data parsed from the token. 
+          # @param expires_in [Integer] Duration in seconds after which the issued access token expires
+          # @param token_type [String] Token type. The value is always `Bearer`.
           def initialize(
             access_token:,
             expires_in:,

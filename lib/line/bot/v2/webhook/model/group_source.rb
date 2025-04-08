@@ -14,10 +14,18 @@ module Line
     module V2
       module Webhook
         class GroupSource < Source
-          attr_reader :type # source type
-          attr_accessor :group_id # Group ID of the source group chat
-          attr_accessor :user_id # ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
+          # @!attribute [r] type
+          #   @return [String] source type
+          attr_reader :type
+          # @!attribute [rw] group_id
+          #   @return [String] Group ID of the source group chat
+          attr_accessor :group_id
+          # @!attribute [rw] user_id
+          #   @return [String,nil] ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
+          attr_accessor :user_id
 
+          # @param group_id [String] Group ID of the source group chat
+          # @param user_id [String,nil] ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
           def initialize(
             group_id:,
             user_id: nil,

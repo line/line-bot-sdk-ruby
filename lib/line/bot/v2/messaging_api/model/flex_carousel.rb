@@ -14,9 +14,14 @@ module Line
     module V2
       module MessagingApi
         class FlexCarousel < FlexContainer
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] contents
+          #   @return [Array[FlexBubble]] 
           attr_accessor :contents
 
+          # @param contents [Array[FlexBubble]] 
           def initialize(
             contents:,
             **dynamic_attributes

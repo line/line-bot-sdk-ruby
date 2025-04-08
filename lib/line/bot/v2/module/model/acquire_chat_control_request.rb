@@ -14,9 +14,15 @@ module Line
         # Request entity of the Acquire Control API
         # @see https://developers.line.biz/en/reference/partner-docs/#acquire-control-api
         class AcquireChatControlRequest
-          attr_accessor :expired # `True`: After the time limit (ttl) has passed, the initiative (Chat Control) will return to the Primary Channel. (Default) `False`: There's no time limit and the initiative (Chat Control) doesn't change over time. 
-          attr_accessor :ttl # The time it takes for initiative (Chat Control) to return to the Primary Channel (the time that the module channel stays on the Active Channel). The value is specified in seconds. The maximum value is one year (3600 * 24 * 365). The default value is 3600 (1 hour).  * Ignored if the value of expired is false. 
+          # @!attribute [rw] expired
+          #   @return [Boolean,nil] `True`: After the time limit (ttl) has passed, the initiative (Chat Control) will return to the Primary Channel. (Default) `False`: There's no time limit and the initiative (Chat Control) doesn't change over time. 
+          attr_accessor :expired
+          # @!attribute [rw] ttl
+          #   @return [Integer,nil] The time it takes for initiative (Chat Control) to return to the Primary Channel (the time that the module channel stays on the Active Channel). The value is specified in seconds. The maximum value is one year (3600 * 24 * 365). The default value is 3600 (1 hour).  * Ignored if the value of expired is false. 
+          attr_accessor :ttl
 
+          # @param expired [Boolean,nil] `True`: After the time limit (ttl) has passed, the initiative (Chat Control) will return to the Primary Channel. (Default) `False`: There's no time limit and the initiative (Chat Control) doesn't change over time. 
+          # @param ttl [Integer,nil] The time it takes for initiative (Chat Control) to return to the Primary Channel (the time that the module channel stays on the Active Channel). The value is specified in seconds. The maximum value is one year (3600 * 24 * 365). The default value is 3600 (1 hour).  * Ignored if the value of expired is false. 
           def initialize(
             expired: nil,
             ttl: nil,

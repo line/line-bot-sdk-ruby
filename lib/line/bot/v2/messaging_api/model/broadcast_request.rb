@@ -13,9 +13,15 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
         class BroadcastRequest
-          attr_accessor :messages # List of Message objects.
-          attr_accessor :notification_disabled # `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          # @!attribute [rw] messages
+          #   @return [Array[Message]] List of Message objects.
+          attr_accessor :messages
+          # @!attribute [rw] notification_disabled
+          #   @return [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          attr_accessor :notification_disabled
 
+          # @param messages [Array[Message]] List of Message objects.
+          # @param notification_disabled [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           def initialize(
             messages:,
             notification_disabled: false,

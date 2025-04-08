@@ -13,10 +13,19 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-group-member-profile
         class GroupUserProfileResponse
-          attr_accessor :display_name # User's display name
-          attr_accessor :user_id # User ID
-          attr_accessor :picture_url # Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.
+          # @!attribute [rw] display_name
+          #   @return [String] User's display name
+          attr_accessor :display_name
+          # @!attribute [rw] user_id
+          #   @return [String] User ID
+          attr_accessor :user_id
+          # @!attribute [rw] picture_url
+          #   @return [String,nil] Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.
+          attr_accessor :picture_url
 
+          # @param display_name [String] User's display name
+          # @param user_id [String] User ID
+          # @param picture_url [String,nil] Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.
           def initialize(
             display_name:,
             user_id:,

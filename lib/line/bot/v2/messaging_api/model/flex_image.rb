@@ -15,24 +15,74 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#f-image
         class FlexImage < FlexComponent
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
-          attr_accessor :url # Image URL (Max character limit: 2000) Protocol: HTTPS (TLS 1.2 or later) Image format: JPEG or PNG Maximum image size: 1024×1024 pixels Maximum file size: 10 MB (300 KB when the animated property is true) 
-          attr_accessor :flex # The ratio of the width or height of this component within the parent box.
-          attr_accessor :margin # The minimum amount of space to include before this component in its parent container. 
-          attr_accessor :position # Reference for offsetTop, offsetBottom, offsetStart, and offsetEnd. Specify one of the following values:  `relative`: Use the previous box as reference. `absolute`: Use the top left of parent element as reference. The default value is relative. 
-          attr_accessor :offset_top # Offset.
-          attr_accessor :offset_bottom # Offset.
-          attr_accessor :offset_start # Offset.
-          attr_accessor :offset_end # Offset.
-          attr_accessor :align # Alignment style in horizontal direction. 
-          attr_accessor :gravity # Alignment style in vertical direction.
-          attr_accessor :size # The maximum image width. This is md by default. 
-          attr_accessor :aspect_ratio # Aspect ratio of the image. `{width}:{height}` format. Specify the value of `{width}` and `{height}` in the range from `1` to `100000`. However, you cannot set `{height}` to a value that is more than three times the value of `{width}`. The default value is `1:1`. 
-          attr_accessor :aspect_mode # The display style of the image if the aspect ratio of the image and that specified by the aspectRatio property do not match. 
-          attr_accessor :background_color # Background color of the image. Use a hexadecimal color code.
+          # @!attribute [rw] url
+          #   @return [String] Image URL (Max character limit: 2000) Protocol: HTTPS (TLS 1.2 or later) Image format: JPEG or PNG Maximum image size: 1024×1024 pixels Maximum file size: 10 MB (300 KB when the animated property is true) 
+          attr_accessor :url
+          # @!attribute [rw] flex
+          #   @return [Integer,nil] The ratio of the width or height of this component within the parent box.
+          attr_accessor :flex
+          # @!attribute [rw] margin
+          #   @return [String,nil] The minimum amount of space to include before this component in its parent container. 
+          attr_accessor :margin
+          # @!attribute [rw] position
+          #   @return [String,nil] ('relative'|'absolute') Reference for offsetTop, offsetBottom, offsetStart, and offsetEnd. Specify one of the following values:  `relative`: Use the previous box as reference. `absolute`: Use the top left of parent element as reference. The default value is relative. 
+          attr_accessor :position
+          # @!attribute [rw] offset_top
+          #   @return [String,nil] Offset.
+          attr_accessor :offset_top
+          # @!attribute [rw] offset_bottom
+          #   @return [String,nil] Offset.
+          attr_accessor :offset_bottom
+          # @!attribute [rw] offset_start
+          #   @return [String,nil] Offset.
+          attr_accessor :offset_start
+          # @!attribute [rw] offset_end
+          #   @return [String,nil] Offset.
+          attr_accessor :offset_end
+          # @!attribute [rw] align
+          #   @return [String,nil] ('start'|'end'|'center') Alignment style in horizontal direction. 
+          attr_accessor :align
+          # @!attribute [rw] gravity
+          #   @return [String,nil] ('top'|'bottom'|'center') Alignment style in vertical direction.
+          attr_accessor :gravity
+          # @!attribute [rw] size
+          #   @return [String,nil] The maximum image width. This is md by default. 
+          attr_accessor :size
+          # @!attribute [rw] aspect_ratio
+          #   @return [String,nil] Aspect ratio of the image. `{width}:{height}` format. Specify the value of `{width}` and `{height}` in the range from `1` to `100000`. However, you cannot set `{height}` to a value that is more than three times the value of `{width}`. The default value is `1:1`. 
+          attr_accessor :aspect_ratio
+          # @!attribute [rw] aspect_mode
+          #   @return [String,nil] ('fit'|'cover') The display style of the image if the aspect ratio of the image and that specified by the aspectRatio property do not match. 
+          attr_accessor :aspect_mode
+          # @!attribute [rw] background_color
+          #   @return [String,nil] Background color of the image. Use a hexadecimal color code.
+          attr_accessor :background_color
+          # @!attribute [rw] action
+          #   @return [Action,nil] 
           attr_accessor :action
-          attr_accessor :animated # When this is `true`, an animated image (APNG) plays. You can specify a value of true up to 10 images in a single message. You can't send messages that exceed this limit. This is `false` by default. Animated images larger than 300 KB aren't played back. 
+          # @!attribute [rw] animated
+          #   @return [Boolean,nil] When this is `true`, an animated image (APNG) plays. You can specify a value of true up to 10 images in a single message. You can't send messages that exceed this limit. This is `false` by default. Animated images larger than 300 KB aren't played back. 
+          attr_accessor :animated
 
+          # @param url [String] Image URL (Max character limit: 2000) Protocol: HTTPS (TLS 1.2 or later) Image format: JPEG or PNG Maximum image size: 1024×1024 pixels Maximum file size: 10 MB (300 KB when the animated property is true) 
+          # @param flex [Integer,nil] The ratio of the width or height of this component within the parent box.
+          # @param margin [String,nil] The minimum amount of space to include before this component in its parent container. 
+          # @param position [String,nil] ('relative'|'absolute') Reference for offsetTop, offsetBottom, offsetStart, and offsetEnd. Specify one of the following values:  `relative`: Use the previous box as reference. `absolute`: Use the top left of parent element as reference. The default value is relative. 
+          # @param offset_top [String,nil] Offset.
+          # @param offset_bottom [String,nil] Offset.
+          # @param offset_start [String,nil] Offset.
+          # @param offset_end [String,nil] Offset.
+          # @param align [String,nil] ('start'|'end'|'center') Alignment style in horizontal direction. 
+          # @param gravity [String,nil] ('top'|'bottom'|'center') Alignment style in vertical direction.
+          # @param size [String,nil] The maximum image width. This is md by default. 
+          # @param aspect_ratio [String,nil] Aspect ratio of the image. `{width}:{height}` format. Specify the value of `{width}` and `{height}` in the range from `1` to `100000`. However, you cannot set `{height}` to a value that is more than three times the value of `{width}`. The default value is `1:1`. 
+          # @param aspect_mode [String,nil] ('fit'|'cover') The display style of the image if the aspect ratio of the image and that specified by the aspectRatio property do not match. 
+          # @param background_color [String,nil] Background color of the image. Use a hexadecimal color code.
+          # @param action [Action,nil] 
+          # @param animated [Boolean,nil] When this is `true`, an animated image (APNG) plays. You can specify a value of true up to 10 images in a single message. You can't send messages that exceed this limit. This is `false` by default. Animated images larger than 300 KB aren't played back. 
           def initialize(
             url:,
             flex: nil,

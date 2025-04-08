@@ -14,13 +14,30 @@ module Line
     module V2
       module MessagingApi
         class FlexVideo < FlexComponent
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] url
+          #   @return [String] 
           attr_accessor :url
+          # @!attribute [rw] preview_url
+          #   @return [String] 
           attr_accessor :preview_url
+          # @!attribute [rw] alt_content
+          #   @return [FlexComponent] 
           attr_accessor :alt_content
+          # @!attribute [rw] aspect_ratio
+          #   @return [String,nil] 
           attr_accessor :aspect_ratio
+          # @!attribute [rw] action
+          #   @return [Action,nil] 
           attr_accessor :action
 
+          # @param url [String] 
+          # @param preview_url [String] 
+          # @param alt_content [FlexComponent] 
+          # @param aspect_ratio [String,nil] 
+          # @param action [Action,nil] 
           def initialize(
             url:,
             preview_url:,

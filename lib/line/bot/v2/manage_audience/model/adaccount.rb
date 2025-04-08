@@ -13,8 +13,11 @@ module Line
       module ManageAudience
         # Adaccount
         class Adaccount
-          attr_accessor :name # Ad account name.
+          # @!attribute [rw] name
+          #   @return [String,nil] Ad account name.
+          attr_accessor :name
 
+          # @param name [String,nil] Ad account name.
           def initialize(
             name: nil,
             **dynamic_attributes

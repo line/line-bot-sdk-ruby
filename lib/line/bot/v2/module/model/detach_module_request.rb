@@ -14,8 +14,11 @@ module Line
         # Unlink (detach) the module channel by the operation of the module channel administrator
         # @see https://developers.line.biz/en/reference/partner-docs/#unlink-detach-module-channel-by-operation-mc-admin
         class DetachModuleRequest
-          attr_accessor :bot_id # User ID of the LINE Official Account bot attached to the module channel.
+          # @!attribute [rw] bot_id
+          #   @return [String,nil] User ID of the LINE Official Account bot attached to the module channel.
+          attr_accessor :bot_id
 
+          # @param bot_id [String,nil] User ID of the LINE Official Account bot attached to the module channel.
           def initialize(
             bot_id: nil,
             **dynamic_attributes

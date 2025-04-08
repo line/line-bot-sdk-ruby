@@ -15,15 +15,38 @@ module Line
       module Webhook
         # Event object for when a user enters the range of a LINE Beacon. You can reply to beacon events.
         class BeaconEvent < Event
-          attr_reader :type # Type of the event
+          # @!attribute [r] type
+          #   @return [String] Type of the event
+          attr_reader :type
+          # @!attribute [rw] source
+          #   @return [Source,nil] 
           attr_accessor :source
-          attr_accessor :timestamp # Time of the event in milliseconds.
+          # @!attribute [rw] timestamp
+          #   @return [Integer] Time of the event in milliseconds.
+          attr_accessor :timestamp
+          # @!attribute [rw] mode
+          #   @return [String] ('active'|'standby') 
           attr_accessor :mode
-          attr_accessor :webhook_event_id # Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
+          # @!attribute [rw] webhook_event_id
+          #   @return [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
+          attr_accessor :webhook_event_id
+          # @!attribute [rw] delivery_context
+          #   @return [DeliveryContext] 
           attr_accessor :delivery_context
-          attr_accessor :reply_token # Reply token used to send reply message to this event
+          # @!attribute [rw] reply_token
+          #   @return [String] Reply token used to send reply message to this event
+          attr_accessor :reply_token
+          # @!attribute [rw] beacon
+          #   @return [BeaconContent] 
           attr_accessor :beacon
 
+          # @param source [Source,nil] 
+          # @param timestamp [Integer] Time of the event in milliseconds.
+          # @param mode [String] ('active'|'standby') 
+          # @param webhook_event_id [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
+          # @param delivery_context [DeliveryContext] 
+          # @param reply_token [String] Reply token used to send reply message to this event
+          # @param beacon [BeaconContent] 
           def initialize(
             source: nil,
             timestamp:,

@@ -15,12 +15,26 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#audio-message
         class AudioMessage < Message
-          attr_reader :type # Type of message
+          # @!attribute [r] type
+          #   @return [String] Type of message
+          attr_reader :type
+          # @!attribute [rw] quick_reply
+          #   @return [QuickReply,nil] 
           attr_accessor :quick_reply
+          # @!attribute [rw] sender
+          #   @return [Sender,nil] 
           attr_accessor :sender
+          # @!attribute [rw] original_content_url
+          #   @return [String] 
           attr_accessor :original_content_url
+          # @!attribute [rw] duration
+          #   @return [Integer] 
           attr_accessor :duration
 
+          # @param quick_reply [QuickReply,nil] 
+          # @param sender [Sender,nil] 
+          # @param original_content_url [String] 
+          # @param duration [Integer] 
           def initialize(
             quick_reply: nil,
             sender: nil,

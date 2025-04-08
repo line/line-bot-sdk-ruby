@@ -14,9 +14,14 @@ module Line
     module V2
       module Webhook
         class RenewedMembershipContent < MembershipContent
-          attr_reader :type # Type of membership event.
-          attr_accessor :membership_id # The ID of the membership that the user renewed. This is defined for each membership.
+          # @!attribute [r] type
+          #   @return [String] Type of membership event.
+          attr_reader :type
+          # @!attribute [rw] membership_id
+          #   @return [Integer] The ID of the membership that the user renewed. This is defined for each membership.
+          attr_accessor :membership_id
 
+          # @param membership_id [Integer] The ID of the membership that the user renewed. This is defined for each membership.
           def initialize(
             membership_id:,
             **dynamic_attributes

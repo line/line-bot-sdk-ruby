@@ -14,11 +14,22 @@ module Line
     module V2
       module Webhook
         class AudioMessageContent < MessageContent
-          attr_reader :type # Type
-          attr_accessor :id # Message ID
+          # @!attribute [r] type
+          #   @return [String] Type
+          attr_reader :type
+          # @!attribute [rw] id
+          #   @return [String] Message ID
+          attr_accessor :id
+          # @!attribute [rw] content_provider
+          #   @return [ContentProvider] 
           attr_accessor :content_provider
-          attr_accessor :duration # Length of audio file (milliseconds)
+          # @!attribute [rw] duration
+          #   @return [Integer,nil] Length of audio file (milliseconds)
+          attr_accessor :duration
 
+          # @param id [String] Message ID
+          # @param content_provider [ContentProvider] 
+          # @param duration [Integer,nil] Length of audio file (milliseconds)
           def initialize(
             id:,
             content_provider:,

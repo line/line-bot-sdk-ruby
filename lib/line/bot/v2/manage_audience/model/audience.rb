@@ -13,8 +13,11 @@ module Line
       module ManageAudience
         # Audience
         class Audience
-          attr_accessor :id # A user ID or IFA. You can specify an empty array.
+          # @!attribute [rw] id
+          #   @return [String,nil] A user ID or IFA. You can specify an empty array.
+          attr_accessor :id
 
+          # @param id [String,nil] A user ID or IFA. You can specify an empty array.
           def initialize(
             id: nil,
             **dynamic_attributes

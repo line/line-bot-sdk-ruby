@@ -12,8 +12,11 @@ module Line
     module V2
       module Webhook
         class VideoPlayComplete
-          attr_accessor :tracking_id # ID used to identify a video. Returns the same value as the trackingId assigned to the video message.
+          # @!attribute [rw] tracking_id
+          #   @return [String] ID used to identify a video. Returns the same value as the trackingId assigned to the video message.
+          attr_accessor :tracking_id
 
+          # @param tracking_id [String] ID used to identify a video. Returns the same value as the trackingId assigned to the video message.
           def initialize(
             tracking_id:,
             **dynamic_attributes

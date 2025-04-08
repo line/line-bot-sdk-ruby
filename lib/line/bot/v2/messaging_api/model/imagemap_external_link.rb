@@ -12,9 +12,15 @@ module Line
     module V2
       module MessagingApi
         class ImagemapExternalLink
+          # @!attribute [rw] link_uri
+          #   @return [String,nil] 
           attr_accessor :link_uri
+          # @!attribute [rw] label
+          #   @return [String,nil] 
           attr_accessor :label
 
+          # @param link_uri [String,nil] 
+          # @param label [String,nil] 
           def initialize(
             link_uri: nil,
             label: nil,

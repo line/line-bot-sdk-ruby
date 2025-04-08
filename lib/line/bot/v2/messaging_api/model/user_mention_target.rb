@@ -15,9 +15,14 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#text-message-v2-mentionee-user
         class UserMentionTarget < MentionTarget
-          attr_reader :type # Target to be mentioned
+          # @!attribute [r] type
+          #   @return [String] Target to be mentioned
+          attr_reader :type
+          # @!attribute [rw] user_id
+          #   @return [String] 
           attr_accessor :user_id
 
+          # @param user_id [String] 
           def initialize(
             user_id:,
             **dynamic_attributes

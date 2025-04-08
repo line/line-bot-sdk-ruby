@@ -13,8 +13,11 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-consumption
         class QuotaConsumptionResponse
-          attr_accessor :total_usage # The number of sent messages in the current month
+          # @!attribute [rw] total_usage
+          #   @return [Integer] The number of sent messages in the current month
+          attr_accessor :total_usage
 
+          # @param total_usage [Integer] The number of sent messages in the current month
           def initialize(
             total_usage:,
             **dynamic_attributes

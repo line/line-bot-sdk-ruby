@@ -12,9 +12,15 @@ module Line
     module V2
       module MessagingApi
         class RichMenuBatchRequest
-          attr_accessor :operations # Array of Rich menu operation object...
-          attr_accessor :resume_request_key # Key for retry. Key value is a string matching the regular expression pattern
+          # @!attribute [rw] operations
+          #   @return [Array[RichMenuBatchOperation]] Array of Rich menu operation object...
+          attr_accessor :operations
+          # @!attribute [rw] resume_request_key
+          #   @return [String,nil] Key for retry. Key value is a string matching the regular expression pattern
+          attr_accessor :resume_request_key
 
+          # @param operations [Array[RichMenuBatchOperation]] Array of Rich menu operation object...
+          # @param resume_request_key [String,nil] Key for retry. Key value is a string matching the regular expression pattern
           def initialize(
             operations:,
             resume_request_key: nil,

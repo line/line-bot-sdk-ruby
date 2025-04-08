@@ -13,10 +13,19 @@ module Line
       module Webhook
         # @see https://developers.line.biz/en/reference/messaging-api/#wh-text
         class Mentionee
-          attr_accessor :type # Mentioned target.
-          attr_accessor :index # Index position of the user mention for a character in text, with the first character being at position 0.
-          attr_accessor :length # The length of the text of the mentioned user. For a mention @example, 8 is the length.
+          # @!attribute [rw] type
+          #   @return [String] Mentioned target.
+          attr_accessor :type
+          # @!attribute [rw] index
+          #   @return [Integer] Index position of the user mention for a character in text, with the first character being at position 0.
+          attr_accessor :index
+          # @!attribute [rw] length
+          #   @return [Integer] The length of the text of the mentioned user. For a mention @example, 8 is the length.
+          attr_accessor :length
 
+          # @param type [String] Mentioned target.
+          # @param index [Integer] Index position of the user mention for a character in text, with the first character being at position 0.
+          # @param length [Integer] The length of the text of the mentioned user. For a mention @example, 8 is the length.
           def initialize(
             type:,
             index:,

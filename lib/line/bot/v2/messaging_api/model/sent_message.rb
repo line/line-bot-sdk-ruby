@@ -12,9 +12,15 @@ module Line
     module V2
       module MessagingApi
         class SentMessage
-          attr_accessor :id # ID of the sent message.
-          attr_accessor :quote_token # Quote token of the message. Only included when a message object that can be specified as a quote target was sent as a push or reply message. 
+          # @!attribute [rw] id
+          #   @return [String] ID of the sent message.
+          attr_accessor :id
+          # @!attribute [rw] quote_token
+          #   @return [String,nil] Quote token of the message. Only included when a message object that can be specified as a quote target was sent as a push or reply message. 
+          attr_accessor :quote_token
 
+          # @param id [String] ID of the sent message.
+          # @param quote_token [String,nil] Quote token of the message. Only included when a message object that can be specified as a quote target was sent as a push or reply message. 
           def initialize(
             id:,
             quote_token: nil,

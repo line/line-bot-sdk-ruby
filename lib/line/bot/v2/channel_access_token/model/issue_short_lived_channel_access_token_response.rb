@@ -14,10 +14,19 @@ module Line
         # Issued short-lived channel access token
         # @see https://developers.line.biz/en/reference/messaging-api/#issue-shortlived-channel-access-token
         class IssueShortLivedChannelAccessTokenResponse
-          attr_accessor :access_token # A short-lived channel access token. Valid for 30 days. Note: Channel access tokens cannot be refreshed. 
-          attr_accessor :expires_in # Time until channel access token expires in seconds from time the token is issued.
-          attr_accessor :token_type # Token type. The value is always `Bearer`.
+          # @!attribute [rw] access_token
+          #   @return [String] A short-lived channel access token. Valid for 30 days. Note: Channel access tokens cannot be refreshed. 
+          attr_accessor :access_token
+          # @!attribute [rw] expires_in
+          #   @return [Integer] Time until channel access token expires in seconds from time the token is issued.
+          attr_accessor :expires_in
+          # @!attribute [rw] token_type
+          #   @return [String] Token type. The value is always `Bearer`.
+          attr_accessor :token_type
 
+          # @param access_token [String] A short-lived channel access token. Valid for 30 days. Note: Channel access tokens cannot be refreshed. 
+          # @param expires_in [Integer] Time until channel access token expires in seconds from time the token is issued.
+          # @param token_type [String] Token type. The value is always `Bearer`.
           def initialize(
             access_token:,
             expires_in:,

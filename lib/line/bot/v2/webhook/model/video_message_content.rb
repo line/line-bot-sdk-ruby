@@ -14,12 +14,26 @@ module Line
     module V2
       module Webhook
         class VideoMessageContent < MessageContent
-          attr_reader :type # Type
-          attr_accessor :id # Message ID
-          attr_accessor :duration # Length of video file (milliseconds)
+          # @!attribute [r] type
+          #   @return [String] Type
+          attr_reader :type
+          # @!attribute [rw] id
+          #   @return [String] Message ID
+          attr_accessor :id
+          # @!attribute [rw] duration
+          #   @return [Integer,nil] Length of video file (milliseconds)
+          attr_accessor :duration
+          # @!attribute [rw] content_provider
+          #   @return [ContentProvider] 
           attr_accessor :content_provider
-          attr_accessor :quote_token # Quote token to quote this message. 
+          # @!attribute [rw] quote_token
+          #   @return [String] Quote token to quote this message. 
+          attr_accessor :quote_token
 
+          # @param id [String] Message ID
+          # @param duration [Integer,nil] Length of video file (milliseconds)
+          # @param content_provider [ContentProvider] 
+          # @param quote_token [String] Quote token to quote this message. 
           def initialize(
             id:,
             duration: nil,

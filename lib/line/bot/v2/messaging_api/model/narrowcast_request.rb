@@ -13,12 +13,27 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
         class NarrowcastRequest
-          attr_accessor :messages # List of Message objects.
+          # @!attribute [rw] messages
+          #   @return [Array[Message]] List of Message objects.
+          attr_accessor :messages
+          # @!attribute [rw] recipient
+          #   @return [Recipient,nil] 
           attr_accessor :recipient
+          # @!attribute [rw] filter
+          #   @return [Filter,nil] 
           attr_accessor :filter
+          # @!attribute [rw] limit
+          #   @return [Limit,nil] 
           attr_accessor :limit
-          attr_accessor :notification_disabled # `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          # @!attribute [rw] notification_disabled
+          #   @return [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          attr_accessor :notification_disabled
 
+          # @param messages [Array[Message]] List of Message objects.
+          # @param recipient [Recipient,nil] 
+          # @param filter [Filter,nil] 
+          # @param limit [Limit,nil] 
+          # @param notification_disabled [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           def initialize(
             messages:,
             recipient: nil,

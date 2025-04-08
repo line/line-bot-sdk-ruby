@@ -15,12 +15,26 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#image-message
         class ImageMessage < Message
-          attr_reader :type # Type of message
+          # @!attribute [r] type
+          #   @return [String] Type of message
+          attr_reader :type
+          # @!attribute [rw] quick_reply
+          #   @return [QuickReply,nil] 
           attr_accessor :quick_reply
+          # @!attribute [rw] sender
+          #   @return [Sender,nil] 
           attr_accessor :sender
+          # @!attribute [rw] original_content_url
+          #   @return [String] 
           attr_accessor :original_content_url
+          # @!attribute [rw] preview_image_url
+          #   @return [String] 
           attr_accessor :preview_image_url
 
+          # @param quick_reply [QuickReply,nil] 
+          # @param sender [Sender,nil] 
+          # @param original_content_url [String] 
+          # @param preview_image_url [String] 
           def initialize(
             quick_reply: nil,
             sender: nil,

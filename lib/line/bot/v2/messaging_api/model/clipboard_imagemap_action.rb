@@ -15,11 +15,22 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#imagemap-clipboard-action-object
         class ClipboardImagemapAction < ImagemapAction
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] area
+          #   @return [ImagemapArea] 
           attr_accessor :area
-          attr_accessor :clipboard_text # Text that is copied to the clipboard. Max character limit: 1000 
+          # @!attribute [rw] clipboard_text
+          #   @return [String] Text that is copied to the clipboard. Max character limit: 1000 
+          attr_accessor :clipboard_text
+          # @!attribute [rw] label
+          #   @return [String,nil] 
           attr_accessor :label
 
+          # @param area [ImagemapArea] 
+          # @param clipboard_text [String] Text that is copied to the clipboard. Max character limit: 1000 
+          # @param label [String,nil] 
           def initialize(
             area:,
             clipboard_text:,

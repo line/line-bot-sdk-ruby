@@ -14,9 +14,14 @@ module Line
     module V2
       module MessagingApi
         class ImageCarouselTemplate < Template
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] columns
+          #   @return [Array[ImageCarouselColumn]] 
           attr_accessor :columns
 
+          # @param columns [Array[ImageCarouselColumn]] 
           def initialize(
             columns:,
             **dynamic_attributes

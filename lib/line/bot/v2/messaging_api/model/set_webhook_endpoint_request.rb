@@ -13,8 +13,11 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#set-webhook-endpoint-url
         class SetWebhookEndpointRequest
-          attr_accessor :endpoint # A valid webhook URL.
+          # @!attribute [rw] endpoint
+          #   @return [String] A valid webhook URL.
+          attr_accessor :endpoint
 
+          # @param endpoint [String] A valid webhook URL.
           def initialize(
             endpoint:,
             **dynamic_attributes

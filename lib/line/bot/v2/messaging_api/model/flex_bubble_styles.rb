@@ -12,11 +12,23 @@ module Line
     module V2
       module MessagingApi
         class FlexBubbleStyles
+          # @!attribute [rw] header
+          #   @return [FlexBlockStyle,nil] 
           attr_accessor :header
+          # @!attribute [rw] hero
+          #   @return [FlexBlockStyle,nil] 
           attr_accessor :hero
+          # @!attribute [rw] body
+          #   @return [FlexBlockStyle,nil] 
           attr_accessor :body
+          # @!attribute [rw] footer
+          #   @return [FlexBlockStyle,nil] 
           attr_accessor :footer
 
+          # @param header [FlexBlockStyle,nil] 
+          # @param hero [FlexBlockStyle,nil] 
+          # @param body [FlexBlockStyle,nil] 
+          # @param footer [FlexBlockStyle,nil] 
           def initialize(
             header: nil,
             hero: nil,

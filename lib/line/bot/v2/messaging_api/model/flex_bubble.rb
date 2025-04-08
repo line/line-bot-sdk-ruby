@@ -14,16 +14,42 @@ module Line
     module V2
       module MessagingApi
         class FlexBubble < FlexContainer
+          # @!attribute [r] type
+          #   @return [String] 
           attr_reader :type
+          # @!attribute [rw] direction
+          #   @return [String,nil] ('ltr'|'rtl') 
           attr_accessor :direction
+          # @!attribute [rw] styles
+          #   @return [FlexBubbleStyles,nil] 
           attr_accessor :styles
+          # @!attribute [rw] header
+          #   @return [FlexBox,nil] 
           attr_accessor :header
+          # @!attribute [rw] hero
+          #   @return [FlexComponent,nil] 
           attr_accessor :hero
+          # @!attribute [rw] body
+          #   @return [FlexBox,nil] 
           attr_accessor :body
+          # @!attribute [rw] footer
+          #   @return [FlexBox,nil] 
           attr_accessor :footer
+          # @!attribute [rw] size
+          #   @return [String,nil] ('nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga') 
           attr_accessor :size
+          # @!attribute [rw] action
+          #   @return [Action,nil] 
           attr_accessor :action
 
+          # @param direction [String,nil] ('ltr'|'rtl') 
+          # @param styles [FlexBubbleStyles,nil] 
+          # @param header [FlexBox,nil] 
+          # @param hero [FlexComponent,nil] 
+          # @param body [FlexBox,nil] 
+          # @param footer [FlexBox,nil] 
+          # @param size [String,nil] ('nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga') 
+          # @param action [Action,nil] 
           def initialize(
             direction: nil,
             styles: nil,

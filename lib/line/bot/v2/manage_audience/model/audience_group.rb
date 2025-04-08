@@ -13,19 +13,55 @@ module Line
       module ManageAudience
         # Audience group
         class AudienceGroup
-          attr_accessor :audience_group_id # The audience ID.
+          # @!attribute [rw] audience_group_id
+          #   @return [Integer,nil] The audience ID.
+          attr_accessor :audience_group_id
+          # @!attribute [rw] type
+          #   @return [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
           attr_accessor :type
-          attr_accessor :description # The audience's name.
+          # @!attribute [rw] description
+          #   @return [String,nil] The audience's name.
+          attr_accessor :description
+          # @!attribute [rw] status
+          #   @return [String,nil] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
           attr_accessor :status
+          # @!attribute [rw] failed_type
+          #   @return [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
           attr_accessor :failed_type
-          attr_accessor :audience_count # The number of users included in the audience.
-          attr_accessor :created # When the audience was created (in UNIX time).
-          attr_accessor :request_id # The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
-          attr_accessor :click_url # The URL that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK and link URL is specified. 
-          attr_accessor :is_ifa_audience # The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. 
+          # @!attribute [rw] audience_count
+          #   @return [Integer,nil] The number of users included in the audience.
+          attr_accessor :audience_count
+          # @!attribute [rw] created
+          #   @return [Integer,nil] When the audience was created (in UNIX time).
+          attr_accessor :created
+          # @!attribute [rw] request_id
+          #   @return [String,nil] The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
+          attr_accessor :request_id
+          # @!attribute [rw] click_url
+          #   @return [String,nil] The URL that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK and link URL is specified. 
+          attr_accessor :click_url
+          # @!attribute [rw] is_ifa_audience
+          #   @return [Boolean,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. 
+          attr_accessor :is_ifa_audience
+          # @!attribute [rw] permission
+          #   @return [String,nil] ('READ'|'READ_WRITE') 
           attr_accessor :permission
+          # @!attribute [rw] create_route
+          #   @return [String,nil] ('OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER') 
           attr_accessor :create_route
 
+          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String,nil] The audience's name.
+          # @param status [String,nil] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
+          # @param failed_type [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
+          # @param audience_count [Integer,nil] The number of users included in the audience.
+          # @param created [Integer,nil] When the audience was created (in UNIX time).
+          # @param request_id [String,nil] The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
+          # @param click_url [String,nil] The URL that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK and link URL is specified. 
+          # @param is_ifa_audience [Boolean,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. 
+          # @param permission [String,nil] ('READ'|'READ_WRITE') 
+          # @param create_route [String,nil] ('OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER') 
           def initialize(
             audience_group_id: nil,
             type: nil,

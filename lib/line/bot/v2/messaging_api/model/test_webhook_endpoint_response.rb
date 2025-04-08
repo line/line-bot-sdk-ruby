@@ -13,12 +13,27 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
         class TestWebhookEndpointResponse
-          attr_accessor :success # Result of the communication from the LINE platform to the webhook URL.
-          attr_accessor :timestamp # Time of the event in milliseconds. Even in the case of a redelivered webhook, it represents the time the event occurred, not the time it was redelivered. 
-          attr_accessor :status_code # The HTTP status code. If the webhook response isn't received, the status code is set to zero or a negative number.
-          attr_accessor :reason # Reason for the response.
-          attr_accessor :detail # Details of the response.
+          # @!attribute [rw] success
+          #   @return [Boolean,nil] Result of the communication from the LINE platform to the webhook URL.
+          attr_accessor :success
+          # @!attribute [rw] timestamp
+          #   @return [String] Time of the event in milliseconds. Even in the case of a redelivered webhook, it represents the time the event occurred, not the time it was redelivered. 
+          attr_accessor :timestamp
+          # @!attribute [rw] status_code
+          #   @return [Integer] The HTTP status code. If the webhook response isn't received, the status code is set to zero or a negative number.
+          attr_accessor :status_code
+          # @!attribute [rw] reason
+          #   @return [String] Reason for the response.
+          attr_accessor :reason
+          # @!attribute [rw] detail
+          #   @return [String] Details of the response.
+          attr_accessor :detail
 
+          # @param success [Boolean,nil] Result of the communication from the LINE platform to the webhook URL.
+          # @param timestamp [String] Time of the event in milliseconds. Even in the case of a redelivered webhook, it represents the time the event occurred, not the time it was redelivered. 
+          # @param status_code [Integer] The HTTP status code. If the webhook response isn't received, the status code is set to zero or a negative number.
+          # @param reason [String] Reason for the response.
+          # @param detail [String] Details of the response.
           def initialize(
             success: nil,
             timestamp:,

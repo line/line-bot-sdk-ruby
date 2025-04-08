@@ -13,9 +13,15 @@ module Line
       module ChannelAccessToken
         # Error response of the Channel access token
         class ErrorResponse
-          attr_accessor :error # Error summary
-          attr_accessor :error_description # Details of the error. Not returned in certain situations.
+          # @!attribute [rw] error
+          #   @return [String,nil] Error summary
+          attr_accessor :error
+          # @!attribute [rw] error_description
+          #   @return [String,nil] Details of the error. Not returned in certain situations.
+          attr_accessor :error_description
 
+          # @param error [String,nil] Error summary
+          # @param error_description [String,nil] Details of the error. Not returned in certain situations.
           def initialize(
             error: nil,
             error_description: nil,

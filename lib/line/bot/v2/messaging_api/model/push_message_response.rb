@@ -13,8 +13,11 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#send-push-message-response
         class PushMessageResponse
-          attr_accessor :sent_messages # Array of sent messages.
+          # @!attribute [rw] sent_messages
+          #   @return [Array[SentMessage]] Array of sent messages.
+          attr_accessor :sent_messages
 
+          # @param sent_messages [Array[SentMessage]] Array of sent messages.
           def initialize(
             sent_messages:,
             **dynamic_attributes

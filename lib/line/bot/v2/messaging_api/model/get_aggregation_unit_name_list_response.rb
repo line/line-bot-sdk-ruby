@@ -13,9 +13,15 @@ module Line
       module MessagingApi
         # @see https://developers.line.biz/en/reference/messaging-api/#get-name-list-of-units-used-this-month
         class GetAggregationUnitNameListResponse
-          attr_accessor :custom_aggregation_units # An array of strings indicating the names of aggregation units used this month.
-          attr_accessor :_next # A continuation token to get the next array of unit names. Returned only when there are remaining aggregation units that weren't returned in customAggregationUnits in the original request.  
+          # @!attribute [rw] custom_aggregation_units
+          #   @return [Array[String]] An array of strings indicating the names of aggregation units used this month.
+          attr_accessor :custom_aggregation_units
+          # @!attribute [rw] _next
+          #   @return [String,nil] A continuation token to get the next array of unit names. Returned only when there are remaining aggregation units that weren't returned in customAggregationUnits in the original request.  
+          attr_accessor :_next
 
+          # @param custom_aggregation_units [Array[String]] An array of strings indicating the names of aggregation units used this month.
+          # @param _next [String,nil] A continuation token to get the next array of unit names. Returned only when there are remaining aggregation units that weren't returned in customAggregationUnits in the original request.  
           def initialize(
             custom_aggregation_units:,
             _next: nil,

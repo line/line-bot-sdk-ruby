@@ -12,8 +12,11 @@ module Line
     module V2
       module Webhook
         class Mention
-          attr_accessor :mentionees # Array of one or more mention objects. Max: 20 mentions
+          # @!attribute [rw] mentionees
+          #   @return [Array[Mentionee]] Array of one or more mention objects. Max: 20 mentions
+          attr_accessor :mentionees
 
+          # @param mentionees [Array[Mentionee]] Array of one or more mention objects. Max: 20 mentions
           def initialize(
             mentionees:,
             **dynamic_attributes
