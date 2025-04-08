@@ -72,7 +72,7 @@ post '/callback' do
   signature = request.env['HTTP_X_LINE_SIGNATURE']
 
   begin
-    events = parser.parse(body, signature)
+    events = parser.parse(body: body, signatuer: signature)
   rescue Line::Bot::V2::WebhookParser::InvalidSignatureError
     halt 400, { 'Content-Type' => 'text/plain' }, 'Bad Request'
   end
@@ -122,7 +122,7 @@ The `x-line-accepted-request-id` or `content-type` header can also be obtained i
 push_request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
   to: event.source.user_id,
   messages: [
-    Line::Bot::V2::MessagingApi::TextMessage.new(type: 'text', text: "[^Request ID] #{headers['x-line-request-id']}")
+    Line::Bot::V2::MessagingApi::TextMessage.new(text: "[^Request ID] #{headers['x-line-request-id']}")
   ]
 )
 _body, _status_code, headers = client.push_message_with_http_info(push_message_request: push_request)
