@@ -25,7 +25,7 @@ module Line
             
             @aliases = aliases.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::RichMenuAliasResponse.create(**item)
+                Line::Bot::V2::MessagingApi::RichMenuAliasResponse.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

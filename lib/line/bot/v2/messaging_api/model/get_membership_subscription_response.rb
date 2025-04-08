@@ -26,7 +26,7 @@ module Line
             
             @subscriptions = subscriptions.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::Subscription.create(**item)
+                Line::Bot::V2::MessagingApi::Subscription.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

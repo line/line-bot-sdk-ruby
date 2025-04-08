@@ -22,7 +22,6 @@ module Line
           attr_accessor chat_control: ChatControl
           
           def initialize: (
-            type: String,
             source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',

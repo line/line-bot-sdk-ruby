@@ -25,7 +25,7 @@ module Line
             
             @richmenus = richmenus.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::RichMenuResponse.create(**item)
+                Line::Bot::V2::MessagingApi::RichMenuResponse.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

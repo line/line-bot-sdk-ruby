@@ -74,7 +74,7 @@ module Line
             {% if property.isArray -%}
             @{{ property.name }} = {{ property.name }}{{ property.required ? '' : '&'  }}.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::{{ packageName | camelize }}::{{ property.complexType }}.create(**item)
+                Line::Bot::V2::{{ packageName | camelize }}::{{ property.complexType }}.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

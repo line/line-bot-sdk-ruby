@@ -70,7 +70,7 @@ module Line
             @sticker_resource_type = sticker_resource_type
             @keywords = keywords&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Webhook::string.create(**item)
+                Line::Bot::V2::Webhook::string.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

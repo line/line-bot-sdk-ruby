@@ -30,7 +30,7 @@ module Line
             
             @custom_aggregation_units = custom_aggregation_units.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::string.create(**item)
+                Line::Bot::V2::MessagingApi::string.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

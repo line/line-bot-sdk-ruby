@@ -17,7 +17,6 @@ module Line
           attr_accessor reason: 'bot_deleted'
           
           def initialize: (
-            type: String,
             bot_id: String,
             reason: 'bot_deleted'
           ) -> void

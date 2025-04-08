@@ -24,7 +24,7 @@ module Line
             
             @mentionees = mentionees.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Webhook::Mentionee.create(**item)
+                Line::Bot::V2::Webhook::Mentionee.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

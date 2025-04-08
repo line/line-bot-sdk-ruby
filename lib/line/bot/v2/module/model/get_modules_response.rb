@@ -31,7 +31,7 @@ module Line
             
             @bots = bots.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Module::ModuleBot.create(**item)
+                Line::Bot::V2::Module::ModuleBot.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

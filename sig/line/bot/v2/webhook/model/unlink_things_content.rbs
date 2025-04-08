@@ -16,7 +16,6 @@ module Line
           attr_accessor device_id: String
           
           def initialize: (
-            type: String,
             device_id: String
           ) -> void
 

@@ -22,7 +22,6 @@ module Line
           attr_accessor reply_token: String
           
           def initialize: (
-            type: String,
             source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',

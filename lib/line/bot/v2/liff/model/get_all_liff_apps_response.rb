@@ -24,7 +24,7 @@ module Line
             
             @apps = apps&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Liff::LiffApp.create(**item)
+                Line::Bot::V2::Liff::LiffApp.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

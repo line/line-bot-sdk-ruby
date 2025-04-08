@@ -23,7 +23,6 @@ module Line
           attr_accessor postback: PostbackContent
           
           def initialize: (
-            type: String,
             source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',

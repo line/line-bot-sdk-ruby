@@ -72,7 +72,7 @@ module Line
             @default_action = default_action.is_a?(Line::Bot::V2::MessagingApi::Action) || default_action.nil? ? default_action : Line::Bot::V2::MessagingApi::Action.create(**default_action) # steep:ignore
             @actions = actions.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::Action.create(**item)
+                Line::Bot::V2::MessagingApi::Action.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

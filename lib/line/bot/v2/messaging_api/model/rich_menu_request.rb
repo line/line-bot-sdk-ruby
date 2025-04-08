@@ -48,7 +48,7 @@ module Line
             @chat_bar_text = chat_bar_text
             @areas = areas&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::RichMenuArea.create(**item)
+                Line::Bot::V2::MessagingApi::RichMenuArea.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

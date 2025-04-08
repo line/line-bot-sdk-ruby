@@ -66,7 +66,7 @@ module Line
             @base_size = base_size.is_a?(Line::Bot::V2::MessagingApi::ImagemapBaseSize) ? base_size : Line::Bot::V2::MessagingApi::ImagemapBaseSize.create(**base_size) # steep:ignore
             @actions = actions.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::ImagemapAction.create(**item)
+                Line::Bot::V2::MessagingApi::ImagemapAction.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

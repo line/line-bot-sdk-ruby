@@ -17,7 +17,6 @@ module Line
           attr_accessor scopes: Array[String]
           
           def initialize: (
-            type: String,
             bot_id: String,
             scopes: Array[String]
           ) -> void

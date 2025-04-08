@@ -46,7 +46,8 @@ jobs:
       - uses: ruby/setup-ruby@354a1ad156761f5ee2b7b13fa8e09943a5e8d252 # v1.229.0
         with:
           ruby-version: '3.2'
-      - run: gem install rbs
+      - run: bundle install
+      - run: bundle exec rbs collection install
       - run: rbs -I sig validate
 
   pinact:

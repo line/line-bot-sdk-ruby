@@ -1,0 +1,23 @@
+module Line
+  module Bot
+    module V2
+      module Utils
+        def self.deep_underscore: (Hash[untyped, untyped]) -> Hash[Symbol, untyped]
+
+        def self.deep_symbolize: (untyped) -> untyped
+
+        def self.deep_to_hash: (untyped) -> untyped
+
+        def self.deep_camelize: (untyped) -> untyped
+
+        def self.deep_compact: (untyped) -> untyped
+
+        def self.deep_convert_reserved_words: (untyped) -> untyped
+
+        def self.hash_to_struct: (Hash[untyped, untyped]) -> ::Struct[untyped]
+
+        def self.camelize: (String | Symbol) -> String
+      end
+    end
+  end
+end

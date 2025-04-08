@@ -40,14 +40,14 @@ module Line
             
             @_and = _and&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::Recipient.create(**item)
+                Line::Bot::V2::MessagingApi::Recipient.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end
             end
             @_or = _or&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::Recipient.create(**item)
+                Line::Bot::V2::MessagingApi::Recipient.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

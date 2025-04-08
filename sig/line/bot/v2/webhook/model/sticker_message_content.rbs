@@ -24,7 +24,6 @@ module Line
           attr_accessor quoted_message_id: String?
           
           def initialize: (
-            type: String,
             id: String,
             package_id: String,
             sticker_id: String,

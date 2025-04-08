@@ -20,7 +20,6 @@ module Line
           attr_accessor longitude: Float
           
           def initialize: (
-            type: String,
             id: String,
             title: String?,
             address: String?,

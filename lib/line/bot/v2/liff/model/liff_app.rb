@@ -59,7 +59,7 @@ module Line
             @permanent_link_pattern = permanent_link_pattern
             @scope = scope&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Liff::LiffScope.create(**item)
+                Line::Bot::V2::Liff::LiffScope.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

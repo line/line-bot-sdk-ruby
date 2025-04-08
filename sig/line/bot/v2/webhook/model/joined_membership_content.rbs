@@ -16,7 +16,6 @@ module Line
           attr_accessor membership_id: Integer
           
           def initialize: (
-            type: String,
             membership_id: Integer
           ) -> void
 

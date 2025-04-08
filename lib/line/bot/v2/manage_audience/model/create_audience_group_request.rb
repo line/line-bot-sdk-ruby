@@ -44,7 +44,7 @@ module Line
             @upload_description = upload_description
             @audiences = audiences&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::ManageAudience::Audience.create(**item)
+                Line::Bot::V2::ManageAudience::Audience.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

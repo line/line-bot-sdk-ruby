@@ -22,7 +22,6 @@ module Line
           attr_accessor left: LeftMembers
           
           def initialize: (
-            type: String,
             source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',

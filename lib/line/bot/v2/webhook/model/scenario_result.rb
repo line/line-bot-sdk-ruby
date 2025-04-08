@@ -65,7 +65,7 @@ module Line
             @result_code = result_code
             @action_results = action_results&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Webhook::ActionResult.create(**item)
+                Line::Bot::V2::Webhook::ActionResult.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end
