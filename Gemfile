@@ -8,6 +8,7 @@ group :development, :test do
   # ref: http://docs.rubocop.org/en/latest/installation/
   gem 'rack', '~> 3.0'
   gem 'rubocop', '~> 1.75.0', require: false
+  gem 'steep', '~> 1.10.0'
   gem 'webrick', '~> 1.9.1'
   gem 'yard', '~> 0.9.20'
 end
