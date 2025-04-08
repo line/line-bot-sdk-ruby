@@ -21,6 +21,8 @@ GEM
     lint_roller (1.1.0)
     logger (1.7.0)
     multipart-post (2.4.1)
+    net-http (0.6.0)
+      uri
     parallel (1.26.3)
     parser (3.3.7.4)
       ast (~> 2.4.1)
@@ -66,6 +68,7 @@ GEM
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
+    uri (1.0.3)
     webmock (3.25.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -82,6 +85,7 @@ DEPENDENCIES
   addressable (~> 2.3)
   line-bot-api!
   multipart-post (~> 2.4.1)
+  net-http (~> 0.6.0)
   rack (~> 3.0)
   rake (~> 13.0)
   rbs (~> 3.9.2)

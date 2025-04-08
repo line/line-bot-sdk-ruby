@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'multipart-post', '~> 2.4.1', require: false
+gem 'net-http', '~> 0.6.0', require: false
 
 group :development, :test do
   # ref: http://docs.rubocop.org/en/latest/installation/
