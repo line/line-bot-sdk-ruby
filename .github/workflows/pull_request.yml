@@ -35,6 +35,7 @@ jobs:
     - run: bundle install
     - run: bundle exec rubocop
     - run: bundle exec rspec
+    - run: bundle exec yard stats ./lib/line/bot/v2 --fail-on-warning
 
   rbs:
     runs-on: ubuntu-latest

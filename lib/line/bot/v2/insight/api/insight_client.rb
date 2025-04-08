@@ -46,8 +46,11 @@ module Line
           end
 
           # Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/demographic</code>
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::Insight::GetFriendsDemographicsResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def get_friends_demographics_with_http_info(
           )
             path = "/v2/bot/insight/demographic"
@@ -71,8 +74,11 @@ module Line
           end
 
           # Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/demographic</code>
+          # When you want to get HTTP status code or response headers, use {#get_friends_demographics_with_http_info} instead of this.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
+          # @return [Line::Bot::V2::Insight::GetFriendsDemographicsResponse] when HTTP status code is 200
           def get_friends_demographics(
           )
             response_body, _status_code, _headers = get_friends_demographics_with_http_info(
@@ -82,10 +88,12 @@ module Line
           end
 
           # Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/message/event</code>
           #
-          # @summary Get user interaction statistics
-          # @param request_id Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. 
+          # @param request_id [String] Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-message-event
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::Insight::GetMessageEventResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def get_message_event_with_http_info(
             request_id:
           )
@@ -114,10 +122,12 @@ module Line
           end
 
           # Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/message/event</code>
+          # When you want to get HTTP status code or response headers, use {#get_message_event_with_http_info} instead of this.
           #
-          # @summary Get user interaction statistics
-          # @param request_id Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. 
+          # @param request_id [String] Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-message-event
+          # @return [Line::Bot::V2::Insight::GetMessageEventResponse] when HTTP status code is 200
           def get_message_event(
             request_id:
           )
@@ -129,10 +139,12 @@ module Line
           end
 
           # Returns the number of users who have added the LINE Official Account on or before a specified date. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/followers</code>
           #
-          # @summary Get number of followers
-          # @param date Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
+          # @param date [String, nil] Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::Insight::GetNumberOfFollowersResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def get_number_of_followers_with_http_info(
             date: nil
           )
@@ -161,10 +173,12 @@ module Line
           end
 
           # Returns the number of users who have added the LINE Official Account on or before a specified date. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/followers</code>
+          # When you want to get HTTP status code or response headers, use {#get_number_of_followers_with_http_info} instead of this.
           #
-          # @summary Get number of followers
-          # @param date Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
+          # @param date [String, nil] Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
+          # @return [Line::Bot::V2::Insight::GetNumberOfFollowersResponse] when HTTP status code is 200
           def get_number_of_followers(
             date: nil
           )
@@ -176,10 +190,12 @@ module Line
           end
 
           # Returns the number of messages sent from LINE Official Account on a specified day. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/message/delivery</code>
           #
-          # @summary Get number of message deliveries
-          # @param date Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 
+          # @param date [String] Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-delivery-messages
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::Insight::GetNumberOfMessageDeliveriesResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def get_number_of_message_deliveries_with_http_info(
             date:
           )
@@ -208,10 +224,12 @@ module Line
           end
 
           # Returns the number of messages sent from LINE Official Account on a specified day. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/message/delivery</code>
+          # When you want to get HTTP status code or response headers, use {#get_number_of_message_deliveries_with_http_info} instead of this.
           #
-          # @summary Get number of message deliveries
-          # @param date Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 
+          # @param date [String] Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-delivery-messages
+          # @return [Line::Bot::V2::Insight::GetNumberOfMessageDeliveriesResponse] when HTTP status code is 200
           def get_number_of_message_deliveries(
             date:
           )
@@ -223,11 +241,14 @@ module Line
           end
 
           # You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/message/event/aggregation</code>
           #
-          # @param custom_aggregation_unit Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. 
-          # @param from Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
-          # @param to End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
+          # @param custom_aggregation_unit [String] Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. 
+          # @param from [String] Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
+          # @param to [String] End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::Insight::GetStatisticsPerUnitResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def get_statistics_per_unit_with_http_info(
             custom_aggregation_unit:,
             from:,
@@ -260,11 +281,14 @@ module Line
           end
 
           # You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/message/event/aggregation</code>
+          # When you want to get HTTP status code or response headers, use {#get_statistics_per_unit_with_http_info} instead of this.
           #
-          # @param custom_aggregation_unit Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. 
-          # @param from Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
-          # @param to End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
+          # @param custom_aggregation_unit [String] Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. 
+          # @param from [String] Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
+          # @param to [String] End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit
+          # @return [Line::Bot::V2::Insight::GetStatisticsPerUnitResponse] when HTTP status code is 200
           def get_statistics_per_unit(
             custom_aggregation_unit:,
             from:,

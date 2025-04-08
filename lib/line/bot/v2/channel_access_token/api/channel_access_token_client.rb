@@ -41,10 +41,13 @@ module Line
           end
 
           # Gets all valid channel access token key IDs.
+          # This requests to <code>GET https://api.line.me/oauth2/v2.1/tokens/kid</code>
           #
-          # @param client_assertion_type `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
-          # @param client_assertion A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
+          # @param client_assertion_type [String] `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+          # @param client_assertion [String] A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenKeyIdsResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def gets_all_valid_channel_access_token_key_ids_with_http_info(
             client_assertion_type:,
             client_assertion:
@@ -75,10 +78,13 @@ module Line
           end
 
           # Gets all valid channel access token key IDs.
+          # This requests to <code>GET https://api.line.me/oauth2/v2.1/tokens/kid</code>
+          # When you want to get HTTP status code or response headers, use {#gets_all_valid_channel_access_token_key_ids_with_http_info} instead of this.
           #
-          # @param client_assertion_type `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
-          # @param client_assertion A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
+          # @param client_assertion_type [String] `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+          # @param client_assertion [String] A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
+          # @return [Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenKeyIdsResponse] when HTTP status code is 200
           def gets_all_valid_channel_access_token_key_ids(
             client_assertion_type:,
             client_assertion:
@@ -92,11 +98,15 @@ module Line
           end
 
           # Issue short-lived channel access token
+          # This requests to <code>POST https://api.line.me/v2/oauth/accessToken</code>
           #
-          # @param grant_type `client_credentials`
-          # @param client_id Channel ID.
-          # @param client_secret Channel secret.
+          # @param grant_type [String] `client_credentials`
+          # @param client_id [String] Channel ID.
+          # @param client_secret [String] Channel secret.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-shortlived-channel-access-token
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::ChannelAccessToken::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
           def issue_channel_token_with_http_info(
             grant_type:,
             client_id:,
@@ -136,11 +146,15 @@ module Line
           end
 
           # Issue short-lived channel access token
+          # This requests to <code>POST https://api.line.me/v2/oauth/accessToken</code>
+          # When you want to get HTTP status code or response headers, use {#issue_channel_token_with_http_info} instead of this.
           #
-          # @param grant_type `client_credentials`
-          # @param client_id Channel ID.
-          # @param client_secret Channel secret.
+          # @param grant_type [String] `client_credentials`
+          # @param client_id [String] Channel ID.
+          # @param client_secret [String] Channel secret.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-shortlived-channel-access-token
+          # @return [Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::ChannelAccessToken::ErrorResponse] when HTTP status code is 400
           def issue_channel_token(
             grant_type:,
             client_id:,
@@ -156,11 +170,14 @@ module Line
           end
 
           # Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
+          # This requests to <code>POST https://api.line.me/oauth2/v2.1/token</code>
           #
-          # @param grant_type client_credentials
-          # @param client_assertion_type urn:ietf:params:oauth:client-assertion-type:jwt-bearer
-          # @param client_assertion A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+          # @param grant_type [String] client_credentials
+          # @param client_assertion_type [String] urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+          # @param client_assertion [String] A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token-v2-1
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def issue_channel_token_by_jwt_with_http_info(
             grant_type:,
             client_assertion_type:,
@@ -194,11 +211,14 @@ module Line
           end
 
           # Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
+          # This requests to <code>POST https://api.line.me/oauth2/v2.1/token</code>
+          # When you want to get HTTP status code or response headers, use {#issue_channel_token_by_jwt_with_http_info} instead of this.
           #
-          # @param grant_type client_credentials
-          # @param client_assertion_type urn:ietf:params:oauth:client-assertion-type:jwt-bearer
-          # @param client_assertion A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+          # @param grant_type [String] client_credentials
+          # @param client_assertion_type [String] urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+          # @param client_assertion [String] A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token-v2-1
+          # @return [Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse] when HTTP status code is 200
           def issue_channel_token_by_jwt(
             grant_type:,
             client_assertion_type:,
@@ -214,13 +234,16 @@ module Line
           end
 
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
+          # This requests to <code>POST https://api.line.me/oauth2/v3/token</code>
           #
-          # @param grant_type `client_credentials`
-          # @param client_assertion_type URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
-          # @param client_assertion A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
-          # @param client_id Channel ID.
-          # @param client_secret Channel secret.
+          # @param grant_type [String, nil] `client_credentials`
+          # @param client_assertion_type [String, nil] URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+          # @param client_assertion [String, nil] A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+          # @param client_id [String, nil] Channel ID.
+          # @param client_secret [String, nil] Channel secret.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-stateless-channel-access-token
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def issue_stateless_channel_token_with_http_info(
             grant_type: nil,
             client_assertion_type: nil,
@@ -258,13 +281,16 @@ module Line
           end
 
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
+          # This requests to <code>POST https://api.line.me/oauth2/v3/token</code>
+          # When you want to get HTTP status code or response headers, use {#issue_stateless_channel_token_with_http_info} instead of this.
           #
-          # @param grant_type `client_credentials`
-          # @param client_assertion_type URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
-          # @param client_assertion A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
-          # @param client_id Channel ID.
-          # @param client_secret Channel secret.
+          # @param grant_type [String, nil] `client_credentials`
+          # @param client_assertion_type [String, nil] URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+          # @param client_assertion [String, nil] A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+          # @param client_id [String, nil] Channel ID.
+          # @param client_secret [String, nil] Channel secret.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-stateless-channel-access-token
+          # @return [Line::Bot::V2::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse] when HTTP status code is 200
           def issue_stateless_channel_token(
             grant_type: nil,
             client_assertion_type: nil,
@@ -284,9 +310,12 @@ module Line
           end
 
           # Revoke short-lived or long-lived channel access token
+          # This requests to <code>POST https://api.line.me/v2/oauth/revoke</code>
           #
-          # @param access_token Channel access token
+          # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
+          # @return [response body, response status code, and response headers]
+          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
           def revoke_channel_token_with_http_info(
             access_token:
           )
@@ -312,9 +341,12 @@ module Line
           end
 
           # Revoke short-lived or long-lived channel access token
+          # This requests to <code>POST https://api.line.me/v2/oauth/revoke</code>
+          # When you want to get HTTP status code or response headers, use {#revoke_channel_token_with_http_info} instead of this.
           #
-          # @param access_token Channel access token
+          # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
+          # @return [String, nil] when HTTP status code is 200
           def revoke_channel_token(
             access_token:
           )
@@ -326,11 +358,14 @@ module Line
           end
 
           # Revoke channel access token v2.1
+          # This requests to <code>POST https://api.line.me/oauth2/v2.1/revoke</code>
           #
-          # @param client_id Channel ID
-          # @param client_secret Channel Secret
-          # @param access_token Channel access token
+          # @param client_id [String] Channel ID
+          # @param client_secret [String] Channel Secret
+          # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
+          # @return [response body, response status code, and response headers]
+          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
           def revoke_channel_token_by_jwt_with_http_info(
             client_id:,
             client_secret:,
@@ -360,11 +395,14 @@ module Line
           end
 
           # Revoke channel access token v2.1
+          # This requests to <code>POST https://api.line.me/oauth2/v2.1/revoke</code>
+          # When you want to get HTTP status code or response headers, use {#revoke_channel_token_by_jwt_with_http_info} instead of this.
           #
-          # @param client_id Channel ID
-          # @param client_secret Channel Secret
-          # @param access_token Channel access token
+          # @param client_id [String] Channel ID
+          # @param client_secret [String] Channel Secret
+          # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
+          # @return [String, nil] when HTTP status code is 200
           def revoke_channel_token_by_jwt(
             client_id:,
             client_secret:,
@@ -380,9 +418,12 @@ module Line
           end
 
           # Verify the validity of short-lived and long-lived channel access tokens
+          # This requests to <code>POST https://api.line.me/v2/oauth/verify</code>
           #
-          # @param access_token A short-lived or long-lived channel access token.
+          # @param access_token [String] A short-lived or long-lived channel access token.
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def verify_channel_token_with_http_info(
             access_token:
           )
@@ -412,9 +453,12 @@ module Line
           end
 
           # Verify the validity of short-lived and long-lived channel access tokens
+          # This requests to <code>POST https://api.line.me/v2/oauth/verify</code>
+          # When you want to get HTTP status code or response headers, use {#verify_channel_token_with_http_info} instead of this.
           #
-          # @param access_token A short-lived or long-lived channel access token.
+          # @param access_token [String] A short-lived or long-lived channel access token.
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token
+          # @return [Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse] when HTTP status code is 200
           def verify_channel_token(
             access_token:
           )
@@ -426,9 +470,12 @@ module Line
           end
 
           # You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
+          # This requests to <code>GET https://api.line.me/oauth2/v2.1/verify</code>
           #
-          # @param access_token Channel access token with a user-specified expiration (Channel Access Token v2.1).
+          # @param access_token [String] Channel access token with a user-specified expiration (Channel Access Token v2.1).
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token-v2-1
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def verify_channel_token_by_jwt_with_http_info(
             access_token:
           )
@@ -457,9 +504,12 @@ module Line
           end
 
           # You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
+          # This requests to <code>GET https://api.line.me/oauth2/v2.1/verify</code>
+          # When you want to get HTTP status code or response headers, use {#verify_channel_token_by_jwt_with_http_info} instead of this.
           #
-          # @param access_token Channel access token with a user-specified expiration (Channel Access Token v2.1).
+          # @param access_token [String] Channel access token with a user-specified expiration (Channel Access Token v2.1).
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token-v2-1
+          # @return [Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse] when HTTP status code is 200
           def verify_channel_token_by_jwt(
             access_token:
           )

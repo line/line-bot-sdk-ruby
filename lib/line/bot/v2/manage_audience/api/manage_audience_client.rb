@@ -46,9 +46,12 @@ module Line
           end
 
           # Activate audience
+          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}/activate</code>
           #
-          # @param audience_group_id The audience ID.
+          # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#activate-audience-group
+          # @return [response body, response status code, and response headers]
+          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 202
           def activate_audience_group_with_http_info(
             audience_group_id:
           )
@@ -70,9 +73,12 @@ module Line
           end
 
           # Activate audience
+          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}/activate</code>
+          # When you want to get HTTP status code or response headers, use {#activate_audience_group_with_http_info} instead of this.
           #
-          # @param audience_group_id The audience ID.
+          # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#activate-audience-group
+          # @return [String, nil] when HTTP status code is 202
           def activate_audience_group(
             audience_group_id:
           )
@@ -84,9 +90,12 @@ module Line
           end
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
+          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/upload</code>
           #
-          # @param add_audience_to_audience_group_request 
+          # @param add_audience_to_audience_group_request [AddAudienceToAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
+          # @return [response body, response status code, and response headers]
+          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 202
           def add_audience_to_audience_group_with_http_info(
             add_audience_to_audience_group_request:
           )
@@ -108,9 +117,12 @@ module Line
           end
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
+          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/upload</code>
+          # When you want to get HTTP status code or response headers, use {#add_audience_to_audience_group_with_http_info} instead of this.
           #
-          # @param add_audience_to_audience_group_request 
+          # @param add_audience_to_audience_group_request [AddAudienceToAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
+          # @return [String, nil] when HTTP status code is 202
           def add_audience_to_audience_group(
             add_audience_to_audience_group_request:
           )
@@ -122,9 +134,12 @@ module Line
           end
 
           # Create audience for uploading user IDs (by JSON)
+          # This requests to <code>POST https://api.line.me/v2/bot/audienceGroup/upload</code>
           #
-          # @param create_audience_group_request 
+          # @param create_audience_group_request [CreateAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse, Integer, Hash{String => String})] when HTTP status code is 202
           def create_audience_group_with_http_info(
             create_audience_group_request:
           )
@@ -150,9 +165,12 @@ module Line
           end
 
           # Create audience for uploading user IDs (by JSON)
+          # This requests to <code>POST https://api.line.me/v2/bot/audienceGroup/upload</code>
+          # When you want to get HTTP status code or response headers, use {#create_audience_group_with_http_info} instead of this.
           #
-          # @param create_audience_group_request 
+          # @param create_audience_group_request [CreateAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
+          # @return [Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse] when HTTP status code is 202
           def create_audience_group(
             create_audience_group_request:
           )
@@ -164,9 +182,12 @@ module Line
           end
 
           # Create audience for click-based retargeting
+          # This requests to <code>POST https://api.line.me/v2/bot/audienceGroup/click</code>
           #
-          # @param create_click_based_audience_group_request 
+          # @param create_click_based_audience_group_request [CreateClickBasedAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupResponse, Integer, Hash{String => String})] when HTTP status code is 202
           def create_click_based_audience_group_with_http_info(
             create_click_based_audience_group_request:
           )
@@ -192,9 +213,12 @@ module Line
           end
 
           # Create audience for click-based retargeting
+          # This requests to <code>POST https://api.line.me/v2/bot/audienceGroup/click</code>
+          # When you want to get HTTP status code or response headers, use {#create_click_based_audience_group_with_http_info} instead of this.
           #
-          # @param create_click_based_audience_group_request 
+          # @param create_click_based_audience_group_request [CreateClickBasedAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
+          # @return [Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupResponse] when HTTP status code is 202
           def create_click_based_audience_group(
             create_click_based_audience_group_request:
           )
@@ -206,9 +230,12 @@ module Line
           end
 
           # Create audience for impression-based retargeting
+          # This requests to <code>POST https://api.line.me/v2/bot/audienceGroup/imp</code>
           #
-          # @param create_imp_based_audience_group_request 
+          # @param create_imp_based_audience_group_request [CreateImpBasedAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ManageAudience::CreateImpBasedAudienceGroupResponse, Integer, Hash{String => String})] when HTTP status code is 202
           def create_imp_based_audience_group_with_http_info(
             create_imp_based_audience_group_request:
           )
@@ -234,9 +261,12 @@ module Line
           end
 
           # Create audience for impression-based retargeting
+          # This requests to <code>POST https://api.line.me/v2/bot/audienceGroup/imp</code>
+          # When you want to get HTTP status code or response headers, use {#create_imp_based_audience_group_with_http_info} instead of this.
           #
-          # @param create_imp_based_audience_group_request 
+          # @param create_imp_based_audience_group_request [CreateImpBasedAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
+          # @return [Line::Bot::V2::ManageAudience::CreateImpBasedAudienceGroupResponse] when HTTP status code is 202
           def create_imp_based_audience_group(
             create_imp_based_audience_group_request:
           )
@@ -248,9 +278,12 @@ module Line
           end
 
           # Delete audience
+          # This requests to <code>DELETE https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}</code>
           #
-          # @param audience_group_id The audience ID.
+          # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
+          # @return [response body, response status code, and response headers]
+          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
           def delete_audience_group_with_http_info(
             audience_group_id:
           )
@@ -272,9 +305,12 @@ module Line
           end
 
           # Delete audience
+          # This requests to <code>DELETE https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}</code>
+          # When you want to get HTTP status code or response headers, use {#delete_audience_group_with_http_info} instead of this.
           #
-          # @param audience_group_id The audience ID.
+          # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
+          # @return [String, nil] when HTTP status code is 200
           def delete_audience_group(
             audience_group_id:
           )
@@ -286,9 +322,13 @@ module Line
           end
 
           # Gets audience data.
+          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}</code>
           #
-          # @param audience_group_id The audience ID.
+          # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ManageAudience::GetAudienceDataResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::ManageAudience::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
           def get_audience_data_with_http_info(
             audience_group_id:
           )
@@ -320,9 +360,13 @@ module Line
           end
 
           # Gets audience data.
+          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}</code>
+          # When you want to get HTTP status code or response headers, use {#get_audience_data_with_http_info} instead of this.
           #
-          # @param audience_group_id The audience ID.
+          # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
+          # @return [Line::Bot::V2::ManageAudience::GetAudienceDataResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::ManageAudience::ErrorResponse] when HTTP status code is 400
           def get_audience_data(
             audience_group_id:
           )
@@ -334,8 +378,11 @@ module Line
           end
 
           # Get the authority level of the audience
+          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/authorityLevel</code>
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ManageAudience::GetAudienceGroupAuthorityLevelResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def get_audience_group_authority_level_with_http_info(
           )
             path = "/v2/bot/audienceGroup/authorityLevel"
@@ -359,8 +406,11 @@ module Line
           end
 
           # Get the authority level of the audience
+          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/authorityLevel</code>
+          # When you want to get HTTP status code or response headers, use {#get_audience_group_authority_level_with_http_info} instead of this.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
+          # @return [Line::Bot::V2::ManageAudience::GetAudienceGroupAuthorityLevelResponse] when HTTP status code is 200
           def get_audience_group_authority_level(
           )
             response_body, _status_code, _headers = get_audience_group_authority_level_with_http_info(
@@ -370,14 +420,17 @@ module Line
           end
 
           # Gets data for more than one audience.
+          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/list</code>
           #
-          # @param page The page to return when getting (paginated) results. Must be 1 or higher.
-          # @param description The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
-          # @param status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
-          # @param size The number of audiences per page. Default: 20 Max: 40 
-          # @param includes_external_public_groups true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
-          # @param create_route How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @param page [Integer] The page to return when getting (paginated) results. Must be 1 or higher.
+          # @param description [String, nil] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+          # @param status [AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+          # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40 
+          # @param includes_external_public_groups [Boolean, nil] true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
+          # @param create_route [AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ManageAudience::GetAudienceGroupsResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def get_audience_groups_with_http_info(
             page:,
             description: nil,
@@ -416,14 +469,17 @@ module Line
           end
 
           # Gets data for more than one audience.
+          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/list</code>
+          # When you want to get HTTP status code or response headers, use {#get_audience_groups_with_http_info} instead of this.
           #
-          # @param page The page to return when getting (paginated) results. Must be 1 or higher.
-          # @param description The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
-          # @param status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
-          # @param size The number of audiences per page. Default: 20 Max: 40 
-          # @param includes_external_public_groups true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
-          # @param create_route How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @param page [Integer] The page to return when getting (paginated) results. Must be 1 or higher.
+          # @param description [String, nil] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+          # @param status [AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+          # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40 
+          # @param includes_external_public_groups [Boolean, nil] true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
+          # @param create_route [AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
+          # @return [Line::Bot::V2::ManageAudience::GetAudienceGroupsResponse] when HTTP status code is 200
           def get_audience_groups(
             page:,
             description: nil,
@@ -445,9 +501,13 @@ module Line
           end
 
           # Gets audience data.
+          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/shared/{audienceGroupId}</code>
           #
-          # @param audience_group_id The audience ID.
+          # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ManageAudience::GetSharedAudienceDataResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::ManageAudience::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
           def get_shared_audience_data_with_http_info(
             audience_group_id:
           )
@@ -479,9 +539,13 @@ module Line
           end
 
           # Gets audience data.
+          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/shared/{audienceGroupId}</code>
+          # When you want to get HTTP status code or response headers, use {#get_shared_audience_data_with_http_info} instead of this.
           #
-          # @param audience_group_id The audience ID.
+          # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience
+          # @return [Line::Bot::V2::ManageAudience::GetSharedAudienceDataResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::ManageAudience::ErrorResponse] when HTTP status code is 400
           def get_shared_audience_data(
             audience_group_id:
           )
@@ -493,13 +557,16 @@ module Line
           end
 
           # Gets data for more than one audience, including those shared by the Business Manager.
+          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/shared/list</code>
           #
-          # @param page The page to return when getting (paginated) results. Must be 1 or higher.
-          # @param description The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
-          # @param status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
-          # @param size The number of audiences per page. Default: 20 Max: 40 
-          # @param create_route How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @param page [Integer] The page to return when getting (paginated) results. Must be 1 or higher.
+          # @param description [String, nil] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+          # @param status [AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+          # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40 
+          # @param create_route [AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
+          # @return [response body, response status code, and response headers]
+          # @return [Array(Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse, Integer, Hash{String => String})] when HTTP status code is 200
           def get_shared_audience_groups_with_http_info(
             page:,
             description: nil,
@@ -536,13 +603,16 @@ module Line
           end
 
           # Gets data for more than one audience, including those shared by the Business Manager.
+          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/shared/list</code>
+          # When you want to get HTTP status code or response headers, use {#get_shared_audience_groups_with_http_info} instead of this.
           #
-          # @param page The page to return when getting (paginated) results. Must be 1 or higher.
-          # @param description The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
-          # @param status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
-          # @param size The number of audiences per page. Default: 20 Max: 40 
-          # @param create_route How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @param page [Integer] The page to return when getting (paginated) results. Must be 1 or higher.
+          # @param description [String, nil] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+          # @param status [AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+          # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40 
+          # @param create_route [AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
+          # @return [Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse] when HTTP status code is 200
           def get_shared_audience_groups(
             page:,
             description: nil,
@@ -562,9 +632,12 @@ module Line
           end
 
           # Change the authority level of the audience
+          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/authorityLevel</code>
           #
-          # @param update_audience_group_authority_level_request 
+          # @param update_audience_group_authority_level_request [UpdateAudienceGroupAuthorityLevelRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#change-authority-level
+          # @return [response body, response status code, and response headers]
+          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
           def update_audience_group_authority_level_with_http_info(
             update_audience_group_authority_level_request:
           )
@@ -586,9 +659,12 @@ module Line
           end
 
           # Change the authority level of the audience
+          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/authorityLevel</code>
+          # When you want to get HTTP status code or response headers, use {#update_audience_group_authority_level_with_http_info} instead of this.
           #
-          # @param update_audience_group_authority_level_request 
+          # @param update_audience_group_authority_level_request [UpdateAudienceGroupAuthorityLevelRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#change-authority-level
+          # @return [String, nil] when HTTP status code is 200
           def update_audience_group_authority_level(
             update_audience_group_authority_level_request:
           )
@@ -600,10 +676,13 @@ module Line
           end
 
           # Renames an existing audience.
+          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}/updateDescription</code>
           #
-          # @param audience_group_id The audience ID.
-          # @param update_audience_group_description_request 
+          # @param audience_group_id [Integer] The audience ID.
+          # @param update_audience_group_description_request [UpdateAudienceGroupDescriptionRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#set-description-audience-group
+          # @return [response body, response status code, and response headers]
+          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
           def update_audience_group_description_with_http_info(
             audience_group_id:,
             update_audience_group_description_request:
@@ -627,10 +706,13 @@ module Line
           end
 
           # Renames an existing audience.
+          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}/updateDescription</code>
+          # When you want to get HTTP status code or response headers, use {#update_audience_group_description_with_http_info} instead of this.
           #
-          # @param audience_group_id The audience ID.
-          # @param update_audience_group_description_request 
+          # @param audience_group_id [Integer] The audience ID.
+          # @param update_audience_group_description_request [UpdateAudienceGroupDescriptionRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#set-description-audience-group
+          # @return [String, nil] when HTTP status code is 200
           def update_audience_group_description(
             audience_group_id:,
             update_audience_group_description_request:
