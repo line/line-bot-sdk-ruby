@@ -24,7 +24,7 @@ module Line
             
             @members = members.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Webhook::UserSource.create(**item)
+                Line::Bot::V2::Webhook::UserSource.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

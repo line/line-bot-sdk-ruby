@@ -31,7 +31,7 @@ module Line
             @rich_menu_id = rich_menu_id
             @user_ids = user_ids.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::string.create(**item)
+                Line::Bot::V2::MessagingApi::string.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

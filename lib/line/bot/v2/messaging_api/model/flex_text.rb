@@ -154,7 +154,7 @@ module Line
             @max_lines = max_lines
             @contents = contents&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::FlexSpan.create(**item)
+                Line::Bot::V2::MessagingApi::FlexSpan.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

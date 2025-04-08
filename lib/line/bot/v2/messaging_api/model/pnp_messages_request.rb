@@ -35,7 +35,7 @@ module Line
             
             @messages = messages.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::Message.create(**item)
+                Line::Bot::V2::MessagingApi::Message.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

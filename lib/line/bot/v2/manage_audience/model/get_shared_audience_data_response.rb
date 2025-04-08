@@ -37,7 +37,7 @@ module Line
             @audience_group = audience_group.is_a?(Line::Bot::V2::ManageAudience::AudienceGroup) || audience_group.nil? ? audience_group : Line::Bot::V2::ManageAudience::AudienceGroup.create(**audience_group) # steep:ignore
             @jobs = jobs&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::ManageAudience::AudienceGroupJob.create(**item)
+                Line::Bot::V2::ManageAudience::AudienceGroupJob.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

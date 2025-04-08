@@ -30,7 +30,7 @@ module Line
             
             @columns = columns.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::ImageCarouselColumn.create(**item)
+                Line::Bot::V2::MessagingApi::ImageCarouselColumn.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

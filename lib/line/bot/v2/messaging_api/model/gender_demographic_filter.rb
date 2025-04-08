@@ -30,7 +30,7 @@ module Line
             
             @one_of = one_of&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::GenderDemographic.create(**item)
+                Line::Bot::V2::MessagingApi::GenderDemographic.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end
