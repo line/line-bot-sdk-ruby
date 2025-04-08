@@ -21,7 +21,6 @@ module Line
           attr_accessor delivery_context: DeliveryContext
           
           def initialize: (
-            type: String,
             source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',

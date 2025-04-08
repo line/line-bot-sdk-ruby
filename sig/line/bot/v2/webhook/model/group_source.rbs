@@ -17,7 +17,6 @@ module Line
           attr_accessor user_id: String?
           
           def initialize: (
-            type: String,
             group_id: String,
             user_id: String?
           ) -> void
