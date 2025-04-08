@@ -59,11 +59,11 @@ module Line
           )
             @type = "imagemap"
             
-            @quick_reply = quick_reply.is_a?(Line::Bot::V2::MessagingApi::QuickReply) || quick_reply.nil? ? quick_reply : Line::Bot::V2::MessagingApi::QuickReply.create(**quick_reply)
-            @sender = sender.is_a?(Line::Bot::V2::MessagingApi::Sender) || sender.nil? ? sender : Line::Bot::V2::MessagingApi::Sender.create(**sender)
+            @quick_reply = quick_reply.is_a?(Line::Bot::V2::MessagingApi::QuickReply) || quick_reply.nil? ? quick_reply : Line::Bot::V2::MessagingApi::QuickReply.create(**quick_reply) # steep:ignore
+            @sender = sender.is_a?(Line::Bot::V2::MessagingApi::Sender) || sender.nil? ? sender : Line::Bot::V2::MessagingApi::Sender.create(**sender) # steep:ignore
             @base_url = base_url
             @alt_text = alt_text
-            @base_size = base_size.is_a?(Line::Bot::V2::MessagingApi::ImagemapBaseSize) ? base_size : Line::Bot::V2::MessagingApi::ImagemapBaseSize.create(**base_size)
+            @base_size = base_size.is_a?(Line::Bot::V2::MessagingApi::ImagemapBaseSize) ? base_size : Line::Bot::V2::MessagingApi::ImagemapBaseSize.create(**base_size) # steep:ignore
             @actions = actions.map do |item|
               if item.is_a?(Hash)
                 Line::Bot::V2::MessagingApi::ImagemapAction.create(**item)
@@ -71,7 +71,7 @@ module Line
                 item
               end
             end
-            @video = video.is_a?(Line::Bot::V2::MessagingApi::ImagemapVideo) || video.nil? ? video : Line::Bot::V2::MessagingApi::ImagemapVideo.create(**video)
+            @video = video.is_a?(Line::Bot::V2::MessagingApi::ImagemapVideo) || video.nil? ? video : Line::Bot::V2::MessagingApi::ImagemapVideo.create(**video) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -86,8 +86,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

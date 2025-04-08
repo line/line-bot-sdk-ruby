@@ -49,11 +49,11 @@ module Line
           )
             
             @type = type
-            @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source)
+            @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source) # steep:ignore
             @timestamp = timestamp
             @mode = mode
             @webhook_event_id = webhook_event_id
-            @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context)
+            @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -68,16 +68,15 @@ module Line
             end
           end
 
-          def self.create(args)
-            klass = detect_class(args[:type])
-            return klass.new(**args) if klass
-            
-            return new(**args)
+          def self.create(args) # steep:ignore
+            klass = detect_class(type: args[:type])
+            return klass.new(**args) if klass # steep:ignore
+            return new(**args) # steep:ignore
           end
 
           private
 
-          def self.detect_class(type)
+          def self.detect_class(type:)
             {
               accountLink: Line::Bot::V2::Webhook::AccountLinkEvent,
               activated: Line::Bot::V2::Webhook::ActivatedEvent,

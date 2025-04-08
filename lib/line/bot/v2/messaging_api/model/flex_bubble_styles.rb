@@ -37,10 +37,10 @@ module Line
             **dynamic_attributes
           )
             
-            @header = header.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || header.nil? ? header : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**header)
-            @hero = hero.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || hero.nil? ? hero : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**hero)
-            @body = body.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || body.nil? ? body : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**body)
-            @footer = footer.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || footer.nil? ? footer : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**footer)
+            @header = header.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || header.nil? ? header : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**header) # steep:ignore
+            @hero = hero.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || hero.nil? ? hero : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**hero) # steep:ignore
+            @body = body.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || body.nil? ? body : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**body) # steep:ignore
+            @footer = footer.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || footer.nil? ? footer : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**footer) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -55,8 +55,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

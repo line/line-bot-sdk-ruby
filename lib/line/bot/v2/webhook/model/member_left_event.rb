@@ -54,12 +54,12 @@ module Line
           )
             @type = "memberLeft"
             
-            @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source)
+            @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source) # steep:ignore
             @timestamp = timestamp
             @mode = mode
             @webhook_event_id = webhook_event_id
-            @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context)
-            @left = left.is_a?(Line::Bot::V2::Webhook::LeftMembers) ? left : Line::Bot::V2::Webhook::LeftMembers.create(**left)
+            @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context) # steep:ignore
+            @left = left.is_a?(Line::Bot::V2::Webhook::LeftMembers) ? left : Line::Bot::V2::Webhook::LeftMembers.create(**left) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -74,8 +74,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

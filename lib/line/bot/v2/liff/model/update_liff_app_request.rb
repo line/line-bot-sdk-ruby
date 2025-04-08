@@ -48,9 +48,9 @@ module Line
             **dynamic_attributes
           )
             
-            @view = view.is_a?(Line::Bot::V2::Liff::UpdateLiffView) || view.nil? ? view : Line::Bot::V2::Liff::UpdateLiffView.create(**view)
+            @view = view.is_a?(Line::Bot::V2::Liff::UpdateLiffView) || view.nil? ? view : Line::Bot::V2::Liff::UpdateLiffView.create(**view) # steep:ignore
             @description = description
-            @features = features.is_a?(Line::Bot::V2::Liff::LiffFeatures) || features.nil? ? features : Line::Bot::V2::Liff::LiffFeatures.create(**features)
+            @features = features.is_a?(Line::Bot::V2::Liff::LiffFeatures) || features.nil? ? features : Line::Bot::V2::Liff::LiffFeatures.create(**features) # steep:ignore
             @permanent_link_pattern = permanent_link_pattern
             @scope = scope&.map do |item|
               if item.is_a?(Hash)
@@ -74,8 +74,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

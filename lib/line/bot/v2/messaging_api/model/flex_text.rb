@@ -150,7 +150,7 @@ module Line
             @offset_bottom = offset_bottom
             @offset_start = offset_start
             @offset_end = offset_end
-            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action)
+            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action) # steep:ignore
             @max_lines = max_lines
             @contents = contents&.map do |item|
               if item.is_a?(Hash)
@@ -175,8 +175,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

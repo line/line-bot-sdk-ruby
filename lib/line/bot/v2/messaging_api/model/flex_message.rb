@@ -44,10 +44,10 @@ module Line
           )
             @type = "flex"
             
-            @quick_reply = quick_reply.is_a?(Line::Bot::V2::MessagingApi::QuickReply) || quick_reply.nil? ? quick_reply : Line::Bot::V2::MessagingApi::QuickReply.create(**quick_reply)
-            @sender = sender.is_a?(Line::Bot::V2::MessagingApi::Sender) || sender.nil? ? sender : Line::Bot::V2::MessagingApi::Sender.create(**sender)
+            @quick_reply = quick_reply.is_a?(Line::Bot::V2::MessagingApi::QuickReply) || quick_reply.nil? ? quick_reply : Line::Bot::V2::MessagingApi::QuickReply.create(**quick_reply) # steep:ignore
+            @sender = sender.is_a?(Line::Bot::V2::MessagingApi::Sender) || sender.nil? ? sender : Line::Bot::V2::MessagingApi::Sender.create(**sender) # steep:ignore
             @alt_text = alt_text
-            @contents = contents.is_a?(Line::Bot::V2::MessagingApi::FlexContainer) ? contents : Line::Bot::V2::MessagingApi::FlexContainer.create(**contents)
+            @contents = contents.is_a?(Line::Bot::V2::MessagingApi::FlexContainer) ? contents : Line::Bot::V2::MessagingApi::FlexContainer.create(**contents) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -62,8 +62,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end
