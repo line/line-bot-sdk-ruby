@@ -10,6 +10,7 @@ group :development, :test do
   gem 'rack', '~> 3.0'
   gem 'rbs', '~> 3.9.2'
   gem 'rubocop', '~> 1.75.0', require: false
+  gem 'steep', '~> 1.10.0'
   gem 'webrick', '~> 1.9.1'
   gem 'yard', '~> 0.9.20'
 end

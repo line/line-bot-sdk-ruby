@@ -39,7 +39,7 @@ module Line
             @type = "audio"
             
             @id = id
-            @content_provider = content_provider.is_a?(Line::Bot::V2::Webhook::ContentProvider) ? content_provider : Line::Bot::V2::Webhook::ContentProvider.create(**content_provider)
+            @content_provider = content_provider.is_a?(Line::Bot::V2::Webhook::ContentProvider) ? content_provider : Line::Bot::V2::Webhook::ContentProvider.create(**content_provider) # steep:ignore
             @duration = duration
 
             dynamic_attributes.each do |key, value|
@@ -55,8 +55,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

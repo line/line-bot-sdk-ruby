@@ -29,7 +29,7 @@ module Line
           )
             
             @type = type
-            @area = area.is_a?(Line::Bot::V2::MessagingApi::ImagemapArea) ? area : Line::Bot::V2::MessagingApi::ImagemapArea.create(**area)
+            @area = area.is_a?(Line::Bot::V2::MessagingApi::ImagemapArea) ? area : Line::Bot::V2::MessagingApi::ImagemapArea.create(**area) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -44,16 +44,15 @@ module Line
             end
           end
 
-          def self.create(args)
-            klass = detect_class(args[:type])
-            return klass.new(**args) if klass
-            
-            return new(**args)
+          def self.create(args) # steep:ignore
+            klass = detect_class(type: args[:type])
+            return klass.new(**args) if klass # steep:ignore
+            return new(**args) # steep:ignore
           end
 
           private
 
-          def self.detect_class(type)
+          def self.detect_class(type:)
             {
               clipboard: Line::Bot::V2::MessagingApi::ClipboardImagemapAction,
               message: Line::Bot::V2::MessagingApi::MessageImagemapAction,

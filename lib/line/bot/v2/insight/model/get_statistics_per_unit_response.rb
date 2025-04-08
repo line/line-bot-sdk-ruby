@@ -34,7 +34,7 @@ module Line
             **dynamic_attributes
           )
             
-            @overview = overview.is_a?(Line::Bot::V2::Insight::GetStatisticsPerUnitResponseOverview) ? overview : Line::Bot::V2::Insight::GetStatisticsPerUnitResponseOverview.create(**overview)
+            @overview = overview.is_a?(Line::Bot::V2::Insight::GetStatisticsPerUnitResponseOverview) ? overview : Line::Bot::V2::Insight::GetStatisticsPerUnitResponseOverview.create(**overview) # steep:ignore
             @messages = messages.map do |item|
               if item.is_a?(Hash)
                 Line::Bot::V2::Insight::GetStatisticsPerUnitResponseMessage.create(**item)
@@ -63,8 +63,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

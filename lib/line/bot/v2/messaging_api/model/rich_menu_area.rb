@@ -28,8 +28,8 @@ module Line
             **dynamic_attributes
           )
             
-            @bounds = bounds.is_a?(Line::Bot::V2::MessagingApi::RichMenuBounds) || bounds.nil? ? bounds : Line::Bot::V2::MessagingApi::RichMenuBounds.create(**bounds)
-            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action)
+            @bounds = bounds.is_a?(Line::Bot::V2::MessagingApi::RichMenuBounds) || bounds.nil? ? bounds : Line::Bot::V2::MessagingApi::RichMenuBounds.create(**bounds) # steep:ignore
+            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -44,8 +44,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

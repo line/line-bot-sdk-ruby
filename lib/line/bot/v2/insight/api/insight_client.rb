@@ -65,7 +65,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::Insight::GetFriendsDemographicsResponse.new(**json)
+                     Line::Bot::V2::Insight::GetFriendsDemographicsResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -113,7 +113,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::Insight::GetMessageEventResponse.new(**json)
+                     Line::Bot::V2::Insight::GetMessageEventResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -164,7 +164,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::Insight::GetNumberOfFollowersResponse.new(**json)
+                     Line::Bot::V2::Insight::GetNumberOfFollowersResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -215,7 +215,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::Insight::GetNumberOfMessageDeliveriesResponse.new(**json)
+                     Line::Bot::V2::Insight::GetNumberOfMessageDeliveriesResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -272,7 +272,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::Insight::GetStatisticsPerUnitResponse.new(**json)
+                     Line::Bot::V2::Insight::GetStatisticsPerUnitResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end

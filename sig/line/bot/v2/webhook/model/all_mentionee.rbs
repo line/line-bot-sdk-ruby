@@ -18,7 +18,6 @@ module Line
           attr_accessor length: Integer
           
           def initialize: (
-            type: String,
             index: Integer,
             length: Integer
           ) -> void

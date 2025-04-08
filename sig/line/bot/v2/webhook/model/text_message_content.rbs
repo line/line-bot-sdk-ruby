@@ -21,7 +21,6 @@ module Line
           attr_accessor quoted_message_id: String?
           
           def initialize: (
-            type: String,
             id: String,
             text: String,
             emojis: Array[Emoji]?,
