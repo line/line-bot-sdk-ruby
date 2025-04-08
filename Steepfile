@@ -1,14 +1,14 @@
 D = Steep::Diagnostic
 
 target :lib do
-  signature "sig"
-  ignore_signature "sig/test"
+  signature "sig/line/bot/v2"
 
-  check "lib"                       # Directory name
+  check "lib/line/bot/v2"
   # ignore "lib/templates/*.rb"
 
   # library "pathname"              # Standard libraries
   # library "strong_json"           # Gems
+  library "net-http"
 
   # configure_code_diagnostics(D::Ruby.default)      # `default` diagnostics setting (applies by default)
   # configure_code_diagnostics(D::Ruby.strict)       # `strict` diagnostics setting
