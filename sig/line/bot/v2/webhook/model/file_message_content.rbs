@@ -18,7 +18,6 @@ module Line
           attr_accessor file_size: Integer
           
           def initialize: (
-            type: String,
             id: String,
             file_name: String,
             file_size: Integer

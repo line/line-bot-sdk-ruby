@@ -17,7 +17,6 @@ module Line
           attr_accessor result: ScenarioResult
           
           def initialize: (
-            type: String,
             device_id: String,
             result: ScenarioResult
           ) -> void

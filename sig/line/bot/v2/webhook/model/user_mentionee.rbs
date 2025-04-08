@@ -20,7 +20,6 @@ module Line
           attr_accessor is_self: bool?
           
           def initialize: (
-            type: String,
             index: Integer,
             length: Integer,
             user_id: String?,

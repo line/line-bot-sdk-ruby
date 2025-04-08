@@ -23,7 +23,6 @@ module Line
           attr_accessor message: MessageContent
           
           def initialize: (
-            type: String,
             source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',
