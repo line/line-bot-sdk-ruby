@@ -80,7 +80,7 @@ module Line
               end
             end
             {%- elseif property.isModel -%}
-            @{{ property.name }} = {{ property.name }}.is_a?(Line::Bot::V2::{{ packageName | camelize }}::{{ property.baseType }}){% if not property.required %} || {{ property.name }}.nil?{% endif %} ? {{ property.name }} : Line::Bot::V2::{{ packageName | camelize }}::{{ property.baseType }}.create(**{{ property.name }})
+            @{{ property.name }} = {{ property.name }}.is_a?(Line::Bot::V2::{{ packageName | camelize }}::{{ property.baseType }}){% if not property.required %} || {{ property.name }}.nil?{% endif %} ? {{ property.name }} : Line::Bot::V2::{{ packageName | camelize }}::{{ property.baseType }}.create(**{{ property.name }}) # steep:ignore
             {%- elseif model.model.vendorExtensions.get("x-selector").propertyName != property.name -%}
             @{{ property.name }} = {{ property.name }}
             {%- endif -%}
@@ -99,17 +99,18 @@ module Line
             end
           end
 
-          def self.create(args){% if model.model.vendorExtensions.get("x-children") != null and model.model.vendorExtensions.get("x-discriminator-property") != null %}
-            klass = detect_class(args[:{{ model.model.vendorExtensions.get("x-discriminator-property") }}])
-            return klass.new(**args) if klass
-            {% endif %}
-            return new(**args)
+          def self.create(args) # steep:ignore
+            {%- if model.model.vendorExtensions.get("x-children") != null and model.model.vendorExtensions.get("x-discriminator-property") != null %}
+            klass = detect_class(type: args[:{{ model.model.vendorExtensions.get("x-discriminator-property") }}])
+            return klass.new(**args) if klass # steep:ignore
+            {%- endif %}
+            return new(**args) # steep:ignore
           end
           {%- if model.model.vendorExtensions.get("x-children") != null %}
 
           private
 
-          def self.detect_class(type)
+          def self.detect_class(type:)
             {
               {%- for child in model.model.vendorExtensions.get("x-children") %}
               {{ child.typeName }}: Line::Bot::V2::{{ packageName | camelize }}::{{ child.className }},
