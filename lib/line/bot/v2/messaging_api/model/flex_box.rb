@@ -187,10 +187,10 @@ module Line
             @padding_bottom = padding_bottom
             @padding_start = padding_start
             @padding_end = padding_end
-            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action)
+            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action) # steep:ignore
             @justify_content = justify_content
             @align_items = align_items
-            @background = background.is_a?(Line::Bot::V2::MessagingApi::FlexBoxBackground) || background.nil? ? background : Line::Bot::V2::MessagingApi::FlexBoxBackground.create(**background)
+            @background = background.is_a?(Line::Bot::V2::MessagingApi::FlexBoxBackground) || background.nil? ? background : Line::Bot::V2::MessagingApi::FlexBoxBackground.create(**background) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -205,8 +205,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

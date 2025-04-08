@@ -62,7 +62,7 @@ module Line
                 item
               end
             end
-            @mention = mention.is_a?(Line::Bot::V2::Webhook::Mention) || mention.nil? ? mention : Line::Bot::V2::Webhook::Mention.create(**mention)
+            @mention = mention.is_a?(Line::Bot::V2::Webhook::Mention) || mention.nil? ? mention : Line::Bot::V2::Webhook::Mention.create(**mention) # steep:ignore
             @quote_token = quote_token
             @quoted_message_id = quoted_message_id
 
@@ -79,8 +79,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

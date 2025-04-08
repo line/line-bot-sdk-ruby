@@ -37,16 +37,15 @@ module Line
             end
           end
 
-          def self.create(args)
-            klass = detect_class(args[:type])
-            return klass.new(**args) if klass
-            
-            return new(**args)
+          def self.create(args) # steep:ignore
+            klass = detect_class(type: args[:type])
+            return klass.new(**args) if klass # steep:ignore
+            return new(**args) # steep:ignore
           end
 
           private
 
-          def self.detect_class(type)
+          def self.detect_class(type:)
             {
               bubble: Line::Bot::V2::MessagingApi::FlexBubble,
               carousel: Line::Bot::V2::MessagingApi::FlexCarousel,

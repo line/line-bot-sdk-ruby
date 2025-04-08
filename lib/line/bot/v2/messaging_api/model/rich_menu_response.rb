@@ -48,7 +48,7 @@ module Line
           )
             
             @rich_menu_id = rich_menu_id
-            @size = size.is_a?(Line::Bot::V2::MessagingApi::RichMenuSize) ? size : Line::Bot::V2::MessagingApi::RichMenuSize.create(**size)
+            @size = size.is_a?(Line::Bot::V2::MessagingApi::RichMenuSize) ? size : Line::Bot::V2::MessagingApi::RichMenuSize.create(**size) # steep:ignore
             @selected = selected
             @name = name
             @chat_bar_text = chat_bar_text
@@ -73,8 +73,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

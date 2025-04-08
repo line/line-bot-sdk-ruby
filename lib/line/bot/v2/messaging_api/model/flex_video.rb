@@ -50,9 +50,9 @@ module Line
             
             @url = url
             @preview_url = preview_url
-            @alt_content = alt_content.is_a?(Line::Bot::V2::MessagingApi::FlexComponent) ? alt_content : Line::Bot::V2::MessagingApi::FlexComponent.create(**alt_content)
+            @alt_content = alt_content.is_a?(Line::Bot::V2::MessagingApi::FlexComponent) ? alt_content : Line::Bot::V2::MessagingApi::FlexComponent.create(**alt_content) # steep:ignore
             @aspect_ratio = aspect_ratio
-            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action)
+            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -67,8 +67,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

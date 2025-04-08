@@ -69,7 +69,7 @@ module Line
             @image_background_color = image_background_color
             @title = title
             @text = text
-            @default_action = default_action.is_a?(Line::Bot::V2::MessagingApi::Action) || default_action.nil? ? default_action : Line::Bot::V2::MessagingApi::Action.create(**default_action)
+            @default_action = default_action.is_a?(Line::Bot::V2::MessagingApi::Action) || default_action.nil? ? default_action : Line::Bot::V2::MessagingApi::Action.create(**default_action) # steep:ignore
             @actions = actions.map do |item|
               if item.is_a?(Hash)
                 Line::Bot::V2::MessagingApi::Action.create(**item)
@@ -91,8 +91,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

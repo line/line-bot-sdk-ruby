@@ -69,7 +69,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenKeyIdsResponse.new(**json)
+                     Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenKeyIdsResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -131,13 +131,13 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse.new(**json)
+                     Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    when 400
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::ErrorResponse.new(**json)
+                     Line::Bot::V2::ChannelAccessToken::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -202,7 +202,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse.new(**json)
+                     Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -272,7 +272,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse.new(**json)
+                     Line::Bot::V2::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -444,7 +444,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.new(**json)
+                     Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -495,7 +495,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.new(**json)
+                     Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end

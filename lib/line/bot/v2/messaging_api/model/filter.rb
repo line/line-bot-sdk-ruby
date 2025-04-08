@@ -23,7 +23,7 @@ module Line
             **dynamic_attributes
           )
             
-            @demographic = demographic.is_a?(Line::Bot::V2::MessagingApi::DemographicFilter) || demographic.nil? ? demographic : Line::Bot::V2::MessagingApi::DemographicFilter.create(**demographic)
+            @demographic = demographic.is_a?(Line::Bot::V2::MessagingApi::DemographicFilter) || demographic.nil? ? demographic : Line::Bot::V2::MessagingApi::DemographicFilter.create(**demographic) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -38,8 +38,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

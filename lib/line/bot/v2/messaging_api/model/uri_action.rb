@@ -40,7 +40,7 @@ module Line
             
             @label = label
             @uri = uri
-            @alt_uri = alt_uri.is_a?(Line::Bot::V2::MessagingApi::AltUri) || alt_uri.nil? ? alt_uri : Line::Bot::V2::MessagingApi::AltUri.create(**alt_uri)
+            @alt_uri = alt_uri.is_a?(Line::Bot::V2::MessagingApi::AltUri) || alt_uri.nil? ? alt_uri : Line::Bot::V2::MessagingApi::AltUri.create(**alt_uri) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -55,8 +55,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

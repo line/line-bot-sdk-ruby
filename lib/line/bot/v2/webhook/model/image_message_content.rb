@@ -44,8 +44,8 @@ module Line
             @type = "image"
             
             @id = id
-            @content_provider = content_provider.is_a?(Line::Bot::V2::Webhook::ContentProvider) ? content_provider : Line::Bot::V2::Webhook::ContentProvider.create(**content_provider)
-            @image_set = image_set.is_a?(Line::Bot::V2::Webhook::ImageSet) || image_set.nil? ? image_set : Line::Bot::V2::Webhook::ImageSet.create(**image_set)
+            @content_provider = content_provider.is_a?(Line::Bot::V2::Webhook::ContentProvider) ? content_provider : Line::Bot::V2::Webhook::ContentProvider.create(**content_provider) # steep:ignore
+            @image_set = image_set.is_a?(Line::Bot::V2::Webhook::ImageSet) || image_set.nil? ? image_set : Line::Bot::V2::Webhook::ImageSet.create(**image_set) # steep:ignore
             @quote_token = quote_token
 
             dynamic_attributes.each do |key, value|
@@ -61,8 +61,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end
