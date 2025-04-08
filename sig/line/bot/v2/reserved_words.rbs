@@ -1,0 +1,7 @@
+module Line
+  module Bot
+    module V2
+      RESERVED_WORDS: Array[Symbol]
+    end
+  end
+end
