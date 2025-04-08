@@ -36,8 +36,8 @@ jobs:
     - run: bundle exec rubocop
     - run: bundle exec rspec
     - run: bundle exec yard stats ./lib/line/bot/v2 --fail-on-warning
-    - run: rbs collection install
-    - run: rbs -I sig validate
+    - run: bundle exec rbs collection install
+    - run: bundle exec rbs -I sig validate
 
   pinact:
     runs-on: ubuntu-latest
