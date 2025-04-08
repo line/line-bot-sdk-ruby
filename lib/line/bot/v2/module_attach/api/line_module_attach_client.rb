@@ -101,7 +101,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ModuleAttach::AttachModuleResponse.new(**json)
+                     Line::Bot::V2::ModuleAttach::AttachModuleResponse.new(**json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end

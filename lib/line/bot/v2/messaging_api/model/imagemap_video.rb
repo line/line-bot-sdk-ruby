@@ -39,8 +39,8 @@ module Line
             
             @original_content_url = original_content_url
             @preview_image_url = preview_image_url
-            @area = area.is_a?(Line::Bot::V2::MessagingApi::ImagemapArea) || area.nil? ? area : Line::Bot::V2::MessagingApi::ImagemapArea.create(**area)
-            @external_link = external_link.is_a?(Line::Bot::V2::MessagingApi::ImagemapExternalLink) || external_link.nil? ? external_link : Line::Bot::V2::MessagingApi::ImagemapExternalLink.create(**external_link)
+            @area = area.is_a?(Line::Bot::V2::MessagingApi::ImagemapArea) || area.nil? ? area : Line::Bot::V2::MessagingApi::ImagemapArea.create(**area) # steep:ignore
+            @external_link = external_link.is_a?(Line::Bot::V2::MessagingApi::ImagemapExternalLink) || external_link.nil? ? external_link : Line::Bot::V2::MessagingApi::ImagemapExternalLink.create(**external_link) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -55,8 +55,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

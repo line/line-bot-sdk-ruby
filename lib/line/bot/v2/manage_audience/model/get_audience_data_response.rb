@@ -34,7 +34,7 @@ module Line
             **dynamic_attributes
           )
             
-            @audience_group = audience_group.is_a?(Line::Bot::V2::ManageAudience::AudienceGroup) || audience_group.nil? ? audience_group : Line::Bot::V2::ManageAudience::AudienceGroup.create(**audience_group)
+            @audience_group = audience_group.is_a?(Line::Bot::V2::ManageAudience::AudienceGroup) || audience_group.nil? ? audience_group : Line::Bot::V2::ManageAudience::AudienceGroup.create(**audience_group) # steep:ignore
             @jobs = jobs&.map do |item|
               if item.is_a?(Hash)
                 Line::Bot::V2::ManageAudience::AudienceGroupJob.create(**item)
@@ -42,7 +42,7 @@ module Line
                 item
               end
             end
-            @adaccount = adaccount.is_a?(Line::Bot::V2::ManageAudience::Adaccount) || adaccount.nil? ? adaccount : Line::Bot::V2::ManageAudience::Adaccount.create(**adaccount)
+            @adaccount = adaccount.is_a?(Line::Bot::V2::ManageAudience::Adaccount) || adaccount.nil? ? adaccount : Line::Bot::V2::ManageAudience::Adaccount.create(**adaccount) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -57,8 +57,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

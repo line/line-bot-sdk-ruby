@@ -28,8 +28,8 @@ module Line
             **dynamic_attributes
           )
             
-            @membership = membership.is_a?(Line::Bot::V2::MessagingApi::SubscribedMembershipPlan) ? membership : Line::Bot::V2::MessagingApi::SubscribedMembershipPlan.create(**membership)
-            @user = user.is_a?(Line::Bot::V2::MessagingApi::SubscribedMembershipUser) ? user : Line::Bot::V2::MessagingApi::SubscribedMembershipUser.create(**user)
+            @membership = membership.is_a?(Line::Bot::V2::MessagingApi::SubscribedMembershipPlan) ? membership : Line::Bot::V2::MessagingApi::SubscribedMembershipPlan.create(**membership) # steep:ignore
+            @user = user.is_a?(Line::Bot::V2::MessagingApi::SubscribedMembershipUser) ? user : Line::Bot::V2::MessagingApi::SubscribedMembershipUser.create(**user) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -44,8 +44,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

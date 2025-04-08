@@ -50,9 +50,9 @@ module Line
                 item
               end
             end
-            @recipient = recipient.is_a?(Line::Bot::V2::MessagingApi::Recipient) || recipient.nil? ? recipient : Line::Bot::V2::MessagingApi::Recipient.create(**recipient)
-            @filter = filter.is_a?(Line::Bot::V2::MessagingApi::Filter) || filter.nil? ? filter : Line::Bot::V2::MessagingApi::Filter.create(**filter)
-            @limit = limit.is_a?(Line::Bot::V2::MessagingApi::Limit) || limit.nil? ? limit : Line::Bot::V2::MessagingApi::Limit.create(**limit)
+            @recipient = recipient.is_a?(Line::Bot::V2::MessagingApi::Recipient) || recipient.nil? ? recipient : Line::Bot::V2::MessagingApi::Recipient.create(**recipient) # steep:ignore
+            @filter = filter.is_a?(Line::Bot::V2::MessagingApi::Filter) || filter.nil? ? filter : Line::Bot::V2::MessagingApi::Filter.create(**filter) # steep:ignore
+            @limit = limit.is_a?(Line::Bot::V2::MessagingApi::Limit) || limit.nil? ? limit : Line::Bot::V2::MessagingApi::Limit.create(**limit) # steep:ignore
             @notification_disabled = notification_disabled
 
             dynamic_attributes.each do |key, value|
@@ -68,8 +68,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

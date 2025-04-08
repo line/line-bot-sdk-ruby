@@ -34,7 +34,7 @@ module Line
             @type = "scenarioResult"
             
             @device_id = device_id
-            @result = result.is_a?(Line::Bot::V2::Webhook::ScenarioResult) ? result : Line::Bot::V2::Webhook::ScenarioResult.create(**result)
+            @result = result.is_a?(Line::Bot::V2::Webhook::ScenarioResult) ? result : Line::Bot::V2::Webhook::ScenarioResult.create(**result) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -49,8 +49,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end

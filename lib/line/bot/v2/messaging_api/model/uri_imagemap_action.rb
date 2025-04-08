@@ -38,7 +38,7 @@ module Line
           )
             @type = "uri"
             
-            @area = area.is_a?(Line::Bot::V2::MessagingApi::ImagemapArea) ? area : Line::Bot::V2::MessagingApi::ImagemapArea.create(**area)
+            @area = area.is_a?(Line::Bot::V2::MessagingApi::ImagemapArea) ? area : Line::Bot::V2::MessagingApi::ImagemapArea.create(**area) # steep:ignore
             @link_uri = link_uri
             @label = label
 
@@ -55,8 +55,8 @@ module Line
             end
           end
 
-          def self.create(args)
-            return new(**args)
+          def self.create(args) # steep:ignore
+            return new(**args) # steep:ignore
           end
         end
       end
