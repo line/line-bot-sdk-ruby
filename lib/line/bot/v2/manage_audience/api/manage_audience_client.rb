@@ -56,7 +56,7 @@ module Line
             audience_group_id:
           )
             path = "/v2/bot/audienceGroup/{audienceGroupId}/activate"
-              .gsub(/{audienceGroupId}/, audience_group_id)
+              .gsub(/{audienceGroupId}/, audience_group_id.to_s)
 
             response = @http_client.put(
               path: path,
@@ -288,7 +288,7 @@ module Line
             audience_group_id:
           )
             path = "/v2/bot/audienceGroup/{audienceGroupId}"
-              .gsub(/{audienceGroupId}/, audience_group_id)
+              .gsub(/{audienceGroupId}/, audience_group_id.to_s)
 
             response = @http_client.delete(
               path: path,
@@ -333,7 +333,7 @@ module Line
             audience_group_id:
           )
             path = "/v2/bot/audienceGroup/{audienceGroupId}"
-              .gsub(/{audienceGroupId}/, audience_group_id)
+              .gsub(/{audienceGroupId}/, audience_group_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -512,7 +512,7 @@ module Line
             audience_group_id:
           )
             path = "/v2/bot/audienceGroup/shared/{audienceGroupId}"
-              .gsub(/{audienceGroupId}/, audience_group_id)
+              .gsub(/{audienceGroupId}/, audience_group_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -688,7 +688,7 @@ module Line
             update_audience_group_description_request:
           )
             path = "/v2/bot/audienceGroup/{audienceGroupId}/updateDescription"
-              .gsub(/{audienceGroupId}/, audience_group_id)
+              .gsub(/{audienceGroupId}/, audience_group_id.to_s)
 
             response = @http_client.put(
               path: path,

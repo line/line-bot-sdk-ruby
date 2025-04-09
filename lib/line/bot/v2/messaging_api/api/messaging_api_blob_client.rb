@@ -56,7 +56,7 @@ module Line
             message_id:
           )
             path = "/v2/bot/message/{messageId}/content"
-              .gsub(/{messageId}/, message_id)
+              .gsub(/{messageId}/, message_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -100,7 +100,7 @@ module Line
             message_id:
           )
             path = "/v2/bot/message/{messageId}/content/preview"
-              .gsub(/{messageId}/, message_id)
+              .gsub(/{messageId}/, message_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -144,7 +144,7 @@ module Line
             message_id:
           )
             path = "/v2/bot/message/{messageId}/content/transcoding"
-              .gsub(/{messageId}/, message_id)
+              .gsub(/{messageId}/, message_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -192,7 +192,7 @@ module Line
             rich_menu_id:
           )
             path = "/v2/bot/richmenu/{richMenuId}/content"
-              .gsub(/{richMenuId}/, rich_menu_id)
+              .gsub(/{richMenuId}/, rich_menu_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -238,7 +238,7 @@ module Line
             body: nil
           )
             path = "/v2/bot/richmenu/{richMenuId}/content"
-              .gsub(/{richMenuId}/, rich_menu_id)
+              .gsub(/{richMenuId}/, rich_menu_id.to_s)
 
             response = @http_client.post(
               path: path,

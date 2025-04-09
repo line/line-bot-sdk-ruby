@@ -82,7 +82,7 @@ module Line
             {% endfor %}
           )
             path = "{{ op.path }}"{%  for param in op.pathParams %}
-              .gsub(/{{ "{" + param.baseName + "}" }}/, {{ param.paramName }})
+              .gsub(/{{ "{" + param.baseName + "}" }}/, {{ param.paramName }}.to_s)
               {%- endfor %}{% if op.hasFormParams %}
 
             form_params = {{ '{' }}{% for param in op.formParams %}

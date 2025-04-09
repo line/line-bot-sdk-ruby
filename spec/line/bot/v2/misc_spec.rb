@@ -1449,6 +1449,69 @@ describe 'misc' do
     end
   end
 
+  describe 'GET /v2/bot/audienceGroup/{audienceGroupId}' do
+    let(:client) { Line::Bot::V2::ManageAudience::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:audience_group_id) { 2345678909876 }
+    let(:response_body) do
+      {
+        audienceGroup: {
+          audienceGroupId: audience_group_id,
+          createRoute: 'AD_MANAGER',
+          type: 'APP_EVENT',
+          description: 'audienceGroupName_03',
+          status: 'READY',
+          audienceCount: 8619,
+          created: 1608619802,
+          permission: 'READ',
+          activated: 1610068515,
+          inactiveTimestamp: 1625620516,
+          isIfaAudience: false
+        },
+        jobs: [],
+        adaccount: {
+          name: 'Ad Account Name'
+        }
+      }.to_json
+    end
+    let(:response_code) { 200 }
+    it 'path parameter works (integer)' do
+      stub_request(:get, "https://api.line.me/v2/bot/audienceGroup/2345678909876")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.get_audience_data_with_http_info(audience_group_id: audience_group_id)
+      expect(status_code).to eq(200)
+      expect(body.audience_group.audience_group_id).to eq(audience_group_id)
+      expect(body.audience_group.create_route).to eq('AD_MANAGER')
+      expect(body.adaccount.name).to eq('Ad Account Name')
+    end
+  end
+
+  describe 'POST /v2/bot/user/{userId}/richmenu/{richMenuId}' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    it 'path parameter works (string)' do
+      user_id = 'U1234567890'
+      rich_menu_id = 'richmenu-1234567890-bba-222'
+
+      stub_request(:post, "https://api.line.me/v2/bot/user/U1234567890/richmenu/richmenu-1234567890-bba-222")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          }
+        )
+        .to_return(status: 200, body: '{}', headers: {})
+
+      body, status_code, headers = client.link_rich_menu_id_to_user_with_http_info(user_id: user_id, rich_menu_id: rich_menu_id)
+
+      expect(status_code).to eq(200)
+      expect(body).to eq("{}")
+    end
+  end
+
   describe 'GET /v2/bot/audienceGroup/list' do
     let(:client) { Line::Bot::V2::ManageAudience::ApiClient.new(channel_access_token: 'test-channel-access-token') }
     let(:response_body) do

@@ -279,7 +279,7 @@ module Line
             rich_menu_id:
           )
             path = "/v2/bot/richmenu/{richMenuId}"
-              .gsub(/{richMenuId}/, rich_menu_id)
+              .gsub(/{richMenuId}/, rich_menu_id.to_s)
 
             response = @http_client.delete(
               path: path,
@@ -324,7 +324,7 @@ module Line
             rich_menu_alias_id:
           )
             path = "/v2/bot/richmenu/alias/{richMenuAliasId}"
-              .gsub(/{richMenuAliasId}/, rich_menu_alias_id)
+              .gsub(/{richMenuAliasId}/, rich_menu_alias_id.to_s)
 
             response = @http_client.delete(
               path: path,
@@ -615,7 +615,7 @@ module Line
             group_id:
           )
             path = "/v2/bot/group/{groupId}/members/count"
-              .gsub(/{groupId}/, group_id)
+              .gsub(/{groupId}/, group_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -665,8 +665,8 @@ module Line
             user_id:
           )
             path = "/v2/bot/group/{groupId}/member/{userId}"
-              .gsub(/{groupId}/, group_id)
-              .gsub(/{userId}/, user_id)
+              .gsub(/{groupId}/, group_id.to_s)
+              .gsub(/{userId}/, user_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -719,7 +719,7 @@ module Line
             start: nil
           )
             path = "/v2/bot/group/{groupId}/members/ids"
-              .gsub(/{groupId}/, group_id)
+              .gsub(/{groupId}/, group_id.to_s)
             query_params = {
               "start": start
             }.compact
@@ -774,7 +774,7 @@ module Line
             group_id:
           )
             path = "/v2/bot/group/{groupId}/summary"
-              .gsub(/{groupId}/, group_id)
+              .gsub(/{groupId}/, group_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -828,7 +828,7 @@ module Line
             limit: nil
           )
             path = "/v2/bot/membership/{membershipId}/users/ids"
-              .gsub(/{membershipId}/, membership_id)
+              .gsub(/{membershipId}/, membership_id.to_s)
             query_params = {
               "start": start,
               "limit": limit
@@ -953,7 +953,7 @@ module Line
             user_id:
           )
             path = "/v2/bot/membership/subscription/{userId}"
-              .gsub(/{userId}/, user_id)
+              .gsub(/{userId}/, user_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -1405,7 +1405,7 @@ module Line
             user_id:
           )
             path = "/v2/bot/profile/{userId}"
-              .gsub(/{userId}/, user_id)
+              .gsub(/{userId}/, user_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -1453,7 +1453,7 @@ module Line
             rich_menu_id:
           )
             path = "/v2/bot/richmenu/{richMenuId}"
-              .gsub(/{richMenuId}/, rich_menu_id)
+              .gsub(/{richMenuId}/, rich_menu_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -1501,7 +1501,7 @@ module Line
             rich_menu_alias_id:
           )
             path = "/v2/bot/richmenu/alias/{richMenuAliasId}"
-              .gsub(/{richMenuAliasId}/, rich_menu_alias_id)
+              .gsub(/{richMenuAliasId}/, rich_menu_alias_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -1642,7 +1642,7 @@ module Line
             user_id:
           )
             path = "/v2/bot/user/{userId}/richmenu"
-              .gsub(/{userId}/, user_id)
+              .gsub(/{userId}/, user_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -1732,7 +1732,7 @@ module Line
             room_id:
           )
             path = "/v2/bot/room/{roomId}/members/count"
-              .gsub(/{roomId}/, room_id)
+              .gsub(/{roomId}/, room_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -1782,8 +1782,8 @@ module Line
             user_id:
           )
             path = "/v2/bot/room/{roomId}/member/{userId}"
-              .gsub(/{roomId}/, room_id)
-              .gsub(/{userId}/, user_id)
+              .gsub(/{roomId}/, room_id.to_s)
+              .gsub(/{userId}/, user_id.to_s)
 
             response = @http_client.get(
               path: path,
@@ -1836,7 +1836,7 @@ module Line
             start: nil
           )
             path = "/v2/bot/room/{roomId}/members/ids"
-              .gsub(/{roomId}/, room_id)
+              .gsub(/{roomId}/, room_id.to_s)
             query_params = {
               "start": start
             }.compact
@@ -1933,7 +1933,7 @@ module Line
             user_id:
           )
             path = "/v2/bot/user/{userId}/linkToken"
-              .gsub(/{userId}/, user_id)
+              .gsub(/{userId}/, user_id.to_s)
 
             response = @http_client.post(
               path: path,
@@ -1983,7 +1983,7 @@ module Line
             group_id:
           )
             path = "/v2/bot/group/{groupId}/leave"
-              .gsub(/{groupId}/, group_id)
+              .gsub(/{groupId}/, group_id.to_s)
 
             response = @http_client.post(
               path: path,
@@ -2041,7 +2041,7 @@ module Line
             room_id:
           )
             path = "/v2/bot/room/{roomId}/leave"
-              .gsub(/{roomId}/, room_id)
+              .gsub(/{roomId}/, room_id.to_s)
 
             response = @http_client.post(
               path: path,
@@ -2087,8 +2087,8 @@ module Line
             rich_menu_id:
           )
             path = "/v2/bot/user/{userId}/richmenu/{richMenuId}"
-              .gsub(/{userId}/, user_id)
-              .gsub(/{richMenuId}/, rich_menu_id)
+              .gsub(/{userId}/, user_id.to_s)
+              .gsub(/{richMenuId}/, rich_menu_id.to_s)
 
             response = @http_client.post(
               path: path,
@@ -2651,7 +2651,7 @@ module Line
             rich_menu_id:
           )
             path = "/v2/bot/user/all/richmenu/{richMenuId}"
-              .gsub(/{richMenuId}/, rich_menu_id)
+              .gsub(/{richMenuId}/, rich_menu_id.to_s)
 
             response = @http_client.post(
               path: path,
@@ -2839,7 +2839,7 @@ module Line
             user_id:
           )
             path = "/v2/bot/user/{userId}/richmenu"
-              .gsub(/{userId}/, user_id)
+              .gsub(/{userId}/, user_id.to_s)
 
             response = @http_client.delete(
               path: path,
@@ -2930,7 +2930,7 @@ module Line
             update_rich_menu_alias_request:
           )
             path = "/v2/bot/richmenu/alias/{richMenuAliasId}"
-              .gsub(/{richMenuAliasId}/, rich_menu_alias_id)
+              .gsub(/{richMenuAliasId}/, rich_menu_alias_id.to_s)
 
             response = @http_client.post(
               path: path,
