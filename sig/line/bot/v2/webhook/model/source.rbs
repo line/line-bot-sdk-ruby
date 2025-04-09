@@ -14,10 +14,10 @@ module Line
         # the source of the event.
         # @see https://developers.line.biz/en/reference/messaging-api/#source-user
         class Source
-          attr_accessor type: String?
+          attr_accessor type: String
           
           def initialize: (
-            type: String?
+            type: String
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> Source
