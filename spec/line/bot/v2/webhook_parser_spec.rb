@@ -34,7 +34,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook with no error' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -83,7 +83,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a text MessageEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -118,7 +118,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook with no error' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).to be_empty
       end
     end
@@ -180,7 +180,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a text MessageEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -254,7 +254,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a text MessageEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -345,7 +345,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as image MessageEvents' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         expect(events[0]).to be_a(Line::Bot::V2::Webhook::MessageEvent)
@@ -423,7 +423,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a video MessageEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -484,7 +484,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as an audio MessageEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -540,7 +540,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a file MessageEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -597,7 +597,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a location MessageEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -672,7 +672,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a sticker MessageEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -741,7 +741,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a sticker MessageEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -798,7 +798,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as an UnsendEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -847,7 +847,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a FollowEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -895,7 +895,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a FollowEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -939,7 +939,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a UnfollowEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -982,7 +982,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a JoinEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1025,7 +1025,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a LeaveEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1080,7 +1080,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a MemberJoinedEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1143,7 +1143,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a MemberLeftEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1201,7 +1201,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a PostbackEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1255,7 +1255,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a PostbackEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1306,7 +1306,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a VideoPlayComplete' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1355,7 +1355,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a BeaconEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1406,7 +1406,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a AccountLinkEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1456,7 +1456,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a ModuleEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1500,7 +1500,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a ModuleEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1545,7 +1545,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a ActivatedEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1589,7 +1589,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a DeactivatedEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1627,7 +1627,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a BotSuspensionEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1662,7 +1662,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a BotResumedEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1704,7 +1704,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a PnpDeliveryCompletionEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1751,7 +1751,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a PnpDeliveryCompletionEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1820,7 +1820,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a ThingsEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first
@@ -1884,7 +1884,7 @@ describe Line::Bot::V2::WebhookParser do
       end
 
       it 'parses the webhook as a MembershipEvent' do
-        events = parser.parse(webhook, signature)
+        events = parser.parse(body: webhook, signature: signature)
         expect(events).not_to be_empty
 
         event = events.first

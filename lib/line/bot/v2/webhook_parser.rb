@@ -1,8 +1,8 @@
+require 'base64'
 require 'json'
 require 'openssl'
 
-require 'line/bot/v2/reserved_words'
-require 'line/bot/v2/messaging_api/core'
+require 'line/bot/v2/utils'
 require 'line/bot/v2/webhook/core'
 
 module Line
@@ -39,7 +39,7 @@ module Line
         #     signature = request.env['HTTP_X_LINE_SIGNATURE']
         #
         #     begin
-        #       events = parser.parse(body, signature)
+        #       events = parser.parse(body: body, signature: signature)
         #     rescue Line::Bot::V2::WebhookParser::InvalidSignatureError
         #       halt 400, { 'Content-Type' => 'text/plain' }, 'Bad Request'
         #     end
@@ -53,7 +53,7 @@ module Line
         #     end
         #     "OK"
         #   end
-        def parse(body, signature)
+        def parse(body:, signature:)
           raise InvalidSignatureError.new("Invalid signature: #{signature}") unless verify_signature(body: body, signature: signature)
 
           data = JSON.parse(body.chomp, symbolize_names: true)
@@ -62,7 +62,7 @@ module Line
           data = Line::Bot::V2::Utils.deep_symbolize(data)
 
           data[:events].map do |event|
-            Line::Bot::V2::Webhook::Event.create(**event)
+            Line::Bot::V2::Webhook::Event.create(**event) # steep:ignore
           end
         end
 
@@ -85,7 +85,7 @@ module Line
           l = a.unpack("C#{a.bytesize}")
 
           res = 0
-          b.each_byte { |byte| res |= byte ^ l.shift }
+          b.each_byte { |byte| res |= byte ^ l.shift } # steep:ignore ArgumentTypeMismatch
           res == 0
         end
       end
