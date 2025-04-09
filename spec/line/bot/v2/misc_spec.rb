@@ -1507,7 +1507,7 @@ describe 'misc' do
       expect(status_code).to eq(200)
       expect(body.audience_group.audience_group_id).to eq(audience_group_id)
       expect(body.audience_group.create_route).to eq('AD_MANAGER')
-      expect(body.ad_account.name).to eq('Ad Account Name')
+      expect(body.adaccount.name).to eq('Ad Account Name')
     end
   end
 
