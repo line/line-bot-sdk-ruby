@@ -114,7 +114,7 @@ module Line
             liff_id:
           )
             path = "/liff/v1/apps/{liffId}"
-              .gsub(/{liffId}/, liff_id)
+              .gsub(/{liffId}/, liff_id.to_s)
 
             response = @http_client.delete(
               path: path,
@@ -219,7 +219,7 @@ module Line
             update_liff_app_request:
           )
             path = "/liff/v1/apps/{liffId}"
-              .gsub(/{liffId}/, liff_id)
+              .gsub(/{liffId}/, liff_id.to_s)
 
             response = @http_client.put(
               path: path,

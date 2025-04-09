@@ -58,7 +58,7 @@ module Line
             acquire_chat_control_request: nil
           )
             path = "/v2/bot/chat/{chatId}/control/acquire"
-              .gsub(/{chatId}/, chat_id)
+              .gsub(/{chatId}/, chat_id.to_s)
 
             response = @http_client.post(
               path: path,
@@ -207,7 +207,7 @@ module Line
             chat_id:
           )
             path = "/v2/bot/chat/{chatId}/control/release"
-              .gsub(/{chatId}/, chat_id)
+              .gsub(/{chatId}/, chat_id.to_s)
 
             response = @http_client.post(
               path: path,
