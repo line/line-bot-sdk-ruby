@@ -37,14 +37,14 @@ module Line
             @overview = overview.is_a?(Line::Bot::V2::Insight::GetMessageEventResponseOverview) || overview.nil? ? overview : Line::Bot::V2::Insight::GetMessageEventResponseOverview.create(**overview) # steep:ignore
             @messages = messages&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::GetMessageEventResponseMessage.create(**item)
+                Line::Bot::V2::Insight::GetMessageEventResponseMessage.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end
             end
             @clicks = clicks&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::GetMessageEventResponseClick.create(**item)
+                Line::Bot::V2::Insight::GetMessageEventResponseClick.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

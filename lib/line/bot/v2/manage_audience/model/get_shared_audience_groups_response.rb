@@ -51,7 +51,7 @@ module Line
             
             @audience_groups = audience_groups&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::ManageAudience::AudienceGroup.create(**item)
+                Line::Bot::V2::ManageAudience::AudienceGroup.create(**item) # steep:ignore InsufficientKeywordArguments
               else
                 item
               end

@@ -18,7 +18,7 @@ post '/callback' do
   signature = request.env['HTTP_X_LINE_SIGNATURE']
 
   begin
-    events = parser.parse(body, signature)
+    events = parser.parse(body: body, signature: signature)
   rescue Line::Bot::V2::WebhookParser::InvalidSignatureError
     halt 400, { 'Content-Type' => 'text/plain' }, 'Bad Request'
   end
