@@ -2,6 +2,8 @@ name: Generate OpenAPI based code
 
 on:
   push:
+    branches:
+      - master
   pull_request:
   merge_group:
   workflow_dispatch:
