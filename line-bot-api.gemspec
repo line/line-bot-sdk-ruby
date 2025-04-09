@@ -1,10 +1,10 @@
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'line/bot/v2/version'
+# require 'line/bot/v2/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "line-bot-api"
-  spec.version       = Line::Bot::V2::VERSION
+  spec.version       = "0.0.1"
   spec.authors       = ["LINE Corporation"]
   spec.email         = ["kimoto@linecorp.com", "todaka.yusuke@linecorp.com", "masaki_kurosawa@linecorp.com"]
 
