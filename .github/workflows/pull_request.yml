@@ -39,12 +39,6 @@ jobs:
     - run: bundle exec rbs collection install
     - run: bundle exec rbs -I sig validate
 
-    - name: build and show content
-      run: |
-       bundle exec rake build
-       tar -xvf pkg/line-bot-api-*.gem
-       tar -zxvf data.tar.gz
-
   pinact:
     runs-on: ubuntu-latest
     permissions:
