@@ -990,7 +990,7 @@ describe 'misc' do
       expect(status_code).to eq(response_code)
       expect(body.user_id).to eq(user_id)
       expect(WebMock).to have_requested(:get, path).
-        with(headers: { 'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::V2::VERSION}" })
+        with(headers: { 'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::VERSION}" })
     end
   end
 

@@ -1,4 +1,4 @@
-version = File.read("#{__dir__}/lib/line/bot/v2/version.rb").match(/VERSION *= *['"]([^'"]+)/)[1] or raise
+version = File.read("#{__dir__}/lib/line/bot/version.rb").match(/VERSION *= *['"]([^'"]+)/)[1] or raise
 raise "Invalid version format <#{version}>" unless version.match?(/\A\d+\.\d+\.\d+(?:[+-][\w.-]+)?\z/)
 
 Gem::Specification.new do |spec|

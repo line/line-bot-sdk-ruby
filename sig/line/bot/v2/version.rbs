@@ -1,7 +1,0 @@
-module Line
-  module Bot
-    module V2
-      VERSION: String
-    end
-  end
-end

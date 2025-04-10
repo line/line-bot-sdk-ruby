@@ -16,7 +16,7 @@ module Line
   module Bot
     module API
       # @deprecated
-      # Use {Line::Bot::V2::VERSION} instead.
+      # Use {Line::Bot::VERSION} instead.
       VERSION = "1.29.0"
     end
   end

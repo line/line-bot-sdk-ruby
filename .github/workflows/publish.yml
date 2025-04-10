@@ -33,15 +33,15 @@ jobs:
           VERSION=${VERSION#v}
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-          sed -i "s/VERSION = \".*\"/VERSION = \"$VERSION\"/" lib/line/bot/api/version.rb
+          sed -i "s/VERSION = \".*\"/VERSION = \"$VERSION\"/" lib/line/bot/version.rb
           
-          cat lib/line/bot/api/version.rb
+          cat lib/line/bot/version.rb
           
           # commit
           git config user.name github-actions
           git config user.email github-actions@github.com
 
-          git add lib/line/bot/api/version.rb
+          git add lib/line/bot/version.rb
           git commit -m "Set version to $VERSION"
       - uses: rubygems/release-gem@a25424ba2ba8b387abc8ef40807c2c85b96cbe32 # v1.1.1
 
