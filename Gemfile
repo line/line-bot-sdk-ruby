@@ -1,21 +1,5 @@
 source 'https://rubygems.org'
 
 gemspec
+# Please write dependencies in the gemspec file instead of here.
 
-gem 'multipart-post', '~> 2.4.1', require: false
-gem 'net-http', '~> 0.6.0', require: false
-
-group :development, :test do
-  # ref: http://docs.rubocop.org/en/latest/installation/
-  gem 'rack', '~> 3.0'
-  gem 'rbs', '~> 3.9.2'
-  gem 'rubocop', '~> 1.75.0', require: false
-  gem 'steep', '~> 1.10.0'
-  gem 'webrick', '~> 1.9.1'
-  gem 'yard', '~> 0.9.20'
-end
-
-group :test do
-  gem 'rspec', '~> 3.13.0'
-  gem 'webmock', '~> 3.25.0'
-end
