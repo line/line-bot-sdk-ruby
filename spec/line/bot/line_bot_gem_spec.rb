@@ -4,12 +4,12 @@
 require 'rspec'
 require_relative '../../shared/no_missing_require_spec'
 
+ROOT_DIR = File.expand_path('../../../', __dir__)
+LIB_DIR  = File.join(ROOT_DIR, 'lib')
+
+PATH_LINE_BOT_RB  = File.join(LIB_DIR, 'line/bot.rb')
+
 RSpec.describe "Check require statements for multiple entrypoints" do
-  ROOT_DIR = File.expand_path('../../../', __dir__)
-  LIB_DIR  = File.join(ROOT_DIR, 'lib')
-
-  PATH_LINE_BOT_RB  = File.join(LIB_DIR, 'line/bot.rb')
-
   context "testing line/bot entrypoint" do
     include_examples "library entrypoint loader",
                      "line/bot",
