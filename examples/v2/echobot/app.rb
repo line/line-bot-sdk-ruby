@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'line/bot'
+require 'line-bot-api'
 
 set :environment, :production
 

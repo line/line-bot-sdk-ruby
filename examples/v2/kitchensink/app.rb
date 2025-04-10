@@ -1,6 +1,6 @@
 require 'json'
 require 'sinatra'
-require 'line/bot'
+require 'line-bot-api'
 
 set :environment, :production
 set :app_base_url, ENV['APP_BASE_URL']
