@@ -45,21 +45,9 @@ module Line
                 item
               end
             end
-            @to = to.map do |item|
-              if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::string.create(**item) # steep:ignore InsufficientKeywordArguments
-              else
-                item
-              end
-            end
+            @to = to
             @notification_disabled = notification_disabled
-            @custom_aggregation_units = custom_aggregation_units&.map do |item|
-              if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::string.create(**item) # steep:ignore InsufficientKeywordArguments
-              else
-                item
-              end
-            end
+            @custom_aggregation_units = custom_aggregation_units
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
