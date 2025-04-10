@@ -24,13 +24,7 @@ module Line
             **dynamic_attributes
           )
             
-            @kids = kids.map do |item|
-              if item.is_a?(Hash)
-                Line::Bot::V2::ChannelAccessToken::string.create(**item) # steep:ignore InsufficientKeywordArguments
-              else
-                item
-              end
-            end
+            @kids = kids
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key

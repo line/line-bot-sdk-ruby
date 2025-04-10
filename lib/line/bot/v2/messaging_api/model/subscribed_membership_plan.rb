@@ -51,13 +51,7 @@ module Line
             @membership_id = membership_id
             @title = title
             @description = description
-            @benefits = benefits.map do |item|
-              if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::string.create(**item) # steep:ignore InsufficientKeywordArguments
-              else
-                item
-              end
-            end
+            @benefits = benefits
             @price = price
             @currency = currency
 

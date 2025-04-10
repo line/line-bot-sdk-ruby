@@ -29,13 +29,7 @@ module Line
             **dynamic_attributes
           )
             
-            @user_ids = user_ids.map do |item|
-              if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::string.create(**item) # steep:ignore InsufficientKeywordArguments
-              else
-                item
-              end
-            end
+            @user_ids = user_ids
             @_next = _next
 
             dynamic_attributes.each do |key, value|

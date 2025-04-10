@@ -34,13 +34,7 @@ module Line
             @type = "attached"
             
             @bot_id = bot_id
-            @scopes = scopes.map do |item|
-              if item.is_a?(Hash)
-                Line::Bot::V2::Webhook::string.create(**item) # steep:ignore InsufficientKeywordArguments
-              else
-                item
-              end
-            end
+            @scopes = scopes
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key

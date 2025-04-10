@@ -28,13 +28,7 @@ module Line
           )
             @type = "area"
             
-            @one_of = one_of&.map do |item|
-              if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::AreaDemographic.create(**item) # steep:ignore InsufficientKeywordArguments
-              else
-                item
-              end
-            end
+            @one_of = one_of
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
