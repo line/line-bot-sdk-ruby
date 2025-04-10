@@ -1,4 +1,4 @@
-require 'line/bot'
+require 'line-bot-api'
 
 def client
     @client ||= Line::Bot::Client.new { |config|
