@@ -2,6 +2,7 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'net/http/post/multipart'
+require 'line/bot/v2/version'
 
 module Line
   module Bot
