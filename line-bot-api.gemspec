@@ -1,10 +1,9 @@
-# lib = File.expand_path('lib', __dir__)
-# $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-# require 'line/bot/v2/version'
+version = File.read("#{__dir__}/lib/line/bot/version.rb").match(/VERSION *= *['"]([^'"]+)/)[1] or raise
+raise "Invalid version format <#{version}>" unless version.match?(/\A\d+\.\d+\.\d+(?:[+-][\w.-]+)?\z/)
 
 Gem::Specification.new do |spec|
   spec.name          = "line-bot-api"
-  spec.version       = "1.8.0"
+  spec.version       = version
   spec.authors       = ["LINE Corporation"]
   spec.email         = ["kimoto@linecorp.com", "todaka.yusuke@linecorp.com", "masaki_kurosawa@linecorp.com"]
 
