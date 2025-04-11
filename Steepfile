@@ -2,21 +2,16 @@ D = Steep::Diagnostic
 
 target :lib do
   signature "sig"
+  signature "sig-vendor"
 
-  check "lib/line/bot/v2"
-  # ignore "lib/templates/*.rb"
+  check "lib"
+  ignore "lib/line/bot/v1"
 
-  # library "pathname"              # Standard libraries
-  # library "strong_json"           # Gems
   library "net-http"
 
-  # configure_code_diagnostics(D::Ruby.default)      # `default` diagnostics setting (applies by default)
-  # configure_code_diagnostics(D::Ruby.strict)       # `strict` diagnostics setting
-  # configure_code_diagnostics(D::Ruby.lenient)      # `lenient` diagnostics setting
-  # configure_code_diagnostics(D::Ruby.silent)       # `silent` diagnostics setting
-  # configure_code_diagnostics do |hash|             # You can setup everything yourself
-  #   hash[D::Ruby::NoMethod] = :information
-  # end
+  configure_code_diagnostics(D::Ruby.default)
+  # configure_code_diagnostics(D::Ruby.strict) # TODO: Enable strict checking
+  # configure_code_diagnostics(D::Ruby.all_error) # TODO: Enable all error checking
 end
 
 target :test do
