@@ -34,7 +34,7 @@ jobs:
     - run: gem install bundler
     - run: bundle install
     - run: bundle exec rubocop
-    - run: bundle exec rspec
+    - run: rake test
     - run: bundle exec yard stats ./lib/line/bot/v2 --fail-on-warning
     - run: bundle exec rbs collection install
     - run: bundle exec rbs -I sig validate
