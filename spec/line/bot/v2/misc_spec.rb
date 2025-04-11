@@ -1479,7 +1479,7 @@ describe 'misc' do
         liff_id: 'liffId123',
         view: Line::Bot::V2::Liff::LiffView.new(
           type: 'full',
-          url: 'https://example.com',
+          url: 'https://example.com'
         ),
         description: 'Test Liff App',
         permanent_link_pattern: 'openid',
@@ -1500,7 +1500,7 @@ describe 'misc' do
           liff_id: 'liffId123',
           view: Line::Bot::V2::Liff::LiffView.new(
             type: 'unknown', # invalid value
-            url: 'https://example.com',
+            url: 'https://example.com'
           ),
           description: 'Test Liff App',
           permanent_link_pattern: 'unknown', # invalid value
