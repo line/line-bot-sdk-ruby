@@ -1,3 +1,4 @@
+# https://github.com/socketry/multipart-post/blob/cce3634876b74e08a6c51d02db00070a82dc8cc4/lib/net/http/post/multipart.rb#L14-L28
 module Net
   class HTTP
     class Post
@@ -11,6 +12,7 @@ module Net
   end
 end
 
+# https://github.com/socketry/multipart-post/blob/cce3634876b74e08a6c51d02db00070a82dc8cc4/lib/multipart/post/upload_io.rb#L26
 class UploadIO
   def initialize: (IO, String, String) -> void
 end
