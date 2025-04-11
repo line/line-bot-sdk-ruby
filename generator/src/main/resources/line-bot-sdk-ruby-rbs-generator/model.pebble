@@ -60,6 +60,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> {{ model.model.classname }}
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
           {%- if model.model.vendorExtensions.get("x-children") != null %}
 
           private
