@@ -21,6 +21,10 @@ module Line
 
           def self.create: (args: Hash[Symbol, untyped]) -> DemographicFilter
 
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
+
           private
 
           def self.detect_class: (type: String) -> Class

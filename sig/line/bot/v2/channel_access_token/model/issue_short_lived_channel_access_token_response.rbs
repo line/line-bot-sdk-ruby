@@ -25,6 +25,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> IssueShortLivedChannelAccessTokenResponse
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end

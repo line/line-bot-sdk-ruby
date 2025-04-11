@@ -31,6 +31,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> PnpDeliveryCompletionEvent
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end
