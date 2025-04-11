@@ -27,6 +27,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexMessage
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end

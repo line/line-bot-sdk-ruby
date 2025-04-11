@@ -1517,6 +1517,182 @@ describe 'misc' do
     end
   end
 
+  describe '#==' do
+    context 'with simple objects' do
+      context 'with other class (but same origin)' do
+        it 'returns false' do
+          obj1 = Line::Bot::V2::MessagingApi::TextMessage.new(text: 'Hello')
+          obj2 = Line::Bot::V2::MessagingApi::TextMessageV2.new(text: 'Hello')
+          expect(obj1 == obj2).to be false
+        end
+      end
+
+      context 'with same class' do
+        context 'with same attributes' do
+          it 'returns true' do
+            obj1 = Line::Bot::V2::MessagingApi::TextMessage.new(text: 'Hello')
+            obj2 = Line::Bot::V2::MessagingApi::TextMessage.new(text: 'Hello')
+            expect(obj1 == obj2).to be true
+          end
+        end
+
+        context 'with different attributes' do
+          it 'returns false' do
+            obj1 = Line::Bot::V2::MessagingApi::TextMessage.new(text: 'Hello')
+            obj2 = Line::Bot::V2::MessagingApi::TextMessage.new(text: 'World')
+            expect(obj1 == obj2).to be false
+          end
+        end
+      end
+    end
+
+    context 'with nested objects' do
+      context 'with same attributes' do
+        it 'returns true' do
+          obj1 = Line::Bot::V2::MessagingApi::FlexMessage.new(
+            alt_text: 'Test Alt Text',
+            contents: Line::Bot::V2::MessagingApi::FlexBubble.new(
+              body: Line::Bot::V2::MessagingApi::FlexBox.new(
+                layout: 'vertical',
+                contents: [
+                  Line::Bot::V2::MessagingApi::FlexText.new(text: 'Test Text')
+                ]
+              )
+            )
+          )
+          obj2 = Line::Bot::V2::MessagingApi::FlexMessage.new(
+            alt_text: 'Test Alt Text',
+            contents: Line::Bot::V2::MessagingApi::FlexBubble.new(
+              body: Line::Bot::V2::MessagingApi::FlexBox.new(
+                layout: 'vertical',
+                contents: [
+                  Line::Bot::V2::MessagingApi::FlexText.new(text: 'Test Text')
+                ]
+              )
+            )
+          )
+          expect(obj1 == obj2).to be true
+        end
+      end
+
+      context 'with different attributes' do
+        it 'returns false' do
+          obj1 = Line::Bot::V2::MessagingApi::FlexMessage.new(
+            alt_text: 'Test Alt Text',
+            contents: Line::Bot::V2::MessagingApi::FlexBubble.new(
+              body: Line::Bot::V2::MessagingApi::FlexBox.new(
+                layout: 'vertical',
+                contents: [
+                  Line::Bot::V2::MessagingApi::FlexText.new(text: 'Test Text')
+                ]
+              )
+            )
+          )
+          obj2 = Line::Bot::V2::MessagingApi::FlexMessage.new(
+            alt_text: 'Different Alt Text',
+            contents: Line::Bot::V2::MessagingApi::FlexBubble.new(
+              body: Line::Bot::V2::MessagingApi::FlexBox.new(
+                layout: 'horizontal',
+                contents: [
+                  Line::Bot::V2::MessagingApi::FlexText.new(text: 'Different Text') # diff
+                ]
+              )
+            )
+          )
+          expect(obj1 == obj2).to be false
+        end
+      end
+    end
+  end
+
+  describe '#hash' do
+    context 'with simple objects' do
+      context 'with other class (but same origin)' do
+        it 'returns different hash values' do
+          obj1 = Line::Bot::V2::MessagingApi::TextMessage.new(text: 'Hello')
+          obj2 = Line::Bot::V2::MessagingApi::TextMessageV2.new(text: 'Hello')
+          expect(obj1.hash).not_to eq(obj2.hash)
+        end
+      end
+
+      context 'with same class' do
+        context 'with same attributes' do
+          it 'returns same hash values' do
+            obj1 = Line::Bot::V2::MessagingApi::TextMessage.new(text: 'Hello')
+            obj2 = Line::Bot::V2::MessagingApi::TextMessage.new(text: 'Hello')
+            expect(obj1.hash).to eq(obj2.hash)
+          end
+        end
+
+        context 'with different attributes' do
+          it 'returns different hash values' do
+            obj1 = Line::Bot::V2::MessagingApi::TextMessage.new(text: 'Hello')
+            obj2 = Line::Bot::V2::MessagingApi::TextMessage.new(text: 'World')
+            expect(obj1.hash).not_to eq(obj2.hash)
+          end
+        end
+      end
+    end
+
+    context 'with nested objects' do
+      context 'with same attributes' do
+        it 'returns same hash values' do
+          obj1 = Line::Bot::V2::MessagingApi::FlexMessage.new(
+            alt_text: 'Test Alt Text',
+            contents: Line::Bot::V2::MessagingApi::FlexBubble.new(
+              body: Line::Bot::V2::MessagingApi::FlexBox.new(
+                layout: 'vertical',
+                contents: [
+                  Line::Bot::V2::MessagingApi::FlexText.new(text: 'Test Text')
+                ]
+              )
+            )
+          )
+          obj2 = Line::Bot::V2::MessagingApi::FlexMessage.new(
+            alt_text: 'Test Alt Text',
+            contents: Line::Bot::V2::MessagingApi::FlexBubble.new(
+              body: Line::Bot::V2::MessagingApi::FlexBox.new(
+                layout: 'vertical',
+                contents: [
+                  Line::Bot::V2::MessagingApi::FlexText.new(text: 'Test Text')
+                ]
+              )
+            )
+          )
+          expect(obj1.hash).to eq(obj2.hash)
+        end
+      end
+
+      context 'with different attributes' do
+        it 'returns different hash values' do
+          obj1 = Line::Bot::V2::MessagingApi::FlexMessage.new(
+            alt_text: 'Test Alt Text',
+            contents: Line::Bot::V2::MessagingApi::FlexBubble.new(
+              body: Line::Bot::V2::MessagingApi::FlexBox.new(
+                layout: 'vertical',
+                contents: [
+                  Line::Bot::V2::MessagingApi::FlexText.new(text: 'Test Text')
+                ]
+              )
+            )
+          )
+          obj2 = Line::Bot::V2::MessagingApi::FlexMessage.new(
+            alt_text: 'Different Alt Text',
+            contents: Line::Bot::V2::MessagingApi::FlexBubble.new(
+              body: Line::Bot::V2::MessagingApi::FlexBox.new(
+                layout: 'horizontal',
+                contents: [
+                  Line::Bot::V2::MessagingApi::FlexText.new(text: 'Different Text') # diff
+                ]
+              )
+            )
+          )
+          expect(obj1.hash).not_to eq(obj2.hash)
+        end
+      end
+    end
+  end
+
   describe 'GET /v2/bot/audienceGroup/{audienceGroupId}' do
     let(:client) { Line::Bot::V2::ManageAudience::ApiClient.new(channel_access_token: 'test-channel-access-token') }
     let(:audience_group_id) { 2345678909876 }

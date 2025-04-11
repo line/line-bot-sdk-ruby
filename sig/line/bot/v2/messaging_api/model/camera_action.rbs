@@ -20,6 +20,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> CameraAction
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end

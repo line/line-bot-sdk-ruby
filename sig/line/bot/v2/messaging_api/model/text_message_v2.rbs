@@ -29,6 +29,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> TextMessageV2
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end

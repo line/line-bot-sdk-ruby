@@ -35,6 +35,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> CreateAudienceGroupResponse
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end
