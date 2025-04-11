@@ -122,7 +122,9 @@ module Line
         end
 
         def build_headers(headers: nil)
-          headers.nil? ? @http_headers : @http_headers.merge(headers)
+          return @http_headers if headers.nil?
+
+          @http_headers.merge(normalize_headers(headers: headers))
         end
 
         def perform_request(request:)
@@ -148,6 +150,14 @@ module Line
           else
             'application/octet-stream'
           end
+        end
+
+        def normalize_headers(headers:)
+          return {} if headers.nil?
+
+          headers
+            .transform_keys(&:to_s)
+            .transform_values(&:to_s)
         end
       end
     end

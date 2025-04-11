@@ -4,7 +4,7 @@ module Line
       module Utils
         # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.deep_underscore(hash)
-          hash.each_with_object({}) do |(key, value), result|
+          hash.each_with_object({}) do |(key, value), result| # steep:ignore UnannotatedEmptyCollection
             # Convert key to string if it's a symbol, then apply the regex
             new_key = key.to_s.gsub(/([A-Z\d]+)([A-Z][a-z])|([a-z\d])([A-Z])/, '\1\3_\2\4').downcase.to_sym
             new_value = if value.is_a?(Hash)
@@ -22,7 +22,7 @@ module Line
         def self.deep_symbolize(object)
           case object
           when Hash
-            object.each_with_object({}) do |(key, value), new_hash|
+            object.each_with_object({}) do |(key, value), new_hash| # steep:ignore UnannotatedEmptyCollection
               sym_key = key.is_a?(String) ? key.to_sym : key
               new_hash[sym_key] = deep_symbolize(value)
             end
@@ -42,7 +42,7 @@ module Line
           elsif object.instance_variables.empty?
             object
           else
-            object.instance_variables.each_with_object({}) do |var, hash|
+            object.instance_variables.each_with_object({}) do |var, hash| # steep:ignore UnannotatedEmptyCollection
               value = object.instance_variable_get(var)
               key = var.to_s.delete('@').to_sym
               hash[key] = deep_to_hash(value)
@@ -56,7 +56,7 @@ module Line
           when Array
             object.map { |item| deep_camelize(item) }
           when Hash
-            object.each_with_object({}) do |(k, v), new_object|
+            object.each_with_object({}) do |(k, v), new_object| # steep:ignore UnannotatedEmptyCollection
               camel_key = camelize(k).to_sym
               new_value = v.is_a?(Array) || v.is_a?(Hash) ? deep_camelize(v) : v
               new_object[camel_key] = new_value
@@ -70,7 +70,7 @@ module Line
         def self.deep_compact(object)
           case object
           when Hash
-            object.each_with_object({}) do |(k, v), new_hash|
+            object.each_with_object({}) do |(k, v), new_hash| # steep:ignore UnannotatedEmptyCollection
               new_value = deep_compact(v)
               new_hash[k] = new_value unless new_value.nil? || (new_value.respond_to?(:empty?) && new_value.empty?)
             end
@@ -85,7 +85,7 @@ module Line
         def self.deep_convert_reserved_words(object)
           case object
           when Hash
-            object.each_with_object({}) do |(key, value), new_hash|
+            object.each_with_object({}) do |(key, value), new_hash| # steep:ignore UnannotatedEmptyCollection
               new_key = if Line::Bot::V2::RESERVED_WORDS.include?(key.to_sym)
                           "_#{key}"
                         else
