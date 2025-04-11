@@ -1449,6 +1449,74 @@ describe 'misc' do
     end
   end
 
+  describe 'Line::Bot::V2::Insight::AgeTile#initialize' do
+    it 'creates AgeTile correctly' do
+      age_tile = Line::Bot::V2::Insight::AgeTile.new(
+        age: 'from15to19',
+        percentage: 50.0
+      )
+
+      expect(age_tile.age).to eq('from15to19')
+      expect(age_tile.percentage).to eq(50.0)
+    end
+
+    context 'with invalid enum value' do
+      it "doesn't raise any error" do
+        age_tile = Line::Bot::V2::Insight::AgeTile.new(
+          age: 'unknown', # invalid value
+          percentage: 50.0
+        )
+
+        expect(age_tile.age).to eq('unknown')
+        expect(age_tile.percentage).to eq(50.0)
+      end
+    end
+  end
+
+  describe 'Line::Bot::V2::Liff::LiffApp#initialize' do
+    it 'creates LiffApp correctly' do
+      liff_app = Line::Bot::V2::Liff::LiffApp.new(
+        liff_id: 'liffId123',
+        view: Line::Bot::V2::Liff::LiffView.new(
+          type: 'full',
+          url: 'https://example.com'
+        ),
+        description: 'Test Liff App',
+        permanent_link_pattern: 'openid',
+        bot_prompt: 'normal'
+      )
+
+      expect(liff_app.liff_id).to eq('liffId123')
+      expect(liff_app.view.type).to eq('full')
+      expect(liff_app.view.url).to eq('https://example.com')
+      expect(liff_app.description).to eq('Test Liff App')
+      expect(liff_app.permanent_link_pattern).to eq('openid')
+      expect(liff_app.bot_prompt).to eq('normal')
+    end
+
+    context 'with invalid enum values' do
+      it "doesn't raise any error" do
+        liff_app = Line::Bot::V2::Liff::LiffApp.new(
+          liff_id: 'liffId123',
+          view: Line::Bot::V2::Liff::LiffView.new(
+            type: 'unknown', # invalid value
+            url: 'https://example.com'
+          ),
+          description: 'Test Liff App',
+          permanent_link_pattern: 'unknown', # invalid value
+          bot_prompt: 'unknown' # invalid value
+        )
+
+        expect(liff_app.liff_id).to eq('liffId123')
+        expect(liff_app.view.type).to eq('unknown')
+        expect(liff_app.view.url).to eq('https://example.com')
+        expect(liff_app.description).to eq('Test Liff App')
+        expect(liff_app.permanent_link_pattern).to eq('unknown')
+        expect(liff_app.bot_prompt).to eq('unknown')
+      end
+    end
+  end
+
   describe 'GET /v2/bot/audienceGroup/{audienceGroupId}' do
     let(:client) { Line::Bot::V2::ManageAudience::ApiClient.new(channel_access_token: 'test-channel-access-token') }
     let(:audience_group_id) { 2345678909876 }
