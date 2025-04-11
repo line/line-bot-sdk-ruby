@@ -1,7 +1,7 @@
 D = Steep::Diagnostic
 
 target :lib do
-  signature "sig/line/bot/v2"
+  signature "sig"
 
   check "lib/line/bot/v2"
   # ignore "lib/templates/*.rb"
