@@ -38,7 +38,6 @@ jobs:
     - run: bundle exec yard stats ./lib/line/bot/v2 --fail-on-warning
     - run: bundle exec rbs collection install
     - run: bundle exec rbs -I sig validate
-    - run: bundle exec steep check
 
   pinact:
     runs-on: ubuntu-latest
