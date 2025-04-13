@@ -12,6 +12,7 @@ module Line
     module V2
       module MessagingApi
         class ApiBlobClient
+          @http_client: HttpClient
           def initialize: (
             base_url: String?,
             channel_access_token: String,
