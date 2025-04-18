@@ -22,9 +22,10 @@ module Line
           def initialize: (
             display_name: String,
             user_id: String,
-            picture_url: String?,
-            status_message: String?,
-            language: String?
+            ?picture_url: String?,
+            ?status_message: String?,
+            ?language: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> UserProfileResponse

@@ -21,11 +21,12 @@ module Line
           attr_accessor delivery_context: DeliveryContext
           
           def initialize: (
-            source: Source?,
+            ?source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
-            delivery_context: DeliveryContext
+            delivery_context: DeliveryContext,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> BotSuspendedEvent

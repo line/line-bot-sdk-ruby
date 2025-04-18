@@ -18,7 +18,8 @@ module Line
           
           def initialize: (
             chat_id: String,
-            loading_seconds: Integer?
+            ?loading_seconds: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ShowLoadingAnimationRequest

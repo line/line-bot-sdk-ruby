@@ -20,7 +20,8 @@ module Line
           def initialize: (
             messages: Array[Message],
             to: String,
-            notification_disabled: bool?
+            ?notification_disabled: bool?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> PnpMessagesRequest

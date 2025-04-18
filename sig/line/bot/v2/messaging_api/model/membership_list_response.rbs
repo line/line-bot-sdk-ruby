@@ -16,7 +16,8 @@ module Line
           attr_accessor memberships: Array[Membership]
           
           def initialize: (
-            memberships: Array[Membership]
+            memberships: Array[Membership],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> MembershipListResponse

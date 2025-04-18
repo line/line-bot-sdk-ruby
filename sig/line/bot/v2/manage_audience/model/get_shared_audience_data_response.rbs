@@ -19,9 +19,10 @@ module Line
           attr_accessor owner: DetailedOwner?
           
           def initialize: (
-            audience_group: AudienceGroup?,
-            jobs: Array[AudienceGroupJob]?,
-            owner: DetailedOwner?
+            ?audience_group: AudienceGroup?,
+            ?jobs: Array[AudienceGroupJob]?,
+            ?owner: DetailedOwner?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetSharedAudienceDataResponse

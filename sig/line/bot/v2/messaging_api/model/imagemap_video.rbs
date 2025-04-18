@@ -18,10 +18,11 @@ module Line
           attr_accessor external_link: ImagemapExternalLink?
           
           def initialize: (
-            original_content_url: String?,
-            preview_image_url: String?,
-            area: ImagemapArea?,
-            external_link: ImagemapExternalLink?
+            ?original_content_url: String?,
+            ?preview_image_url: String?,
+            ?area: ImagemapArea?,
+            ?external_link: ImagemapExternalLink?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ImagemapVideo

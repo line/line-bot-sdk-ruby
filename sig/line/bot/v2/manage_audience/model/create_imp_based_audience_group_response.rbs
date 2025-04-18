@@ -21,11 +21,12 @@ module Line
           attr_accessor request_id: String?
           
           def initialize: (
-            audience_group_id: Integer?,
-            type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
-            description: String?,
-            created: Integer?,
-            request_id: String?
+            ?audience_group_id: Integer?,
+            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
+            ?description: String?,
+            ?created: Integer?,
+            ?request_id: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> CreateImpBasedAudienceGroupResponse

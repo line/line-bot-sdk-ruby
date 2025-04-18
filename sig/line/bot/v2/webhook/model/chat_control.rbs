@@ -15,7 +15,8 @@ module Line
           attr_accessor expire_at: Integer
           
           def initialize: (
-            expire_at: Integer
+            expire_at: Integer,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ChatControl

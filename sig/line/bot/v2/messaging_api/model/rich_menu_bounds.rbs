@@ -20,10 +20,11 @@ module Line
           attr_accessor height: Integer?
           
           def initialize: (
-            x: Integer?,
-            y: Integer?,
-            width: Integer?,
-            height: Integer?
+            ?x: Integer?,
+            ?y: Integer?,
+            ?width: Integer?,
+            ?height: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBounds

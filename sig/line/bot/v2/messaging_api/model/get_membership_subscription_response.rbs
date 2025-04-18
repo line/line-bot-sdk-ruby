@@ -17,7 +17,8 @@ module Line
           attr_accessor subscriptions: Array[Subscription]
           
           def initialize: (
-            subscriptions: Array[Subscription]
+            subscriptions: Array[Subscription],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetMembershipSubscriptionResponse

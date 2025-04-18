@@ -17,8 +17,9 @@ module Line
           attr_accessor color: String?
           
           def initialize: (
-            margin: String?,
-            color: String?
+            ?margin: String?,
+            ?color: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexSeparator

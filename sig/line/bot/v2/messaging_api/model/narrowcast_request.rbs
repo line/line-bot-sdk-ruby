@@ -21,10 +21,11 @@ module Line
           
           def initialize: (
             messages: Array[Message],
-            recipient: Recipient?,
-            filter: Filter?,
-            limit: Limit?,
-            notification_disabled: bool?
+            ?recipient: Recipient?,
+            ?filter: Filter?,
+            ?limit: Limit?,
+            ?notification_disabled: bool?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> NarrowcastRequest

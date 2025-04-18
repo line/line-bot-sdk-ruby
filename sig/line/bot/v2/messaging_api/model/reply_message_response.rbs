@@ -16,7 +16,8 @@ module Line
           attr_accessor sent_messages: Array[SentMessage]
           
           def initialize: (
-            sent_messages: Array[SentMessage]
+            sent_messages: Array[SentMessage],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ReplyMessageResponse

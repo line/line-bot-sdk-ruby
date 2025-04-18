@@ -23,14 +23,15 @@ module Line
           attr_accessor actions: Array[Action]
           
           def initialize: (
-            thumbnail_image_url: String?,
-            image_aspect_ratio: String?,
-            image_size: String?,
-            image_background_color: String?,
-            title: String?,
+            ?thumbnail_image_url: String?,
+            ?image_aspect_ratio: String?,
+            ?image_size: String?,
+            ?image_background_color: String?,
+            ?title: String?,
             text: String,
-            default_action: Action?,
-            actions: Array[Action]
+            ?default_action: Action?,
+            actions: Array[Action],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ButtonsTemplate

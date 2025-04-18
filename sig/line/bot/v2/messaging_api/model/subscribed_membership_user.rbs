@@ -22,7 +22,8 @@ module Line
             membership_no: Integer,
             joined_time: Integer,
             next_billing_date: String,
-            total_subscription_months: Integer
+            total_subscription_months: Integer,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> SubscribedMembershipUser

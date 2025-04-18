@@ -21,10 +21,11 @@ module Line
           
           def initialize: (
             id: String,
-            title: String?,
-            address: String?,
+            ?title: String?,
+            ?address: String?,
             latitude: Float,
-            longitude: Float
+            longitude: Float,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> LocationMessageContent

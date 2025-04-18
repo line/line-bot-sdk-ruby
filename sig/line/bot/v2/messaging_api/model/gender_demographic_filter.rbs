@@ -16,7 +16,8 @@ module Line
           attr_accessor one_of: Array['male'|'female']?
           
           def initialize: (
-            one_of: Array['male'|'female']?
+            ?one_of: Array['male'|'female']?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GenderDemographicFilter

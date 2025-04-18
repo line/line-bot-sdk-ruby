@@ -19,8 +19,9 @@ module Line
           
           def initialize: (
             columns: Array[CarouselColumn],
-            image_aspect_ratio: String?,
-            image_size: String?
+            ?image_aspect_ratio: String?,
+            ?image_size: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> CarouselTemplate

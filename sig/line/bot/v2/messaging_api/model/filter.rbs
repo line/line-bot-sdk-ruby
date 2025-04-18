@@ -16,7 +16,8 @@ module Line
           attr_accessor demographic: DemographicFilter?
           
           def initialize: (
-            demographic: DemographicFilter?
+            ?demographic: DemographicFilter?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> Filter

@@ -19,9 +19,10 @@ module Line
           attr_accessor adaccount: Adaccount?
           
           def initialize: (
-            audience_group: AudienceGroup?,
-            jobs: Array[AudienceGroupJob]?,
-            adaccount: Adaccount?
+            ?audience_group: AudienceGroup?,
+            ?jobs: Array[AudienceGroupJob]?,
+            ?adaccount: Adaccount?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetAudienceDataResponse

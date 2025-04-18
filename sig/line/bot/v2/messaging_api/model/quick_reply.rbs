@@ -17,7 +17,8 @@ module Line
           attr_accessor items: Array[QuickReplyItem]?
           
           def initialize: (
-            items: Array[QuickReplyItem]?
+            ?items: Array[QuickReplyItem]?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> QuickReply

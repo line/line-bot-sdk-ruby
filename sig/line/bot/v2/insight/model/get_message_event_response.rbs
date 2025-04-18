@@ -19,9 +19,10 @@ module Line
           attr_accessor clicks: Array[GetMessageEventResponseClick]?
           
           def initialize: (
-            overview: GetMessageEventResponseOverview?,
-            messages: Array[GetMessageEventResponseMessage]?,
-            clicks: Array[GetMessageEventResponseClick]?
+            ?overview: GetMessageEventResponseOverview?,
+            ?messages: Array[GetMessageEventResponseMessage]?,
+            ?clicks: Array[GetMessageEventResponseClick]?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetMessageEventResponse

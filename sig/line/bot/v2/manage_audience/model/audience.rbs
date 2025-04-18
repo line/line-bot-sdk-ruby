@@ -16,7 +16,8 @@ module Line
           attr_accessor id: String?
           
           def initialize: (
-            id: String?
+            ?id: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> Audience

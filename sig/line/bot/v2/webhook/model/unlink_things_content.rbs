@@ -16,7 +16,8 @@ module Line
           attr_accessor device_id: String
           
           def initialize: (
-            device_id: String
+            device_id: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> UnlinkThingsContent

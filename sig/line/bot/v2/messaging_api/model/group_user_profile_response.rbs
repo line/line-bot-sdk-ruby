@@ -20,7 +20,8 @@ module Line
           def initialize: (
             display_name: String,
             user_id: String,
-            picture_url: String?
+            ?picture_url: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GroupUserProfileResponse

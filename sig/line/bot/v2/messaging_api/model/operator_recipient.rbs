@@ -18,9 +18,10 @@ module Line
           attr_accessor _not: Recipient?
           
           def initialize: (
-            _and: Array[Recipient]?,
-            _or: Array[Recipient]?,
-            _not: Recipient?
+            ?_and: Array[Recipient]?,
+            ?_or: Array[Recipient]?,
+            ?_not: Recipient?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> OperatorRecipient

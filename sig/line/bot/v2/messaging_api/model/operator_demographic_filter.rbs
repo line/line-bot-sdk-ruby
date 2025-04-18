@@ -18,9 +18,10 @@ module Line
           attr_accessor _not: DemographicFilter?
           
           def initialize: (
-            _and: Array[DemographicFilter]?,
-            _or: Array[DemographicFilter]?,
-            _not: DemographicFilter?
+            ?_and: Array[DemographicFilter]?,
+            ?_or: Array[DemographicFilter]?,
+            ?_not: DemographicFilter?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> OperatorDemographicFilter

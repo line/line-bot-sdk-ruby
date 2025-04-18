@@ -21,8 +21,9 @@ module Line
           def initialize: (
             messages: Array[Message],
             to: Array[String],
-            notification_disabled: bool?,
-            custom_aggregation_units: Array[String]?
+            ?notification_disabled: bool?,
+            ?custom_aggregation_units: Array[String]?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> MulticastRequest

@@ -24,13 +24,14 @@ module Line
           
           def initialize: (
             phase: 'waiting'|'sending'|'succeeded'|'failed',
-            success_count: Integer?,
-            failure_count: Integer?,
-            target_count: Integer?,
-            failed_description: String?,
-            error_code: Integer?,
+            ?success_count: Integer?,
+            ?failure_count: Integer?,
+            ?target_count: Integer?,
+            ?failed_description: String?,
+            ?error_code: Integer?,
             accepted_time: String,
-            completed_time: String?
+            ?completed_time: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> NarrowcastProgressResponse

@@ -19,8 +19,9 @@ module Line
           
           def initialize: (
             type: 'line'|'external',
-            original_content_url: String?,
-            preview_image_url: String?
+            ?original_content_url: String?,
+            ?preview_image_url: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ContentProvider

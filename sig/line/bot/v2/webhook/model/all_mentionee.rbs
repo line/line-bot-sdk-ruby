@@ -19,7 +19,8 @@ module Line
           
           def initialize: (
             index: Integer,
-            length: Integer
+            length: Integer,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> AllMentionee

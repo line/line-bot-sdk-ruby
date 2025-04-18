@@ -15,7 +15,8 @@ module Line
           attr_accessor is_unblocked: bool
           
           def initialize: (
-            is_unblocked: bool
+            is_unblocked: bool,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FollowDetail

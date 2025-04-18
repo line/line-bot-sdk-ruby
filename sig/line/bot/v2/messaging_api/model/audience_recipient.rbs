@@ -16,7 +16,8 @@ module Line
           attr_accessor audience_group_id: Integer?
           
           def initialize: (
-            audience_group_id: Integer?
+            ?audience_group_id: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> AudienceRecipient

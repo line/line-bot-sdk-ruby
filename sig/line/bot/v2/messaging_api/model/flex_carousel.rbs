@@ -16,7 +16,8 @@ module Line
           attr_accessor contents: Array[FlexBubble]
           
           def initialize: (
-            contents: Array[FlexBubble]
+            contents: Array[FlexBubble],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexCarousel
