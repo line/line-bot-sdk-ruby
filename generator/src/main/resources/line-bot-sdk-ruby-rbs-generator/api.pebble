@@ -10,11 +10,15 @@ module Line
         class Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client
           @http_client: HttpClient
           def initialize: (
-            base_url: String?{% if packageName == 'channel_access_token' %}{% elseif packageName == 'module_attach' %},
+            ?base_url: String?
+            {%- if packageName == 'channel_access_token' -%}
+            {%- elseif packageName == 'module_attach' %},
             channel_id: String,
-            channel_secret: String{% else %},
-            channel_access_token: String{% endif %},
-            http_options: Hash[String|Symbol, untyped]
+            channel_secret: String
+            {%- else %},
+            channel_access_token: String
+            {%- endif %},
+            ?http_options: Hash[String|Symbol, untyped]
           ) -> void
           {%- for op in operations.operation %}
 
