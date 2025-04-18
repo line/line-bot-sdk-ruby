@@ -21,6 +21,7 @@ module Line
         # @see {{ model.model.externalDocumentation.url }}
         {% endif -%}
         class {{ model.model.classname }}{% if model.model.parent != null %} < {{ model.model.parent }}{% endif %}
+          {%- if not model.model.isEnum -%}
           {%- for variable in model.model.vars %}
           # @!attribute [{% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name %}rw{% else %}r{% endif %}] {{ variable.name }}
           {% if variable.openApiType == 'array' -%}
@@ -135,7 +136,10 @@ module Line
               {{ child.typeName }}: Line::Bot::V2::{{ packageName | camelize }}::{{ child.className }},
               {%- endfor %}
             }[type.to_sym]
-          end{% endif %}
+          end
+          {%- endif %}
+          {%- else %}{# if not model.model.isEnum #}
+          {% endif -%}{# if not model.model.isEnum #}
         end
       end
     end
