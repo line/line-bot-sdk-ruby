@@ -39,7 +39,7 @@ module Line
           def initialize: (
             {% for variable in model.model.vars -%}
             {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name -%}
-            {{ (not variable.required or variable.defaultValue != null) ? '?' : '' }} {# optioanl parameter => Add '?' #}
+            {{ (not variable.required or variable.defaultValue != null) ? '?' : '' }} {#- optioanl parameter => Add '?' #}
             {%- if variable.openApiType == 'array' -%}
             {% if variable.items.isModel -%}
             {{ variable.name }}: {{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %}?{% endif -%}
