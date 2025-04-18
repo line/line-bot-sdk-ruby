@@ -22,6 +22,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> RichMenuArea
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end

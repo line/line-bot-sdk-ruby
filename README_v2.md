@@ -47,7 +47,7 @@ gem install line-bot-api
 ```ruby
 # app.rb
 require 'sinatra'
-require 'line/bot'
+require 'line-bot-api'
 
 set :environment, :production
 
@@ -138,7 +138,7 @@ Error details are stored in body.
 
 ```ruby
 require 'json'
-require 'line/bot'
+require 'line-bot-api'
 
 def client
   @client ||= Line::Bot::V2::MessagingApi::ApiClient.new(

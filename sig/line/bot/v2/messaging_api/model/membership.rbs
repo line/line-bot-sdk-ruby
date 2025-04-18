@@ -37,6 +37,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> Membership
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end

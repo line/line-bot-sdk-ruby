@@ -23,6 +23,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetJoinedMembershipUsersResponse
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end

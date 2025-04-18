@@ -33,6 +33,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> MessageEvent
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end

@@ -2,21 +2,27 @@ version = File.read("#{__dir__}/lib/line/bot/version.rb").match(/VERSION *= *['"
 raise "Invalid version format <#{version}>" unless version.match?(/\A\d+\.\d+\.\d+(?:[+-][\w.-]+)?\z/)
 
 Gem::Specification.new do |spec|
-  spec.name          = "line-bot-api"
-  spec.version       = version
-  spec.authors       = ["LINE Corporation"]
-  spec.email         = ["kimoto@linecorp.com", "todaka.yusuke@linecorp.com", "masaki_kurosawa@linecorp.com"]
+  spec.name = "line-bot-api"
+  spec.version = version
+  spec.authors = ["LINE Corporation"]
 
-  spec.description   = "Line::Bot::API - SDK of the LINE Messaging API for Ruby"
-  spec.summary       = "SDK of the LINE Messaging API"
-  spec.homepage      = "https://github.com/line/line-bot-sdk-ruby"
-  spec.license       = "Apache-2.0"
+  spec.summary = "SDK of the LINE Messaging API for Ruby"
+  spec.description = "SDK of the LINE Messaging API for Ruby"
+  spec.homepage = "https://github.com/line/line-bot-sdk-ruby"
+  spec.license = "Apache-2.0"
 
-  spec.files         = %w(CONTRIBUTING.md LICENSE README.md line-bot-api.gemspec) + Dir['lib/**/*.rb'] + Dir['sig/**/*.rbs']
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.files = %w(CONTRIBUTING.md LICENSE README.md line-bot-api.gemspec) + Dir['lib/**/*.rb'] + Dir['sig/**/*.rbs']
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version     = '>= 3.2.0'
+  spec.metadata = {
+    "bug_tracker_uri" => "#{spec.homepage}/issues",
+    "changelog_uri" => "#{spec.homepage}/releases",
+    "documentation_uri" => "https://rubydoc.info/gems/#{spec.name}/#{spec.version}",
+    "homepage_uri" => spec.homepage,
+    "source_code_uri" => spec.homepage,
+  }
+
+  spec.required_ruby_version = '>= 3.2.0'
 
   spec.add_dependency "multipart-post", "~> 2.4.1"
 

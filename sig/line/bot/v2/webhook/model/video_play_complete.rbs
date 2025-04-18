@@ -19,6 +19,10 @@ module Line
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> VideoPlayComplete
+
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
         end
       end
     end

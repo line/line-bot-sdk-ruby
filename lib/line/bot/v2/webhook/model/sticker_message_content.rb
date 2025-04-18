@@ -68,13 +68,7 @@ module Line
             @package_id = package_id
             @sticker_id = sticker_id
             @sticker_resource_type = sticker_resource_type
-            @keywords = keywords&.map do |item|
-              if item.is_a?(Hash)
-                Line::Bot::V2::Webhook::string.create(**item) # steep:ignore InsufficientKeywordArguments
-              else
-                item
-              end
-            end
+            @keywords = keywords
             @text = text
             @quote_token = quote_token
             @quoted_message_id = quoted_message_id
@@ -94,6 +88,21 @@ module Line
 
           def self.create(args) # steep:ignore
             return new(**args) # steep:ignore
+          end
+
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
+          def ==(other)
+            return false unless self.class == other.class
+
+            instance_variables.all? do |var|
+                instance_variable_get(var) == other.instance_variable_get(var)
+            end
+          end
+
+          # @return [Integer] Hash code of the object
+          def hash
+            [self.class, *instance_variables.map { |var| instance_variable_get(var) }].hash
           end
         end
       end

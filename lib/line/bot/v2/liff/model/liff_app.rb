@@ -57,13 +57,7 @@ module Line
             @description = description
             @features = features.is_a?(Line::Bot::V2::Liff::LiffFeatures) || features.nil? ? features : Line::Bot::V2::Liff::LiffFeatures.create(**features) # steep:ignore
             @permanent_link_pattern = permanent_link_pattern
-            @scope = scope&.map do |item|
-              if item.is_a?(Hash)
-                Line::Bot::V2::Liff::LiffScope.create(**item) # steep:ignore InsufficientKeywordArguments
-              else
-                item
-              end
-            end
+            @scope = scope
             @bot_prompt = bot_prompt
 
             dynamic_attributes.each do |key, value|
@@ -81,6 +75,21 @@ module Line
 
           def self.create(args) # steep:ignore
             return new(**args) # steep:ignore
+          end
+
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
+          def ==(other)
+            return false unless self.class == other.class
+
+            instance_variables.all? do |var|
+                instance_variable_get(var) == other.instance_variable_get(var)
+            end
+          end
+
+          # @return [Integer] Hash code of the object
+          def hash
+            [self.class, *instance_variables.map { |var| instance_variable_get(var) }].hash
           end
         end
       end

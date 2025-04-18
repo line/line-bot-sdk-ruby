@@ -25,6 +25,10 @@ module Line
 
           def self.create: (args: Hash[Symbol, untyped]) -> Mentionee
 
+          def ==: (untyped other) -> bool
+
+          def hash: () -> Integer
+
           private
 
           def self.detect_class: (type: String) -> Class

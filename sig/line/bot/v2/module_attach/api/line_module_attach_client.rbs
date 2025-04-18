@@ -12,6 +12,7 @@ module Line
     module V2
       module ModuleAttach
         class ApiClient
+          @http_client: HttpClient
           def initialize: (
             base_url: String?,
             channel_id: String,
