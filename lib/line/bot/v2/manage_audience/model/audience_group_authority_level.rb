@@ -10,9 +10,9 @@
 module Line
   module Bot
     module V2
-      module MessagingApi
-        # @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
-        class AreaDemographic
+      module ManageAudience
+        # authority level
+        class AudienceGroupAuthorityLevel
           
         end
       end
