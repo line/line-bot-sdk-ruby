@@ -26,7 +26,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
           def broadcast_with_http_info: (
             broadcast_request: BroadcastRequest, 
-            x_line_retry_key: String?
+            ?x_line_retry_key: String?
           ) -> [(String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
 
           # Sends a message to multiple users at any time.
@@ -36,7 +36,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
           def broadcast: (
             broadcast_request: BroadcastRequest, 
-            x_line_retry_key: String?
+            ?x_line_retry_key: String?
           ) -> (String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse)
 
           # Cancel default rich menu
@@ -121,8 +121,8 @@ module Line
           # @param start Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-name-list-of-units-used-this-month
           def get_aggregation_unit_name_list_with_http_info: (
-            limit: String?, 
-            start: String?
+            ?limit: String?, 
+            ?start: String?
           ) -> [(GetAggregationUnitNameListResponse), Integer, Hash[String, String]]
 
           # Get name list of units used this month
@@ -131,8 +131,8 @@ module Line
           # @param start Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-name-list-of-units-used-this-month
           def get_aggregation_unit_name_list: (
-            limit: String?, 
-            start: String?
+            ?limit: String?, 
+            ?start: String?
           ) -> (GetAggregationUnitNameListResponse)
 
           # Get number of units used this month
@@ -177,8 +177,8 @@ module Line
           # @param limit The maximum number of user IDs to retrieve in a single request.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-follower-ids
           def get_followers_with_http_info: (
-            start: String?, 
-            limit: Integer?
+            ?start: String?, 
+            ?limit: Integer?
           ) -> [(GetFollowersResponse), Integer, Hash[String, String]]
 
           # Get a list of users who added your LINE Official Account as a friend
@@ -187,8 +187,8 @@ module Line
           # @param limit The maximum number of user IDs to retrieve in a single request.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-follower-ids
           def get_followers: (
-            start: String?, 
-            limit: Integer?
+            ?start: String?, 
+            ?limit: Integer?
           ) -> (GetFollowersResponse)
 
           # Get number of users in a group chat
@@ -234,7 +234,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-group-member-user-ids
           def get_group_members_ids_with_http_info: (
             group_id: String, 
-            start: String?
+            ?start: String?
           ) -> [(MembersIdsResponse), Integer, Hash[String, String]]
 
           # Get group chat member user IDs
@@ -244,7 +244,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-group-member-user-ids
           def get_group_members_ids: (
             group_id: String, 
-            start: String?
+            ?start: String?
           ) -> (MembersIdsResponse)
 
           # Get group chat summary
@@ -271,8 +271,8 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-membership-user-ids
           def get_joined_membership_users_with_http_info: (
             membership_id: Integer, 
-            start: String?, 
-            limit: Integer?
+            ?start: String?, 
+            ?limit: Integer?
           ) -> [(GetJoinedMembershipUsersResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
 
           # Get a list of user IDs who joined the membership.
@@ -283,8 +283,8 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-membership-user-ids
           def get_joined_membership_users: (
             membership_id: Integer, 
-            start: String?, 
-            limit: Integer?
+            ?start: String?, 
+            ?limit: Integer?
           ) -> (GetJoinedMembershipUsersResponse|ErrorResponse|ErrorResponse)
 
           # Get a list of memberships.
@@ -582,7 +582,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-room-member-user-ids
           def get_room_members_ids_with_http_info: (
             room_id: String, 
-            start: String?
+            ?start: String?
           ) -> [(MembersIdsResponse), Integer, Hash[String, String]]
 
           # Get multi-person chat member user IDs
@@ -592,7 +592,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-room-member-user-ids
           def get_room_members_ids: (
             room_id: String, 
-            start: String?
+            ?start: String?
           ) -> (MembersIdsResponse)
 
           # Get webhook endpoint information
@@ -714,7 +714,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
           def multicast_with_http_info: (
             multicast_request: MulticastRequest, 
-            x_line_retry_key: String?
+            ?x_line_retry_key: String?
           ) -> [(String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
 
           # An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.
@@ -724,7 +724,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
           def multicast: (
             multicast_request: MulticastRequest, 
-            x_line_retry_key: String?
+            ?x_line_retry_key: String?
           ) -> (String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse)
 
           # Send narrowcast message
@@ -734,7 +734,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
           def narrowcast_with_http_info: (
             narrowcast_request: NarrowcastRequest, 
-            x_line_retry_key: String?
+            ?x_line_retry_key: String?
           ) -> [(String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
 
           # Send narrowcast message
@@ -744,7 +744,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
           def narrowcast: (
             narrowcast_request: NarrowcastRequest, 
-            x_line_retry_key: String?
+            ?x_line_retry_key: String?
           ) -> (String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse)
 
           # Sends a message to a user, group chat, or multi-person chat at any time.
@@ -754,7 +754,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#send-push-message
           def push_message_with_http_info: (
             push_message_request: PushMessageRequest, 
-            x_line_retry_key: String?
+            ?x_line_retry_key: String?
           ) -> [(PushMessageResponse|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
 
           # Sends a message to a user, group chat, or multi-person chat at any time.
@@ -764,7 +764,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#send-push-message
           def push_message: (
             push_message_request: PushMessageRequest, 
-            x_line_retry_key: String?
+            ?x_line_retry_key: String?
           ) -> (PushMessageResponse|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse)
 
           # Send LINE notification message
@@ -774,7 +774,7 @@ module Line
           # @see https://developers.line.biz/en/reference/partner-docs/#send-line-notification-message
           def push_messages_by_phone_with_http_info: (
             pnp_messages_request: PnpMessagesRequest, 
-            x_line_delivery_tag: String?
+            ?x_line_delivery_tag: String?
           ) -> [(String?|ErrorResponse), Integer, Hash[String, String]]
 
           # Send LINE notification message
@@ -784,7 +784,7 @@ module Line
           # @see https://developers.line.biz/en/reference/partner-docs/#send-line-notification-message
           def push_messages_by_phone: (
             pnp_messages_request: PnpMessagesRequest, 
-            x_line_delivery_tag: String?
+            ?x_line_delivery_tag: String?
           ) -> (String?|ErrorResponse)
 
           # Send reply message
@@ -872,7 +872,7 @@ module Line
           # @param test_webhook_endpoint_request 
           # @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
           def test_webhook_endpoint_with_http_info: (
-            test_webhook_endpoint_request: TestWebhookEndpointRequest?
+            ?test_webhook_endpoint_request: TestWebhookEndpointRequest?
           ) -> [(TestWebhookEndpointResponse), Integer, Hash[String, String]]
 
           # Test webhook endpoint
@@ -880,7 +880,7 @@ module Line
           # @param test_webhook_endpoint_request 
           # @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
           def test_webhook_endpoint: (
-            test_webhook_endpoint_request: TestWebhookEndpointRequest?
+            ?test_webhook_endpoint_request: TestWebhookEndpointRequest?
           ) -> (TestWebhookEndpointResponse)
 
           # Unlink rich menu from user

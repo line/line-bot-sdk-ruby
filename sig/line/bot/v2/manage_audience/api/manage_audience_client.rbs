@@ -126,11 +126,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
           def get_audience_groups_with_http_info: (
             page: Integer, 
-            description: String?, 
-            status: AudienceGroupStatus?, 
-            size: Integer?, 
-            includes_external_public_groups: bool?, 
-            create_route: AudienceGroupCreateRoute?
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?includes_external_public_groups: bool?, 
+            ?create_route: AudienceGroupCreateRoute?
           ) -> [(GetAudienceGroupsResponse), Integer, Hash[String, String]]
 
           # Gets data for more than one audience.
@@ -144,11 +144,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
           def get_audience_groups: (
             page: Integer, 
-            description: String?, 
-            status: AudienceGroupStatus?, 
-            size: Integer?, 
-            includes_external_public_groups: bool?, 
-            create_route: AudienceGroupCreateRoute?
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?includes_external_public_groups: bool?, 
+            ?create_route: AudienceGroupCreateRoute?
           ) -> (GetAudienceGroupsResponse)
 
           # Gets audience data.
@@ -178,11 +178,23 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
           def get_shared_audience_groups_with_http_info: (
             page: Integer, 
+<<<<<<< HEAD
             description: String?, 
             status: AudienceGroupStatus?, 
             size: Integer?, 
             create_route: AudienceGroupCreateRoute?, 
             includes_owned_audience_groups: bool?
+||||||| parent of c460bed (NO-ISSUE gen)
+            description: String?, 
+            status: AudienceGroupStatus?, 
+            size: Integer?, 
+            create_route: AudienceGroupCreateRoute?
+=======
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?create_route: AudienceGroupCreateRoute?
+>>>>>>> c460bed (NO-ISSUE gen)
           ) -> [(GetSharedAudienceGroupsResponse), Integer, Hash[String, String]]
 
           # Gets data for more than one audience, including those shared by the Business Manager.
@@ -196,11 +208,23 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
           def get_shared_audience_groups: (
             page: Integer, 
+<<<<<<< HEAD
             description: String?, 
             status: AudienceGroupStatus?, 
             size: Integer?, 
             create_route: AudienceGroupCreateRoute?, 
             includes_owned_audience_groups: bool?
+||||||| parent of c460bed (NO-ISSUE gen)
+            description: String?, 
+            status: AudienceGroupStatus?, 
+            size: Integer?, 
+            create_route: AudienceGroupCreateRoute?
+=======
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?create_route: AudienceGroupCreateRoute?
+>>>>>>> c460bed (NO-ISSUE gen)
           ) -> (GetSharedAudienceGroupsResponse)
 
           # Renames an existing audience.

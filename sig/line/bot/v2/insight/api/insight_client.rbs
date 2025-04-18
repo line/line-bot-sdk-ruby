@@ -52,7 +52,7 @@ module Line
           # @param date Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
           def get_number_of_followers_with_http_info: (
-            date: String?
+            ?date: String?
           ) -> [(GetNumberOfFollowersResponse), Integer, Hash[String, String]]
 
           # Returns the number of users who have added the LINE Official Account on or before a specified date. 
@@ -60,7 +60,7 @@ module Line
           # @param date Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
           def get_number_of_followers: (
-            date: String?
+            ?date: String?
           ) -> (GetNumberOfFollowersResponse)
 
           # Returns the number of messages sent from LINE Official Account on a specified day. 
