@@ -106,7 +106,7 @@ post '/callback' do
     when Line::Bot::V2::Webhook::VideoPlayCompleteEvent
       reply_text(event, "[VIDEO_PLAY_COMPLETE]\n#{JSON.generate(event.video_play_complete)}")
 
-    when Line::Bot::V2::Event::UnsendEvent
+    when Line::Bot::V2::Webhook::UnsendEvent
       handle_unsend(event)
 
     else
@@ -667,7 +667,6 @@ def handle_message_event(event)
                 ),
                 Line::Bot::V2::MessagingApi::QuickReplyItem.new(
                   action: Line::Bot::V2::MessagingApi::DatetimePickerAction.new(
-                    type: "datetimepicker",
                     label: "Select date",
                     data: "storeId=12345",
                     mode: "datetime",
@@ -684,8 +683,8 @@ def handle_message_event(event)
       client.reply_message(reply_message_request: request)
 
     when 'bye'
-      case event.source.type
-      when 'user'
+      case event.source
+      when Line::Bot::V2::Webhook::UserSource
         request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
           reply_token: event.reply_token,
           messages: [
@@ -693,7 +692,7 @@ def handle_message_event(event)
           ]
         )
         client.reply_message(reply_message_request: request)
-      when 'group'
+      when Line::Bot::V2::Webhook::GroupSource
         request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
           reply_token: event.reply_token,
           messages: [
@@ -703,7 +702,7 @@ def handle_message_event(event)
         client.reply_message(reply_message_request: request)
 
         client.leave_group(group_id: event.source.group_id)
-      when 'room'
+      when Line::Bot::V2::Webhook::RoomSource
         request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
           reply_token: event.reply_token,
           messages: [
@@ -713,6 +712,8 @@ def handle_message_event(event)
         client.reply_message(reply_message_request: request)
 
         client.leave_room(group_id: event.source.room_id)
+      else
+        logger.info "Unknown source type: #{event.source.type}, event: #{event}"
       end
 
     when 'stats'
@@ -780,3 +781,13 @@ def reply_text(event, text)
   client.reply_message(reply_message_request: request)
 end
 
+def handle_unsend(event)
+  id = event.unsend.message_id
+  request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+    reply_token: event.reply_token,
+    messages: [
+      Line::Bot::V2::MessagingApi::TextMessage.new(text: "[UNSEND]\nmessage_id: #{id}")
+    ]
+  )
+  client.reply_message(reply_message_request: request)
+end
