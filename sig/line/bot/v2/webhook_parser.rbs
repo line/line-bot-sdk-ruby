@@ -4,6 +4,7 @@ module Line
       class WebhookParser
         class InvalidSignatureError < ::StandardError
         end
+        @channel_secret: String
 
         def initialize: (channel_secret: String) -> void
 

@@ -22,7 +22,7 @@ jobs:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       with:
         submodules: true
-    - uses: ruby/setup-ruby@354a1ad156761f5ee2b7b13fa8e09943a5e8d252 # v1.229.0
+    - uses: ruby/setup-ruby@ca041f971d66735f3e5ff1e21cc13e2d51e7e535 # v1.233.0
       with:
         ruby-version: ${{ matrix.ruby }}
     - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
@@ -30,15 +30,9 @@ jobs:
         distribution: 'temurin'
         java-version: 17
         architecture: x64
-    - run: python3 generate-code.py
-    - run: gem install bundler
     - run: bundle install
-    - run: bundle exec rubocop
-    - run: bundle exec rspec
-    - run: bundle exec yard stats ./lib/line/bot/v2 --fail-on-warning
-    - run: bundle exec rbs collection install
-    - run: bundle exec rbs -I sig validate
-    - run: bundle exec steep check
+    - run: python3 generate-code.py
+    - run: bundle exec rake ci
 
   pinact:
     runs-on: ubuntu-latest

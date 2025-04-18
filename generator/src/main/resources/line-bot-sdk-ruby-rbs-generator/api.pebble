@@ -8,6 +8,7 @@ module Line
     module V2
       module {{ packageName | camelize }}
         class Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client
+          @http_client: HttpClient
           def initialize: (
             base_url: String?{% if packageName == 'channel_access_token' %}{% elseif packageName == 'module_attach' %},
             channel_id: String,
