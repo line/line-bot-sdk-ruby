@@ -767,7 +767,7 @@ def handle_message_event(event)
     end
   else
     logger.info "Unknown message type: #{event.type}"
-    reply_text(event, "[UNKNOWN]\n#{event.type}")
+    reply_text(event, "[UNKNOWN]\n#{event.type} #{event}")
   end
 end
 
