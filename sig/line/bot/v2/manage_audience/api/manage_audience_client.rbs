@@ -154,11 +154,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
           def get_audience_groups_with_http_info: (
             page: Integer, 
-            description: String?, 
-            status: AudienceGroupStatus?, 
-            size: Integer?, 
-            includes_external_public_groups: bool?, 
-            create_route: AudienceGroupCreateRoute?
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?includes_external_public_groups: bool?, 
+            ?create_route: AudienceGroupCreateRoute?
           ) -> [(GetAudienceGroupsResponse), Integer, Hash[String, String]]
 
           # Gets data for more than one audience.
@@ -172,11 +172,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
           def get_audience_groups: (
             page: Integer, 
-            description: String?, 
-            status: AudienceGroupStatus?, 
-            size: Integer?, 
-            includes_external_public_groups: bool?, 
-            create_route: AudienceGroupCreateRoute?
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?includes_external_public_groups: bool?, 
+            ?create_route: AudienceGroupCreateRoute?
           ) -> (GetAudienceGroupsResponse)
 
           # Gets audience data.
@@ -205,10 +205,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
           def get_shared_audience_groups_with_http_info: (
             page: Integer, 
-            description: String?, 
-            status: AudienceGroupStatus?, 
-            size: Integer?, 
-            create_route: AudienceGroupCreateRoute?
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?create_route: AudienceGroupCreateRoute?
           ) -> [(GetSharedAudienceGroupsResponse), Integer, Hash[String, String]]
 
           # Gets data for more than one audience, including those shared by the Business Manager.
@@ -221,10 +221,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
           def get_shared_audience_groups: (
             page: Integer, 
-            description: String?, 
-            status: AudienceGroupStatus?, 
-            size: Integer?, 
-            create_route: AudienceGroupCreateRoute?
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?create_route: AudienceGroupCreateRoute?
           ) -> (GetSharedAudienceGroupsResponse)
 
           # Change the authority level of the audience
