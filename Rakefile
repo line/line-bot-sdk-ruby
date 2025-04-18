@@ -17,7 +17,7 @@ end
 
 desc "Run normal tests (exclude no_missing_require_* specs)"
 task :test_normal do
-  sh "bundle exec rspec --exclude-pattern 'spec/line/bot/line_bot_api_gem_spec.rb' --exclude-pattern 'spec/line/bot/line_bot_gem_spec.rb'"
+  sh "bundle exec rspec --exclude-pattern 'spec/line/bot/line_bot_api_gem_spec.rb,spec/line/bot/line_bot_gem_spec.rb'"
 end
 
 desc "Test line-bot-api gem spec"
