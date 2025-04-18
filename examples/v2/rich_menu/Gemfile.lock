@@ -1,7 +1,7 @@
 PATH
   remote: ../../..
   specs:
-    line-bot-api (2.0.0)
+    line-bot-api (0.0.1.pre.test)
       multipart-post (~> 2.4.1)
 
 GEM
@@ -10,6 +10,7 @@ GEM
     multipart-post (2.4.1)
 
 PLATFORMS
+  arm64-darwin-21
   arm64-darwin-22
 
 DEPENDENCIES

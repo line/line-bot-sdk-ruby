@@ -4,7 +4,7 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 
-gem 'line-bot-api', path: '../../..' # delete this path when you want to use this example out side of this repository.
+gem 'line-bot-api', path: '../../..' # delete this `path: ...`, and specify the latest version when you want to use this example out side of this repository.
 gem "puma"
 gem "rackup"
 gem "sinatra"
