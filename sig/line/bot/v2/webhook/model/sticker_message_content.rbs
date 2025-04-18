@@ -28,10 +28,11 @@ module Line
             package_id: String,
             sticker_id: String,
             sticker_resource_type: 'STATIC'|'ANIMATION'|'SOUND'|'ANIMATION_SOUND'|'POPUP'|'POPUP_SOUND'|'CUSTOM'|'MESSAGE'|'NAME_TEXT'|'PER_STICKER_TEXT',
-            keywords: Array[String]?,
-            text: String?,
+            ?keywords: Array[String]?,
+            ?text: String?,
             quote_token: String,
-            quoted_message_id: String?
+            ?quoted_message_id: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> StickerMessageContent

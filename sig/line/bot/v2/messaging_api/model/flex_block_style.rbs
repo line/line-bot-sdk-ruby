@@ -17,9 +17,10 @@ module Line
           attr_accessor separator_color: String?
           
           def initialize: (
-            background_color: String?,
-            separator: bool?,
-            separator_color: String?
+            ?background_color: String?,
+            ?separator: bool?,
+            ?separator_color: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexBlockStyle

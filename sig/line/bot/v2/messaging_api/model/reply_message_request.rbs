@@ -20,7 +20,8 @@ module Line
           def initialize: (
             reply_token: String,
             messages: Array[Message],
-            notification_disabled: bool?
+            ?notification_disabled: bool?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ReplyMessageRequest

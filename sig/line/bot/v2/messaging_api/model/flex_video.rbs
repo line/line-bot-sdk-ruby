@@ -23,8 +23,9 @@ module Line
             url: String,
             preview_url: String,
             alt_content: FlexComponent,
-            aspect_ratio: String?,
-            action: Action?
+            ?aspect_ratio: String?,
+            ?action: Action?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexVideo

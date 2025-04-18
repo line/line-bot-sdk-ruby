@@ -22,11 +22,12 @@ module Line
           
           def initialize: (
             view: LiffView,
-            description: String?,
-            features: LiffFeatures?,
-            permanent_link_pattern: String?,
-            scope: Array['openid'|'email'|'profile'|'chat_message.write']?,
-            bot_prompt: 'normal'|'aggressive'|'none'?
+            ?description: String?,
+            ?features: LiffFeatures?,
+            ?permanent_link_pattern: String?,
+            ?scope: Array['openid'|'email'|'profile'|'chat_message.write']?,
+            ?bot_prompt: 'normal'|'aggressive'|'none'?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> AddLiffAppRequest

@@ -18,8 +18,9 @@ module Line
           
           def initialize: (
             id: String,
-            index: Integer?,
-            total: Integer?
+            ?index: Integer?,
+            ?total: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ImageSet

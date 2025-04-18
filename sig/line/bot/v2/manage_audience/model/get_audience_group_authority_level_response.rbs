@@ -11,18 +11,17 @@ module Line
   module Bot
     module V2
       module ManageAudience
-        # @see https://developers.line.biz/en/reference/messaging-api/#error-responses
-        class ErrorResponse
-          attr_accessor message: String
-          attr_accessor details: Array[ErrorDetail]?
+        # Get the authority level of the audience
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
+        class GetAudienceGroupAuthorityLevelResponse
+          attr_accessor authority_level: 'PUBLIC'|'PRIVATE'?
           
           def initialize: (
-            message: String,
-            ?details: Array[ErrorDetail]?,
+            ?authority_level: 'PUBLIC'|'PRIVATE'?,
             **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ErrorResponse
+          def self.create: (args: Hash[Symbol, untyped]) -> GetAudienceGroupAuthorityLevelResponse
 
           def ==: (untyped other) -> bool
 

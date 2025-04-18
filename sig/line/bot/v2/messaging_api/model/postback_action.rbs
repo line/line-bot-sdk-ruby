@@ -21,12 +21,13 @@ module Line
           attr_accessor fill_in_text: String?
           
           def initialize: (
-            label: String?,
-            data: String?,
-            display_text: String?,
-            text: String?,
-            input_option: 'closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice'?,
-            fill_in_text: String?
+            ?label: String?,
+            ?data: String?,
+            ?display_text: String?,
+            ?text: String?,
+            ?input_option: 'closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice'?,
+            ?fill_in_text: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> PostbackAction

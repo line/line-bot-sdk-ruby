@@ -20,9 +20,10 @@ module Line
           
           def initialize: (
             id: String,
-            duration: Integer?,
+            ?duration: Integer?,
             content_provider: ContentProvider,
-            quote_token: String
+            quote_token: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> VideoMessageContent

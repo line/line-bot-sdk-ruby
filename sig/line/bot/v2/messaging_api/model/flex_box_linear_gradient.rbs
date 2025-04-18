@@ -20,11 +20,12 @@ module Line
           attr_accessor center_position: String?
           
           def initialize: (
-            angle: String?,
-            start_color: String?,
-            end_color: String?,
-            center_color: String?,
-            center_position: String?
+            ?angle: String?,
+            ?start_color: String?,
+            ?end_color: String?,
+            ?center_color: String?,
+            ?center_position: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexBoxLinearGradient

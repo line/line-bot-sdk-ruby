@@ -18,7 +18,8 @@ module Line
           
           def initialize: (
             type: String,
-            area: ImagemapArea
+            area: ImagemapArea,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ImagemapAction

@@ -16,7 +16,8 @@ module Line
           attr_accessor link_token: String
           
           def initialize: (
-            link_token: String
+            link_token: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> IssueLinkTokenResponse

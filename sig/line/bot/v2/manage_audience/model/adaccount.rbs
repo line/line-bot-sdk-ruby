@@ -16,7 +16,8 @@ module Line
           attr_accessor name: String?
           
           def initialize: (
-            name: String?
+            ?name: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> Adaccount

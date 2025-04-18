@@ -27,15 +27,16 @@ module Line
           
           def initialize: (
             url: String,
-            size: String?,
-            aspect_ratio: String?,
-            margin: String?,
-            position: 'relative'|'absolute'?,
-            offset_top: String?,
-            offset_bottom: String?,
-            offset_start: String?,
-            offset_end: String?,
-            scaling: bool?
+            ?size: String?,
+            ?aspect_ratio: String?,
+            ?margin: String?,
+            ?position: 'relative'|'absolute'?,
+            ?offset_top: String?,
+            ?offset_bottom: String?,
+            ?offset_start: String?,
+            ?offset_end: String?,
+            ?scaling: bool?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexIcon

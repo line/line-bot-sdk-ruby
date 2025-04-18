@@ -20,10 +20,11 @@ module Line
           attr_accessor blocks: Integer?
           
           def initialize: (
-            status: 'ready'|'unready'|'out_of_service'?,
-            followers: Integer?,
-            targeted_reaches: Integer?,
-            blocks: Integer?
+            ?status: 'ready'|'unready'|'out_of_service'?,
+            ?followers: Integer?,
+            ?targeted_reaches: Integer?,
+            ?blocks: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetNumberOfFollowersResponse

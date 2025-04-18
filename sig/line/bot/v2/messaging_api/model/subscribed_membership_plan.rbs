@@ -26,7 +26,8 @@ module Line
             description: String,
             benefits: Array[String],
             price: Float,
-            currency: 'JPY'|'TWD'|'THB'
+            currency: 'JPY'|'TWD'|'THB',
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> SubscribedMembershipPlan

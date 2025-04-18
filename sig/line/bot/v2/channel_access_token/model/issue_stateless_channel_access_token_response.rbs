@@ -21,7 +21,8 @@ module Line
           def initialize: (
             access_token: String,
             expires_in: Integer,
-            token_type: String
+            ?token_type: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> IssueStatelessChannelAccessTokenResponse

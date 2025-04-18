@@ -15,7 +15,8 @@ module Line
           attr_accessor message_id: String
           
           def initialize: (
-            message_id: String
+            message_id: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> UnsendDetail
