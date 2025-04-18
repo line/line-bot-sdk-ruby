@@ -14,10 +14,10 @@ module Line
         class ApiClient
           @http_client: HttpClient
           def initialize: (
-            base_url: String?,
+            ?base_url: String?,
             channel_id: String,
             channel_secret: String,
-            http_options: Hash[String|Symbol, untyped]
+            ?http_options: Hash[String|Symbol, untyped]
           ) -> void
 
           # Attach by operation of the module channel provider

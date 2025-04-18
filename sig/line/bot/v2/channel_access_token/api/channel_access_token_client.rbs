@@ -14,8 +14,8 @@ module Line
         class ApiClient
           @http_client: HttpClient
           def initialize: (
-            base_url: String?,
-            http_options: Hash[String|Symbol, untyped]
+            ?base_url: String?,
+            ?http_options: Hash[String|Symbol, untyped]
           ) -> void
 
           # Gets all valid channel access token key IDs.
