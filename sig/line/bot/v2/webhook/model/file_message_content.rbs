@@ -20,7 +20,8 @@ module Line
           def initialize: (
             id: String,
             file_name: String,
-            file_size: Integer
+            file_size: Integer,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FileMessageContent

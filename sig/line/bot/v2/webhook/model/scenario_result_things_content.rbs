@@ -18,7 +18,8 @@ module Line
           
           def initialize: (
             device_id: String,
-            result: ScenarioResult
+            result: ScenarioResult,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ScenarioResultThingsContent

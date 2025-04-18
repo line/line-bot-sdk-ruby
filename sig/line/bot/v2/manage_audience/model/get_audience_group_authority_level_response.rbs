@@ -17,7 +17,8 @@ module Line
           attr_accessor authority_level: 'PUBLIC'|'PRIVATE'?
           
           def initialize: (
-            authority_level: 'PUBLIC'|'PRIVATE'?
+            ?authority_level: 'PUBLIC'|'PRIVATE'?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetAudienceGroupAuthorityLevelResponse

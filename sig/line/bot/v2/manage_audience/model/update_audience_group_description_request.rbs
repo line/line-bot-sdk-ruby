@@ -17,7 +17,8 @@ module Line
           attr_accessor description: String?
           
           def initialize: (
-            description: String?
+            ?description: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> UpdateAudienceGroupDescriptionRequest

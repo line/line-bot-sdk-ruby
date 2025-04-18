@@ -18,9 +18,10 @@ module Line
           attr_accessor type: String?
           
           def initialize: (
-            image_url: String?,
-            action: Action?,
-            type: String?
+            ?image_url: String?,
+            ?action: Action?,
+            ?type: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> QuickReplyItem

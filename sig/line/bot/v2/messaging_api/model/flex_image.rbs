@@ -33,21 +33,22 @@ module Line
           
           def initialize: (
             url: String,
-            flex: Integer?,
-            margin: String?,
-            position: 'relative'|'absolute'?,
-            offset_top: String?,
-            offset_bottom: String?,
-            offset_start: String?,
-            offset_end: String?,
-            align: 'start'|'end'|'center'?,
-            gravity: 'top'|'bottom'|'center'?,
-            size: String?,
-            aspect_ratio: String?,
-            aspect_mode: 'fit'|'cover'?,
-            background_color: String?,
-            action: Action?,
-            animated: bool?
+            ?flex: Integer?,
+            ?margin: String?,
+            ?position: 'relative'|'absolute'?,
+            ?offset_top: String?,
+            ?offset_bottom: String?,
+            ?offset_start: String?,
+            ?offset_end: String?,
+            ?align: 'start'|'end'|'center'?,
+            ?gravity: 'top'|'bottom'|'center'?,
+            ?size: String?,
+            ?aspect_ratio: String?,
+            ?aspect_mode: 'fit'|'cover'?,
+            ?background_color: String?,
+            ?action: Action?,
+            ?animated: bool?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexImage

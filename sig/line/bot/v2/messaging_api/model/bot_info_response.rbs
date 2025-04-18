@@ -24,11 +24,12 @@ module Line
           def initialize: (
             user_id: String,
             basic_id: String,
-            premium_id: String?,
+            ?premium_id: String?,
             display_name: String,
-            picture_url: String?,
+            ?picture_url: String?,
             chat_mode: 'chat'|'bot',
-            mark_as_read_mode: 'auto'|'manual'
+            mark_as_read_mode: 'auto'|'manual',
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> BotInfoResponse

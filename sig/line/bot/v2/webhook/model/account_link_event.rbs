@@ -23,13 +23,14 @@ module Line
           attr_accessor link: LinkContent
           
           def initialize: (
-            source: Source?,
+            ?source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
             delivery_context: DeliveryContext,
-            reply_token: String?,
-            link: LinkContent
+            ?reply_token: String?,
+            link: LinkContent,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> AccountLinkEvent

@@ -16,7 +16,8 @@ module Line
           attr_accessor data: String
           
           def initialize: (
-            data: String
+            data: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> PnpDelivery

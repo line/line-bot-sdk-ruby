@@ -22,12 +22,13 @@ module Line
           attr_accessor left: LeftMembers
           
           def initialize: (
-            source: Source?,
+            ?source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
             delivery_context: DeliveryContext,
-            left: LeftMembers
+            left: LeftMembers,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> MemberLeftEvent

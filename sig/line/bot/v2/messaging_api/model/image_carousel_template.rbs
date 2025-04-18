@@ -16,7 +16,8 @@ module Line
           attr_accessor columns: Array[ImageCarouselColumn]
           
           def initialize: (
-            columns: Array[ImageCarouselColumn]
+            columns: Array[ImageCarouselColumn],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ImageCarouselTemplate

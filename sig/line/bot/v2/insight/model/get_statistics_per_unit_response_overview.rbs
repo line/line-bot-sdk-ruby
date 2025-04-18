@@ -20,10 +20,11 @@ module Line
           attr_accessor unique_media_played100_percent: Integer?
           
           def initialize: (
-            unique_impression: Integer?,
-            unique_click: Integer?,
-            unique_media_played: Integer?,
-            unique_media_played100_percent: Integer?
+            ?unique_impression: Integer?,
+            ?unique_click: Integer?,
+            ?unique_media_played: Integer?,
+            ?unique_media_played100_percent: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponseOverview

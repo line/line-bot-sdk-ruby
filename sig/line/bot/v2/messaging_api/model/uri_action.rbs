@@ -18,9 +18,10 @@ module Line
           attr_accessor alt_uri: AltUri?
           
           def initialize: (
-            label: String?,
-            uri: String?,
-            alt_uri: AltUri?
+            ?label: String?,
+            ?uri: String?,
+            ?alt_uri: AltUri?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> URIAction

@@ -16,8 +16,9 @@ module Line
           attr_accessor qr_code: bool?
           
           def initialize: (
-            ble: bool?,
-            qr_code: bool?
+            ?ble: bool?,
+            ?qr_code: bool?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> LiffFeatures

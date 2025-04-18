@@ -22,12 +22,13 @@ module Line
           attr_accessor min: String?
           
           def initialize: (
-            label: String?,
-            data: String?,
-            mode: 'date'|'time'|'datetime'?,
-            initial: String?,
-            max: String?,
-            min: String?
+            ?label: String?,
+            ?data: String?,
+            ?mode: 'date'|'time'|'datetime'?,
+            ?initial: String?,
+            ?max: String?,
+            ?min: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> DatetimePickerAction

@@ -20,10 +20,11 @@ module Line
           attr_accessor audiences: Array[Audience]?
           
           def initialize: (
-            description: String?,
-            is_ifa_audience: bool?,
-            upload_description: String?,
-            audiences: Array[Audience]?
+            ?description: String?,
+            ?is_ifa_audience: bool?,
+            ?upload_description: String?,
+            ?audiences: Array[Audience]?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> CreateAudienceGroupRequest

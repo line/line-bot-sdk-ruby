@@ -16,7 +16,8 @@ module Line
           attr_accessor is_redelivery: bool
           
           def initialize: (
-            is_redelivery: bool
+            is_redelivery: bool,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> DeliveryContext

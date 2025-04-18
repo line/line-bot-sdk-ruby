@@ -20,10 +20,11 @@ module Line
           attr_accessor preview_image_url: String
           
           def initialize: (
-            quick_reply: QuickReply?,
-            sender: Sender?,
+            ?quick_reply: QuickReply?,
+            ?sender: Sender?,
             original_content_url: String,
-            preview_image_url: String
+            preview_image_url: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ImageMessage

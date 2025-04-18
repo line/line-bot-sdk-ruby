@@ -18,7 +18,8 @@ module Line
           
           def initialize: (
             group_id: String,
-            user_id: String?
+            ?user_id: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GroupSource

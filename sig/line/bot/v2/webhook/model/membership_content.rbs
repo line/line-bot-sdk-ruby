@@ -16,7 +16,8 @@ module Line
           attr_accessor type: String
           
           def initialize: (
-            type: String
+            type: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> MembershipContent

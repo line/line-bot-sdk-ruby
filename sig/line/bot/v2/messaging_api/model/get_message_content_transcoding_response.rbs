@@ -17,7 +17,8 @@ module Line
           attr_accessor status: 'processing'|'succeeded'|'failed'
           
           def initialize: (
-            status: 'processing'|'succeeded'|'failed'
+            status: 'processing'|'succeeded'|'failed',
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetMessageContentTranscodingResponse

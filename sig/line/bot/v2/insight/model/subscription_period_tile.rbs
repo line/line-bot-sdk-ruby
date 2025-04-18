@@ -16,8 +16,9 @@ module Line
           attr_accessor percentage: Float?
           
           def initialize: (
-            subscription_period: 'within7days'|'within30days'|'within90days'|'within180days'|'within365days'|'over365days'|'unknown'?,
-            percentage: Float?
+            ?subscription_period: 'within7days'|'within30days'|'within90days'|'within180days'|'within365days'|'over365days'|'unknown'?,
+            ?percentage: Float?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> SubscriptionPeriodTile

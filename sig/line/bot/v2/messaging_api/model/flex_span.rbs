@@ -21,12 +21,13 @@ module Line
           attr_accessor decoration: 'none'|'underline'|'line-through'?
           
           def initialize: (
-            text: String?,
-            size: String?,
-            color: String?,
-            weight: 'regular'|'bold'?,
-            style: 'normal'|'italic'?,
-            decoration: 'none'|'underline'|'line-through'?
+            ?text: String?,
+            ?size: String?,
+            ?color: String?,
+            ?weight: 'regular'|'bold'?,
+            ?style: 'normal'|'italic'?,
+            ?decoration: 'none'|'underline'|'line-through'?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexSpan

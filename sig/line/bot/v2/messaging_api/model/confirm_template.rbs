@@ -18,7 +18,8 @@ module Line
           
           def initialize: (
             text: String,
-            actions: Array[Action]
+            actions: Array[Action],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ConfirmTemplate

@@ -21,7 +21,8 @@ module Line
           def initialize: (
             overview: GetStatisticsPerUnitResponseOverview,
             messages: Array[GetStatisticsPerUnitResponseMessage],
-            clicks: Array[GetStatisticsPerUnitResponseClick]
+            clicks: Array[GetStatisticsPerUnitResponseClick],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponse

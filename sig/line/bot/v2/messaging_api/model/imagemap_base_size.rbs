@@ -17,7 +17,8 @@ module Line
           
           def initialize: (
             height: Integer,
-            width: Integer
+            width: Integer,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ImagemapBaseSize

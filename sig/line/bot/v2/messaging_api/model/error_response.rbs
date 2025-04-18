@@ -19,8 +19,9 @@ module Line
           
           def initialize: (
             message: String,
-            details: Array[ErrorDetail]?,
-            sent_messages: Array[SentMessage]?
+            ?details: Array[ErrorDetail]?,
+            ?sent_messages: Array[SentMessage]?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ErrorResponse

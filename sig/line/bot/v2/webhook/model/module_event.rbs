@@ -22,12 +22,13 @@ module Line
           attr_accessor _module: ModuleContent
           
           def initialize: (
-            source: Source?,
+            ?source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
             delivery_context: DeliveryContext,
-            _module: ModuleContent
+            _module: ModuleContent,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ModuleEvent

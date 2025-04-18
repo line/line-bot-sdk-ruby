@@ -16,7 +16,8 @@ module Line
           attr_accessor user_ids: Array[String]
           
           def initialize: (
-            user_ids: Array[String]
+            user_ids: Array[String],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBulkUnlinkRequest

@@ -16,7 +16,8 @@ module Line
           attr_accessor flex: Integer?
           
           def initialize: (
-            flex: Integer?
+            ?flex: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexFiller

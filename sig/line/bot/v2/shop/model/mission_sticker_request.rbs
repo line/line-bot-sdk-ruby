@@ -23,7 +23,8 @@ module Line
             to: String,
             product_id: String,
             product_type: String,
-            send_present_message: bool
+            send_present_message: bool,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> MissionStickerRequest

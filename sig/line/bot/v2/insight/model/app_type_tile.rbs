@@ -16,8 +16,9 @@ module Line
           attr_accessor percentage: Float?
           
           def initialize: (
-            app_type: 'ios'|'android'|'others'?,
-            percentage: Float?
+            ?app_type: 'ios'|'android'|'others'?,
+            ?percentage: Float?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> AppTypeTile
