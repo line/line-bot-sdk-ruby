@@ -9,8 +9,7 @@ target :lib do
 
   library "net-http"
 
-  configure_code_diagnostics(D::Ruby.default)
-  # configure_code_diagnostics(D::Ruby.strict) # TODO: Enable strict checking
+  configure_code_diagnostics(D::Ruby.strict)
   # configure_code_diagnostics(D::Ruby.all_error) # TODO: Enable all error checking
 end
 
