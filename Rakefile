@@ -15,6 +15,8 @@ task "release", [:remote] => ["build", "release:guard_clean", "release:rubygem_p
   puts "Built and pushed gem to RubyGems without pushing to source control."
 end
 
+## Development
+
 desc "Run normal tests (exclude no_missing_require_* specs)"
 task :test_normal do
   sh "bundle exec rspec --exclude-pattern 'spec/line/bot/line_bot_api_gem_spec.rb,spec/line/bot/line_bot_gem_spec.rb'"
@@ -33,8 +35,51 @@ end
 desc "Run all tests in separate processes"
 task :test do
   Rake::Task[:test_normal].invoke
-
   Rake::Task[:test_line_bot_api].invoke
-
   Rake::Task[:test_line_bot].invoke
+end
+
+desc "Validate comment for YARD"
+task :validate_yard_comment do
+  sh "bundle exec yard stats ./lib/line/bot/v2 --fail-on-warning"
+end
+
+desc "RBS type check"
+task :rbs do
+  sh "bundle exec rbs collection install"
+  sh "bundle exec rbs -I sig validate"
+end
+
+desc "Run rubocop"
+task :rubocop do
+  sh "bundle exec rubocop"
+end
+
+desc "Fix rubocop errors"
+task :rubocop_fix do
+  sh "bundle exec rubocop -A"
+end
+
+desc "Check buildable and its contents"
+task :build_test do
+  sh "bundle exec rake build"
+  sh "tar -xvf pkg/line-bot-api-*.gem"
+
+  puts "<<Show the contents of the gem>>"
+  sh "tar -zxvf data.tar.gz"
+
+  puts "<<clean up>>"
+  sh "rm -rf pkg/"
+  sh "rm -rf data.tar.gz"
+  sh "rm -rf checksums.yaml.gz"
+  sh "rm -rf metadata.gz"
+end
+
+desc "Run all tasks for development check and test"
+task :ci do
+  Rake::Task[:test].invoke
+  Rake::Task[:rubocop].invoke
+  Rake::Task[:validate_yard_comment].invoke
+  Rake::Task[:rbs].invoke
+  Rake::Task[:build_test].invoke
 end
