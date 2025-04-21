@@ -45,50 +45,6 @@ module Line
             )
           end
 
-          # Activate audience
-          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}/activate</code>
-          #
-          # @param audience_group_id [Integer] The audience ID.
-          # @see https://developers.line.biz/en/reference/messaging-api/#activate-audience-group
-          # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 202
-          def activate_audience_group_with_http_info(
-            audience_group_id:
-          )
-            path = "/v2/bot/audienceGroup/{audienceGroupId}/activate"
-              .gsub(/{audienceGroupId}/, audience_group_id.to_s)
-
-            response = @http_client.put(
-              path: path,
-            )
-
-            response_body = case response.code.to_i
-                   when 202
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
-          end
-
-          # Activate audience
-          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}/activate</code>
-          # When you want to get HTTP status code or response headers, use {#activate_audience_group_with_http_info} instead of this.
-          #
-          # @param audience_group_id [Integer] The audience ID.
-          # @see https://developers.line.biz/en/reference/messaging-api/#activate-audience-group
-          # @return [String, nil] when HTTP status code is 202
-          def activate_audience_group(
-            audience_group_id:
-          )
-            response_body, _status_code, _headers = activate_audience_group_with_http_info(
-              audience_group_id: audience_group_id
-            )
-
-            response_body
-          end
-
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
           # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/upload</code>
           #
@@ -377,48 +333,6 @@ module Line
             response_body
           end
 
-          # Get the authority level of the audience
-          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/authorityLevel</code>
-          #
-          # @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
-          # @return [response body, response status code, and response headers]
-          # @return [Array(Line::Bot::V2::ManageAudience::GetAudienceGroupAuthorityLevelResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def get_audience_group_authority_level_with_http_info(
-          )
-            path = "/v2/bot/audienceGroup/authorityLevel"
-
-            response = @http_client.get(
-              path: path,
-            )
-
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ManageAudience::GetAudienceGroupAuthorityLevelResponse.new(**json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
-          end
-
-          # Get the authority level of the audience
-          # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/authorityLevel</code>
-          # When you want to get HTTP status code or response headers, use {#get_audience_group_authority_level_with_http_info} instead of this.
-          #
-          # @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
-          # @return [Line::Bot::V2::ManageAudience::GetAudienceGroupAuthorityLevelResponse] when HTTP status code is 200
-          def get_audience_group_authority_level(
-          )
-            response_body, _status_code, _headers = get_audience_group_authority_level_with_http_info(
-            )
-
-            response_body
-          end
-
           # Gets data for more than one audience.
           # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/list</code>
           #
@@ -564,6 +478,7 @@ module Line
           # @param status [AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
           # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40 
           # @param create_route [AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @param includes_owned_audience_groups [Boolean, nil] true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
           # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse, Integer, Hash{String => String})] when HTTP status code is 200
@@ -572,7 +487,8 @@ module Line
             description: nil,
             status: nil,
             size: nil,
-            create_route: nil
+            create_route: nil,
+            includes_owned_audience_groups: nil
           )
             path = "/v2/bot/audienceGroup/shared/list"
             query_params = {
@@ -580,7 +496,8 @@ module Line
               "description": description,
               "status": status,
               "size": size,
-              "createRoute": create_route
+              "createRoute": create_route,
+              "includesOwnedAudienceGroups": includes_owned_audience_groups
             }.compact
 
             response = @http_client.get(
@@ -611,6 +528,7 @@ module Line
           # @param status [AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
           # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40 
           # @param create_route [AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @param includes_owned_audience_groups [Boolean, nil] true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
           # @return [Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse] when HTTP status code is 200
           def get_shared_audience_groups(
@@ -618,58 +536,16 @@ module Line
             description: nil,
             status: nil,
             size: nil,
-            create_route: nil
+            create_route: nil,
+            includes_owned_audience_groups: nil
           )
             response_body, _status_code, _headers = get_shared_audience_groups_with_http_info(
               page: page,
               description: description,
               status: status,
               size: size,
-              create_route: create_route
-            )
-
-            response_body
-          end
-
-          # Change the authority level of the audience
-          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/authorityLevel</code>
-          #
-          # @param update_audience_group_authority_level_request [UpdateAudienceGroupAuthorityLevelRequest] 
-          # @see https://developers.line.biz/en/reference/messaging-api/#change-authority-level
-          # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
-          def update_audience_group_authority_level_with_http_info(
-            update_audience_group_authority_level_request:
-          )
-            path = "/v2/bot/audienceGroup/authorityLevel"
-
-            response = @http_client.put(
-              path: path,
-              body_params: update_audience_group_authority_level_request,
-            )
-
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
-          end
-
-          # Change the authority level of the audience
-          # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/authorityLevel</code>
-          # When you want to get HTTP status code or response headers, use {#update_audience_group_authority_level_with_http_info} instead of this.
-          #
-          # @param update_audience_group_authority_level_request [UpdateAudienceGroupAuthorityLevelRequest] 
-          # @see https://developers.line.biz/en/reference/messaging-api/#change-authority-level
-          # @return [String, nil] when HTTP status code is 200
-          def update_audience_group_authority_level(
-            update_audience_group_authority_level_request:
-          )
-            response_body, _status_code, _headers = update_audience_group_authority_level_with_http_info(
-              update_audience_group_authority_level_request: update_audience_group_authority_level_request
+              create_route: create_route,
+              includes_owned_audience_groups: includes_owned_audience_groups
             )
 
             response_body
