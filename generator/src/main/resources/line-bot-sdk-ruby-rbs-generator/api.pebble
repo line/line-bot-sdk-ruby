@@ -38,7 +38,7 @@ module Line
           {% endif -%}
           def {{op.nickname}}_with_http_info: (
             {%- for param in op.allParams %}
-            {{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
+            {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
             {% endfor %}
           ) -> [({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null ? 'String?' : response.dataType }}{{ loop.last ? '' : '|' }}{% endfor %}), Integer, Hash[String, String]]
 
@@ -58,7 +58,7 @@ module Line
           {% endif -%}
           def {{op.nickname}}: (
             {%- for param in op.allParams %}
-            {{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
+            {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
             {% endfor %}
           ) -> ({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null ? 'String?' : response.dataType }}{{ loop.last ? '' : '|' }}{% endfor %}){% endfor %}
         end
