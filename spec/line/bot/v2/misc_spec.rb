@@ -1388,7 +1388,7 @@ describe 'misc' do
     end
   end
 
-  describe 'Line::Bot::V2::MessagingApi::FlexMessage#initialize' do
+  describe 'Line::Bot::V2::MessagingApi::FlexMessage#initialize - simple flex text' do
     let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
 
     it "contains fixed type attribute (check in request body), and optional fields don't require input on initialize" do
@@ -1405,9 +1405,6 @@ describe 'misc' do
               )
             ]
           )
-        ),
-        quick_reply: Line::Bot::V2::MessagingApi::QuickReply.new(
-          items: []
         )
       )
 
@@ -1442,6 +1439,95 @@ describe 'misc' do
             'Authorization' => "Bearer test-channel-access-token"
           },
           body: expected_body
+        )
+        .to_return(status: 200, body: "{}", headers: { 'Content-Type' => 'application/json' })
+
+      client.broadcast_with_http_info(broadcast_request: Line::Bot::V2::MessagingApi::BroadcastRequest.new(messages: [flex_message]))
+    end
+  end
+
+  describe 'Line::Bot::V2::MessagingApi::FlexMessage#initialize - do not drop empty array' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+
+    it "contains fixed type attribute (check in request body), and optional fields don't require input on initialize" do
+      flex_message = Line::Bot::V2::MessagingApi::FlexMessage.new(
+        alt_text: 'Test Alt Text',
+        contents: Line::Bot::V2::MessagingApi::FlexBubble.new( # FlexBubble has many optional fields
+          body: Line::Bot::V2::MessagingApi::FlexBox.new(
+            layout: 'vertical',
+            contents: [
+              Line::Bot::V2::MessagingApi::FlexText.new(
+                text: 'Test Text',
+                weight: 'bold'
+              ),
+              Line::Bot::V2::MessagingApi::FlexImage.new(
+                url: 'https://example.com/flex/images/image.jpg'
+              ),
+              Line::Bot::V2::MessagingApi::FlexBox.new(
+                layout: 'vertical',
+                contents: [], # important: We must send this empty array, because Messaging API requires it
+                width: '30px',
+                height: '30px',
+                background: Line::Bot::V2::MessagingApi::FlexBoxLinearGradient.new(
+                  angle: '90deg',
+                  start_color: '#FFFF00',
+                  end_color: '#0080ff'
+                )
+              )
+            ]
+          )
+        )
+      )
+
+      expected_body = {
+        messages: [
+          {
+            type: 'flex',
+            altText: 'Test Alt Text',
+            contents: {
+              type: 'bubble',
+              body: {
+                type: 'box',
+                layout: 'vertical',
+                contents: [
+                  {
+                    type: 'text',
+                    text: 'Test Text',
+                    weight: 'bold'
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://example.com/flex/images/image.jpg",
+                    "size": "md",
+                    "animated": false
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "30px",
+                    "height": "30px",
+                    "background": {
+                      "type": "linearGradient",
+                      "angle": "90deg",
+                      "startColor": "#FFFF00",
+                      "endColor": "#0080ff"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        notificationDisabled: false
+      }
+
+      stub_request(:post, "https://api.line.me/v2/bot/message/broadcast")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          },
+          body: hash_including(expected_body)
         )
         .to_return(status: 200, body: "{}", headers: { 'Content-Type' => 'application/json' })
 

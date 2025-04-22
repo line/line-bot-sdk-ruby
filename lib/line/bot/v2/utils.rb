@@ -72,7 +72,7 @@ module Line
           when Hash
             object.each_with_object({}) do |(k, v), new_hash| # steep:ignore UnannotatedEmptyCollection
               new_value = deep_compact(v)
-              new_hash[k] = new_value unless new_value.nil? || (new_value.respond_to?(:empty?) && new_value.empty?)
+              new_hash[k] = new_value unless new_value.nil? || (new_value.is_a?(Hash) && new_value.empty?)
             end
           when Array
             object.map { |item| deep_compact(item) }.compact
