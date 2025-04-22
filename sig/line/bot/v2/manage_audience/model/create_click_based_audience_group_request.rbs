@@ -19,9 +19,10 @@ module Line
           attr_accessor click_url: String?
           
           def initialize: (
-            description: String?,
-            request_id: String?,
-            click_url: String?
+            ?description: String?,
+            ?request_id: String?,
+            ?click_url: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> CreateClickBasedAudienceGroupRequest

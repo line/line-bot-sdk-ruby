@@ -16,7 +16,8 @@ module Line
           attr_accessor count: Integer
           
           def initialize: (
-            count: Integer
+            count: Integer,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GroupMemberCountResponse

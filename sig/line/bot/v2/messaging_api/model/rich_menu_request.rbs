@@ -19,11 +19,12 @@ module Line
           attr_accessor areas: Array[RichMenuArea]?
           
           def initialize: (
-            size: RichMenuSize?,
-            selected: bool?,
-            name: String?,
-            chat_bar_text: String?,
-            areas: Array[RichMenuArea]?
+            ?size: RichMenuSize?,
+            ?selected: bool?,
+            ?name: String?,
+            ?chat_bar_text: String?,
+            ?areas: Array[RichMenuArea]?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> RichMenuRequest

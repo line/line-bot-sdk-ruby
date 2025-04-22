@@ -27,18 +27,19 @@ module Line
           attr_accessor create_route: 'OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER'?
           
           def initialize: (
-            audience_group_id: Integer?,
-            type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
-            description: String?,
-            status: 'IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING'?,
-            failed_type: 'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|''?,
-            audience_count: Integer?,
-            created: Integer?,
-            request_id: String?,
-            click_url: String?,
-            is_ifa_audience: bool?,
-            permission: 'READ'|'READ_WRITE'?,
-            create_route: 'OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER'?
+            ?audience_group_id: Integer?,
+            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
+            ?description: String?,
+            ?status: 'IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING'?,
+            ?failed_type: 'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|''?,
+            ?audience_count: Integer?,
+            ?created: Integer?,
+            ?request_id: String?,
+            ?click_url: String?,
+            ?is_ifa_audience: bool?,
+            ?permission: 'READ'|'READ_WRITE'?,
+            ?create_route: 'OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER'?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> AudienceGroup

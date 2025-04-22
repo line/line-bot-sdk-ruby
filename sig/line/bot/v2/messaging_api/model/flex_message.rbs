@@ -20,10 +20,11 @@ module Line
           attr_accessor contents: FlexContainer
           
           def initialize: (
-            quick_reply: QuickReply?,
-            sender: Sender?,
+            ?quick_reply: QuickReply?,
+            ?sender: Sender?,
             alt_text: String,
-            contents: FlexContainer
+            contents: FlexContainer,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexMessage

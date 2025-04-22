@@ -20,11 +20,12 @@ module Line
           attr_accessor detail: String
           
           def initialize: (
-            success: bool?,
+            ?success: bool?,
             timestamp: String,
             status_code: Integer,
             reason: String,
-            detail: String
+            detail: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> TestWebhookEndpointResponse

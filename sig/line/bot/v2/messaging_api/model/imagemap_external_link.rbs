@@ -16,8 +16,9 @@ module Line
           attr_accessor label: String?
           
           def initialize: (
-            link_uri: String?,
-            label: String?
+            ?link_uri: String?,
+            ?label: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ImagemapExternalLink

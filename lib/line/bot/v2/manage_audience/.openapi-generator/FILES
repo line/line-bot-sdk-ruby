@@ -6,7 +6,6 @@ model/adaccount.rb
 model/add_audience_to_audience_group_request.rb
 model/audience.rb
 model/audience_group.rb
-model/audience_group_authority_level.rb
 model/audience_group_create_route.rb
 model/audience_group_failed_type.rb
 model/audience_group_job.rb
@@ -26,9 +25,7 @@ model/detailed_owner.rb
 model/error_detail.rb
 model/error_response.rb
 model/get_audience_data_response.rb
-model/get_audience_group_authority_level_response.rb
 model/get_audience_groups_response.rb
 model/get_shared_audience_data_response.rb
 model/get_shared_audience_groups_response.rb
-model/update_audience_group_authority_level_request.rb
 model/update_audience_group_description_request.rb

@@ -19,11 +19,12 @@ module Line
           attr_accessor unique_click_of_request: Integer?
           
           def initialize: (
-            seq: Integer?,
-            url: String?,
-            click: Integer?,
-            unique_click: Integer?,
-            unique_click_of_request: Integer?
+            ?seq: Integer?,
+            ?url: String?,
+            ?click: Integer?,
+            ?unique_click: Integer?,
+            ?unique_click_of_request: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetMessageEventResponseClick

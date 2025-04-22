@@ -17,8 +17,9 @@ module Line
           attr_accessor icon_url: String?
           
           def initialize: (
-            name: String?,
-            icon_url: String?
+            ?name: String?,
+            ?icon_url: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> Sender

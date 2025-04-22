@@ -14,9 +14,9 @@ module Line
         class ApiBlobClient
           @http_client: HttpClient
           def initialize: (
-            base_url: String?,
+            ?base_url: String?,
             channel_access_token: String,
-            http_options: Hash[String|Symbol, untyped]
+            ?http_options: Hash[String|Symbol, untyped]
           ) -> void
 
           # Download image, video, and audio data sent from users.
@@ -90,7 +90,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
           def set_rich_menu_image_with_http_info: (
             rich_menu_id: String, 
-            body: File?
+            ?body: File?
           ) -> [(String?), Integer, Hash[String, String]]
 
           # Upload rich menu image
@@ -100,7 +100,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
           def set_rich_menu_image: (
             rich_menu_id: String, 
-            body: File?
+            ?body: File?
           ) -> (String?)
         end
       end

@@ -14,8 +14,8 @@ module Line
         class ApiClient
           @http_client: HttpClient
           def initialize: (
-            base_url: String?,
-            http_options: Hash[String|Symbol, untyped]
+            ?base_url: String?,
+            ?http_options: Hash[String|Symbol, untyped]
           ) -> void
 
           # Gets all valid channel access token key IDs.
@@ -95,11 +95,11 @@ module Line
           # @param client_secret Channel secret.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-stateless-channel-access-token
           def issue_stateless_channel_token_with_http_info: (
-            grant_type: String?, 
-            client_assertion_type: String?, 
-            client_assertion: String?, 
-            client_id: String?, 
-            client_secret: String?
+            ?grant_type: String?, 
+            ?client_assertion_type: String?, 
+            ?client_assertion: String?, 
+            ?client_id: String?, 
+            ?client_secret: String?
           ) -> [(IssueStatelessChannelAccessTokenResponse), Integer, Hash[String, String]]
 
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
@@ -111,11 +111,11 @@ module Line
           # @param client_secret Channel secret.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-stateless-channel-access-token
           def issue_stateless_channel_token: (
-            grant_type: String?, 
-            client_assertion_type: String?, 
-            client_assertion: String?, 
-            client_id: String?, 
-            client_secret: String?
+            ?grant_type: String?, 
+            ?client_assertion_type: String?, 
+            ?client_assertion: String?, 
+            ?client_id: String?, 
+            ?client_secret: String?
           ) -> (IssueStatelessChannelAccessTokenResponse)
 
           # Revoke short-lived or long-lived channel access token

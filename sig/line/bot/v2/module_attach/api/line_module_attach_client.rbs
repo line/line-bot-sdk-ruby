@@ -14,10 +14,10 @@ module Line
         class ApiClient
           @http_client: HttpClient
           def initialize: (
-            base_url: String?,
+            ?base_url: String?,
             channel_id: String,
             channel_secret: String,
-            http_options: Hash[String|Symbol, untyped]
+            ?http_options: Hash[String|Symbol, untyped]
           ) -> void
 
           # Attach by operation of the module channel provider
@@ -37,13 +37,13 @@ module Line
             grant_type: String, 
             code: String, 
             redirect_uri: String, 
-            code_verifier: String?, 
-            client_id: String?, 
-            client_secret: String?, 
-            region: String?, 
-            basic_search_id: String?, 
-            scope: String?, 
-            brand_type: String?
+            ?code_verifier: String?, 
+            ?client_id: String?, 
+            ?client_secret: String?, 
+            ?region: String?, 
+            ?basic_search_id: String?, 
+            ?scope: String?, 
+            ?brand_type: String?
           ) -> [(AttachModuleResponse), Integer, Hash[String, String]]
 
           # Attach by operation of the module channel provider
@@ -63,13 +63,13 @@ module Line
             grant_type: String, 
             code: String, 
             redirect_uri: String, 
-            code_verifier: String?, 
-            client_id: String?, 
-            client_secret: String?, 
-            region: String?, 
-            basic_search_id: String?, 
-            scope: String?, 
-            brand_type: String?
+            ?code_verifier: String?, 
+            ?client_id: String?, 
+            ?client_secret: String?, 
+            ?region: String?, 
+            ?basic_search_id: String?, 
+            ?scope: String?, 
+            ?brand_type: String?
           ) -> (AttachModuleResponse)
         end
       end

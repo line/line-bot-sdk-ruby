@@ -24,10 +24,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 3.2.0'
 
-  spec.add_dependency "multipart-post", "~> 2.4.1"
+  spec.add_runtime_dependency "multipart-post", "~> 2.4"
 
-  spec.add_development_dependency "addressable", "~> 2.3"
-  spec.add_development_dependency 'rake', "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "webmock", "~> 3.8"
+  # gems that aren't default gems as of Ruby 3.4
+  spec.add_runtime_dependency "base64", "~> 0.2"
 end

@@ -15,7 +15,8 @@ module Line
           attr_accessor desktop: String?
           
           def initialize: (
-            desktop: String?
+            ?desktop: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> AltUri

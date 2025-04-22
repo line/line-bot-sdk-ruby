@@ -20,7 +20,8 @@ module Line
           def initialize: (
             area: ImagemapArea,
             link_uri: String,
-            label: String?
+            ?label: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> URIImagemapAction

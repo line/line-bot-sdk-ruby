@@ -19,7 +19,8 @@ module Line
           
           def initialize: (
             from: String,
-            to: String
+            to: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBatchLinkOperation

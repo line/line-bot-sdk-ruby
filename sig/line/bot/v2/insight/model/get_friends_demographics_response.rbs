@@ -22,12 +22,13 @@ module Line
           attr_accessor subscription_periods: Array[SubscriptionPeriodTile]?
           
           def initialize: (
-            available: bool?,
-            genders: Array[GenderTile]?,
-            ages: Array[AgeTile]?,
-            areas: Array[AreaTile]?,
-            app_types: Array[AppTypeTile]?,
-            subscription_periods: Array[SubscriptionPeriodTile]?
+            ?available: bool?,
+            ?genders: Array[GenderTile]?,
+            ?ages: Array[AgeTile]?,
+            ?areas: Array[AreaTile]?,
+            ?app_types: Array[AppTypeTile]?,
+            ?subscription_periods: Array[SubscriptionPeriodTile]?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetFriendsDemographicsResponse

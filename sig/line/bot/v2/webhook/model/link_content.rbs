@@ -18,7 +18,8 @@ module Line
           
           def initialize: (
             result: 'ok'|'failed',
-            nonce: String
+            nonce: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> LinkContent

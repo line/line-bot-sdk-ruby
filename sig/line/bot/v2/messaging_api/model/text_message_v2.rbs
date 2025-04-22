@@ -21,11 +21,12 @@ module Line
           attr_accessor quote_token: String?
           
           def initialize: (
-            quick_reply: QuickReply?,
-            sender: Sender?,
+            ?quick_reply: QuickReply?,
+            ?sender: Sender?,
             text: String,
-            substitution: Object?,
-            quote_token: String?
+            ?substitution: Object?,
+            ?quote_token: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> TextMessageV2

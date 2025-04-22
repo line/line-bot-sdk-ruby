@@ -22,12 +22,13 @@ module Line
           attr_accessor chat_control: ChatControl
           
           def initialize: (
-            source: Source?,
+            ?source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
             delivery_context: DeliveryContext,
-            chat_control: ChatControl
+            chat_control: ChatControl,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ActivatedEvent

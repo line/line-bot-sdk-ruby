@@ -130,15 +130,15 @@ describe Line::Bot::V2::Utils do
       expect(Line::Bot::V2::Utils.deep_compact(input)).to eq(expected_output)
     end
 
-    it 'removes empty arrays and hashes' do
+    it 'removes empty hashes, but keeps empty array' do
       input = { key1: [], key2: {} }
-      expected_output = {}
+      expected_output = { key1: []}
       expect(Line::Bot::V2::Utils.deep_compact(input)).to eq(expected_output)
     end
 
     it 'compacts nested structures' do
       input = { key1: { key2: nil, key3: 'value' }, key4: [] }
-      expected_output = { key1: { key3: 'value' } }
+      expected_output = { key1: { key3: 'value' }, key4: [] }
       expect(Line::Bot::V2::Utils.deep_compact(input)).to eq(expected_output)
     end
 

@@ -10,11 +10,15 @@ module Line
         class Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client
           @http_client: HttpClient
           def initialize: (
-            base_url: String?{% if packageName == 'channel_access_token' %}{% elseif packageName == 'module_attach' %},
+            ?base_url: String?
+            {%- if packageName == 'channel_access_token' -%}
+            {%- elseif packageName == 'module_attach' %},
             channel_id: String,
-            channel_secret: String{% else %},
-            channel_access_token: String{% endif %},
-            http_options: Hash[String|Symbol, untyped]
+            channel_secret: String
+            {%- else %},
+            channel_access_token: String
+            {%- endif %},
+            ?http_options: Hash[String|Symbol, untyped]
           ) -> void
           {%- for op in operations.operation %}
 
@@ -34,7 +38,7 @@ module Line
           {% endif -%}
           def {{op.nickname}}_with_http_info: (
             {%- for param in op.allParams %}
-            {{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
+            {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
             {% endfor %}
           ) -> [({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null ? 'String?' : response.dataType }}{{ loop.last ? '' : '|' }}{% endfor %}), Integer, Hash[String, String]]
 
@@ -54,7 +58,7 @@ module Line
           {% endif -%}
           def {{op.nickname}}: (
             {%- for param in op.allParams %}
-            {{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
+            {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
             {% endfor %}
           ) -> ({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null ? 'String?' : response.dataType }}{{ loop.last ? '' : '|' }}{% endfor %}){% endfor %}
         end

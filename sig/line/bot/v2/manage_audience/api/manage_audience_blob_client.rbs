@@ -14,9 +14,9 @@ module Line
         class ApiBlobClient
           @http_client: HttpClient
           def initialize: (
-            base_url: String?,
+            ?base_url: String?,
             channel_access_token: String,
-            http_options: Hash[String|Symbol, untyped]
+            ?http_options: Hash[String|Symbol, untyped]
           ) -> void
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
@@ -27,8 +27,8 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group-by-file
           def add_user_ids_to_audience_with_http_info: (
             file: File, 
-            audience_group_id: Integer?, 
-            upload_description: String?
+            ?audience_group_id: Integer?, 
+            ?upload_description: String?
           ) -> [(String?), Integer, Hash[String, String]]
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
@@ -39,8 +39,8 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group-by-file
           def add_user_ids_to_audience: (
             file: File, 
-            audience_group_id: Integer?, 
-            upload_description: String?
+            ?audience_group_id: Integer?, 
+            ?upload_description: String?
           ) -> (String?)
 
           # Create audience for uploading user IDs (by file).
@@ -52,9 +52,9 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group-by-file
           def create_audience_for_uploading_user_ids_with_http_info: (
             file: File, 
-            description: String?, 
-            is_ifa_audience: bool?, 
-            upload_description: String?
+            ?description: String?, 
+            ?is_ifa_audience: bool?, 
+            ?upload_description: String?
           ) -> [(CreateAudienceGroupResponse), Integer, Hash[String, String]]
 
           # Create audience for uploading user IDs (by file).
@@ -66,9 +66,9 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group-by-file
           def create_audience_for_uploading_user_ids: (
             file: File, 
-            description: String?, 
-            is_ifa_audience: bool?, 
-            upload_description: String?
+            ?description: String?, 
+            ?is_ifa_audience: bool?, 
+            ?upload_description: String?
           ) -> (CreateAudienceGroupResponse)
         end
       end

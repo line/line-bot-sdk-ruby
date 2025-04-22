@@ -23,13 +23,14 @@ module Line
           attr_accessor message: MessageContent
           
           def initialize: (
-            source: Source?,
+            ?source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
             delivery_context: DeliveryContext,
-            reply_token: String?,
-            message: MessageContent
+            ?reply_token: String?,
+            message: MessageContent,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> MessageEvent

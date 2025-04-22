@@ -16,8 +16,9 @@ module Line
           attr_accessor property: String?
           
           def initialize: (
-            message: String?,
-            property: String?
+            ?message: String?,
+            ?property: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ErrorDetail

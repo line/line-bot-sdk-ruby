@@ -24,14 +24,15 @@ module Line
           attr_accessor created: Integer?
           
           def initialize: (
-            audience_group_job_id: Integer?,
-            audience_group_id: Integer?,
-            description: String?,
-            type: 'DIFF_ADD'?,
-            job_status: 'QUEUED'|'WORKING'|'FINISHED'|'FAILED'?,
-            failed_type: 'INTERNAL_ERROR'|'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'?,
-            audience_count: Integer?,
-            created: Integer?
+            ?audience_group_job_id: Integer?,
+            ?audience_group_id: Integer?,
+            ?description: String?,
+            ?type: 'DIFF_ADD'?,
+            ?job_status: 'QUEUED'|'WORKING'|'FINISHED'|'FAILED'?,
+            ?failed_type: 'INTERNAL_ERROR'|'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'?,
+            ?audience_count: Integer?,
+            ?created: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> AudienceGroupJob

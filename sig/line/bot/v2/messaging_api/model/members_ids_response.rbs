@@ -17,7 +17,8 @@ module Line
           
           def initialize: (
             member_ids: Array[String],
-            _next: String?
+            ?_next: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> MembersIdsResponse

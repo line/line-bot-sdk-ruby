@@ -14,26 +14,10 @@ module Line
         class ApiClient
           @http_client: HttpClient
           def initialize: (
-            base_url: String?,
+            ?base_url: String?,
             channel_access_token: String,
-            http_options: Hash[String|Symbol, untyped]
+            ?http_options: Hash[String|Symbol, untyped]
           ) -> void
-
-          # Activate audience
-          #
-          # @param audience_group_id The audience ID.
-          # @see https://developers.line.biz/en/reference/messaging-api/#activate-audience-group
-          def activate_audience_group_with_http_info: (
-            audience_group_id: Integer
-          ) -> [(String?), Integer, Hash[String, String]]
-
-          # Activate audience
-          #
-          # @param audience_group_id The audience ID.
-          # @see https://developers.line.biz/en/reference/messaging-api/#activate-audience-group
-          def activate_audience_group: (
-            audience_group_id: Integer
-          ) -> (String?)
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
           #
@@ -131,18 +115,6 @@ module Line
             audience_group_id: Integer
           ) -> (GetAudienceDataResponse|ErrorResponse)
 
-          # Get the authority level of the audience
-          #
-          # @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
-          def get_audience_group_authority_level_with_http_info: (
-          ) -> [(GetAudienceGroupAuthorityLevelResponse), Integer, Hash[String, String]]
-
-          # Get the authority level of the audience
-          #
-          # @see https://developers.line.biz/en/reference/messaging-api/#get-authority-level
-          def get_audience_group_authority_level: (
-          ) -> (GetAudienceGroupAuthorityLevelResponse)
-
           # Gets data for more than one audience.
           #
           # @param page The page to return when getting (paginated) results. Must be 1 or higher.
@@ -154,11 +126,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
           def get_audience_groups_with_http_info: (
             page: Integer, 
-            description: String?, 
-            status: AudienceGroupStatus?, 
-            size: Integer?, 
-            includes_external_public_groups: bool?, 
-            create_route: AudienceGroupCreateRoute?
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?includes_external_public_groups: bool?, 
+            ?create_route: AudienceGroupCreateRoute?
           ) -> [(GetAudienceGroupsResponse), Integer, Hash[String, String]]
 
           # Gets data for more than one audience.
@@ -172,11 +144,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
           def get_audience_groups: (
             page: Integer, 
-            description: String?, 
-            status: AudienceGroupStatus?, 
-            size: Integer?, 
-            includes_external_public_groups: bool?, 
-            create_route: AudienceGroupCreateRoute?
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?includes_external_public_groups: bool?, 
+            ?create_route: AudienceGroupCreateRoute?
           ) -> (GetAudienceGroupsResponse)
 
           # Gets audience data.
@@ -202,13 +174,15 @@ module Line
           # @param status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
           # @param size The number of audiences per page. Default: 20 Max: 40 
           # @param create_route How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @param includes_owned_audience_groups true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
           def get_shared_audience_groups_with_http_info: (
             page: Integer, 
-            description: String?, 
-            status: AudienceGroupStatus?, 
-            size: Integer?, 
-            create_route: AudienceGroupCreateRoute?
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?create_route: AudienceGroupCreateRoute?, 
+            ?includes_owned_audience_groups: bool?
           ) -> [(GetSharedAudienceGroupsResponse), Integer, Hash[String, String]]
 
           # Gets data for more than one audience, including those shared by the Business Manager.
@@ -218,30 +192,16 @@ module Line
           # @param status The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
           # @param size The number of audiences per page. Default: 20 Max: 40 
           # @param create_route How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+          # @param includes_owned_audience_groups true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
           def get_shared_audience_groups: (
             page: Integer, 
-            description: String?, 
-            status: AudienceGroupStatus?, 
-            size: Integer?, 
-            create_route: AudienceGroupCreateRoute?
+            ?description: String?, 
+            ?status: AudienceGroupStatus?, 
+            ?size: Integer?, 
+            ?create_route: AudienceGroupCreateRoute?, 
+            ?includes_owned_audience_groups: bool?
           ) -> (GetSharedAudienceGroupsResponse)
-
-          # Change the authority level of the audience
-          #
-          # @param update_audience_group_authority_level_request 
-          # @see https://developers.line.biz/en/reference/messaging-api/#change-authority-level
-          def update_audience_group_authority_level_with_http_info: (
-            update_audience_group_authority_level_request: UpdateAudienceGroupAuthorityLevelRequest
-          ) -> [(String?), Integer, Hash[String, String]]
-
-          # Change the authority level of the audience
-          #
-          # @param update_audience_group_authority_level_request 
-          # @see https://developers.line.biz/en/reference/messaging-api/#change-authority-level
-          def update_audience_group_authority_level: (
-            update_audience_group_authority_level_request: UpdateAudienceGroupAuthorityLevelRequest
-          ) -> (String?)
 
           # Renames an existing audience.
           #

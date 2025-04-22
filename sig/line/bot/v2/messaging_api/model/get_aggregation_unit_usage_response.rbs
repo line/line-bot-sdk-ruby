@@ -16,7 +16,8 @@ module Line
           attr_accessor num_of_custom_aggregation_units: Integer
           
           def initialize: (
-            num_of_custom_aggregation_units: Integer
+            num_of_custom_aggregation_units: Integer,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetAggregationUnitUsageResponse

@@ -15,7 +15,8 @@ module Line
           attr_accessor liff_id: String
           
           def initialize: (
-            liff_id: String
+            liff_id: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> AddLiffAppResponse

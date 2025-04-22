@@ -19,7 +19,8 @@ module Line
           
           def initialize: (
             destination: String,
-            events: Array[Event]
+            events: Array[Event],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> CallbackRequest
