@@ -16,7 +16,8 @@ module Line
           attr_accessor membership_id: Integer
           
           def initialize: (
-            membership_id: Integer
+            membership_id: Integer,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> LeftMembershipContent

@@ -33,7 +33,8 @@ module Line
             member_count: Integer,
             member_limit: Integer,
             is_in_app_purchase: bool,
-            is_published: bool
+            is_published: bool,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> Membership

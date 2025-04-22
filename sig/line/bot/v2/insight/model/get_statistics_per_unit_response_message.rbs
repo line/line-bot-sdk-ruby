@@ -29,18 +29,19 @@ module Line
           
           def initialize: (
             seq: Integer,
-            impression: Integer?,
-            media_played: Integer?,
-            media_played25_percent: Integer?,
-            media_played50_percent: Integer?,
-            media_played75_percent: Integer?,
-            media_played100_percent: Integer?,
-            unique_impression: Integer?,
-            unique_media_played: Integer?,
-            unique_media_played25_percent: Integer?,
-            unique_media_played50_percent: Integer?,
-            unique_media_played75_percent: Integer?,
-            unique_media_played100_percent: Integer?
+            ?impression: Integer?,
+            ?media_played: Integer?,
+            ?media_played25_percent: Integer?,
+            ?media_played50_percent: Integer?,
+            ?media_played75_percent: Integer?,
+            ?media_played100_percent: Integer?,
+            ?unique_impression: Integer?,
+            ?unique_media_played: Integer?,
+            ?unique_media_played25_percent: Integer?,
+            ?unique_media_played50_percent: Integer?,
+            ?unique_media_played75_percent: Integer?,
+            ?unique_media_played100_percent: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponseMessage

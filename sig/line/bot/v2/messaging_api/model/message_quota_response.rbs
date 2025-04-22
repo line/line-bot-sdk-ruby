@@ -18,7 +18,8 @@ module Line
           
           def initialize: (
             type: 'none'|'limited',
-            value: Integer?
+            ?value: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> MessageQuotaResponse

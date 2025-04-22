@@ -29,20 +29,21 @@ module Line
           attr_accessor scaling: bool?
           
           def initialize: (
-            flex: Integer?,
-            color: String?,
-            style: 'primary'|'secondary'|'link'?,
+            ?flex: Integer?,
+            ?color: String?,
+            ?style: 'primary'|'secondary'|'link'?,
             action: Action,
-            gravity: 'top'|'bottom'|'center'?,
-            margin: String?,
-            position: 'relative'|'absolute'?,
-            offset_top: String?,
-            offset_bottom: String?,
-            offset_start: String?,
-            offset_end: String?,
-            height: 'md'|'sm'?,
-            adjust_mode: 'shrink-to-fit'?,
-            scaling: bool?
+            ?gravity: 'top'|'bottom'|'center'?,
+            ?margin: String?,
+            ?position: 'relative'|'absolute'?,
+            ?offset_top: String?,
+            ?offset_bottom: String?,
+            ?offset_start: String?,
+            ?offset_end: String?,
+            ?height: 'md'|'sm'?,
+            ?adjust_mode: 'shrink-to-fit'?,
+            ?scaling: bool?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> FlexButton

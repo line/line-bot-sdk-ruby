@@ -16,7 +16,7 @@ module Line
           attr_reader type: String
           
           def initialize: (
-            
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBatchUnlinkAllOperation

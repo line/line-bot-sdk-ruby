@@ -21,7 +21,8 @@ module Line
             index: Integer,
             length: Integer,
             product_id: String,
-            emoji_id: String
+            emoji_id: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> Emoji

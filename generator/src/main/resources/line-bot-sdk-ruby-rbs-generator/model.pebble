@@ -39,7 +39,8 @@ module Line
           def initialize: (
             {% for variable in model.model.vars -%}
             {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name -%}
-            {% if variable.openApiType == 'array' -%}
+            {{ (not variable.required or variable.defaultValue != null) ? '?' : '' }} {#- optioanl parameter => Add '?' #}
+            {%- if variable.openApiType == 'array' -%}
             {% if variable.items.isModel -%}
             {{ variable.name }}: {{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %}?{% endif -%}
             {% elseif variable.items.allowableValues != null -%}
@@ -47,16 +48,19 @@ module Line
             {% else -%}
             {{ variable.name }}: {{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %}?{% endif -%}
             {% endif -%}
-            {% elseif variable.isModel -%}
+            {%- elseif variable.isModel -%}
             {{ variable.name }}: {{ variable.openApiType }}{% if not variable.required %}?{% endif -%}
-            {% else -%}
+            {%- else -%}
             {% if variable.allowableValues != null -%}
             {{ variable.name }}: {% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}{% if not variable.required %}?{% endif -%}
             {% else -%}
             {{ variable.name }}: {{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}{% if not variable.required %}?{% endif -%}
             {% endif -%}
-            {% endif %}{{ loop.last ? '' : ",
-            " }}{% endif %}{% endfor %}
+            {% endif -%}
+            ,
+            {% endif -%}
+            {%- endfor -%}
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> {{ model.model.classname }}

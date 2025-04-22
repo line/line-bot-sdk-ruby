@@ -23,14 +23,15 @@ module Line
           attr_accessor error_reason: String?
           
           def initialize: (
-            scenario_id: String?,
-            revision: Integer?,
+            ?scenario_id: String?,
+            ?revision: Integer?,
             start_time: Integer,
             end_time: Integer,
             result_code: String,
-            action_results: Array[ActionResult]?,
-            ble_notification_payload: String?,
-            error_reason: String?
+            ?action_results: Array[ActionResult]?,
+            ?ble_notification_payload: String?,
+            ?error_reason: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ScenarioResult

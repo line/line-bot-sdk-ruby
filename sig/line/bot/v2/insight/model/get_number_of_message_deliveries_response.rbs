@@ -27,17 +27,18 @@ module Line
           attr_accessor api_reply: Integer?
           
           def initialize: (
-            status: 'ready'|'unready'|'out_of_service'?,
-            broadcast: Integer?,
-            targeting: Integer?,
-            auto_response: Integer?,
-            welcome_response: Integer?,
-            chat: Integer?,
-            api_broadcast: Integer?,
-            api_push: Integer?,
-            api_multicast: Integer?,
-            api_narrowcast: Integer?,
-            api_reply: Integer?
+            ?status: 'ready'|'unready'|'out_of_service'?,
+            ?broadcast: Integer?,
+            ?targeting: Integer?,
+            ?auto_response: Integer?,
+            ?welcome_response: Integer?,
+            ?chat: Integer?,
+            ?api_broadcast: Integer?,
+            ?api_push: Integer?,
+            ?api_multicast: Integer?,
+            ?api_narrowcast: Integer?,
+            ?api_reply: Integer?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetNumberOfMessageDeliveriesResponse

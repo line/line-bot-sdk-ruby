@@ -22,11 +22,12 @@ module Line
           
           def initialize: (
             type: String,
-            source: Source?,
+            ?source: Source?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
-            delivery_context: DeliveryContext
+            delivery_context: DeliveryContext,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> Event

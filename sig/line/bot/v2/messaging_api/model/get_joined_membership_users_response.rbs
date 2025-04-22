@@ -19,7 +19,8 @@ module Line
           
           def initialize: (
             user_ids: Array[String],
-            _next: String?
+            ?_next: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> GetJoinedMembershipUsersResponse

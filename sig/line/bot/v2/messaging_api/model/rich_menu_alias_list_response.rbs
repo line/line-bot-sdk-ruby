@@ -16,7 +16,8 @@ module Line
           attr_accessor aliases: Array[RichMenuAliasResponse]
           
           def initialize: (
-            aliases: Array[RichMenuAliasResponse]
+            aliases: Array[RichMenuAliasResponse],
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> RichMenuAliasListResponse

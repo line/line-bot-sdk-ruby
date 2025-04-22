@@ -20,7 +20,8 @@ module Line
           def initialize: (
             phase: 'ongoing'|'succeeded'|'failed',
             accepted_time: String,
-            completed_time: String?
+            ?completed_time: String?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBatchProgressResponse

@@ -18,8 +18,9 @@ module Line
           attr_accessor clipboard_text: String
           
           def initialize: (
-            label: String?,
-            clipboard_text: String
+            ?label: String?,
+            clipboard_text: String,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> ClipboardAction

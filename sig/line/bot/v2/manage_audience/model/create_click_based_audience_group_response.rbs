@@ -26,16 +26,17 @@ module Line
           attr_accessor is_ifa_audience: bool?
           
           def initialize: (
-            audience_group_id: Integer?,
-            type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
-            description: String?,
-            created: Integer?,
-            request_id: String?,
-            click_url: String?,
-            create_route: 'MESSAGING_API'?,
-            permission: 'READ'|'READ_WRITE'?,
-            expire_timestamp: Integer?,
-            is_ifa_audience: bool?
+            ?audience_group_id: Integer?,
+            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
+            ?description: String?,
+            ?created: Integer?,
+            ?request_id: String?,
+            ?click_url: String?,
+            ?create_route: 'MESSAGING_API'?,
+            ?permission: 'READ'|'READ_WRITE'?,
+            ?expire_timestamp: Integer?,
+            ?is_ifa_audience: bool?,
+            **Hash[Symbol, untyped] dynamic_attributes
           ) -> void
 
           def self.create: (args: Hash[Symbol, untyped]) -> CreateClickBasedAudienceGroupResponse
