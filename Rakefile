@@ -18,8 +18,13 @@ end
 ## Development
 
 desc "Run normal tests (exclude no_missing_require_* specs)"
-task :test_normal do
-  sh "bundle exec rspec --exclude-pattern 'spec/line/bot/line_bot_api_gem_spec.rb,spec/line/bot/line_bot_gem_spec.rb'"
+task :test_normal, [:skip_tag] do |_, args|
+  skip_tag = args[:skip_tag]
+
+  rspec_opts = []
+  rspec_opts << "--tag '~#{skip_tag}'" if skip_tag
+
+  sh "bundle exec rspec --exclude-pattern 'spec/line/bot/line_bot_api_gem_spec.rb,spec/line/bot/line_bot_gem_spec.rb' #{rspec_opts.join(' ')}"
 end
 
 desc "Test line-bot-api gem spec"
@@ -66,7 +71,6 @@ task :rbs_test do
   line_v2_targets = line_v2_targets.map { |name| "#{name}::*" }.uniq
   # Exclude Line::Bot::V2::Webhook::* and Line::Bot::V2::WebhookParser
   line_v2_targets.reject! { |name| name.start_with?('Line::Bot::V2::Webhook') } # TODO: Delete it
-  p line_v2_targets
 
   ENV['RUBYOPT']           = '-rbundler/setup -rrbs/test/setup'
   ENV['RBS_TEST_LOGLEVEL'] = 'error'
@@ -74,7 +78,7 @@ task :rbs_test do
   ENV['RBS_TEST_OPT']      = '-Isig'
   ENV['RBS_TEST_TARGET']   = line_v2_targets.join(',')
 
-  sh "bundle exec rake test"
+  Rake::Task[:test_normal].invoke('rbs_test:skip')
 end
 
 desc "Run rubocop"
