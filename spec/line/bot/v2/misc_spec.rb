@@ -97,10 +97,9 @@ describe 'misc' do
         let(:client) { Line::Bot::V2::ManageAudience::ApiClient.new(channel_access_token: channel_access_token) }
 
         it 'uploads a json to the audience successfully' do
-          create_audience_group_request = {
-            description: 'Test Audience',
-          }
-
+          create_audience_group_request = Line::Bot::V2::ManageAudience::CreateAudienceGroupRequest.new(
+            description: 'Test Audience'
+          )
           stub_request(:post, "https://api.line.me/v2/bot/audienceGroup/upload")
             .with(
               body: "{\"description\":\"Test Audience\"}",
@@ -165,14 +164,14 @@ describe 'misc' do
               'Authorization' => "Bearer #{channel_access_token}",
             }
           )
-          .to_return(status: response_code, body: { "status" => "ready" }.to_json, headers: { 'Content-Type' => 'application/json' })
+          .to_return(status: response_code, body: { "status" => "processing" }.to_json, headers: { 'Content-Type' => 'application/json' })
 
         body, status_code, headers = client.get_message_content_transcoding_by_message_id_with_http_info(
           message_id: message_id
         )
 
         expect(status_code).to eq(200)
-        expect(body.status).to eq('ready')
+        expect(body.status).to eq('processing')
         expect(headers['content-type']).to eq('application/json')
       end
     end
@@ -477,7 +476,7 @@ describe 'misc' do
         )
         .to_return(status: response_code, body: response_body, headers: {})
 
-      request = Line::Bot::V2::Liff::UpdateLiffAppRequest.new(view: { url: 'https://example.com' })
+      request = Line::Bot::V2::Liff::UpdateLiffAppRequest.new(view: Line::Bot::V2::Liff::UpdateLiffView.new(url: 'https://example.com' ))
       body, status_code, headers = client.update_liff_app_with_http_info(liff_id: 'test-liff-id', update_liff_app_request: request)
 
       expect(status_code).to eq(200)
@@ -536,7 +535,7 @@ describe 'misc' do
       expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
     end
 
-    it 'response - success - using hash (not recommended way)' do
+    it 'response - success - using hash (not recommended way)', rbs_test: :skip do
       stub_request(:post, "https://api.line.me/v2/bot/message/push")
         .with(
           headers: {
@@ -1581,7 +1580,7 @@ describe 'misc' do
     end
 
     context 'with invalid enum values' do
-      it "doesn't raise any error" do
+      it "doesn't raise any error", rbs_test: :skip do
         liff_app = Line::Bot::V2::Liff::LiffApp.new(
           liff_id: 'liffId123',
           view: Line::Bot::V2::Liff::LiffView.new(
