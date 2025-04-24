@@ -3,7 +3,7 @@ module Line
     module V2
       class HttpClient
         @base_url: String
-        @http_headers: Hash[String, String]
+        @http_headers: Hash[Symbol, String]
         @http_options: Hash[String | Symbol, untyped]
 
         def initialize: (
@@ -14,49 +14,49 @@ module Line
 
         def get: (
             path: String,
-            ?query_params: Hash[String, untyped]?,
-            ?headers: Hash[String | Symbol, untyped]?
+            ?query_params: Hash[Symbol, untyped]?,
+            ?headers: Hash[Symbol, untyped]?
           ) -> Net::HTTPResponse
 
         def post: (
             path: String,
-            ?query_params: Hash[String, untyped]?,
-            ?body_params: (File | Hash[untyped, untyped])?,
-            ?headers: Hash[String | Symbol, untyped]?
+            ?query_params: Hash[Symbol, untyped]?,
+            ?body_params: (File | Hash[untyped, untyped] | untyped)?,
+            ?headers: Hash[Symbol, untyped]?
           ) -> Net::HTTPResponse
 
         def put: (
             path: String,
-            ?query_params: Hash[String, untyped]?,
-            ?body_params: (File | Hash[untyped, untyped])?,
-            ?headers: Hash[String | Symbol, untyped]?
+            ?query_params: Hash[Symbol, untyped]?,
+            ?body_params: (File | Hash[untyped, untyped] | untyped)?,
+            ?headers: Hash[Symbol, untyped]?
           ) -> Net::HTTPResponse
 
         def delete: (
             path: String,
-            ?query_params: Hash[String, untyped]?,
-            ?headers: Hash[String | Symbol, untyped]?
+            ?query_params: Hash[Symbol, untyped]?,
+            ?headers: Hash[Symbol, untyped]?
           ) -> Net::HTTPResponse
 
         def post_form: (
             path: String,
-            ?query_params: Hash[String, untyped]?,
+            ?query_params: Hash[Symbol, untyped]?,
             ?form_params: Hash[untyped, untyped]?,
-            ?headers: Hash[String | Symbol, untyped]?
+            ?headers: Hash[Symbol, untyped]?
           ) -> Net::HTTPResponse
 
         def post_form_multipart: (
             path: String,
-            ?query_params: Hash[String, untyped]?,
+            ?query_params: Hash[Symbol, untyped]?,
             ?form_params: Hash[untyped, untyped]?,
-            ?headers: Hash[String | Symbol, untyped]?
+            ?headers: Hash[Symbol, untyped]?
           ) -> Net::HTTPResponse
 
         def put_form_multipart: (
             path: String,
-            ?query_params: Hash[String, untyped]?,
+            ?query_params: Hash[Symbol, untyped]?,
             ?form_params: Hash[untyped, untyped]?,
-            ?headers: Hash[String | Symbol, untyped]?
+            ?headers: Hash[Symbol, untyped]?
           ) -> Net::HTTPResponse
 
         private
@@ -64,35 +64,35 @@ module Line
         def build_request: (
             http_class: untyped,
             path: String,
-            query_params: Hash[String, untyped]?,
-            headers: Hash[String | Symbol, untyped]?,
-            ?body_params: (File | Hash[untyped, untyped])?
+            query_params: Hash[Symbol, untyped]?,
+            headers: Hash[Symbol, untyped]?,
+            ?body_params: (File | Hash[untyped, untyped] | untyped)?
           ) -> Net::HTTPRequest
 
         def build_form_request: (
             http_class: untyped,
             path: String,
-            query_params: Hash[String, untyped]?,
+            query_params: Hash[Symbol, untyped]?,
             form_params: Hash[untyped, untyped]?,
-            headers: Hash[String | Symbol, untyped]?
+            headers: Hash[Symbol, untyped]?
           ) -> Net::HTTPRequest
 
         def build_multipart_request: (
             http_class: untyped,
             path: String,
-            query_params: Hash[String, untyped]?,
+            query_params: Hash[Symbol, untyped]?,
             form_params: Hash[untyped, untyped]?,
-            headers: Hash[String | Symbol, untyped]?
+            headers: Hash[Symbol, untyped]?
           ) -> Net::HTTPRequest
 
         def build_url: (
             path: String,
-            query_params: Hash[String, untyped]?
+            query_params: Hash[Symbol, untyped]?
           ) -> URI
 
         def build_headers: (
-            headers: Hash[String | Symbol, untyped]?
-          ) -> Hash[String, String]
+            ?headers: Hash[Symbol, untyped]?
+          ) -> Hash[Symbol, String]
 
         def perform_request: (
             request: Net::HTTPRequest
@@ -104,7 +104,7 @@ module Line
 
         def normalize_headers: (
             headers: Hash[String | Symbol, untyped]?
-          ) -> Hash[String, String]
+          ) -> Hash[Symbol, String]
       end
     end
   end
