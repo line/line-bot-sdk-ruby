@@ -16,11 +16,11 @@ module Line
           attr_accessor memberships: Array[Membership]
           
           def initialize: (
-            memberships: Array[Membership],
-            **Hash[Symbol, untyped] dynamic_attributes
+            memberships: Array[Membership| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> MembershipListResponse
+          def self.create: (Hash[Symbol, untyped]) -> MembershipListResponse
 
           def ==: (untyped other) -> bool
 

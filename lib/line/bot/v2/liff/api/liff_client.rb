@@ -70,7 +70,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::Liff::AddLiffAppResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::Liff::AddLiffAppResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 400
                      response.body
                    when 401
@@ -175,7 +175,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::Liff::GetAllLiffAppsResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::Liff::GetAllLiffAppsResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 401
                      response.body
                    when 404

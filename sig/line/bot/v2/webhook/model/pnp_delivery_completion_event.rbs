@@ -22,16 +22,16 @@ module Line
           attr_accessor delivery: PnpDelivery
           
           def initialize: (
-            ?source: Source?,
+            ?source: Source?| Hash[Symbol, untyped]?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
-            delivery_context: DeliveryContext,
-            delivery: PnpDelivery,
-            **Hash[Symbol, untyped] dynamic_attributes
+            delivery_context: DeliveryContext| Hash[Symbol, untyped],
+            delivery: PnpDelivery| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> PnpDeliveryCompletionEvent
+          def self.create: (Hash[Symbol, untyped]) -> PnpDeliveryCompletionEvent
 
           def ==: (untyped other) -> bool
 

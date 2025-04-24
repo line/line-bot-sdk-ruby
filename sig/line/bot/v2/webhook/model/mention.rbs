@@ -15,11 +15,11 @@ module Line
           attr_accessor mentionees: Array[Mentionee]
           
           def initialize: (
-            mentionees: Array[Mentionee],
-            **Hash[Symbol, untyped] dynamic_attributes
+            mentionees: Array[Mentionee| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> Mention
+          def self.create: (Hash[Symbol, untyped]) -> Mention
 
           def ==: (untyped other) -> bool
 

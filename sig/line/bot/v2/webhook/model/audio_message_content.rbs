@@ -19,12 +19,12 @@ module Line
           
           def initialize: (
             id: String,
-            content_provider: ContentProvider,
+            content_provider: ContentProvider| Hash[Symbol, untyped],
             ?duration: Integer?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> AudioMessageContent
+          def self.create: (Hash[Symbol, untyped]) -> AudioMessageContent
 
           def ==: (untyped other) -> bool
 

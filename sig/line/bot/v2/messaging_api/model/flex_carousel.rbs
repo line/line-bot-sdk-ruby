@@ -16,11 +16,11 @@ module Line
           attr_accessor contents: Array[FlexBubble]
           
           def initialize: (
-            contents: Array[FlexBubble],
-            **Hash[Symbol, untyped] dynamic_attributes
+            contents: Array[FlexBubble| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexCarousel
+          def self.create: (Hash[Symbol, untyped]) -> FlexCarousel
 
           def ==: (untyped other) -> bool
 

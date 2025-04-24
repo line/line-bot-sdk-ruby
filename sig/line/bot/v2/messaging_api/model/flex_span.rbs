@@ -27,10 +27,10 @@ module Line
             ?weight: 'regular'|'bold'?,
             ?style: 'normal'|'italic'?,
             ?decoration: 'none'|'underline'|'line-through'?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexSpan
+          def self.create: (Hash[Symbol, untyped]) -> FlexSpan
 
           def ==: (untyped other) -> bool
 

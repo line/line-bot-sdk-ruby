@@ -16,11 +16,11 @@ module Line
           attr_accessor demographic: DemographicFilter?
           
           def initialize: (
-            ?demographic: DemographicFilter?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?demographic: DemographicFilter?| Hash[Symbol, untyped]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> Filter
+          def self.create: (Hash[Symbol, untyped]) -> Filter
 
           def ==: (untyped other) -> bool
 

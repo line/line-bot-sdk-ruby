@@ -21,10 +21,10 @@ module Line
             client_id: String,
             expires_in: Integer,
             ?scope: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> VerifyChannelAccessTokenResponse
+          def self.create: (Hash[Symbol, untyped]) -> VerifyChannelAccessTokenResponse
 
           def ==: (untyped other) -> bool
 

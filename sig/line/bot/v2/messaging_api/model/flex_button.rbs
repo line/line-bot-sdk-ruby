@@ -32,7 +32,7 @@ module Line
             ?flex: Integer?,
             ?color: String?,
             ?style: 'primary'|'secondary'|'link'?,
-            action: Action,
+            action: Action| Hash[Symbol, untyped],
             ?gravity: 'top'|'bottom'|'center'?,
             ?margin: String?,
             ?position: 'relative'|'absolute'?,
@@ -43,10 +43,10 @@ module Line
             ?height: 'md'|'sm'?,
             ?adjust_mode: 'shrink-to-fit'?,
             ?scaling: bool?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexButton
+          def self.create: (Hash[Symbol, untyped]) -> FlexButton
 
           def ==: (untyped other) -> bool
 

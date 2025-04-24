@@ -16,11 +16,11 @@ module Line
           attr_accessor sent_messages: Array[SentMessage]
           
           def initialize: (
-            sent_messages: Array[SentMessage],
-            **Hash[Symbol, untyped] dynamic_attributes
+            sent_messages: Array[SentMessage| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ReplyMessageResponse
+          def self.create: (Hash[Symbol, untyped]) -> ReplyMessageResponse
 
           def ==: (untyped other) -> bool
 

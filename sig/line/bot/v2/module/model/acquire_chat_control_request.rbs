@@ -20,10 +20,10 @@ module Line
           def initialize: (
             ?expired: bool?,
             ?ttl: Integer?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> AcquireChatControlRequest
+          def self.create: (Hash[Symbol, untyped]) -> AcquireChatControlRequest
 
           def ==: (untyped other) -> bool
 

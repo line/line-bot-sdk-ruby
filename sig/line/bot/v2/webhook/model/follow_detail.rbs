@@ -16,10 +16,10 @@ module Line
           
           def initialize: (
             is_unblocked: bool,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FollowDetail
+          def self.create: (Hash[Symbol, untyped]) -> FollowDetail
 
           def ==: (untyped other) -> bool
 

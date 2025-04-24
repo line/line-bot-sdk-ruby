@@ -15,11 +15,11 @@ module Line
           attr_accessor messages: Array[Message]
           
           def initialize: (
-            messages: Array[Message],
-            **Hash[Symbol, untyped] dynamic_attributes
+            messages: Array[Message| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ValidateMessageRequest
+          def self.create: (Hash[Symbol, untyped]) -> ValidateMessageRequest
 
           def ==: (untyped other) -> bool
 

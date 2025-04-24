@@ -21,11 +21,11 @@ module Line
           def initialize: (
             ?audience_group_id: Integer?,
             ?upload_description: String?,
-            ?audiences: Array[Audience]?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?audiences: Array[Audience| Hash[Symbol, untyped]]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> AddAudienceToAudienceGroupRequest
+          def self.create: (Hash[Symbol, untyped]) -> AddAudienceToAudienceGroupRequest
 
           def ==: (untyped other) -> bool
 

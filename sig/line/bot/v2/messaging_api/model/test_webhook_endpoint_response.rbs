@@ -25,10 +25,10 @@ module Line
             status_code: Integer,
             reason: String,
             detail: String,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> TestWebhookEndpointResponse
+          def self.create: (Hash[Symbol, untyped]) -> TestWebhookEndpointResponse
 
           def ==: (untyped other) -> bool
 

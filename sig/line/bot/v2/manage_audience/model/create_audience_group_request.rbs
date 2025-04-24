@@ -23,11 +23,11 @@ module Line
             ?description: String?,
             ?is_ifa_audience: bool?,
             ?upload_description: String?,
-            ?audiences: Array[Audience]?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?audiences: Array[Audience| Hash[Symbol, untyped]]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> CreateAudienceGroupRequest
+          def self.create: (Hash[Symbol, untyped]) -> CreateAudienceGroupRequest
 
           def ==: (untyped other) -> bool
 

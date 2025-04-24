@@ -18,10 +18,10 @@ module Line
           def initialize: (
             ?subscription_period: 'within7days'|'within30days'|'within90days'|'within180days'|'within365days'|'over365days'|'unknown'?,
             ?percentage: Float?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> SubscriptionPeriodTile
+          def self.create: (Hash[Symbol, untyped]) -> SubscriptionPeriodTile
 
           def ==: (untyped other) -> bool
 

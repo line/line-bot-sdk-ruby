@@ -20,12 +20,12 @@ module Line
           def initialize: (
             ?original_content_url: String?,
             ?preview_image_url: String?,
-            ?area: ImagemapArea?,
-            ?external_link: ImagemapExternalLink?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?area: ImagemapArea?| Hash[Symbol, untyped]?,
+            ?external_link: ImagemapExternalLink?| Hash[Symbol, untyped]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapVideo
+          def self.create: (Hash[Symbol, untyped]) -> ImagemapVideo
 
           def ==: (untyped other) -> bool
 

@@ -18,10 +18,10 @@ module Line
           def initialize: (
             data: String,
             ?params: Object?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> PostbackContent
+          def self.create: (Hash[Symbol, untyped]) -> PostbackContent
 
           def ==: (untyped other) -> bool
 

@@ -17,10 +17,10 @@ module Line
           
           def initialize: (
             count: Integer,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> RoomMemberCountResponse
+          def self.create: (Hash[Symbol, untyped]) -> RoomMemberCountResponse
 
           def ==: (untyped other) -> bool
 

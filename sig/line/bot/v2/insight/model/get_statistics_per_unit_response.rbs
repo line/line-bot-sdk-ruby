@@ -19,13 +19,13 @@ module Line
           attr_accessor clicks: Array[GetStatisticsPerUnitResponseClick]
           
           def initialize: (
-            overview: GetStatisticsPerUnitResponseOverview,
-            messages: Array[GetStatisticsPerUnitResponseMessage],
-            clicks: Array[GetStatisticsPerUnitResponseClick],
-            **Hash[Symbol, untyped] dynamic_attributes
+            overview: GetStatisticsPerUnitResponseOverview| Hash[Symbol, untyped],
+            messages: Array[GetStatisticsPerUnitResponseMessage| Hash[Symbol, untyped]],
+            clicks: Array[GetStatisticsPerUnitResponseClick| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponse
 
           def ==: (untyped other) -> bool
 

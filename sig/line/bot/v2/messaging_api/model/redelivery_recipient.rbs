@@ -17,10 +17,10 @@ module Line
           
           def initialize: (
             ?request_id: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> RedeliveryRecipient
+          def self.create: (Hash[Symbol, untyped]) -> RedeliveryRecipient
 
           def ==: (untyped other) -> bool
 

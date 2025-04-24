@@ -21,10 +21,10 @@ module Line
             group_id: String,
             group_name: String,
             ?picture_url: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GroupSummaryResponse
+          def self.create: (Hash[Symbol, untyped]) -> GroupSummaryResponse
 
           def ==: (untyped other) -> bool
 

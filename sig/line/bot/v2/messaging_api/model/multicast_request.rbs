@@ -19,14 +19,14 @@ module Line
           attr_accessor custom_aggregation_units: Array[String]?
           
           def initialize: (
-            messages: Array[Message],
+            messages: Array[Message| Hash[Symbol, untyped]],
             to: Array[String],
             ?notification_disabled: bool?,
             ?custom_aggregation_units: Array[String]?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> MulticastRequest
+          def self.create: (Hash[Symbol, untyped]) -> MulticastRequest
 
           def ==: (untyped other) -> bool
 

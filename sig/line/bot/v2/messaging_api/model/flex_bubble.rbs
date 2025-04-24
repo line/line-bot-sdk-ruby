@@ -24,17 +24,17 @@ module Line
           
           def initialize: (
             ?direction: 'ltr'|'rtl'?,
-            ?styles: FlexBubbleStyles?,
-            ?header: FlexBox?,
-            ?hero: FlexComponent?,
-            ?body: FlexBox?,
-            ?footer: FlexBox?,
+            ?styles: FlexBubbleStyles?| Hash[Symbol, untyped]?,
+            ?header: FlexBox?| Hash[Symbol, untyped]?,
+            ?hero: FlexComponent?| Hash[Symbol, untyped]?,
+            ?body: FlexBox?| Hash[Symbol, untyped]?,
+            ?footer: FlexBox?| Hash[Symbol, untyped]?,
             ?size: 'nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga'?,
-            ?action: Action?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?action: Action?| Hash[Symbol, untyped]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexBubble
+          def self.create: (Hash[Symbol, untyped]) -> FlexBubble
 
           def ==: (untyped other) -> bool
 

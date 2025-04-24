@@ -20,15 +20,15 @@ module Line
           attr_accessor notification_disabled: bool?
           
           def initialize: (
-            messages: Array[Message],
-            ?recipient: Recipient?,
-            ?filter: Filter?,
-            ?limit: Limit?,
+            messages: Array[Message| Hash[Symbol, untyped]],
+            ?recipient: Recipient?| Hash[Symbol, untyped]?,
+            ?filter: Filter?| Hash[Symbol, untyped]?,
+            ?limit: Limit?| Hash[Symbol, untyped]?,
             ?notification_disabled: bool?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> NarrowcastRequest
+          def self.create: (Hash[Symbol, untyped]) -> NarrowcastRequest
 
           def ==: (untyped other) -> bool
 

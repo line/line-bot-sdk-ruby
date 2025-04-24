@@ -22,15 +22,15 @@ module Line
           
           def initialize: (
             type: String,
-            ?source: Source?,
+            ?source: Source?| Hash[Symbol, untyped]?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
-            delivery_context: DeliveryContext,
-            **Hash[Symbol, untyped] dynamic_attributes
+            delivery_context: DeliveryContext| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> Event
+          def self.create: (Hash[Symbol, untyped]) -> Event
 
           def ==: (untyped other) -> bool
 
@@ -38,7 +38,7 @@ module Line
 
           private
 
-          def self.detect_class: (type: String) -> Class
+          def self.detect_class: (type: String) -> Class?
         end
       end
     end

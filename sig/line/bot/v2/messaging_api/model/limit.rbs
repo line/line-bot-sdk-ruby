@@ -20,10 +20,10 @@ module Line
           def initialize: (
             ?max: Integer?,
             ?up_to_remaining_quota: bool?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> Limit
+          def self.create: (Hash[Symbol, untyped]) -> Limit
 
           def ==: (untyped other) -> bool
 

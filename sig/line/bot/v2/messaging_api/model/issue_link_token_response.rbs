@@ -17,10 +17,10 @@ module Line
           
           def initialize: (
             link_token: String,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> IssueLinkTokenResponse
+          def self.create: (Hash[Symbol, untyped]) -> IssueLinkTokenResponse
 
           def ==: (untyped other) -> bool
 

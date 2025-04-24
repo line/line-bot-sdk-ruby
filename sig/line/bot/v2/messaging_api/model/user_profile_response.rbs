@@ -25,10 +25,10 @@ module Line
             ?picture_url: String?,
             ?status_message: String?,
             ?language: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> UserProfileResponse
+          def self.create: (Hash[Symbol, untyped]) -> UserProfileResponse
 
           def ==: (untyped other) -> bool
 

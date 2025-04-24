@@ -25,10 +25,10 @@ module Line
             ?end_color: String?,
             ?center_color: String?,
             ?center_position: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexBoxLinearGradient
+          def self.create: (Hash[Symbol, untyped]) -> FlexBoxLinearGradient
 
           def ==: (untyped other) -> bool
 

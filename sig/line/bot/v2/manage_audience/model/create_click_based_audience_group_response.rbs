@@ -36,10 +36,10 @@ module Line
             ?permission: 'READ'|'READ_WRITE'?,
             ?expire_timestamp: Integer?,
             ?is_ifa_audience: bool?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> CreateClickBasedAudienceGroupResponse
+          def self.create: (Hash[Symbol, untyped]) -> CreateClickBasedAudienceGroupResponse
 
           def ==: (untyped other) -> bool
 

@@ -38,10 +38,10 @@ module Line
             ?unique_media_played50_percent: Integer?,
             ?unique_media_played75_percent: Integer?,
             ?unique_media_played100_percent: Integer?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetMessageEventResponseMessage
+          def self.create: (Hash[Symbol, untyped]) -> GetMessageEventResponseMessage
 
           def ==: (untyped other) -> bool
 

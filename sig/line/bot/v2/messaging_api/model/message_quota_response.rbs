@@ -19,10 +19,10 @@ module Line
           def initialize: (
             type: 'none'|'limited',
             ?value: Integer?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> MessageQuotaResponse
+          def self.create: (Hash[Symbol, untyped]) -> MessageQuotaResponse
 
           def ==: (untyped other) -> bool
 

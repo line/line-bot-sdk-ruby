@@ -22,16 +22,16 @@ module Line
           attr_accessor size: Integer?
           
           def initialize: (
-            ?audience_groups: Array[AudienceGroup]?,
+            ?audience_groups: Array[AudienceGroup| Hash[Symbol, untyped]]?,
             ?has_next_page: bool?,
             ?total_count: Integer?,
             ?read_write_audience_group_total_count: Integer?,
             ?page: Integer?,
             ?size: Integer?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetSharedAudienceGroupsResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetSharedAudienceGroupsResponse
 
           def ==: (untyped other) -> bool
 

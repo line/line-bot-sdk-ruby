@@ -16,11 +16,11 @@ module Line
           attr_accessor aliases: Array[RichMenuAliasResponse]
           
           def initialize: (
-            aliases: Array[RichMenuAliasResponse],
-            **Hash[Symbol, untyped] dynamic_attributes
+            aliases: Array[RichMenuAliasResponse| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuAliasListResponse
+          def self.create: (Hash[Symbol, untyped]) -> RichMenuAliasListResponse
 
           def ==: (untyped other) -> bool
 

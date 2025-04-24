@@ -27,10 +27,10 @@ module Line
             ?text: String?,
             ?input_option: 'closeRichMenu'|'openRichMenu'|'openKeyboard'|'openVoice'?,
             ?fill_in_text: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> PostbackAction
+          def self.create: (Hash[Symbol, untyped]) -> PostbackAction
 
           def ==: (untyped other) -> bool
 

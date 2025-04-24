@@ -21,16 +21,16 @@ module Line
           attr_accessor bot_prompt: 'normal'|'aggressive'|'none'?
           
           def initialize: (
-            ?view: UpdateLiffView?,
+            ?view: UpdateLiffView?| Hash[Symbol, untyped]?,
             ?description: String?,
-            ?features: LiffFeatures?,
+            ?features: LiffFeatures?| Hash[Symbol, untyped]?,
             ?permanent_link_pattern: String?,
             ?scope: Array['openid'|'email'|'profile'|'chat_message.write']?,
             ?bot_prompt: 'normal'|'aggressive'|'none'?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> UpdateLiffAppRequest
+          def self.create: (Hash[Symbol, untyped]) -> UpdateLiffAppRequest
 
           def ==: (untyped other) -> bool
 

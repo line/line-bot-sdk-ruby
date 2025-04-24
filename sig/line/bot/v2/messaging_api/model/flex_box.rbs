@@ -44,7 +44,7 @@ module Line
           def initialize: (
             layout: 'horizontal'|'vertical'|'baseline',
             ?flex: Integer?,
-            contents: Array[FlexComponent],
+            contents: Array[FlexComponent| Hash[Symbol, untyped]],
             ?spacing: String?,
             ?margin: String?,
             ?position: 'relative'|'absolute'?,
@@ -65,14 +65,14 @@ module Line
             ?padding_bottom: String?,
             ?padding_start: String?,
             ?padding_end: String?,
-            ?action: Action?,
+            ?action: Action?| Hash[Symbol, untyped]?,
             ?justify_content: 'center'|'flex-start'|'flex-end'|'space-between'|'space-around'|'space-evenly'?,
             ?align_items: 'center'|'flex-start'|'flex-end'?,
-            ?background: FlexBoxBackground?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?background: FlexBoxBackground?| Hash[Symbol, untyped]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexBox
+          def self.create: (Hash[Symbol, untyped]) -> FlexBox
 
           def ==: (untyped other) -> bool
 
