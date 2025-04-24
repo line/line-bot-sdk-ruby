@@ -53,7 +53,7 @@ module Line
           # @param upload_description [String, nil] The description to register with the job
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group-by-file
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 202
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 202
           def add_user_ids_to_audience_with_http_info(
             file:,
             audience_group_id: nil,
