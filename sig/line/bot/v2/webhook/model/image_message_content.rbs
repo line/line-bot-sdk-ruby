@@ -20,13 +20,13 @@ module Line
           
           def initialize: (
             id: String,
-            content_provider: ContentProvider,
-            ?image_set: ImageSet?,
+            content_provider: ContentProvider| Hash[Symbol, untyped],
+            ?image_set: ImageSet?| Hash[Symbol, untyped]?,
             quote_token: String,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ImageMessageContent
+          def self.create: (Hash[Symbol, untyped]) -> ImageMessageContent
 
           def ==: (untyped other) -> bool
 

@@ -23,17 +23,17 @@ module Line
           attr_accessor video: ImagemapVideo?
           
           def initialize: (
-            ?quick_reply: QuickReply?,
-            ?sender: Sender?,
+            ?quick_reply: QuickReply?| Hash[Symbol, untyped]?,
+            ?sender: Sender?| Hash[Symbol, untyped]?,
             base_url: String,
             alt_text: String,
-            base_size: ImagemapBaseSize,
-            actions: Array[ImagemapAction],
-            ?video: ImagemapVideo?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            base_size: ImagemapBaseSize| Hash[Symbol, untyped],
+            actions: Array[ImagemapAction| Hash[Symbol, untyped]],
+            ?video: ImagemapVideo?| Hash[Symbol, untyped]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapMessage
+          def self.create: (Hash[Symbol, untyped]) -> ImagemapMessage
 
           def ==: (untyped other) -> bool
 

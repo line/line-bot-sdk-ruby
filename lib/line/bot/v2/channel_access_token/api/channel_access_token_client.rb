@@ -69,7 +69,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenKeyIdsResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenKeyIdsResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -131,13 +131,13 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 400
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ChannelAccessToken::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -202,7 +202,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -272,7 +272,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -315,7 +315,7 @@ module Line
           # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def revoke_channel_token_with_http_info(
             access_token:
           )
@@ -365,7 +365,7 @@ module Line
           # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def revoke_channel_token_by_jwt_with_http_info(
             client_id:,
             client_secret:,
@@ -444,7 +444,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -495,7 +495,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end

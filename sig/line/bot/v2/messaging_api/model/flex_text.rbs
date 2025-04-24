@@ -54,15 +54,15 @@ module Line
             ?offset_bottom: String?,
             ?offset_start: String?,
             ?offset_end: String?,
-            ?action: Action?,
+            ?action: Action?| Hash[Symbol, untyped]?,
             ?max_lines: Integer?,
-            ?contents: Array[FlexSpan]?,
+            ?contents: Array[FlexSpan| Hash[Symbol, untyped]]?,
             ?adjust_mode: 'shrink-to-fit'?,
             ?scaling: bool?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexText
+          def self.create: (Hash[Symbol, untyped]) -> FlexText
 
           def ==: (untyped other) -> bool
 

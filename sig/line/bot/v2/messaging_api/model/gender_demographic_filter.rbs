@@ -17,10 +17,10 @@ module Line
           
           def initialize: (
             ?one_of: Array['male'|'female']?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GenderDemographicFilter
+          def self.create: (Hash[Symbol, untyped]) -> GenderDemographicFilter
 
           def ==: (untyped other) -> bool
 

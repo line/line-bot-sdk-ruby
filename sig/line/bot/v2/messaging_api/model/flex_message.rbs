@@ -20,14 +20,14 @@ module Line
           attr_accessor contents: FlexContainer
           
           def initialize: (
-            ?quick_reply: QuickReply?,
-            ?sender: Sender?,
+            ?quick_reply: QuickReply?| Hash[Symbol, untyped]?,
+            ?sender: Sender?| Hash[Symbol, untyped]?,
             alt_text: String,
-            contents: FlexContainer,
-            **Hash[Symbol, untyped] dynamic_attributes
+            contents: FlexContainer| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexMessage
+          def self.create: (Hash[Symbol, untyped]) -> FlexMessage
 
           def ==: (untyped other) -> bool
 

@@ -21,15 +21,15 @@ module Line
           attr_accessor delivery_context: DeliveryContext
           
           def initialize: (
-            ?source: Source?,
+            ?source: Source?| Hash[Symbol, untyped]?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
-            delivery_context: DeliveryContext,
-            **Hash[Symbol, untyped] dynamic_attributes
+            delivery_context: DeliveryContext| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> BotResumedEvent
+          def self.create: (Hash[Symbol, untyped]) -> BotResumedEvent
 
           def ==: (untyped other) -> bool
 

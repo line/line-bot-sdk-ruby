@@ -53,7 +53,7 @@ module Line
           # @param upload_description [String, nil] The description to register with the job
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group-by-file
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 202
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 202
           def add_user_ids_to_audience_with_http_info(
             file:,
             audience_group_id: nil,
@@ -141,7 +141,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end

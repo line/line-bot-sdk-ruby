@@ -15,11 +15,11 @@ module Line
           attr_accessor apps: Array[LiffApp]?
           
           def initialize: (
-            ?apps: Array[LiffApp]?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?apps: Array[LiffApp| Hash[Symbol, untyped]]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetAllLiffAppsResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetAllLiffAppsResponse
 
           def ==: (untyped other) -> bool
 

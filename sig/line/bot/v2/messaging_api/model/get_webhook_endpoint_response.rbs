@@ -19,10 +19,10 @@ module Line
           def initialize: (
             endpoint: String,
             active: bool,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetWebhookEndpointResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetWebhookEndpointResponse
 
           def ==: (untyped other) -> bool
 

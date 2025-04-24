@@ -43,7 +43,7 @@ module Line
           # @param start_time [Integer] Timestamp for when execution of scenario action started (milliseconds, LINE app time)
           # @param end_time [Integer] Timestamp for when execution of scenario was completed (milliseconds, LINE app time)
           # @param result_code [String] Scenario execution completion status
-          # @param action_results [Array[ActionResult],nil] Execution result of individual operations specified in action. Only included when things.result.resultCode is success.
+          # @param action_results [Array[ActionResult, Hash[Symbol, untyped]],nil] Execution result of individual operations specified in action. Only included when things.result.resultCode is success.
           # @param ble_notification_payload [String,nil] Data contained in notification.
           # @param error_reason [String,nil] Error reason.
           def initialize(

@@ -20,10 +20,10 @@ module Line
             hwid: String,
             type: 'enter'|'banner'|'stay',
             ?dm: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> BeaconContent
+          def self.create: (Hash[Symbol, untyped]) -> BeaconContent
 
           def ==: (untyped other) -> bool
 

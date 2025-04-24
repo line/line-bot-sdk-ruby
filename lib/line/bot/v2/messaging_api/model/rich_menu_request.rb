@@ -28,11 +28,11 @@ module Line
           #   @return [Array[RichMenuArea],nil] Array of area objects which define the coordinates and size of tappable areas
           attr_accessor :areas
 
-          # @param size [RichMenuSize,nil] 
+          # @param size [RichMenuSize, Hash[Symbol, untyped], nil] 
           # @param selected [Boolean,nil] `true` to display the rich menu by default. Otherwise, `false`.
           # @param name [String,nil] Name of the rich menu. This value can be used to help manage your rich menus and is not displayed to users.
           # @param chat_bar_text [String,nil] Text displayed in the chat bar
-          # @param areas [Array[RichMenuArea],nil] Array of area objects which define the coordinates and size of tappable areas
+          # @param areas [Array[RichMenuArea, Hash[Symbol, untyped]],nil] Array of area objects which define the coordinates and size of tappable areas
           def initialize(
             size: nil,
             selected: nil,

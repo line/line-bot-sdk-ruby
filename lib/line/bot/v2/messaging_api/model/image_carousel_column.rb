@@ -20,7 +20,7 @@ module Line
           attr_accessor :action
 
           # @param image_url [String] 
-          # @param action [Action] 
+          # @param action [Action, Hash[Symbol, untyped]] 
           def initialize(
             image_url:,
             action:,

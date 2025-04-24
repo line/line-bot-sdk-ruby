@@ -74,7 +74,7 @@ module Line
           {%- if response.content['application/json'].schema.complexType != null %}
           # @return [Array(Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}, Integer, Hash{String => String})] when HTTP status code is {{ response.code }}
           {%- else %}
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is {{ response.code }}
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is {{ response.code }}
           {%- endif %}
           {%- endfor %}
           def {{op.nickname}}_with_http_info({% for param in op.allParams %}
@@ -114,7 +114,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}.create(json) # steep:ignore InsufficientKeywordArguments
                      {%- else %}
                      response.body
                      {%- endif %}{% endfor %}

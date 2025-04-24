@@ -23,10 +23,10 @@ module Line
             joined_time: Integer,
             next_billing_date: String,
             total_subscription_months: Integer,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> SubscribedMembershipUser
+          def self.create: (Hash[Symbol, untyped]) -> SubscribedMembershipUser
 
           def ==: (untyped other) -> bool
 

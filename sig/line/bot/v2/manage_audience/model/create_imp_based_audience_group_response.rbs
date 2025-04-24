@@ -26,10 +26,10 @@ module Line
             ?description: String?,
             ?created: Integer?,
             ?request_id: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> CreateImpBasedAudienceGroupResponse
+          def self.create: (Hash[Symbol, untyped]) -> CreateImpBasedAudienceGroupResponse
 
           def ==: (untyped other) -> bool
 

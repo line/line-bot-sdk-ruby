@@ -24,10 +24,10 @@ module Line
             ?followers: Integer?,
             ?targeted_reaches: Integer?,
             ?blocks: Integer?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetNumberOfFollowersResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetNumberOfFollowersResponse
 
           def ==: (untyped other) -> bool
 

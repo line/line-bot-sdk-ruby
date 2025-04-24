@@ -22,13 +22,13 @@ module Line
           def initialize: (
             url: String,
             preview_url: String,
-            alt_content: FlexComponent,
+            alt_content: FlexComponent| Hash[Symbol, untyped],
             ?aspect_ratio: String?,
-            ?action: Action?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?action: Action?| Hash[Symbol, untyped]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexVideo
+          def self.create: (Hash[Symbol, untyped]) -> FlexVideo
 
           def ==: (untyped other) -> bool
 

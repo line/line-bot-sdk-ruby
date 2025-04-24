@@ -18,13 +18,13 @@ module Line
           attr_accessor image_size: String?
           
           def initialize: (
-            columns: Array[CarouselColumn],
+            columns: Array[CarouselColumn| Hash[Symbol, untyped]],
             ?image_aspect_ratio: String?,
             ?image_size: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> CarouselTemplate
+          def self.create: (Hash[Symbol, untyped]) -> CarouselTemplate
 
           def ==: (untyped other) -> bool
 

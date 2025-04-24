@@ -18,10 +18,10 @@ module Line
           def initialize: (
             height: Integer,
             width: Integer,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapBaseSize
+          def self.create: (Hash[Symbol, untyped]) -> ImagemapBaseSize
 
           def ==: (untyped other) -> bool
 

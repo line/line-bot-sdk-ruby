@@ -29,7 +29,7 @@ module Line
 
           # @param label [String,nil] Label for the action.
           # @param uri [String,nil] 
-          # @param alt_uri [AltUri,nil] 
+          # @param alt_uri [AltUri, Hash[Symbol, untyped], nil] 
           def initialize(
             label: nil,
             uri: nil,

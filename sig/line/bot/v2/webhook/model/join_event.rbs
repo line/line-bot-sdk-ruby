@@ -22,16 +22,16 @@ module Line
           attr_accessor reply_token: String
           
           def initialize: (
-            ?source: Source?,
+            ?source: Source?| Hash[Symbol, untyped]?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
-            delivery_context: DeliveryContext,
+            delivery_context: DeliveryContext| Hash[Symbol, untyped],
             reply_token: String,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> JoinEvent
+          def self.create: (Hash[Symbol, untyped]) -> JoinEvent
 
           def ==: (untyped other) -> bool
 

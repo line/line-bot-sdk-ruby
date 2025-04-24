@@ -24,9 +24,9 @@ module Line
           #   @return [Array[GetStatisticsPerUnitResponseClick]] Array of information about opened URLs in the message.
           attr_accessor :clicks
 
-          # @param overview [GetStatisticsPerUnitResponseOverview] 
-          # @param messages [Array[GetStatisticsPerUnitResponseMessage]] Array of information about individual message bubbles.
-          # @param clicks [Array[GetStatisticsPerUnitResponseClick]] Array of information about opened URLs in the message.
+          # @param overview [GetStatisticsPerUnitResponseOverview, Hash[Symbol, untyped]] 
+          # @param messages [Array[GetStatisticsPerUnitResponseMessage, Hash[Symbol, untyped]]] Array of information about individual message bubbles.
+          # @param clicks [Array[GetStatisticsPerUnitResponseClick, Hash[Symbol, untyped]]] Array of information about opened URLs in the message.
           def initialize(
             overview:,
             messages:,

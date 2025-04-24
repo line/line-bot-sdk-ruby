@@ -19,12 +19,12 @@ module Line
           
           def initialize: (
             message: String,
-            ?details: Array[ErrorDetail]?,
-            ?sent_messages: Array[SentMessage]?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?details: Array[ErrorDetail| Hash[Symbol, untyped]]?,
+            ?sent_messages: Array[SentMessage| Hash[Symbol, untyped]]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ErrorResponse
+          def self.create: (Hash[Symbol, untyped]) -> ErrorResponse
 
           def ==: (untyped other) -> bool
 

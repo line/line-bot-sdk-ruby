@@ -19,10 +19,10 @@ module Line
           def initialize: (
             ?gte: 'day_7'|'day_30'|'day_90'|'day_180'|'day_365'?,
             ?lt: 'day_7'|'day_30'|'day_90'|'day_180'|'day_365'?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> SubscriptionPeriodDemographicFilter
+          def self.create: (Hash[Symbol, untyped]) -> SubscriptionPeriodDemographicFilter
 
           def ==: (untyped other) -> bool
 

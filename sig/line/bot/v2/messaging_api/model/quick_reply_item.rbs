@@ -19,12 +19,12 @@ module Line
           
           def initialize: (
             ?image_url: String?,
-            ?action: Action?,
+            ?action: Action?| Hash[Symbol, untyped]?,
             ?type: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> QuickReplyItem
+          def self.create: (Hash[Symbol, untyped]) -> QuickReplyItem
 
           def ==: (untyped other) -> bool
 

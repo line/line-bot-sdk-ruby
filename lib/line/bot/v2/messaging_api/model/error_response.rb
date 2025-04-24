@@ -24,8 +24,8 @@ module Line
           attr_accessor :sent_messages
 
           # @param message [String] Message containing information about the error.
-          # @param details [Array[ErrorDetail],nil] An array of error details. If the array is empty, this property will not be included in the response.
-          # @param sent_messages [Array[SentMessage],nil] Array of sent messages.
+          # @param details [Array[ErrorDetail, Hash[Symbol, untyped]],nil] An array of error details. If the array is empty, this property will not be included in the response.
+          # @param sent_messages [Array[SentMessage, Hash[Symbol, untyped]],nil] Array of sent messages.
           def initialize(
             message:,
             details: nil,

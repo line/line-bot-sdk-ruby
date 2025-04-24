@@ -21,15 +21,15 @@ module Line
           attr_accessor quote_token: String?
           
           def initialize: (
-            ?quick_reply: QuickReply?,
-            ?sender: Sender?,
+            ?quick_reply: QuickReply?| Hash[Symbol, untyped]?,
+            ?sender: Sender?| Hash[Symbol, untyped]?,
             text: String,
-            ?emojis: Array[Emoji]?,
+            ?emojis: Array[Emoji| Hash[Symbol, untyped]]?,
             ?quote_token: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> TextMessage
+          def self.create: (Hash[Symbol, untyped]) -> TextMessage
 
           def ==: (untyped other) -> bool
 

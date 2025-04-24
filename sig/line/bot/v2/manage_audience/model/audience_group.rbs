@@ -39,10 +39,10 @@ module Line
             ?is_ifa_audience: bool?,
             ?permission: 'READ'|'READ_WRITE'?,
             ?create_route: 'OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER'?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> AudienceGroup
+          def self.create: (Hash[Symbol, untyped]) -> AudienceGroup
 
           def ==: (untyped other) -> bool
 

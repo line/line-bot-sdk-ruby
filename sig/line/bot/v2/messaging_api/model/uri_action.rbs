@@ -20,11 +20,11 @@ module Line
           def initialize: (
             ?label: String?,
             ?uri: String?,
-            ?alt_uri: AltUri?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?alt_uri: AltUri?| Hash[Symbol, untyped]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> URIAction
+          def self.create: (Hash[Symbol, untyped]) -> URIAction
 
           def ==: (untyped other) -> bool
 

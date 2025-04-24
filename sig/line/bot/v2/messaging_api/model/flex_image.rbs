@@ -46,12 +46,12 @@ module Line
             ?aspect_ratio: String?,
             ?aspect_mode: 'fit'|'cover'?,
             ?background_color: String?,
-            ?action: Action?,
+            ?action: Action?| Hash[Symbol, untyped]?,
             ?animated: bool?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexImage
+          def self.create: (Hash[Symbol, untyped]) -> FlexImage
 
           def ==: (untyped other) -> bool
 

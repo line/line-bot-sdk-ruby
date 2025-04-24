@@ -19,10 +19,10 @@ module Line
           def initialize: (
             bot_id: String,
             reason: 'bot_deleted',
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> DetachedModuleContent
+          def self.create: (Hash[Symbol, untyped]) -> DetachedModuleContent
 
           def ==: (untyped other) -> bool
 

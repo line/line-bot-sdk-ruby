@@ -23,7 +23,7 @@ module Line
           #   @return [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           attr_accessor :notification_disabled
 
-          # @param messages [Array[Message]] Message to be sent.
+          # @param messages [Array[Message, Hash[Symbol, untyped]]] Message to be sent.
           # @param to [String] Message destination. Specify a phone number that has been normalized to E.164 format and hashed with SHA256.
           # @param notification_disabled [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           def initialize(

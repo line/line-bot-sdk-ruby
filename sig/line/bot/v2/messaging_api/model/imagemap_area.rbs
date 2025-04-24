@@ -22,10 +22,10 @@ module Line
             y: Integer,
             width: Integer,
             height: Integer,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapArea
+          def self.create: (Hash[Symbol, untyped]) -> ImagemapArea
 
           def ==: (untyped other) -> bool
 

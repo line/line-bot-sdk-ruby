@@ -18,11 +18,11 @@ module Line
           
           def initialize: (
             device_id: String,
-            result: ScenarioResult,
-            **Hash[Symbol, untyped] dynamic_attributes
+            result: ScenarioResult| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ScenarioResultThingsContent
+          def self.create: (Hash[Symbol, untyped]) -> ScenarioResultThingsContent
 
           def ==: (untyped other) -> bool
 

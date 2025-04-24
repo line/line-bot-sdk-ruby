@@ -19,13 +19,13 @@ module Line
           attr_accessor adaccount: Adaccount?
           
           def initialize: (
-            ?audience_group: AudienceGroup?,
-            ?jobs: Array[AudienceGroupJob]?,
-            ?adaccount: Adaccount?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?audience_group: AudienceGroup?| Hash[Symbol, untyped]?,
+            ?jobs: Array[AudienceGroupJob| Hash[Symbol, untyped]]?,
+            ?adaccount: Adaccount?| Hash[Symbol, untyped]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetAudienceDataResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetAudienceDataResponse
 
           def ==: (untyped other) -> bool
 

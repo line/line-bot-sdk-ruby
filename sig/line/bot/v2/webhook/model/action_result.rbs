@@ -18,10 +18,10 @@ module Line
           def initialize: (
             type: 'void'|'binary',
             ?data: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ActionResult
+          def self.create: (Hash[Symbol, untyped]) -> ActionResult
 
           def ==: (untyped other) -> bool
 

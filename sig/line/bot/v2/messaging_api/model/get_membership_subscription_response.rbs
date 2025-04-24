@@ -17,11 +17,11 @@ module Line
           attr_accessor subscriptions: Array[Subscription]
           
           def initialize: (
-            subscriptions: Array[Subscription],
-            **Hash[Symbol, untyped] dynamic_attributes
+            subscriptions: Array[Subscription| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetMembershipSubscriptionResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetMembershipSubscriptionResponse
 
           def ==: (untyped other) -> bool
 

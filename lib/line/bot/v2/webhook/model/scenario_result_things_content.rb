@@ -25,7 +25,7 @@ module Line
           attr_accessor :result
 
           # @param device_id [String] Device ID of the device that has been linked with LINE.
-          # @param result [ScenarioResult] 
+          # @param result [ScenarioResult, Hash[Symbol, untyped]] 
           def initialize(
             device_id:,
             result:,

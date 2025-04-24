@@ -17,11 +17,11 @@ module Line
           attr_accessor items: Array[QuickReplyItem]?
           
           def initialize: (
-            ?items: Array[QuickReplyItem]?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?items: Array[QuickReplyItem| Hash[Symbol, untyped]]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> QuickReply
+          def self.create: (Hash[Symbol, untyped]) -> QuickReply
 
           def ==: (untyped other) -> bool
 

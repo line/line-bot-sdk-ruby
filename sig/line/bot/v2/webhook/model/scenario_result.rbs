@@ -28,13 +28,13 @@ module Line
             start_time: Integer,
             end_time: Integer,
             result_code: String,
-            ?action_results: Array[ActionResult]?,
+            ?action_results: Array[ActionResult| Hash[Symbol, untyped]]?,
             ?ble_notification_payload: String?,
             ?error_reason: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ScenarioResult
+          def self.create: (Hash[Symbol, untyped]) -> ScenarioResult
 
           def ==: (untyped other) -> bool
 

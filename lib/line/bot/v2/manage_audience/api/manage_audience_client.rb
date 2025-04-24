@@ -51,7 +51,7 @@ module Line
           # @param add_audience_to_audience_group_request [AddAudienceToAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 202
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 202
           def add_audience_to_audience_group_with_http_info(
             add_audience_to_audience_group_request:
           )
@@ -112,7 +112,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -160,7 +160,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -208,7 +208,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ManageAudience::CreateImpBasedAudienceGroupResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ManageAudience::CreateImpBasedAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -239,7 +239,7 @@ module Line
           # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def delete_audience_group_with_http_info(
             audience_group_id:
           )
@@ -301,13 +301,13 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ManageAudience::GetAudienceDataResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ManageAudience::GetAudienceDataResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 400
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ManageAudience::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ManageAudience::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -374,7 +374,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ManageAudience::GetAudienceGroupsResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ManageAudience::GetAudienceGroupsResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -438,13 +438,13 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ManageAudience::GetSharedAudienceDataResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ManageAudience::GetSharedAudienceDataResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 400
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ManageAudience::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ManageAudience::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -511,7 +511,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -558,7 +558,7 @@ module Line
           # @param update_audience_group_description_request [UpdateAudienceGroupDescriptionRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#set-description-audience-group
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def update_audience_group_description_with_http_info(
             audience_group_id:,
             update_audience_group_description_request:

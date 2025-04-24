@@ -16,10 +16,10 @@ module Line
           
           def initialize: (
             expire_at: Integer,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ChatControl
+          def self.create: (Hash[Symbol, untyped]) -> ChatControl
 
           def ==: (untyped other) -> bool
 

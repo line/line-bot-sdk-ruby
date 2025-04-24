@@ -23,15 +23,15 @@ module Line
           
           def initialize: (
             ?available: bool?,
-            ?genders: Array[GenderTile]?,
-            ?ages: Array[AgeTile]?,
-            ?areas: Array[AreaTile]?,
-            ?app_types: Array[AppTypeTile]?,
-            ?subscription_periods: Array[SubscriptionPeriodTile]?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?genders: Array[GenderTile| Hash[Symbol, untyped]]?,
+            ?ages: Array[AgeTile| Hash[Symbol, untyped]]?,
+            ?areas: Array[AreaTile| Hash[Symbol, untyped]]?,
+            ?app_types: Array[AppTypeTile| Hash[Symbol, untyped]]?,
+            ?subscription_periods: Array[SubscriptionPeriodTile| Hash[Symbol, untyped]]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetFriendsDemographicsResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetFriendsDemographicsResponse
 
           def ==: (untyped other) -> bool
 

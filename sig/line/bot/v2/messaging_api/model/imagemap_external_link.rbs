@@ -18,10 +18,10 @@ module Line
           def initialize: (
             ?link_uri: String?,
             ?label: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapExternalLink
+          def self.create: (Hash[Symbol, untyped]) -> ImagemapExternalLink
 
           def ==: (untyped other) -> bool
 

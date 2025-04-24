@@ -28,18 +28,18 @@ module Line
           #   @return [String,nil] How additional information in LIFF URLs is handled. concat is returned. 
           attr_accessor :permanent_link_pattern
           # @!attribute [rw] scope
-          #   @return [Array['openid'|'email'|'profile'|'chat_message.write']] 
+          #   @return [Array['openid','email','profile','chat_message.write']] 
           attr_accessor :scope
           # @!attribute [rw] bot_prompt
           #   @return [String,nil] ('normal'|'aggressive'|'none') 
           attr_accessor :bot_prompt
 
           # @param liff_id [String,nil] LIFF app ID
-          # @param view [LiffView,nil] 
+          # @param view [LiffView, Hash[Symbol, untyped], nil] 
           # @param description [String,nil] Name of the LIFF app
-          # @param features [LiffFeatures,nil] 
+          # @param features [LiffFeatures, Hash[Symbol, untyped], nil] 
           # @param permanent_link_pattern [String,nil] How additional information in LIFF URLs is handled. concat is returned. 
-          # @param scope [Array['openid'|'email'|'profile'|'chat_message.write'],nil] 
+          # @param scope [Array['openid','email','profile','chat_message.write'],nil] 
           # @param bot_prompt [String,nil] ('normal'|'aggressive'|'none') 
           def initialize(
             liff_id: nil,

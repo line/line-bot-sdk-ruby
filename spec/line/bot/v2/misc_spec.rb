@@ -1793,8 +1793,6 @@ describe 'misc' do
           audienceCount: 8619,
           created: 1608619802,
           permission: 'READ',
-          activated: 1610068515,
-          inactiveTimestamp: 1625620516,
           isIfaAudience: false
         },
         jobs: [],
@@ -1856,7 +1854,6 @@ describe 'misc' do
             "created": 1611114828,
             "permission": "READ",
             "isIfaAudience": false,
-            "expireTimestamp": 1626753228,
             "requestId": "c10c3d86-f565-...",
             "clickUrl": "https://example.com/"
           },
@@ -1869,8 +1866,6 @@ describe 'misc' do
             "audienceCount": 3368,
             "created": 1608619802,
             "permission": "READ",
-            "activated": 1610068515,
-            "inactiveTimestamp": 1625620516,
             "isIfaAudience": false
           }
         ],

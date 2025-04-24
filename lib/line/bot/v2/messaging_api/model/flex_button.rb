@@ -63,7 +63,7 @@ module Line
           # @param flex [Integer,nil] 
           # @param color [String,nil] 
           # @param style [String,nil] ('primary'|'secondary'|'link') 
-          # @param action [Action] 
+          # @param action [Action, Hash[Symbol, untyped]] 
           # @param gravity [String,nil] ('top'|'bottom'|'center') 
           # @param margin [String,nil] 
           # @param position [String,nil] ('relative'|'absolute') 

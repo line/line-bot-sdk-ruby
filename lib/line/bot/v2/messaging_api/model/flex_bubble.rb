@@ -43,13 +43,13 @@ module Line
           attr_accessor :action
 
           # @param direction [String,nil] ('ltr'|'rtl') 
-          # @param styles [FlexBubbleStyles,nil] 
-          # @param header [FlexBox,nil] 
-          # @param hero [FlexComponent,nil] 
-          # @param body [FlexBox,nil] 
-          # @param footer [FlexBox,nil] 
+          # @param styles [FlexBubbleStyles, Hash[Symbol, untyped], nil] 
+          # @param header [FlexBox, Hash[Symbol, untyped], nil] 
+          # @param hero [FlexComponent, Hash[Symbol, untyped], nil] 
+          # @param body [FlexBox, Hash[Symbol, untyped], nil] 
+          # @param footer [FlexBox, Hash[Symbol, untyped], nil] 
           # @param size [String,nil] ('nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga') 
-          # @param action [Action,nil] 
+          # @param action [Action, Hash[Symbol, untyped], nil] 
           def initialize(
             direction: nil,
             styles: nil,

@@ -24,10 +24,10 @@ module Line
             product_id: String,
             product_type: String,
             send_present_message: bool,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> MissionStickerRequest
+          def self.create: (Hash[Symbol, untyped]) -> MissionStickerRequest
 
           def ==: (untyped other) -> bool
 

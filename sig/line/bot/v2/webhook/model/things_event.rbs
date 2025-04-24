@@ -23,17 +23,17 @@ module Line
           attr_accessor things: ThingsContent
           
           def initialize: (
-            ?source: Source?,
+            ?source: Source?| Hash[Symbol, untyped]?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
-            delivery_context: DeliveryContext,
+            delivery_context: DeliveryContext| Hash[Symbol, untyped],
             reply_token: String,
-            things: ThingsContent,
-            **Hash[Symbol, untyped] dynamic_attributes
+            things: ThingsContent| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ThingsEvent
+          def self.create: (Hash[Symbol, untyped]) -> ThingsEvent
 
           def ==: (untyped other) -> bool
 

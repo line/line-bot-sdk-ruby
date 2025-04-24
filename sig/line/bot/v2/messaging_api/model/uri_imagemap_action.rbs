@@ -18,13 +18,13 @@ module Line
           attr_accessor label: String?
           
           def initialize: (
-            area: ImagemapArea,
+            area: ImagemapArea| Hash[Symbol, untyped],
             link_uri: String,
             ?label: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> URIImagemapAction
+          def self.create: (Hash[Symbol, untyped]) -> URIImagemapAction
 
           def ==: (untyped other) -> bool
 

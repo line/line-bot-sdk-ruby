@@ -17,7 +17,7 @@ module Line
           #   @return [DemographicFilter,nil] 
           attr_accessor :demographic
 
-          # @param demographic [DemographicFilter,nil] 
+          # @param demographic [DemographicFilter, Hash[Symbol, untyped], nil] 
           def initialize(
             demographic: nil,
             **dynamic_attributes

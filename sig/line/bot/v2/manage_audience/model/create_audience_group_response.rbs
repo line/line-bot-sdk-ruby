@@ -20,7 +20,7 @@ module Line
           attr_accessor description: String?
           attr_accessor created: Integer?
           attr_accessor permission: 'READ'|'READ_WRITE'?
-          attr_accessor expire_timestamp: Float?
+          attr_accessor expire_timestamp: Integer?
           attr_accessor is_ifa_audience: bool?
           
           def initialize: (
@@ -30,12 +30,12 @@ module Line
             ?description: String?,
             ?created: Integer?,
             ?permission: 'READ'|'READ_WRITE'?,
-            ?expire_timestamp: Float?,
+            ?expire_timestamp: Integer?,
             ?is_ifa_audience: bool?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> CreateAudienceGroupResponse
+          def self.create: (Hash[Symbol, untyped]) -> CreateAudienceGroupResponse
 
           def ==: (untyped other) -> bool
 

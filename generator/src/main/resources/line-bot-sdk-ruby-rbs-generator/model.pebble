@@ -42,14 +42,14 @@ module Line
             {{ (not variable.required or variable.defaultValue != null) ? '?' : '' }} {#- optioanl parameter => Add '?' #}
             {%- if variable.openApiType == 'array' -%}
             {% if variable.items.isModel -%}
-            {{ variable.name }}: {{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %}?{% endif -%}
+            {{ variable.name }}: {{ "Array[#{variable.items.openApiType}| Hash[Symbol, untyped]]" }}{% if not variable.required %}?{% endif -%}
             {% elseif variable.items.allowableValues != null -%}
             {{ variable.name }}: Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]{% if not variable.required %}?{% endif -%}
             {% else -%}
             {{ variable.name }}: {{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %}?{% endif -%}
             {% endif -%}
             {%- elseif variable.isModel -%}
-            {{ variable.name }}: {{ variable.openApiType }}{% if not variable.required %}?{% endif -%}
+            {{ variable.name }}: {{ variable.openApiType }}{% if not variable.required %}?{% endif -%} | Hash[Symbol, untyped]{% if not variable.required %}?{% endif -%}
             {%- else -%}
             {% if variable.allowableValues != null -%}
             {{ variable.name }}: {% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}{% if not variable.required %}?{% endif -%}
@@ -60,10 +60,10 @@ module Line
             ,
             {% endif -%}
             {%- endfor -%}
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> {{ model.model.classname }}
+          def self.create: (Hash[Symbol, untyped]) -> {{ model.model.classname }}
 
           def ==: (untyped other) -> bool
 
@@ -72,7 +72,7 @@ module Line
 
           private
 
-          def self.detect_class: (type: String) -> Class
+          def self.detect_class: (type: String) -> Class?
           {%- endif %}
           {%- endif %}
         end

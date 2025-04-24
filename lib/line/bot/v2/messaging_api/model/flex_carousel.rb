@@ -21,7 +21,7 @@ module Line
           #   @return [Array[FlexBubble]] 
           attr_accessor :contents
 
-          # @param contents [Array[FlexBubble]] 
+          # @param contents [Array[FlexBubble, Hash[Symbol, untyped]]] 
           def initialize(
             contents:,
             **dynamic_attributes

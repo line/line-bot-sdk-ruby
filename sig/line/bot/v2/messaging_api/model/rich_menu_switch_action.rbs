@@ -21,10 +21,10 @@ module Line
             ?label: String?,
             ?data: String?,
             ?rich_menu_alias_id: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuSwitchAction
+          def self.create: (Hash[Symbol, untyped]) -> RichMenuSwitchAction
 
           def ==: (untyped other) -> bool
 

@@ -18,12 +18,12 @@ module Line
           attr_accessor _next: String?
           
           def initialize: (
-            bots: Array[ModuleBot],
+            bots: Array[ModuleBot| Hash[Symbol, untyped]],
             ?_next: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetModulesResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetModulesResponse
 
           def ==: (untyped other) -> bool
 

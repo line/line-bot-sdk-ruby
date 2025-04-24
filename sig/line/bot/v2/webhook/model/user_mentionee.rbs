@@ -24,10 +24,10 @@ module Line
             length: Integer,
             ?user_id: String?,
             ?is_self: bool?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> UserMentionee
+          def self.create: (Hash[Symbol, untyped]) -> UserMentionee
 
           def ==: (untyped other) -> bool
 

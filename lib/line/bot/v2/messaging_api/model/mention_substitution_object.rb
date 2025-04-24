@@ -23,7 +23,7 @@ module Line
           #   @return [MentionTarget] 
           attr_accessor :mentionee
 
-          # @param mentionee [MentionTarget] 
+          # @param mentionee [MentionTarget, Hash[Symbol, untyped]] 
           def initialize(
             mentionee:,
             **dynamic_attributes

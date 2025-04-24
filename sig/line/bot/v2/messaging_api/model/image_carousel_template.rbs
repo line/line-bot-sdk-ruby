@@ -16,11 +16,11 @@ module Line
           attr_accessor columns: Array[ImageCarouselColumn]
           
           def initialize: (
-            columns: Array[ImageCarouselColumn],
-            **Hash[Symbol, untyped] dynamic_attributes
+            columns: Array[ImageCarouselColumn| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ImageCarouselTemplate
+          def self.create: (Hash[Symbol, untyped]) -> ImageCarouselTemplate
 
           def ==: (untyped other) -> bool
 

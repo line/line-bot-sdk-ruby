@@ -16,7 +16,7 @@ module Line
           #   @return [Array[UserSource]] Users who joined. Array of source user objects.
           attr_accessor :members
 
-          # @param members [Array[UserSource]] Users who joined. Array of source user objects.
+          # @param members [Array[UserSource, Hash[Symbol, untyped]]] Users who joined. Array of source user objects.
           def initialize(
             members:,
             **dynamic_attributes

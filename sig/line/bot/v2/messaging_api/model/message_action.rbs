@@ -19,10 +19,10 @@ module Line
           def initialize: (
             ?label: String?,
             ?text: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> MessageAction
+          def self.create: (Hash[Symbol, untyped]) -> MessageAction
 
           def ==: (untyped other) -> bool
 
