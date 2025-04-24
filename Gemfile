@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :test do
-  gem 'rack', '~> 3.0.14' # for yard server
+  gem 'rack', '~> 3.1.0' # for yard server
   gem 'rbs', '~> 3.9.2'
   gem 'rubocop', '~> 1.75.0', require: false
   gem 'steep', '~> 1.10.0'
