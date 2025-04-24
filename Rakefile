@@ -69,8 +69,6 @@ task :rbs_test do
   end
 
   line_v2_targets = line_v2_targets.map { |name| "#{name}::*" }.uniq
-  # Exclude Line::Bot::V2::Webhook::* and Line::Bot::V2::WebhookParser
-  line_v2_targets.reject! { |name| name.start_with?('Line::Bot::V2::Webhook') } # TODO: Delete it
 
   ENV['RUBYOPT']           = '-rbundler/setup -rrbs/test/setup'
   ENV['RBS_TEST_LOGLEVEL'] = 'error'

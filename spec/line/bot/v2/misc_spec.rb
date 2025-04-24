@@ -476,7 +476,7 @@ describe 'misc' do
         )
         .to_return(status: response_code, body: response_body, headers: {})
 
-      request = Line::Bot::V2::Liff::UpdateLiffAppRequest.new(view: Line::Bot::V2::Liff::UpdateLiffView.new(url: 'https://example.com'))
+      request = Line::Bot::V2::Liff::UpdateLiffAppRequest.new(view: { url: 'https://example.com' })
       body, status_code, headers = client.update_liff_app_with_http_info(liff_id: 'test-liff-id', update_liff_app_request: request)
 
       expect(status_code).to eq(200)
