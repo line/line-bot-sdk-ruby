@@ -40,7 +40,12 @@ module Line
             {%- for param in op.allParams %}
             {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
             {% endfor %}
-          ) -> [({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null or response.isFile ? 'String?' : response.dataType }}{{ loop.last ? '' : '|' }}{% endfor %}), Integer, Hash[String, String]]
+          ) -> (
+            {%- for response in op.responses %}
+            {{ loop.first ? '' : '| ' }}[{{ response.baseType == 'object' or response.baseType == null or response.isFile ? 'String?' : response.dataType }}, {{ response.code }}, Hash[untyped, untyped]] # when HTTP status code is {{ response.code }}
+            {%- endfor %}
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # {{ op.notes }}
           #
@@ -60,7 +65,13 @@ module Line
             {%- for param in op.allParams %}
             {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
             {% endfor %}
-          ) -> ({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null or response.isFile ? 'String?' : response.dataType }}{{ loop.last ? '' : '|' }}{% endfor %}){% endfor %}
+          ) -> (
+            {%- for response in op.responses %}
+            {{ loop.first ? '' : '| ' }}{{ response.baseType == 'object' or response.baseType == null or response.isFile ? 'String?' : response.dataType }} # when HTTP status code is {{ response.code }}
+            {%- endfor %}
+            | String? # otherwise
+          )
+          {%- endfor %}
         end
       end
     end
