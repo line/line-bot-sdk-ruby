@@ -33,7 +33,7 @@ module Line
           #   @return [String,nil] ('READ'|'READ_WRITE') Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  `READ`: Can use only. `READ_WRITE`: Can use and update. 
           attr_accessor :permission
           # @!attribute [rw] expire_timestamp
-          #   @return [Float,nil] Time of audience expiration. Only returned for specific audiences. 
+          #   @return [Integer,nil] Time of audience expiration. Only returned for specific audiences. 
           attr_accessor :expire_timestamp
           # @!attribute [rw] is_ifa_audience
           #   @return [Boolean,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  `true`: Accounts are specified with IFAs. `false` (default): Accounts are specified with user IDs. 
@@ -45,7 +45,7 @@ module Line
           # @param description [String,nil] The audience's name.
           # @param created [Integer,nil] When the audience was created (in UNIX time).
           # @param permission [String,nil] ('READ'|'READ_WRITE') Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  `READ`: Can use only. `READ_WRITE`: Can use and update. 
-          # @param expire_timestamp [Float,nil] Time of audience expiration. Only returned for specific audiences. 
+          # @param expire_timestamp [Integer,nil] Time of audience expiration. Only returned for specific audiences. 
           # @param is_ifa_audience [Boolean,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  `true`: Accounts are specified with IFAs. `false` (default): Accounts are specified with user IDs. 
           def initialize(
             audience_group_id: nil,
