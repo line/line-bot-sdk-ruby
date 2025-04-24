@@ -20,7 +20,7 @@ module Line
         # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def initialize(base_url:, http_headers: {}, http_options: {})
           @base_url = base_url
-          @http_headers = { 'User-Agent' => "LINE-BotSDK-Ruby/#{Line::Bot::VERSION}" }.merge(normalize_headers(headers: http_headers))
+          @http_headers = { 'User-Agent': "LINE-BotSDK-Ruby/#{Line::Bot::VERSION}" }.merge(normalize_headers(headers: http_headers))
           @http_options = http_options
         end
 
@@ -156,7 +156,7 @@ module Line
           return {} if headers.nil?
 
           headers
-            .transform_keys(&:to_s)
+            .transform_keys(&:to_sym)
             .transform_values(&:to_s)
         end
       end
