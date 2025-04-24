@@ -72,7 +72,7 @@ post '/callback' do
   signature = request.env['HTTP_X_LINE_SIGNATURE']
 
   begin
-    events = parser.parse(body: body, signatuer: signature)
+    events = parser.parse(body: body, signature: signature)
   rescue Line::Bot::V2::WebhookParser::InvalidSignatureError
     halt 400, { 'Content-Type' => 'text/plain' }, 'Bad Request'
   end
@@ -103,7 +103,7 @@ post '/callback' do
       when Line::Bot::V2::Webhook::ImageMessageContent, Line::Bot::V2::Webhook::VideoMessageContent
         response = blob_client.get_message_content(message_id: event.message.message_id)
         tf = Tempfile.open("content")
-        tf.write(response.body)
+        tf.write(response)
       end
     end
   end
@@ -116,7 +116,7 @@ end
 ### Use HTTP Information
 You may need to store the ```x-line-request-id``` header obtained as a response from several APIs.\
 In this case, please use ```*_with_http_info``` methods. You can get headers and status codes.\
-The `x-line-accepted-request-id` or `content-type` header can also be obtained in the same way.
+The `x-line-accepted-request-id` or `content-type` header can also be obtained in the same way. Note header name must be lowercase.
 
 ```ruby
 push_request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(

@@ -51,7 +51,7 @@ module Line
           # @param mission_sticker_request [MissionStickerRequest] 
           # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def mission_sticker_v3_with_http_info(
             mission_sticker_request:
           )

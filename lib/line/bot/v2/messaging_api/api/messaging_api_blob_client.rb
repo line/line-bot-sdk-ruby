@@ -51,7 +51,7 @@ module Line
           # @param message_id [String] Message ID of video or audio
           # @see https://developers.line.biz/en/reference/messaging-api/#get-content
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def get_message_content_with_http_info(
             message_id:
           )
@@ -95,7 +95,7 @@ module Line
           # @param message_id [String] Message ID of image or video
           # @see https://developers.line.biz/en/reference/messaging-api/#get-image-or-video-preview
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def get_message_content_preview_with_http_info(
             message_id:
           )
@@ -187,7 +187,7 @@ module Line
           # @param rich_menu_id [String] ID of the rich menu with the image to be downloaded
           # @see https://developers.line.biz/en/reference/messaging-api/#download-rich-menu-image
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def get_rich_menu_image_with_http_info(
             rich_menu_id:
           )
@@ -232,7 +232,7 @@ module Line
           # @param body [File, nil] 
           # @see https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def set_rich_menu_image_with_http_info(
             rich_menu_id:,
             body: nil

@@ -52,8 +52,8 @@ module Line
           # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
           # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::Liff::AddLiffAppResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 400
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 401
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 401
           def add_liff_app_with_http_info(
             add_liff_app_request:
           )
@@ -107,9 +107,9 @@ module Line
           # @param liff_id [String] ID of the LIFF app to be updated
           # @see https://developers.line.biz/en/reference/liff-server/#delete-liff-app
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 401
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 404
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 401
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 404
           def delete_liff_app_with_http_info(
             liff_id:
           )
@@ -159,8 +159,8 @@ module Line
           # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
           # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::Liff::GetAllLiffAppsResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 401
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 404
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 401
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 404
           def get_all_liff_apps_with_http_info(
           )
             path = "/liff/v1/apps"
@@ -210,10 +210,10 @@ module Line
           # @param update_liff_app_request [UpdateLiffAppRequest] 
           # @see https://developers.line.biz/en/reference/liff-server/#update-liff-app
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 400
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 401
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 404
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 401
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 404
           def update_liff_app_with_http_info(
             liff_id:,
             update_liff_app_request:
