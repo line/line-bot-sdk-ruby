@@ -145,7 +145,7 @@ module Line
           {%- if response.content['application/json'].schema.complexType != null %}
           # @return [Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}] when HTTP status code is {{ response.code }}
           {%- else %}
-          # @return [String|nil] when HTTP status code is {{ response.code }}
+          # @return [String, nil] when HTTP status code is {{ response.code }}
           {%- endif %}
           {%- endfor %}
           def {{op.nickname}}({% for param in op.allParams %}

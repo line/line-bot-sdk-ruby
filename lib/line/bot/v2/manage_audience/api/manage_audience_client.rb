@@ -78,7 +78,7 @@ module Line
           #
           # @param add_audience_to_audience_group_request [AddAudienceToAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
-          # @return [String|nil] when HTTP status code is 202
+          # @return [String, nil] when HTTP status code is 202
           def add_audience_to_audience_group(
             add_audience_to_audience_group_request:
           )
@@ -266,7 +266,7 @@ module Line
           #
           # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
-          # @return [String|nil] when HTTP status code is 200
+          # @return [String, nil] when HTTP status code is 200
           def delete_audience_group(
             audience_group_id:
           )
@@ -588,7 +588,7 @@ module Line
           # @param audience_group_id [Integer] The audience ID.
           # @param update_audience_group_description_request [UpdateAudienceGroupDescriptionRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#set-description-audience-group
-          # @return [String|nil] when HTTP status code is 200
+          # @return [String, nil] when HTTP status code is 200
           def update_audience_group_description(
             audience_group_id:,
             update_audience_group_description_request:

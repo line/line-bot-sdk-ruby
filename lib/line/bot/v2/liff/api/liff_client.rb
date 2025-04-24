@@ -89,8 +89,8 @@ module Line
           # @param add_liff_app_request [AddLiffAppRequest] 
           # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
           # @return [Line::Bot::V2::Liff::AddLiffAppResponse] when HTTP status code is 200
-          # @return [String|nil] when HTTP status code is 400
-          # @return [String|nil] when HTTP status code is 401
+          # @return [String, nil] when HTTP status code is 400
+          # @return [String, nil] when HTTP status code is 401
           def add_liff_app(
             add_liff_app_request:
           )
@@ -140,9 +140,9 @@ module Line
           #
           # @param liff_id [String] ID of the LIFF app to be updated
           # @see https://developers.line.biz/en/reference/liff-server/#delete-liff-app
-          # @return [String|nil] when HTTP status code is 200
-          # @return [String|nil] when HTTP status code is 401
-          # @return [String|nil] when HTTP status code is 404
+          # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when HTTP status code is 401
+          # @return [String, nil] when HTTP status code is 404
           def delete_liff_app(
             liff_id:
           )
@@ -193,8 +193,8 @@ module Line
           #
           # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
           # @return [Line::Bot::V2::Liff::GetAllLiffAppsResponse] when HTTP status code is 200
-          # @return [String|nil] when HTTP status code is 401
-          # @return [String|nil] when HTTP status code is 404
+          # @return [String, nil] when HTTP status code is 401
+          # @return [String, nil] when HTTP status code is 404
           def get_all_liff_apps(
           )
             response_body, _status_code, _headers = get_all_liff_apps_with_http_info(
@@ -249,10 +249,10 @@ module Line
           # @param liff_id [String] ID of the LIFF app to be updated
           # @param update_liff_app_request [UpdateLiffAppRequest] 
           # @see https://developers.line.biz/en/reference/liff-server/#update-liff-app
-          # @return [String|nil] when HTTP status code is 200
-          # @return [String|nil] when HTTP status code is 400
-          # @return [String|nil] when HTTP status code is 401
-          # @return [String|nil] when HTTP status code is 404
+          # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when HTTP status code is 400
+          # @return [String, nil] when HTTP status code is 401
+          # @return [String, nil] when HTTP status code is 404
           def update_liff_app(
             liff_id:,
             update_liff_app_request:

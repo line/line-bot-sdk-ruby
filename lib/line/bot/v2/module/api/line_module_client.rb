@@ -82,7 +82,7 @@ module Line
           # @param chat_id [String] The `userId`, `roomId`, or `groupId`
           # @param acquire_chat_control_request [AcquireChatControlRequest, nil] 
           # @see https://developers.line.biz/en/reference/partner-docs/#acquire-control-api
-          # @return [String|nil] when HTTP status code is 200
+          # @return [String, nil] when HTTP status code is 200
           def acquire_chat_control(
             chat_id:,
             acquire_chat_control_request: nil
@@ -128,7 +128,7 @@ module Line
           #
           # @param detach_module_request [DetachModuleRequest, nil] 
           # @see https://developers.line.biz/en/reference/partner-docs/#unlink-detach-module-channel-by-operation-mc-admin
-          # @return [String|nil] when HTTP status code is 200
+          # @return [String, nil] when HTTP status code is 200
           def detach_module(
             detach_module_request: nil
           )
@@ -229,7 +229,7 @@ module Line
           #
           # @param chat_id [String] The `userId`, `roomId`, or `groupId`
           # @see https://developers.line.biz/en/reference/partner-docs/#release-control-api
-          # @return [String|nil] when HTTP status code is 200
+          # @return [String, nil] when HTTP status code is 200
           def release_chat_control(
             chat_id:
           )

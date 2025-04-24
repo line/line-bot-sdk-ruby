@@ -90,7 +90,7 @@ module Line
           # @param audience_group_id [Integer, nil] The audience ID.
           # @param upload_description [String, nil] The description to register with the job
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group-by-file
-          # @return [String|nil] when HTTP status code is 202
+          # @return [String, nil] when HTTP status code is 202
           def add_user_ids_to_audience(
             file:,
             audience_group_id: nil,
