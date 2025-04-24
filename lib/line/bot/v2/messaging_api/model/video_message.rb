@@ -34,8 +34,8 @@ module Line
           #   @return [String,nil] 
           attr_accessor :tracking_id
 
-          # @param quick_reply [QuickReply,nil] 
-          # @param sender [Sender,nil] 
+          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
+          # @param sender [Sender, Hash[Symbol, untyped], nil] 
           # @param original_content_url [String] 
           # @param preview_image_url [String] 
           # @param tracking_id [String,nil] 

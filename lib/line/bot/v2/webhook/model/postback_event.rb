@@ -40,13 +40,13 @@ module Line
           #   @return [PostbackContent] 
           attr_accessor :postback
 
-          # @param source [Source,nil] 
+          # @param source [Source, Hash[Symbol, untyped], nil] 
           # @param timestamp [Integer] Time of the event in milliseconds.
           # @param mode [String] ('active'|'standby') 
           # @param webhook_event_id [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
-          # @param delivery_context [DeliveryContext] 
+          # @param delivery_context [DeliveryContext, Hash[Symbol, untyped]] 
           # @param reply_token [String,nil] Reply token used to send reply message to this event
-          # @param postback [PostbackContent] 
+          # @param postback [PostbackContent, Hash[Symbol, untyped]] 
           def initialize(
             source: nil,
             timestamp:,

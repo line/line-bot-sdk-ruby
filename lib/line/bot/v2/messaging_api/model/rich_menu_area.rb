@@ -20,8 +20,8 @@ module Line
           #   @return [Action,nil] 
           attr_accessor :action
 
-          # @param bounds [RichMenuBounds,nil] 
-          # @param action [Action,nil] 
+          # @param bounds [RichMenuBounds, Hash[Symbol, untyped], nil] 
+          # @param action [Action, Hash[Symbol, untyped], nil] 
           def initialize(
             bounds: nil,
             action: nil,

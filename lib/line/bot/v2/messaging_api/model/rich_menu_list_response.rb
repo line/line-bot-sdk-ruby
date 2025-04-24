@@ -17,7 +17,7 @@ module Line
           #   @return [Array[RichMenuResponse]] Rich menus
           attr_accessor :richmenus
 
-          # @param richmenus [Array[RichMenuResponse]] Rich menus
+          # @param richmenus [Array[RichMenuResponse, Hash[Symbol, untyped]]] Rich menus
           def initialize(
             richmenus:,
             **dynamic_attributes

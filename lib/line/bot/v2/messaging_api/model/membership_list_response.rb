@@ -17,7 +17,7 @@ module Line
           #   @return [Array[Membership]] List of membership information
           attr_accessor :memberships
 
-          # @param memberships [Array[Membership]] List of membership information
+          # @param memberships [Array[Membership, Hash[Symbol, untyped]]] List of membership information
           def initialize(
             memberships:,
             **dynamic_attributes

@@ -19,7 +19,7 @@ module Line
           #   @return [String,nil] Key for retry. Key value is a string matching the regular expression pattern
           attr_accessor :resume_request_key
 
-          # @param operations [Array[RichMenuBatchOperation]] Array of Rich menu operation object...
+          # @param operations [Array[RichMenuBatchOperation, Hash[Symbol, untyped]]] Array of Rich menu operation object...
           # @param resume_request_key [String,nil] Key for retry. Key value is a string matching the regular expression pattern
           def initialize(
             operations:,

@@ -34,11 +34,11 @@ module Line
           #   @return [DeliveryContext] 
           attr_accessor :delivery_context
 
-          # @param source [Source,nil] 
+          # @param source [Source, Hash[Symbol, untyped], nil] 
           # @param timestamp [Integer] Time of the event in milliseconds.
           # @param mode [String] ('active'|'standby') 
           # @param webhook_event_id [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
-          # @param delivery_context [DeliveryContext] 
+          # @param delivery_context [DeliveryContext, Hash[Symbol, untyped]] 
           def initialize(
             source: nil,
             timestamp:,

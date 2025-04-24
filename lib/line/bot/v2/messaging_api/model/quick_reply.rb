@@ -18,7 +18,7 @@ module Line
           #   @return [Array[QuickReplyItem],nil] Quick reply button objects.
           attr_accessor :items
 
-          # @param items [Array[QuickReplyItem],nil] Quick reply button objects.
+          # @param items [Array[QuickReplyItem, Hash[Symbol, untyped]],nil] Quick reply button objects.
           def initialize(
             items: nil,
             **dynamic_attributes

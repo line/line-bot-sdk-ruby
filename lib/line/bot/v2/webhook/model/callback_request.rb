@@ -22,7 +22,7 @@ module Line
           attr_accessor :events
 
           # @param destination [String] User ID of a bot that should receive webhook events. The user ID value is a string that matches the regular expression, `U[0-9a-f]{32}`. 
-          # @param events [Array[Event]] Array of webhook event objects. The LINE Platform may send an empty array that doesn't include a webhook event object to confirm communication. 
+          # @param events [Array[Event, Hash[Symbol, untyped]]] Array of webhook event objects. The LINE Platform may send an empty array that doesn't include a webhook event object to confirm communication. 
           def initialize(
             destination:,
             events:,

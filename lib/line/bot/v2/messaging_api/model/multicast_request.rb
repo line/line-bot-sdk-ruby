@@ -26,7 +26,7 @@ module Line
           #   @return [Array[String],nil] Name of aggregation unit. Case-sensitive.
           attr_accessor :custom_aggregation_units
 
-          # @param messages [Array[Message]] Messages to send
+          # @param messages [Array[Message, Hash[Symbol, untyped]]] Messages to send
           # @param to [Array[String]] Array of user IDs. Use userId values which are returned in webhook event objects. Do not use LINE IDs found on LINE.
           # @param notification_disabled [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           # @param custom_aggregation_units [Array[String],nil] Name of aggregation unit. Case-sensitive.

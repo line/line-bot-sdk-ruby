@@ -38,8 +38,8 @@ module Line
 
           # @param id [String] Message ID
           # @param text [String] Message text.
-          # @param emojis [Array[Emoji],nil] Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
-          # @param mention [Mention,nil] 
+          # @param emojis [Array[Emoji, Hash[Symbol, untyped]],nil] Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.
+          # @param mention [Mention, Hash[Symbol, untyped], nil] 
           # @param quote_token [String] Quote token to quote this message. 
           # @param quoted_message_id [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.
           def initialize(

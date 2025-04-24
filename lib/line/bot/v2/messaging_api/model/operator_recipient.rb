@@ -27,9 +27,9 @@ module Line
           #   @return [Recipient,nil] 
           attr_accessor :_not
 
-          # @param _and [Array[Recipient],nil] Create a new recipient object by taking the logical conjunction (AND) of the specified array of recipient objects. 
-          # @param _or [Array[Recipient],nil] Create a new recipient object by taking the logical disjunction (OR) of the specified array of recipient objects. 
-          # @param _not [Recipient,nil] 
+          # @param _and [Array[Recipient, Hash[Symbol, untyped]],nil] Create a new recipient object by taking the logical conjunction (AND) of the specified array of recipient objects. 
+          # @param _or [Array[Recipient, Hash[Symbol, untyped]],nil] Create a new recipient object by taking the logical disjunction (OR) of the specified array of recipient objects. 
+          # @param _not [Recipient, Hash[Symbol, untyped], nil] 
           def initialize(
             _and: nil,
             _or: nil,

@@ -31,8 +31,8 @@ module Line
           attr_accessor :quote_token
 
           # @param id [String] Message ID
-          # @param content_provider [ContentProvider] 
-          # @param image_set [ImageSet,nil] 
+          # @param content_provider [ContentProvider, Hash[Symbol, untyped]] 
+          # @param image_set [ImageSet, Hash[Symbol, untyped], nil] 
           # @param quote_token [String] Quote token to quote this message. 
           def initialize(
             id:,

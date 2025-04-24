@@ -101,9 +101,9 @@ module Line
           # @param offset_bottom [String,nil] 
           # @param offset_start [String,nil] 
           # @param offset_end [String,nil] 
-          # @param action [Action,nil] 
+          # @param action [Action, Hash[Symbol, untyped], nil] 
           # @param max_lines [Integer,nil] 
-          # @param contents [Array[FlexSpan],nil] 
+          # @param contents [Array[FlexSpan, Hash[Symbol, untyped]],nil] 
           # @param adjust_mode [String,nil] ('shrink-to-fit') 
           # @param scaling [Boolean,nil] 
           def initialize(

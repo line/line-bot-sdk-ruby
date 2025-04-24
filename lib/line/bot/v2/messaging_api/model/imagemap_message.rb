@@ -40,13 +40,13 @@ module Line
           #   @return [ImagemapVideo,nil] 
           attr_accessor :video
 
-          # @param quick_reply [QuickReply,nil] 
-          # @param sender [Sender,nil] 
+          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
+          # @param sender [Sender, Hash[Symbol, untyped], nil] 
           # @param base_url [String] 
           # @param alt_text [String] 
-          # @param base_size [ImagemapBaseSize] 
-          # @param actions [Array[ImagemapAction]] 
-          # @param video [ImagemapVideo,nil] 
+          # @param base_size [ImagemapBaseSize, Hash[Symbol, untyped]] 
+          # @param actions [Array[ImagemapAction, Hash[Symbol, untyped]]] 
+          # @param video [ImagemapVideo, Hash[Symbol, untyped], nil] 
           def initialize(
             quick_reply: nil,
             sender: nil,

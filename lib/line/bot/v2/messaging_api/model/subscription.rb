@@ -20,8 +20,8 @@ module Line
           #   @return [SubscribedMembershipUser] 
           attr_accessor :user
 
-          # @param membership [SubscribedMembershipPlan] 
-          # @param user [SubscribedMembershipUser] 
+          # @param membership [SubscribedMembershipPlan, Hash[Symbol, untyped]] 
+          # @param user [SubscribedMembershipUser, Hash[Symbol, untyped]] 
           def initialize(
             membership:,
             user:,

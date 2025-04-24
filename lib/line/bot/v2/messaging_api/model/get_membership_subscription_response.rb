@@ -18,7 +18,7 @@ module Line
           #   @return [Array[Subscription]] List of subscription information
           attr_accessor :subscriptions
 
-          # @param subscriptions [Array[Subscription]] List of subscription information
+          # @param subscriptions [Array[Subscription, Hash[Symbol, untyped]]] List of subscription information
           def initialize(
             subscriptions:,
             **dynamic_attributes

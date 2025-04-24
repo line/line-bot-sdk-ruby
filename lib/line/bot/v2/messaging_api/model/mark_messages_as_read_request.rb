@@ -17,7 +17,7 @@ module Line
           #   @return [ChatReference] 
           attr_accessor :chat
 
-          # @param chat [ChatReference] 
+          # @param chat [ChatReference, Hash[Symbol, untyped]] 
           def initialize(
             chat:,
             **dynamic_attributes

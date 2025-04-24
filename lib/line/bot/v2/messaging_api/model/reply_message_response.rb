@@ -17,7 +17,7 @@ module Line
           #   @return [Array[SentMessage]] Array of sent messages.
           attr_accessor :sent_messages
 
-          # @param sent_messages [Array[SentMessage]] Array of sent messages.
+          # @param sent_messages [Array[SentMessage, Hash[Symbol, untyped]]] Array of sent messages.
           def initialize(
             sent_messages:,
             **dynamic_attributes

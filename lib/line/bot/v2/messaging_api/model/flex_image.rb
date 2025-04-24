@@ -81,7 +81,7 @@ module Line
           # @param aspect_ratio [String,nil] Aspect ratio of the image. `{width}:{height}` format. Specify the value of `{width}` and `{height}` in the range from `1` to `100000`. However, you cannot set `{height}` to a value that is more than three times the value of `{width}`. The default value is `1:1`. 
           # @param aspect_mode [String,nil] ('fit'|'cover') The display style of the image if the aspect ratio of the image and that specified by the aspectRatio property do not match. 
           # @param background_color [String,nil] Background color of the image. Use a hexadecimal color code.
-          # @param action [Action,nil] 
+          # @param action [Action, Hash[Symbol, untyped], nil] 
           # @param animated [Boolean,nil] When this is `true`, an animated image (APNG) plays. You can specify a value of true up to 10 images in a single message. You can't send messages that exceed this limit. This is `false` by default. Animated images larger than 300 KB aren't played back. 
           def initialize(
             url:,

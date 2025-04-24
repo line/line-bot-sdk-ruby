@@ -27,8 +27,8 @@ module Line
 
           # @param original_content_url [String,nil] 
           # @param preview_image_url [String,nil] 
-          # @param area [ImagemapArea,nil] 
-          # @param external_link [ImagemapExternalLink,nil] 
+          # @param area [ImagemapArea, Hash[Symbol, untyped], nil] 
+          # @param external_link [ImagemapExternalLink, Hash[Symbol, untyped], nil] 
           def initialize(
             original_content_url: nil,
             preview_image_url: nil,

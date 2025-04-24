@@ -36,8 +36,8 @@ module Line
           # @param image_background_color [String,nil] 
           # @param title [String,nil] 
           # @param text [String] 
-          # @param default_action [Action,nil] 
-          # @param actions [Array[Action]] 
+          # @param default_action [Action, Hash[Symbol, untyped], nil] 
+          # @param actions [Array[Action, Hash[Symbol, untyped]]] 
           def initialize(
             thumbnail_image_url: nil,
             image_background_color: nil,

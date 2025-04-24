@@ -24,9 +24,9 @@ module Line
           #   @return [Array[GetMessageEventResponseClick],nil] Array of information about opened URLs in the message.
           attr_accessor :clicks
 
-          # @param overview [GetMessageEventResponseOverview,nil] 
-          # @param messages [Array[GetMessageEventResponseMessage],nil] Array of information about individual message bubbles.
-          # @param clicks [Array[GetMessageEventResponseClick],nil] Array of information about opened URLs in the message.
+          # @param overview [GetMessageEventResponseOverview, Hash[Symbol, untyped], nil] 
+          # @param messages [Array[GetMessageEventResponseMessage, Hash[Symbol, untyped]],nil] Array of information about individual message bubbles.
+          # @param clicks [Array[GetMessageEventResponseClick, Hash[Symbol, untyped]],nil] Array of information about opened URLs in the message.
           def initialize(
             overview: nil,
             messages: nil,
