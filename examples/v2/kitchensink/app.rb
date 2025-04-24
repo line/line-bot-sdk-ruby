@@ -125,28 +125,28 @@ def handle_message_event(event)
     message_id = message.id
     response = blob_client.get_message_content(message_id: message_id)
     tf = Tempfile.open("content")
-    tf.write(response.body)
+    tf.write(response)
     reply_text(event, "[MessageType::IMAGE]\nid:#{message_id}\nreceived #{tf.size} bytes data")
 
   when Line::Bot::V2::Webhook::VideoMessageContent
     message_id = message.id
     response = blob_client.get_message_content(message_id: message_id)
     tf = Tempfile.open("content")
-    tf.write(response.body)
+    tf.write(response)
     reply_text(event, "[MessageType::VIDEO]\nid:#{message_id}\nreceived #{tf.size} bytes data")
 
   when Line::Bot::V2::Webhook::AudioMessageContent
     message_id = message.id
     response = blob_client.get_message_content(message_id: message_id)
     tf = Tempfile.open("content")
-    tf.write(response.body)
+    tf.write(response)
     reply_text(event, "[MessageType::AUDIO]\nid:#{message_id}\nreceived #{tf.size} bytes data")
 
   when Line::Bot::V2::Webhook::FileMessageContent
     message_id = message.id
     response = blob_client.get_message_content(message_id: message_id)
     tf = Tempfile.open("content")
-    tf.write(response.body)
+    tf.write(response)
     reply_text(event, "[MessageType::FILE]\nid:#{message_id}\nreceived #{tf.size} bytes data")
 
   when Line::Bot::V2::Webhook::StickerMessageContent
@@ -751,8 +751,8 @@ def handle_message_event(event)
           )
         ]
       )
-      response = client.broadcast(broadcast_request: request)
-      request_id = response.header['X-Line-Request-Id']
+      _body, _status_code, headers = client.broadcast_with_http_info(broadcast_request: request)
+      request_id = headers['x-line-request-id']
 
       reply_text(event, "RequestId: #{request_id}")
 
