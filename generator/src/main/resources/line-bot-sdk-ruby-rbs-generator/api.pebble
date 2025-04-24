@@ -40,7 +40,7 @@ module Line
             {%- for param in op.allParams %}
             {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
             {% endfor %}
-          ) -> [({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null ? 'String?' : response.dataType }}{{ loop.last ? '' : '|' }}{% endfor %}), Integer, Hash[String, String]]
+          ) -> [({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null or response.isFile ? 'String?' : response.dataType }}{{ loop.last ? '' : '|' }}{% endfor %}), Integer, Hash[String, String]]
 
           # {{ op.notes }}
           #
@@ -60,7 +60,7 @@ module Line
             {%- for param in op.allParams %}
             {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
             {% endfor %}
-          ) -> ({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null ? 'String?' : response.dataType }}{{ loop.last ? '' : '|' }}{% endfor %}){% endfor %}
+          ) -> ({% for response in op.responses %}{{ response.baseType == 'object' or response.baseType == null or response.isFile ? 'String?' : response.dataType }}{{ loop.last ? '' : '|' }}{% endfor %}){% endfor %}
         end
       end
     end
