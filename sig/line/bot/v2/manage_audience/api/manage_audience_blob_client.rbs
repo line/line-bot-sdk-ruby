@@ -29,7 +29,10 @@ module Line
             file: File, 
             ?audience_group_id: Integer?, 
             ?upload_description: String?
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
           #
@@ -41,7 +44,10 @@ module Line
             file: File, 
             ?audience_group_id: Integer?, 
             ?upload_description: String?
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 202
+            | String? # otherwise
+          )
 
           # Create audience for uploading user IDs (by file).
           #
@@ -55,7 +61,10 @@ module Line
             ?description: String?, 
             ?is_ifa_audience: bool?, 
             ?upload_description: String?
-          ) -> [(CreateAudienceGroupResponse), Integer, Hash[String, String]]
+          ) -> (
+            [CreateAudienceGroupResponse, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Create audience for uploading user IDs (by file).
           #
@@ -69,7 +78,10 @@ module Line
             ?description: String?, 
             ?is_ifa_audience: bool?, 
             ?upload_description: String?
-          ) -> (CreateAudienceGroupResponse)
+          ) -> (
+            CreateAudienceGroupResponse # when HTTP status code is 202
+            | String? # otherwise
+          )
         end
       end
     end

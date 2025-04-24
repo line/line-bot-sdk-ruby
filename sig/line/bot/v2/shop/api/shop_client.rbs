@@ -25,7 +25,10 @@ module Line
           # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
           def mission_sticker_v3_with_http_info: (
             mission_sticker_request: MissionStickerRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Sends a mission sticker.
           #
@@ -33,7 +36,10 @@ module Line
           # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
           def mission_sticker_v3: (
             mission_sticker_request: MissionStickerRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
         end
       end
     end

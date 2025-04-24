@@ -25,7 +25,12 @@ module Line
           # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
           def add_liff_app_with_http_info: (
             add_liff_app_request: AddLiffAppRequest
-          ) -> [(AddLiffAppResponse|String?|String?), Integer, Hash[String, String]]
+          ) -> (
+            [AddLiffAppResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, 401, Hash[untyped, untyped]] # when HTTP status code is 401
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Adding the LIFF app to a channel
           #
@@ -33,7 +38,12 @@ module Line
           # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
           def add_liff_app: (
             add_liff_app_request: AddLiffAppRequest
-          ) -> (AddLiffAppResponse|String?|String?)
+          ) -> (
+            AddLiffAppResponse # when HTTP status code is 200
+            | String? # when HTTP status code is 400
+            | String? # when HTTP status code is 401
+            | String? # otherwise
+          )
 
           # Deletes a LIFF app from a channel. 
           #
@@ -41,7 +51,12 @@ module Line
           # @see https://developers.line.biz/en/reference/liff-server/#delete-liff-app
           def delete_liff_app_with_http_info: (
             liff_id: String
-          ) -> [(String?|String?|String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, 401, Hash[untyped, untyped]] # when HTTP status code is 401
+            | [String?, 404, Hash[untyped, untyped]] # when HTTP status code is 404
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Deletes a LIFF app from a channel. 
           #
@@ -49,19 +64,34 @@ module Line
           # @see https://developers.line.biz/en/reference/liff-server/#delete-liff-app
           def delete_liff_app: (
             liff_id: String
-          ) -> (String?|String?|String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # when HTTP status code is 401
+            | String? # when HTTP status code is 404
+            | String? # otherwise
+          )
 
           # Gets information on all the LIFF apps added to the channel.
           #
           # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
           def get_all_liff_apps_with_http_info: (
-          ) -> [(GetAllLiffAppsResponse|String?|String?), Integer, Hash[String, String]]
+          ) -> (
+            [GetAllLiffAppsResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, 401, Hash[untyped, untyped]] # when HTTP status code is 401
+            | [String?, 404, Hash[untyped, untyped]] # when HTTP status code is 404
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets information on all the LIFF apps added to the channel.
           #
           # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
           def get_all_liff_apps: (
-          ) -> (GetAllLiffAppsResponse|String?|String?)
+          ) -> (
+            GetAllLiffAppsResponse # when HTTP status code is 200
+            | String? # when HTTP status code is 401
+            | String? # when HTTP status code is 404
+            | String? # otherwise
+          )
 
           # Update LIFF app settings
           #
@@ -71,7 +101,13 @@ module Line
           def update_liff_app_with_http_info: (
             liff_id: String, 
             update_liff_app_request: UpdateLiffAppRequest
-          ) -> [(String?|String?|String?|String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, 401, Hash[untyped, untyped]] # when HTTP status code is 401
+            | [String?, 404, Hash[untyped, untyped]] # when HTTP status code is 404
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Update LIFF app settings
           #
@@ -81,7 +117,13 @@ module Line
           def update_liff_app: (
             liff_id: String, 
             update_liff_app_request: UpdateLiffAppRequest
-          ) -> (String?|String?|String?|String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # when HTTP status code is 400
+            | String? # when HTTP status code is 401
+            | String? # when HTTP status code is 404
+            | String? # otherwise
+          )
         end
       end
     end

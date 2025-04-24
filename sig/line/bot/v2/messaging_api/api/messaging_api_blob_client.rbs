@@ -25,7 +25,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-content
           def get_message_content_with_http_info: (
             message_id: String
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Download image, video, and audio data sent from users.
           #
@@ -33,7 +36,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-content
           def get_message_content: (
             message_id: String
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get a preview image of the image or video
           #
@@ -41,7 +47,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-image-or-video-preview
           def get_message_content_preview_with_http_info: (
             message_id: String
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get a preview image of the image or video
           #
@@ -49,7 +58,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-image-or-video-preview
           def get_message_content_preview: (
             message_id: String
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Verify the preparation status of a video or audio for getting
           #
@@ -57,7 +69,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-video-or-audio-preparation-status
           def get_message_content_transcoding_by_message_id_with_http_info: (
             message_id: String
-          ) -> [(GetMessageContentTranscodingResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetMessageContentTranscodingResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Verify the preparation status of a video or audio for getting
           #
@@ -65,7 +80,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-video-or-audio-preparation-status
           def get_message_content_transcoding_by_message_id: (
             message_id: String
-          ) -> (GetMessageContentTranscodingResponse)
+          ) -> (
+            GetMessageContentTranscodingResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Download rich menu image.
           #
@@ -73,7 +91,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#download-rich-menu-image
           def get_rich_menu_image_with_http_info: (
             rich_menu_id: String
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Download rich menu image.
           #
@@ -81,7 +102,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#download-rich-menu-image
           def get_rich_menu_image: (
             rich_menu_id: String
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Upload rich menu image
           #
@@ -91,7 +115,10 @@ module Line
           def set_rich_menu_image_with_http_info: (
             rich_menu_id: String, 
             ?body: File?
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Upload rich menu image
           #
@@ -101,7 +128,10 @@ module Line
           def set_rich_menu_image: (
             rich_menu_id: String, 
             ?body: File?
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
         end
       end
     end

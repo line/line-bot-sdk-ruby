@@ -47,12 +47,13 @@ module Line
 
           # Sends a mission sticker.
           # This requests to <code>POST https://api.line.me/shop/v3/mission</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param mission_sticker_request [MissionStickerRequest] 
           # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
-          def mission_sticker_v3_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def mission_sticker_v3_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             mission_sticker_request:
           )
             path = "/shop/v3/mission"
@@ -62,14 +63,12 @@ module Line
               body_params: mission_sticker_request,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Sends a mission sticker.
@@ -79,6 +78,7 @@ module Line
           # @param mission_sticker_request [MissionStickerRequest] 
           # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
           # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def mission_sticker_v3(
             mission_sticker_request:
           )

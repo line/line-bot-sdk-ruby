@@ -23,13 +23,19 @@ module Line
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
           def get_friends_demographics_with_http_info: (
-          ) -> [(GetFriendsDemographicsResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetFriendsDemographicsResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
           def get_friends_demographics: (
-          ) -> (GetFriendsDemographicsResponse)
+          ) -> (
+            GetFriendsDemographicsResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
           #
@@ -37,7 +43,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-message-event
           def get_message_event_with_http_info: (
             request_id: String
-          ) -> [(GetMessageEventResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetMessageEventResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
           #
@@ -45,7 +54,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-message-event
           def get_message_event: (
             request_id: String
-          ) -> (GetMessageEventResponse)
+          ) -> (
+            GetMessageEventResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Returns the number of users who have added the LINE Official Account on or before a specified date. 
           #
@@ -53,7 +65,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
           def get_number_of_followers_with_http_info: (
             ?date: String?
-          ) -> [(GetNumberOfFollowersResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetNumberOfFollowersResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Returns the number of users who have added the LINE Official Account on or before a specified date. 
           #
@@ -61,7 +76,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
           def get_number_of_followers: (
             ?date: String?
-          ) -> (GetNumberOfFollowersResponse)
+          ) -> (
+            GetNumberOfFollowersResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Returns the number of messages sent from LINE Official Account on a specified day. 
           #
@@ -69,7 +87,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-delivery-messages
           def get_number_of_message_deliveries_with_http_info: (
             date: String
-          ) -> [(GetNumberOfMessageDeliveriesResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetNumberOfMessageDeliveriesResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Returns the number of messages sent from LINE Official Account on a specified day. 
           #
@@ -77,7 +98,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-delivery-messages
           def get_number_of_message_deliveries: (
             date: String
-          ) -> (GetNumberOfMessageDeliveriesResponse)
+          ) -> (
+            GetNumberOfMessageDeliveriesResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
           #
@@ -89,7 +113,10 @@ module Line
             custom_aggregation_unit: String, 
             from: String, 
             to: String
-          ) -> [(GetStatisticsPerUnitResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetStatisticsPerUnitResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
           #
@@ -101,7 +128,10 @@ module Line
             custom_aggregation_unit: String, 
             from: String, 
             to: String
-          ) -> (GetStatisticsPerUnitResponse)
+          ) -> (
+            GetStatisticsPerUnitResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
         end
       end
     end
