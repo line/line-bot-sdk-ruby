@@ -16,7 +16,7 @@ module Line
 
         def self.hash_to_struct: (Hash[untyped, untyped]) -> ::Struct[untyped]
 
-        def self.camelize: (String | Symbol) -> String
+        def self.camelize: (String | Symbol) -> String?
       end
     end
   end
