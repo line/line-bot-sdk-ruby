@@ -24,8 +24,8 @@ module Line
           attr_accessor :sender
 
           # @param type [String] Type of message
-          # @param quick_reply [QuickReply,nil] 
-          # @param sender [Sender,nil] 
+          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
+          # @param sender [Sender, Hash[Symbol, untyped], nil] 
           def initialize(
             type:,
             quick_reply: nil,

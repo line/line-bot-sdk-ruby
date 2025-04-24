@@ -18,10 +18,10 @@ module Line
           
           def initialize: (
             status: 'processing'|'succeeded'|'failed',
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetMessageContentTranscodingResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetMessageContentTranscodingResponse
 
           def ==: (untyped other) -> bool
 

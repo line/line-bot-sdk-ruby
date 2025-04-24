@@ -21,7 +21,7 @@ module Line
           #   @return [Array[ImageCarouselColumn]] 
           attr_accessor :columns
 
-          # @param columns [Array[ImageCarouselColumn]] 
+          # @param columns [Array[ImageCarouselColumn, Hash[Symbol, untyped]]] 
           def initialize(
             columns:,
             **dynamic_attributes

@@ -28,10 +28,10 @@ module Line
             ?initial: String?,
             ?max: String?,
             ?min: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> DatetimePickerAction
+          def self.create: (Hash[Symbol, untyped]) -> DatetimePickerAction
 
           def ==: (untyped other) -> bool
 

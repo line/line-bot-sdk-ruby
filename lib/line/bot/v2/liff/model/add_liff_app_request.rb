@@ -26,17 +26,17 @@ module Line
           #   @return [String,nil] How additional information in LIFF URLs is handled. Specify `concat`. 
           attr_accessor :permanent_link_pattern
           # @!attribute [rw] scope
-          #   @return [Array['openid'|'email'|'profile'|'chat_message.write']] 
+          #   @return [Array['openid','email','profile','chat_message.write']] 
           attr_accessor :scope
           # @!attribute [rw] bot_prompt
           #   @return [String,nil] ('normal'|'aggressive'|'none') 
           attr_accessor :bot_prompt
 
-          # @param view [LiffView] 
+          # @param view [LiffView, Hash[Symbol, untyped]] 
           # @param description [String,nil] Name of the LIFF app.  The LIFF app name can't include \"LINE\" or similar strings, or inappropriate strings. 
-          # @param features [LiffFeatures,nil] 
+          # @param features [LiffFeatures, Hash[Symbol, untyped], nil] 
           # @param permanent_link_pattern [String,nil] How additional information in LIFF URLs is handled. Specify `concat`. 
-          # @param scope [Array['openid'|'email'|'profile'|'chat_message.write'],nil] 
+          # @param scope [Array['openid','email','profile','chat_message.write'],nil] 
           # @param bot_prompt [String,nil] ('normal'|'aggressive'|'none') 
           def initialize(
             view:,

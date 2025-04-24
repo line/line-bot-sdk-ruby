@@ -18,10 +18,10 @@ module Line
           def initialize: (
             ?app_type: 'ios'|'android'|'others'?,
             ?percentage: Float?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> AppTypeTile
+          def self.create: (Hash[Symbol, untyped]) -> AppTypeTile
 
           def ==: (untyped other) -> bool
 

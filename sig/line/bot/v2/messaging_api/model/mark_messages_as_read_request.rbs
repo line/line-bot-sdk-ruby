@@ -16,11 +16,11 @@ module Line
           attr_accessor chat: ChatReference
           
           def initialize: (
-            chat: ChatReference,
-            **Hash[Symbol, untyped] dynamic_attributes
+            chat: ChatReference| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> MarkMessagesAsReadRequest
+          def self.create: (Hash[Symbol, untyped]) -> MarkMessagesAsReadRequest
 
           def ==: (untyped other) -> bool
 

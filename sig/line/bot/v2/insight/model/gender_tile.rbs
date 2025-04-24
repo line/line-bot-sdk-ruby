@@ -18,10 +18,10 @@ module Line
           def initialize: (
             ?gender: 'male'|'female'|'unknown'?,
             ?percentage: Float?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GenderTile
+          def self.create: (Hash[Symbol, untyped]) -> GenderTile
 
           def ==: (untyped other) -> bool
 

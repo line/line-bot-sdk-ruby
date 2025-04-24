@@ -33,7 +33,7 @@ module Line
           #   @return [Integer,nil] The maximum number of audiences on the current page.
           attr_accessor :size
 
-          # @param audience_groups [Array[AudienceGroup],nil] An array of audience data. If there are no audiences that match the specified filter, an empty array will be returned.
+          # @param audience_groups [Array[AudienceGroup, Hash[Symbol, untyped]],nil] An array of audience data. If there are no audiences that match the specified filter, an empty array will be returned.
           # @param has_next_page [Boolean,nil] true when this is not the last page.
           # @param total_count [Integer,nil] The total number of audiences that can be returned with the specified filter.
           # @param read_write_audience_group_total_count [Integer,nil] Of the audiences you can get with the specified filter, the number of audiences with the update permission set to READ_WRITE.

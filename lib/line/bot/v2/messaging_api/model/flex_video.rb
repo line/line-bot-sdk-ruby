@@ -35,9 +35,9 @@ module Line
 
           # @param url [String] 
           # @param preview_url [String] 
-          # @param alt_content [FlexComponent] 
+          # @param alt_content [FlexComponent, Hash[Symbol, untyped]] 
           # @param aspect_ratio [String,nil] 
-          # @param action [Action,nil] 
+          # @param action [Action, Hash[Symbol, untyped], nil] 
           def initialize(
             url:,
             preview_url:,

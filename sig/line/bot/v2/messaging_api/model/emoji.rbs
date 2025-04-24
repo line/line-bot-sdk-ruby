@@ -20,10 +20,10 @@ module Line
             ?index: Integer?,
             ?product_id: String?,
             ?emoji_id: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> Emoji
+          def self.create: (Hash[Symbol, untyped]) -> Emoji
 
           def ==: (untyped other) -> bool
 

@@ -18,11 +18,11 @@ module Line
           
           def initialize: (
             type: String,
-            area: ImagemapArea,
-            **Hash[Symbol, untyped] dynamic_attributes
+            area: ImagemapArea| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ImagemapAction
+          def self.create: (Hash[Symbol, untyped]) -> ImagemapAction
 
           def ==: (untyped other) -> bool
 
@@ -30,7 +30,7 @@ module Line
 
           private
 
-          def self.detect_class: (type: String) -> Class
+          def self.detect_class: (type: String) -> Class?
         end
       end
     end

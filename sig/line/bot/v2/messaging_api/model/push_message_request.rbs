@@ -20,13 +20,13 @@ module Line
           
           def initialize: (
             to: String,
-            messages: Array[Message],
+            messages: Array[Message| Hash[Symbol, untyped]],
             ?notification_disabled: bool?,
             ?custom_aggregation_units: Array[String]?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> PushMessageRequest
+          def self.create: (Hash[Symbol, untyped]) -> PushMessageRequest
 
           def ==: (untyped other) -> bool
 

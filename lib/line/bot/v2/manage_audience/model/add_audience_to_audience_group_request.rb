@@ -26,7 +26,7 @@ module Line
 
           # @param audience_group_id [Integer,nil] The audience ID.
           # @param upload_description [String,nil] The audience's name.
-          # @param audiences [Array[Audience],nil] An array of up to 10,000 user IDs or IFAs.
+          # @param audiences [Array[Audience, Hash[Symbol, untyped]],nil] An array of up to 10,000 user IDs or IFAs.
           def initialize(
             audience_group_id: nil,
             upload_description: nil,

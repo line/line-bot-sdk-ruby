@@ -37,8 +37,8 @@ module Line
           #   @return [Float] 
           attr_accessor :longitude
 
-          # @param quick_reply [QuickReply,nil] 
-          # @param sender [Sender,nil] 
+          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
+          # @param sender [Sender, Hash[Symbol, untyped], nil] 
           # @param title [String] 
           # @param address [String] 
           # @param latitude [Float] 

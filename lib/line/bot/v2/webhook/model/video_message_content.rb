@@ -32,7 +32,7 @@ module Line
 
           # @param id [String] Message ID
           # @param duration [Integer,nil] Length of video file (milliseconds)
-          # @param content_provider [ContentProvider] 
+          # @param content_provider [ContentProvider, Hash[Symbol, untyped]] 
           # @param quote_token [String] Quote token to quote this message. 
           def initialize(
             id:,

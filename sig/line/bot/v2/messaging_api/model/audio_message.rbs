@@ -20,14 +20,14 @@ module Line
           attr_accessor duration: Integer
           
           def initialize: (
-            ?quick_reply: QuickReply?,
-            ?sender: Sender?,
+            ?quick_reply: QuickReply?| Hash[Symbol, untyped]?,
+            ?sender: Sender?| Hash[Symbol, untyped]?,
             original_content_url: String,
             duration: Integer,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> AudioMessage
+          def self.create: (Hash[Symbol, untyped]) -> AudioMessage
 
           def ==: (untyped other) -> bool
 

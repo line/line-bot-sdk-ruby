@@ -101,7 +101,7 @@ module Line
 
           # @param layout [String] ('horizontal'|'vertical'|'baseline') 
           # @param flex [Integer,nil] 
-          # @param contents [Array[FlexComponent]] 
+          # @param contents [Array[FlexComponent, Hash[Symbol, untyped]]] 
           # @param spacing [String,nil] 
           # @param margin [String,nil] 
           # @param position [String,nil] ('relative'|'absolute') 
@@ -122,10 +122,10 @@ module Line
           # @param padding_bottom [String,nil] 
           # @param padding_start [String,nil] 
           # @param padding_end [String,nil] 
-          # @param action [Action,nil] 
+          # @param action [Action, Hash[Symbol, untyped], nil] 
           # @param justify_content [String,nil] ('center'|'flex-start'|'flex-end'|'space-between'|'space-around'|'space-evenly') 
           # @param align_items [String,nil] ('center'|'flex-start'|'flex-end') 
-          # @param background [FlexBoxBackground,nil] 
+          # @param background [FlexBoxBackground, Hash[Symbol, untyped], nil] 
           def initialize(
             layout:,
             flex: nil,

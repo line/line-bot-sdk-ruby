@@ -20,10 +20,10 @@ module Line
           def initialize: (
             ?type: String?,
             ?label: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> Action
+          def self.create: (Hash[Symbol, untyped]) -> Action
 
           def ==: (untyped other) -> bool
 
@@ -31,7 +31,7 @@ module Line
 
           private
 
-          def self.detect_class: (type: String) -> Class
+          def self.detect_class: (type: String) -> Class?
         end
       end
     end

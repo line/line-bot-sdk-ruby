@@ -22,16 +22,16 @@ module Line
           attr_accessor _module: ModuleContent
           
           def initialize: (
-            ?source: Source?,
+            ?source: Source?| Hash[Symbol, untyped]?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
-            delivery_context: DeliveryContext,
-            _module: ModuleContent,
-            **Hash[Symbol, untyped] dynamic_attributes
+            delivery_context: DeliveryContext| Hash[Symbol, untyped],
+            _module: ModuleContent| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ModuleEvent
+          def self.create: (Hash[Symbol, untyped]) -> ModuleEvent
 
           def ==: (untyped other) -> bool
 

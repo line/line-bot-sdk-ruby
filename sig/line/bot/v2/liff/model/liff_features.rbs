@@ -18,10 +18,10 @@ module Line
           def initialize: (
             ?ble: bool?,
             ?qr_code: bool?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> LiffFeatures
+          def self.create: (Hash[Symbol, untyped]) -> LiffFeatures
 
           def ==: (untyped other) -> bool
 

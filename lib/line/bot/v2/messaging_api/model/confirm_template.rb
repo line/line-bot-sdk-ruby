@@ -25,7 +25,7 @@ module Line
           attr_accessor :actions
 
           # @param text [String] 
-          # @param actions [Array[Action]] 
+          # @param actions [Array[Action, Hash[Symbol, untyped]]] 
           def initialize(
             text:,
             actions:,

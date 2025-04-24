@@ -32,10 +32,10 @@ module Line
             ?failed_type: 'INTERNAL_ERROR'|'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'?,
             ?audience_count: Integer?,
             ?created: Integer?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> AudienceGroupJob
+          def self.create: (Hash[Symbol, untyped]) -> AudienceGroupJob
 
           def ==: (untyped other) -> bool
 

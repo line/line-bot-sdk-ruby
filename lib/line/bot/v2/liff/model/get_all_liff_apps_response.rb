@@ -16,7 +16,7 @@ module Line
           #   @return [Array[LiffApp],nil] 
           attr_accessor :apps
 
-          # @param apps [Array[LiffApp],nil] 
+          # @param apps [Array[LiffApp, Hash[Symbol, untyped]],nil] 
           def initialize(
             apps: nil,
             **dynamic_attributes

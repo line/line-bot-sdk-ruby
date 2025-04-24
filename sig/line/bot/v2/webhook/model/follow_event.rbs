@@ -23,17 +23,17 @@ module Line
           attr_accessor follow: FollowDetail
           
           def initialize: (
-            ?source: Source?,
+            ?source: Source?| Hash[Symbol, untyped]?,
             timestamp: Integer,
             mode: 'active'|'standby',
             webhook_event_id: String,
-            delivery_context: DeliveryContext,
+            delivery_context: DeliveryContext| Hash[Symbol, untyped],
             reply_token: String,
-            follow: FollowDetail,
-            **Hash[Symbol, untyped] dynamic_attributes
+            follow: FollowDetail| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FollowEvent
+          def self.create: (Hash[Symbol, untyped]) -> FollowEvent
 
           def ==: (untyped other) -> bool
 

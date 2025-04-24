@@ -20,10 +20,10 @@ module Line
             ?background_color: String?,
             ?separator: bool?,
             ?separator_color: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexBlockStyle
+          def self.create: (Hash[Symbol, untyped]) -> FlexBlockStyle
 
           def ==: (untyped other) -> bool
 

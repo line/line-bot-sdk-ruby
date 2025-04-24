@@ -17,10 +17,10 @@ module Line
           
           def initialize: (
             num_of_custom_aggregation_units: Integer,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetAggregationUnitUsageResponse
+          def self.create: (Hash[Symbol, untyped]) -> GetAggregationUnitUsageResponse
 
           def ==: (untyped other) -> bool
 

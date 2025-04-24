@@ -17,7 +17,7 @@ module Line
           #   @return [Array[RichMenuAliasResponse]] Rich menu aliases.
           attr_accessor :aliases
 
-          # @param aliases [Array[RichMenuAliasResponse]] Rich menu aliases.
+          # @param aliases [Array[RichMenuAliasResponse, Hash[Symbol, untyped]]] Rich menu aliases.
           def initialize(
             aliases:,
             **dynamic_attributes

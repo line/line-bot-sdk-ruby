@@ -80,25 +80,25 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 403
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 409
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 429
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -191,7 +191,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::RichMenuIdResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::RichMenuIdResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -242,7 +242,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -338,7 +338,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -393,7 +393,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::GetAggregationUnitNameListResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::GetAggregationUnitNameListResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -441,7 +441,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::GetAggregationUnitUsageResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::GetAggregationUnitUsageResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -483,7 +483,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::BotInfoResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::BotInfoResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -525,7 +525,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::RichMenuIdResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::RichMenuIdResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -576,7 +576,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::GetFollowersResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::GetFollowersResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -627,7 +627,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::GroupMemberCountResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::GroupMemberCountResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -678,7 +678,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::GroupUserProfileResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::GroupUserProfileResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -735,7 +735,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::MembersIdsResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::MembersIdsResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -786,7 +786,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::GroupSummaryResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::GroupSummaryResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -845,19 +845,19 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::GetJoinedMembershipUsersResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::GetJoinedMembershipUsersResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 400
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 404
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -911,13 +911,13 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::MembershipListResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::MembershipListResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 404
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -965,19 +965,19 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::GetMembershipSubscriptionResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::GetMembershipSubscriptionResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 400
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 404
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1024,7 +1024,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::MessageQuotaResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::MessageQuotaResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1066,7 +1066,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::QuotaConsumptionResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::QuotaConsumptionResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1114,7 +1114,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::NarrowcastProgressResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::NarrowcastProgressResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1165,7 +1165,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1216,7 +1216,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1267,7 +1267,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1318,7 +1318,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1369,7 +1369,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1417,7 +1417,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::UserProfileResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::UserProfileResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1465,7 +1465,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::RichMenuResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::RichMenuResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1513,7 +1513,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::RichMenuAliasResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::RichMenuAliasResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1558,7 +1558,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::RichMenuAliasListResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::RichMenuAliasListResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1606,7 +1606,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::RichMenuBatchProgressResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::RichMenuBatchProgressResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1654,7 +1654,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::RichMenuIdResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::RichMenuIdResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1699,7 +1699,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::RichMenuListResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::RichMenuListResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1744,7 +1744,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::RoomMemberCountResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::RoomMemberCountResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1795,7 +1795,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::RoomUserProfileResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::RoomUserProfileResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1852,7 +1852,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::MembersIdsResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::MembersIdsResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1900,7 +1900,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::GetWebhookEndpointResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::GetWebhookEndpointResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1945,7 +1945,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::IssueLinkTokenResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::IssueLinkTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -1997,13 +1997,13 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 404
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -2247,25 +2247,25 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 403
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 409
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 429
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -2332,25 +2332,25 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 403
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 409
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 429
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -2415,31 +2415,31 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::PushMessageResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::PushMessageResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 400
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 403
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 409
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 429
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -2503,7 +2503,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -2557,19 +2557,19 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ReplyMessageResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ReplyMessageResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 400
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    when 429
                      json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -2754,7 +2754,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -2803,7 +2803,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::TestWebhookEndpointResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::TestWebhookEndpointResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end
@@ -2945,7 +2945,7 @@ module Line
                      json.transform_keys! do |key|
                        Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
                      end
-                     Line::Bot::V2::MessagingApi::ErrorResponse.new(**json) # steep:ignore InsufficientKeywordArguments
+                     Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
                    else
                      response.body
                    end

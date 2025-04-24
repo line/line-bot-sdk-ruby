@@ -18,11 +18,11 @@ module Line
           
           def initialize: (
             text: String,
-            actions: Array[Action],
-            **Hash[Symbol, untyped] dynamic_attributes
+            actions: Array[Action| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ConfirmTemplate
+          def self.create: (Hash[Symbol, untyped]) -> ConfirmTemplate
 
           def ==: (untyped other) -> bool
 

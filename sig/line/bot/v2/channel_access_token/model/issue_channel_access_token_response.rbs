@@ -24,10 +24,10 @@ module Line
             expires_in: Integer,
             ?token_type: String,
             key_id: String,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> IssueChannelAccessTokenResponse
+          def self.create: (Hash[Symbol, untyped]) -> IssueChannelAccessTokenResponse
 
           def ==: (untyped other) -> bool
 

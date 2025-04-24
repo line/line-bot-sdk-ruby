@@ -28,7 +28,7 @@ module Line
           {% if variable.items.isModel -%}
           #   @return [{{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% elseif variable.items.allowableValues != null -%}
-          #   @return [Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]] {{ variable.description }}
+          #   @return [Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : ',' }}{% endfor -%}]] {{ variable.description }}
           {% else -%}
           #   @return [{{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% endif -%}
@@ -49,14 +49,14 @@ module Line
           {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name -%}
           {% if variable.openApiType == 'array' -%}
           {% if variable.items.isModel -%}
-          # @param {{ variable.name }} [{{ "Array[#{variable.items.openApiType}]" }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
+          # @param {{ variable.name }} [{{ "Array[#{variable.items.openApiType}, Hash[Symbol, untyped]]" }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% elseif variable.items.allowableValues != null -%}
-          # @param {{ variable.name }} [Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor -%}]{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
+          # @param {{ variable.name }} [Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : ',' }}{% endfor -%}]{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% else -%}
           # @param {{ variable.name }} [{{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
           {% endif -%}
           {% elseif variable.isModel -%}
-          # @param {{ variable.name }} [{{ variable.openApiType }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
+          # @param {{ variable.name }} [{{ variable.openApiType }}, Hash[Symbol, untyped]{% if not variable.required %}, nil{% endif -%}] {{ variable.description }}
           {% else -%}
           {% if variable.allowableValues != null -%}
           # @param {{ variable.name }} [String{% if not variable.required %},nil{% endif -%}] ({% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}) {{ variable.description }}

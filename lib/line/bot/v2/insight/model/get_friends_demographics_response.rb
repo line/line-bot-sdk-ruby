@@ -34,11 +34,11 @@ module Line
           attr_accessor :subscription_periods
 
           # @param available [Boolean,nil] true if friend demographic information is available.
-          # @param genders [Array[GenderTile],nil] Percentage per gender.
-          # @param ages [Array[AgeTile],nil] Percentage per age group.
-          # @param areas [Array[AreaTile],nil] Percentage per area.
-          # @param app_types [Array[AppTypeTile],nil] Percentage by OS.
-          # @param subscription_periods [Array[SubscriptionPeriodTile],nil] Percentage per friendship duration.
+          # @param genders [Array[GenderTile, Hash[Symbol, untyped]],nil] Percentage per gender.
+          # @param ages [Array[AgeTile, Hash[Symbol, untyped]],nil] Percentage per age group.
+          # @param areas [Array[AreaTile, Hash[Symbol, untyped]],nil] Percentage per area.
+          # @param app_types [Array[AppTypeTile, Hash[Symbol, untyped]],nil] Percentage by OS.
+          # @param subscription_periods [Array[SubscriptionPeriodTile, Hash[Symbol, untyped]],nil] Percentage per friendship duration.
           def initialize(
             available: nil,
             genders: nil,

@@ -27,10 +27,10 @@ module Line
             benefits: Array[String],
             price: Float,
             currency: 'JPY'|'TWD'|'THB',
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> SubscribedMembershipPlan
+          def self.create: (Hash[Symbol, untyped]) -> SubscribedMembershipPlan
 
           def ==: (untyped other) -> bool
 

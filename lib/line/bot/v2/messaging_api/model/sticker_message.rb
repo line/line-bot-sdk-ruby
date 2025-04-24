@@ -34,8 +34,8 @@ module Line
           #   @return [String,nil] Quote token of the message you want to quote.
           attr_accessor :quote_token
 
-          # @param quick_reply [QuickReply,nil] 
-          # @param sender [Sender,nil] 
+          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
+          # @param sender [Sender, Hash[Symbol, untyped], nil] 
           # @param package_id [String] 
           # @param sticker_id [String] 
           # @param quote_token [String,nil] Quote token of the message you want to quote.

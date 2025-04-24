@@ -17,10 +17,10 @@ module Line
           
           def initialize: (
             membership_id: Integer,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> LeftMembershipContent
+          def self.create: (Hash[Symbol, untyped]) -> LeftMembershipContent
 
           def ==: (untyped other) -> bool
 

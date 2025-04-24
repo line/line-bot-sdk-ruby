@@ -16,10 +16,10 @@ module Line
           
           def initialize: (
             message_id: String,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> UnsendDetail
+          def self.create: (Hash[Symbol, untyped]) -> UnsendDetail
 
           def ==: (untyped other) -> bool
 

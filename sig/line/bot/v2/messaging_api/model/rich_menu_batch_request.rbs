@@ -16,12 +16,12 @@ module Line
           attr_accessor resume_request_key: String?
           
           def initialize: (
-            operations: Array[RichMenuBatchOperation],
+            operations: Array[RichMenuBatchOperation| Hash[Symbol, untyped]],
             ?resume_request_key: String?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuBatchRequest
+          def self.create: (Hash[Symbol, untyped]) -> RichMenuBatchRequest
 
           def ==: (untyped other) -> bool
 

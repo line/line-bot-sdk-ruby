@@ -18,11 +18,11 @@ module Line
           attr_accessor mentionee: MentionTarget
           
           def initialize: (
-            mentionee: MentionTarget,
-            **Hash[Symbol, untyped] dynamic_attributes
+            mentionee: MentionTarget| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> MentionSubstitutionObject
+          def self.create: (Hash[Symbol, untyped]) -> MentionSubstitutionObject
 
           def ==: (untyped other) -> bool
 

@@ -25,10 +25,10 @@ module Line
             ?address: String?,
             latitude: Float,
             longitude: Float,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> LocationMessageContent
+          def self.create: (Hash[Symbol, untyped]) -> LocationMessageContent
 
           def ==: (untyped other) -> bool
 

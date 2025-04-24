@@ -16,11 +16,11 @@ module Line
           attr_accessor richmenus: Array[RichMenuResponse]
           
           def initialize: (
-            richmenus: Array[RichMenuResponse],
-            **Hash[Symbol, untyped] dynamic_attributes
+            richmenus: Array[RichMenuResponse| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuListResponse
+          def self.create: (Hash[Symbol, untyped]) -> RichMenuListResponse
 
           def ==: (untyped other) -> bool
 

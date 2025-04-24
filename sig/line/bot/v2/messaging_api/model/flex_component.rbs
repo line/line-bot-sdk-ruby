@@ -16,10 +16,10 @@ module Line
           
           def initialize: (
             type: String,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexComponent
+          def self.create: (Hash[Symbol, untyped]) -> FlexComponent
 
           def ==: (untyped other) -> bool
 
@@ -27,7 +27,7 @@ module Line
 
           private
 
-          def self.detect_class: (type: String) -> Class
+          def self.detect_class: (type: String) -> Class?
         end
       end
     end

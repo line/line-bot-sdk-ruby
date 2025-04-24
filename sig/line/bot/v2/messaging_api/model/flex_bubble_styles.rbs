@@ -18,14 +18,14 @@ module Line
           attr_accessor footer: FlexBlockStyle?
           
           def initialize: (
-            ?header: FlexBlockStyle?,
-            ?hero: FlexBlockStyle?,
-            ?body: FlexBlockStyle?,
-            ?footer: FlexBlockStyle?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            ?header: FlexBlockStyle?| Hash[Symbol, untyped]?,
+            ?hero: FlexBlockStyle?| Hash[Symbol, untyped]?,
+            ?body: FlexBlockStyle?| Hash[Symbol, untyped]?,
+            ?footer: FlexBlockStyle?| Hash[Symbol, untyped]?,
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> FlexBubbleStyles
+          def self.create: (Hash[Symbol, untyped]) -> FlexBubbleStyles
 
           def ==: (untyped other) -> bool
 

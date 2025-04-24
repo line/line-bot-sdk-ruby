@@ -24,10 +24,10 @@ module Line
             ?unique_click: Integer?,
             ?unique_media_played: Integer?,
             ?unique_media_played100_percent: Integer?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponseOverview
+          def self.create: (Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponseOverview
 
           def ==: (untyped other) -> bool
 

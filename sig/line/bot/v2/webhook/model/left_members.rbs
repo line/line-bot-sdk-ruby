@@ -15,11 +15,11 @@ module Line
           attr_accessor members: Array[UserSource]
           
           def initialize: (
-            members: Array[UserSource],
-            **Hash[Symbol, untyped] dynamic_attributes
+            members: Array[UserSource| Hash[Symbol, untyped]],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> LeftMembers
+          def self.create: (Hash[Symbol, untyped]) -> LeftMembers
 
           def ==: (untyped other) -> bool
 

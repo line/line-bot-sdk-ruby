@@ -24,9 +24,9 @@ module Line
           #   @return [DetailedOwner,nil] 
           attr_accessor :owner
 
-          # @param audience_group [AudienceGroup,nil] 
-          # @param jobs [Array[AudienceGroupJob],nil] An array of jobs. This array is used to keep track of each attempt to add new user IDs or IFAs to an audience for uploading user IDs. Empty array is returned for any other type of audience. Max: 50 
-          # @param owner [DetailedOwner,nil] 
+          # @param audience_group [AudienceGroup, Hash[Symbol, untyped], nil] 
+          # @param jobs [Array[AudienceGroupJob, Hash[Symbol, untyped]],nil] An array of jobs. This array is used to keep track of each attempt to add new user IDs or IFAs to an audience for uploading user IDs. Empty array is returned for any other type of audience. Max: 50 
+          # @param owner [DetailedOwner, Hash[Symbol, untyped], nil] 
           def initialize(
             audience_group: nil,
             jobs: nil,

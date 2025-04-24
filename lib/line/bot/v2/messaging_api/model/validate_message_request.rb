@@ -16,7 +16,7 @@ module Line
           #   @return [Array[Message]] Array of message objects to validate
           attr_accessor :messages
 
-          # @param messages [Array[Message]] Array of message objects to validate
+          # @param messages [Array[Message, Hash[Symbol, untyped]]] Array of message objects to validate
           def initialize(
             messages:,
             **dynamic_attributes

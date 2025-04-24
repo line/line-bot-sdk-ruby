@@ -17,10 +17,10 @@ module Line
           
           def initialize: (
             ?one_of: Array['ios'|'android']?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> AppTypeDemographicFilter
+          def self.create: (Hash[Symbol, untyped]) -> AppTypeDemographicFilter
 
           def ==: (untyped other) -> bool
 

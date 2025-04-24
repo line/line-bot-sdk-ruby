@@ -22,16 +22,16 @@ module Line
           
           def initialize: (
             ?liff_id: String?,
-            ?view: LiffView?,
+            ?view: LiffView?| Hash[Symbol, untyped]?,
             ?description: String?,
-            ?features: LiffFeatures?,
+            ?features: LiffFeatures?| Hash[Symbol, untyped]?,
             ?permanent_link_pattern: String?,
             ?scope: Array['openid'|'email'|'profile'|'chat_message.write']?,
             ?bot_prompt: 'normal'|'aggressive'|'none'?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> LiffApp
+          def self.create: (Hash[Symbol, untyped]) -> LiffApp
 
           def ==: (untyped other) -> bool
 

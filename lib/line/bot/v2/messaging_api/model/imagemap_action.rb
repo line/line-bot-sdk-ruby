@@ -21,7 +21,7 @@ module Line
           attr_accessor :area
 
           # @param type [String] 
-          # @param area [ImagemapArea] 
+          # @param area [ImagemapArea, Hash[Symbol, untyped]] 
           def initialize(
             type:,
             area:,

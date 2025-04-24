@@ -18,10 +18,10 @@ module Line
           def initialize: (
             ?area: String?,
             ?percentage: Float?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> AreaTile
+          def self.create: (Hash[Symbol, untyped]) -> AreaTile
 
           def ==: (untyped other) -> bool
 

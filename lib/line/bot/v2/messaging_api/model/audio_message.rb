@@ -31,8 +31,8 @@ module Line
           #   @return [Integer] 
           attr_accessor :duration
 
-          # @param quick_reply [QuickReply,nil] 
-          # @param sender [Sender,nil] 
+          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
+          # @param sender [Sender, Hash[Symbol, untyped], nil] 
           # @param original_content_url [String] 
           # @param duration [Integer] 
           def initialize(

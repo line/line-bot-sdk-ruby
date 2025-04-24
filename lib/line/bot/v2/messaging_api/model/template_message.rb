@@ -31,10 +31,10 @@ module Line
           #   @return [Template] 
           attr_accessor :template
 
-          # @param quick_reply [QuickReply,nil] 
-          # @param sender [Sender,nil] 
+          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
+          # @param sender [Sender, Hash[Symbol, untyped], nil] 
           # @param alt_text [String] 
-          # @param template [Template] 
+          # @param template [Template, Hash[Symbol, untyped]] 
           def initialize(
             quick_reply: nil,
             sender: nil,

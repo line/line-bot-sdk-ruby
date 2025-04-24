@@ -17,12 +17,12 @@ module Line
           attr_accessor user: SubscribedMembershipUser
           
           def initialize: (
-            membership: SubscribedMembershipPlan,
-            user: SubscribedMembershipUser,
-            **Hash[Symbol, untyped] dynamic_attributes
+            membership: SubscribedMembershipPlan| Hash[Symbol, untyped],
+            user: SubscribedMembershipUser| Hash[Symbol, untyped],
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> Subscription
+          def self.create: (Hash[Symbol, untyped]) -> Subscription
 
           def ==: (untyped other) -> bool
 

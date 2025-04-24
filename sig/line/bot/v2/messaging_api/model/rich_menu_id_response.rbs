@@ -16,10 +16,10 @@ module Line
           
           def initialize: (
             rich_menu_id: String,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> RichMenuIdResponse
+          def self.create: (Hash[Symbol, untyped]) -> RichMenuIdResponse
 
           def ==: (untyped other) -> bool
 

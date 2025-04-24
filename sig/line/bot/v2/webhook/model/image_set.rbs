@@ -20,10 +20,10 @@ module Line
             id: String,
             ?index: Integer?,
             ?total: Integer?,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> ImageSet
+          def self.create: (Hash[Symbol, untyped]) -> ImageSet
 
           def ==: (untyped other) -> bool
 

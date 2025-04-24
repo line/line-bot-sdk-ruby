@@ -34,10 +34,10 @@ module Line
             member_limit: Integer,
             is_in_app_purchase: bool,
             is_published: bool,
-            **Hash[Symbol, untyped] dynamic_attributes
+            **untyped dynamic_attributes
           ) -> void
 
-          def self.create: (args: Hash[Symbol, untyped]) -> Membership
+          def self.create: (Hash[Symbol, untyped]) -> Membership
 
           def ==: (untyped other) -> bool
 
