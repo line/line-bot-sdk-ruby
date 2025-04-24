@@ -52,7 +52,7 @@ module Line
           # @param acquire_chat_control_request [AcquireChatControlRequest, nil] 
           # @see https://developers.line.biz/en/reference/partner-docs/#acquire-control-api
           # @return [response body, response status code, and response headers]
-          # @return [String|nil, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def acquire_chat_control_with_http_info(
             chat_id:,
             acquire_chat_control_request: nil
@@ -101,7 +101,7 @@ module Line
           # @param detach_module_request [DetachModuleRequest, nil] 
           # @see https://developers.line.biz/en/reference/partner-docs/#unlink-detach-module-channel-by-operation-mc-admin
           # @return [response body, response status code, and response headers]
-          # @return [String|nil, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def detach_module_with_http_info(
             detach_module_request: nil
           )
@@ -202,7 +202,7 @@ module Line
           # @param chat_id [String] The `userId`, `roomId`, or `groupId`
           # @see https://developers.line.biz/en/reference/partner-docs/#release-control-api
           # @return [response body, response status code, and response headers]
-          # @return [String|nil, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           def release_chat_control_with_http_info(
             chat_id:
           )
