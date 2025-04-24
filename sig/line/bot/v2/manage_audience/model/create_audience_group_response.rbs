@@ -20,7 +20,7 @@ module Line
           attr_accessor description: String?
           attr_accessor created: Integer?
           attr_accessor permission: 'READ'|'READ_WRITE'?
-          attr_accessor expire_timestamp: Float?
+          attr_accessor expire_timestamp: Integer?
           attr_accessor is_ifa_audience: bool?
           
           def initialize: (
@@ -30,7 +30,7 @@ module Line
             ?description: String?,
             ?created: Integer?,
             ?permission: 'READ'|'READ_WRITE'?,
-            ?expire_timestamp: Float?,
+            ?expire_timestamp: Integer?,
             ?is_ifa_audience: bool?,
             **untyped dynamic_attributes
           ) -> void
