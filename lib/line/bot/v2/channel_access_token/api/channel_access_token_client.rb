@@ -315,7 +315,7 @@ module Line
           # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [String|nil, Integer, Hash{String => String})] when HTTP status code is 200
           def revoke_channel_token_with_http_info(
             access_token:
           )
@@ -346,7 +346,7 @@ module Line
           #
           # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
-          # @return [String, nil] when HTTP status code is 200
+          # @return [String|nil] when HTTP status code is 200
           def revoke_channel_token(
             access_token:
           )
@@ -365,7 +365,7 @@ module Line
           # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
           # @return [response body, response status code, and response headers]
-          # @return [Array(String(nilable), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [String|nil, Integer, Hash{String => String})] when HTTP status code is 200
           def revoke_channel_token_by_jwt_with_http_info(
             client_id:,
             client_secret:,
@@ -402,7 +402,7 @@ module Line
           # @param client_secret [String] Channel Secret
           # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
-          # @return [String, nil] when HTTP status code is 200
+          # @return [String|nil] when HTTP status code is 200
           def revoke_channel_token_by_jwt(
             client_id:,
             client_secret:,
