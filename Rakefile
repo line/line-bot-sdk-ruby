@@ -55,6 +55,11 @@ task :rbs do
   sh "bundle exec rbs -I sig validate"
 end
 
+desc "RBS type check (with steep)"
+task :rbs_steep do
+  sh "bundle exec steep check"
+end
+
 desc "RBS type check (with test)"
 task :rbs_test do
   Dir['lib/line/bot/v2/**/*.rb'].sort.each do |file|
@@ -110,6 +115,7 @@ task :ci do
   Rake::Task[:rubocop].invoke
   Rake::Task[:validate_yard_comment].invoke
   Rake::Task[:rbs].invoke
+  Rake::Task[:rbs_steep].invoke
   Rake::Task[:rbs_test].invoke
   Rake::Task[:build_test].invoke
 end
