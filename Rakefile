@@ -18,8 +18,13 @@ end
 ## Development
 
 desc "Run normal tests (exclude no_missing_require_* specs)"
-task :test_normal do
-  sh "bundle exec rspec --exclude-pattern 'spec/line/bot/line_bot_api_gem_spec.rb,spec/line/bot/line_bot_gem_spec.rb'"
+task :test_normal, [:skip_tag] do |_, args|
+  skip_tag = args[:skip_tag]
+
+  rspec_opts = []
+  rspec_opts << "--tag '~#{skip_tag}'" if skip_tag
+
+  sh "bundle exec rspec --exclude-pattern 'spec/line/bot/line_bot_api_gem_spec.rb,spec/line/bot/line_bot_gem_spec.rb' #{rspec_opts.join(' ')}"
 end
 
 desc "Test line-bot-api gem spec"
@@ -48,6 +53,30 @@ desc "RBS type check"
 task :rbs do
   sh "bundle exec rbs collection install"
   sh "bundle exec rbs -I sig validate"
+end
+
+desc "RBS type check (with test)"
+task :rbs_test do
+  Dir['lib/line/bot/v2/**/*.rb'].sort.each do |file|
+    require_relative file
+  end
+
+  line_v2_targets = ObjectSpace.each_object(Module)
+                               .map(&:name)
+                               .compact
+                               .select do |mod_name|
+    mod_name.start_with?('Line::Bot::V2::')
+  end
+
+  line_v2_targets = line_v2_targets.map { |name| "#{name}::*" }.uniq
+
+  ENV['RUBYOPT']           = '-rbundler/setup -rrbs/test/setup'
+  ENV['RBS_TEST_LOGLEVEL'] = 'error'
+  ENV['RBS_TEST_RAISE']    = 'true'
+  ENV['RBS_TEST_OPT']      = '-Isig'
+  ENV['RBS_TEST_TARGET']   = line_v2_targets.join(',')
+
+  Rake::Task[:test_normal].invoke('rbs_test:skip')
 end
 
 desc "Run rubocop"
@@ -81,5 +110,6 @@ task :ci do
   Rake::Task[:rubocop].invoke
   Rake::Task[:validate_yard_comment].invoke
   Rake::Task[:rbs].invoke
+  Rake::Task[:rbs_test].invoke
   Rake::Task[:build_test].invoke
 end
