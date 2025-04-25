@@ -42,14 +42,15 @@ module Line
 
           # Gets all valid channel access token key IDs.
           # This requests to <code>GET https://api.line.me/oauth2/v2.1/tokens/kid</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param client_assertion_type [String] `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
           # @param client_assertion [String] A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenKeyIdsResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def gets_all_valid_channel_access_token_key_ids_with_http_info(
-            client_assertion_type:,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def gets_all_valid_channel_access_token_key_ids_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            client_assertion_type:, 
             client_assertion:
           )
             path = "/oauth2/v2.1/tokens/kid"
@@ -63,18 +64,17 @@ module Line
               query_params: query_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenKeyIdsResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenKeyIdsResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Gets all valid channel access token key IDs.
@@ -85,6 +85,7 @@ module Line
           # @param client_assertion [String] A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
           # @return [Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenKeyIdsResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def gets_all_valid_channel_access_token_key_ids(
             client_assertion_type:,
             client_assertion:
@@ -99,17 +100,18 @@ module Line
 
           # Issue short-lived channel access token
           # This requests to <code>POST https://api.line.me/v2/oauth/accessToken</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param grant_type [String] `client_credentials`
           # @param client_id [String] Channel ID.
           # @param client_secret [String] Channel secret.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-shortlived-channel-access-token
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse, Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array(Line::Bot::V2::ChannelAccessToken::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
-          def issue_channel_token_with_http_info(
-            grant_type:,
-            client_id:,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def issue_channel_token_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            grant_type:, 
+            client_id:, 
             client_secret:
           )
             path = "/v2/oauth/accessToken"
@@ -125,24 +127,24 @@ module Line
               form_params: form_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   when 400
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ChannelAccessToken::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            when 400
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ChannelAccessToken::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 400, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Issue short-lived channel access token
@@ -155,6 +157,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-shortlived-channel-access-token
           # @return [Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse] when HTTP status code is 200
           # @return [Line::Bot::V2::ChannelAccessToken::ErrorResponse] when HTTP status code is 400
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def issue_channel_token(
             grant_type:,
             client_id:,
@@ -171,16 +174,17 @@ module Line
 
           # Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
           # This requests to <code>POST https://api.line.me/oauth2/v2.1/token</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param grant_type [String] client_credentials
           # @param client_assertion_type [String] urn:ietf:params:oauth:client-assertion-type:jwt-bearer
           # @param client_assertion [String] A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token-v2-1
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def issue_channel_token_by_jwt_with_http_info(
-            grant_type:,
-            client_assertion_type:,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def issue_channel_token_by_jwt_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            grant_type:, 
+            client_assertion_type:, 
             client_assertion:
           )
             path = "/oauth2/v2.1/token"
@@ -196,18 +200,17 @@ module Line
               form_params: form_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
@@ -219,6 +222,7 @@ module Line
           # @param client_assertion [String] A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token-v2-1
           # @return [Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def issue_channel_token_by_jwt(
             grant_type:,
             client_assertion_type:,
@@ -235,6 +239,7 @@ module Line
 
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
           # This requests to <code>POST https://api.line.me/oauth2/v3/token</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param grant_type [String, nil] `client_credentials`
           # @param client_assertion_type [String, nil] URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
@@ -242,13 +247,13 @@ module Line
           # @param client_id [String, nil] Channel ID.
           # @param client_secret [String, nil] Channel secret.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-stateless-channel-access-token
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def issue_stateless_channel_token_with_http_info(
-            grant_type: nil,
-            client_assertion_type: nil,
-            client_assertion: nil,
-            client_id: nil,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def issue_stateless_channel_token_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            grant_type: nil, 
+            client_assertion_type: nil, 
+            client_assertion: nil, 
+            client_id: nil, 
             client_secret: nil
           )
             path = "/oauth2/v3/token"
@@ -266,18 +271,17 @@ module Line
               form_params: form_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
@@ -291,6 +295,7 @@ module Line
           # @param client_secret [String, nil] Channel secret.
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-stateless-channel-access-token
           # @return [Line::Bot::V2::ChannelAccessToken::IssueStatelessChannelAccessTokenResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def issue_stateless_channel_token(
             grant_type: nil,
             client_assertion_type: nil,
@@ -311,12 +316,13 @@ module Line
 
           # Revoke short-lived or long-lived channel access token
           # This requests to <code>POST https://api.line.me/v2/oauth/revoke</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
-          def revoke_channel_token_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def revoke_channel_token_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             access_token:
           )
             path = "/v2/oauth/revoke"
@@ -330,14 +336,12 @@ module Line
               form_params: form_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Revoke short-lived or long-lived channel access token
@@ -347,6 +351,7 @@ module Line
           # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
           # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def revoke_channel_token(
             access_token:
           )
@@ -359,16 +364,17 @@ module Line
 
           # Revoke channel access token v2.1
           # This requests to <code>POST https://api.line.me/oauth2/v2.1/revoke</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param client_id [String] Channel ID
           # @param client_secret [String] Channel Secret
           # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
-          def revoke_channel_token_by_jwt_with_http_info(
-            client_id:,
-            client_secret:,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def revoke_channel_token_by_jwt_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            client_id:, 
+            client_secret:, 
             access_token:
           )
             path = "/oauth2/v2.1/revoke"
@@ -384,14 +390,12 @@ module Line
               form_params: form_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Revoke channel access token v2.1
@@ -403,6 +407,7 @@ module Line
           # @param access_token [String] Channel access token
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
           # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def revoke_channel_token_by_jwt(
             client_id:,
             client_secret:,
@@ -419,12 +424,13 @@ module Line
 
           # Verify the validity of short-lived and long-lived channel access tokens
           # This requests to <code>POST https://api.line.me/v2/oauth/verify</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param access_token [String] A short-lived or long-lived channel access token.
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def verify_channel_token_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def verify_channel_token_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             access_token:
           )
             path = "/v2/oauth/verify"
@@ -438,18 +444,17 @@ module Line
               form_params: form_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Verify the validity of short-lived and long-lived channel access tokens
@@ -459,6 +464,7 @@ module Line
           # @param access_token [String] A short-lived or long-lived channel access token.
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token
           # @return [Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def verify_channel_token(
             access_token:
           )
@@ -471,12 +477,13 @@ module Line
 
           # You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
           # This requests to <code>GET https://api.line.me/oauth2/v2.1/verify</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param access_token [String] Channel access token with a user-specified expiration (Channel Access Token v2.1).
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token-v2-1
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def verify_channel_token_by_jwt_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def verify_channel_token_by_jwt_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             access_token:
           )
             path = "/oauth2/v2.1/verify"
@@ -489,18 +496,17 @@ module Line
               query_params: query_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
@@ -510,6 +516,7 @@ module Line
           # @param access_token [String] Channel access token with a user-specified expiration (Channel Access Token v2.1).
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token-v2-1
           # @return [Line::Bot::V2::ChannelAccessToken::VerifyChannelAccessTokenResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def verify_channel_token_by_jwt(
             access_token:
           )

@@ -26,7 +26,10 @@ module Line
           def gets_all_valid_channel_access_token_key_ids_with_http_info: (
             client_assertion_type: String, 
             client_assertion: String
-          ) -> [(ChannelAccessTokenKeyIdsResponse), Integer, Hash[String, String]]
+          ) -> (
+            [ChannelAccessTokenKeyIdsResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets all valid channel access token key IDs.
           #
@@ -36,7 +39,10 @@ module Line
           def gets_all_valid_channel_access_token_key_ids: (
             client_assertion_type: String, 
             client_assertion: String
-          ) -> (ChannelAccessTokenKeyIdsResponse)
+          ) -> (
+            ChannelAccessTokenKeyIdsResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Issue short-lived channel access token
           #
@@ -48,7 +54,11 @@ module Line
             grant_type: String, 
             client_id: String, 
             client_secret: String
-          ) -> [(IssueShortLivedChannelAccessTokenResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [IssueShortLivedChannelAccessTokenResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Issue short-lived channel access token
           #
@@ -60,7 +70,11 @@ module Line
             grant_type: String, 
             client_id: String, 
             client_secret: String
-          ) -> (IssueShortLivedChannelAccessTokenResponse|ErrorResponse)
+          ) -> (
+            IssueShortLivedChannelAccessTokenResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | String? # otherwise
+          )
 
           # Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
           #
@@ -72,7 +86,10 @@ module Line
             grant_type: String, 
             client_assertion_type: String, 
             client_assertion: String
-          ) -> [(IssueChannelAccessTokenResponse), Integer, Hash[String, String]]
+          ) -> (
+            [IssueChannelAccessTokenResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
           #
@@ -84,7 +101,10 @@ module Line
             grant_type: String, 
             client_assertion_type: String, 
             client_assertion: String
-          ) -> (IssueChannelAccessTokenResponse)
+          ) -> (
+            IssueChannelAccessTokenResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
           #
@@ -100,7 +120,10 @@ module Line
             ?client_assertion: String?, 
             ?client_id: String?, 
             ?client_secret: String?
-          ) -> [(IssueStatelessChannelAccessTokenResponse), Integer, Hash[String, String]]
+          ) -> (
+            [IssueStatelessChannelAccessTokenResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
           #
@@ -116,7 +139,10 @@ module Line
             ?client_assertion: String?, 
             ?client_id: String?, 
             ?client_secret: String?
-          ) -> (IssueStatelessChannelAccessTokenResponse)
+          ) -> (
+            IssueStatelessChannelAccessTokenResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Revoke short-lived or long-lived channel access token
           #
@@ -124,7 +150,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
           def revoke_channel_token_with_http_info: (
             access_token: String
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Revoke short-lived or long-lived channel access token
           #
@@ -132,7 +161,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
           def revoke_channel_token: (
             access_token: String
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Revoke channel access token v2.1
           #
@@ -144,7 +176,10 @@ module Line
             client_id: String, 
             client_secret: String, 
             access_token: String
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Revoke channel access token v2.1
           #
@@ -156,7 +191,10 @@ module Line
             client_id: String, 
             client_secret: String, 
             access_token: String
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Verify the validity of short-lived and long-lived channel access tokens
           #
@@ -164,7 +202,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token
           def verify_channel_token_with_http_info: (
             access_token: String
-          ) -> [(VerifyChannelAccessTokenResponse), Integer, Hash[String, String]]
+          ) -> (
+            [VerifyChannelAccessTokenResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Verify the validity of short-lived and long-lived channel access tokens
           #
@@ -172,7 +213,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token
           def verify_channel_token: (
             access_token: String
-          ) -> (VerifyChannelAccessTokenResponse)
+          ) -> (
+            VerifyChannelAccessTokenResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
           #
@@ -180,7 +224,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token-v2-1
           def verify_channel_token_by_jwt_with_http_info: (
             access_token: String
-          ) -> [(VerifyChannelAccessTokenResponse), Integer, Hash[String, String]]
+          ) -> (
+            [VerifyChannelAccessTokenResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
           #
@@ -188,7 +235,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token-v2-1
           def verify_channel_token_by_jwt: (
             access_token: String
-          ) -> (VerifyChannelAccessTokenResponse)
+          ) -> (
+            VerifyChannelAccessTokenResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
         end
       end
     end
