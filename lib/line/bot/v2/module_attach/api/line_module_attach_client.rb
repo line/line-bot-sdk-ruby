@@ -49,6 +49,7 @@ module Line
 
           # Attach by operation of the module channel provider
           # This requests to <code>POST https://manager.line.biz/module/auth/v1/token</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param grant_type [String] authorization_code
           # @param code [String] Authorization code received from the LINE Platform.
@@ -61,18 +62,18 @@ module Line
           # @param scope [String, nil] If you specified a value for scope in the URL for authentication and authorization, specify the same value.
           # @param brand_type [String, nil] If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
           # @see https://developers.line.biz/en/reference/partner-docs/#link-attach-by-operation-module-channel-provider
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ModuleAttach::AttachModuleResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def attach_module_with_http_info(
-            grant_type:,
-            code:,
-            redirect_uri:,
-            code_verifier: nil,
-            client_id: nil,
-            client_secret: nil,
-            region: nil,
-            basic_search_id: nil,
-            scope: nil,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def attach_module_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            grant_type:, 
+            code:, 
+            redirect_uri:, 
+            code_verifier: nil, 
+            client_id: nil, 
+            client_secret: nil, 
+            region: nil, 
+            basic_search_id: nil, 
+            scope: nil, 
             brand_type: nil
           )
             path = "/module/auth/v1/token"
@@ -95,18 +96,17 @@ module Line
               form_params: form_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ModuleAttach::AttachModuleResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ModuleAttach::AttachModuleResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Attach by operation of the module channel provider
@@ -125,6 +125,7 @@ module Line
           # @param brand_type [String, nil] If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
           # @see https://developers.line.biz/en/reference/partner-docs/#link-attach-by-operation-module-channel-provider
           # @return [Line::Bot::V2::ModuleAttach::AttachModuleResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def attach_module(
             grant_type:,
             code:,

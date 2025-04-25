@@ -47,11 +47,12 @@ module Line
 
           # Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
           # This requests to <code>GET https://api.line.me/v2/bot/insight/demographic</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::Insight::GetFriendsDemographicsResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def get_friends_demographics_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_friends_demographics_with_http_info( # steep:ignore MethodBodyTypeMismatch
           )
             path = "/v2/bot/insight/demographic"
 
@@ -59,18 +60,17 @@ module Line
               path: path,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::Insight::GetFriendsDemographicsResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::GetFriendsDemographicsResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
@@ -79,6 +79,7 @@ module Line
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
           # @return [Line::Bot::V2::Insight::GetFriendsDemographicsResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_friends_demographics(
           )
             response_body, _status_code, _headers = get_friends_demographics_with_http_info(
@@ -89,12 +90,13 @@ module Line
 
           # Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
           # This requests to <code>GET https://api.line.me/v2/bot/insight/message/event</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param request_id [String] Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-message-event
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::Insight::GetMessageEventResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def get_message_event_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_message_event_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             request_id:
           )
             path = "/v2/bot/insight/message/event"
@@ -107,18 +109,17 @@ module Line
               query_params: query_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::Insight::GetMessageEventResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::GetMessageEventResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
@@ -128,6 +129,7 @@ module Line
           # @param request_id [String] Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-message-event
           # @return [Line::Bot::V2::Insight::GetMessageEventResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_message_event(
             request_id:
           )
@@ -140,12 +142,13 @@ module Line
 
           # Returns the number of users who have added the LINE Official Account on or before a specified date. 
           # This requests to <code>GET https://api.line.me/v2/bot/insight/followers</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param date [String, nil] Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::Insight::GetNumberOfFollowersResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def get_number_of_followers_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_number_of_followers_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             date: nil
           )
             path = "/v2/bot/insight/followers"
@@ -158,18 +161,17 @@ module Line
               query_params: query_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::Insight::GetNumberOfFollowersResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::GetNumberOfFollowersResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Returns the number of users who have added the LINE Official Account on or before a specified date. 
@@ -179,6 +181,7 @@ module Line
           # @param date [String, nil] Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
           # @return [Line::Bot::V2::Insight::GetNumberOfFollowersResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_number_of_followers(
             date: nil
           )
@@ -191,12 +194,13 @@ module Line
 
           # Returns the number of messages sent from LINE Official Account on a specified day. 
           # This requests to <code>GET https://api.line.me/v2/bot/insight/message/delivery</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param date [String] Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-delivery-messages
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::Insight::GetNumberOfMessageDeliveriesResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def get_number_of_message_deliveries_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_number_of_message_deliveries_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             date:
           )
             path = "/v2/bot/insight/message/delivery"
@@ -209,18 +213,17 @@ module Line
               query_params: query_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::Insight::GetNumberOfMessageDeliveriesResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::GetNumberOfMessageDeliveriesResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Returns the number of messages sent from LINE Official Account on a specified day. 
@@ -230,6 +233,7 @@ module Line
           # @param date [String] Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-delivery-messages
           # @return [Line::Bot::V2::Insight::GetNumberOfMessageDeliveriesResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_number_of_message_deliveries(
             date:
           )
@@ -242,16 +246,17 @@ module Line
 
           # You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
           # This requests to <code>GET https://api.line.me/v2/bot/insight/message/event/aggregation</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param custom_aggregation_unit [String] Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. 
           # @param from [String] Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
           # @param to [String] End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::Insight::GetStatisticsPerUnitResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def get_statistics_per_unit_with_http_info(
-            custom_aggregation_unit:,
-            from:,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_statistics_per_unit_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            custom_aggregation_unit:, 
+            from:, 
             to:
           )
             path = "/v2/bot/insight/message/event/aggregation"
@@ -266,18 +271,17 @@ module Line
               query_params: query_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::Insight::GetStatisticsPerUnitResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::GetStatisticsPerUnitResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
@@ -289,6 +293,7 @@ module Line
           # @param to [String] End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-statistics-per-unit
           # @return [Line::Bot::V2::Insight::GetStatisticsPerUnitResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_statistics_per_unit(
             custom_aggregation_unit:,
             from:,

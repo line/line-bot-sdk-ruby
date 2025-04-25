@@ -47,14 +47,15 @@ module Line
 
           # If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel. 
           # This requests to <code>POST https://api.line.me/v2/bot/chat/{chatId}/control/acquire</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param chat_id [String] The `userId`, `roomId`, or `groupId`
           # @param acquire_chat_control_request [AcquireChatControlRequest, nil] 
           # @see https://developers.line.biz/en/reference/partner-docs/#acquire-control-api
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
-          def acquire_chat_control_with_http_info(
-            chat_id:,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def acquire_chat_control_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            chat_id:, 
             acquire_chat_control_request: nil
           )
             path = "/v2/bot/chat/{chatId}/control/acquire"
@@ -65,14 +66,12 @@ module Line
               body_params: acquire_chat_control_request,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel. 
@@ -83,6 +82,7 @@ module Line
           # @param acquire_chat_control_request [AcquireChatControlRequest, nil] 
           # @see https://developers.line.biz/en/reference/partner-docs/#acquire-control-api
           # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def acquire_chat_control(
             chat_id:,
             acquire_chat_control_request: nil
@@ -97,12 +97,13 @@ module Line
 
           # The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.
           # This requests to <code>POST https://api.line.me/v2/bot/channel/detach</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param detach_module_request [DetachModuleRequest, nil] 
           # @see https://developers.line.biz/en/reference/partner-docs/#unlink-detach-module-channel-by-operation-mc-admin
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
-          def detach_module_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def detach_module_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             detach_module_request: nil
           )
             path = "/v2/bot/channel/detach"
@@ -112,14 +113,12 @@ module Line
               body_params: detach_module_request,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.
@@ -129,6 +128,7 @@ module Line
           # @param detach_module_request [DetachModuleRequest, nil] 
           # @see https://developers.line.biz/en/reference/partner-docs/#unlink-detach-module-channel-by-operation-mc-admin
           # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def detach_module(
             detach_module_request: nil
           )
@@ -141,14 +141,15 @@ module Line
 
           # Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.
           # This requests to <code>GET https://api.line.me/v2/bot/list</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param start [String, nil] Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. 
           # @param limit [Integer, nil] Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 
           # @see https://developers.line.biz/en/reference/partner-docs/#get-multiple-bot-info-api
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::Module::GetModulesResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def get_modules_with_http_info(
-            start: nil,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_modules_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            start: nil, 
             limit: nil
           )
             path = "/v2/bot/list"
@@ -162,18 +163,17 @@ module Line
               query_params: query_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::Module::GetModulesResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Module::GetModulesResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.
@@ -184,6 +184,7 @@ module Line
           # @param limit [Integer, nil] Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 
           # @see https://developers.line.biz/en/reference/partner-docs/#get-multiple-bot-info-api
           # @return [Line::Bot::V2::Module::GetModulesResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_modules(
             start: nil,
             limit: nil
@@ -198,12 +199,13 @@ module Line
 
           # To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API. 
           # This requests to <code>POST https://api.line.me/v2/bot/chat/{chatId}/control/release</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param chat_id [String] The `userId`, `roomId`, or `groupId`
           # @see https://developers.line.biz/en/reference/partner-docs/#release-control-api
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
-          def release_chat_control_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def release_chat_control_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             chat_id:
           )
             path = "/v2/bot/chat/{chatId}/control/release"
@@ -213,14 +215,12 @@ module Line
               path: path,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API. 
@@ -230,6 +230,7 @@ module Line
           # @param chat_id [String] The `userId`, `roomId`, or `groupId`
           # @see https://developers.line.biz/en/reference/partner-docs/#release-control-api
           # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def release_chat_control(
             chat_id:
           )

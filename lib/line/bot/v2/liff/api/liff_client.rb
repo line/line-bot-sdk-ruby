@@ -47,14 +47,15 @@ module Line
 
           # Adding the LIFF app to a channel
           # This requests to <code>POST https://api.line.me/liff/v1/apps</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param add_liff_app_request [AddLiffAppRequest] 
           # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::Liff::AddLiffAppResponse, Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 400
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 401
-          def add_liff_app_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def add_liff_app_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             add_liff_app_request:
           )
             path = "/liff/v1/apps"
@@ -64,22 +65,21 @@ module Line
               body_params: add_liff_app_request,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::Liff::AddLiffAppResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   when 400
-                     response.body
-                   when 401
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Liff::AddLiffAppResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            when 400
+              [response.body, 400, response.each_header.to_h]
+            when 401
+              [response.body, 401, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Adding the LIFF app to a channel
@@ -91,6 +91,7 @@ module Line
           # @return [Line::Bot::V2::Liff::AddLiffAppResponse] when HTTP status code is 200
           # @return [String, nil] when HTTP status code is 400
           # @return [String, nil] when HTTP status code is 401
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def add_liff_app(
             add_liff_app_request:
           )
@@ -103,14 +104,15 @@ module Line
 
           # Deletes a LIFF app from a channel. 
           # This requests to <code>DELETE https://api.line.me/liff/v1/apps/{liffId}</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param liff_id [String] ID of the LIFF app to be updated
           # @see https://developers.line.biz/en/reference/liff-server/#delete-liff-app
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 401
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 404
-          def delete_liff_app_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def delete_liff_app_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             liff_id:
           )
             path = "/liff/v1/apps/{liffId}"
@@ -120,18 +122,16 @@ module Line
               path: path,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   when 401
-                     response.body
-                   when 404
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            when 401
+              [response.body, 401, response.each_header.to_h]
+            when 404
+              [response.body, 404, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Deletes a LIFF app from a channel. 
@@ -143,6 +143,7 @@ module Line
           # @return [String, nil] when HTTP status code is 200
           # @return [String, nil] when HTTP status code is 401
           # @return [String, nil] when HTTP status code is 404
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def delete_liff_app(
             liff_id:
           )
@@ -155,13 +156,14 @@ module Line
 
           # Gets information on all the LIFF apps added to the channel.
           # This requests to <code>GET https://api.line.me/liff/v1/apps</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::Liff::GetAllLiffAppsResponse, Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 401
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 404
-          def get_all_liff_apps_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_all_liff_apps_with_http_info( # steep:ignore MethodBodyTypeMismatch
           )
             path = "/liff/v1/apps"
 
@@ -169,22 +171,21 @@ module Line
               path: path,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::Liff::GetAllLiffAppsResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   when 401
-                     response.body
-                   when 404
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Liff::GetAllLiffAppsResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            when 401
+              [response.body, 401, response.each_header.to_h]
+            when 404
+              [response.body, 404, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Gets information on all the LIFF apps added to the channel.
@@ -195,6 +196,7 @@ module Line
           # @return [Line::Bot::V2::Liff::GetAllLiffAppsResponse] when HTTP status code is 200
           # @return [String, nil] when HTTP status code is 401
           # @return [String, nil] when HTTP status code is 404
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_all_liff_apps(
           )
             response_body, _status_code, _headers = get_all_liff_apps_with_http_info(
@@ -205,17 +207,18 @@ module Line
 
           # Update LIFF app settings
           # This requests to <code>PUT https://api.line.me/liff/v1/apps/{liffId}</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param liff_id [String] ID of the LIFF app to be updated
           # @param update_liff_app_request [UpdateLiffAppRequest] 
           # @see https://developers.line.biz/en/reference/liff-server/#update-liff-app
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 400
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 401
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 404
-          def update_liff_app_with_http_info(
-            liff_id:,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def update_liff_app_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            liff_id:, 
             update_liff_app_request:
           )
             path = "/liff/v1/apps/{liffId}"
@@ -226,20 +229,18 @@ module Line
               body_params: update_liff_app_request,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   when 400
-                     response.body
-                   when 401
-                     response.body
-                   when 404
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            when 400
+              [response.body, 400, response.each_header.to_h]
+            when 401
+              [response.body, 401, response.each_header.to_h]
+            when 404
+              [response.body, 404, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Update LIFF app settings
@@ -253,6 +254,7 @@ module Line
           # @return [String, nil] when HTTP status code is 400
           # @return [String, nil] when HTTP status code is 401
           # @return [String, nil] when HTTP status code is 404
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def update_liff_app(
             liff_id:,
             update_liff_app_request:

@@ -47,12 +47,13 @@ module Line
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
           # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/upload</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param add_audience_to_audience_group_request [AddAudienceToAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 202
-          def add_audience_to_audience_group_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def add_audience_to_audience_group_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             add_audience_to_audience_group_request:
           )
             path = "/v2/bot/audienceGroup/upload"
@@ -62,14 +63,12 @@ module Line
               body_params: add_audience_to_audience_group_request,
             )
 
-            response_body = case response.code.to_i
-                   when 202
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 202
+              [response.body, 202, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
@@ -79,6 +78,7 @@ module Line
           # @param add_audience_to_audience_group_request [AddAudienceToAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
           # @return [String, nil] when HTTP status code is 202
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def add_audience_to_audience_group(
             add_audience_to_audience_group_request:
           )
@@ -91,12 +91,13 @@ module Line
 
           # Create audience for uploading user IDs (by JSON)
           # This requests to <code>POST https://api.line.me/v2/bot/audienceGroup/upload</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param create_audience_group_request [CreateAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse, Integer, Hash{String => String})] when HTTP status code is 202
-          def create_audience_group_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def create_audience_group_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             create_audience_group_request:
           )
             path = "/v2/bot/audienceGroup/upload"
@@ -106,18 +107,17 @@ module Line
               body_params: create_audience_group_request,
             )
 
-            response_body = case response.code.to_i
-                   when 202
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 202
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 202, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Create audience for uploading user IDs (by JSON)
@@ -127,6 +127,7 @@ module Line
           # @param create_audience_group_request [CreateAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
           # @return [Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse] when HTTP status code is 202
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def create_audience_group(
             create_audience_group_request:
           )
@@ -139,12 +140,13 @@ module Line
 
           # Create audience for click-based retargeting
           # This requests to <code>POST https://api.line.me/v2/bot/audienceGroup/click</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param create_click_based_audience_group_request [CreateClickBasedAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupResponse, Integer, Hash{String => String})] when HTTP status code is 202
-          def create_click_based_audience_group_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def create_click_based_audience_group_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             create_click_based_audience_group_request:
           )
             path = "/v2/bot/audienceGroup/click"
@@ -154,18 +156,17 @@ module Line
               body_params: create_click_based_audience_group_request,
             )
 
-            response_body = case response.code.to_i
-                   when 202
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 202
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 202, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Create audience for click-based retargeting
@@ -175,6 +176,7 @@ module Line
           # @param create_click_based_audience_group_request [CreateClickBasedAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
           # @return [Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupResponse] when HTTP status code is 202
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def create_click_based_audience_group(
             create_click_based_audience_group_request:
           )
@@ -187,12 +189,13 @@ module Line
 
           # Create audience for impression-based retargeting
           # This requests to <code>POST https://api.line.me/v2/bot/audienceGroup/imp</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param create_imp_based_audience_group_request [CreateImpBasedAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ManageAudience::CreateImpBasedAudienceGroupResponse, Integer, Hash{String => String})] when HTTP status code is 202
-          def create_imp_based_audience_group_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def create_imp_based_audience_group_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             create_imp_based_audience_group_request:
           )
             path = "/v2/bot/audienceGroup/imp"
@@ -202,18 +205,17 @@ module Line
               body_params: create_imp_based_audience_group_request,
             )
 
-            response_body = case response.code.to_i
-                   when 202
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ManageAudience::CreateImpBasedAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 202
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ManageAudience::CreateImpBasedAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 202, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Create audience for impression-based retargeting
@@ -223,6 +225,7 @@ module Line
           # @param create_imp_based_audience_group_request [CreateImpBasedAudienceGroupRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
           # @return [Line::Bot::V2::ManageAudience::CreateImpBasedAudienceGroupResponse] when HTTP status code is 202
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def create_imp_based_audience_group(
             create_imp_based_audience_group_request:
           )
@@ -235,12 +238,13 @@ module Line
 
           # Delete audience
           # This requests to <code>DELETE https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
-          def delete_audience_group_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def delete_audience_group_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             audience_group_id:
           )
             path = "/v2/bot/audienceGroup/{audienceGroupId}"
@@ -250,14 +254,12 @@ module Line
               path: path,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Delete audience
@@ -267,6 +269,7 @@ module Line
           # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
           # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def delete_audience_group(
             audience_group_id:
           )
@@ -279,13 +282,14 @@ module Line
 
           # Gets audience data.
           # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ManageAudience::GetAudienceDataResponse, Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array(Line::Bot::V2::ManageAudience::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
-          def get_audience_data_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_audience_data_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             audience_group_id:
           )
             path = "/v2/bot/audienceGroup/{audienceGroupId}"
@@ -295,24 +299,24 @@ module Line
               path: path,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ManageAudience::GetAudienceDataResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   when 400
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ManageAudience::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ManageAudience::GetAudienceDataResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            when 400
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ManageAudience::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 400, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Gets audience data.
@@ -323,6 +327,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
           # @return [Line::Bot::V2::ManageAudience::GetAudienceDataResponse] when HTTP status code is 200
           # @return [Line::Bot::V2::ManageAudience::ErrorResponse] when HTTP status code is 400
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_audience_data(
             audience_group_id:
           )
@@ -335,6 +340,7 @@ module Line
 
           # Gets data for more than one audience.
           # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/list</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param page [Integer] The page to return when getting (paginated) results. Must be 1 or higher.
           # @param description [String, nil] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
@@ -343,14 +349,14 @@ module Line
           # @param includes_external_public_groups [Boolean, nil] true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
           # @param create_route [AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ManageAudience::GetAudienceGroupsResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def get_audience_groups_with_http_info(
-            page:,
-            description: nil,
-            status: nil,
-            size: nil,
-            includes_external_public_groups: nil,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_audience_groups_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            page:, 
+            description: nil, 
+            status: nil, 
+            size: nil, 
+            includes_external_public_groups: nil, 
             create_route: nil
           )
             path = "/v2/bot/audienceGroup/list"
@@ -368,18 +374,17 @@ module Line
               query_params: query_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ManageAudience::GetAudienceGroupsResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ManageAudience::GetAudienceGroupsResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Gets data for more than one audience.
@@ -394,6 +399,7 @@ module Line
           # @param create_route [AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
           # @return [Line::Bot::V2::ManageAudience::GetAudienceGroupsResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_audience_groups(
             page:,
             description: nil,
@@ -416,13 +422,14 @@ module Line
 
           # Gets audience data.
           # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/shared/{audienceGroupId}</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param audience_group_id [Integer] The audience ID.
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ManageAudience::GetSharedAudienceDataResponse, Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array(Line::Bot::V2::ManageAudience::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
-          def get_shared_audience_data_with_http_info(
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_shared_audience_data_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             audience_group_id:
           )
             path = "/v2/bot/audienceGroup/shared/{audienceGroupId}"
@@ -432,24 +439,24 @@ module Line
               path: path,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ManageAudience::GetSharedAudienceDataResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   when 400
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ManageAudience::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ManageAudience::GetSharedAudienceDataResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            when 400
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ManageAudience::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 400, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Gets audience data.
@@ -460,6 +467,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience
           # @return [Line::Bot::V2::ManageAudience::GetSharedAudienceDataResponse] when HTTP status code is 200
           # @return [Line::Bot::V2::ManageAudience::ErrorResponse] when HTTP status code is 400
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_shared_audience_data(
             audience_group_id:
           )
@@ -472,6 +480,7 @@ module Line
 
           # Gets data for more than one audience, including those shared by the Business Manager.
           # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/shared/list</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param page [Integer] The page to return when getting (paginated) results. Must be 1 or higher.
           # @param description [String, nil] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
@@ -480,14 +489,14 @@ module Line
           # @param create_route [AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
           # @param includes_owned_audience_groups [Boolean, nil] true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
-          # @return [response body, response status code, and response headers]
           # @return [Array(Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse, Integer, Hash{String => String})] when HTTP status code is 200
-          def get_shared_audience_groups_with_http_info(
-            page:,
-            description: nil,
-            status: nil,
-            size: nil,
-            create_route: nil,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_shared_audience_groups_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            page:, 
+            description: nil, 
+            status: nil, 
+            size: nil, 
+            create_route: nil, 
             includes_owned_audience_groups: nil
           )
             path = "/v2/bot/audienceGroup/shared/list"
@@ -505,18 +514,17 @@ module Line
               query_params: query_params,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse.create(json) # steep:ignore InsufficientKeywordArguments
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Gets data for more than one audience, including those shared by the Business Manager.
@@ -531,6 +539,7 @@ module Line
           # @param includes_owned_audience_groups [Boolean, nil] true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
           # @return [Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_shared_audience_groups(
             page:,
             description: nil,
@@ -553,14 +562,15 @@ module Line
 
           # Renames an existing audience.
           # This requests to <code>PUT https://api.line.me/v2/bot/audienceGroup/{audienceGroupId}/updateDescription</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param audience_group_id [Integer] The audience ID.
           # @param update_audience_group_description_request [UpdateAudienceGroupDescriptionRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#set-description-audience-group
-          # @return [response body, response status code, and response headers]
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
-          def update_audience_group_description_with_http_info(
-            audience_group_id:,
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def update_audience_group_description_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            audience_group_id:, 
             update_audience_group_description_request:
           )
             path = "/v2/bot/audienceGroup/{audienceGroupId}/updateDescription"
@@ -571,14 +581,12 @@ module Line
               body_params: update_audience_group_description_request,
             )
 
-            response_body = case response.code.to_i
-                   when 200
-                     response.body
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # Renames an existing audience.
@@ -589,6 +597,7 @@ module Line
           # @param update_audience_group_description_request [UpdateAudienceGroupDescriptionRequest] 
           # @see https://developers.line.biz/en/reference/messaging-api/#set-description-audience-group
           # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def update_audience_group_description(
             audience_group_id:,
             update_audience_group_description_request:

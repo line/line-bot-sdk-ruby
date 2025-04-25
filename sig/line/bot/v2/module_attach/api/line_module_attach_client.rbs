@@ -44,7 +44,10 @@ module Line
             ?basic_search_id: String?, 
             ?scope: String?, 
             ?brand_type: String?
-          ) -> [(AttachModuleResponse), Integer, Hash[String, String]]
+          ) -> (
+            [AttachModuleResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Attach by operation of the module channel provider
           #
@@ -70,7 +73,10 @@ module Line
             ?basic_search_id: String?, 
             ?scope: String?, 
             ?brand_type: String?
-          ) -> (AttachModuleResponse)
+          ) -> (
+            AttachModuleResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
         end
       end
     end

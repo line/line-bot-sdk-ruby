@@ -27,7 +27,14 @@ module Line
           def broadcast_with_http_info: (
             broadcast_request: BroadcastRequest, 
             ?x_line_retry_key: String?
-          ) -> [(String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [ErrorResponse, 403, Hash[untyped, untyped]] # when HTTP status code is 403
+            | [ErrorResponse, 409, Hash[untyped, untyped]] # when HTTP status code is 409
+            | [ErrorResponse, 429, Hash[untyped, untyped]] # when HTTP status code is 429
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Sends a message to multiple users at any time.
           #
@@ -37,19 +44,32 @@ module Line
           def broadcast: (
             broadcast_request: BroadcastRequest, 
             ?x_line_retry_key: String?
-          ) -> (String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse)
+          ) -> (
+            String? # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | ErrorResponse # when HTTP status code is 403
+            | ErrorResponse # when HTTP status code is 409
+            | ErrorResponse # when HTTP status code is 429
+            | String? # otherwise
+          )
 
           # Cancel default rich menu
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#cancel-default-rich-menu
           def cancel_default_rich_menu_with_http_info: (
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Cancel default rich menu
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#cancel-default-rich-menu
           def cancel_default_rich_menu: (
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Create rich menu
           #
@@ -57,7 +77,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-rich-menu
           def create_rich_menu_with_http_info: (
             rich_menu_request: RichMenuRequest
-          ) -> [(RichMenuIdResponse), Integer, Hash[String, String]]
+          ) -> (
+            [RichMenuIdResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Create rich menu
           #
@@ -65,7 +88,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-rich-menu
           def create_rich_menu: (
             rich_menu_request: RichMenuRequest
-          ) -> (RichMenuIdResponse)
+          ) -> (
+            RichMenuIdResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Create rich menu alias
           #
@@ -73,7 +99,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-rich-menu-alias
           def create_rich_menu_alias_with_http_info: (
             create_rich_menu_alias_request: CreateRichMenuAliasRequest
-          ) -> [(String?|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Create rich menu alias
           #
@@ -81,7 +111,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-rich-menu-alias
           def create_rich_menu_alias: (
             create_rich_menu_alias_request: CreateRichMenuAliasRequest
-          ) -> (String?|ErrorResponse)
+          ) -> (
+            String? # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | String? # otherwise
+          )
 
           # Deletes a rich menu.
           #
@@ -89,7 +123,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu
           def delete_rich_menu_with_http_info: (
             rich_menu_id: String
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Deletes a rich menu.
           #
@@ -97,7 +134,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu
           def delete_rich_menu: (
             rich_menu_id: String
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Delete rich menu alias
           #
@@ -105,7 +145,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu-alias
           def delete_rich_menu_alias_with_http_info: (
             rich_menu_alias_id: String
-          ) -> [(String?|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Delete rich menu alias
           #
@@ -113,7 +157,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu-alias
           def delete_rich_menu_alias: (
             rich_menu_alias_id: String
-          ) -> (String?|ErrorResponse)
+          ) -> (
+            String? # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | String? # otherwise
+          )
 
           # Get name list of units used this month
           #
@@ -123,7 +171,10 @@ module Line
           def get_aggregation_unit_name_list_with_http_info: (
             ?limit: String?, 
             ?start: String?
-          ) -> [(GetAggregationUnitNameListResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetAggregationUnitNameListResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get name list of units used this month
           #
@@ -133,43 +184,64 @@ module Line
           def get_aggregation_unit_name_list: (
             ?limit: String?, 
             ?start: String?
-          ) -> (GetAggregationUnitNameListResponse)
+          ) -> (
+            GetAggregationUnitNameListResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get number of units used this month
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-units-used-this-month
           def get_aggregation_unit_usage_with_http_info: (
-          ) -> [(GetAggregationUnitUsageResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetAggregationUnitUsageResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get number of units used this month
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-units-used-this-month
           def get_aggregation_unit_usage: (
-          ) -> (GetAggregationUnitUsageResponse)
+          ) -> (
+            GetAggregationUnitUsageResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get bot info
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-bot-info
           def get_bot_info_with_http_info: (
-          ) -> [(BotInfoResponse), Integer, Hash[String, String]]
+          ) -> (
+            [BotInfoResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get bot info
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-bot-info
           def get_bot_info: (
-          ) -> (BotInfoResponse)
+          ) -> (
+            BotInfoResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Gets the ID of the default rich menu set with the Messaging API.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id
           def get_default_rich_menu_id_with_http_info: (
-          ) -> [(RichMenuIdResponse), Integer, Hash[String, String]]
+          ) -> (
+            [RichMenuIdResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets the ID of the default rich menu set with the Messaging API.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id
           def get_default_rich_menu_id: (
-          ) -> (RichMenuIdResponse)
+          ) -> (
+            RichMenuIdResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get a list of users who added your LINE Official Account as a friend
           #
@@ -179,7 +251,10 @@ module Line
           def get_followers_with_http_info: (
             ?start: String?, 
             ?limit: Integer?
-          ) -> [(GetFollowersResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetFollowersResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get a list of users who added your LINE Official Account as a friend
           #
@@ -189,7 +264,10 @@ module Line
           def get_followers: (
             ?start: String?, 
             ?limit: Integer?
-          ) -> (GetFollowersResponse)
+          ) -> (
+            GetFollowersResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get number of users in a group chat
           #
@@ -197,7 +275,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-members-group-count
           def get_group_member_count_with_http_info: (
             group_id: String
-          ) -> [(GroupMemberCountResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GroupMemberCountResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get number of users in a group chat
           #
@@ -205,7 +286,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-members-group-count
           def get_group_member_count: (
             group_id: String
-          ) -> (GroupMemberCountResponse)
+          ) -> (
+            GroupMemberCountResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get group chat member profile
           #
@@ -215,7 +299,10 @@ module Line
           def get_group_member_profile_with_http_info: (
             group_id: String, 
             user_id: String
-          ) -> [(GroupUserProfileResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GroupUserProfileResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get group chat member profile
           #
@@ -225,7 +312,10 @@ module Line
           def get_group_member_profile: (
             group_id: String, 
             user_id: String
-          ) -> (GroupUserProfileResponse)
+          ) -> (
+            GroupUserProfileResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get group chat member user IDs
           #
@@ -235,7 +325,10 @@ module Line
           def get_group_members_ids_with_http_info: (
             group_id: String, 
             ?start: String?
-          ) -> [(MembersIdsResponse), Integer, Hash[String, String]]
+          ) -> (
+            [MembersIdsResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get group chat member user IDs
           #
@@ -245,7 +338,10 @@ module Line
           def get_group_members_ids: (
             group_id: String, 
             ?start: String?
-          ) -> (MembersIdsResponse)
+          ) -> (
+            MembersIdsResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get group chat summary
           #
@@ -253,7 +349,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-group-summary
           def get_group_summary_with_http_info: (
             group_id: String
-          ) -> [(GroupSummaryResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GroupSummaryResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get group chat summary
           #
@@ -261,7 +360,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-group-summary
           def get_group_summary: (
             group_id: String
-          ) -> (GroupSummaryResponse)
+          ) -> (
+            GroupSummaryResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get a list of user IDs who joined the membership.
           #
@@ -273,7 +375,12 @@ module Line
             membership_id: Integer, 
             ?start: String?, 
             ?limit: Integer?
-          ) -> [(GetJoinedMembershipUsersResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetJoinedMembershipUsersResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [ErrorResponse, 404, Hash[untyped, untyped]] # when HTTP status code is 404
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get a list of user IDs who joined the membership.
           #
@@ -285,19 +392,32 @@ module Line
             membership_id: Integer, 
             ?start: String?, 
             ?limit: Integer?
-          ) -> (GetJoinedMembershipUsersResponse|ErrorResponse|ErrorResponse)
+          ) -> (
+            GetJoinedMembershipUsersResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | ErrorResponse # when HTTP status code is 404
+            | String? # otherwise
+          )
 
           # Get a list of memberships.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-membership-plans
           def get_membership_list_with_http_info: (
-          ) -> [(MembershipListResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [MembershipListResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 404, Hash[untyped, untyped]] # when HTTP status code is 404
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get a list of memberships.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-membership-plans
           def get_membership_list: (
-          ) -> (MembershipListResponse|ErrorResponse)
+          ) -> (
+            MembershipListResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 404
+            | String? # otherwise
+          )
 
           # Get a user's membership subscription.
           #
@@ -305,7 +425,12 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-a-users-membership-subscription-status
           def get_membership_subscription_with_http_info: (
             user_id: String
-          ) -> [(GetMembershipSubscriptionResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetMembershipSubscriptionResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [ErrorResponse, 404, Hash[untyped, untyped]] # when HTTP status code is 404
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get a user's membership subscription.
           #
@@ -313,31 +438,48 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-a-users-membership-subscription-status
           def get_membership_subscription: (
             user_id: String
-          ) -> (GetMembershipSubscriptionResponse|ErrorResponse|ErrorResponse)
+          ) -> (
+            GetMembershipSubscriptionResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | ErrorResponse # when HTTP status code is 404
+            | String? # otherwise
+          )
 
           # Gets the target limit for sending messages in the current month. The total number of the free messages and the additional messages is returned.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-quota
           def get_message_quota_with_http_info: (
-          ) -> [(MessageQuotaResponse), Integer, Hash[String, String]]
+          ) -> (
+            [MessageQuotaResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets the target limit for sending messages in the current month. The total number of the free messages and the additional messages is returned.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-quota
           def get_message_quota: (
-          ) -> (MessageQuotaResponse)
+          ) -> (
+            MessageQuotaResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Gets the number of messages sent in the current month.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-consumption
           def get_message_quota_consumption_with_http_info: (
-          ) -> [(QuotaConsumptionResponse), Integer, Hash[String, String]]
+          ) -> (
+            [QuotaConsumptionResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets the number of messages sent in the current month.
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-consumption
           def get_message_quota_consumption: (
-          ) -> (QuotaConsumptionResponse)
+          ) -> (
+            QuotaConsumptionResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Gets the status of a narrowcast message.
           #
@@ -345,7 +487,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-narrowcast-progress-status
           def get_narrowcast_progress_with_http_info: (
             request_id: String
-          ) -> [(NarrowcastProgressResponse), Integer, Hash[String, String]]
+          ) -> (
+            [NarrowcastProgressResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets the status of a narrowcast message.
           #
@@ -353,7 +498,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-narrowcast-progress-status
           def get_narrowcast_progress: (
             request_id: String
-          ) -> (NarrowcastProgressResponse)
+          ) -> (
+            NarrowcastProgressResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get number of sent broadcast messages
           #
@@ -361,7 +509,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-broadcast-messages
           def get_number_of_sent_broadcast_messages_with_http_info: (
             date: String
-          ) -> [(NumberOfMessagesResponse), Integer, Hash[String, String]]
+          ) -> (
+            [NumberOfMessagesResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get number of sent broadcast messages
           #
@@ -369,7 +520,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-broadcast-messages
           def get_number_of_sent_broadcast_messages: (
             date: String
-          ) -> (NumberOfMessagesResponse)
+          ) -> (
+            NumberOfMessagesResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get number of sent multicast messages
           #
@@ -377,7 +531,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-multicast-messages
           def get_number_of_sent_multicast_messages_with_http_info: (
             date: String
-          ) -> [(NumberOfMessagesResponse), Integer, Hash[String, String]]
+          ) -> (
+            [NumberOfMessagesResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get number of sent multicast messages
           #
@@ -385,7 +542,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-multicast-messages
           def get_number_of_sent_multicast_messages: (
             date: String
-          ) -> (NumberOfMessagesResponse)
+          ) -> (
+            NumberOfMessagesResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get number of sent push messages
           #
@@ -393,7 +553,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-push-messages
           def get_number_of_sent_push_messages_with_http_info: (
             date: String
-          ) -> [(NumberOfMessagesResponse), Integer, Hash[String, String]]
+          ) -> (
+            [NumberOfMessagesResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get number of sent push messages
           #
@@ -401,7 +564,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-push-messages
           def get_number_of_sent_push_messages: (
             date: String
-          ) -> (NumberOfMessagesResponse)
+          ) -> (
+            NumberOfMessagesResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get number of sent reply messages
           #
@@ -409,7 +575,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-reply-messages
           def get_number_of_sent_reply_messages_with_http_info: (
             date: String
-          ) -> [(NumberOfMessagesResponse), Integer, Hash[String, String]]
+          ) -> (
+            [NumberOfMessagesResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get number of sent reply messages
           #
@@ -417,7 +586,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-reply-messages
           def get_number_of_sent_reply_messages: (
             date: String
-          ) -> (NumberOfMessagesResponse)
+          ) -> (
+            NumberOfMessagesResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get number of sent LINE notification messages　
           #
@@ -425,7 +597,10 @@ module Line
           # @see https://developers.line.biz/en/reference/partner-docs/#get-number-of-sent-line-notification-messages
           def get_pnp_message_statistics_with_http_info: (
             date: String
-          ) -> [(NumberOfMessagesResponse), Integer, Hash[String, String]]
+          ) -> (
+            [NumberOfMessagesResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get number of sent LINE notification messages　
           #
@@ -433,7 +608,10 @@ module Line
           # @see https://developers.line.biz/en/reference/partner-docs/#get-number-of-sent-line-notification-messages
           def get_pnp_message_statistics: (
             date: String
-          ) -> (NumberOfMessagesResponse)
+          ) -> (
+            NumberOfMessagesResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get profile
           #
@@ -441,7 +619,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-profile
           def get_profile_with_http_info: (
             user_id: String
-          ) -> [(UserProfileResponse), Integer, Hash[String, String]]
+          ) -> (
+            [UserProfileResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get profile
           #
@@ -449,7 +630,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-profile
           def get_profile: (
             user_id: String
-          ) -> (UserProfileResponse)
+          ) -> (
+            UserProfileResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Gets a rich menu via a rich menu ID.
           #
@@ -457,7 +641,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu
           def get_rich_menu_with_http_info: (
             rich_menu_id: String
-          ) -> [(RichMenuResponse), Integer, Hash[String, String]]
+          ) -> (
+            [RichMenuResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets a rich menu via a rich menu ID.
           #
@@ -465,7 +652,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu
           def get_rich_menu: (
             rich_menu_id: String
-          ) -> (RichMenuResponse)
+          ) -> (
+            RichMenuResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get rich menu alias information
           #
@@ -473,7 +663,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-alias-by-id
           def get_rich_menu_alias_with_http_info: (
             rich_menu_alias_id: String
-          ) -> [(RichMenuAliasResponse), Integer, Hash[String, String]]
+          ) -> (
+            [RichMenuAliasResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get rich menu alias information
           #
@@ -481,19 +674,28 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-alias-by-id
           def get_rich_menu_alias: (
             rich_menu_alias_id: String
-          ) -> (RichMenuAliasResponse)
+          ) -> (
+            RichMenuAliasResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get list of rich menu alias
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-alias-list
           def get_rich_menu_alias_list_with_http_info: (
-          ) -> [(RichMenuAliasListResponse), Integer, Hash[String, String]]
+          ) -> (
+            [RichMenuAliasListResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get list of rich menu alias
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-alias-list
           def get_rich_menu_alias_list: (
-          ) -> (RichMenuAliasListResponse)
+          ) -> (
+            RichMenuAliasListResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get the status of Replace or unlink a linked rich menus in batches.
           #
@@ -501,7 +703,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-batch-control-rich-menus-progress-status
           def get_rich_menu_batch_progress_with_http_info: (
             request_id: String
-          ) -> [(RichMenuBatchProgressResponse), Integer, Hash[String, String]]
+          ) -> (
+            [RichMenuBatchProgressResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get the status of Replace or unlink a linked rich menus in batches.
           #
@@ -509,7 +714,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-batch-control-rich-menus-progress-status
           def get_rich_menu_batch_progress: (
             request_id: String
-          ) -> (RichMenuBatchProgressResponse)
+          ) -> (
+            RichMenuBatchProgressResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get rich menu ID of user
           #
@@ -517,7 +725,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-id-of-user
           def get_rich_menu_id_of_user_with_http_info: (
             user_id: String
-          ) -> [(RichMenuIdResponse), Integer, Hash[String, String]]
+          ) -> (
+            [RichMenuIdResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get rich menu ID of user
           #
@@ -525,19 +736,28 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-id-of-user
           def get_rich_menu_id_of_user: (
             user_id: String
-          ) -> (RichMenuIdResponse)
+          ) -> (
+            RichMenuIdResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get rich menu list
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-list
           def get_rich_menu_list_with_http_info: (
-          ) -> [(RichMenuListResponse), Integer, Hash[String, String]]
+          ) -> (
+            [RichMenuListResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get rich menu list
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-list
           def get_rich_menu_list: (
-          ) -> (RichMenuListResponse)
+          ) -> (
+            RichMenuListResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get number of users in a multi-person chat
           #
@@ -545,7 +765,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-members-room-count
           def get_room_member_count_with_http_info: (
             room_id: String
-          ) -> [(RoomMemberCountResponse), Integer, Hash[String, String]]
+          ) -> (
+            [RoomMemberCountResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get number of users in a multi-person chat
           #
@@ -553,7 +776,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-members-room-count
           def get_room_member_count: (
             room_id: String
-          ) -> (RoomMemberCountResponse)
+          ) -> (
+            RoomMemberCountResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get multi-person chat member profile
           #
@@ -563,7 +789,10 @@ module Line
           def get_room_member_profile_with_http_info: (
             room_id: String, 
             user_id: String
-          ) -> [(RoomUserProfileResponse), Integer, Hash[String, String]]
+          ) -> (
+            [RoomUserProfileResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get multi-person chat member profile
           #
@@ -573,7 +802,10 @@ module Line
           def get_room_member_profile: (
             room_id: String, 
             user_id: String
-          ) -> (RoomUserProfileResponse)
+          ) -> (
+            RoomUserProfileResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get multi-person chat member user IDs
           #
@@ -583,7 +815,10 @@ module Line
           def get_room_members_ids_with_http_info: (
             room_id: String, 
             ?start: String?
-          ) -> [(MembersIdsResponse), Integer, Hash[String, String]]
+          ) -> (
+            [MembersIdsResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get multi-person chat member user IDs
           #
@@ -593,19 +828,28 @@ module Line
           def get_room_members_ids: (
             room_id: String, 
             ?start: String?
-          ) -> (MembersIdsResponse)
+          ) -> (
+            MembersIdsResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Get webhook endpoint information
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information
           def get_webhook_endpoint_with_http_info: (
-          ) -> [(GetWebhookEndpointResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetWebhookEndpointResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Get webhook endpoint information
           #
           # @see https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information
           def get_webhook_endpoint: (
-          ) -> (GetWebhookEndpointResponse)
+          ) -> (
+            GetWebhookEndpointResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Issue link token
           #
@@ -613,7 +857,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-link-token
           def issue_link_token_with_http_info: (
             user_id: String
-          ) -> [(IssueLinkTokenResponse), Integer, Hash[String, String]]
+          ) -> (
+            [IssueLinkTokenResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Issue link token
           #
@@ -621,7 +868,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#issue-link-token
           def issue_link_token: (
             user_id: String
-          ) -> (IssueLinkTokenResponse)
+          ) -> (
+            IssueLinkTokenResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Leave group chat
           #
@@ -629,7 +879,12 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#leave-group
           def leave_group_with_http_info: (
             group_id: String
-          ) -> [(String?|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [ErrorResponse, 404, Hash[untyped, untyped]] # when HTTP status code is 404
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Leave group chat
           #
@@ -637,7 +892,12 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#leave-group
           def leave_group: (
             group_id: String
-          ) -> (String?|ErrorResponse|ErrorResponse)
+          ) -> (
+            String? # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | ErrorResponse # when HTTP status code is 404
+            | String? # otherwise
+          )
 
           # Leave multi-person chat
           #
@@ -645,7 +905,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#leave-room
           def leave_room_with_http_info: (
             room_id: String
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Leave multi-person chat
           #
@@ -653,7 +916,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#leave-room
           def leave_room: (
             room_id: String
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Link rich menu to user.
           #
@@ -663,7 +929,10 @@ module Line
           def link_rich_menu_id_to_user_with_http_info: (
             user_id: String, 
             rich_menu_id: String
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Link rich menu to user.
           #
@@ -673,7 +942,10 @@ module Line
           def link_rich_menu_id_to_user: (
             user_id: String, 
             rich_menu_id: String
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Link rich menu to multiple users
           #
@@ -681,7 +953,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-users
           def link_rich_menu_id_to_users_with_http_info: (
             rich_menu_bulk_link_request: RichMenuBulkLinkRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Link rich menu to multiple users
           #
@@ -689,7 +964,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-users
           def link_rich_menu_id_to_users: (
             rich_menu_bulk_link_request: RichMenuBulkLinkRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 202
+            | String? # otherwise
+          )
 
           # Mark messages from users as read
           #
@@ -697,7 +975,10 @@ module Line
           # @see https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read
           def mark_messages_as_read_with_http_info: (
             mark_messages_as_read_request: MarkMessagesAsReadRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Mark messages from users as read
           #
@@ -705,7 +986,10 @@ module Line
           # @see https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read
           def mark_messages_as_read: (
             mark_messages_as_read_request: MarkMessagesAsReadRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.
           #
@@ -715,7 +999,14 @@ module Line
           def multicast_with_http_info: (
             multicast_request: MulticastRequest, 
             ?x_line_retry_key: String?
-          ) -> [(String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [ErrorResponse, 403, Hash[untyped, untyped]] # when HTTP status code is 403
+            | [ErrorResponse, 409, Hash[untyped, untyped]] # when HTTP status code is 409
+            | [ErrorResponse, 429, Hash[untyped, untyped]] # when HTTP status code is 429
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.
           #
@@ -725,7 +1016,14 @@ module Line
           def multicast: (
             multicast_request: MulticastRequest, 
             ?x_line_retry_key: String?
-          ) -> (String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse)
+          ) -> (
+            String? # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | ErrorResponse # when HTTP status code is 403
+            | ErrorResponse # when HTTP status code is 409
+            | ErrorResponse # when HTTP status code is 429
+            | String? # otherwise
+          )
 
           # Send narrowcast message
           #
@@ -735,7 +1033,14 @@ module Line
           def narrowcast_with_http_info: (
             narrowcast_request: NarrowcastRequest, 
             ?x_line_retry_key: String?
-          ) -> [(String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [ErrorResponse, 403, Hash[untyped, untyped]] # when HTTP status code is 403
+            | [ErrorResponse, 409, Hash[untyped, untyped]] # when HTTP status code is 409
+            | [ErrorResponse, 429, Hash[untyped, untyped]] # when HTTP status code is 429
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Send narrowcast message
           #
@@ -745,7 +1050,14 @@ module Line
           def narrowcast: (
             narrowcast_request: NarrowcastRequest, 
             ?x_line_retry_key: String?
-          ) -> (String?|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse)
+          ) -> (
+            String? # when HTTP status code is 202
+            | ErrorResponse # when HTTP status code is 400
+            | ErrorResponse # when HTTP status code is 403
+            | ErrorResponse # when HTTP status code is 409
+            | ErrorResponse # when HTTP status code is 429
+            | String? # otherwise
+          )
 
           # Sends a message to a user, group chat, or multi-person chat at any time.
           #
@@ -755,7 +1067,14 @@ module Line
           def push_message_with_http_info: (
             push_message_request: PushMessageRequest, 
             ?x_line_retry_key: String?
-          ) -> [(PushMessageResponse|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [PushMessageResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [ErrorResponse, 403, Hash[untyped, untyped]] # when HTTP status code is 403
+            | [ErrorResponse, 409, Hash[untyped, untyped]] # when HTTP status code is 409
+            | [ErrorResponse, 429, Hash[untyped, untyped]] # when HTTP status code is 429
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Sends a message to a user, group chat, or multi-person chat at any time.
           #
@@ -765,7 +1084,14 @@ module Line
           def push_message: (
             push_message_request: PushMessageRequest, 
             ?x_line_retry_key: String?
-          ) -> (PushMessageResponse|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse)
+          ) -> (
+            PushMessageResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | ErrorResponse # when HTTP status code is 403
+            | ErrorResponse # when HTTP status code is 409
+            | ErrorResponse # when HTTP status code is 429
+            | String? # otherwise
+          )
 
           # Send LINE notification message
           #
@@ -775,7 +1101,11 @@ module Line
           def push_messages_by_phone_with_http_info: (
             pnp_messages_request: PnpMessagesRequest, 
             ?x_line_delivery_tag: String?
-          ) -> [(String?|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 422, Hash[untyped, untyped]] # when HTTP status code is 422
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Send LINE notification message
           #
@@ -785,7 +1115,11 @@ module Line
           def push_messages_by_phone: (
             pnp_messages_request: PnpMessagesRequest, 
             ?x_line_delivery_tag: String?
-          ) -> (String?|ErrorResponse)
+          ) -> (
+            String? # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 422
+            | String? # otherwise
+          )
 
           # Send reply message
           #
@@ -793,7 +1127,12 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#send-reply-message
           def reply_message_with_http_info: (
             reply_message_request: ReplyMessageRequest
-          ) -> [(ReplyMessageResponse|ErrorResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [ReplyMessageResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [ErrorResponse, 429, Hash[untyped, untyped]] # when HTTP status code is 429
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Send reply message
           #
@@ -801,7 +1140,12 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#send-reply-message
           def reply_message: (
             reply_message_request: ReplyMessageRequest
-          ) -> (ReplyMessageResponse|ErrorResponse|ErrorResponse)
+          ) -> (
+            ReplyMessageResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | ErrorResponse # when HTTP status code is 429
+            | String? # otherwise
+          )
 
           # You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu 
           #
@@ -809,7 +1153,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#batch-control-rich-menus-of-users
           def rich_menu_batch_with_http_info: (
             rich_menu_batch_request: RichMenuBatchRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu 
           #
@@ -817,7 +1164,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#batch-control-rich-menus-of-users
           def rich_menu_batch: (
             rich_menu_batch_request: RichMenuBatchRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 202
+            | String? # otherwise
+          )
 
           # Set default rich menu
           #
@@ -825,7 +1175,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu
           def set_default_rich_menu_with_http_info: (
             rich_menu_id: String
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Set default rich menu
           #
@@ -833,7 +1186,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu
           def set_default_rich_menu: (
             rich_menu_id: String
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Set webhook endpoint URL
           #
@@ -841,7 +1197,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#set-webhook-endpoint-url
           def set_webhook_endpoint_with_http_info: (
             set_webhook_endpoint_request: SetWebhookEndpointRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Set webhook endpoint URL
           #
@@ -849,7 +1208,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#set-webhook-endpoint-url
           def set_webhook_endpoint: (
             set_webhook_endpoint_request: SetWebhookEndpointRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Display a loading animation in one-on-one chats between users and LINE Official Accounts.
           #
@@ -857,7 +1219,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#display-a-loading-indicator
           def show_loading_animation_with_http_info: (
             show_loading_animation_request: ShowLoadingAnimationRequest
-          ) -> [(String?|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Display a loading animation in one-on-one chats between users and LINE Official Accounts.
           #
@@ -865,7 +1231,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#display-a-loading-indicator
           def show_loading_animation: (
             show_loading_animation_request: ShowLoadingAnimationRequest
-          ) -> (String?|ErrorResponse)
+          ) -> (
+            String? # when HTTP status code is 202
+            | ErrorResponse # when HTTP status code is 400
+            | String? # otherwise
+          )
 
           # Test webhook endpoint
           #
@@ -873,7 +1243,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
           def test_webhook_endpoint_with_http_info: (
             ?test_webhook_endpoint_request: TestWebhookEndpointRequest?
-          ) -> [(TestWebhookEndpointResponse), Integer, Hash[String, String]]
+          ) -> (
+            [TestWebhookEndpointResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Test webhook endpoint
           #
@@ -881,7 +1254,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
           def test_webhook_endpoint: (
             ?test_webhook_endpoint_request: TestWebhookEndpointRequest?
-          ) -> (TestWebhookEndpointResponse)
+          ) -> (
+            TestWebhookEndpointResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Unlink rich menu from user
           #
@@ -889,7 +1265,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#unlink-rich-menu-from-user
           def unlink_rich_menu_id_from_user_with_http_info: (
             user_id: String
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Unlink rich menu from user
           #
@@ -897,7 +1276,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#unlink-rich-menu-from-user
           def unlink_rich_menu_id_from_user: (
             user_id: String
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Unlink rich menus from multiple users
           #
@@ -905,7 +1287,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#unlink-rich-menu-from-users
           def unlink_rich_menu_id_from_users_with_http_info: (
             rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Unlink rich menus from multiple users
           #
@@ -913,7 +1298,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#unlink-rich-menu-from-users
           def unlink_rich_menu_id_from_users: (
             rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 202
+            | String? # otherwise
+          )
 
           # Update rich menu alias
           #
@@ -923,7 +1311,11 @@ module Line
           def update_rich_menu_alias_with_http_info: (
             rich_menu_alias_id: String, 
             update_rich_menu_alias_request: UpdateRichMenuAliasRequest
-          ) -> [(String?|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Update rich menu alias
           #
@@ -933,7 +1325,11 @@ module Line
           def update_rich_menu_alias: (
             rich_menu_alias_id: String, 
             update_rich_menu_alias_request: UpdateRichMenuAliasRequest
-          ) -> (String?|ErrorResponse)
+          ) -> (
+            String? # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | String? # otherwise
+          )
 
           # Validate message objects of a broadcast message
           #
@@ -941,7 +1337,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-broadcast-message
           def validate_broadcast_with_http_info: (
             validate_message_request: ValidateMessageRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Validate message objects of a broadcast message
           #
@@ -949,7 +1348,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-broadcast-message
           def validate_broadcast: (
             validate_message_request: ValidateMessageRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Validate message objects of a multicast message
           #
@@ -957,7 +1359,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-multicast-message
           def validate_multicast_with_http_info: (
             validate_message_request: ValidateMessageRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Validate message objects of a multicast message
           #
@@ -965,7 +1370,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-multicast-message
           def validate_multicast: (
             validate_message_request: ValidateMessageRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Validate message objects of a narrowcast message
           #
@@ -973,7 +1381,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-narrowcast-message
           def validate_narrowcast_with_http_info: (
             validate_message_request: ValidateMessageRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Validate message objects of a narrowcast message
           #
@@ -981,7 +1392,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-narrowcast-message
           def validate_narrowcast: (
             validate_message_request: ValidateMessageRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Validate message objects of a push message
           #
@@ -989,7 +1403,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-push-message
           def validate_push_with_http_info: (
             validate_message_request: ValidateMessageRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Validate message objects of a push message
           #
@@ -997,7 +1414,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-push-message
           def validate_push: (
             validate_message_request: ValidateMessageRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Validate message objects of a reply message
           #
@@ -1005,7 +1425,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-reply-message
           def validate_reply_with_http_info: (
             validate_message_request: ValidateMessageRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Validate message objects of a reply message
           #
@@ -1013,7 +1436,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-reply-message
           def validate_reply: (
             validate_message_request: ValidateMessageRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.
           #
@@ -1021,7 +1447,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-batch-control-rich-menus-request
           def validate_rich_menu_batch_request_with_http_info: (
             rich_menu_batch_request: RichMenuBatchRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.
           #
@@ -1029,7 +1458,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-batch-control-rich-menus-request
           def validate_rich_menu_batch_request: (
             rich_menu_batch_request: RichMenuBatchRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Validate rich menu object
           #
@@ -1037,7 +1469,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-rich-menu-object
           def validate_rich_menu_object_with_http_info: (
             rich_menu_request: RichMenuRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Validate rich menu object
           #
@@ -1045,7 +1480,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#validate-rich-menu-object
           def validate_rich_menu_object: (
             rich_menu_request: RichMenuRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
         end
       end
     end

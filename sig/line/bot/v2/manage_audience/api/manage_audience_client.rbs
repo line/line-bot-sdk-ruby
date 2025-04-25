@@ -25,7 +25,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
           def add_audience_to_audience_group_with_http_info: (
             add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
           #
@@ -33,7 +36,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
           def add_audience_to_audience_group: (
             add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 202
+            | String? # otherwise
+          )
 
           # Create audience for uploading user IDs (by JSON)
           #
@@ -41,7 +47,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
           def create_audience_group_with_http_info: (
             create_audience_group_request: CreateAudienceGroupRequest
-          ) -> [(CreateAudienceGroupResponse), Integer, Hash[String, String]]
+          ) -> (
+            [CreateAudienceGroupResponse, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Create audience for uploading user IDs (by JSON)
           #
@@ -49,7 +58,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
           def create_audience_group: (
             create_audience_group_request: CreateAudienceGroupRequest
-          ) -> (CreateAudienceGroupResponse)
+          ) -> (
+            CreateAudienceGroupResponse # when HTTP status code is 202
+            | String? # otherwise
+          )
 
           # Create audience for click-based retargeting
           #
@@ -57,7 +69,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
           def create_click_based_audience_group_with_http_info: (
             create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest
-          ) -> [(CreateClickBasedAudienceGroupResponse), Integer, Hash[String, String]]
+          ) -> (
+            [CreateClickBasedAudienceGroupResponse, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Create audience for click-based retargeting
           #
@@ -65,7 +80,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
           def create_click_based_audience_group: (
             create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest
-          ) -> (CreateClickBasedAudienceGroupResponse)
+          ) -> (
+            CreateClickBasedAudienceGroupResponse # when HTTP status code is 202
+            | String? # otherwise
+          )
 
           # Create audience for impression-based retargeting
           #
@@ -73,7 +91,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
           def create_imp_based_audience_group_with_http_info: (
             create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest
-          ) -> [(CreateImpBasedAudienceGroupResponse), Integer, Hash[String, String]]
+          ) -> (
+            [CreateImpBasedAudienceGroupResponse, 202, Hash[untyped, untyped]] # when HTTP status code is 202
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Create audience for impression-based retargeting
           #
@@ -81,7 +102,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
           def create_imp_based_audience_group: (
             create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest
-          ) -> (CreateImpBasedAudienceGroupResponse)
+          ) -> (
+            CreateImpBasedAudienceGroupResponse # when HTTP status code is 202
+            | String? # otherwise
+          )
 
           # Delete audience
           #
@@ -89,7 +113,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
           def delete_audience_group_with_http_info: (
             audience_group_id: Integer
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Delete audience
           #
@@ -97,7 +124,10 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
           def delete_audience_group: (
             audience_group_id: Integer
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Gets audience data.
           #
@@ -105,7 +135,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
           def get_audience_data_with_http_info: (
             audience_group_id: Integer
-          ) -> [(GetAudienceDataResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetAudienceDataResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets audience data.
           #
@@ -113,7 +147,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-group
           def get_audience_data: (
             audience_group_id: Integer
-          ) -> (GetAudienceDataResponse|ErrorResponse)
+          ) -> (
+            GetAudienceDataResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | String? # otherwise
+          )
 
           # Gets data for more than one audience.
           #
@@ -131,7 +169,10 @@ module Line
             ?size: Integer?, 
             ?includes_external_public_groups: bool?, 
             ?create_route: AudienceGroupCreateRoute?
-          ) -> [(GetAudienceGroupsResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetAudienceGroupsResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets data for more than one audience.
           #
@@ -149,7 +190,10 @@ module Line
             ?size: Integer?, 
             ?includes_external_public_groups: bool?, 
             ?create_route: AudienceGroupCreateRoute?
-          ) -> (GetAudienceGroupsResponse)
+          ) -> (
+            GetAudienceGroupsResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Gets audience data.
           #
@@ -157,7 +201,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience
           def get_shared_audience_data_with_http_info: (
             audience_group_id: Integer
-          ) -> [(GetSharedAudienceDataResponse|ErrorResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetSharedAudienceDataResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets audience data.
           #
@@ -165,7 +213,11 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience
           def get_shared_audience_data: (
             audience_group_id: Integer
-          ) -> (GetSharedAudienceDataResponse|ErrorResponse)
+          ) -> (
+            GetSharedAudienceDataResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | String? # otherwise
+          )
 
           # Gets data for more than one audience, including those shared by the Business Manager.
           #
@@ -183,7 +235,10 @@ module Line
             ?size: Integer?, 
             ?create_route: AudienceGroupCreateRoute?, 
             ?includes_owned_audience_groups: bool?
-          ) -> [(GetSharedAudienceGroupsResponse), Integer, Hash[String, String]]
+          ) -> (
+            [GetSharedAudienceGroupsResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Gets data for more than one audience, including those shared by the Business Manager.
           #
@@ -201,7 +256,10 @@ module Line
             ?size: Integer?, 
             ?create_route: AudienceGroupCreateRoute?, 
             ?includes_owned_audience_groups: bool?
-          ) -> (GetSharedAudienceGroupsResponse)
+          ) -> (
+            GetSharedAudienceGroupsResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
 
           # Renames an existing audience.
           #
@@ -211,7 +269,10 @@ module Line
           def update_audience_group_description_with_http_info: (
             audience_group_id: Integer, 
             update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest
-          ) -> [(String?), Integer, Hash[String, String]]
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
 
           # Renames an existing audience.
           #
@@ -221,7 +282,10 @@ module Line
           def update_audience_group_description: (
             audience_group_id: Integer, 
             update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest
-          ) -> (String?)
+          ) -> (
+            String? # when HTTP status code is 200
+            | String? # otherwise
+          )
         end
       end
     end

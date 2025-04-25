@@ -56,6 +56,7 @@ module Line
 
           # {{ op.notes }}
           # This requests to <code>{{ op.httpMethod }} {{ endpoint(operations.classname) }}{{ op.path }}</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           {% for param in op.allParams -%}
           # @param {{param.paramName}} [{{ param.dataType }}{{ param.required ? '' : ', nil' }}] {{param.description}}
@@ -69,7 +70,6 @@ module Line
           {% if op.externalDocs.url != null -%}
           # @see {{op.externalDocs.url}}
           {%- endif %}
-          # @return [response body, response status code, and response headers]
           {%- for response in op.responses %}
           {%- if response.content['application/json'].schema.complexType != null %}
           # @return [Array(Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}, Integer, Hash{String => String})] when HTTP status code is {{ response.code }}
@@ -77,9 +77,12 @@ module Line
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is {{ response.code }}
           {%- endif %}
           {%- endfor %}
-          def {{op.nickname}}_with_http_info({% for param in op.allParams %}
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          {#- Remove this steep:ignore after https://github.com/soutaro/steep/issues/1603 is resolved #}
+          def {{op.nickname}}_with_http_info( # steep:ignore MethodBodyTypeMismatch
+            {%- for param in op.allParams %} 
             {{param.paramName}}:{{ param.required ? '' : ' nil' }}{{ loop.last ? '' : ',' -}}
-            {% endfor %}
+            {%- endfor %}
           )
             path = "{{ op.path }}"{%  for param in op.pathParams %}
               .gsub(/{{ "{" + param.baseName + "}" }}/, {{ param.paramName }}.to_s)
@@ -106,23 +109,23 @@ module Line
               headers: header_params{% endif %}
             )
 
-            response_body = case response.code.to_i
-                   {%- for response in op.responses %}
-                   when {{ response.code }}
-                     {%- if response.content['application/json'].schema.complexType != null %}
-                     json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
-                     json.transform_keys! do |key|
-                       Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
-                     end
-                     Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}.create(json) # steep:ignore InsufficientKeywordArguments
-                     {%- else %}
-                     response.body
-                     {%- endif %}{% endfor %}
-                   else
-                     response.body
-                   end
-
-            [response_body, response.code.to_i, response.each_header.to_h]
+            case response.code.to_i
+            {%- for response in op.responses %}
+            when {{ response.code }}
+              {%- if response.content['application/json'].schema.complexType != null %}
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, {{ response.code }}, response.each_header.to_h]
+              {%- else %}
+              [response.body, {{ response.code }}, response.each_header.to_h]
+              {%- endif %}
+            {%- endfor %}
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
           end
 
           # {{ op.notes }}
@@ -148,6 +151,7 @@ module Line
           # @return [String, nil] when HTTP status code is {{ response.code }}
           {%- endif %}
           {%- endfor %}
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def {{op.nickname}}({% for param in op.allParams %}
             {{param.paramName}}:{{ param.required ? '' : ' nil' }}{{ loop.last ? '' : ',' -}}
             {% endfor %}
