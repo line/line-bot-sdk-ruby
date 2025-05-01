@@ -21,6 +21,13 @@ module Line
           attr_accessor latitude: Float
           attr_accessor longitude: Float
           
+
+          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
+          # @param sender [Sender, Hash[Symbol, untyped], nil] 
+          # @param title [String] 
+          # @param address [String] 
+          # @param latitude [Float] 
+          # @param longitude [Float] 
           def initialize: (
             ?quick_reply: QuickReply?| Hash[Symbol, untyped]?,
             ?sender: Sender?| Hash[Symbol, untyped]?,
@@ -31,10 +38,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::LocationMessage] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> LocationMessage
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -18,6 +18,10 @@ module Line
           attr_accessor jobs: Array[AudienceGroupJob]?
           attr_accessor adaccount: Adaccount?
           
+
+          # @param audience_group [AudienceGroup, Hash[Symbol, untyped], nil] 
+          # @param jobs [Array[AudienceGroupJob, Hash[Symbol, untyped]],nil] An array of jobs. This array is used to keep track of each attempt to add new user IDs or IFAs to an audience for uploading user IDs. Empty array is returned for any other type of audience. Max: 50 
+          # @param adaccount [Adaccount, Hash[Symbol, untyped], nil] 
           def initialize: (
             ?audience_group: AudienceGroup?| Hash[Symbol, untyped]?,
             ?jobs: Array[AudienceGroupJob| Hash[Symbol, untyped]]?,
@@ -25,10 +29,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ManageAudience::GetAudienceDataResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetAudienceDataResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -44,6 +44,9 @@ module Line
             end
           end
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::MessageContent] Instance of the class
           def self.create(args) # steep:ignore
             klass = detect_class(type: args[:type])
             return klass.new(**args) if klass # steep:ignore

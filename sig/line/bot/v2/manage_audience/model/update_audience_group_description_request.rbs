@@ -16,15 +16,23 @@ module Line
         class UpdateAudienceGroupDescriptionRequest
           attr_accessor description: String?
           
+
+          # @param description [String,nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           def initialize: (
             ?description: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ManageAudience::UpdateAudienceGroupDescriptionRequest] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> UpdateAudienceGroupDescriptionRequest
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

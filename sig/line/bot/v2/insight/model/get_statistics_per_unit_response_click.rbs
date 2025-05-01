@@ -19,6 +19,12 @@ module Line
           attr_accessor unique_click: Integer?
           attr_accessor unique_click_of_request: Integer?
           
+
+          # @param seq [Integer] The URL's serial number.
+          # @param url [String] URL.
+          # @param click [Integer,nil] Number of times the URL in the bubble was opened.
+          # @param unique_click [Integer,nil] Number of users that opened the URL in the bubble.
+          # @param unique_click_of_request [Integer,nil] Number of users who opened this url through any link in the message. If another message bubble contains the same URL and a user opens both links, it's counted only once. 
           def initialize: (
             seq: Integer,
             url: String,
@@ -28,10 +34,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Insight::GetStatisticsPerUnitResponseClick] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponseClick
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

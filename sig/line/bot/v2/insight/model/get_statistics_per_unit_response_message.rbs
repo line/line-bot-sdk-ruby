@@ -27,6 +27,20 @@ module Line
           attr_accessor unique_media_played75_percent: Integer?
           attr_accessor unique_media_played100_percent: Integer?
           
+
+          # @param seq [Integer] Bubble's serial number.
+          # @param impression [Integer,nil] Number of times the bubble was displayed.
+          # @param media_played [Integer,nil] Number of times audio or video in the bubble started playing.
+          # @param media_played25_percent [Integer,nil] Number of times audio or video in the bubble started playing and was played 25% of the total time.
+          # @param media_played50_percent [Integer,nil] Number of times audio or video in the bubble started playing and was played 50% of the total time.
+          # @param media_played75_percent [Integer,nil] Number of times audio or video in the bubble started playing and was played 75% of the total time.
+          # @param media_played100_percent [Integer,nil] Number of times audio or video in the bubble started playing and was played 100% of the total time.
+          # @param unique_impression [Integer,nil] Number of users the bubble was displayed.
+          # @param unique_media_played [Integer,nil] Number of users that started playing audio or video in the bubble.
+          # @param unique_media_played25_percent [Integer,nil] Number of users that started playing audio or video in the bubble and played 25% of the total time.
+          # @param unique_media_played50_percent [Integer,nil] Number of users that started playing audio or video in the bubble and played 50% of the total time.
+          # @param unique_media_played75_percent [Integer,nil] Number of users that started playing audio or video in the bubble and played 75% of the total time.
+          # @param unique_media_played100_percent [Integer,nil] Number of users that started playing audio or video in the bubble and played 100% of the total time.
           def initialize: (
             seq: Integer,
             ?impression: Integer?,
@@ -44,10 +58,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Insight::GetStatisticsPerUnitResponseMessage] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponseMessage
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

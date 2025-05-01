@@ -16,16 +16,25 @@ module Line
           attr_accessor chat_id: String
           attr_accessor loading_seconds: Integer?
           
+
+          # @param chat_id [String] User ID of the target user for whom the loading animation is to be displayed.
+          # @param loading_seconds [Integer,nil] The number of seconds to display the loading indicator. It must be a multiple of 5. The maximum value is 60 seconds. 
           def initialize: (
             chat_id: String,
             ?loading_seconds: Integer?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::ShowLoadingAnimationRequest] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> ShowLoadingAnimationRequest
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

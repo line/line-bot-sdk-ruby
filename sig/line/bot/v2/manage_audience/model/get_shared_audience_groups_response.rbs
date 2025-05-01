@@ -21,6 +21,13 @@ module Line
           attr_accessor page: Integer?
           attr_accessor size: Integer?
           
+
+          # @param audience_groups [Array[AudienceGroup, Hash[Symbol, untyped]],nil] An array of audience data. If there are no audiences that match the specified filter, an empty array will be returned.
+          # @param has_next_page [bool,nil] true when this is not the last page.
+          # @param total_count [Integer,nil] The total number of audiences that can be returned with the specified filter.
+          # @param read_write_audience_group_total_count [Integer,nil] Of the audiences you can get with the specified filter, the number of audiences with the update permission set to READ_WRITE.
+          # @param page [Integer,nil] The current page number.
+          # @param size [Integer,nil] The maximum number of audiences on the current page.
           def initialize: (
             ?audience_groups: Array[AudienceGroup| Hash[Symbol, untyped]]?,
             ?has_next_page: bool?,
@@ -31,10 +38,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetSharedAudienceGroupsResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

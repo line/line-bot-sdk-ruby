@@ -17,6 +17,10 @@ module Line
           attr_accessor url: String
           attr_accessor module_mode: bool?
           
+
+          # @param type [String] ('compact'|'tall'|'full') Size of the LIFF app view. Specify one of these values: - compact - tall - full 
+          # @param url [String] Endpoint URL. This is the URL of the web app that implements the LIFF app (e.g. https://example.com). Used when the LIFF app is launched using the LIFF URL. The URL scheme must be https. URL fragments (#URL-fragment) can't be specified. 
+          # @param module_mode [bool,nil] `true` to use the LIFF app in modular mode. When in modular mode, the action button in the header is not displayed. 
           def initialize: (
             type: 'compact'|'tall'|'full',
             url: String,
@@ -24,10 +28,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Liff::LiffView] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> LiffView
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

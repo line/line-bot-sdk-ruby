@@ -16,16 +16,25 @@ module Line
           attr_accessor type: 'none'|'limited'
           attr_accessor value: Integer?
           
+
+          # @param type [String] ('none'|'limited') 
+          # @param value [Integer,nil] The target limit for sending messages in the current month. This property is returned when the `type` property has a value of `limited`. 
           def initialize: (
             type: 'none'|'limited',
             ?value: Integer?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::MessageQuotaResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> MessageQuotaResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

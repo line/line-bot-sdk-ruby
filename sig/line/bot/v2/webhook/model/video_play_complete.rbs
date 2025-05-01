@@ -14,15 +14,23 @@ module Line
         class VideoPlayComplete
           attr_accessor tracking_id: String
           
+
+          # @param tracking_id [String] ID used to identify a video. Returns the same value as the trackingId assigned to the video message.
           def initialize: (
             tracking_id: String,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::VideoPlayComplete] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> VideoPlayComplete
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

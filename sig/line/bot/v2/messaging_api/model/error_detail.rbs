@@ -15,16 +15,25 @@ module Line
           attr_accessor message: String?
           attr_accessor property: String?
           
+
+          # @param message [String,nil] Details of the error. Not included in the response under certain situations.
+          # @param property [String,nil] Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.
           def initialize: (
             ?message: String?,
             ?property: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::ErrorDetail] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> ErrorDetail
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

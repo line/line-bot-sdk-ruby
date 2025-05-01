@@ -20,6 +20,14 @@ module Line
           attr_accessor scope: Array['openid'|'email'|'profile'|'chat_message.write']?
           attr_accessor bot_prompt: 'normal'|'aggressive'|'none'?
           
+
+          # @param liff_id [String,nil] LIFF app ID
+          # @param view [LiffView, Hash[Symbol, untyped], nil] 
+          # @param description [String,nil] Name of the LIFF app
+          # @param features [LiffFeatures, Hash[Symbol, untyped], nil] 
+          # @param permanent_link_pattern [String,nil] How additional information in LIFF URLs is handled. concat is returned. 
+          # @param scope [Array['openid','email','profile','chat_message.write'],nil] 
+          # @param bot_prompt [String,nil] ('normal'|'aggressive'|'none') 
           def initialize: (
             ?liff_id: String?,
             ?view: LiffView?| Hash[Symbol, untyped]?,
@@ -31,10 +39,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Liff::LiffApp] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> LiffApp
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

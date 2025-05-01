@@ -18,6 +18,11 @@ module Line
           attr_accessor notification_disabled: bool?
           attr_accessor custom_aggregation_units: Array[String]?
           
+
+          # @param messages [Array[Message, Hash[Symbol, untyped]]] Messages to send
+          # @param to [Array[String]] Array of user IDs. Use userId values which are returned in webhook event objects. Do not use LINE IDs found on LINE.
+          # @param notification_disabled [bool,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
+          # @param custom_aggregation_units [Array[String],nil] Name of aggregation unit. Case-sensitive.
           def initialize: (
             messages: Array[Message| Hash[Symbol, untyped]],
             to: Array[String],
@@ -26,10 +31,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::MulticastRequest] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> MulticastRequest
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -23,6 +23,15 @@ module Line
           attr_accessor audience_count: Integer?
           attr_accessor created: Integer?
           
+
+          # @param audience_group_job_id [Integer,nil] A job ID.
+          # @param audience_group_id [Integer,nil] An audience ID.
+          # @param description [String,nil] The job's description.
+          # @param type [String,nil] ('DIFF_ADD') 
+          # @param job_status [String,nil] ('QUEUED'|'WORKING'|'FINISHED'|'FAILED') 
+          # @param failed_type [String,nil] ('INTERNAL_ERROR'|'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT') 
+          # @param audience_count [Integer,nil] The number of accounts (recipients) that were added or removed.
+          # @param created [Integer,nil] When the job was created (in UNIX time).
           def initialize: (
             ?audience_group_job_id: Integer?,
             ?audience_group_id: Integer?,
@@ -35,10 +44,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ManageAudience::AudienceGroupJob] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> AudienceGroupJob
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

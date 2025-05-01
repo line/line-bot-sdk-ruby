@@ -18,6 +18,12 @@ module Line
           attr_accessor chat_bar_text: String?
           attr_accessor areas: Array[RichMenuArea]?
           
+
+          # @param size [RichMenuSize, Hash[Symbol, untyped], nil] 
+          # @param selected [bool,nil] `true` to display the rich menu by default. Otherwise, `false`.
+          # @param name [String,nil] Name of the rich menu. This value can be used to help manage your rich menus and is not displayed to users.
+          # @param chat_bar_text [String,nil] Text displayed in the chat bar
+          # @param areas [Array[RichMenuArea, Hash[Symbol, untyped]],nil] Array of area objects which define the coordinates and size of tappable areas
           def initialize: (
             ?size: RichMenuSize?| Hash[Symbol, untyped]?,
             ?selected: bool?,
@@ -27,10 +33,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::RichMenuRequest] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> RichMenuRequest
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

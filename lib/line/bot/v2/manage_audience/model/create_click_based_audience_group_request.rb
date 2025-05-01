@@ -51,6 +51,9 @@ module Line
             end
           end
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupRequest] Instance of the class
           def self.create(args) # steep:ignore
             return new(**args) # steep:ignore
           end

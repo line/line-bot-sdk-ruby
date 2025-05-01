@@ -17,16 +17,25 @@ module Line
           attr_accessor bots: Array[ModuleBot]
           attr_accessor _next: String?
           
+
+          # @param bots [Array[ModuleBot, Hash[Symbol, untyped]]] Array of Bot list Item objects representing basic information about the bot.
+          # @param _next [String,nil] Continuation token. Used to get the next array of basic bot information. This property is only returned if there are more unreturned results. 
           def initialize: (
             bots: Array[ModuleBot| Hash[Symbol, untyped]],
             ?_next: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Module::GetModulesResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetModulesResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

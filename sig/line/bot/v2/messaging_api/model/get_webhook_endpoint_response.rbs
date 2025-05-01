@@ -16,16 +16,25 @@ module Line
           attr_accessor endpoint: String
           attr_accessor active: bool
           
+
+          # @param endpoint [String] Webhook URL
+          # @param active [bool] Webhook usage status. Send a webhook event from the LINE Platform to the webhook URL only if enabled.  `true`: Webhook usage is enabled. `false`: Webhook usage is disabled. 
           def initialize: (
             endpoint: String,
             active: bool,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::GetWebhookEndpointResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetWebhookEndpointResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -22,6 +22,15 @@ module Line
           attr_accessor accepted_time: String
           attr_accessor completed_time: String?
           
+
+          # @param phase [String] ('waiting'|'sending'|'succeeded'|'failed') The current status. One of:  `waiting`: Messages are not yet ready to be sent. They are currently being filtered or processed in some way. `sending`: Messages are currently being sent. `succeeded`: Messages were sent successfully. This may not mean the messages were successfully received. `failed`: Messages failed to be sent. Use the failedDescription property to find the cause of the failure. 
+          # @param success_count [Integer,nil] The number of users who successfully received the message.
+          # @param failure_count [Integer,nil] The number of users who failed to send the message.
+          # @param target_count [Integer,nil] The number of intended recipients of the message.
+          # @param failed_description [String,nil] The reason the message failed to be sent. This is only included with a `phase` property value of `failed`.
+          # @param error_code [Integer,nil] Error summary. This is only included with a phase property value of failed. One of:  `1`: An internal error occurred. `2`: An error occurred because there weren't enough recipients. `3`: A conflict error of requests occurs because a request that has already been accepted is retried. `4`: An audience of less than 50 recipients is included as a condition of sending. 
+          # @param accepted_time [String] Narrowcast message request accepted time in milliseconds.  Format: ISO 8601 (e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC 
+          # @param completed_time [String,nil] Processing of narrowcast message request completion time in milliseconds. Returned when the phase property is succeeded or failed.  Format: ISO 8601 (e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC 
           def initialize: (
             phase: 'waiting'|'sending'|'succeeded'|'failed',
             ?success_count: Integer?,
@@ -34,10 +43,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::NarrowcastProgressResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> NarrowcastProgressResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

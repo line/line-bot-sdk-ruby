@@ -16,16 +16,25 @@ module Line
           attr_accessor group_id: String
           attr_accessor user_id: String?
           
+
+          # @param group_id [String] Group ID of the source group chat
+          # @param user_id [String,nil] ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
           def initialize: (
             group_id: String,
             ?user_id: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::GroupSource] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GroupSource
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

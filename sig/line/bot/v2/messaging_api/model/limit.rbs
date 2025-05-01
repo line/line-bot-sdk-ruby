@@ -17,16 +17,25 @@ module Line
           attr_accessor max: Integer?
           attr_accessor up_to_remaining_quota: bool?
           
+
+          # @param max [Integer,nil] The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. 
+          # @param up_to_remaining_quota [bool,nil] If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 
           def initialize: (
             ?max: Integer?,
             ?up_to_remaining_quota: bool?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::Limit] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> Limit
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end
