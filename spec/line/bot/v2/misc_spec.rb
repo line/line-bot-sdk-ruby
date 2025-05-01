@@ -616,6 +616,49 @@ describe 'misc' do
       expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
     end
 
+    it 'requees with custom aggregation unit that contains underscore' do
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          },
+          body: {
+            "to" => "USER_ID",
+            "messages" => [
+              {
+                "type" => "text",
+                "text" => " Hello, world! b_a san!",
+                "customAggregationUnits" => [
+                  "aa_bb_11"
+                ]
+              }
+            ],
+            "notificationDisabled" => false,
+          }.to_json
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
+        to: 'USER_ID',
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: ' Hello, world! b_a san!',
+            custom_aggregation_units: [
+              'aa_bb_11'
+            ]
+          )
+        ]
+      )
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: request)
+
+      expect(status_code).to eq(200)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
+      expect(body.sent_messages).to be_a(Array)
+      expect(body.sent_messages[0]).to be_a(Line::Bot::V2::MessagingApi::SentMessage)
+      expect(body.sent_messages[0].id).to eq('461230966842064897')
+      expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
+    end
+
     it 'request with x_line_retry_key: nil' do
       client = Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token-retry-key-nil')
       retry_key = nil
