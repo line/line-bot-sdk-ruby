@@ -117,37 +117,85 @@ post '/callback' do
   "OK"
 end
 
+def storeContent(message_id:, message_type:)
+  case message_type
+  when :video, :audio
+    max_retries = 10
+
+    max_retries.times do |i|
+      body, status_code, _headers = blob_client.get_message_content_transcoding_by_message_id_with_http_info(
+        message_id: message_id
+      )
+
+      unless status_code == 200
+        logger.warn "get_message_content_transcoding_by_message_id failed. status_code=#{status_code}, error=#{body}"
+        sleep 1
+        next
+      end
+
+      current_status = body.status
+
+      if current_status == 'succeeded'
+        logger.info "Transcoding succeeded for message_id=#{message_id}"
+        break      
+      elsif current_status == 'failed'
+        logger.error "Transcoding failed for message_id=#{message_id}"
+        return nil
+      else
+        ## waiting: transcoding in progress
+        sleep 1
+        if i == max_retries - 1
+          logger.error "Transcoding timed out for message_id=#{message_id}"
+          return nil
+        end
+      end
+    end
+  end
+
+  content, _, headers = blob_client.get_message_content_with_http_info(message_id: message_id)
+  content_type = headers['content-type']
+  ext = case content_type
+        when 'image/jpeg' then 'jpg'
+        when 'image/png'  then 'png'
+        when 'image/gif'  then 'gif'
+        when 'video/mp4'  then 'mp4'
+        else
+          logger.warn "Unknown content type: #{content_type}"
+          'bin'
+        end
+
+  filename = "#{message_id}.#{ext}"
+  save_path = File.join(settings.root, 'public', 'statics', filename)
+  logger.info "Saving content to #{save_path}"
+  File.open(save_path, 'wb'){|f| f.write(content)}
+
+  return File.join(settings.app_base_url, 'statics', filename)
+end
+
 def handle_message_event(event)
   message = event.message
 
   case message
   when Line::Bot::V2::Webhook::ImageMessageContent
     message_id = message.id
-    response = blob_client.get_message_content(message_id: message_id)
-    tf = Tempfile.open("content")
-    tf.write(response)
-    reply_text(event, "[MessageType::IMAGE]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+    logger.info "Image message ID: #{message_id}"
+    url = storeContent(message_id: message_id, message_type: :image)
+    reply_text(event, "[MessageType::IMAGE]\n Stored file: #{url}")
 
   when Line::Bot::V2::Webhook::VideoMessageContent
     message_id = message.id
-    response = blob_client.get_message_content(message_id: message_id)
-    tf = Tempfile.open("content")
-    tf.write(response)
-    reply_text(event, "[MessageType::VIDEO]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+    url = storeContent(message_id: message_id, message_type: :video)
+    reply_text(event, "[MessageType::VIDEO]\n Stored file: #{url}")
 
   when Line::Bot::V2::Webhook::AudioMessageContent
     message_id = message.id
-    response = blob_client.get_message_content(message_id: message_id)
-    tf = Tempfile.open("content")
-    tf.write(response)
-    reply_text(event, "[MessageType::AUDIO]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+    url = storeContent(message_id: message_id, message_type: :audio)
+    reply_text(event, "[MessageType::AUDIO]\n Stored file: #{url}")
 
   when Line::Bot::V2::Webhook::FileMessageContent
     message_id = message.id
-    response = blob_client.get_message_content(message_id: message_id)
-    tf = Tempfile.open("content")
-    tf.write(response)
-    reply_text(event, "[MessageType::FILE]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+    url = storeContent(message_id: message_id, message_type: :file)
+    reply_text(event, "[MessageType::FILE]\n Stored file: #{url}")
 
   when Line::Bot::V2::Webhook::StickerMessageContent
     reply_text(event, "[MessageType::STICKER]\npackage_id: #{message.package_id}\nsticker_id: #{message.sticker_id}")
