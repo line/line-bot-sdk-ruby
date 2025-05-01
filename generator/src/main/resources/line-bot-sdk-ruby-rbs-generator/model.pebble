@@ -36,6 +36,29 @@ module Line
           {% endif -%}
           {% endif -%}
           {% endfor %}
+
+          {# @param #}
+          {%- for variable in model.model.vars -%}
+          {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name -%}
+          {% if variable.openApiType == 'array' -%}
+          {% if variable.items.isModel -%}
+          # @param {{ variable.name }} [{{ "Array[#{variable.items.openApiType}, Hash[Symbol, untyped]]" }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
+          {% elseif variable.items.allowableValues != null -%}
+          # @param {{ variable.name }} [Array[{% for value in variable.items.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : ',' }}{% endfor -%}]{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
+          {% else -%}
+          # @param {{ variable.name }} [{{ variable.items.openApiType ? "Array[#{typeMapping[variable.items.openApiType]}]" : 'Array[untyped]' }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
+          {% endif -%}
+          {% elseif variable.isModel -%}
+          # @param {{ variable.name }} [{{ variable.openApiType }}, Hash[Symbol, untyped]{% if not variable.required %}, nil{% endif -%}] {{ variable.description }}
+          {% else -%}
+          {% if variable.allowableValues != null -%}
+          # @param {{ variable.name }} [String{% if not variable.required %},nil{% endif -%}] ({% for value in variable.allowableValues.values %}'{{ value }}'{{ loop.last ? '' : '|' }}{% endfor %}) {{ variable.description }}
+          {% else -%}
+          # @param {{ variable.name }} [{{ typeMapping[variable.openApiType] ? typeMapping[variable.openApiType] : 'untyped' }}{% if not variable.required %},nil{% endif -%}] {{ variable.description }}
+          {% endif -%}
+          {% endif -%}
+          {% endif -%}
+          {% endfor -%}
           def initialize: (
             {% for variable in model.model.vars -%}
             {% if model.model.vendorExtensions.get("x-selector").propertyName != variable.name -%}
@@ -63,10 +86,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::{{ packageName | camelize }}::{{ model.model.classname }}] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> {{ model.model.classname }}
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
           {%- if model.model.vendorExtensions.get("x-children") != null %}
 

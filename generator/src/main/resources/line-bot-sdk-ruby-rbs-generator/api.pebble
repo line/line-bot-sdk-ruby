@@ -9,6 +9,33 @@ module Line
       module {{ packageName | camelize }}
         class Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client
           @http_client: HttpClient
+          # Initializes a new {Line::Bot::V2::{{ packageName | camelize }}::Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client} instance.
+          #
+          # @param base_url [String] The base URL for requests (optional).
+          #   Defaults to '{{endpoint(operations.classname)}}' if none is provided.
+          #   You can override this for testing or to use a mock server.
+            {%- if packageName == 'module_attach' %}
+          # @param channel_id [String] The channel ID for Basic authentication.
+          # @param channel_secret [String] The channel secret for Basic authentication.
+            {%- elseif packageName != 'channel_access_token' %}
+          # @param channel_access_token [String] The channel access token for authorization.
+            {%- endif %}
+          # @param http_options [Hash] HTTP options (same as Net::HTTP options).
+          #   See: https://docs.ruby-lang.org/en/3.4/Net/HTTP.html to understand the options.
+          #
+          # @example
+          #   @client ||= Line::Bot::V2::{{ packageName | camelize }}::Api{{ operations.classname.indexOf('Blob') != -1 ? 'Blob' : '' }}Client.new(
+            {%- if packageName == 'module_attach' %}
+          #     channel_id: "YOUR_CHANNEL_ID",
+          #     channel_secret: "YOUR_CHANNEL_SECRET",
+            {%- elseif packageName != 'channel_access_token' %}
+          #     channel_access_token: "YOUR_CHANNEL_ACCESS_TOKEN",
+            {%- endif %}
+          #     http_options: {
+          #       open_timeout: 5,
+          #       read_timeout: 5,
+          #     }
+          #   )
           def initialize: (
             ?base_url: String?
             {%- if packageName == 'channel_access_token' -%}
@@ -23,19 +50,29 @@ module Line
           {%- for op in operations.operation %}
 
           # {{ op.notes }}
+          # This requests to <code>{{ op.httpMethod }} {{ endpoint(operations.classname) }}{{ op.path }}</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           {% for param in op.allParams -%}
-          # @param {{ param.paramName }} {{ param.description }}
+          # @param {{param.paramName}} [{{ param.dataType }}{{ param.required ? '' : ', nil' }}] {{param.description}}
           {% endfor -%}
           {% if op.isDeprecated -%}
-           # @deprecated
+          # @deprecated
           {% endif -%}
           {% if op.externalDocs.description != null -%}
           # {{op.externalDocs.description}}
           {% endif -%}
           {% if op.externalDocs.url != null -%}
           # @see {{op.externalDocs.url}}
-          {% endif -%}
+          {%- endif %}
+          {%- for response in op.responses %}
+          {%- if response.content['application/json'].schema.complexType != null %}
+          # @return [Array(Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}, Integer, Hash{String => String})] when HTTP status code is {{ response.code }}
+          {%- else %}
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is {{ response.code }}
+          {%- endif %}
+          {%- endfor %}
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def {{op.nickname}}_with_http_info: (
             {%- for param in op.allParams %}
             {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
@@ -48,19 +85,29 @@ module Line
           )
 
           # {{ op.notes }}
+          # This requests to <code>{{ op.httpMethod }} {{ endpoint(operations.classname) }}{{ op.path }}</code>
+          # When you want to get HTTP status code or response headers, use {{ '{#' }}{{op.nickname}}_with_http_info} instead of this.
           #
           {% for param in op.allParams -%}
-           # @param {{ param.paramName }} {{ param.description }}
+          # @param {{param.paramName}} [{{ param.dataType }}{{ param.required ? '' : ', nil' }}] {{param.description}}
           {% endfor -%}
           {% if op.isDeprecated -%}
-           # @deprecated
+          # @deprecated
           {% endif -%}
           {% if op.externalDocs.description != null -%}
           # {{op.externalDocs.description}}
           {% endif -%}
           {% if op.externalDocs.url != null -%}
           # @see {{op.externalDocs.url}}
-          {% endif -%}
+          {%- endif %}
+          {%- for response in op.responses %}
+          {%- if response.content['application/json'].schema.complexType != null %}
+          # @return [Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}] when HTTP status code is {{ response.code }}
+          {%- else %}
+          # @return [String, nil] when HTTP status code is {{ response.code }}
+          {%- endif %}
+          {%- endfor %}
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def {{op.nickname}}: (
             {%- for param in op.allParams %}
             {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
