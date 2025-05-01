@@ -89,6 +89,9 @@ post '/callback' do
 end
 ```
 
+## Migration way from v1 to v2
+Migration guide: https://github.com/line/line-bot-sdk-ruby/releases/tag/v1.30.0
+
 ## Help and media
 FAQ: https://developers.line.biz/en/faq/
 
