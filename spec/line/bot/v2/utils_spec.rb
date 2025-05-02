@@ -121,6 +121,40 @@ describe Line::Bot::V2::Utils do
       expected_output = { key: ['array', 'of', 'values'] }
       expect(Line::Bot::V2::Utils.deep_camelize(input)).to eq(expected_output)
     end
+
+    it "doesn't modify no_camelize_parent_keys children" do
+      stub_const("Line::Bot::V2::Utils::NO_CAMELIZE_PARENT_KEYS", %w(substitution))
+
+      input = {
+        type: "textV2",
+        text: "Hello, world! {user_name} san!",
+        substitution: { # This key should not be camelized
+          user_name: {
+            type: "mention",
+            mentionee: {
+              type: "user",
+              "user_id": "U1234567890abcdef1234567890abcdef"
+            }
+          }
+        }
+      }
+
+      expected_output = {
+        type: "textV2",
+        text: "Hello, world! {user_name} san!",
+        substitution: {
+          user_name: {
+            type: "mention",
+            mentionee: {
+              type: "user",
+              "userId": "U1234567890abcdef1234567890abcdef" # Only this key should be camelized
+            }
+          }
+        }
+      }
+
+      expect(Line::Bot::V2::Utils.deep_camelize(input)).to eq(expected_output)
+    end
   end
 
   describe '.deep_compact' do
