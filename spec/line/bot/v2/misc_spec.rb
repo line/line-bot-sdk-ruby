@@ -197,6 +197,86 @@ describe 'misc' do
     end
   end
 
+  describe 'GET /v2/bot/insight/message/event/aggregation' do
+    let(:client) { Line::Bot::V2::Insight::ApiClient.new(channel_access_token: channel_access_token) }
+    let(:response_code) { 200 }
+
+    it 'returns the message event aggregation successfully' do
+      response_body = {
+        "overview": {
+          "uniqueImpression": 40,
+          "uniqueClick": 30,
+          "uniqueMediaPlayed": 25,
+          "uniqueMediaPlayed100Percent": nil
+        },
+        "messages": [
+          {
+            "seq": 1,
+            "impression": 42,
+            "uniqueImpression": 40,
+            "mediaPlayed": 30,
+            "mediaPlayed25Percent": nil,
+            "mediaPlayed50Percent": nil,
+            "mediaPlayed75Percent": nil,
+            "mediaPlayed100Percent": nil,
+            "uniqueMediaPlayed": 25,
+            "uniqueMediaPlayed25Percent": nil,
+            "uniqueMediaPlayed50Percent": nil,
+            "uniqueMediaPlayed75Percent": nil,
+            "uniqueMediaPlayed100Percent": nil
+          }
+        ],
+        "clicks": [
+          {
+            "seq": 1,
+            "url": "https://developers.line.biz/",
+            "click": 35,
+            "uniqueClick": 25,
+            "uniqueClickOfRequest": nil
+          },
+          {
+            "seq": 1,
+            "url": "https://lineapiusecase.com/",
+            "click": 29,
+            "uniqueClick": nil,
+            "uniqueClickOfRequest": nil
+          }
+        ]
+      }.to_json
+
+      stub_request(:get, "https://api.line.me/v2/bot/insight/message/event/aggregation")
+        .with(
+          headers: {
+            'Authorization' => "Bearer #{channel_access_token}"
+          },
+          query: {
+            "customAggregationUnit" => "a_bc_de",
+            "from" => "20210301",
+            "to" => "20210331"
+          }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body = client.get_statistics_per_unit(
+        custom_aggregation_unit: 'a_bc_de',
+        from: '20210301',
+        to: '20210331'
+      )
+
+      expect(body.overview.unique_impression).to eq(40)
+      expect(body.overview.unique_click).to eq(30)
+      expect(body.overview.unique_media_played100_percent).to be_nil
+
+      expect(body.messages[0].seq).to eq(1)
+      expect(body.messages[0].impression).to eq(42)
+      expect(body.messages[0].unique_media_played25_percent).to be_nil
+
+      expect(body.clicks[0].seq).to eq(1)
+      expect(body.clicks[0].url).to eq('https://developers.line.biz/')
+      expect(body.clicks[0].unique_click_of_request).to be_nil
+    end
+  end
+
   describe 'GET /v2/bot/insight/followers' do
     let(:client) { Line::Bot::V2::Insight::ApiClient.new(channel_access_token: channel_access_token) }
     let(:response_code) { 200 }
@@ -603,6 +683,49 @@ describe 'misc' do
                 )
               )
             }
+          )
+        ]
+      )
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: request)
+
+      expect(status_code).to eq(200)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
+      expect(body.sent_messages).to be_a(Array)
+      expect(body.sent_messages[0]).to be_a(Line::Bot::V2::MessagingApi::SentMessage)
+      expect(body.sent_messages[0].id).to eq('461230966842064897')
+      expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
+    end
+
+    it 'requees with custom aggregation unit that contains underscore' do
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          },
+          body: {
+            "to" => "USER_ID",
+            "messages" => [
+              {
+                "type" => "text",
+                "text" => " Hello, world! b_a san!",
+                "customAggregationUnits" => [
+                  "aa_bb_11"
+                ]
+              }
+            ],
+            "notificationDisabled" => false,
+          }.to_json
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
+        to: 'USER_ID',
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: ' Hello, world! b_a san!',
+            custom_aggregation_units: [
+              'aa_bb_11'
+            ]
           )
         ]
       )
