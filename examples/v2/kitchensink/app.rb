@@ -107,7 +107,10 @@ post '/callback' do
       reply_text(event, "[VIDEO_PLAY_COMPLETE]\n#{JSON.generate(event.video_play_complete)}")
 
     when Line::Bot::V2::Webhook::UnsendEvent
-      handle_unsend(event)
+      logger.info "[UNSEND]\n#{body}"
+
+    when Line::Bot::V2::Webhook::MembershipEvent
+      reply_text(event, "[MEMBERSHIP]\n#{JSON.generate(event.membership)}")
 
     else
       reply_text(event, "Unknown event type: #{event}")
@@ -256,6 +259,19 @@ def handle_message_event(event)
               }
             }
           )
+        ]
+      )
+      client.reply_message(reply_message_request: request)
+    when 'delay'
+      ## use loading animation, sleep 5 sec, then reply 
+      client.show_loading_animation(show_loading_animation_request: Line::Bot::V2::MessagingApi::ShowLoadingAnimationRequest.new(
+        chat_id: event.source.user_id
+      ))
+      sleep 5
+      request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+        reply_token: event.reply_token,
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(text: "Delay 5 sec")
         ]
       )
       client.reply_message(reply_message_request: request)
@@ -813,6 +829,24 @@ def handle_message_event(event)
         logger.info "Unknown source type: #{event.source.type}, event: #{event}"
       end
 
+    when 'get membership infos'
+      membership_id_list = client.get_membership_list().memberships
+      membership_id = membership_id_list.first.membership_id
+
+      user_id = client.get_joined_membership_users(membership_id: membership_id).user_ids.first
+      user_profile = client.get_profile(user_id: user_id)
+      user_membership = client.get_membership_subscription(user_id: user_id).subscriptions
+
+      content = "user profile subscriping membership: #{JSON.generate(user_profile)}\n" \
+            "membership info: #{JSON.generate(user_membership)}"
+      request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+        reply_token: event.reply_token,
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(text: "[MEMBERSHIP] \n#{content}")
+        ]
+      )
+      client.reply_message(reply_message_request: request)
+
     when 'stats'
       request = Line::Bot::V2::MessagingApi::BroadcastRequest.new(
         messages: [
@@ -873,17 +907,6 @@ def reply_text(event, text)
     reply_token: event.reply_token,
     messages: [
       Line::Bot::V2::MessagingApi::TextMessage.new(text: text)
-    ]
-  )
-  client.reply_message(reply_message_request: request)
-end
-
-def handle_unsend(event)
-  id = event.unsend.message_id
-  request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
-    reply_token: event.reply_token,
-    messages: [
-      Line::Bot::V2::MessagingApi::TextMessage.new(text: "[UNSEND]\nmessage_id: #{id}")
     ]
   )
   client.reply_message(reply_message_request: request)
