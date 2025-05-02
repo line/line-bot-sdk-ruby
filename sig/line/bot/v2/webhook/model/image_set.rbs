@@ -16,6 +16,10 @@ module Line
           attr_accessor index: Integer?
           attr_accessor total: Integer?
           
+
+          # @param id [String] Image set ID. Only included when multiple images are sent simultaneously.
+          # @param index [Integer,nil] An index starting from 1, indicating the image number in a set of images sent simultaneously. Only included when multiple images are sent simultaneously. However, it won't be included if the sender is using LINE 11.15 or earlier for Android.
+          # @param total [Integer,nil] The total number of images sent simultaneously.
           def initialize: (
             id: String,
             ?index: Integer?,
@@ -23,10 +27,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::ImageSet] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> ImageSet
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -20,6 +20,12 @@ module Line
           attr_accessor webhook_event_id: String
           attr_accessor delivery_context: DeliveryContext
           
+
+          # @param source [Source, Hash[Symbol, untyped], nil] 
+          # @param timestamp [Integer] Time of the event in milliseconds.
+          # @param mode [String] ('active'|'standby') 
+          # @param webhook_event_id [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
+          # @param delivery_context [DeliveryContext, Hash[Symbol, untyped]] 
           def initialize: (
             ?source: Source?| Hash[Symbol, untyped]?,
             timestamp: Integer,
@@ -29,10 +35,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::LeaveEvent] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> LeaveEvent
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

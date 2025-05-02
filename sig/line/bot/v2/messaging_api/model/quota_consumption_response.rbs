@@ -15,15 +15,23 @@ module Line
         class QuotaConsumptionResponse
           attr_accessor total_usage: Integer
           
+
+          # @param total_usage [Integer] The number of sent messages in the current month
           def initialize: (
             total_usage: Integer,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::QuotaConsumptionResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> QuotaConsumptionResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

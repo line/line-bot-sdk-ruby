@@ -25,6 +25,17 @@ module Line
           attr_accessor offset_end: String?
           attr_accessor scaling: bool?
           
+
+          # @param url [String] 
+          # @param size [String,nil] 
+          # @param aspect_ratio [String,nil] 
+          # @param margin [String,nil] 
+          # @param position [String,nil] ('relative'|'absolute') 
+          # @param offset_top [String,nil] 
+          # @param offset_bottom [String,nil] 
+          # @param offset_start [String,nil] 
+          # @param offset_end [String,nil] 
+          # @param scaling [bool,nil] 
           def initialize: (
             url: String,
             ?size: String?,
@@ -39,10 +50,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::FlexIcon] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> FlexIcon
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

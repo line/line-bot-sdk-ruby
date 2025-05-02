@@ -16,16 +16,25 @@ module Line
           attr_accessor user_ids: Array[String]
           attr_accessor _next: String?
           
+
+          # @param user_ids [Array[String]] An array of strings indicating user IDs of users that have added the LINE Official Account as a friend. Only users of LINE for iOS and LINE for Android are included in `userIds`. 
+          # @param _next [String,nil] A continuation token to get the next array of user IDs. Returned only when there are remaining user IDs that weren't returned in `userIds` in the original request. The number of user IDs in the `userIds` element doesn't have to reach the maximum number specified by `limit` for the `next` property to be included in the response.  
           def initialize: (
             user_ids: Array[String],
             ?_next: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::GetFollowersResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetFollowersResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

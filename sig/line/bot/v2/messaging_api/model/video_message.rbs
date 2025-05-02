@@ -20,6 +20,12 @@ module Line
           attr_accessor preview_image_url: String
           attr_accessor tracking_id: String?
           
+
+          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
+          # @param sender [Sender, Hash[Symbol, untyped], nil] 
+          # @param original_content_url [String] 
+          # @param preview_image_url [String] 
+          # @param tracking_id [String,nil] 
           def initialize: (
             ?quick_reply: QuickReply?| Hash[Symbol, untyped]?,
             ?sender: Sender?| Hash[Symbol, untyped]?,
@@ -29,10 +35,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::VideoMessage] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> VideoMessage
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

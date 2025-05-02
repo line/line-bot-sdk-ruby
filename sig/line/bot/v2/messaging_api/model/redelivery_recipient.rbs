@@ -15,15 +15,23 @@ module Line
           attr_reader type: String?
           attr_accessor request_id: String?
           
+
+          # @param request_id [String,nil] 
           def initialize: (
             ?request_id: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::RedeliveryRecipient] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> RedeliveryRecipient
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

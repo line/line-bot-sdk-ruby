@@ -17,6 +17,10 @@ module Line
           attr_accessor content_provider: ContentProvider
           attr_accessor duration: Integer?
           
+
+          # @param id [String] Message ID
+          # @param content_provider [ContentProvider, Hash[Symbol, untyped]] 
+          # @param duration [Integer,nil] Length of audio file (milliseconds)
           def initialize: (
             id: String,
             content_provider: ContentProvider| Hash[Symbol, untyped],
@@ -24,10 +28,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::AudioMessageContent] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> AudioMessageContent
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

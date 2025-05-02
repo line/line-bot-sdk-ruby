@@ -16,16 +16,25 @@ module Line
           attr_accessor text: String
           attr_accessor actions: Array[Action]
           
+
+          # @param text [String] 
+          # @param actions [Array[Action, Hash[Symbol, untyped]]] 
           def initialize: (
             text: String,
             actions: Array[Action| Hash[Symbol, untyped]],
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::ConfirmTemplate] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> ConfirmTemplate
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -17,16 +17,25 @@ module Line
           attr_accessor user_ids: Array[String]
           attr_accessor _next: String?
           
+
+          # @param user_ids [Array[String]] A list of user IDs who joined the membership. Users who have not agreed to the bot user agreement, are not following the bot, or are not active will be excluded. If there are no users in the membership, an empty list will be returned. 
+          # @param _next [String,nil] A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds).  
           def initialize: (
             user_ids: Array[String],
             ?_next: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::GetJoinedMembershipUsersResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetJoinedMembershipUsersResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

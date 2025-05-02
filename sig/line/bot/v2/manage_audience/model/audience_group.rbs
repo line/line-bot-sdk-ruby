@@ -26,6 +26,19 @@ module Line
           attr_accessor permission: 'READ'|'READ_WRITE'?
           attr_accessor create_route: 'OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER'?
           
+
+          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String,nil] The audience's name.
+          # @param status [String,nil] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
+          # @param failed_type [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
+          # @param audience_count [Integer,nil] The number of users included in the audience.
+          # @param created [Integer,nil] When the audience was created (in UNIX time).
+          # @param request_id [String,nil] The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
+          # @param click_url [String,nil] The URL that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK and link URL is specified. 
+          # @param is_ifa_audience [bool,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. 
+          # @param permission [String,nil] ('READ'|'READ_WRITE') 
+          # @param create_route [String,nil] ('OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER') 
           def initialize: (
             ?audience_group_id: Integer?,
             ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
@@ -42,10 +55,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ManageAudience::AudienceGroup] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> AudienceGroup
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

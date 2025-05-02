@@ -17,6 +17,11 @@ module Line
           attr_accessor area: ImagemapArea?
           attr_accessor external_link: ImagemapExternalLink?
           
+
+          # @param original_content_url [String,nil] 
+          # @param preview_image_url [String,nil] 
+          # @param area [ImagemapArea, Hash[Symbol, untyped], nil] 
+          # @param external_link [ImagemapExternalLink, Hash[Symbol, untyped], nil] 
           def initialize: (
             ?original_content_url: String?,
             ?preview_image_url: String?,
@@ -25,10 +30,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::ImagemapVideo] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> ImagemapVideo
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

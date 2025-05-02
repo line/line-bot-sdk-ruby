@@ -15,16 +15,25 @@ module Line
           attr_accessor member_ids: Array[String]
           attr_accessor _next: String?
           
+
+          # @param member_ids [Array[String]] List of user IDs of members in the group chat. Only users of LINE for iOS and LINE for Android are included in `memberIds`.
+          # @param _next [String,nil] A continuation token to get the next array of user IDs of the members in the group chat. Returned only when there are remaining user IDs that were not returned in `memberIds` in the original request. 
           def initialize: (
             member_ids: Array[String],
             ?_next: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::MembersIdsResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> MembersIdsResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

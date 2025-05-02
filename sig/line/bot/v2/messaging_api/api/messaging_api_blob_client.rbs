@@ -13,6 +13,23 @@ module Line
       module MessagingApi
         class ApiBlobClient
           @http_client: HttpClient
+          # Initializes a new {Line::Bot::V2::MessagingApi::ApiBlobClient} instance.
+          #
+          # @param base_url [String] The base URL for requests (optional).
+          #   Defaults to 'https://api-data.line.me' if none is provided.
+          #   You can override this for testing or to use a mock server.
+          # @param channel_access_token [String] The channel access token for authorization.
+          # @param http_options [Hash] HTTP options (same as Net::HTTP options).
+          #   See: https://docs.ruby-lang.org/en/3.4/Net/HTTP.html to understand the options.
+          #
+          # @example
+          #   @client ||= Line::Bot::V2::MessagingApi::ApiBlobClient.new(
+          #     channel_access_token: "YOUR_CHANNEL_ACCESS_TOKEN",
+          #     http_options: {
+          #       open_timeout: 5,
+          #       read_timeout: 5,
+          #     }
+          #   )
           def initialize: (
             ?base_url: String?,
             channel_access_token: String,
@@ -20,9 +37,13 @@ module Line
           ) -> void
 
           # Download image, video, and audio data sent from users.
+          # This requests to <code>GET https://api-data.line.me/v2/bot/message/{messageId}/content</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
-          # @param message_id Message ID of video or audio
+          # @param message_id [String] Message ID of video or audio
           # @see https://developers.line.biz/en/reference/messaging-api/#get-content
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def get_message_content_with_http_info: (
             message_id: String
           ) -> (
@@ -31,9 +52,13 @@ module Line
           )
 
           # Download image, video, and audio data sent from users.
+          # This requests to <code>GET https://api-data.line.me/v2/bot/message/{messageId}/content</code>
+          # When you want to get HTTP status code or response headers, use {#get_message_content_with_http_info} instead of this.
           #
-          # @param message_id Message ID of video or audio
+          # @param message_id [String] Message ID of video or audio
           # @see https://developers.line.biz/en/reference/messaging-api/#get-content
+          # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_message_content: (
             message_id: String
           ) -> (
@@ -42,9 +67,13 @@ module Line
           )
 
           # Get a preview image of the image or video
+          # This requests to <code>GET https://api-data.line.me/v2/bot/message/{messageId}/content/preview</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
-          # @param message_id Message ID of image or video
+          # @param message_id [String] Message ID of image or video
           # @see https://developers.line.biz/en/reference/messaging-api/#get-image-or-video-preview
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def get_message_content_preview_with_http_info: (
             message_id: String
           ) -> (
@@ -53,9 +82,13 @@ module Line
           )
 
           # Get a preview image of the image or video
+          # This requests to <code>GET https://api-data.line.me/v2/bot/message/{messageId}/content/preview</code>
+          # When you want to get HTTP status code or response headers, use {#get_message_content_preview_with_http_info} instead of this.
           #
-          # @param message_id Message ID of image or video
+          # @param message_id [String] Message ID of image or video
           # @see https://developers.line.biz/en/reference/messaging-api/#get-image-or-video-preview
+          # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_message_content_preview: (
             message_id: String
           ) -> (
@@ -64,9 +97,13 @@ module Line
           )
 
           # Verify the preparation status of a video or audio for getting
+          # This requests to <code>GET https://api-data.line.me/v2/bot/message/{messageId}/content/transcoding</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
-          # @param message_id Message ID of video or audio
+          # @param message_id [String] Message ID of video or audio
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-video-or-audio-preparation-status
+          # @return [Array(Line::Bot::V2::MessagingApi::GetMessageContentTranscodingResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def get_message_content_transcoding_by_message_id_with_http_info: (
             message_id: String
           ) -> (
@@ -75,9 +112,13 @@ module Line
           )
 
           # Verify the preparation status of a video or audio for getting
+          # This requests to <code>GET https://api-data.line.me/v2/bot/message/{messageId}/content/transcoding</code>
+          # When you want to get HTTP status code or response headers, use {#get_message_content_transcoding_by_message_id_with_http_info} instead of this.
           #
-          # @param message_id Message ID of video or audio
+          # @param message_id [String] Message ID of video or audio
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-video-or-audio-preparation-status
+          # @return [Line::Bot::V2::MessagingApi::GetMessageContentTranscodingResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_message_content_transcoding_by_message_id: (
             message_id: String
           ) -> (
@@ -86,9 +127,13 @@ module Line
           )
 
           # Download rich menu image.
+          # This requests to <code>GET https://api-data.line.me/v2/bot/richmenu/{richMenuId}/content</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
-          # @param rich_menu_id ID of the rich menu with the image to be downloaded
+          # @param rich_menu_id [String] ID of the rich menu with the image to be downloaded
           # @see https://developers.line.biz/en/reference/messaging-api/#download-rich-menu-image
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def get_rich_menu_image_with_http_info: (
             rich_menu_id: String
           ) -> (
@@ -97,9 +142,13 @@ module Line
           )
 
           # Download rich menu image.
+          # This requests to <code>GET https://api-data.line.me/v2/bot/richmenu/{richMenuId}/content</code>
+          # When you want to get HTTP status code or response headers, use {#get_rich_menu_image_with_http_info} instead of this.
           #
-          # @param rich_menu_id ID of the rich menu with the image to be downloaded
+          # @param rich_menu_id [String] ID of the rich menu with the image to be downloaded
           # @see https://developers.line.biz/en/reference/messaging-api/#download-rich-menu-image
+          # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_rich_menu_image: (
             rich_menu_id: String
           ) -> (
@@ -108,10 +157,14 @@ module Line
           )
 
           # Upload rich menu image
+          # This requests to <code>POST https://api-data.line.me/v2/bot/richmenu/{richMenuId}/content</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
-          # @param rich_menu_id The ID of the rich menu to attach the image to
-          # @param body 
+          # @param rich_menu_id [String] The ID of the rich menu to attach the image to
+          # @param body [File, nil] 
           # @see https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def set_rich_menu_image_with_http_info: (
             rich_menu_id: String, 
             ?body: File?
@@ -121,10 +174,14 @@ module Line
           )
 
           # Upload rich menu image
+          # This requests to <code>POST https://api-data.line.me/v2/bot/richmenu/{richMenuId}/content</code>
+          # When you want to get HTTP status code or response headers, use {#set_rich_menu_image_with_http_info} instead of this.
           #
-          # @param rich_menu_id The ID of the rich menu to attach the image to
-          # @param body 
+          # @param rich_menu_id [String] The ID of the rich menu to attach the image to
+          # @param body [File, nil] 
           # @see https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
+          # @return [String, nil] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def set_rich_menu_image: (
             rich_menu_id: String, 
             ?body: File?

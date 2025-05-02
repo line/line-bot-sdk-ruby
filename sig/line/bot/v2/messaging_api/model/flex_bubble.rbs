@@ -22,6 +22,15 @@ module Line
           attr_accessor size: 'nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga'?
           attr_accessor action: Action?
           
+
+          # @param direction [String,nil] ('ltr'|'rtl') 
+          # @param styles [FlexBubbleStyles, Hash[Symbol, untyped], nil] 
+          # @param header [FlexBox, Hash[Symbol, untyped], nil] 
+          # @param hero [FlexComponent, Hash[Symbol, untyped], nil] 
+          # @param body [FlexBox, Hash[Symbol, untyped], nil] 
+          # @param footer [FlexBox, Hash[Symbol, untyped], nil] 
+          # @param size [String,nil] ('nano'|'micro'|'deca'|'hecto'|'kilo'|'mega'|'giga') 
+          # @param action [Action, Hash[Symbol, untyped], nil] 
           def initialize: (
             ?direction: 'ltr'|'rtl'?,
             ?styles: FlexBubbleStyles?| Hash[Symbol, untyped]?,
@@ -34,10 +43,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::FlexBubble] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> FlexBubble
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

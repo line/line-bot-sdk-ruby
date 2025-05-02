@@ -14,15 +14,23 @@ module Line
         class UnsendDetail
           attr_accessor message_id: String
           
+
+          # @param message_id [String] The message ID of the unsent message
           def initialize: (
             message_id: String,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::UnsendDetail] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> UnsendDetail
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

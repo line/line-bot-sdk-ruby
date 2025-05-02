@@ -14,15 +14,23 @@ module Line
         class ValidateMessageRequest
           attr_accessor messages: Array[Message]
           
+
+          # @param messages [Array[Message, Hash[Symbol, untyped]]] Array of message objects to validate
           def initialize: (
             messages: Array[Message| Hash[Symbol, untyped]],
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::ValidateMessageRequest] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> ValidateMessageRequest
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -16,15 +16,23 @@ module Line
         class GetMessageContentTranscodingResponse
           attr_accessor status: 'processing'|'succeeded'|'failed'
           
+
+          # @param status [String] ('processing'|'succeeded'|'failed') The preparation status. One of:  `processing`: Preparing to get content. `succeeded`: Ready to get the content. You can get the content sent by users. `failed`: Failed to prepare to get the content. 
           def initialize: (
             status: 'processing'|'succeeded'|'failed',
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::GetMessageContentTranscodingResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetMessageContentTranscodingResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -20,6 +20,12 @@ module Line
           attr_accessor substitution: Object?
           attr_accessor quote_token: String?
           
+
+          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
+          # @param sender [Sender, Hash[Symbol, untyped], nil] 
+          # @param text [String] 
+          # @param substitution [Object,nil] A mapping that specifies substitutions for parts enclosed in {} within the `text` field.
+          # @param quote_token [String,nil] Quote token of the message you want to quote.
           def initialize: (
             ?quick_reply: QuickReply?| Hash[Symbol, untyped]?,
             ?sender: Sender?| Hash[Symbol, untyped]?,
@@ -29,10 +35,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::TextMessageV2] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> TextMessageV2
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

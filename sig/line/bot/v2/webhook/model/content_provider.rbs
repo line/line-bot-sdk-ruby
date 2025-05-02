@@ -17,6 +17,10 @@ module Line
           attr_accessor original_content_url: String?
           attr_accessor preview_image_url: String?
           
+
+          # @param type [String] ('line'|'external') Provider of the image file.
+          # @param original_content_url [String,nil] URL of the image file. Only included when contentProvider.type is external.
+          # @param preview_image_url [String,nil] URL of the preview image. Only included when contentProvider.type is external.
           def initialize: (
             type: 'line'|'external',
             ?original_content_url: String?,
@@ -24,10 +28,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::ContentProvider] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> ContentProvider
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

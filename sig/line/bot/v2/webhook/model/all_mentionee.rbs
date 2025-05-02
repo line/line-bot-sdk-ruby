@@ -17,16 +17,25 @@ module Line
           attr_accessor index: Integer
           attr_accessor length: Integer
           
+
+          # @param index [Integer] Index position of the user mention for a character in text, with the first character being at position 0.
+          # @param length [Integer] The length of the text of the mentioned user. For a mention @example, 8 is the length.
           def initialize: (
             index: Integer,
             length: Integer,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::AllMentionee] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> AllMentionee
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

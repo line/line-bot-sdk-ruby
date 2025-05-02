@@ -20,6 +20,13 @@ module Line
           attr_accessor style: 'normal'|'italic'?
           attr_accessor decoration: 'none'|'underline'|'line-through'?
           
+
+          # @param text [String,nil] 
+          # @param size [String,nil] 
+          # @param color [String,nil] 
+          # @param weight [String,nil] ('regular'|'bold') 
+          # @param style [String,nil] ('normal'|'italic') 
+          # @param decoration [String,nil] ('none'|'underline'|'line-through') 
           def initialize: (
             ?text: String?,
             ?size: String?,
@@ -30,10 +37,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::FlexSpan] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> FlexSpan
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

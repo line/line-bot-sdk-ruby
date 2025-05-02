@@ -18,6 +18,10 @@ module Line
           attr_accessor upload_description: String?
           attr_accessor audiences: Array[Audience]?
           
+
+          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param upload_description [String,nil] The audience's name.
+          # @param audiences [Array[Audience, Hash[Symbol, untyped]],nil] An array of up to 10,000 user IDs or IFAs.
           def initialize: (
             ?audience_group_id: Integer?,
             ?upload_description: String?,
@@ -25,10 +29,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ManageAudience::AddAudienceToAudienceGroupRequest] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> AddAudienceToAudienceGroupRequest
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end
