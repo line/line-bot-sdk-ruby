@@ -738,6 +738,17 @@ def handle_message_event(event)
         ]
       )
       client.reply_message(reply_message_request: request)
+    when 'quote message'
+      request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+        reply_token: event.reply_token,
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: '[QUOTE MESSAGE]',
+            quote_token: event.message.quote_token
+          )
+        ]
+      )
+      client.reply_message(reply_message_request: request)
 
     when 'quick reply'
       request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
@@ -786,6 +797,12 @@ def handle_message_event(event)
                     initial: "2017-12-25t00:00",
                     max: "2018-01-24t23:59",
                     min: "2017-12-25t00:00"
+                  )
+                ),
+                Line::Bot::V2::MessagingApi::QuickReplyItem.new(
+                  action: Line::Bot::V2::MessagingApi::ClipboardAction.new(
+                    label: "Get coupon code",
+                    clipboard_text: "1234567890"
                   )
                 )
               ]
@@ -894,6 +911,10 @@ def handle_message_event(event)
       reply_text(event, "[STATS]\n#{stats}")
 
     else
+      if (event.message.quoted_message_id != nil) 
+        reply_text(event, "[ECHO]\n#{event.message.text} Thanks you for quoting my message!")
+      end
+
       reply_text(event, "[ECHO]\n#{event.message.text}")
     end
   else
