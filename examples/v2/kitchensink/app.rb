@@ -260,6 +260,55 @@ def handle_message_event(event)
       )
       client.reply_message(reply_message_request: request)
 
+    when 'emoji v2'
+      request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+        reply_token: event.reply_token,
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessageV2.new(
+            text: "Look at this: {sample} It's a LINE emoji! (v2)",
+            substitution: {
+              "sample" => Line::Bot::V2::MessagingApi::EmojiSubstitutionObject.new(
+                  product_id: '5ac1bfd5040ab15980c9b435',
+                  emoji_id: '002'
+              )
+            }
+          )
+        ]
+      )
+      client.reply_message(reply_message_request: request)
+
+    when 'mention me'
+      if event.source.type == 'group' || event.source.type == 'room' 
+        request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+          reply_token: event.reply_token,
+          messages: [
+            Line::Bot::V2::MessagingApi::TextMessageV2.new(
+              text: "Hi {yourName}! cc: {all}\n How are you?",
+              substitution: {
+                "yourName" => Line::Bot::V2::MessagingApi::MentionSubstitutionObject.new(
+                  mentionee: Line::Bot::V2::MessagingApi::UserMentionTarget.new(
+                    user_id: event.source.user_id
+                  )
+                ),
+                "all" => Line::Bot::V2::MessagingApi::MentionSubstitutionObject.new(
+                  mentionee: Line::Bot::V2::MessagingApi::AllMentionTarget.new()
+                )
+              }
+            )
+          ]
+        )
+        response, _,_ = client.reply_message_with_http_info(reply_message_request: request)
+        if response.is_a?(Line::Bot::V2::MessagingApi::ErrorResponse)
+          logger.error "[ERROR MENTION]\n" \
+                       "Message: #{response.message}\n" \
+                       "Details: #{response.details.inspect}"
+        else
+          logger.info "[MENTION]\n #{response}"
+        end
+      else 
+        reply_text(event, "Bot can't use mention API without group ID")
+      end
+
     when 'buttons'
       request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
         reply_token: event.reply_token,
