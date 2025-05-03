@@ -97,7 +97,8 @@ module Line
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupResponse] Instance of the class
           def self.create(args) # steep:ignore
-            return new(**args) # steep:ignore
+            symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
+            return new(**symbolized_args) # steep:ignore
           end
 
           # @param other [Object] Object to compare

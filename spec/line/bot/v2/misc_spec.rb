@@ -696,6 +696,76 @@ describe 'misc' do
       expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
     end
 
+    it 'request - success - flex message using request class from JSON' do
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          },
+          body:  {
+            to: "U4af4980629...",
+            messages: [
+              {
+                type: "flex",
+                altText: "This is a Flex Message",
+                contents: {
+                  type: "bubble",
+                  body: {
+                    type: "box",
+                    layout: "horizontal",
+                    contents: [
+                      {
+                        type: "text",
+                        text: "Hello"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            notificationDisabled: false
+          }.to_json
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      request = Line::Bot::V2::MessagingApi::PushMessageRequest.create(
+        JSON.parse(
+          <<~JSON
+            {
+              "to": "U4af4980629...",
+              "messages": [
+                {
+                  "type": "flex",
+                  "alt_text": "This is a Flex Message",
+                  "contents": {
+                    "type": "bubble",
+                    "body": {
+                      "type": "box",
+                      "layout": "horizontal",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "Hello"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          JSON
+        )
+      )
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: request)
+
+      expect(status_code).to eq(200)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
+      expect(body.sent_messages).to be_a(Array)
+      expect(body.sent_messages[0]).to be_a(Line::Bot::V2::MessagingApi::SentMessage)
+      expect(body.sent_messages[0].id).to eq('461230966842064897')
+      expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
+    end
+
     it 'requees with custom aggregation unit that contains underscore' do
       stub_request(:post, "https://api.line.me/v2/bot/message/push")
         .with(

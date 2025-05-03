@@ -69,7 +69,11 @@ def rich_menu_request_b
       ),
       Line::Bot::V2::MessagingApi::RichMenuArea.new(
         bounds: Line::Bot::V2::MessagingApi::RichMenuBounds.new(x: 1251, y: 0, width: 1250, height: 1686),
-        action: Line::Bot::V2::MessagingApi::URIAction.new(uri: 'https://www.line-community.me/')
+        action: Line::Bot::V2::MessagingApi::PostbackAction.new(
+          label: 'Postback',
+          data: 'richmenu-changed-to-a',
+          input_option: 'openVoice'
+        )
       )
     ]
   )
