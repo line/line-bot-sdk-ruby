@@ -5,7 +5,6 @@ target :lib do
   signature "sig-vendor"
 
   check "lib"
-  ignore "lib/line/bot/v1"
 
   library "net-http"
 
