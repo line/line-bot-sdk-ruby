@@ -864,6 +864,147 @@ def handle_message_event(event)
       )
       client.reply_message(reply_message_request: request)
 
+    # Richmenu
+    when 'richmenu list'
+      # List all existing rich menus
+      begin
+        response = client.get_rich_menu_list
+        richmenus = response.richmenus
+        if richmenus.empty?
+          reply_text(event, "Richmenu list is empty.")
+        else
+          msg = richmenus.map { |rm| "• #{rm.rich_menu_id} : #{rm.name}" }.join("\n")
+          reply_text(event, "[RichMenu List]\n#{msg}")
+        end
+      rescue => e
+        reply_text(event, "[ERROR]\nCould not list rich menus.\n#{e.message}")
+      end
+
+    when 'richmenu create tab'
+      # Create a sample rich menu with minimal settings
+      def rich_menu_request_a
+        Line::Bot::V2::MessagingApi::RichMenuRequest.new(
+          size: Line::Bot::V2::MessagingApi::RichMenuSize.new(width: 2500, height: 1686),
+          selected: false,
+          name: 'richmenu-a',
+          chat_bar_text: 'Tap to open',
+          areas: [
+            Line::Bot::V2::MessagingApi::RichMenuArea.new(
+              bounds: Line::Bot::V2::MessagingApi::RichMenuBounds.new(x: 0, y: 0, width: 1250, height: 1686),
+              action: Line::Bot::V2::MessagingApi::CameraRollAction.new(label: 'Camera roll')
+            ),
+            Line::Bot::V2::MessagingApi::RichMenuArea.new(
+              bounds: Line::Bot::V2::MessagingApi::RichMenuBounds.new(x: 1251, y: 0, width: 1250, height: 1686),
+              action: Line::Bot::V2::MessagingApi::RichMenuSwitchAction.new(rich_menu_alias_id: 'richmenu-alias-b-ruby', data: 'richmenu-changed-to-b')
+            )
+          ]
+        )
+      end
+
+      def rich_menu_request_b
+        Line::Bot::V2::MessagingApi::RichMenuRequest.new(
+          size: Line::Bot::V2::MessagingApi::RichMenuSize.new(width: 2500, height: 1686),
+          selected: false,
+          name: 'richmenu-b',
+          chat_bar_text: 'Tap to open',
+          areas: [
+            Line::Bot::V2::MessagingApi::RichMenuArea.new(
+              bounds: Line::Bot::V2::MessagingApi::RichMenuBounds.new(x: 0, y: 0, width: 1250, height: 1686),
+              action: Line::Bot::V2::MessagingApi::RichMenuSwitchAction.new(rich_menu_alias_id: 'richmenu-alias-a-ruby', data: 'richmenu-changed-to-a')
+            ),
+            Line::Bot::V2::MessagingApi::RichMenuArea.new(
+              bounds: Line::Bot::V2::MessagingApi::RichMenuBounds.new(x: 1251, y: 0, width: 1250, height: 1686),
+              action: Line::Bot::V2::MessagingApi::PostbackAction.new(
+                label: 'Postback',
+                data: 'richmenu-changed-to-a',
+                input_option: 'openVoice'
+              )
+            )
+          ]
+        )
+      end
+
+      create_rich_menu_a_response = client.create_rich_menu(rich_menu_request: rich_menu_request_a)
+      logger.info "Create rich menu A: #{create_rich_menu_a_response.rich_menu_id}"
+      a = blob_client.set_rich_menu_image(rich_menu_id: create_rich_menu_a_response.rich_menu_id, body: File.open('./richmenu/richmenu-a.png'))
+      logger.info "Set rich menu image A: #{a}"
+
+      create_rich_menu_b_response = client.create_rich_menu(rich_menu_request: rich_menu_request_b)
+      logger.info "Create rich menu B: #{create_rich_menu_b_response.rich_menu_id}"
+      a = blob_client.set_rich_menu_image(rich_menu_id: create_rich_menu_b_response.rich_menu_id, body: File.open('./richmenu/richmenu-b.png'))
+      logger.info "Set rich menu image B: #{a}"
+
+      client.set_default_rich_menu(rich_menu_id: create_rich_menu_a_response.rich_menu_id)
+      logger.info "Set rich menu to user (you): Clean up by deleting rich menus if something wrong happens."
+
+      a = client.create_rich_menu_alias(
+        create_rich_menu_alias_request: Line::Bot::V2::MessagingApi::CreateRichMenuAliasRequest.new(
+          rich_menu_id: create_rich_menu_a_response.rich_menu_id,
+          rich_menu_alias_id: 'richmenu-alias-a-ruby'
+        )
+      )
+      # only if a is instance of Line::Bot::V2::MessagingApi::ErrorResponse
+      if a.is_a?(Line::Bot::V2::MessagingApi::ErrorResponse)
+        logger.warn "Failed to create rich menu alias: #{JSON.generate(a.details)}, #{JSON.generate(a.message)}"
+      end
+
+      a = client.create_rich_menu_alias(
+        create_rich_menu_alias_request: Line::Bot::V2::MessagingApi::CreateRichMenuAliasRequest.new(
+          rich_menu_id: create_rich_menu_b_response.rich_menu_id,
+          rich_menu_alias_id: 'richmenu-alias-b-ruby'
+        )
+      )
+      # only if a is instance of Line::Bot::V2::MessagingApi::ErrorResponse
+      if a.is_a?(Line::Bot::V2::MessagingApi::ErrorResponse)
+        logger.warn "Failed to create rich menu alias: #{JSON.generate(a.details)}, #{JSON.generate(a.message)}"
+        reply_text(event, "[ERROR]\nCould not create rich menu alias.\n#{a.message}")
+      else
+        reply_text(event, "[RICHMENU]\nRich menu created and linked to you.\nRich menu alias created.")
+      end
+
+    when 'richmenu alias list'
+      begin
+        res = client.get_rich_menu_alias_list
+        aliases = res.aliases
+        if aliases.empty?
+          reply_text(event, "Richmenu alias list is empty.")
+        else
+          msg = aliases.map { |a| "• #{a.rich_menu_alias_id} => #{a.rich_menu_id}" }.join("\n")
+          reply_text(event, "[ALIAS LIST]\n#{msg}")
+        end
+      rescue => e
+        reply_text(event, "[ERROR]\nCould not list aliases.\n#{e.message}")
+      end
+
+    when 'richmenu delete all'
+      list = client.get_rich_menu_list
+      list.richmenus.each do |richmenu|
+        client.delete_rich_menu(rich_menu_id: richmenu.rich_menu_id)
+        logger.info "Deleted rich menu: #{richmenu.rich_menu_id}"
+      end
+      reply_text(event, "[RICHMENU]\nDeleted all rich menus.")
+
+    when 'richmenu delete alias all'
+      list = client.get_rich_menu_alias_list
+      list.aliases.each do |alias_obj|
+        client.delete_rich_menu_alias(rich_menu_alias_id: alias_obj.rich_menu_alias_id)
+        logger.info "Deleted rich menu alias: #{alias_obj.rich_menu_alias_id}"
+      end
+      reply_text(event, "[RICHMENU]\nDeleted all rich menu aliases.")
+
+    when "richmenu batch unlink all"
+      begin
+        operation = Line::Bot::V2::MessagingApi::RichMenuBatchUnlinkAllOperation.new()
+        batch_req = Line::Bot::V2::MessagingApi::RichMenuBatchRequest.new(
+          operations: [operation],
+          resume_request_key: "my_key"
+        )
+        client.rich_menu_batch(rich_menu_batch_request: batch_req)
+        reply_text(event, "[BATCH UNLINK]\n Unlinking user richmenu from all users.")
+      rescue => e
+        reply_text(event, "[ERROR]\nCould not unlink via batch.\n#{e.message}")
+      end
+
     when 'stats'
       request = Line::Bot::V2::MessagingApi::BroadcastRequest.new(
         messages: [
