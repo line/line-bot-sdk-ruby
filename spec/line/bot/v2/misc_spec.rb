@@ -654,9 +654,9 @@ describe 'misc' do
             "messages" => [
               {
                 "type" => "textV2",
-                "text" => " Hello, world! {name} san!",
+                "text" => " Hello, world! {user_name} san!",
                 "substitution" => {
-                  "name" => {
+                  "user_name" => {
                     "type" => "mention",
                     "mentionee" => {
                       "type" => "user",
@@ -675,9 +675,9 @@ describe 'misc' do
         to: 'USER_ID',
         messages: [
           Line::Bot::V2::MessagingApi::TextMessageV2.new(
-            text: ' Hello, world! {name} san!',
+            text: ' Hello, world! {user_name} san!',
             substitution: {
-              "name": Line::Bot::V2::MessagingApi::MentionSubstitutionObject.new(
+              user_name: Line::Bot::V2::MessagingApi::MentionSubstitutionObject.new(
                 mentionee: Line::Bot::V2::MessagingApi::UserMentionTarget.new(
                   user_id: 'U1234567890'
                 )
