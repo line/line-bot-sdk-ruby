@@ -17,6 +17,10 @@ module Line
           attr_accessor file_name: String
           attr_accessor file_size: Integer
           
+
+          # @param id [String] Message ID
+          # @param file_name [String] File name
+          # @param file_size [Integer] File size in bytes
           def initialize: (
             id: String,
             file_name: String,
@@ -24,10 +28,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::FileMessageContent] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> FileMessageContent
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

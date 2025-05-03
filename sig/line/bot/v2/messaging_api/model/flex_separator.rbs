@@ -16,16 +16,25 @@ module Line
           attr_accessor margin: String?
           attr_accessor color: String?
           
+
+          # @param margin [String,nil] 
+          # @param color [String,nil] 
           def initialize: (
             ?margin: String?,
             ?color: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::FlexSeparator] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> FlexSeparator
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -16,16 +16,25 @@ module Line
           attr_accessor rich_menu_id: String
           attr_accessor user_ids: Array[String]
           
+
+          # @param rich_menu_id [String] ID of a rich menu
+          # @param user_ids [Array[String]] Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
           def initialize: (
             rich_menu_id: String,
             user_ids: Array[String],
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::RichMenuBulkLinkRequest] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> RichMenuBulkLinkRequest
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

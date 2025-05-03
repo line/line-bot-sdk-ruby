@@ -23,6 +23,17 @@ module Line
           attr_accessor is_in_app_purchase: bool
           attr_accessor is_published: bool
           
+
+          # @param membership_id [Integer] Membership plan ID.
+          # @param title [String] Membership plan name.
+          # @param description [String] Membership plan description.
+          # @param benefits [Array[String]] List of membership plan perks.
+          # @param price [Float] Monthly fee for membership plan. (e.g. 1500.00)
+          # @param currency [String] ('JPY'|'TWD'|'THB') The currency of membership.price.
+          # @param member_count [Integer] Number of members subscribed to the membership plan.
+          # @param member_limit [Integer] The upper limit of members who can subscribe. If no upper limit is set, it will be null.
+          # @param is_in_app_purchase [bool] Payment method for users who subscribe to a membership plan.
+          # @param is_published [bool] Membership plan status.
           def initialize: (
             membership_id: Integer,
             title: String,
@@ -37,10 +48,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::Membership] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> Membership
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

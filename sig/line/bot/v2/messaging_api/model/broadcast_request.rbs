@@ -16,16 +16,25 @@ module Line
           attr_accessor messages: Array[Message]
           attr_accessor notification_disabled: bool?
           
+
+          # @param messages [Array[Message, Hash[Symbol, untyped]]] List of Message objects.
+          # @param notification_disabled [bool,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
           def initialize: (
             messages: Array[Message| Hash[Symbol, untyped]],
             ?notification_disabled: bool?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::BroadcastRequest] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> BroadcastRequest
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

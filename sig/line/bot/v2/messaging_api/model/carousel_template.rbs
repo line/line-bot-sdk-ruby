@@ -17,6 +17,10 @@ module Line
           attr_accessor image_aspect_ratio: String?
           attr_accessor image_size: String?
           
+
+          # @param columns [Array[CarouselColumn, Hash[Symbol, untyped]]] 
+          # @param image_aspect_ratio [String,nil] 
+          # @param image_size [String,nil] 
           def initialize: (
             columns: Array[CarouselColumn| Hash[Symbol, untyped]],
             ?image_aspect_ratio: String?,
@@ -24,10 +28,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::CarouselTemplate] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> CarouselTemplate
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

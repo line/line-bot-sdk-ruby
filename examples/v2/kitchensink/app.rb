@@ -124,7 +124,10 @@ post '/callback' do
       reply_text(event, "[VIDEO_PLAY_COMPLETE]\n#{JSON.generate(event.video_play_complete)}")
 
     when Line::Bot::V2::Webhook::UnsendEvent
-      handle_unsend(event)
+      logger.info "[UNSEND]\n#{body}"
+
+    when Line::Bot::V2::Webhook::MembershipEvent
+      reply_text(event, "[MEMBERSHIP]\n#{JSON.generate(event.membership)}")
 
     else
       reply_text(event, "Unknown event type: #{event}")
@@ -134,37 +137,85 @@ post '/callback' do
   "OK"
 end
 
+def storeContent(message_id:, message_type:)
+  case message_type
+  when :video, :audio
+    max_retries = 10
+
+    max_retries.times do |i|
+      body, status_code, _headers = blob_client.get_message_content_transcoding_by_message_id_with_http_info(
+        message_id: message_id
+      )
+
+      unless status_code == 200
+        logger.warn "get_message_content_transcoding_by_message_id failed. status_code=#{status_code}, error=#{body}"
+        sleep 1
+        next
+      end
+
+      current_status = body.status
+
+      if current_status == 'succeeded'
+        logger.info "Transcoding succeeded for message_id=#{message_id}"
+        break      
+      elsif current_status == 'failed'
+        logger.error "Transcoding failed for message_id=#{message_id}"
+        return nil
+      else
+        ## waiting: transcoding in progress
+        sleep 1
+        if i == max_retries - 1
+          logger.error "Transcoding timed out for message_id=#{message_id}"
+          return nil
+        end
+      end
+    end
+  end
+
+  content, _, headers = blob_client.get_message_content_with_http_info(message_id: message_id)
+  content_type = headers['content-type']
+  ext = case content_type
+        when 'image/jpeg' then 'jpg'
+        when 'image/png'  then 'png'
+        when 'image/gif'  then 'gif'
+        when 'video/mp4'  then 'mp4'
+        else
+          logger.warn "Unknown content type: #{content_type}"
+          'bin'
+        end
+
+  filename = "#{message_id}.#{ext}"
+  save_path = File.join(settings.root, 'public', 'statics', filename)
+  logger.info "Saving content to #{save_path}"
+  File.open(save_path, 'wb'){|f| f.write(content)}
+
+  return File.join(settings.app_base_url, 'statics', filename)
+end
+
 def handle_message_event(event)
   message = event.message
 
   case message
   when Line::Bot::V2::Webhook::ImageMessageContent
     message_id = message.id
-    response = blob_client.get_message_content(message_id: message_id)
-    tf = Tempfile.open("content")
-    tf.write(response)
-    reply_text(event, "[MessageType::IMAGE]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+    logger.info "Image message ID: #{message_id}"
+    url = storeContent(message_id: message_id, message_type: :image)
+    reply_text(event, "[MessageType::IMAGE]\n Stored file: #{url}")
 
   when Line::Bot::V2::Webhook::VideoMessageContent
     message_id = message.id
-    response = blob_client.get_message_content(message_id: message_id)
-    tf = Tempfile.open("content")
-    tf.write(response)
-    reply_text(event, "[MessageType::VIDEO]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+    url = storeContent(message_id: message_id, message_type: :video)
+    reply_text(event, "[MessageType::VIDEO]\n Stored file: #{url}")
 
   when Line::Bot::V2::Webhook::AudioMessageContent
     message_id = message.id
-    response = blob_client.get_message_content(message_id: message_id)
-    tf = Tempfile.open("content")
-    tf.write(response)
-    reply_text(event, "[MessageType::AUDIO]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+    url = storeContent(message_id: message_id, message_type: :audio)
+    reply_text(event, "[MessageType::AUDIO]\n Stored file: #{url}")
 
   when Line::Bot::V2::Webhook::FileMessageContent
     message_id = message.id
-    response = blob_client.get_message_content(message_id: message_id)
-    tf = Tempfile.open("content")
-    tf.write(response)
-    reply_text(event, "[MessageType::FILE]\nid:#{message_id}\nreceived #{tf.size} bytes data")
+    url = storeContent(message_id: message_id, message_type: :file)
+    reply_text(event, "[MessageType::FILE]\n Stored file: #{url}")
 
   when Line::Bot::V2::Webhook::StickerMessageContent
     reply_text(event, "[MessageType::STICKER]\npackage_id: #{message.package_id}\nsticker_id: #{message.sticker_id}")
@@ -228,6 +279,68 @@ def handle_message_event(event)
         ]
       )
       client.reply_message(reply_message_request: request)
+    when 'delay'
+      ## use loading animation, sleep 5 sec, then reply 
+      client.show_loading_animation(show_loading_animation_request: Line::Bot::V2::MessagingApi::ShowLoadingAnimationRequest.new(
+        chat_id: event.source.user_id
+      ))
+      sleep 5
+      request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+        reply_token: event.reply_token,
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(text: "Delay 5 sec")
+        ]
+      )
+      client.reply_message(reply_message_request: request)
+
+    when 'emoji v2'
+      request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+        reply_token: event.reply_token,
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessageV2.new(
+            text: "Look at this: {sample} It's a LINE emoji! (v2)",
+            substitution: {
+              "sample" => Line::Bot::V2::MessagingApi::EmojiSubstitutionObject.new(
+                  product_id: '5ac1bfd5040ab15980c9b435',
+                  emoji_id: '002'
+              )
+            }
+          )
+        ]
+      )
+      client.reply_message(reply_message_request: request)
+
+    when 'mention me'
+      if event.source.type == 'group' || event.source.type == 'room' 
+        request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+          reply_token: event.reply_token,
+          messages: [
+            Line::Bot::V2::MessagingApi::TextMessageV2.new(
+              text: "Hi {yourName}! cc: {all}\n How are you?",
+              substitution: {
+                "yourName" => Line::Bot::V2::MessagingApi::MentionSubstitutionObject.new(
+                  mentionee: Line::Bot::V2::MessagingApi::UserMentionTarget.new(
+                    user_id: event.source.user_id
+                  )
+                ),
+                "all" => Line::Bot::V2::MessagingApi::MentionSubstitutionObject.new(
+                  mentionee: Line::Bot::V2::MessagingApi::AllMentionTarget.new()
+                )
+              }
+            )
+          ]
+        )
+        response, _,_ = client.reply_message_with_http_info(reply_message_request: request)
+        if response.is_a?(Line::Bot::V2::MessagingApi::ErrorResponse)
+          logger.error "[ERROR MENTION]\n" \
+                       "Message: #{response.message}\n" \
+                       "Details: #{response.details.inspect}"
+        else
+          logger.info "[MENTION]\n #{response}"
+        end
+      else 
+        reply_text(event, "Bot can't use mention API without group ID")
+      end
 
     when 'buttons'
       request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
@@ -642,6 +755,17 @@ def handle_message_event(event)
         ]
       )
       client.reply_message(reply_message_request: request)
+    when 'quote message'
+      request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+        reply_token: event.reply_token,
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(
+            text: '[QUOTE MESSAGE]',
+            quote_token: event.message.quote_token
+          )
+        ]
+      )
+      client.reply_message(reply_message_request: request)
 
     when 'quick reply'
       request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
@@ -691,6 +815,12 @@ def handle_message_event(event)
                     max: "2018-01-24t23:59",
                     min: "2017-12-25t00:00"
                   )
+                ),
+                Line::Bot::V2::MessagingApi::QuickReplyItem.new(
+                  action: Line::Bot::V2::MessagingApi::ClipboardAction.new(
+                    label: "Get coupon code",
+                    clipboard_text: "1234567890"
+                  )
                 )
               ]
             )
@@ -732,6 +862,24 @@ def handle_message_event(event)
       else
         logger.info "Unknown source type: #{event.source.type}, event: #{event}"
       end
+
+    when 'get membership infos'
+      membership_id_list = client.get_membership_list().memberships
+      membership_id = membership_id_list.first.membership_id
+
+      user_id = client.get_joined_membership_users(membership_id: membership_id).user_ids.first
+      user_profile = client.get_profile(user_id: user_id)
+      user_membership = client.get_membership_subscription(user_id: user_id).subscriptions
+
+      content = "user profile subscriping membership: #{JSON.generate(user_profile)}\n" \
+            "membership info: #{JSON.generate(user_membership)}"
+      request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
+        reply_token: event.reply_token,
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(text: "[MEMBERSHIP] \n#{content}")
+        ]
+      )
+      client.reply_message(reply_message_request: request)
 
     when 'stats'
       request = Line::Bot::V2::MessagingApi::BroadcastRequest.new(
@@ -780,6 +928,10 @@ def handle_message_event(event)
       reply_text(event, "[STATS]\n#{stats}")
 
     else
+      if (event.message.quoted_message_id != nil) 
+        reply_text(event, "[ECHO]\n#{event.message.text} Thanks you for quoting my message!")
+      end
+
       reply_text(event, "[ECHO]\n#{event.message.text}")
     end
   else
@@ -793,17 +945,6 @@ def reply_text(event, text)
     reply_token: event.reply_token,
     messages: [
       Line::Bot::V2::MessagingApi::TextMessage.new(text: text)
-    ]
-  )
-  client.reply_message(reply_message_request: request)
-end
-
-def handle_unsend(event)
-  id = event.unsend.message_id
-  request = Line::Bot::V2::MessagingApi::ReplyMessageRequest.new(
-    reply_token: event.reply_token,
-    messages: [
-      Line::Bot::V2::MessagingApi::TextMessage.new(text: "[UNSEND]\nmessage_id: #{id}")
     ]
   )
   client.reply_message(reply_message_request: request)

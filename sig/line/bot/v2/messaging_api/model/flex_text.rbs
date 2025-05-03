@@ -36,6 +36,29 @@ module Line
           attr_accessor adjust_mode: 'shrink-to-fit'?
           attr_accessor scaling: bool?
           
+
+          # @param flex [Integer,nil] 
+          # @param text [String,nil] 
+          # @param size [String,nil] 
+          # @param align [String,nil] ('start'|'end'|'center') 
+          # @param gravity [String,nil] ('top'|'bottom'|'center') 
+          # @param color [String,nil] 
+          # @param weight [String,nil] ('regular'|'bold') 
+          # @param style [String,nil] ('normal'|'italic') 
+          # @param decoration [String,nil] ('none'|'underline'|'line-through') 
+          # @param wrap [bool,nil] 
+          # @param line_spacing [String,nil] 
+          # @param margin [String,nil] 
+          # @param position [String,nil] ('relative'|'absolute') 
+          # @param offset_top [String,nil] 
+          # @param offset_bottom [String,nil] 
+          # @param offset_start [String,nil] 
+          # @param offset_end [String,nil] 
+          # @param action [Action, Hash[Symbol, untyped], nil] 
+          # @param max_lines [Integer,nil] 
+          # @param contents [Array[FlexSpan, Hash[Symbol, untyped]],nil] 
+          # @param adjust_mode [String,nil] ('shrink-to-fit') 
+          # @param scaling [bool,nil] 
           def initialize: (
             ?flex: Integer?,
             ?text: String?,
@@ -62,10 +85,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::FlexText] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> FlexText
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

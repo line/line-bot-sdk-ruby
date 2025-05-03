@@ -17,16 +17,25 @@ module Line
           attr_accessor label: String?
           attr_accessor clipboard_text: String
           
+
+          # @param label [String,nil] Label for the action.
+          # @param clipboard_text [String] Text that is copied to the clipboard. Max character limit: 1000 
           def initialize: (
             ?label: String?,
             clipboard_text: String,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::ClipboardAction] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> ClipboardAction
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -15,16 +15,25 @@ module Line
           attr_accessor area: String?
           attr_accessor percentage: Float?
           
+
+          # @param area [String,nil] users' country and region
+          # @param percentage [Float,nil] Percentage
           def initialize: (
             ?area: String?,
             ?percentage: Float?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Insight::AreaTile] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> AreaTile
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

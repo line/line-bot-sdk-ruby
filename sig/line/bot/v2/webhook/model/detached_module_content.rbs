@@ -16,16 +16,25 @@ module Line
           attr_accessor bot_id: String
           attr_accessor reason: 'bot_deleted'
           
+
+          # @param bot_id [String] Detached LINE Official Account bot user ID
+          # @param reason [String] ('bot_deleted') Reason for detaching
           def initialize: (
             bot_id: String,
             reason: 'bot_deleted',
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::DetachedModuleContent] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> DetachedModuleContent
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

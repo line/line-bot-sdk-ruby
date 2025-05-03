@@ -41,6 +41,34 @@ module Line
           attr_accessor align_items: 'center'|'flex-start'|'flex-end'?
           attr_accessor background: FlexBoxBackground?
           
+
+          # @param layout [String] ('horizontal'|'vertical'|'baseline') 
+          # @param flex [Integer,nil] 
+          # @param contents [Array[FlexComponent, Hash[Symbol, untyped]]] 
+          # @param spacing [String,nil] 
+          # @param margin [String,nil] 
+          # @param position [String,nil] ('relative'|'absolute') 
+          # @param offset_top [String,nil] 
+          # @param offset_bottom [String,nil] 
+          # @param offset_start [String,nil] 
+          # @param offset_end [String,nil] 
+          # @param background_color [String,nil] 
+          # @param border_color [String,nil] 
+          # @param border_width [String,nil] 
+          # @param corner_radius [String,nil] 
+          # @param width [String,nil] 
+          # @param max_width [String,nil] 
+          # @param height [String,nil] 
+          # @param max_height [String,nil] 
+          # @param padding_all [String,nil] 
+          # @param padding_top [String,nil] 
+          # @param padding_bottom [String,nil] 
+          # @param padding_start [String,nil] 
+          # @param padding_end [String,nil] 
+          # @param action [Action, Hash[Symbol, untyped], nil] 
+          # @param justify_content [String,nil] ('center'|'flex-start'|'flex-end'|'space-between'|'space-around'|'space-evenly') 
+          # @param align_items [String,nil] ('center'|'flex-start'|'flex-end') 
+          # @param background [FlexBoxBackground, Hash[Symbol, untyped], nil] 
           def initialize: (
             layout: 'horizontal'|'vertical'|'baseline',
             ?flex: Integer?,
@@ -72,10 +100,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::FlexBox] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> FlexBox
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -16,16 +16,25 @@ module Line
           attr_accessor gte: 'day_7'|'day_30'|'day_90'|'day_180'|'day_365'?
           attr_accessor lt: 'day_7'|'day_30'|'day_90'|'day_180'|'day_365'?
           
+
+          # @param gte [String,nil] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
+          # @param lt [String,nil] ('day_7'|'day_30'|'day_90'|'day_180'|'day_365') 
           def initialize: (
             ?gte: 'day_7'|'day_30'|'day_90'|'day_180'|'day_365'?,
             ?lt: 'day_7'|'day_30'|'day_90'|'day_180'|'day_365'?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::SubscriptionPeriodDemographicFilter] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> SubscriptionPeriodDemographicFilter
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -20,6 +20,12 @@ module Line
           attr_accessor created: Integer?
           attr_accessor request_id: String?
           
+
+          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String,nil] The audience's name.
+          # @param created [Integer,nil] When the audience was created (in UNIX time).
+          # @param request_id [String,nil] The request ID that was specified when the audience was created.
           def initialize: (
             ?audience_group_id: Integer?,
             ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
@@ -29,10 +35,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ManageAudience::CreateImpBasedAudienceGroupResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> CreateImpBasedAudienceGroupResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

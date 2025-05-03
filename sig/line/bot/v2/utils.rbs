@@ -2,6 +2,8 @@ module Line
   module Bot
     module V2
       module Utils
+        NO_CAMELIZE_PARENT_KEYS: Array[String]
+
         def self.deep_underscore: (Hash[untyped, untyped]) -> Hash[Symbol, untyped]
 
         def self.deep_symbolize: (untyped) -> untyped

@@ -19,6 +19,11 @@ module Line
           attr_accessor token_type: String
           attr_accessor key_id: String
           
+
+          # @param access_token [String] Channel access token. 
+          # @param expires_in [Integer] Amount of time in seconds from issue to expiration of the channel access token
+          # @param token_type [String] A token type.
+          # @param key_id [String] Unique key ID for identifying the channel access token.
           def initialize: (
             access_token: String,
             expires_in: Integer,
@@ -27,10 +32,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ChannelAccessToken::IssueChannelAccessTokenResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> IssueChannelAccessTokenResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

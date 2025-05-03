@@ -18,6 +18,10 @@ module Line
           attr_accessor messages: Array[GetStatisticsPerUnitResponseMessage]
           attr_accessor clicks: Array[GetStatisticsPerUnitResponseClick]
           
+
+          # @param overview [GetStatisticsPerUnitResponseOverview, Hash[Symbol, untyped]] 
+          # @param messages [Array[GetStatisticsPerUnitResponseMessage, Hash[Symbol, untyped]]] Array of information about individual message bubbles.
+          # @param clicks [Array[GetStatisticsPerUnitResponseClick, Hash[Symbol, untyped]]] Array of information about opened URLs in the message.
           def initialize: (
             overview: GetStatisticsPerUnitResponseOverview| Hash[Symbol, untyped],
             messages: Array[GetStatisticsPerUnitResponseMessage| Hash[Symbol, untyped]],
@@ -25,10 +29,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Insight::GetStatisticsPerUnitResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetStatisticsPerUnitResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

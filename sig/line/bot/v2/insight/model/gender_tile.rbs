@@ -15,16 +15,25 @@ module Line
           attr_accessor gender: 'male'|'female'|'unknown'?
           attr_accessor percentage: Float?
           
+
+          # @param gender [String,nil] ('male'|'female'|'unknown') users' gender
+          # @param percentage [Float,nil] Percentage
           def initialize: (
             ?gender: 'male'|'female'|'unknown'?,
             ?percentage: Float?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Insight::GenderTile] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GenderTile
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

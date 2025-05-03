@@ -15,15 +15,23 @@ module Line
         class Adaccount
           attr_accessor name: String?
           
+
+          # @param name [String,nil] Ad account name.
           def initialize: (
             ?name: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ManageAudience::Adaccount] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> Adaccount
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

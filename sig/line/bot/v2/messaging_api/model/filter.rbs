@@ -15,15 +15,23 @@ module Line
         class Filter
           attr_accessor demographic: DemographicFilter?
           
+
+          # @param demographic [DemographicFilter, Hash[Symbol, untyped], nil] 
           def initialize: (
             ?demographic: DemographicFilter?| Hash[Symbol, untyped]?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::Filter] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> Filter
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -18,6 +18,10 @@ module Line
           attr_accessor expires_in: Integer
           attr_accessor token_type: String
           
+
+          # @param access_token [String] A short-lived channel access token. Valid for 30 days. Note: Channel access tokens cannot be refreshed. 
+          # @param expires_in [Integer] Time until channel access token expires in seconds from time the token is issued.
+          # @param token_type [String] Token type. The value is always `Bearer`.
           def initialize: (
             access_token: String,
             expires_in: Integer,
@@ -25,10 +29,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ChannelAccessToken::IssueShortLivedChannelAccessTokenResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> IssueShortLivedChannelAccessTokenResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end
