@@ -1,0 +1,22 @@
+PATH
+  remote: ../../..
+  specs:
+    line-bot-api (0.0.1.pre.test)
+      base64 (~> 0.2)
+      multipart-post (~> 2.4)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    base64 (0.2.0)
+    multipart-post (2.4.1)
+
+PLATFORMS
+  arm64-darwin-21
+  arm64-darwin-22
+
+DEPENDENCIES
+  line-bot-api!
+
+BUNDLED WITH
+   2.4.10
