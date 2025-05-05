@@ -4,7 +4,7 @@ A kitchen-sink LINE bot example
 
 ## Getting started
 
-```ruby
+```sh
 $ export LINE_CHANNEL_SECRET=YOUR_CHANNEL_SECRET
 $ export LINE_CHANNEL_ACCESS_TOKEN=YOUR_CHANNEL_ACCESS_TOKEN
 $ bundle install

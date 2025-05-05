@@ -5,7 +5,7 @@
 ## Getting started
 Update User ID of `app.rb` and `audience.txt' to your own.
 
-```ruby
+```sh
 $ export LINE_CHANNEL_SECRET=YOUR_CHANNEL_SECRET
 $ export LINE_CHANNEL_ACCESS_TOKEN=YOUR_CHANNEL_ACCESS_TOKEN
 $ bundle install

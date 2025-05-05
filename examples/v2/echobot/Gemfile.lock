@@ -2,7 +2,8 @@ PATH
   remote: ../../..
   specs:
     line-bot-api (0.0.1.pre.test)
-      multipart-post (~> 2.4.1)
+      base64 (~> 0.2)
+      multipart-post (~> 2.4)
 
 GEM
   remote: https://rubygems.org/
