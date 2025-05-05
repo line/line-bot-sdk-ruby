@@ -44,13 +44,26 @@ module Line
           if object.is_a?(Array)
             object.map { |item| deep_to_hash(item) }
           elsif object.is_a?(Hash)
-            object.transform_keys(&:to_sym).transform_values { |v| deep_to_hash(v) }
+            result = object.transform_keys do |k|
+              if k.to_s.start_with?('_') && Line::Bot::V2::RESERVED_WORDS.include?(k.to_s.delete_prefix('_').to_sym)
+                k.to_s.delete_prefix('_').to_sym
+              else
+                k.to_sym
+              end
+            end
+            result.transform_values { |v| deep_to_hash(v) }
           elsif object.instance_variables.empty?
             object
           else
             object.instance_variables.each_with_object({}) do |var, hash| # steep:ignore UnannotatedEmptyCollection
               value = object.instance_variable_get(var)
-              key = var.to_s.delete('@').to_sym
+
+              key = var.to_s.delete('@')
+              if key.start_with?('_') && Line::Bot::V2::RESERVED_WORDS.include?(key.delete_prefix('_').to_sym)
+                key = key.delete_prefix('_')
+              end
+              key = key.to_sym
+
               hash[key] = deep_to_hash(value)
             end
           end

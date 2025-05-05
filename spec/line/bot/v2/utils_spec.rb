@@ -89,6 +89,12 @@ describe Line::Bot::V2::Utils do
       expected_output = [{ name: 'Alice' }, { name: 'Bob' }]
       expect(Line::Bot::V2::Utils.deep_to_hash(input)).to eq(expected_output)
     end
+
+    it 'fixes reserved words' do
+      input = { '_and' => 123, '___FILE__' => 'example', '_hoge': 123 }
+      expected_output = { and: 123, __FILE__: 'example', _hoge: 123 }
+      expect(Line::Bot::V2::Utils.deep_to_hash(input)).to eq(expected_output)
+    end
   end
 
   describe '.deep_camelize' do
