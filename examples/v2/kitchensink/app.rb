@@ -3,7 +3,7 @@ require 'sinatra'
 require 'line-bot-api'
 
 set :environment, :production
-set :app_base_url, ENV['APP_BASE_URL']
+set :app_base_url, ENV.fetch('APP_BASE_URL')
 
 THUMBNAIL_URL = 'https://via.placeholder.com/1024x1024'
 HORIZONTAL_THUMBNAIL_URL = 'https://via.placeholder.com/1024x768'
@@ -37,6 +37,19 @@ end
 
 def parser
   @parser ||= Line::Bot::V2::WebhookParser.new(channel_secret: ENV.fetch("LINE_CHANNEL_SECRET"))
+end
+
+configure do
+  webhook_endpoint = "#{settings.app_base_url}/callback"
+  body, code, _ = client.set_webhook_endpoint_with_http_info(set_webhook_endpoint_request: Line::Bot::V2::MessagingApi::SetWebhookEndpointRequest.new(
+    endpoint: webhook_endpoint
+  ))
+
+  if code == 200
+    p "✅ LINE Webhook URL set to #{webhook_endpoint}"
+  else
+    p "❌ Failed to set LINE Webhook. code=#{code}, error body=#{body}"
+  end
 end
 
 post '/callback' do
@@ -1050,6 +1063,57 @@ def handle_message_event(event)
       stats = insight_client.get_message_event(request_id: request_id)
 
       reply_text(event, "[STATS]\n#{stats}")
+
+    when 'narrowcast'
+      request = Line::Bot::V2::MessagingApi::NarrowcastRequest.new(
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(text: 'Hello, this is a narrowcast message')
+        ],
+        filter: Line::Bot::V2::MessagingApi::Filter.new(
+          demographic: Line::Bot::V2::MessagingApi::OperatorDemographicFilter.new(
+            _or: [
+              Line::Bot::V2::MessagingApi::OperatorDemographicFilter.new(
+                _and: [
+                  Line::Bot::V2::MessagingApi::AgeDemographicFilter.new(
+                    gte: 'age_20',
+                    lte: 'age_60'
+                  ),
+                  Line::Bot::V2::MessagingApi::AppTypeDemographicFilter.new(
+                    one_of: ['ios']
+                  )
+                ]
+              ),
+              Line::Bot::V2::MessagingApi::OperatorDemographicFilter.new(
+                _and: [
+                  Line::Bot::V2::MessagingApi::GenderDemographicFilter.new(
+                    one_of: ['female']
+                  ),
+                  Line::Bot::V2::MessagingApi::AreaDemographicFilter.new(
+                    one_of: %w(jp_08 jp_09 jp_10 jp_11 jp_12 jp_13 jp_14)
+                  ),
+                ]
+              )
+            ]
+          )
+        )
+      )
+      _body, _status_code, headers = client.narrowcast_with_http_info(narrowcast_request: request)
+      request_id = headers['x-line-request-id']
+
+      reply_text(event, "Narrowcast requested, requestId: #{request_id}")
+
+      client.show_loading_animation(show_loading_animation_request: Line::Bot::V2::MessagingApi::ShowLoadingAnimationRequest.new(
+        chat_id: event.source.user_id
+      ))
+      sleep 5
+
+      response = client.get_narrowcast_progress(request_id: request_id)
+      client.push_message(push_message_request: Line::Bot::V2::MessagingApi::PushMessageRequest.new(
+        to: event.source.user_id,
+        messages: [
+          Line::Bot::V2::MessagingApi::TextMessage.new(text: "Narrowcast status: #{response}")
+        ]
+      ))
 
     else
       if (event.message.quoted_message_id != nil) 
