@@ -16,6 +16,7 @@ jobs:
     permissions:
       id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
       contents: write # IMPORTANT: this permission is required for `rake release` to push the release tag
+      issues: write
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -23,6 +24,7 @@ jobs:
         with:
           bundler-cache: true
           ruby-version: 3.3
+      - run: bundle install
       - name: Update version file with the release version
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
