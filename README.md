@@ -285,9 +285,6 @@ request = Line::Bot::V2::MessagingApi::PushMessageRequest.create(
 ### More examples
 See the [examples](examples/v2) directory for more examples.
 
-## Media
-News: https://developers.line.biz/en/news/
-
 ## Versioning
 This project respects semantic versioning.
 
@@ -302,6 +299,8 @@ Please refer to [Migration guide](migration_of_v1_to_v2_guide.md) for migration 
 When calling the API endpoint with v1, a deprecation warning will occur.\
 If you want to suppress this, please set any value to the environment variable `SUPRESS_V1_DEPRECATION_WARNINGS`.
 
+## Media
+News: https://developers.line.biz/en/news/
 
 ## Contributing
 Please check [CONTRIBUTING](CONTRIBUTING.md) before making a contribution.
