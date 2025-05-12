@@ -296,9 +296,7 @@ See https://semver.org/
 ### v1 and v2
 v1 and v2 are completely different implementations, v1 is all deprecated and will be removed in the future.
 Migration to v2 is strongly recommended.
-
-Migration guide: https://github.com/line/line-bot-sdk-ruby/releases/tag/v1.30.0
-
+Please refer to [Migration guide](migration_of_v1_to_v2_guide.md) for migration procedure.
 
 #### Deprecation warnings
 When calling the API endpoint with v1, a deprecation warning will occur.\
