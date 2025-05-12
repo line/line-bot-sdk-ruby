@@ -17,16 +17,25 @@ module Line
           attr_accessor destination: String
           attr_accessor events: Array[Event]
           
+
+          # @param destination [String] User ID of a bot that should receive webhook events. The user ID value is a string that matches the regular expression, `U[0-9a-f]{32}`. 
+          # @param events [Array[Event, Hash[Symbol, untyped]]] Array of webhook event objects. The LINE Platform may send an empty array that doesn't include a webhook event object to confirm communication. 
           def initialize: (
             destination: String,
             events: Array[Event| Hash[Symbol, untyped]],
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::CallbackRequest] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> CallbackRequest
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

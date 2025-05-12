@@ -18,6 +18,11 @@ module Line
           attr_accessor image_set: ImageSet?
           attr_accessor quote_token: String
           
+
+          # @param id [String] Message ID
+          # @param content_provider [ContentProvider, Hash[Symbol, untyped]] 
+          # @param image_set [ImageSet, Hash[Symbol, untyped], nil] 
+          # @param quote_token [String] Quote token to quote this message. 
           def initialize: (
             id: String,
             content_provider: ContentProvider| Hash[Symbol, untyped],
@@ -26,10 +31,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::ImageMessageContent] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> ImageMessageContent
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -16,15 +16,23 @@ module Line
         class Source
           attr_accessor type: String
           
+
+          # @param type [String] source type
           def initialize: (
             type: String,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::Source] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> Source
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
 
           private

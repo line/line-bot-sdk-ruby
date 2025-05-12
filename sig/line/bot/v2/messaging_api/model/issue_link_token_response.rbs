@@ -15,15 +15,23 @@ module Line
         class IssueLinkTokenResponse
           attr_accessor link_token: String
           
+
+          # @param link_token [String] Link token. Link tokens are valid for 10 minutes and can only be used once.  
           def initialize: (
             link_token: String,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::IssueLinkTokenResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> IssueLinkTokenResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

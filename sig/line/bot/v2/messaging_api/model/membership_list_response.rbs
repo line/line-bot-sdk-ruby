@@ -15,15 +15,23 @@ module Line
         class MembershipListResponse
           attr_accessor memberships: Array[Membership]
           
+
+          # @param memberships [Array[Membership, Hash[Symbol, untyped]]] List of membership information
           def initialize: (
             memberships: Array[Membership| Hash[Symbol, untyped]],
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::MembershipListResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> MembershipListResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

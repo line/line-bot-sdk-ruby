@@ -13,6 +13,23 @@ module Line
       module ManageAudience
         class ApiBlobClient
           @http_client: HttpClient
+          # Initializes a new {Line::Bot::V2::ManageAudience::ApiBlobClient} instance.
+          #
+          # @param base_url [String] The base URL for requests (optional).
+          #   Defaults to 'https://api-data.line.me' if none is provided.
+          #   You can override this for testing or to use a mock server.
+          # @param channel_access_token [String] The channel access token for authorization.
+          # @param http_options [Hash] HTTP options (same as Net::HTTP options).
+          #   See: https://docs.ruby-lang.org/en/3.4/Net/HTTP.html to understand the options.
+          #
+          # @example
+          #   @client ||= Line::Bot::V2::ManageAudience::ApiBlobClient.new(
+          #     channel_access_token: "YOUR_CHANNEL_ACCESS_TOKEN",
+          #     http_options: {
+          #       open_timeout: 5,
+          #       read_timeout: 5,
+          #     }
+          #   )
           def initialize: (
             ?base_url: String?,
             channel_access_token: String,
@@ -20,11 +37,15 @@ module Line
           ) -> void
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
+          # This requests to <code>PUT https://api-data.line.me/v2/bot/audienceGroup/upload/byFile</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
-          # @param file A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
-          # @param audience_group_id The audience ID.
-          # @param upload_description The description to register with the job
+          # @param file [File] A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
+          # @param audience_group_id [Integer, nil] The audience ID.
+          # @param upload_description [String, nil] The description to register with the job
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group-by-file
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 202
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def add_user_ids_to_audience_with_http_info: (
             file: File, 
             ?audience_group_id: Integer?, 
@@ -35,11 +56,15 @@ module Line
           )
 
           # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
+          # This requests to <code>PUT https://api-data.line.me/v2/bot/audienceGroup/upload/byFile</code>
+          # When you want to get HTTP status code or response headers, use {#add_user_ids_to_audience_with_http_info} instead of this.
           #
-          # @param file A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
-          # @param audience_group_id The audience ID.
-          # @param upload_description The description to register with the job
+          # @param file [File] A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
+          # @param audience_group_id [Integer, nil] The audience ID.
+          # @param upload_description [String, nil] The description to register with the job
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group-by-file
+          # @return [String, nil] when HTTP status code is 202
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def add_user_ids_to_audience: (
             file: File, 
             ?audience_group_id: Integer?, 
@@ -50,12 +75,16 @@ module Line
           )
 
           # Create audience for uploading user IDs (by file).
+          # This requests to <code>POST https://api-data.line.me/v2/bot/audienceGroup/upload/byFile</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
-          # @param file A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
-          # @param description The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
-          # @param is_ifa_audience To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
-          # @param upload_description The description to register for the job (in `jobs[].description`). 
+          # @param file [File] A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
+          # @param description [String, nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          # @param is_ifa_audience [bool, nil] To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
+          # @param upload_description [String, nil] The description to register for the job (in `jobs[].description`). 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group-by-file
+          # @return [Array(Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse, Integer, Hash{String => String})] when HTTP status code is 202
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def create_audience_for_uploading_user_ids_with_http_info: (
             file: File, 
             ?description: String?, 
@@ -67,12 +96,16 @@ module Line
           )
 
           # Create audience for uploading user IDs (by file).
+          # This requests to <code>POST https://api-data.line.me/v2/bot/audienceGroup/upload/byFile</code>
+          # When you want to get HTTP status code or response headers, use {#create_audience_for_uploading_user_ids_with_http_info} instead of this.
           #
-          # @param file A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
-          # @param description The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
-          # @param is_ifa_audience To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
-          # @param upload_description The description to register for the job (in `jobs[].description`). 
+          # @param file [File] A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
+          # @param description [String, nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          # @param is_ifa_audience [bool, nil] To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
+          # @param upload_description [String, nil] The description to register for the job (in `jobs[].description`). 
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group-by-file
+          # @return [Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse] when HTTP status code is 202
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def create_audience_for_uploading_user_ids: (
             file: File, 
             ?description: String?, 

@@ -16,16 +16,25 @@ module Line
           attr_accessor membership: SubscribedMembershipPlan
           attr_accessor user: SubscribedMembershipUser
           
+
+          # @param membership [SubscribedMembershipPlan, Hash[Symbol, untyped]] 
+          # @param user [SubscribedMembershipUser, Hash[Symbol, untyped]] 
           def initialize: (
             membership: SubscribedMembershipPlan| Hash[Symbol, untyped],
             user: SubscribedMembershipUser| Hash[Symbol, untyped],
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::Subscription] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> Subscription
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

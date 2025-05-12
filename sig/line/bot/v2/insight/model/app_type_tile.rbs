@@ -15,16 +15,25 @@ module Line
           attr_accessor app_type: 'ios'|'android'|'others'?
           attr_accessor percentage: Float?
           
+
+          # @param app_type [String,nil] ('ios'|'android'|'others') users' OS
+          # @param percentage [Float,nil] Percentage
           def initialize: (
             ?app_type: 'ios'|'android'|'others'?,
             ?percentage: Float?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Insight::AppTypeTile] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> AppTypeTile
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

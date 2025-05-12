@@ -16,15 +16,23 @@ module Line
           attr_reader type: String
           attr_accessor from: String
           
+
+          # @param from [String] 
           def initialize: (
             from: String,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::RichMenuBatchUnlinkOperation] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> RichMenuBatchUnlinkOperation
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

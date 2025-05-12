@@ -41,6 +41,9 @@ gem install line-bot-api
 ```
 
 ## Synopsis
+### RBS
+This library provides [RBS](https://github.com/ruby/rbs) files for type checking.\
+You can code with type support in the corresponding IDE or editor.
 
 ### Basic Usage
 
@@ -178,12 +181,109 @@ end
 main
 ```
 
+### Use with Hash / JSON
+You can use Hash instead of the SDK classes.
+So you can also use Hash parsed from JSON as a parameter.
+
+This is useful, for example, in migrating from v1 or building Flex Message.
+
+**But this is not recommended because you lose type checking by RBS.**
+
+```ruby
+client = Line::Bot::V2::MessagingApi::ApiClient.new(
+  channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
+)
+
+request =  {
+  to: "U4af4980629...",
+  messages: [
+    {
+      type: "flex",
+      alt_text: "This is a Flex Message",
+      contents: {
+        type: "bubble",
+        body: {
+          type: "box",
+          layout: "horizontal",
+          contents: [
+            {
+              type: "text",
+              text: "Hello"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+client.push_message(push_message_request: request)
+
+# or
+
+request = JSON.parse(
+  <<~JSON
+    {
+      "to": "U4af4980629...",
+      "messages": [
+        {
+          "type": "flex",
+          "alt_text": "This is a Flex Message",
+          "contents": {
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Hello"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  JSON
+)
+client.push_message(push_message_request: request)
+```
+
+#### Convert to SDK classes
+You can convert Hash / JSON to SDK classes using `#create` method.
+
+```ruby
+json = <<~JSON
+  {
+    "to": "U4af4980629...",
+    "messages": [
+      {
+        "type": "flex",
+        "alt_text": "This is a Flex Message",
+        "contents": {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Hello"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+JSON
+request = Line::Bot::V2::MessagingApi::PushMessageRequest.create(
+  JSON.parse(json)
+)
+```
+
 ### More examples
 See the [examples](examples/v2) directory for more examples.
-
-### RBS
-This library provides [RBS](https://github.com/ruby/rbs) files for type checking.\
-You can code with type support in the corresponding IDE or editor.
 
 ## Media
 News: https://developers.line.biz/en/news/

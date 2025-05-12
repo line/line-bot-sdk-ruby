@@ -19,6 +19,12 @@ module Line
           attr_accessor reason: String
           attr_accessor detail: String
           
+
+          # @param success [bool,nil] Result of the communication from the LINE platform to the webhook URL.
+          # @param timestamp [String] Time of the event in milliseconds. Even in the case of a redelivered webhook, it represents the time the event occurred, not the time it was redelivered. 
+          # @param status_code [Integer] The HTTP status code. If the webhook response isn't received, the status code is set to zero or a negative number.
+          # @param reason [String] Reason for the response.
+          # @param detail [String] Details of the response.
           def initialize: (
             ?success: bool?,
             timestamp: String,
@@ -28,10 +34,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::TestWebhookEndpointResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> TestWebhookEndpointResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

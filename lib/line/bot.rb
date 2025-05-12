@@ -12,15 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-# V1
-require 'line/bot/v1/util'
-require 'line/bot/v1/client'
-require 'line/bot/v1/event'
-require 'line/bot/v1/api/errors'
-require 'line/bot/v1/api'
-require 'line/bot/v1/httpclient'
-require 'line/bot/v1/api/version'
-
 # V2
 require 'line/bot/v2/webhook_parser'
 

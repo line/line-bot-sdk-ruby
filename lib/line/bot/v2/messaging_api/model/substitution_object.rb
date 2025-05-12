@@ -38,10 +38,14 @@ module Line
             end
           end
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::SubstitutionObject] Instance of the class
           def self.create(args) # steep:ignore
-            klass = detect_class(type: args[:type])
-            return klass.new(**args) if klass # steep:ignore
-            return new(**args) # steep:ignore
+            symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
+            klass = detect_class(type: symbolized_args[:type])
+            return klass.new(**symbolized_args) if klass # steep:ignore
+            return new(**symbolized_args) # steep:ignore
           end
 
           # @param other [Object] Object to compare

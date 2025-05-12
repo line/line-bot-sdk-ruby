@@ -15,15 +15,23 @@ module Line
         class RichMenuBulkUnlinkRequest
           attr_accessor user_ids: Array[String]
           
+
+          # @param user_ids [Array[String]] Array of user IDs. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
           def initialize: (
             user_ids: Array[String],
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::RichMenuBulkUnlinkRequest] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> RichMenuBulkUnlinkRequest
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

@@ -17,6 +17,10 @@ module Line
           attr_accessor details: Array[ErrorDetail]?
           attr_accessor sent_messages: Array[SentMessage]?
           
+
+          # @param message [String] Message containing information about the error.
+          # @param details [Array[ErrorDetail, Hash[Symbol, untyped]],nil] An array of error details. If the array is empty, this property will not be included in the response.
+          # @param sent_messages [Array[SentMessage, Hash[Symbol, untyped]],nil] Array of sent messages.
           def initialize: (
             message: String,
             ?details: Array[ErrorDetail| Hash[Symbol, untyped]]?,
@@ -24,10 +28,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> ErrorResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

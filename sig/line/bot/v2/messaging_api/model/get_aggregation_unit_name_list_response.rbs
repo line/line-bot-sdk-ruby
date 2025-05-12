@@ -16,16 +16,25 @@ module Line
           attr_accessor custom_aggregation_units: Array[String]
           attr_accessor _next: String?
           
+
+          # @param custom_aggregation_units [Array[String]] An array of strings indicating the names of aggregation units used this month.
+          # @param _next [String,nil] A continuation token to get the next array of unit names. Returned only when there are remaining aggregation units that weren't returned in customAggregationUnits in the original request.  
           def initialize: (
             custom_aggregation_units: Array[String],
             ?_next: String?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::GetAggregationUnitNameListResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GetAggregationUnitNameListResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

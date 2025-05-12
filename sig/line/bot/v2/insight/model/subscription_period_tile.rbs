@@ -15,16 +15,25 @@ module Line
           attr_accessor subscription_period: 'within7days'|'within30days'|'within90days'|'within180days'|'within365days'|'over365days'|'unknown'?
           attr_accessor percentage: Float?
           
+
+          # @param subscription_period [String,nil] ('within7days'|'within30days'|'within90days'|'within180days'|'within365days'|'over365days'|'unknown') Subscription period. Possible values: `within7days`, `within90days`, `unknown` etc.
+          # @param percentage [Float,nil] Percentage. Possible values: [0.0,100.0] e.g. 0, 2.9, 37.6.
           def initialize: (
             ?subscription_period: 'within7days'|'within30days'|'within90days'|'within180days'|'within365days'|'over365days'|'unknown'?,
             ?percentage: Float?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Insight::SubscriptionPeriodTile] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> SubscriptionPeriodTile
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

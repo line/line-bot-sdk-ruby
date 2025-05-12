@@ -15,16 +15,25 @@ module Line
           attr_accessor ble: bool?
           attr_accessor qr_code: bool?
           
+
+          # @param ble [bool,nil] `true` if the LIFF app supports Bluetooth® Low Energy for LINE Things. `false` otherwise. 
+          # @param qr_code [bool,nil] `true` to use the 2D code reader in the LIFF app. false otherwise. The default value is `false`. 
           def initialize: (
             ?ble: bool?,
             ?qr_code: bool?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Liff::LiffFeatures] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> LiffFeatures
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

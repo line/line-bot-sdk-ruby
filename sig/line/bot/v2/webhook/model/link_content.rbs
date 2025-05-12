@@ -16,16 +16,25 @@ module Line
           attr_accessor result: 'ok'|'failed'
           attr_accessor nonce: String
           
+
+          # @param result [String] ('ok'|'failed') One of the following values to indicate whether linking the account was successful or not
+          # @param nonce [String] Specified nonce (number used once) when verifying the user ID.
           def initialize: (
             result: 'ok'|'failed',
             nonce: String,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::LinkContent] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> LinkContent
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

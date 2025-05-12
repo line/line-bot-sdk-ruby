@@ -15,16 +15,25 @@ module Line
           attr_accessor age: 'from0to14'|'from15to19'|'from20to24'|'from25to29'|'from30to34'|'from35to39'|'from40to44'|'from45to49'|'from50'|'from50to54'|'from55to59'|'from60to64'|'from65to69'|'from70'|'unknown'?
           attr_accessor percentage: Float?
           
+
+          # @param age [String,nil] ('from0to14'|'from15to19'|'from20to24'|'from25to29'|'from30to34'|'from35to39'|'from40to44'|'from45to49'|'from50'|'from50to54'|'from55to59'|'from60to64'|'from65to69'|'from70'|'unknown') users' age
+          # @param percentage [Float,nil] Percentage
           def initialize: (
             ?age: 'from0to14'|'from15to19'|'from20to24'|'from25to29'|'from30to34'|'from35to39'|'from40to44'|'from45to49'|'from50'|'from50to54'|'from55to59'|'from60to64'|'from65to69'|'from70'|'unknown'?,
             ?percentage: Float?,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Insight::AgeTile] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> AgeTile
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

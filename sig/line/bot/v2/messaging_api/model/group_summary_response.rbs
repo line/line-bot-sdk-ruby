@@ -17,6 +17,10 @@ module Line
           attr_accessor group_name: String
           attr_accessor picture_url: String?
           
+
+          # @param group_id [String] Group ID
+          # @param group_name [String] Group name
+          # @param picture_url [String,nil] Group icon URL. Not included in the response if the user doesn't set a group profile icon.
           def initialize: (
             group_id: String,
             group_name: String,
@@ -24,10 +28,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::GroupSummaryResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> GroupSummaryResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

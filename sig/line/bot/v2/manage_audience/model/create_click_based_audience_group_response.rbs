@@ -25,6 +25,17 @@ module Line
           attr_accessor expire_timestamp: Integer?
           attr_accessor is_ifa_audience: bool?
           
+
+          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param description [String,nil] The audience's name.
+          # @param created [Integer,nil] When the audience was created (in UNIX time).
+          # @param request_id [String,nil] The request ID that was specified when the audience was created.
+          # @param click_url [String,nil] The URL that was specified when the audience was created.
+          # @param create_route [String,nil] ('MESSAGING_API') How the audience was created. `MESSAGING_API`: An audience created with Messaging API. 
+          # @param permission [String,nil] ('READ'|'READ_WRITE') Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  - `READ`: Can use only. - `READ_WRITE`: Can use and update. 
+          # @param expire_timestamp [Integer,nil] Time of audience expiration. Only returned for specific audiences.
+          # @param is_ifa_audience [bool,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  true: Accounts are specified with IFAs. false (default): Accounts are specified with user IDs. 
           def initialize: (
             ?audience_group_id: Integer?,
             ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
@@ -39,10 +50,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::ManageAudience::CreateClickBasedAudienceGroupResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> CreateClickBasedAudienceGroupResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

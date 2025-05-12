@@ -17,6 +17,10 @@ module Line
           attr_accessor accepted_time: String
           attr_accessor completed_time: String?
           
+
+          # @param phase [String] ('ongoing'|'succeeded'|'failed') 
+          # @param accepted_time [String] The accepted time in milliseconds of the request of batch control the rich menu.  Format: ISO 8601 (e.g. 2023-06-08T10:15:30.121Z) Timezone: UTC 
+          # @param completed_time [String,nil] The completed time in milliseconds of rich menu batch control. Returned when the phase property is succeeded or failed.  Format: ISO 8601 (e.g. 2023-06-08T10:15:30.121Z) Timezone: UTC 
           def initialize: (
             phase: 'ongoing'|'succeeded'|'failed',
             accepted_time: String,
@@ -24,10 +28,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::RichMenuBatchProgressResponse] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> RichMenuBatchProgressResponse
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

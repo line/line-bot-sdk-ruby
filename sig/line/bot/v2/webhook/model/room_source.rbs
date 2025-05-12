@@ -16,16 +16,25 @@ module Line
           attr_accessor user_id: String?
           attr_accessor room_id: String
           
+
+          # @param user_id [String,nil] ID of the source user. Only included in message events. Only users of LINE for iOS and LINE for Android are included in userId.
+          # @param room_id [String] Room ID of the source multi-person chat
           def initialize: (
             ?user_id: String?,
             room_id: String,
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::RoomSource] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> RoomSource
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

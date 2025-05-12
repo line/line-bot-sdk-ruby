@@ -14,15 +14,23 @@ module Line
         class Mention
           attr_accessor mentionees: Array[Mentionee]
           
+
+          # @param mentionees [Array[Mentionee, Hash[Symbol, untyped]]] Array of one or more mention objects. Max: 20 mentions
           def initialize: (
             mentionees: Array[Mentionee| Hash[Symbol, untyped]],
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::Webhook::Mention] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> Mention
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end

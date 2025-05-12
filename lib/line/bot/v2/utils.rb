@@ -2,6 +2,12 @@ module Line
   module Bot
     module V2
       module Utils
+        # NOTE: Although it should be set in the request class side,
+        #       it can only be set here because requests in Hash are also permitted.
+        #       If there is a mix of camelize and non-camelize cases even with the same key name,
+        #       breaking change that does not allow Hash requests will be necessary.
+        NO_CAMELIZE_PARENT_KEYS = %w(substitution).freeze
+
         # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.deep_underscore(hash)
           hash.each_with_object({}) do |(key, value), result| # steep:ignore UnannotatedEmptyCollection
@@ -38,13 +44,26 @@ module Line
           if object.is_a?(Array)
             object.map { |item| deep_to_hash(item) }
           elsif object.is_a?(Hash)
-            object.transform_keys(&:to_sym).transform_values { |v| deep_to_hash(v) }
+            result = object.transform_keys do |k|
+              if k.to_s.start_with?('_') && Line::Bot::V2::RESERVED_WORDS.include?(k.to_s.delete_prefix('_').to_sym)
+                k.to_s.delete_prefix('_').to_sym
+              else
+                k.to_sym
+              end
+            end
+            result.transform_values { |v| deep_to_hash(v) }
           elsif object.instance_variables.empty?
             object
           else
             object.instance_variables.each_with_object({}) do |var, hash| # steep:ignore UnannotatedEmptyCollection
               value = object.instance_variable_get(var)
-              key = var.to_s.delete('@').to_sym
+
+              key = var.to_s.delete('@')
+              if key.start_with?('_') && Line::Bot::V2::RESERVED_WORDS.include?(key.delete_prefix('_').to_sym)
+                key = key.delete_prefix('_')
+              end
+              key = key.to_sym
+
               hash[key] = deep_to_hash(value)
             end
           end
@@ -57,12 +76,16 @@ module Line
             object.map { |item| deep_camelize(item) }
           when Hash
             object.each_with_object({}) do |(k, v), new_object| # steep:ignore UnannotatedEmptyCollection
-              camel_key = camelize(k)
-              next if camel_key.nil?
-
-              camel_key = camel_key.to_sym
-              new_value = v.is_a?(Array) || v.is_a?(Hash) ? deep_camelize(v) : v
-              new_object[camel_key] = new_value
+              if NO_CAMELIZE_PARENT_KEYS.include?(k.to_s)
+                new_object[k.to_sym] = if v.is_a?(Hash)
+                                         v.transform_keys(&:to_sym).transform_values { deep_camelize(_1) }
+                                       else
+                                         v
+                                       end
+              else
+                camel_key = camelize(k)&.to_sym
+                new_object[camel_key] = v.is_a?(Array) || v.is_a?(Hash) ? deep_camelize(v) : v if camel_key
+              end
             end
           else
             object

@@ -16,6 +16,10 @@ module Line
           attr_accessor product_id: String?
           attr_accessor emoji_id: String?
           
+
+          # @param index [Integer,nil] 
+          # @param product_id [String,nil] 
+          # @param emoji_id [String,nil] 
           def initialize: (
             ?index: Integer?,
             ?product_id: String?,
@@ -23,10 +27,16 @@ module Line
             **untyped dynamic_attributes
           ) -> void
 
+          # Create an instance of the class from a hash
+          # @param args [Hash] Hash containing all the required attributes
+          # @return [Line::Bot::V2::MessagingApi::Emoji] Instance of the class
           def self.create: (Hash[Symbol, untyped]) -> Emoji
 
+          # @param other [Object] Object to compare
+          # @return [Boolean] true if the objects are equal, false otherwise
           def ==: (untyped other) -> bool
 
+          # @return [Integer] Hash code of the object
           def hash: () -> Integer
         end
       end
