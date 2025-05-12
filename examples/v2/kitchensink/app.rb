@@ -3,7 +3,7 @@ require 'sinatra'
 require 'line-bot-api'
 
 set :environment, :production
-set :app_base_url, ENV['APP_BASE_URL']
+set :app_base_url, ENV.fetch('APP_BASE_URL')
 
 THUMBNAIL_URL = 'https://via.placeholder.com/1024x1024'
 HORIZONTAL_THUMBNAIL_URL = 'https://via.placeholder.com/1024x768'
@@ -37,6 +37,19 @@ end
 
 def parser
   @parser ||= Line::Bot::V2::WebhookParser.new(channel_secret: ENV.fetch("LINE_CHANNEL_SECRET"))
+end
+
+configure do
+  webhook_endpoint = "#{settings.app_base_url}/callback"
+  body, code, _ = client.set_webhook_endpoint_with_http_info(set_webhook_endpoint_request: Line::Bot::V2::MessagingApi::SetWebhookEndpointRequest.new(
+    endpoint: webhook_endpoint
+  ))
+
+  if code == 200
+    p "✅ LINE Webhook URL set to #{webhook_endpoint}"
+  else
+    p "❌ Failed to set LINE Webhook. code=#{code}, error body=#{body}"
+  end
 end
 
 post '/callback' do
