@@ -24,7 +24,6 @@ jobs:
         with:
           bundler-cache: true
           ruby-version: 3.3
-      - run: bundle install --deployment
       - name: Update version file with the release version
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
