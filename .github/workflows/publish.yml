@@ -36,6 +36,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
           sed -i "s/VERSION = \".*\"/VERSION = \"$VERSION\"/" lib/line/bot/version.rb
+          sed -i "s/line-bot-api (.*)/line-bot-api ($VERSION)/" Gemfile.lock
           
           cat lib/line/bot/version.rb
           
@@ -43,7 +44,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
 
-          git add lib/line/bot/version.rb
+          git add lib/line/bot/version.rb Gemfile.lock
           git commit -m "Set version to $VERSION"
       - uses: rubygems/release-gem@a25424ba2ba8b387abc8ef40807c2c85b96cbe32 # v1.1.1
 
