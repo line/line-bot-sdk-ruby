@@ -295,10 +295,6 @@ v1 and v2 are completely different implementations, v1 is all deprecated and wil
 Migration to v2 is strongly recommended.
 Please refer to [Migration guide](migration_of_v1_to_v2_guide.md) for migration procedure.
 
-#### Deprecation warnings
-When calling the API endpoint with v1, a deprecation warning will occur.\
-If you want to suppress this, please set any value to the environment variable `SUPRESS_V1_DEPRECATION_WARNINGS`.
-
 ## Media
 News: https://developers.line.biz/en/news/
 
