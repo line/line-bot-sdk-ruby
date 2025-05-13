@@ -47,7 +47,7 @@ However, it's not recommended to always use it as it could lead to migration err
 ## Clients
 There are several types of API clients.
 Depending on the classification of the API, there are several types of clients.
-- `MassagingAPI`.
+- `MessagingApi`.
 - `ManageAudience`
 - `Inshight`
 - `ChannelAccessToken`
@@ -55,10 +55,10 @@ Depending on the classification of the API, there are several types of clients.
 - `Shop`
   and so on.
 
-In addition, the same `MessagingAPI` is divided into `ApiBlobClient` for APIs that use https://api-data.line.me to upload and download files.
+In addition, the same `MessagingApi` is divided into `ApiBlobClient` for APIs that use https://api-data.line.me to upload and download files.
 
-- `Line::Bot::V2::MessagingAPI::ApiClient`.
-- `Line::Bot::V2::MessagingAPI::ApiBlobClient`.
+- `Line::Bot::V2::MessagingApi::ApiClient`.
+- `Line::Bot::V2::MessagingApi::ApiBlobClient`.
 
 These are planned to be integrated in the future, but this has not yet been accomplished.
 
@@ -92,11 +92,11 @@ client = Line::Bot::V2::MessagingApi::ApiClient.new(
   channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
 )
 
-message = Line::Bot::V2::MessagingAPI::TextMessage.new( # No need to pass `type: "text"`
+message = Line::Bot::V2::MessagingApi::TextMessage.new( # No need to pass `type: "text"`
   text: 'Hello, this is a test message!'
 )
 
-request = Line::Bot::V2::MessagingAPI::PushMessageRequest.new(
+request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
   to: 'U1234567890abcdef1234567890abcdef',
   messages: [
     message
@@ -107,7 +107,7 @@ response, status_code, response_headers = client.push_message_with_http_info(
   push_message_request: request
 )
 
-puts response.class # => Line::Bot::V2::MessagingAPI::PushMessageResponse
+puts response.class # => Line::Bot::V2::MessagingApi::PushMessageResponse
 ```
 #### v2 (with Hash)
 This is not a recommended way.
@@ -120,7 +120,7 @@ client = Line::Bot::V2::MessagingApi::ApiClient.new(
   channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
 )
 
-request = Line::Bot::V2::MessagingAPI::PushMessageRequest.new(
+request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
   to: 'U1234567890abcdef1234567890abcdef',
   messages: [
     {
@@ -134,7 +134,7 @@ response, status_code, response_headers = client.push_message_with_http_info(
   push_message_request: request
 )
 
-puts response.class # => Line::Bot::V2::MessagingAPI::PushMessageResponse
+puts response.class # => Line::Bot::V2::MessagingApi::PushMessageResponse
 ```
 ### Handling Webhook
 #### v1
