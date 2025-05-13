@@ -66,7 +66,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    rbs (3.9.2)
+    rbs (3.9.3)
       logger
     regexp_parser (2.10.0)
     rexml (3.4.1)
@@ -143,7 +143,7 @@ DEPENDENCIES
   rack (~> 3.1)
   rackup (~> 2.1)
   rake (~> 13.0)
-  rbs (~> 3.9.2)
+  rbs (~> 3.9.3)
   rspec (~> 3.13.0)
   rubocop (~> 1.75.0)
   steep (~> 1.10.0)
