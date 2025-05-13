@@ -291,8 +291,7 @@ This project respects semantic versioning.
 See https://semver.org/
 
 ### v1 and v2
-v1 and v2 are completely different implementations, v1 is all deprecated and will be removed in the future.
-Migration to v2 is strongly recommended.
+v1 and v2 are completely different implementations. Migration to v2 is strongly recommended.
 Please refer to [Migration guide](migration_of_v1_to_v2_guide.md) for migration procedure.
 
 ## Media
