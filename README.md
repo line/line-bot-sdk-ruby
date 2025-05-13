@@ -41,6 +41,12 @@ Or install it yourself as:
 gem install line-bot-api
 ```
 
+## Example projects
+We provide examples to help you get started with the SDK.
+They work in your local environment if you have owned your bot account.
+
+Go the [examples](examples/v2) directory for more examples.
+
 ## Synopsis
 ### RBS
 This library provides [RBS](https://github.com/ruby/rbs) files for type checking.\
@@ -304,9 +310,6 @@ request = Line::Bot::V2::MessagingApi::PushMessageRequest.create(
   JSON.parse(json)
 )
 ```
-
-### More examples
-See the [examples](examples/v2) directory for more examples.
 
 ## Versioning
 This project respects semantic versioning.
