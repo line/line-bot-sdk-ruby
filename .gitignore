@@ -6,3 +6,6 @@
 /pkg/
 /spec/reports/
 /tmp/
+.DS_Store
+.idea
+.gem_rbs_collection
