@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.metadata = {
     "bug_tracker_uri" => "#{spec.homepage}/issues",
     "changelog_uri" => "#{spec.homepage}/releases",
-    "documentation_uri" => "https://rubydoc.info/gems/#{spec.name}/#{spec.version}",
+    "documentation_uri" => "https://line.github.io/line-bot-sdk-ruby/",
     "homepage_uri" => spec.homepage,
     "source_code_uri" => spec.homepage,
   }
