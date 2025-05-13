@@ -15,7 +15,8 @@ See the official API documentation for more information
 
 Also, generated documentation by YARD is available.
 
-- https://rubydoc.info/gems/line-bot-api
+- https://line.github.io/line-bot-sdk-ruby/
+- https://line.github.io/line-bot-sdk-ruby/_index.html
 
 ## Requirements
 This library requires Ruby 3.2 or later.
@@ -115,6 +116,28 @@ post '/callback' do
   "OK"
 end
 ```
+
+### Main classes
+You may use this classes to use LINE Messaging API features.
+
+#### Webhook
+- [Line::Bot::V2::WebhookParser](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/WebhookParser.html)  ([LINE Developers](https://developers.line.biz/en/reference/messaging-api/#webhooks))
+- [Line::Bot::V2::Event](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/Webhook/Event.html) ([LINE Developers](https://developers.line.biz/en/reference/messaging-api/#webhook-event-objects))
+
+### Clients
+
+| Class(YARD documentation)                                                                                                              | API EndPoint                                      | LINE Developers                                                                                                    |
+|----------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| [Line::Bot::V2::ChannelAccessToken::ApiClient](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/ChannelAccessToken/ApiClient.html) | https://api.line.me/** (related to oauth)         | https://developers.line.biz/en/reference/messaging-api/#channel-access-token                                       |
+| [Line::Bot::V2::Insight::ApiClient](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/Insight/ApiClient.html)                       | https://api.line.me/v2/bot/insight/**             | https://developers.line.biz/en/reference/messaging-api/#get-insight                                                |
+| [Line::Bot::V2::Liff::ApiClient](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/Liff/ApiClient.html)                             | https://api.line.me/liff/**                       | https://developers.line.biz/en/reference/liff-server/#server-api                                                   |
+| [Line::Bot::V2::ManageAudience::ApiClient](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/ManageAudience/ApiClient.html)         | https://api.line.me/v2/bot/audienceGroup/**       | https://developers.line.biz/en/reference/messaging-api/#manage-audience-group                                      |
+| [Line::Bot::V2::ManageAudience::ApiBlobClient](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/ManageAudience/ApiBlobClient.html) | https://api-data.line.me/v2/bot/audienceGroup/**  | https://developers.line.biz/en/reference/messaging-api/#manage-audience-group                                      |
+| [Line::Bot::V2::MessagingApi::ApiClient](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/MessagingApi/ApiClient.html)             | https://api.line.me/v2/bot/**                     | https://developers.line.biz/en/reference/messaging-api/<br/>https://developers.line.biz/en/reference/partner-docs/ |
+| [Line::Bot::V2::MessagingApi::ApiBlobClient](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/MessagingApi/ApiBlobClient.html)     | https://api-data.line.me/v2/bot/**                | https://developers.line.biz/en/reference/messaging-api/                                                            |
+| [Line::Bot::V2::Module::ApiClient](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/Module/ApiClient.html)                         | https://api.line.me/v2/bot/** (related to module) | https://developers.line.biz/en/reference/partner-docs/#module                                                      |
+| [Line::Bot::V2::ModuleAttach::ApiClient](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/ModuleAttach/ApiClient.html)             | https://manager.line.biz/module/auth/v1/token/**  | https://developers.line.biz/en/reference/partner-docs/#module                                                      |
+| [Line::Bot::V2::Shop::ApiClient](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/Shop/ApiClient.html)                             | https://api.line.me/shop/**                       | https://developers.line.biz/en/reference/partner-docs/#mission-stickers                                            |
 
 ### Use HTTP Information
 You may need to store the ```x-line-request-id``` header obtained as a response from several APIs.\
@@ -292,7 +315,7 @@ See https://semver.org/
 
 ### v1 and v2
 v1 and v2 are completely different implementations. Migration to v2 is strongly recommended.
-Please refer to [Migration guide](migration_from_v1_to_v2_guide) for migration procedure.
+Please refer to [Migration guide](migration_from_v1_to_v2_guide.md) for migration procedure.
 
 ## Media
 News: https://developers.line.biz/en/news/
