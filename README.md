@@ -292,7 +292,7 @@ See https://semver.org/
 
 ### v1 and v2
 v1 and v2 are completely different implementations. Migration to v2 is strongly recommended.
-Please refer to [Migration guide](migration_of_v1_to_v2_guide.md) for migration procedure.
+Please refer to [Migration guide](migration_from_v1_to_v2_guide) for migration procedure.
 
 ## Media
 News: https://developers.line.biz/en/news/
