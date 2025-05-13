@@ -59,6 +59,8 @@ GEM
     public_suffix (6.0.1)
     racc (1.8.1)
     rack (3.1.14)
+    rackup (2.2.1)
+      rack (>= 3)
     rainbow (3.1.1)
     rake (13.2.1)
     rb-fsevent (0.11.2)
@@ -138,7 +140,8 @@ PLATFORMS
 DEPENDENCIES
   addressable (~> 2.3)
   line-bot-api!
-  rack (~> 3.1.0)
+  rack (~> 3.1)
+  rackup (~> 2.1)
   rake (~> 13.0)
   rbs (~> 3.9.3)
   rspec (~> 3.13.0)
