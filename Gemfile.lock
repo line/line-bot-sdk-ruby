@@ -138,7 +138,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  addressable (~> 2.3)
   line-bot-api!
   rack (~> 3.1)
   rackup (~> 2.1)

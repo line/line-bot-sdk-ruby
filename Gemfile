@@ -14,7 +14,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'addressable', '~> 2.3' # TODO: Delete it after cleaning up V1 code
   gem 'rake', '~> 13.0'
   gem 'rspec', '~> 3.13.0'
   gem 'webmock', '~> 3.25.0'
