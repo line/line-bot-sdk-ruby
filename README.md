@@ -122,6 +122,7 @@ You may use this classes to use LINE Messaging API features.
 
 #### Webhook
 - [Line::Bot::V2::WebhookParser](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/WebhookParser.html)  ([LINE Developers](https://developers.line.biz/en/reference/messaging-api/#webhooks))
+- [Line::Bot::V2::Event](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/Webhook/Event.html) ([LINE Developers](https://developers.line.biz/en/reference/messaging-api/#webhook-event-objects))
 
 ### Clients
 
