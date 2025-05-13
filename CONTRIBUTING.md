@@ -9,6 +9,45 @@ It will be amazing if you could help us by doing any of the following:
 - Contribute your work by sending [a pull request](https://github.com/line/line-bot-sdk-ruby/pulls).
 
 ## Development
+### Install dependencies
+Run `bundle install` to install all dependencies.
+
+### Edit pebble template
+Almost all code are generated with [pebble template](https://pebbletemplates.io/), based on [line-openapi](https://github.com/line/line-openapi)'s yaml.
+Thus, you can't edit almost all code under `lib/line/bot/v2/<dir>.rb` and `sig/line/bot/v2/<dir>.rbs` directly.
+
+You need to edit the pebble template under [resources](generator/src/main/resources) instead.
+
+After editing the templates, run `generate-code.py` to generate the code, and then commit all affected files.
+If not, CI status will be red.
+
+When you update code, be sure to check consistencies between `lib/**.rb` and `sig/**.rbs`.
+
+### Add unit tests
+We use [RSpec](https://rspec.info/) for unit tests.
+Please add tests to the `spec` directory to verify your changes continuously.
+
+Especially for bug fixes, please follow this flow for testing and development:
+1. Write a test before making changes to the library and confirm that the test fails.
+2. Modify the code of the library.
+3. Run the test again and confirm that it passes thanks to (2).
+
+### Run your code in your local
+[Example projects](examples/v2) depend on this repository directly.
+You can use new or fixed gem in example projects before submitting a pull request.
+
+### Run all CI tasks in your local
+`Rakefile` defines almost all tasks.
+
+You can run all tasks in your local by running `bundle exec rake ci` command.
+
+### Upgrade dependencies
+The libraries that the library itself depends on are listed in the `line-bot-api.gemspec` file.
+Those needed only for development are written in the `Gemfile`.
+The versions in the gemspec file are set as low as possible, allowing users to specify higher versions in their application's Gemfile.
+
+For files related to RBS, refer to `rbs_collections.yaml` and the `Steepfile`.
+You can update by running `rbs collection update <LIB_NAME>`.
 
 ### YARD
 
