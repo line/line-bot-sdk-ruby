@@ -5,7 +5,7 @@ gemspec
 
 group :development, :test do
   gem 'rack', '~> 3.1.0' # for yard server
-  gem 'rbs', '~> 3.9.2'
+  gem 'rbs', '~> 3.9.3'
   gem 'rubocop', '~> 1.75.0', require: false
   gem 'steep', '~> 1.10.0'
   gem 'webrick', '~> 1.9.1'
