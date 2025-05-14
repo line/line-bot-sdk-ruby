@@ -10,7 +10,16 @@ It will be amazing if you could help us by doing any of the following:
 
 ## Development
 ### Install dependencies
-Run `bundle install` to install all dependencies.
+Run `bundle install` to install all dependencies for development.
+
+### Understand the project structure
+The project structure is as follows:
+- `lib`: The main library code.
+- `sig`: The RBS code.
+- `sig-vendor`: The RBS code outside this repository.
+- `spec`: The test code.
+- `examples`: Example projects that use the library.
+- `generator`: The code generator for the library.
 
 ### Edit pebble template
 Almost all code are generated with [pebble template](https://pebbletemplates.io/), based on [line-openapi](https://github.com/line/line-openapi)'s yaml.
@@ -80,5 +89,5 @@ For more details on how to write YARD doc comments, refer to YARD’s official [
 
 ### Contributor license agreement
 
-When you are sending a pull request and it's a non-trivial change beyond fixing typos, please make sure to sign [the ICLA (individual contributor license agreement)](https://cla-assistant.io/line/line-bot-sdk-ruby).
+When you send a pull request and it's a non-trivial change beyond fixing typos, please make sure to sign [the ICLA (individual contributor license agreement)](https://cla-assistant.io/line/line-bot-sdk-ruby).
 Please [contact us](mailto:dl_oss_dev@linecorp.com) if you need the CCLA (corporate contributor license agreement).
