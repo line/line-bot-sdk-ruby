@@ -34,3 +34,5 @@ gems:
     ignore: true
   - name: yard
     ignore: true
+  - name: rake
+    ignore: true
