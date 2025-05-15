@@ -33,6 +33,10 @@ gems:
     revision: 0ef449166f72c767f58f920cc36aca818fbf082f
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: digest
+  version: '0'
+  source:
+    type: stdlib
 - name: fileutils
   version: '0'
   source:
@@ -45,11 +49,19 @@ gems:
     revision: 0ef449166f72c767f58f920cc36aca818fbf082f
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: json
+  version: '0'
+  source:
+    type: stdlib
 - name: net-http
   version: '0'
   source:
     type: stdlib
 - name: net-protocol
+  version: '0'
+  source:
+    type: stdlib
+- name: openssl
   version: '0'
   source:
     type: stdlib
@@ -61,6 +73,10 @@ gems:
     revision: 0ef449166f72c767f58f920cc36aca818fbf082f
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: socket
+  version: '0'
+  source:
+    type: stdlib
 - name: timeout
   version: '0'
   source:

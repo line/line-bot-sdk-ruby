@@ -15,7 +15,9 @@ path: .gem_rbs_collection
 
 gems:
   # stdlibs
+  - name: json
   - name: net-http
+  - name: openssl
   - name: uri
   # unused library in line-bot-api and its test
   - name: rack
