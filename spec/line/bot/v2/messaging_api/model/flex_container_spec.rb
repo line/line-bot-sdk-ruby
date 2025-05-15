@@ -54,7 +54,7 @@ describe 'Line::Bot::V2::MessagingApi::FlexContainer' do
         Line::Bot::V2::MessagingApi::FlexContainer.create(JSON.parse(original_json_string))
       end
 
-      it 'creates a valid Line::Bot::V2::MessagingAPI::FlexContainer' do
+      it 'creates a valid Line::Bot::V2::MessagingApi::FlexContainer' do
         expect(container_instance).to be_a(Line::Bot::V2::MessagingApi::FlexContainer)
 
         expect(container_instance.class).to eq(Line::Bot::V2::MessagingApi::FlexBubble)
