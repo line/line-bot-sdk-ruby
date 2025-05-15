@@ -6,7 +6,7 @@ title: "Question"
 
 <!--
 ## Before Creating a Question Issue
-- Please check the [developer documentation](https://developers.line.biz/en/docs/) and [FAQ](https://developers.line.biz/en/faq/messaging-api/) for answers to common questions.
+- Please check the [developer documentation](https://developers.line.biz/en/docs/) and [FAQ](https://developers.line.biz/en/faq/tags/messaging-api/) for answers to common questions.
 - Make sure your question hasn't already been asked in other Issues or the documentation.
 
 ## This Is Not
@@ -23,7 +23,7 @@ title: "Question"
 - [ ] [Index Page - line-bot-api gem](https://line.github.io/line-bot-sdk-ruby/_index.html)
 - [ ] [Examples - line-bot-api gem](https://github.com/line/line-bot-sdk-ruby/tree/master/examples/v2)
 - [ ] [Developer Documentation - LINE Developers](https://developers.line.biz/en/docs/)
-- [ ] [FAQ - LINE Developers](https://developers.line.biz/en/faq/messaging-api/)
+- [ ] [FAQ - LINE Developers](https://developers.line.biz/en/faq/tags/messaging-api/)
 
 ## Summary of Your Question
 <!-- Provide a clear and concise description of what you want to know. -->

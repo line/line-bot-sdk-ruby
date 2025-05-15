@@ -6,7 +6,7 @@ title: 'Bug Report'
 
  <!--
 ## Before Creating an Issue
-- Please check our [developer documentation](https://developers.line.biz/en/docs/) and [FAQ](https://developers.line.biz/en/faq/messaging-api/) for more information on the Messaging API
+- Please check our [developer documentation](https://developers.line.biz/en/docs/) and [FAQ](https://developers.line.biz/en/faq/tags/messaging-api/) for more information on the Messaging API
 - Make sure the issue you are reporting isn't already addressed in the documentation or existing issues.
 
 ## When Creating an Issue
