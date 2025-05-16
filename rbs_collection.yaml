@@ -15,5 +15,24 @@ path: .gem_rbs_collection
 
 gems:
   # stdlibs
+  - name: json
   - name: net-http
+  - name: openssl
   - name: uri
+  # unused library in line-bot-api and its test
+  - name: rack
+    ignore: true
+  - name: rackup
+    ignore: true
+  - name: rbs
+    ignore: true
+  - name: rubocop
+    ignore: true
+  - name: steep
+    ignore: true
+  - name: webrick
+    ignore: true
+  - name: yard
+    ignore: true
+  - name: rake
+    ignore: true
