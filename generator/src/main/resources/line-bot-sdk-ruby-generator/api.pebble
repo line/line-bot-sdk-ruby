@@ -59,7 +59,7 @@ module Line
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           {% for param in op.allParams -%}
-          # @param {{param.paramName}} [{{ param.dataType }}{{ param.required ? '' : ', nil' }}] {{param.description}}
+          # @param {{param.paramName}} [{{ formatDataType(param) }}{{ param.required ? '' : ', nil' }}] {{param.description}}
           {% endfor -%}
           {% if op.isDeprecated -%}
           # @deprecated
@@ -93,7 +93,11 @@ module Line
               {% endfor %}
             }.compact{% elseif op.hasQueryParams %}
             query_params = {{ '{' }}{% for param in op.queryParams %}
+              {%- if param.isArray %}
+              "{{ param.baseName }}": {{ param.paramName }}&.join(','){{ loop.last ? '' : ',' -}}
+              {%- else %}
               "{{ param.baseName }}": {{ param.paramName }}{{ loop.last ? '' : ',' -}}
+              {%- endif %}
               {% endfor %}
             }.compact{% endif %}{% if op.hasHeaderParams %}
             header_params = {{ '{' }}{% for param in op.headerParams %}
@@ -133,7 +137,7 @@ module Line
           # When you want to get HTTP status code or response headers, use {{ '{#' }}{{op.nickname}}_with_http_info} instead of this.
           #
           {% for param in op.allParams -%}
-          # @param {{param.paramName}} [{{ param.dataType }}{{ param.required ? '' : ', nil' }}] {{param.description}}
+          # @param {{param.paramName}} [{{ formatDataType(param) }}{{ param.required ? '' : ', nil' }}] {{param.description}}
           {% endfor -%}
           {% if op.isDeprecated -%}
           # @deprecated
@@ -168,3 +172,7 @@ module Line
     end
   end
 end
+
+{%- macro formatDataType(param) -%}
+{%- if param.isArray -%}Array[{{ param.items.dataType }}]{%- else -%}{{ param.dataType }}{%- endif -%}
+{%- endmacro -%}
