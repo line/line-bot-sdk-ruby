@@ -54,7 +54,7 @@ module Line
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           {% for param in op.allParams -%}
-          # @param {{param.paramName}} [{{ param.dataType }}{{ param.required ? '' : ', nil' }}] {{param.description}}
+          # @param {{param.paramName}} [{{ formatDataType(param) }}{{ param.required ? '' : ', nil' }}] {{param.description}}
           {% endfor -%}
           {% if op.isDeprecated -%}
           # @deprecated
@@ -75,7 +75,7 @@ module Line
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def {{op.nickname}}_with_http_info: (
             {%- for param in op.allParams %}
-            {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
+            {{ param.required ? '' : '?' }}{{param.paramName}}: {{ formatDataType(param) }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
             {% endfor %}
           ) -> (
             {%- for response in op.responses %}
@@ -89,7 +89,7 @@ module Line
           # When you want to get HTTP status code or response headers, use {{ '{#' }}{{op.nickname}}_with_http_info} instead of this.
           #
           {% for param in op.allParams -%}
-          # @param {{param.paramName}} [{{ param.dataType }}{{ param.required ? '' : ', nil' }}] {{param.description}}
+          # @param {{param.paramName}} [{{ formatDataType(param) }}{{ param.required ? '' : ', nil' }}] {{param.description}}
           {% endfor -%}
           {% if op.isDeprecated -%}
           # @deprecated
@@ -110,7 +110,7 @@ module Line
           # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def {{op.nickname}}: (
             {%- for param in op.allParams %}
-            {{ param.required ? '' : '?' }}{{param.paramName}}: {{ param.dataType }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
+            {{ param.required ? '' : '?' }}{{param.paramName}}: {{ formatDataType(param) }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
             {% endfor %}
           ) -> (
             {%- for response in op.responses %}
@@ -124,3 +124,7 @@ module Line
     end
   end
 end
+
+{%- macro formatDataType(param) %}
+{%- if param.isArray -%}Array[{{ param.items.dataType }}]{%- else -%}{{ param.dataType }}{%- endif -%}
+{%- endmacro %}
