@@ -125,6 +125,6 @@ module Line
   end
 end
 
-{%- macro formatDataType(param) -%}
+{%- macro formatDataType(param) %}
 {%- if param.isArray -%}Array[{{ param.items.dataType }}]{%- else -%}{{ param.dataType }}{%- endif -%}
-{%- endmacro -%}
+{%- endmacro %}
