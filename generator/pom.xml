@@ -136,6 +136,6 @@
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <openapi-generator-version>7.13.0</openapi-generator-version>
+    <openapi-generator-version>7.14.0</openapi-generator-version>
   </properties>
 </project>
