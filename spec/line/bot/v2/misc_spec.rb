@@ -696,6 +696,43 @@ describe 'misc' do
       expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
     end
 
+    it 'request - coupon message' do
+      stub_request(:post, "https://api.line.me/v2/bot/message/push")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          },
+          body: {
+            "to" => "USER_ID",
+            "messages" => [
+              {
+                "type" => "coupon",
+                "couponId" => "COUPON_ID_1"
+              }
+            ],
+            "notificationDisabled" => false,
+          }.to_json
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
+        to: 'USER_ID',
+        messages: [
+          Line::Bot::V2::MessagingApi::CouponMessage.new(
+            coupon_id: 'COUPON_ID_1'
+          )
+        ]
+      )
+      body, status_code, headers = client.push_message_with_http_info(push_message_request: request)
+
+      expect(status_code).to eq(200)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::PushMessageResponse)
+      expect(body.sent_messages).to be_a(Array)
+      expect(body.sent_messages[0]).to be_a(Line::Bot::V2::MessagingApi::SentMessage)
+      expect(body.sent_messages[0].id).to eq('461230966842064897')
+      expect(body.sent_messages[0].quote_token).to eq('IStG5h1Tz7b...')
+    end
+
     it 'request - success - flex message using request class from JSON' do
       stub_request(:post, "https://api.line.me/v2/bot/message/push")
         .with(
@@ -2083,6 +2120,209 @@ describe 'misc' do
       expect(status_code).to eq(200)
       expect(body.audience_groups.size).to eq(2)
       expect(body.audience_groups[0].description).to eq('audienceGroup Name')
+    end
+  end
+
+  describe 'POST /v2/bot/coupon' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:response_body) do
+      {
+        "couponId": "01JWZKMV..."
+      }.to_json
+    end
+    let(:response_code) { 200 }
+
+    it 'creates a coupon with correct parameters' do
+      expected_body = {
+        title: "100Yen OFF",
+        startTimestamp: 1751619750,
+        endTimestamp: 1751619751,
+        visibility: "PUBLIC",
+        maxUseCountPerTicket: 1,
+        timezone: "ASIA_TOKYO",
+        reward: {
+          type: "discount",
+          priceInfo: {
+            type: "fixed",
+            fixedAmount: 100
+          }
+        },
+        acquisitionCondition: {
+          type: "lottery",
+          lotteryProbability: 50,
+          maxAcquireCount: 1
+        }
+      }
+
+      stub_request(:post, "https://api.line.me/v2/bot/coupon")
+        .with(
+          headers: {
+            'Authorization' => "Bearer test-channel-access-token"
+          },
+          body: hash_including(expected_body)
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      request = Line::Bot::V2::MessagingApi::CouponCreateRequest.new(
+        title: '100Yen OFF',
+        start_timestamp: 1751619750,
+        end_timestamp: 1751619751,
+        visibility: 'PUBLIC',
+        max_use_count_per_ticket: 1,
+        timezone: 'ASIA_TOKYO',
+        reward: Line::Bot::V2::MessagingApi::CouponDiscountRewardRequest.new(
+          price_info: Line::Bot::V2::MessagingApi::DiscountFixedPriceInfoRequest.new(
+            fixed_amount: 100
+          )
+        ),
+        acquisition_condition: Line::Bot::V2::MessagingApi::LotteryAcquisitionConditionRequest.new(
+          lottery_probability: 50,
+          max_acquire_count: 1
+        )
+      )
+      body, status_code, headers = client.create_coupon_with_http_info(coupon_create_request: request)
+
+      expect(status_code).to eq(200)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::CouponCreateResponse)
+      expect(body.coupon_id).to eq('01JWZKMV...')
+    end
+  end
+
+  describe 'PUT /v2/bot/coupon/{couponId}/close' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:coupon_id) { '01JWZKMV...' }
+    let(:response_body) { {}.to_json }
+    let(:response_code) { 200 }
+    it 'path parameter works (string)' do
+      stub_request(:put, "https://api.line.me/v2/bot/coupon/#{coupon_id}/close")
+        .with(
+          headers: { 'Authorization' => "Bearer test-channel-access-token" }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+      body, status_code, headers = client.close_coupon_with_http_info(coupon_id: coupon_id)
+      expect(status_code).to eq(200)
+      expect(body).to eq("{}")
+    end
+  end
+
+  describe 'GET /v2/bot/coupon/{couponId}' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    let(:coupon_id) { '01JWZKMV...' }
+    let(:response_body) do
+      {
+        "couponId": coupon_id,
+        "title": "100Yen OFF",
+        "startTimestamp": 1751619750,
+        "endTimestamp": 1751619751,
+        "visibility": "PUBLIC",
+        "maxUseCountPerTicket": 1,
+        "maxTicketPerUser": 1,
+        "timezone": "ASIA_TOKYO",
+        "reward": {
+          "type": "discount",
+          "priceInfo": {
+            "type": "fixed",
+            "fixedAmount": 100,
+            "currency": "JPY"
+          }
+        },
+        "acquisitionCondition": {
+          "type": "lottery",
+          "lotteryProbability": 50,
+          "maxAcquireCount": 1
+        },
+        "status": "RUNNING",
+        "createdTimestamp": 1751609750
+      }.to_json
+    end
+    let(:response_code) { 200 }
+    it 'path parameter works (string)' do
+      stub_request(:get, "https://api.line.me/v2/bot/coupon/#{coupon_id}")
+        .with(
+          headers: { 'Authorization' => "Bearer test-channel-access-token" }
+        )
+        .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
+
+      body, status_code, headers = client.get_coupon_detail_with_http_info(coupon_id: coupon_id)
+
+      expect(status_code).to eq(200)
+      expect(body).to be_a(Line::Bot::V2::MessagingApi::CouponResponse)
+      expect(body.coupon_id).to eq(coupon_id)
+      expect(body.title).to eq("100Yen OFF")
+      expect(body.start_timestamp).to eq(1751619750)
+      expect(body.end_timestamp).to eq(1751619751)
+      expect(body.visibility).to eq("PUBLIC")
+      expect(body.max_use_count_per_ticket).to eq(1)
+      expect(body.timezone).to eq("ASIA_TOKYO")
+      expect(body.reward.type).to eq("discount")
+      expect(body.reward.price_info.type).to eq("fixed")
+      expect(body.reward.price_info.fixed_amount).to eq(100)
+      expect(body.reward.price_info.currency).to eq("JPY")
+      expect(body.acquisition_condition.type).to eq("lottery")
+      expect(body.acquisition_condition.lottery_probability).to eq(50)
+      expect(body.acquisition_condition.max_acquire_count).to eq(1)
+      expect(body.status).to eq("RUNNING")
+      expect(body.created_timestamp).to eq(1751609750)
+    end
+  end
+
+  describe 'GET /v2/bot/coupon' do
+    let(:client) { Line::Bot::V2::MessagingApi::ApiClient.new(channel_access_token: 'test-channel-access-token') }
+    it 'query parameter is encoded' do
+      first_response_body = {
+        "items" => [
+          {"couponId" => "COUPON_ID_1", "title" => "coupon 1"},
+          {"couponId" => "COUPON_ID_2", "title" => "coupon 2"}
+        ],
+        "next" => "firstNextToken"
+      }.to_json
+      second_response_body = {
+        "items" => [
+          {"couponId" => "COUPON_ID_3", "title" => "coupon 3"},
+          {"couponId" => "COUPON_ID_4", "title" => "coupon 4"}
+        ],
+      }.to_json
+
+      # First request: using limit=2, status=CLOSED,RUNNING
+      stub_request(:get, "https://api.line.me/v2/bot/coupon?limit=2&status=CLOSED,RUNNING")
+        .with(
+          headers: { 'Authorization' => "Bearer test-channel-access-token" }
+        )
+        .to_return(
+          status: 200,
+          body: first_response_body,
+          headers: { 'Content-Type' => 'application/json' }
+        )
+      # Second request: using status=CLOSED,RUNNING, start="firstNextToken"
+      stub_request(:get, "https://api.line.me/v2/bot/coupon?status=CLOSED,RUNNING&start=firstNextToken")
+        .with(
+          headers: { 'Authorization' => "Bearer test-channel-access-token" }
+        )
+        .to_return(
+          status: 200,
+          body: second_response_body,
+          headers: { 'Content-Type' => 'application/json' }
+        )
+
+      # ---- First access ----
+      body1, status_code1, headers1 = client.list_coupon_with_http_info(limit: 2, status: ["CLOSED", "RUNNING"])
+      expect(status_code1).to eq(200)
+      expect(body1.items).to be_a(Array)
+      expect(body1.items[0].coupon_id).to eq("COUPON_ID_1")
+      expect(body1.items[0].title).to eq("coupon 1")
+      expect(body1.items[1].coupon_id).to eq("COUPON_ID_2")
+      expect(body1.items[1].title).to eq("coupon 2")
+      expect(body1._next).to eq("firstNextToken")
+
+      # ---- Second access ----
+      body2, status_code2, headers2 = client.list_coupon_with_http_info(status: ["CLOSED", "RUNNING"], start: "firstNextToken")
+      expect(status_code2).to eq(200)
+      expect(body2.items).to be_a(Array)
+      expect(body2.items[0].coupon_id).to eq("COUPON_ID_3")
+      expect(body2.items[0].title).to eq("coupon 3")
+      expect(body2.items[1].coupon_id).to eq("COUPON_ID_4")
+      expect(body2.items[1].title).to eq("coupon 4")
+      expect(body2._next).to be_nil
     end
   end
 end
