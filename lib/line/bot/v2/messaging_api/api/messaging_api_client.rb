@@ -172,6 +172,135 @@ module Line
             response_body
           end
 
+          # Close coupon
+          # This requests to <code>PUT https://api.line.me/v2/bot/coupon/{couponId}/close</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param coupon_id [String] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#discontinue-coupon
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 404
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 410
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def close_coupon_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            coupon_id:
+          )
+            path = "/v2/bot/coupon/{couponId}/close"
+              .gsub(/{couponId}/, coupon_id.to_s)
+
+            response = @http_client.put(
+              path: path,
+            )
+
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            when 400
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 400, response.each_header.to_h]
+            when 404
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 404, response.each_header.to_h]
+            when 410
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 410, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
+          end
+
+          # Close coupon
+          # This requests to <code>PUT https://api.line.me/v2/bot/coupon/{couponId}/close</code>
+          # When you want to get HTTP status code or response headers, use {#close_coupon_with_http_info} instead of this.
+          #
+          # @param coupon_id [String] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#discontinue-coupon
+          # @return [String, nil] when HTTP status code is 200
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 400
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 404
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 410
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def close_coupon(
+            coupon_id:
+          )
+            response_body, _status_code, _headers = close_coupon_with_http_info(
+              coupon_id: coupon_id
+            )
+
+            response_body
+          end
+
+          # Create a new coupon. Define coupon details such as type, title, and validity period.
+          # This requests to <code>POST https://api.line.me/v2/bot/coupon</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param coupon_create_request [CouponCreateRequest, nil] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#create-coupon
+          # @return [Array(Line::Bot::V2::MessagingApi::CouponCreateResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def create_coupon_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            coupon_create_request: nil
+          )
+            path = "/v2/bot/coupon"
+
+            response = @http_client.post(
+              path: path,
+              body_params: coupon_create_request,
+            )
+
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::CouponCreateResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            when 400
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 400, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
+          end
+
+          # Create a new coupon. Define coupon details such as type, title, and validity period.
+          # This requests to <code>POST https://api.line.me/v2/bot/coupon</code>
+          # When you want to get HTTP status code or response headers, use {#create_coupon_with_http_info} instead of this.
+          #
+          # @param coupon_create_request [CouponCreateRequest, nil] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#create-coupon
+          # @return [Line::Bot::V2::MessagingApi::CouponCreateResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 400
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def create_coupon(
+            coupon_create_request: nil
+          )
+            response_body, _status_code, _headers = create_coupon_with_http_info(
+              coupon_create_request: coupon_create_request
+            )
+
+            response_body
+          end
+
           # Create rich menu
           # This requests to <code>POST https://api.line.me/v2/bot/richmenu</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
@@ -510,6 +639,73 @@ module Line
           def get_bot_info(
           )
             response_body, _status_code, _headers = get_bot_info_with_http_info(
+            )
+
+            response_body
+          end
+
+          # Get coupon detail
+          # This requests to <code>GET https://api.line.me/v2/bot/coupon/{couponId}</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param coupon_id [String] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-coupon
+          # @return [Array(Line::Bot::V2::MessagingApi::CouponResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 404
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_coupon_detail_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            coupon_id:
+          )
+            path = "/v2/bot/coupon/{couponId}"
+              .gsub(/{couponId}/, coupon_id.to_s)
+
+            response = @http_client.get(
+              path: path,
+            )
+
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::CouponResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            when 400
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 400, response.each_header.to_h]
+            when 404
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 404, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
+          end
+
+          # Get coupon detail
+          # This requests to <code>GET https://api.line.me/v2/bot/coupon/{couponId}</code>
+          # When you want to get HTTP status code or response headers, use {#get_coupon_detail_with_http_info} instead of this.
+          #
+          # @param coupon_id [String] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-coupon
+          # @return [Line::Bot::V2::MessagingApi::CouponResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 400
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 404
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def get_coupon_detail(
+            coupon_id:
+          )
+            response_body, _status_code, _headers = get_coupon_detail_with_http_info(
+              coupon_id: coupon_id
             )
 
             response_body
@@ -2209,6 +2405,79 @@ module Line
           )
             response_body, _status_code, _headers = link_rich_menu_id_to_users_with_http_info(
               rich_menu_bulk_link_request: rich_menu_bulk_link_request
+            )
+
+            response_body
+          end
+
+          # Get a paginated list of coupons.
+          # This requests to <code>GET https://api.line.me/v2/bot/coupon</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param status [Array[String], nil] Filter coupons by their status.
+          # @param start [String, nil] Pagination token to retrieve the next page of results.
+          # @param limit [Integer, nil] Maximum number of coupons to return per request.
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-coupons-list
+          # @return [Array(Line::Bot::V2::MessagingApi::MessagingApiPagerCouponListResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def list_coupon_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            status: nil, 
+            start: nil, 
+            limit: nil
+          )
+            path = "/v2/bot/coupon"
+            query_params = {
+              "status": status&.join(','),
+              "start": start,
+              "limit": limit
+            }.compact
+
+            response = @http_client.get(
+              path: path,
+              query_params: query_params,
+            )
+
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::MessagingApiPagerCouponListResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 200, response.each_header.to_h]
+            when 400
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 400, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
+          end
+
+          # Get a paginated list of coupons.
+          # This requests to <code>GET https://api.line.me/v2/bot/coupon</code>
+          # When you want to get HTTP status code or response headers, use {#list_coupon_with_http_info} instead of this.
+          #
+          # @param status [Array[String], nil] Filter coupons by their status.
+          # @param start [String, nil] Pagination token to retrieve the next page of results.
+          # @param limit [Integer, nil] Maximum number of coupons to return per request.
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-coupons-list
+          # @return [Line::Bot::V2::MessagingApi::MessagingApiPagerCouponListResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 400
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def list_coupon(
+            status: nil,
+            start: nil,
+            limit: nil
+          )
+            response_body, _status_code, _headers = list_coupon_with_http_info(
+              status: status,
+              start: start,
+              limit: limit
             )
 
             response_body

@@ -7,35 +7,47 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
+require_relative './message'
+
 module Line
   module Bot
     module V2
       module MessagingApi
-        # @see https://developers.line.biz/en/reference/messaging-api/#message-common-properties
-        class Message
-          # @!attribute [rw] type
+        # @see https://developers.line.biz/en/reference/messaging-api/#coupon-message
+        class CouponMessage < Message
+          # @!attribute [r] type
           #   @return [String] Type of message
-          attr_accessor :type
+          attr_reader :type
           # @!attribute [rw] quick_reply
           #   @return [QuickReply,nil] 
           attr_accessor :quick_reply
           # @!attribute [rw] sender
           #   @return [Sender,nil] 
           attr_accessor :sender
+          # @!attribute [rw] coupon_id
+          #   @return [String] Unique identifier of the coupon.
+          attr_accessor :coupon_id
+          # @!attribute [rw] delivery_tag
+          #   @return [String,nil] Delivery route tag information. It can be used for analysis in LINE OA Manager.
+          attr_accessor :delivery_tag
 
-          # @param type [String] Type of message
           # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
           # @param sender [Sender, Hash[Symbol, untyped], nil] 
+          # @param coupon_id [String] Unique identifier of the coupon.
+          # @param delivery_tag [String,nil] Delivery route tag information. It can be used for analysis in LINE OA Manager.
           def initialize(
-            type:,
             quick_reply: nil,
             sender: nil,
+            coupon_id:,
+            delivery_tag: nil,
             **dynamic_attributes
           )
+            @type = "coupon"
             
-            @type = type
             @quick_reply = quick_reply.is_a?(Line::Bot::V2::MessagingApi::QuickReply) || quick_reply.nil? ? quick_reply : Line::Bot::V2::MessagingApi::QuickReply.create(**quick_reply) # steep:ignore
             @sender = sender.is_a?(Line::Bot::V2::MessagingApi::Sender) || sender.nil? ? sender : Line::Bot::V2::MessagingApi::Sender.create(**sender) # steep:ignore
+            @coupon_id = coupon_id
+            @delivery_tag = delivery_tag
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -52,11 +64,9 @@ module Line
 
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
-          # @return [Line::Bot::V2::MessagingApi::Message] Instance of the class
+          # @return [Line::Bot::V2::MessagingApi::CouponMessage] Instance of the class
           def self.create(args) # steep:ignore
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            klass = detect_class(type: symbolized_args[:type])
-            return klass.new(**symbolized_args) if klass # steep:ignore
             return new(**symbolized_args) # steep:ignore
           end
 
@@ -73,24 +83,6 @@ module Line
           # @return [Integer] Hash code of the object
           def hash
             [self.class, *instance_variables.map { |var| instance_variable_get(var) }].hash
-          end
-
-          private
-
-          def self.detect_class(type:)
-            {
-              audio: Line::Bot::V2::MessagingApi::AudioMessage,
-              coupon: Line::Bot::V2::MessagingApi::CouponMessage,
-              flex: Line::Bot::V2::MessagingApi::FlexMessage,
-              image: Line::Bot::V2::MessagingApi::ImageMessage,
-              imagemap: Line::Bot::V2::MessagingApi::ImagemapMessage,
-              location: Line::Bot::V2::MessagingApi::LocationMessage,
-              sticker: Line::Bot::V2::MessagingApi::StickerMessage,
-              template: Line::Bot::V2::MessagingApi::TemplateMessage,
-              text: Line::Bot::V2::MessagingApi::TextMessage,
-              textV2: Line::Bot::V2::MessagingApi::TextMessageV2,
-              video: Line::Bot::V2::MessagingApi::VideoMessage,
-            }[type.to_sym]
           end
         end
       end
