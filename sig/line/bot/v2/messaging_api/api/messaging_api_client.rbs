@@ -112,6 +112,82 @@ module Line
             | String? # otherwise
           )
 
+          # Close coupon
+          # This requests to <code>PUT https://api.line.me/v2/bot/coupon/{couponId}/close</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param coupon_id [String] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#discontinue-coupon
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 404
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 410
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def close_coupon_with_http_info: (
+            coupon_id: String
+          ) -> (
+            [String?, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [ErrorResponse, 404, Hash[untyped, untyped]] # when HTTP status code is 404
+            | [ErrorResponse, 410, Hash[untyped, untyped]] # when HTTP status code is 410
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
+
+          # Close coupon
+          # This requests to <code>PUT https://api.line.me/v2/bot/coupon/{couponId}/close</code>
+          # When you want to get HTTP status code or response headers, use {#close_coupon_with_http_info} instead of this.
+          #
+          # @param coupon_id [String] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#discontinue-coupon
+          # @return [String, nil] when HTTP status code is 200
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 400
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 404
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 410
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def close_coupon: (
+            coupon_id: String
+          ) -> (
+            String? # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | ErrorResponse # when HTTP status code is 404
+            | ErrorResponse # when HTTP status code is 410
+            | String? # otherwise
+          )
+
+          # Create a new coupon. Define coupon details such as type, title, and validity period.
+          # This requests to <code>POST https://api.line.me/v2/bot/coupon</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param coupon_create_request [CouponCreateRequest, nil] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#create-coupon
+          # @return [Array(Line::Bot::V2::MessagingApi::CouponCreateResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def create_coupon_with_http_info: (
+            ?coupon_create_request: CouponCreateRequest?
+          ) -> (
+            [CouponCreateResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
+
+          # Create a new coupon. Define coupon details such as type, title, and validity period.
+          # This requests to <code>POST https://api.line.me/v2/bot/coupon</code>
+          # When you want to get HTTP status code or response headers, use {#create_coupon_with_http_info} instead of this.
+          #
+          # @param coupon_create_request [CouponCreateRequest, nil] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#create-coupon
+          # @return [Line::Bot::V2::MessagingApi::CouponCreateResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 400
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def create_coupon: (
+            ?coupon_create_request: CouponCreateRequest?
+          ) -> (
+            CouponCreateResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | String? # otherwise
+          )
+
           # Create rich menu
           # This requests to <code>POST https://api.line.me/v2/bot/richmenu</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
@@ -323,6 +399,44 @@ module Line
           def get_bot_info: (
           ) -> (
             BotInfoResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
+
+          # Get coupon detail
+          # This requests to <code>GET https://api.line.me/v2/bot/coupon/{couponId}</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param coupon_id [String] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-coupon
+          # @return [Array(Line::Bot::V2::MessagingApi::CouponResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 404
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_coupon_detail_with_http_info: (
+            coupon_id: String
+          ) -> (
+            [CouponResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [ErrorResponse, 404, Hash[untyped, untyped]] # when HTTP status code is 404
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
+
+          # Get coupon detail
+          # This requests to <code>GET https://api.line.me/v2/bot/coupon/{couponId}</code>
+          # When you want to get HTTP status code or response headers, use {#get_coupon_detail_with_http_info} instead of this.
+          #
+          # @param coupon_id [String] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-coupon
+          # @return [Line::Bot::V2::MessagingApi::CouponResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 400
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 404
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def get_coupon_detail: (
+            coupon_id: String
+          ) -> (
+            CouponResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
+            | ErrorResponse # when HTTP status code is 404
             | String? # otherwise
           )
 
@@ -1345,6 +1459,48 @@ module Line
             rich_menu_bulk_link_request: RichMenuBulkLinkRequest
           ) -> (
             String? # when HTTP status code is 202
+            | String? # otherwise
+          )
+
+          # Get a paginated list of coupons.
+          # This requests to <code>GET https://api.line.me/v2/bot/coupon</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param status [Array[String], nil] Filter coupons by their status.
+          # @param start [String, nil] Pagination token to retrieve the next page of results.
+          # @param limit [Integer, nil] Maximum number of coupons to return per request.
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-coupons-list
+          # @return [Array(Line::Bot::V2::MessagingApi::MessagingApiPagerCouponListResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def list_coupon_with_http_info: (
+            ?status: Array[String]?, 
+            ?start: String?, 
+            ?limit: Integer?
+          ) -> (
+            [MessagingApiPagerCouponListResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [ErrorResponse, 400, Hash[untyped, untyped]] # when HTTP status code is 400
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
+
+          # Get a paginated list of coupons.
+          # This requests to <code>GET https://api.line.me/v2/bot/coupon</code>
+          # When you want to get HTTP status code or response headers, use {#list_coupon_with_http_info} instead of this.
+          #
+          # @param status [Array[String], nil] Filter coupons by their status.
+          # @param start [String, nil] Pagination token to retrieve the next page of results.
+          # @param limit [Integer, nil] Maximum number of coupons to return per request.
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-coupons-list
+          # @return [Line::Bot::V2::MessagingApi::MessagingApiPagerCouponListResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 400
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def list_coupon: (
+            ?status: Array[String]?, 
+            ?start: String?, 
+            ?limit: Integer?
+          ) -> (
+            MessagingApiPagerCouponListResponse # when HTTP status code is 200
+            | ErrorResponse # when HTTP status code is 400
             | String? # otherwise
           )
 

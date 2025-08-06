@@ -11,31 +11,18 @@ module Line
   module Bot
     module V2
       module MessagingApi
-        # @see https://developers.line.biz/en/reference/messaging-api/#message-common-properties
-        class Message
+        class AcquisitionConditionRequest
           # @!attribute [rw] type
-          #   @return [String] Type of message
+          #   @return [String] Determines how the coupon is distributed or used.
           attr_accessor :type
-          # @!attribute [rw] quick_reply
-          #   @return [QuickReply,nil] 
-          attr_accessor :quick_reply
-          # @!attribute [rw] sender
-          #   @return [Sender,nil] 
-          attr_accessor :sender
 
-          # @param type [String] Type of message
-          # @param quick_reply [QuickReply, Hash[Symbol, untyped], nil] 
-          # @param sender [Sender, Hash[Symbol, untyped], nil] 
+          # @param type [String] Determines how the coupon is distributed or used.
           def initialize(
             type:,
-            quick_reply: nil,
-            sender: nil,
             **dynamic_attributes
           )
             
             @type = type
-            @quick_reply = quick_reply.is_a?(Line::Bot::V2::MessagingApi::QuickReply) || quick_reply.nil? ? quick_reply : Line::Bot::V2::MessagingApi::QuickReply.create(**quick_reply) # steep:ignore
-            @sender = sender.is_a?(Line::Bot::V2::MessagingApi::Sender) || sender.nil? ? sender : Line::Bot::V2::MessagingApi::Sender.create(**sender) # steep:ignore
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -52,7 +39,7 @@ module Line
 
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
-          # @return [Line::Bot::V2::MessagingApi::Message] Instance of the class
+          # @return [Line::Bot::V2::MessagingApi::AcquisitionConditionRequest] Instance of the class
           def self.create(args) # steep:ignore
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
             klass = detect_class(type: symbolized_args[:type])
@@ -79,17 +66,8 @@ module Line
 
           def self.detect_class(type:)
             {
-              audio: Line::Bot::V2::MessagingApi::AudioMessage,
-              coupon: Line::Bot::V2::MessagingApi::CouponMessage,
-              flex: Line::Bot::V2::MessagingApi::FlexMessage,
-              image: Line::Bot::V2::MessagingApi::ImageMessage,
-              imagemap: Line::Bot::V2::MessagingApi::ImagemapMessage,
-              location: Line::Bot::V2::MessagingApi::LocationMessage,
-              sticker: Line::Bot::V2::MessagingApi::StickerMessage,
-              template: Line::Bot::V2::MessagingApi::TemplateMessage,
-              text: Line::Bot::V2::MessagingApi::TextMessage,
-              textV2: Line::Bot::V2::MessagingApi::TextMessageV2,
-              video: Line::Bot::V2::MessagingApi::VideoMessage,
+              lottery: Line::Bot::V2::MessagingApi::LotteryAcquisitionConditionRequest,
+              normal: Line::Bot::V2::MessagingApi::NormalAcquisitionConditionRequest,
             }[type.to_sym]
           end
         end
