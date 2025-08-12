@@ -113,7 +113,6 @@ module Line
               module: Line::Bot::V2::Webhook::ModuleEvent,
               delivery: Line::Bot::V2::Webhook::PnpDeliveryCompletionEvent,
               postback: Line::Bot::V2::Webhook::PostbackEvent,
-              things: Line::Bot::V2::Webhook::ThingsEvent,
               unfollow: Line::Bot::V2::Webhook::UnfollowEvent,
               unsend: Line::Bot::V2::Webhook::UnsendEvent,
               videoPlayComplete: Line::Bot::V2::Webhook::VideoPlayCompleteEvent,

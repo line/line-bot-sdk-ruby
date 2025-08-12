@@ -1,7 +1,6 @@
 .openapi-generator-ignore
 api/dummy_client.rbs
 model/account_link_event.rbs
-model/action_result.rbs
 model/activated_event.rbs
 model/all_mentionee.rbs
 model/attached_module_content.rbs
@@ -32,7 +31,6 @@ model/leave_event.rbs
 model/left_members.rbs
 model/left_membership_content.rbs
 model/link_content.rbs
-model/link_things_content.rbs
 model/location_message_content.rbs
 model/member_joined_event.rbs
 model/member_left_event.rbs
@@ -50,15 +48,10 @@ model/postback_content.rbs
 model/postback_event.rbs
 model/renewed_membership_content.rbs
 model/room_source.rbs
-model/scenario_result.rbs
-model/scenario_result_things_content.rbs
 model/source.rbs
 model/sticker_message_content.rbs
 model/text_message_content.rbs
-model/things_content.rbs
-model/things_event.rbs
 model/unfollow_event.rbs
-model/unlink_things_content.rbs
 model/unsend_detail.rbs
 model/unsend_event.rbs
 model/user_mentionee.rbs
