@@ -2,7 +2,6 @@
 api/dummy_client.rb
 core.rb
 model/account_link_event.rb
-model/action_result.rb
 model/activated_event.rb
 model/all_mentionee.rb
 model/attached_module_content.rb
@@ -33,7 +32,6 @@ model/leave_event.rb
 model/left_members.rb
 model/left_membership_content.rb
 model/link_content.rb
-model/link_things_content.rb
 model/location_message_content.rb
 model/member_joined_event.rb
 model/member_left_event.rb
@@ -51,15 +49,10 @@ model/postback_content.rb
 model/postback_event.rb
 model/renewed_membership_content.rb
 model/room_source.rb
-model/scenario_result.rb
-model/scenario_result_things_content.rb
 model/source.rb
 model/sticker_message_content.rb
 model/text_message_content.rb
-model/things_content.rb
-model/things_event.rb
 model/unfollow_event.rb
-model/unlink_things_content.rb
 model/unsend_detail.rb
 model/unsend_event.rb
 model/user_mentionee.rb
