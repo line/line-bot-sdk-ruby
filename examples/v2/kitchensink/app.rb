@@ -113,9 +113,6 @@ post '/callback' do
     when Line::Bot::V2::Webhook::PnpDeliveryCompletionEvent
       reply_text(event, "[PNP DELIVERY COMPLETE] delivered\n")
 
-    when Line::Bot::V2::Webhook::ThingsEvent
-      reply_text(event, "[THINGS]\n#{JSON.generate(event.things)}")
-
     when Line::Bot::V2::Webhook::VideoPlayCompleteEvent
       reply_text(event, "[VIDEO_PLAY_COMPLETE]\n#{JSON.generate(event.video_play_complete)}")
 

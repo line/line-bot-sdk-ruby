@@ -312,9 +312,11 @@ request = Line::Bot::V2::MessagingApi::PushMessageRequest.create(
 ```
 
 ## Versioning
-This project respects semantic versioning.
 
-See https://semver.org/
+This project respects semantic versioning.
+- See https://semver.org/
+
+However, if a feature that was publicly released is discontinued for business reasons and becomes completely unusable, we will release changes as a patch release.
 
 ### v1 and v2
 v1 and v2 are completely different implementations. Migration to v2 is strongly recommended.
