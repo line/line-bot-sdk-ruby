@@ -16,7 +16,7 @@ module Line
         class CreateAudienceGroupResponse
           attr_accessor audience_group_id: Integer?
           attr_accessor create_route: 'MESSAGING_API'?
-          attr_accessor type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?
+          attr_accessor type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'?
           attr_accessor description: String?
           attr_accessor created: Integer?
           attr_accessor permission: 'READ'|'READ_WRITE'?
@@ -26,7 +26,7 @@ module Line
 
           # @param audience_group_id [Integer,nil] The audience ID.
           # @param create_route [String,nil] ('MESSAGING_API') How the audience was created.  `MESSAGING_API`: An audience created with Messaging API. 
-          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP') 
           # @param description [String,nil] The audience's name.
           # @param created [Integer,nil] When the audience was created (in UNIX time).
           # @param permission [String,nil] ('READ'|'READ_WRITE') Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  `READ`: Can use only. `READ_WRITE`: Can use and update. 
@@ -35,7 +35,7 @@ module Line
           def initialize: (
             ?audience_group_id: Integer?,
             ?create_route: 'MESSAGING_API'?,
-            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
+            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'?,
             ?description: String?,
             ?created: Integer?,
             ?permission: 'READ'|'READ_WRITE'?,
