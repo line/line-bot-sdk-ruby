@@ -18,7 +18,7 @@ module Line
           #   @return [Integer,nil] The audience ID.
           attr_accessor :audience_group_id
           # @!attribute [rw] type
-          #   @return [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          #   @return [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP') 
           attr_accessor :type
           # @!attribute [rw] description
           #   @return [String,nil] The audience's name.
@@ -31,7 +31,7 @@ module Line
           attr_accessor :request_id
 
           # @param audience_group_id [Integer,nil] The audience ID.
-          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP') 
           # @param description [String,nil] The audience's name.
           # @param created [Integer,nil] When the audience was created (in UNIX time).
           # @param request_id [String,nil] The request ID that was specified when the audience was created.

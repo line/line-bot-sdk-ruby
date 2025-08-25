@@ -15,20 +15,20 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
         class CreateImpBasedAudienceGroupResponse
           attr_accessor audience_group_id: Integer?
-          attr_accessor type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?
+          attr_accessor type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'?
           attr_accessor description: String?
           attr_accessor created: Integer?
           attr_accessor request_id: String?
           
 
           # @param audience_group_id [Integer,nil] The audience ID.
-          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK') 
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP') 
           # @param description [String,nil] The audience's name.
           # @param created [Integer,nil] When the audience was created (in UNIX time).
           # @param request_id [String,nil] The request ID that was specified when the audience was created.
           def initialize: (
             ?audience_group_id: Integer?,
-            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'?,
+            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'?,
             ?description: String?,
             ?created: Integer?,
             ?request_id: String?,
