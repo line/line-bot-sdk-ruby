@@ -5,8 +5,9 @@ module Line
         class InvalidSignatureError < ::StandardError
         end
         @channel_secret: String
+        @skip_signature_verification: Proc?
 
-        def initialize: (channel_secret: String) -> void
+        def initialize: (channel_secret: String, ?skip_signature_verification: Proc?) -> void
 
         def parse: (
             body: String,

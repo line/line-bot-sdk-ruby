@@ -11,8 +11,17 @@ module Line
       class WebhookParser
         class InvalidSignatureError < StandardError; end
 
-        def initialize(channel_secret:)
+        # Initialize webhook parser
+        #
+        # @param channel_secret [String]
+        #   The channel secret used for signature verification.
+        # @param skip_signature_verification [Proc, nil]
+        #   If the function returns true, the signature verification step is skipped.
+        #   This can be useful in scenarios such as when you're in the process of updating
+        #   the channel secret and need to temporarily bypass verification to avoid disruptions.
+        def initialize(channel_secret:, skip_signature_verification: nil)
           @channel_secret = channel_secret
+          @skip_signature_verification = skip_signature_verification
         end
 
         # Parse events from the raw request body and validate the signature.
@@ -31,7 +40,10 @@ module Line
         #
         # @example Sinatra usage
         #   def parser
-        #     @parser ||= Line::Bot::V2::WebhookParser.new(channel_secret: ENV.fetch("LINE_CHANNEL_SECRET"))
+        #     @parser ||= Line::Bot::V2::WebhookParser.new(
+        #       channel_secret: ENV.fetch("LINE_CHANNEL_SECRET"),
+        #       skip_signature_verification: -> { ENV['SKIP_SIGNATURE_VERIFICATION'] == 'true' }
+        #     )
         #   end
         #
         #   post '/callback' do
@@ -54,7 +66,12 @@ module Line
         #     "OK"
         #   end
         def parse(body:, signature:)
-          raise InvalidSignatureError.new("Invalid signature: #{signature}") unless verify_signature(body: body, signature: signature)
+          skip_verify = @skip_signature_verification
+          should_skip = skip_verify && skip_verify.call # steep:ignore
+
+          unless should_skip == true || verify_signature(body: body, signature: signature)
+            raise InvalidSignatureError.new("Invalid signature: #{signature}")
+          end
 
           data = JSON.parse(body.chomp, symbolize_names: true)
           data = Line::Bot::V2::Utils.deep_underscore(data)
