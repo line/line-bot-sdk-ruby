@@ -17,8 +17,8 @@ module Line
         #   The channel secret used for signature verification.
         # @param skip_signature_verification [() -> bool, nil]
         #   A callable object with type `() -> bool` that determines whether to skip
-        #   webhook signature verification. If it returns `true`, the signature
-        #   verification step is skipped.
+        #   webhook signature verification. Signature verification is skipped if and
+        #   only if this callable is provided and returns `true`.
         #   This can be useful in scenarios such as when you're in the process of
         #   updating the channel secret and need to temporarily bypass verification
         #   to avoid disruptions.
