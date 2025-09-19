@@ -67,8 +67,7 @@ module Line
         #     "OK"
         #   end
         def parse(body:, signature:)
-          skip_verify = @skip_signature_verification
-          should_skip = skip_verify && skip_verify.call # steep:ignore
+          should_skip = @skip_signature_verification&.call || false
 
           unless should_skip == true || verify_signature(body: body, signature: signature)
             raise InvalidSignatureError.new("Invalid signature: #{signature}")
