@@ -15,11 +15,13 @@ module Line
         #
         # @param channel_secret [String]
         #   The channel secret used for signature verification.
-        # @param skip_signature_verification [Proc, nil]
-        #   A function that determines whether to skip webhook signature verification.
-        #   If the function returns true, the signature verification step is skipped.
-        #   This can be useful in scenarios such as when you're in the process of updating
-        #   the channel secret and need to temporarily bypass verification to avoid disruptions.
+        # @param skip_signature_verification [() -> bool, nil]
+        #   A callable object with type `() -> bool` that determines whether to skip
+        #   webhook signature verification. If it returns `true`, the signature
+        #   verification step is skipped.
+        #   This can be useful in scenarios such as when you're in the process of
+        #   updating the channel secret and need to temporarily bypass verification
+        #   to avoid disruptions.
         def initialize(channel_secret:, skip_signature_verification: nil)
           @channel_secret = channel_secret
           @skip_signature_verification = skip_signature_verification
