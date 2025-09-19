@@ -85,13 +85,13 @@ module Line
           end
         end
 
-        private
-
         def verify_signature(body:, signature:)
           hash = OpenSSL::HMAC.digest(OpenSSL::Digest.new('SHA256'), @channel_secret, body)
           expected = Base64.strict_encode64(hash)
           variable_secure_compare(signature, expected)
         end
+
+        private
 
         # To avoid timing attacks
         def variable_secure_compare(a, b)

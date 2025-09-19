@@ -13,10 +13,10 @@ module Line
             body: String,
             signature: String
           ) -> Array[Webhook::Event]
+          
+        def verify_signature: (body: String, signature: String) -> bool
 
         private
-
-        def verify_signature: (body: String, signature: String) -> bool
 
         def variable_secure_compare: (String, String) -> bool
 
