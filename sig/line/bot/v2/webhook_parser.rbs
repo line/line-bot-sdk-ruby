@@ -5,17 +5,18 @@ module Line
         class InvalidSignatureError < ::StandardError
         end
         @channel_secret: String
+        @skip_signature_verification: (^() -> bool) | nil
 
-        def initialize: (channel_secret: String) -> void
+        def initialize: (channel_secret: String, ?skip_signature_verification: (^() -> bool) | nil) -> void
 
         def parse: (
             body: String,
             signature: String
           ) -> Array[Webhook::Event]
+          
+        def verify_signature: (body: String, signature: String) -> bool
 
         private
-
-        def verify_signature: (body: String, signature: String) -> bool
 
         def variable_secure_compare: (String, String) -> bool
 
