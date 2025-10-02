@@ -7,7 +7,7 @@ group :development, :test do
   gem 'rack', '~> 3.1' # for yard server
   gem 'rackup', '~> 2.1' # for yard server
   gem 'rbs', '~> 3.9.3'
-  gem 'rubocop', '~> 1.80.0', require: false
+  gem 'rubocop', '~> 1.81.0', require: false
   gem 'steep', '~> 1.10.0'
   gem 'webrick', '~> 1.9.1'
   gem 'yard', '~> 0.9.20' # for yard server
