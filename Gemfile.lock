@@ -58,7 +58,7 @@ GEM
     prism (1.5.1)
     public_suffix (6.0.1)
     racc (1.8.1)
-    rack (3.2.1)
+    rack (3.2.2)
     rackup (2.2.1)
       rack (>= 3)
     rainbow (3.1.1)
