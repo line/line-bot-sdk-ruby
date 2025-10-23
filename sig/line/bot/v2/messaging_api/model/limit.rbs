@@ -16,13 +16,16 @@ module Line
         class Limit
           attr_accessor max: Integer?
           attr_accessor up_to_remaining_quota: bool?
+          attr_accessor forbid_partial_delivery: bool?
           
 
           # @param max [Integer,nil] The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. 
           # @param up_to_remaining_quota [bool,nil] If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 
+          # @param forbid_partial_delivery [bool,nil] This option prevents messages from being delivered to only a subset of the target audience. If true, the narrowcast request success but fails asynchronously. You can check whether message delivery was canceled by retrieving the narrowcast message progress.  This property can be set to true only if upToRemainingQuota is set to true. 
           def initialize: (
             ?max: Integer?,
             ?up_to_remaining_quota: bool?,
+            ?forbid_partial_delivery: bool?,
             **untyped dynamic_attributes
           ) -> void
 
