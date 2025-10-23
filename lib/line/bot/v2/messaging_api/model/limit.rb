@@ -20,17 +20,23 @@ module Line
           # @!attribute [rw] up_to_remaining_quota
           #   @return [Boolean,nil] If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 
           attr_accessor :up_to_remaining_quota
+          # @!attribute [rw] forbid_partial_delivery
+          #   @return [Boolean,nil] This option prevents messages from being delivered to only a subset of the target audience. If true, the narrowcast request success but fails asynchronously. You can check whether message delivery was canceled by retrieving the narrowcast message progress.  This property can be set to true only if upToRemainingQuota is set to true. 
+          attr_accessor :forbid_partial_delivery
 
           # @param max [Integer,nil] The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. 
           # @param up_to_remaining_quota [Boolean,nil] If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. 
+          # @param forbid_partial_delivery [Boolean,nil] This option prevents messages from being delivered to only a subset of the target audience. If true, the narrowcast request success but fails asynchronously. You can check whether message delivery was canceled by retrieving the narrowcast message progress.  This property can be set to true only if upToRemainingQuota is set to true. 
           def initialize(
             max: nil,
             up_to_remaining_quota: false,
+            forbid_partial_delivery: false,
             **dynamic_attributes
           )
             
             @max = max
             @up_to_remaining_quota = up_to_remaining_quota
+            @forbid_partial_delivery = forbid_partial_delivery
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
