@@ -16,15 +16,18 @@ module Line
           attr_accessor id: String
           attr_accessor file_name: String
           attr_accessor file_size: Integer
+          attr_accessor mark_as_read_token: String?
           
 
           # @param id [String] Message ID
           # @param file_name [String] File name
           # @param file_size [Integer] File size in bytes
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read. 
           def initialize: (
             id: String,
             file_name: String,
             file_size: Integer,
+            ?mark_as_read_token: String?,
             **untyped dynamic_attributes
           ) -> void
 

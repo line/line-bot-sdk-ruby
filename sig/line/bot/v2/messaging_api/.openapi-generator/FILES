@@ -119,6 +119,7 @@ model/location_action.rbs
 model/location_message.rbs
 model/lottery_acquisition_condition_request.rbs
 model/lottery_acquisition_condition_response.rbs
+model/mark_messages_as_read_by_token_request.rbs
 model/mark_messages_as_read_request.rbs
 model/members_ids_response.rbs
 model/membership.rbs

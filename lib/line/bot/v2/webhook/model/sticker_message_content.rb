@@ -40,8 +40,11 @@ module Line
           #   @return [String] Quote token to quote this message. 
           attr_accessor :quote_token
           # @!attribute [rw] quoted_message_id
-          #   @return [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.  
+          #   @return [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message. 
           attr_accessor :quoted_message_id
+          # @!attribute [rw] mark_as_read_token
+          #   @return [String,nil] Token used to mark the message as read.  
+          attr_accessor :mark_as_read_token
 
           # @param id [String] Message ID
           # @param package_id [String] Package ID
@@ -50,7 +53,8 @@ module Line
           # @param keywords [Array[String],nil] Array of up to 15 keywords describing the sticker. If a sticker has 16 or more keywords, a random selection of 15 keywords will be returned. The keyword selection is random for each event, so different keywords may be returned for the same sticker. 
           # @param text [String,nil] Any text entered by the user. This property is only included for message stickers. Max character limit: 100 
           # @param quote_token [String] Quote token to quote this message. 
-          # @param quoted_message_id [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.  
+          # @param quoted_message_id [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message. 
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read.  
           def initialize(
             id:,
             package_id:,
@@ -60,6 +64,7 @@ module Line
             text: nil,
             quote_token:,
             quoted_message_id: nil,
+            mark_as_read_token: nil,
             **dynamic_attributes
           )
             @type = "sticker"
@@ -72,6 +77,7 @@ module Line
             @text = text
             @quote_token = quote_token
             @quoted_message_id = quoted_message_id
+            @mark_as_read_token = mark_as_read_token
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key

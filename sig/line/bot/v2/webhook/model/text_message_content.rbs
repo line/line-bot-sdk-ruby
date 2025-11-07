@@ -19,6 +19,7 @@ module Line
           attr_accessor mention: Mention?
           attr_accessor quote_token: String
           attr_accessor quoted_message_id: String?
+          attr_accessor mark_as_read_token: String?
           
 
           # @param id [String] Message ID
@@ -27,6 +28,7 @@ module Line
           # @param mention [Mention, Hash[Symbol, untyped], nil] 
           # @param quote_token [String] Quote token to quote this message. 
           # @param quoted_message_id [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read. 
           def initialize: (
             id: String,
             text: String,
@@ -34,6 +36,7 @@ module Line
             ?mention: Mention?| Hash[Symbol, untyped]?,
             quote_token: String,
             ?quoted_message_id: String?,
+            ?mark_as_read_token: String?,
             **untyped dynamic_attributes
           ) -> void
 

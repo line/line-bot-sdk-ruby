@@ -18,6 +18,7 @@ module Line
           attr_accessor address: String?
           attr_accessor latitude: Float
           attr_accessor longitude: Float
+          attr_accessor mark_as_read_token: String?
           
 
           # @param id [String] Message ID
@@ -25,12 +26,14 @@ module Line
           # @param address [String,nil] Address
           # @param latitude [Float] Latitude
           # @param longitude [Float] Longitude
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read. 
           def initialize: (
             id: String,
             ?title: String?,
             ?address: String?,
             latitude: Float,
             longitude: Float,
+            ?mark_as_read_token: String?,
             **untyped dynamic_attributes
           ) -> void
 

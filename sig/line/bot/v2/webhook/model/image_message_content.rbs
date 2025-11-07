@@ -17,17 +17,20 @@ module Line
           attr_accessor content_provider: ContentProvider
           attr_accessor image_set: ImageSet?
           attr_accessor quote_token: String
+          attr_accessor mark_as_read_token: String?
           
 
           # @param id [String] Message ID
           # @param content_provider [ContentProvider, Hash[Symbol, untyped]] 
           # @param image_set [ImageSet, Hash[Symbol, untyped], nil] 
           # @param quote_token [String] Quote token to quote this message. 
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read. 
           def initialize: (
             id: String,
             content_provider: ContentProvider| Hash[Symbol, untyped],
             ?image_set: ImageSet?| Hash[Symbol, untyped]?,
             quote_token: String,
+            ?mark_as_read_token: String?,
             **untyped dynamic_attributes
           ) -> void
 

@@ -17,17 +17,20 @@ module Line
           attr_accessor duration: Integer?
           attr_accessor content_provider: ContentProvider
           attr_accessor quote_token: String
+          attr_accessor mark_as_read_token: String?
           
 
           # @param id [String] Message ID
           # @param duration [Integer,nil] Length of video file (milliseconds)
           # @param content_provider [ContentProvider, Hash[Symbol, untyped]] 
           # @param quote_token [String] Quote token to quote this message. 
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read. 
           def initialize: (
             id: String,
             ?duration: Integer?,
             content_provider: ContentProvider| Hash[Symbol, untyped],
             quote_token: String,
+            ?mark_as_read_token: String?,
             **untyped dynamic_attributes
           ) -> void
 

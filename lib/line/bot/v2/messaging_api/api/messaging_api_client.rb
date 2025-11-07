@@ -2527,6 +2527,59 @@ module Line
             response_body
           end
 
+          # Mark messages from users as read by token
+          # This requests to <code>POST https://api.line.me/v2/bot/chat/markAsRead</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param mark_messages_as_read_by_token_request [MarkMessagesAsReadByTokenRequest] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#mark-as-read
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def mark_messages_as_read_by_token_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+            mark_messages_as_read_by_token_request:
+          )
+            path = "/v2/bot/chat/markAsRead"
+
+            response = @http_client.post(
+              path: path,
+              body_params: mark_messages_as_read_by_token_request,
+            )
+
+            case response.code.to_i
+            when 200
+              [response.body, 200, response.each_header.to_h]
+            when 400
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::ErrorResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              [response_body, 400, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
+          end
+
+          # Mark messages from users as read by token
+          # This requests to <code>POST https://api.line.me/v2/bot/chat/markAsRead</code>
+          # When you want to get HTTP status code or response headers, use {#mark_messages_as_read_by_token_with_http_info} instead of this.
+          #
+          # @param mark_messages_as_read_by_token_request [MarkMessagesAsReadByTokenRequest] 
+          # @see https://developers.line.biz/en/reference/messaging-api/#mark-as-read
+          # @return [String, nil] when HTTP status code is 200
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 400
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def mark_messages_as_read_by_token(
+            mark_messages_as_read_by_token_request:
+          )
+            response_body, _status_code, _headers = mark_messages_as_read_by_token_with_http_info(
+              mark_messages_as_read_by_token_request: mark_messages_as_read_by_token_request
+            )
+
+            response_body
+          end
+
           # An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.
           # This requests to <code>POST https://api.line.me/v2/bot/message/multicast</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
