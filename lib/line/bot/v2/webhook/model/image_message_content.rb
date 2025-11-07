@@ -29,16 +29,21 @@ module Line
           # @!attribute [rw] quote_token
           #   @return [String] Quote token to quote this message. 
           attr_accessor :quote_token
+          # @!attribute [rw] mark_as_read_token
+          #   @return [String,nil] Token used to mark the message as read. 
+          attr_accessor :mark_as_read_token
 
           # @param id [String] Message ID
           # @param content_provider [ContentProvider, Hash[Symbol, untyped]] 
           # @param image_set [ImageSet, Hash[Symbol, untyped], nil] 
           # @param quote_token [String] Quote token to quote this message. 
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read. 
           def initialize(
             id:,
             content_provider:,
             image_set: nil,
             quote_token:,
+            mark_as_read_token: nil,
             **dynamic_attributes
           )
             @type = "image"
@@ -47,6 +52,7 @@ module Line
             @content_provider = content_provider.is_a?(Line::Bot::V2::Webhook::ContentProvider) ? content_provider : Line::Bot::V2::Webhook::ContentProvider.create(**content_provider) # steep:ignore
             @image_set = image_set.is_a?(Line::Bot::V2::Webhook::ImageSet) || image_set.nil? ? image_set : Line::Bot::V2::Webhook::ImageSet.create(**image_set) # steep:ignore
             @quote_token = quote_token
+            @mark_as_read_token = mark_as_read_token
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key

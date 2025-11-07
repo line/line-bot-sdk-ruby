@@ -22,6 +22,7 @@ module Line
           attr_accessor text: String?
           attr_accessor quote_token: String
           attr_accessor quoted_message_id: String?
+          attr_accessor mark_as_read_token: String?
           
 
           # @param id [String] Message ID
@@ -31,7 +32,8 @@ module Line
           # @param keywords [Array[String],nil] Array of up to 15 keywords describing the sticker. If a sticker has 16 or more keywords, a random selection of 15 keywords will be returned. The keyword selection is random for each event, so different keywords may be returned for the same sticker. 
           # @param text [String,nil] Any text entered by the user. This property is only included for message stickers. Max character limit: 100 
           # @param quote_token [String] Quote token to quote this message. 
-          # @param quoted_message_id [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.  
+          # @param quoted_message_id [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message. 
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read.  
           def initialize: (
             id: String,
             package_id: String,
@@ -41,6 +43,7 @@ module Line
             ?text: String?,
             quote_token: String,
             ?quoted_message_id: String?,
+            ?mark_as_read_token: String?,
             **untyped dynamic_attributes
           ) -> void
 

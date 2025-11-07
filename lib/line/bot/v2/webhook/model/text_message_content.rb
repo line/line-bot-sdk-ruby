@@ -35,6 +35,9 @@ module Line
           # @!attribute [rw] quoted_message_id
           #   @return [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.
           attr_accessor :quoted_message_id
+          # @!attribute [rw] mark_as_read_token
+          #   @return [String,nil] Token used to mark the message as read. 
+          attr_accessor :mark_as_read_token
 
           # @param id [String] Message ID
           # @param text [String] Message text.
@@ -42,6 +45,7 @@ module Line
           # @param mention [Mention, Hash[Symbol, untyped], nil] 
           # @param quote_token [String] Quote token to quote this message. 
           # @param quoted_message_id [String,nil] Message ID of a quoted message. Only included when the received message quotes a past message.
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read. 
           def initialize(
             id:,
             text:,
@@ -49,6 +53,7 @@ module Line
             mention: nil,
             quote_token:,
             quoted_message_id: nil,
+            mark_as_read_token: nil,
             **dynamic_attributes
           )
             @type = "text"
@@ -65,6 +70,7 @@ module Line
             @mention = mention.is_a?(Line::Bot::V2::Webhook::Mention) || mention.nil? ? mention : Line::Bot::V2::Webhook::Mention.create(**mention) # steep:ignore
             @quote_token = quote_token
             @quoted_message_id = quoted_message_id
+            @mark_as_read_token = mark_as_read_token
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key

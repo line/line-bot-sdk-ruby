@@ -32,18 +32,23 @@ module Line
           # @!attribute [rw] longitude
           #   @return [Float] Longitude
           attr_accessor :longitude
+          # @!attribute [rw] mark_as_read_token
+          #   @return [String,nil] Token used to mark the message as read. 
+          attr_accessor :mark_as_read_token
 
           # @param id [String] Message ID
           # @param title [String,nil] Title
           # @param address [String,nil] Address
           # @param latitude [Float] Latitude
           # @param longitude [Float] Longitude
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read. 
           def initialize(
             id:,
             title: nil,
             address: nil,
             latitude:,
             longitude:,
+            mark_as_read_token: nil,
             **dynamic_attributes
           )
             @type = "location"
@@ -53,6 +58,7 @@ module Line
             @address = address
             @latitude = latitude
             @longitude = longitude
+            @mark_as_read_token = mark_as_read_token
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key

@@ -16,15 +16,18 @@ module Line
           attr_accessor id: String
           attr_accessor content_provider: ContentProvider
           attr_accessor duration: Integer?
+          attr_accessor mark_as_read_token: String?
           
 
           # @param id [String] Message ID
           # @param content_provider [ContentProvider, Hash[Symbol, untyped]] 
           # @param duration [Integer,nil] Length of audio file (milliseconds)
+          # @param mark_as_read_token [String,nil] Token used to mark the message as read. 
           def initialize: (
             id: String,
             content_provider: ContentProvider| Hash[Symbol, untyped],
             ?duration: Integer?,
+            ?mark_as_read_token: String?,
             **untyped dynamic_attributes
           ) -> void
 

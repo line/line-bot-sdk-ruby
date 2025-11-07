@@ -120,6 +120,7 @@ model/location_action.rb
 model/location_message.rb
 model/lottery_acquisition_condition_request.rb
 model/lottery_acquisition_condition_response.rb
+model/mark_messages_as_read_by_token_request.rb
 model/mark_messages_as_read_request.rb
 model/members_ids_response.rb
 model/membership.rb
