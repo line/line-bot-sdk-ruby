@@ -23,7 +23,7 @@ jobs:
       - uses: ruby/setup-ruby@675dd7ba1b06c8786a1480d89c384f5620a42647 # v1.281.0
         with:
           bundler-cache: true
-          ruby-version: 4.0.0
+          ruby-version: 4.0.1
       - name: Update version file with the release version
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
