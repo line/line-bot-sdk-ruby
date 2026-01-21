@@ -14,7 +14,7 @@ module Line
         # Audience group
         class AudienceGroup
           attr_accessor audience_group_id: Integer?
-          attr_accessor type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'?
+          attr_accessor type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'|'TRACKINGTAG_WEBTRAFFIC'?
           attr_accessor description: String?
           attr_accessor status: 'IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING'?
           attr_accessor failed_type: 'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|''?
@@ -28,7 +28,7 @@ module Line
           
 
           # @param audience_group_id [Integer,nil] The audience ID.
-          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP') 
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'|'TRACKINGTAG_WEBTRAFFIC') 
           # @param description [String,nil] The audience's name.
           # @param status [String,nil] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
           # @param failed_type [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
@@ -41,7 +41,7 @@ module Line
           # @param create_route [String,nil] ('OA_MANAGER'|'MESSAGING_API'|'POINT_AD'|'AD_MANAGER') 
           def initialize: (
             ?audience_group_id: Integer?,
-            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'?,
+            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'|'TRACKINGTAG_WEBTRAFFIC'?,
             ?description: String?,
             ?status: 'IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING'?,
             ?failed_type: 'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|''?,

@@ -15,7 +15,7 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
         class CreateClickBasedAudienceGroupResponse
           attr_accessor audience_group_id: Integer?
-          attr_accessor type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'?
+          attr_accessor type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'|'TRACKINGTAG_WEBTRAFFIC'?
           attr_accessor description: String?
           attr_accessor created: Integer?
           attr_accessor request_id: String?
@@ -27,7 +27,7 @@ module Line
           
 
           # @param audience_group_id [Integer,nil] The audience ID.
-          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP') 
+          # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'|'TRACKINGTAG_WEBTRAFFIC') 
           # @param description [String,nil] The audience's name.
           # @param created [Integer,nil] When the audience was created (in UNIX time).
           # @param request_id [String,nil] The request ID that was specified when the audience was created.
@@ -38,7 +38,7 @@ module Line
           # @param is_ifa_audience [bool,nil] The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  true: Accounts are specified with IFAs. false (default): Accounts are specified with user IDs. 
           def initialize: (
             ?audience_group_id: Integer?,
-            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'?,
+            ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'|'TRACKINGTAG_WEBTRAFFIC'?,
             ?description: String?,
             ?created: Integer?,
             ?request_id: String?,
