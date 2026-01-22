@@ -32,5 +32,13 @@
         '/line-openapi/',
       ],
     },
+    {
+      // Disable automatic Ruby version updates
+      // Language version updates should be handled manually
+      matchPackageNames: [
+        'ruby',
+      ],
+      enabled: false,
+    },
   ],
 }
