@@ -35,7 +35,6 @@ GEM
     csv (3.3.4)
     diff-lcs (1.6.2)
     drb (2.2.1)
-    ffi (1.17.2)
     ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     fileutils (1.7.3)
@@ -49,8 +48,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
-    minitest (6.0.1)
-      prism (~> 1.5)
+    minitest (5.25.5)
     multipart-post (2.4.1)
     mutex_m (0.3.0)
     parallel (1.27.0)
@@ -125,7 +123,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
-    unicode-emoji (4.2.0)
+    unicode-emoji (4.1.0)
     uri (1.0.3)
     webmock (3.26.1)
       addressable (>= 2.8.0)
@@ -137,7 +135,6 @@ GEM
 PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
-  arm64-darwin-24
   x86_64-linux
 
 DEPENDENCIES
@@ -154,4 +151,4 @@ DEPENDENCIES
   yard (~> 0.9.20)
 
 BUNDLED WITH
-  4.0.3
+   2.4.10
