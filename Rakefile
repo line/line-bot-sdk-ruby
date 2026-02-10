@@ -5,6 +5,13 @@ RSpec::Core::RakeTask.new(:spec)
 
 task default: :spec
 
+# To avoid double "bundle exec" calls, e.g. bundle exec ... in bundle exec rake ...
+def bundle_exec(command)
+  Bundler.with_unbundled_env do
+    sh "bundle exec #{command}"
+  end
+end
+
 # We don't want to push tags to source control when releasing the gem
 Rake::Task["release"].clear
 
@@ -24,17 +31,19 @@ task :test_normal, [:skip_tag] do |_, args|
   rspec_opts = []
   rspec_opts << "--tag '~#{skip_tag}'" if skip_tag
 
-  sh "bundle exec rspec --exclude-pattern 'spec/line/bot/line_bot_api_gem_spec.rb,spec/line/bot/line_bot_gem_spec.rb' #{rspec_opts.join(' ')}"
+  bundle_exec(
+    "rspec --exclude-pattern 'spec/line/bot/line_bot_api_gem_spec.rb,spec/line/bot/line_bot_gem_spec.rb' #{rspec_opts.join(' ')}"
+  )
 end
 
 desc "Test line-bot-api gem spec"
 task :test_line_bot_api do
-  sh "bundle exec rspec --pattern 'spec/line/bot/line_bot_api_gem_spec.rb'"
+  bundle_exec("rspec --pattern 'spec/line/bot/line_bot_api_gem_spec.rb'")
 end
 
 desc "Test line/bot gem(?) spec"
 task :test_line_bot do
-  sh "bundle exec rspec --pattern 'spec/line/bot/line_bot_gem_spec.rb'"
+  bundle_exec("rspec --pattern 'spec/line/bot/line_bot_gem_spec.rb'")
 end
 
 desc "Run all tests in separate processes"
@@ -46,18 +55,18 @@ end
 
 desc "Validate comment for YARD"
 task :validate_yard_comment do
-  sh "bundle exec yard stats ./lib/line/bot/v2 --fail-on-warning"
+  bundle_exec("yard stats ./lib/line/bot/v2 --fail-on-warning")
 end
 
 desc "RBS type check"
 task :rbs do
-  sh "bundle exec rbs collection install"
-  sh "bundle exec rbs -I sig validate"
+  bundle_exec("rbs collection install")
+  bundle_exec("rbs -I sig validate")
 end
 
 desc "RBS type check (with steep)"
 task :rbs_steep do
-  sh "bundle exec steep check"
+  bundle_exec("steep check")
 end
 
 desc "RBS type check (with test)"
@@ -86,17 +95,17 @@ end
 
 desc "Run rubocop"
 task :rubocop do
-  sh "bundle exec rubocop"
+  bundle_exec("rubocop")
 end
 
 desc "Fix rubocop errors"
 task :rubocop_fix do
-  sh "bundle exec rubocop -A"
+  bundle_exec("rubocop -A")
 end
 
 desc "Check buildable and its contents"
 task :build_test do
-  sh "bundle exec rake build"
+  bundle_exec("rake build")
   sh "tar -xvf pkg/line-bot-api-*.gem"
 
   puts "<<Show the contents of the gem>>"
