@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :test do
-  gem 'irb', '~> 1.15.0'
+  gem 'irb', '~> 1.17.0'
   gem 'rack', '~> 3.1' # for yard server
   gem 'rackup', '~> 2.1' # for yard server
   gem 'rbs', '~> 3.10.0'
