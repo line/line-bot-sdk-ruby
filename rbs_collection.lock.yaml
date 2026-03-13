@@ -25,6 +25,10 @@ gems:
     revision: 0ef449166f72c767f58f920cc36aca818fbf082f
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: dbm
+  version: '0'
+  source:
+    type: stdlib
 - name: diff-lcs
   version: '1.5'
   source:
@@ -37,6 +41,10 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: erb
+  version: '0'
+  source:
+    type: stdlib
 - name: hashdiff
   version: '1.1'
   source:
@@ -45,6 +53,10 @@ gems:
     revision: 0ef449166f72c767f58f920cc36aca818fbf082f
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: io-console
+  version: '0'
+  source:
+    type: stdlib
 - name: json
   version: '0'
   source:
@@ -61,11 +73,35 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: pp
+  version: '0'
+  source:
+    type: stdlib
+- name: prettyprint
+  version: '0'
+  source:
+    type: stdlib
+- name: pstore
+  version: '0'
+  source:
+    type: stdlib
+- name: psych
+  version: '0'
+  source:
+    type: stdlib
+- name: rdoc
+  version: '0'
+  source:
+    type: stdlib
 - name: socket
   version: '0'
   source:
     type: stdlib
 - name: timeout
+  version: '0'
+  source:
+    type: stdlib
+- name: tsort
   version: '0'
   source:
     type: stdlib
