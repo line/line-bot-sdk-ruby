@@ -9,7 +9,7 @@ group :development, :test do
   gem 'rackup', '~> 2.1' # for yard server
   gem 'rbs', '~> 3.10.0'
   gem 'redcarpet', '~> 3.6.0'
-  gem 'rubocop', '~> 1.85.0', require: false
+  gem 'rubocop', '~> 1.86.0', require: false
   gem 'steep', '~> 1.10.0'
   gem 'webrick', '~> 1.9.1'
   gem 'yard', '~> 0.9.20' # for yard server
