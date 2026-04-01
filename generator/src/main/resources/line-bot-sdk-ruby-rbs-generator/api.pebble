@@ -119,6 +119,9 @@ module Line
             | String? # otherwise
           )
           {%- endfor %}
+          {%- if ["ChannelAccessTokenClient"] contains operations.classname %}
+{% include "./body/api/" + operations.classname + ".rbs" %}
+          {%- endif %}
         end
       end
     end

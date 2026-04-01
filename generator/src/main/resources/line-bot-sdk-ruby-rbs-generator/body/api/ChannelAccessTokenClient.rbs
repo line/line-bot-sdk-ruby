@@ -1,0 +1,14 @@
+          def issue_stateless_channel_token_by_jwt_assertion: (
+            client_assertion: String
+          ) -> (
+            IssueStatelessChannelAccessTokenResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
+
+          def issue_stateless_channel_token_by_client_secret: (
+            client_id: String,
+            client_secret: String
+          ) -> (
+            IssueStatelessChannelAccessTokenResponse # when HTTP status code is 200
+            | String? # otherwise
+          )
