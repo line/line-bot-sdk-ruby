@@ -2,6 +2,7 @@ AllCops:
   TargetRubyVersion: 2.4
   Exclude:
     - 'examples/**/*'
+    - 'generator/**/*'
     - 'lib/line/bot/v2/channel_access_token/**/*'
     - 'lib/line/bot/v2/insight/**/*'
     - 'lib/line/bot/v2/liff/**/*'
