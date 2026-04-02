@@ -237,6 +237,10 @@ module Line
             response_body
           end
 
+          # @deprecated
+          # This is deprecated.
+          # Please use {Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_jwt_assertion_with_http_info} or {Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_client_secret_with_http_info} instead.
+          #
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
           # This requests to <code>POST https://api.line.me/oauth2/v3/token</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
@@ -284,6 +288,10 @@ module Line
             end
           end
 
+          # @deprecated
+          # This is deprecated.
+          # Please use {Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_jwt_assertion} or {Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_client_secret} instead.
+          #
           # Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
           # This requests to <code>POST https://api.line.me/oauth2/v3/token</code>
           # When you want to get HTTP status code or response headers, use {#issue_stateless_channel_token_with_http_info} instead of this.

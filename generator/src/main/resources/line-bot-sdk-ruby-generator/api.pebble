@@ -54,6 +54,12 @@ module Line
           end
           {%- for op in operations.operation %}
 
+          {% if op.nickname == "issue_stateless_channel_token" -%}
+          # @deprecated
+          # This is deprecated.
+          # Please use {{ '{' }}Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_jwt_assertion_with_http_info} or {{ '{' }}Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_client_secret_with_http_info} instead.
+          #
+          {% endif -%}
           # {{ op.notes }}
           # This requests to <code>{{ op.httpMethod }} {{ endpoint(operations.classname) }}{{ op.path }}</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
@@ -132,6 +138,12 @@ module Line
             end
           end
 
+          {% if op.nickname == "issue_stateless_channel_token" -%}
+          # @deprecated
+          # This is deprecated.
+          # Please use {{ '{' }}Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_jwt_assertion} or {{ '{' }}Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_client_secret} instead.
+          #
+          {% endif -%}
           # {{ op.notes }}
           # This requests to <code>{{ op.httpMethod }} {{ endpoint(operations.classname) }}{{ op.path }}</code>
           # When you want to get HTTP status code or response headers, use {{ '{#' }}{{op.nickname}}_with_http_info} instead of this.
