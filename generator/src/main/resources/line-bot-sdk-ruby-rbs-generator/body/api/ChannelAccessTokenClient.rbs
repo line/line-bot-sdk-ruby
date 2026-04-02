@@ -12,3 +12,18 @@
             IssueStatelessChannelAccessTokenResponse # when HTTP status code is 200
             | String? # otherwise
           )
+
+          def issue_stateless_channel_token_by_jwt_assertion_with_http_info: (
+            client_assertion: String
+          ) -> (
+            [IssueStatelessChannelAccessTokenResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
+
+          def issue_stateless_channel_token_by_client_secret_with_http_info: (
+            client_id: String,
+            client_secret: String
+          ) -> (
+            [IssueStatelessChannelAccessTokenResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
+            | [String?, Integer, Hash[untyped, untyped]] # otherwise
+          )
