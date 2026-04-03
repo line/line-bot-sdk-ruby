@@ -57,7 +57,7 @@ module Line
           {% if op.nickname == "issue_stateless_channel_token" -%}
           # @deprecated
           # This is deprecated.
-          # Please use {{ '{' }}Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_jwt_assertion_with_http_info} or {{ '{' }}Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_client_secret_with_http_info} instead.
+          # Please use {{ '{' }}#issue_stateless_channel_token_by_jwt_assertion_with_http_info} or {{ '{' }}#issue_stateless_channel_token_by_client_secret_with_http_info} instead.
           #
           {% endif -%}
           # {{ op.notes }}
@@ -141,7 +141,7 @@ module Line
           {% if op.nickname == "issue_stateless_channel_token" -%}
           # @deprecated
           # This is deprecated.
-          # Please use {{ '{' }}Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_jwt_assertion} or {{ '{' }}Line::Bot::V2::ChannelAccessToken::ChannelAccessTokenClient#issue_stateless_channel_token_by_client_secret} instead.
+          # Please use {{ '{' }}#issue_stateless_channel_token_by_jwt_assertion} or {{ '{' }}#issue_stateless_channel_token_by_client_secret} instead.
           #
           {% endif -%}
           # {{ op.notes }}
