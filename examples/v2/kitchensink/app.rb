@@ -10,28 +10,12 @@ HORIZONTAL_THUMBNAIL_URL = 'https://via.placeholder.com/1024x768'
 QUICK_REPLY_ICON_URL = 'https://via.placeholder.com/64x64'
 
 def client
-  @client ||= Line::Bot::V2::MessagingApi::ApiClient.new(
+  @client ||= Line::Bot::V2::Client.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
     http_options: {
       open_timeout: 5,
       read_timeout: 5
     }
-  )
-end
-
-def blob_client
-  @blob_client ||= Line::Bot::V2::MessagingApi::ApiBlobClient.new(
-    channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
-    http_options: {
-      open_timeout: 5,
-      read_timeout: 5
-    }
-  )
-end
-
-def insight_client
-  @insight_client ||= Line::Bot::V2::Insight::ApiClient.new(
-    channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
   )
 end
 
@@ -136,7 +120,7 @@ def storeContent(message_id:, message_type:)
     max_retries = 10
 
     max_retries.times do |i|
-      body, status_code, _headers = blob_client.get_message_content_transcoding_by_message_id_with_http_info(
+      body, status_code, _headers = client.get_message_content_transcoding_by_message_id_with_http_info(
         message_id: message_id
       )
 
@@ -165,7 +149,7 @@ def storeContent(message_id:, message_type:)
     end
   end
 
-  content, _, headers = blob_client.get_message_content_with_http_info(message_id: message_id)
+  content, _, headers = client.get_message_content_with_http_info(message_id: message_id)
   content_type = headers['content-type']
   ext = case content_type
         when 'image/jpeg' then 'jpg'
@@ -936,12 +920,12 @@ def handle_message_event(event)
 
       create_rich_menu_a_response = client.create_rich_menu(rich_menu_request: rich_menu_request_a)
       logger.info "Create rich menu A: #{create_rich_menu_a_response.rich_menu_id}"
-      a = blob_client.set_rich_menu_image(rich_menu_id: create_rich_menu_a_response.rich_menu_id, body: File.open('./richmenu/richmenu-a.png'))
+      a = client.set_rich_menu_image(rich_menu_id: create_rich_menu_a_response.rich_menu_id, body: File.open('./richmenu/richmenu-a.png'))
       logger.info "Set rich menu image A: #{a}"
 
       create_rich_menu_b_response = client.create_rich_menu(rich_menu_request: rich_menu_request_b)
       logger.info "Create rich menu B: #{create_rich_menu_b_response.rich_menu_id}"
-      a = blob_client.set_rich_menu_image(rich_menu_id: create_rich_menu_b_response.rich_menu_id, body: File.open('./richmenu/richmenu-b.png'))
+      a = client.set_rich_menu_image(rich_menu_id: create_rich_menu_b_response.rich_menu_id, body: File.open('./richmenu/richmenu-b.png'))
       logger.info "Set rich menu image B: #{a}"
 
       client.set_default_rich_menu(rich_menu_id: create_rich_menu_a_response.rich_menu_id)
@@ -1057,7 +1041,7 @@ def handle_message_event(event)
 
     when /\Astats\s+(?<request_id>.+)/
       request_id = Regexp.last_match[:request_id]
-      stats = insight_client.get_message_event(request_id: request_id)
+      stats = client.get_message_event(request_id: request_id)
 
       reply_text(event, "[STATS]\n#{stats}")
 

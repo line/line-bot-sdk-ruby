@@ -2,6 +2,7 @@ AllCops:
   TargetRubyVersion: 2.4
   Exclude:
     - 'examples/**/*'
+    - 'generator/target/**/*'
     - 'lib/line/bot/v2/channel_access_token/**/*'
     - 'lib/line/bot/v2/insight/**/*'
     - 'lib/line/bot/v2/liff/**/*'
@@ -11,6 +12,8 @@ AllCops:
     - 'lib/line/bot/v2/module_attach/**/*'
     - 'lib/line/bot/v2/shop/**/*'
     - 'lib/line/bot/v2/webhook/**/*'
+    - 'lib/line/bot/v2/client.generated.rb'
+    - 'lib/line/bot/v2/client.factory.generated.rb'
   NewCops: disable
 
 Gemspec/RequiredRubyVersion:
