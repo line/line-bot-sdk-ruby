@@ -15,12 +15,13 @@ require 'line/bot/v2/client.factory.generated'
 module Line
   module Bot
     module V2
-      # A single client for all LINE Bot APIs, except channel access token management.
+      # A single client for all LINE Bot APIs, except channel access token and module attach management.
       #
       # It wraps the individual generated API clients and exposes their methods directly,
       # so callers can work with one object instead of juggling several client instances.
       #
       # For channel access token operations, use {Line::Bot::V2::ChannelAccessToken::ApiClient} directly.
+      # For module attach operations, use {Line::Bot::V2::ModuleAttach::ApiClient} directly.
       class Client
         # @param channel_access_token [String] Channel access token issued for your LINE Official Account.
         # @param api_base_url [String, nil] Base URL for Messaging API style endpoints. Defaults to https://api.line.me.

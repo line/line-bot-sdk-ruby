@@ -20,12 +20,13 @@ module UnifiedClientGenerator
   BUILTINS = Set['Array', 'File', 'Float', 'Hash', 'Integer', 'Object', 'String', 'Symbol'].freeze
 
   CLIENT_CLASS_COMMENT = <<~COMMENT
-    A single client for all LINE Bot APIs, except channel access token management.
+    A single client for all LINE Bot APIs, except channel access token and module attach management.
 
     It wraps the individual generated API clients and exposes their methods directly,
     so callers can work with one object instead of juggling several client instances.
 
     For channel access token operations, use {Line::Bot::V2::ChannelAccessToken::ApiClient} directly.
+    For module attach operations, use {Line::Bot::V2::ModuleAttach::ApiClient} directly.
   COMMENT
 
   CLIENT_INITIALIZE_COMMENT = <<~COMMENT
@@ -74,6 +75,8 @@ module UnifiedClientGenerator
 
   # --- Validation ---
 
+  SUPPORTED_BASE_URLS = Set['https://api.line.me', 'https://api-data.line.me'].freeze
+
   def validate_clients!(clients)
     raise 'No client files were found.' if clients.empty?
 
@@ -81,9 +84,21 @@ module UnifiedClientGenerator
     check_collisions!('Method name', clients.flat_map { |c| c.delegated_methods.map(&:name) })
 
     allowed = Set['base_url', 'channel_access_token', 'http_options']
+
     clients.each do |c|
-      extra = Set.new(c.constructor_required_keywords + c.constructor_optional_keywords) - allowed
+      req = Set.new(c.constructor_required_keywords)
+      opt = Set.new(c.constructor_optional_keywords)
+      all = req | opt
+
+      extra = all - allowed
       raise "Unsupported constructor keys in #{c.qualified_class_name}: #{extra.to_a.join(', ')}" unless extra.empty?
+
+      raise "Missing channel_access_token in #{c.qualified_class_name}" unless all.include?('channel_access_token')
+
+      unless SUPPORTED_BASE_URLS.include?(c.default_base_url)
+        raise "Unsupported default_base_url #{c.default_base_url.inspect} in #{c.qualified_class_name}. " \
+              "Supported: #{SUPPORTED_BASE_URLS.to_a.join(', ')}"
+      end
     end
   end
 

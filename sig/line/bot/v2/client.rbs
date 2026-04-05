@@ -7,12 +7,13 @@ module Line
   module Bot
     module V2
       class Client
-        # A single client for all LINE Bot APIs, except channel access token management.
+        # A single client for all LINE Bot APIs, except channel access token and module attach management.
         #
         # It wraps the individual generated API clients and exposes their methods directly,
         # so callers can work with one object instead of juggling several client instances.
         #
         # For channel access token operations, use {Line::Bot::V2::ChannelAccessToken::ApiClient} directly.
+        # For module attach operations, use {Line::Bot::V2::ModuleAttach::ApiClient} directly.
         @insight: Line::Bot::V2::Insight::ApiClient
         @liff: Line::Bot::V2::Liff::ApiClient
         @manage_audience: Line::Bot::V2::ManageAudience::ApiClient

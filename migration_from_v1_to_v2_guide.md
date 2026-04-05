@@ -47,7 +47,7 @@ However, it's not recommended to always use it as it could lead to migration err
 ## Clients
 
 ### Unified Client (recommended)
-`Line::Bot::V2::Client` wraps all API clients into a single object. You only need one client for MessagingApi, Insight, Liff, ManageAudience, Module, and Shop.
+`Line::Bot::V2::Client` wraps supported API clients into a single object. ChannelAccessToken and ModuleAttach are not included; use their individual clients directly.
 
 ```rb
 client = Line::Bot::V2::Client.new(
@@ -71,6 +71,7 @@ You can also use individual clients directly. There are several types depending 
   and so on.
 
 For channel access token operations, use `Line::Bot::V2::ChannelAccessToken::ApiClient` directly (not included in the unified client).
+For module attach operations, use `Line::Bot::V2::ModuleAttach::ApiClient` directly (not included in the unified client).
 
 
 ## Migration examples

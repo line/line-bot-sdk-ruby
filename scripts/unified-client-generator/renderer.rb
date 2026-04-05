@@ -106,14 +106,23 @@ module UnifiedClientGenerator
     RUBY
   end
 
+  BASE_URL_MAP = {
+    'https://api.line.me' => 'api_base_url',
+    'https://api-data.line.me' => 'data_api_base_url'
+  }.freeze
+
   def render_factory_assignment(client)
-    base_url_kw = { 'https://api.line.me' => 'api_base_url',
-                    'https://api-data.line.me' => 'data_api_base_url' }[client.default_base_url]
+    base_url_kw = BASE_URL_MAP[client.default_base_url]
+
+    supports = lambda do |key|
+      client.constructor_required_keywords.include?(key) ||
+        client.constructor_optional_keywords.include?(key)
+    end
 
     args = []
-    args << "base_url: #{base_url_kw}" if client.constructor_optional_keywords.include?('base_url') && base_url_kw
-    args << 'channel_access_token: channel_access_token' if client.constructor_required_keywords.include?('channel_access_token')
-    args << 'http_options: http_options' if client.constructor_optional_keywords.include?('http_options')
+    args << "base_url: #{base_url_kw}" if supports.call('base_url') && base_url_kw
+    args << 'channel_access_token: channel_access_token' if supports.call('channel_access_token')
+    args << 'http_options: http_options' if supports.call('http_options')
 
     "#{client.ivar_name} = #{client.qualified_class_name}.\n  new(#{args.join(', ')})"
   end

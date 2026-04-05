@@ -122,6 +122,7 @@ end
 
 > **Note:** You can still use the individual clients (e.g. `Line::Bot::V2::MessagingApi::ApiClient`) if you prefer.
 > For channel access token operations, use `Line::Bot::V2::ChannelAccessToken::ApiClient` directly.
+> For module attach operations, use `Line::Bot::V2::ModuleAttach::ApiClient` directly.
 
 ### Main classes
 You may use this classes to use LINE Messaging API features.
