@@ -179,9 +179,10 @@ module Line
 
             response_body
           end{% endfor %}
-          {%- if ["ChannelAccessTokenClient"] contains operations.classname %}
+{%- if ["ChannelAccessTokenClient"] contains operations.classname %}
+
 {% include "./body/api/" + operations.classname + ".rb" %}
-          {%- endif %}
+{%- endif %}
         end
       end
     end
