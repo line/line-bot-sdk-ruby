@@ -320,6 +320,8 @@ module Line
             VerifyChannelAccessTokenResponse # when HTTP status code is 200
             | String? # otherwise
           )
+          # Issues a new stateless channel access token by JWT assertion.
+          # This is a convenience wrapper that only requires the parameters needed for JWT assertion authentication.
           def issue_stateless_channel_token_by_jwt_assertion: (
             client_assertion: String
           ) -> (
@@ -327,6 +329,8 @@ module Line
             | String? # otherwise
           )
 
+          # Issues a new stateless channel access token by client secret.
+          # This is a convenience wrapper that only requires the parameters needed for client secret authentication.
           def issue_stateless_channel_token_by_client_secret: (
             client_id: String,
             client_secret: String
@@ -335,6 +339,9 @@ module Line
             | String? # otherwise
           )
 
+          # Issues a new stateless channel access token by JWT assertion.
+          # This is a convenience wrapper that only requires the parameters needed for JWT assertion authentication.
+          # When you want to get HTTP status code or response headers, use this instead of #issue_stateless_channel_token_by_jwt_assertion.
           def issue_stateless_channel_token_by_jwt_assertion_with_http_info: (
             client_assertion: String
           ) -> (
@@ -342,6 +349,9 @@ module Line
             | [String?, Integer, Hash[untyped, untyped]] # otherwise
           )
 
+          # Issues a new stateless channel access token by client secret.
+          # This is a convenience wrapper that only requires the parameters needed for client secret authentication.
+          # When you want to get HTTP status code or response headers, use this instead of #issue_stateless_channel_token_by_client_secret.
           def issue_stateless_channel_token_by_client_secret_with_http_info: (
             client_id: String,
             client_secret: String
