@@ -172,7 +172,7 @@ module Line
             {{param.paramName}}:{{ param.required ? '' : ' nil' }}{{ loop.last ? '' : ',' -}}
             {% endfor %}
           )
-            response_body, _status_code, _headers = {{op.nickname}}_with_http_info({% for param in op.allParams %}
+            response_body, _status_code, _headers = {{op.nickname}}_with_http_info({% if op.nickname == "issue_stateless_channel_token" %} # steep:ignore DeprecatedReference{% endif %}{% for param in op.allParams %}
               {{param.paramName}}: {{param.paramName}}{{ loop.last ? '' : ',' -}}
             {% endfor %}
             )

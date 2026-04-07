@@ -10,7 +10,7 @@
           def issue_stateless_channel_token_by_jwt_assertion(
             client_assertion:
           )
-            issue_stateless_channel_token(
+            issue_stateless_channel_token( # steep:ignore DeprecatedReference
               grant_type: 'client_credentials',
               client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
               client_assertion: client_assertion
@@ -31,7 +31,7 @@
             client_id:,
             client_secret:
           )
-            issue_stateless_channel_token(
+            issue_stateless_channel_token( # steep:ignore DeprecatedReference
               grant_type: 'client_credentials',
               client_id: client_id,
               client_secret: client_secret
@@ -50,7 +50,7 @@
           def issue_stateless_channel_token_by_jwt_assertion_with_http_info(
             client_assertion:
           )
-            issue_stateless_channel_token_with_http_info(
+            issue_stateless_channel_token_with_http_info( # steep:ignore DeprecatedReference
               grant_type: 'client_credentials',
               client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
               client_assertion: client_assertion
@@ -71,7 +71,7 @@
             client_id:,
             client_secret:
           )
-            issue_stateless_channel_token_with_http_info(
+            issue_stateless_channel_token_with_http_info( # steep:ignore DeprecatedReference
               grant_type: 'client_credentials',
               client_id: client_id,
               client_secret: client_secret
