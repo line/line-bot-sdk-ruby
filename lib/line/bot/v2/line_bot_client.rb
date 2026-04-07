@@ -1,7 +1,7 @@
 # This file is intended for manual edits.
 #
-# Generated delegation methods live in ./client.generated.rb.
-# Generated factory helpers live in ./client.factory.generated.rb.
+# Generated delegation methods live in ./line_bot_client.generated.rb.
+# Generated factory helpers live in ./line_bot_client.factory.generated.rb.
 
 require 'line/bot/v2/insight/core'
 require 'line/bot/v2/liff/core'
@@ -9,8 +9,8 @@ require 'line/bot/v2/manage_audience/core'
 require 'line/bot/v2/messaging_api/core'
 require 'line/bot/v2/module/core'
 require 'line/bot/v2/shop/core'
-require 'line/bot/v2/client.generated'
-require 'line/bot/v2/client.factory.generated'
+require 'line/bot/v2/line_bot_client.generated'
+require 'line/bot/v2/line_bot_client.factory.generated'
 
 module Line
   module Bot
@@ -22,7 +22,7 @@ module Line
       #
       # For channel access token operations, use {Line::Bot::V2::ChannelAccessToken::ApiClient} directly.
       # For module attach operations, use {Line::Bot::V2::ModuleAttach::ApiClient} directly.
-      class Client
+      class LineBotClient
         # @param channel_access_token [String] Channel access token issued for your LINE Official Account.
         # @param api_base_url [String, nil] Base URL for Messaging API style endpoints. Defaults to https://api.line.me.
         # @param data_api_base_url [String, nil] Base URL for data/blob endpoints. Defaults to https://api-data.line.me.

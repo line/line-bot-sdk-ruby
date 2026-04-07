@@ -47,10 +47,10 @@ However, it's not recommended to always use it as it could lead to migration err
 ## Clients
 
 ### Unified Client (recommended)
-`Line::Bot::V2::Client` wraps supported API clients into a single object. ChannelAccessToken and ModuleAttach are not included; use their individual clients directly.
+`Line::Bot::V2::LineBotClient` wraps supported API clients into a single object. ChannelAccessToken and ModuleAttach are not included; use their individual clients directly.
 
 ```rb
-client = Line::Bot::V2::Client.new(
+client = Line::Bot::V2::LineBotClient.new(
   channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
 )
 
@@ -99,7 +99,7 @@ puts response.class # => Net::HTTPResponse
 ```
 #### v2 (with class)
 ```rb
-client = Line::Bot::V2::Client.new(
+client = Line::Bot::V2::LineBotClient.new(
   channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
 )
 
@@ -127,7 +127,7 @@ Please use one of the above methods if possible.
 However, this method makes migration from v1 easier.
 
 ```rb
-client = Line::Bot::V2::Client.new(
+client = Line::Bot::V2::LineBotClient.new(
   channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
 )
 
@@ -195,7 +195,7 @@ require 'line-bot-api'
 set :environment, :production
 
 def client
-  @client ||= Line::Bot::V2::Client.new(
+  @client ||= Line::Bot::V2::LineBotClient.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
   )
 end

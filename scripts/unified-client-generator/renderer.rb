@@ -66,7 +66,7 @@ module UnifiedClientGenerator
       module Line
         module Bot
           module V2
-            class Client
+            class LineBotClient
       #{indent(methods, 8)}
             end
           end
@@ -87,7 +87,7 @@ module UnifiedClientGenerator
       module Line
         module Bot
           module V2
-            class Client
+            class LineBotClient
               private
 
               def build_generated_delegates(
@@ -142,7 +142,7 @@ module UnifiedClientGenerator
       module Line
         module Bot
           module V2
-            class Client
+            class LineBotClient
       #{indent(render_comment(CLIENT_CLASS_COMMENT), 8)}
       #{indent(ivars, 8)}
 

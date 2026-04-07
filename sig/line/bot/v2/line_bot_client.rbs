@@ -6,7 +6,7 @@
 module Line
   module Bot
     module V2
-      class Client
+      class LineBotClient
         # A single client for all LINE Bot APIs, except channel access token and module attach management.
         #
         # It wraps the individual generated API clients and exposes their methods directly,

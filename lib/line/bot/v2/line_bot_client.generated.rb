@@ -6,7 +6,7 @@
 module Line
   module Bot
     module V2
-      class Client
+      class LineBotClient
         # Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID).
         # This requests to <code>GET https://api.line.me/v2/bot/insight/demographic</code>
         # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.

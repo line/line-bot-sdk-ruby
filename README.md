@@ -54,7 +54,7 @@ You can code with type support in the corresponding IDE or editor.
 
 ### Basic Usage
 
-The unified `Line::Bot::V2::Client` wraps all individual API clients into a single object.
+The unified `Line::Bot::V2::LineBotClient` wraps all individual API clients into a single object.
 You no longer need to create separate clients for MessagingApi, Insight, Liff, etc.
 
 ```ruby
@@ -65,7 +65,7 @@ require 'line-bot-api'
 set :environment, :production
 
 def client
-  @client ||= Line::Bot::V2::Client.new(
+  @client ||= Line::Bot::V2::LineBotClient.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
   )
 end
@@ -135,11 +135,11 @@ You may use this classes to use LINE Messaging API features.
 
 #### Unified Client (recommended)
 
-`Line::Bot::V2::Client` wraps all API clients below (except ChannelAccessToken and ModuleAttach) into one object.
+`Line::Bot::V2::LineBotClient` wraps all API clients below (except ChannelAccessToken and ModuleAttach) into one object.
 You only need a single `channel_access_token` to call any API.
 
 ```ruby
-client = Line::Bot::V2::Client.new(
+client = Line::Bot::V2::LineBotClient.new(
   channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
 )
 
@@ -194,7 +194,7 @@ require 'json'
 require 'line-bot-api'
 
 def client
-  @client ||= Line::Bot::V2::Client.new(
+  @client ||= Line::Bot::V2::LineBotClient.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
   )
 end
@@ -240,7 +240,7 @@ This is useful, for example, in migrating from v1 or building Flex Message.
 **But this is not recommended because you lose type checking by RBS.**
 
 ```ruby
-client = Line::Bot::V2::Client.new(
+client = Line::Bot::V2::LineBotClient.new(
   channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
 )
 

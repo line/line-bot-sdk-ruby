@@ -5,16 +5,16 @@ require 'pathname'
 require 'rbs'
 require 'set'
 
-# Generates Line::Bot::V2::Client, a single unified client that wraps all
+# Generates Line::Bot::V2::LineBotClient, a single unified client that wraps all
 # individual API clients (MessagingApi, Insight, Liff, ManageAudience, etc.).
 #
 # Without this, users must instantiate and manage multiple client objects
 # themselves, choosing the right one for each API call. The unified client
 # eliminates that burden: one object, one channel_access_token, every API.
 module UnifiedClientGenerator
-  OUTPUT_RB_GENERATED = 'lib/line/bot/v2/client.generated.rb'
-  OUTPUT_RB_FACTORY = 'lib/line/bot/v2/client.factory.generated.rb'
-  OUTPUT_RBS = 'sig/line/bot/v2/client.rbs'
+  OUTPUT_RB_GENERATED = 'lib/line/bot/v2/line_bot_client.generated.rb'
+  OUTPUT_RB_FACTORY = 'lib/line/bot/v2/line_bot_client.factory.generated.rb'
+  OUTPUT_RBS = 'sig/line/bot/v2/line_bot_client.rbs'
   BOT_ENTRYPOINT = 'lib/line/bot.rb'
   EXCLUDED_PACKAGES = Set['channel_access_token', 'module_attach'].freeze
   BUILTINS = Set['Array', 'File', 'Float', 'Hash', 'Integer', 'Object', 'String', 'Symbol'].freeze
@@ -113,7 +113,7 @@ module UnifiedClientGenerator
     return unless path.exist?
 
     content = path.read
-    required_line = "require 'line/bot/v2/client'"
+    required_line = "require 'line/bot/v2/line_bot_client'"
     return if content.include?(required_line)
 
     write(path, content.rstrip + "\n#{required_line}\n")

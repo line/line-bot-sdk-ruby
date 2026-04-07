@@ -1,20 +1,20 @@
 require 'spec_helper'
 
-describe 'Line::Bot::V2::Client' do
+describe 'Line::Bot::V2::LineBotClient' do
   let(:channel_access_token) { 'test-channel-access-token' }
-  let(:client) { Line::Bot::V2::Client.new(channel_access_token: channel_access_token) }
+  let(:client) { Line::Bot::V2::LineBotClient.new(channel_access_token: channel_access_token) }
 
   describe '#initialize' do
     it 'raises TypeError when channel_access_token is nil', rbs_test: :skip do
-      expect { Line::Bot::V2::Client.new(channel_access_token: nil) }.to raise_error(TypeError)
+      expect { Line::Bot::V2::LineBotClient.new(channel_access_token: nil) }.to raise_error(TypeError)
     end
 
     it 'raises TypeError when channel_access_token is empty' do
-      expect { Line::Bot::V2::Client.new(channel_access_token: '') }.to raise_error(TypeError)
+      expect { Line::Bot::V2::LineBotClient.new(channel_access_token: '') }.to raise_error(TypeError)
     end
 
     it 'creates a client with valid channel_access_token' do
-      expect(client).to be_a(Line::Bot::V2::Client)
+      expect(client).to be_a(Line::Bot::V2::LineBotClient)
     end
   end
 
@@ -189,7 +189,7 @@ describe 'Line::Bot::V2::Client' do
 
   describe 'custom base URLs' do
     let(:client) do
-      Line::Bot::V2::Client.new(
+      Line::Bot::V2::LineBotClient.new(
         channel_access_token: channel_access_token,
         api_base_url: 'https://custom-api.example.com',
         data_api_base_url: 'https://custom-data.example.com'
@@ -235,7 +235,7 @@ describe 'Line::Bot::V2::Client' do
       klass.public_instance_methods(false) - [:initialize]
     end.sort
 
-    unified_methods = Line::Bot::V2::Client.public_instance_methods(false).sort
+    unified_methods = Line::Bot::V2::LineBotClient.public_instance_methods(false).sort
 
     it 'discovers at least one original client class' do
       expect(original_client_classes).not_to be_empty
@@ -260,7 +260,7 @@ describe 'Line::Bot::V2::Client' do
   end
 
   describe 'generated file quality' do
-    generated_rb = File.read(File.expand_path('../../../../lib/line/bot/v2/client.generated.rb', __dir__), encoding: 'utf-8')
+    generated_rb = File.read(File.expand_path('../../../../lib/line/bot/v2/line_bot_client.generated.rb', __dir__), encoding: 'utf-8')
 
     it 'has a YARD comment block before every method' do
       lines = generated_rb.lines
@@ -290,7 +290,7 @@ describe 'Line::Bot::V2::Client' do
   end
 
   describe 'RBS coverage' do
-    rbs_path = File.expand_path('../../../../sig/line/bot/v2/client.rbs', __dir__)
+    rbs_path = File.expand_path('../../../../sig/line/bot/v2/line_bot_client.rbs', __dir__)
     rbs_content = File.read(rbs_path, encoding: 'utf-8')
 
     # Extract method names from the RBS (public only, before "private" keyword)

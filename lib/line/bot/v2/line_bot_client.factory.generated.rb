@@ -6,7 +6,7 @@
 module Line
   module Bot
     module V2
-      class Client
+      class LineBotClient
         private
 
         def build_generated_delegates(

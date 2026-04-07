@@ -1,7 +1,7 @@
 require 'line-bot-api'
 
 def client
-  @client ||= Line::Bot::V2::Client.new(
+  @client ||= Line::Bot::V2::LineBotClient.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
   )
 end

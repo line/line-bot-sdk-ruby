@@ -10,7 +10,7 @@ HORIZONTAL_THUMBNAIL_URL = 'https://via.placeholder.com/1024x768'
 QUICK_REPLY_ICON_URL = 'https://via.placeholder.com/64x64'
 
 def client
-  @client ||= Line::Bot::V2::Client.new(
+  @client ||= Line::Bot::V2::LineBotClient.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
     http_options: {
       open_timeout: 5,
