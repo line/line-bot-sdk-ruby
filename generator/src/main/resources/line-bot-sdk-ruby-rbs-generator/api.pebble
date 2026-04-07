@@ -73,6 +73,9 @@ module Line
           {%- endif %}
           {%- endfor %}
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          {% if op.nickname == "issue_stateless_channel_token" -%}
+          %a{deprecated: Use #issue_stateless_channel_token_by_jwt_assertion_with_http_info or #issue_stateless_channel_token_by_client_secret_with_http_info instead}
+          {% endif -%}
           def {{op.nickname}}_with_http_info: (
             {%- for param in op.allParams %}
             {{ param.required ? '' : '?' }}{{param.paramName}}: {{ formatDataType(param) }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
@@ -108,6 +111,9 @@ module Line
           {%- endif %}
           {%- endfor %}
           # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          {% if op.nickname == "issue_stateless_channel_token" -%}
+          %a{deprecated: Use #issue_stateless_channel_token_by_jwt_assertion or #issue_stateless_channel_token_by_client_secret instead}
+          {% endif -%}
           def {{op.nickname}}: (
             {%- for param in op.allParams %}
             {{ param.required ? '' : '?' }}{{param.paramName}}: {{ formatDataType(param) }}{{ param.required ? '' : '?' }}{{ loop.last ? '' : ', ' -}}
@@ -119,6 +125,10 @@ module Line
             | String? # otherwise
           )
           {%- endfor %}
+{%- if ["ChannelAccessTokenClient"] contains operations.classname %}
+
+{% include "./body/api/" + operations.classname + ".rbs" %}
+{%- endif %}
         end
       end
     end
