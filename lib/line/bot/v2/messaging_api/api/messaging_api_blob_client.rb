@@ -231,13 +231,13 @@ module Line
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
           # @param rich_menu_id [String] The ID of the rich menu to attach the image to
-          # @param body [File, nil] 
+          # @param body [File] 
           # @see https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def set_rich_menu_image_with_http_info( # steep:ignore MethodBodyTypeMismatch 
             rich_menu_id:, 
-            body: nil
+            body:
           )
             path = "/v2/bot/richmenu/{richMenuId}/content"
               .gsub(/{richMenuId}/, rich_menu_id.to_s)
@@ -260,13 +260,13 @@ module Line
           # When you want to get HTTP status code or response headers, use {#set_rich_menu_image_with_http_info} instead of this.
           #
           # @param rich_menu_id [String] The ID of the rich menu to attach the image to
-          # @param body [File, nil] 
+          # @param body [File] 
           # @see https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
           # @return [String, nil] when HTTP status code is 200
           # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def set_rich_menu_image(
             rich_menu_id:,
-            body: nil
+            body:
           )
             response_body, _status_code, _headers = set_rich_menu_image_with_http_info(
               rich_menu_id: rich_menu_id,

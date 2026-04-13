@@ -944,7 +944,7 @@ module Line
             | String? # otherwise
           )
 
-          # Get number of sent LINE notification messages　
+          # Get number of sent LINE notification messages
           # This requests to <code>GET https://api.line.me/v2/bot/message/delivery/pnp</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
@@ -959,7 +959,7 @@ module Line
             | [String?, Integer, Hash[untyped, untyped]] # otherwise
           )
 
-          # Get number of sent LINE notification messages　
+          # Get number of sent LINE notification messages
           # This requests to <code>GET https://api.line.me/v2/bot/message/delivery/pnp</code>
           # When you want to get HTTP status code or response headers, use {#get_pnp_message_statistics_with_http_info} instead of this.
           #
