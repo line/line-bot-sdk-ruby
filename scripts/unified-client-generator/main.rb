@@ -60,17 +60,19 @@ module UnifiedClientGenerator
 
   def run(root_dir = File.expand_path('../..', __dir__))
     root = Pathname(root_dir)
-    clients = discover_clients(root)
-    validate_clients!(clients)
+    ruby_clients = discover_clients_from_ruby(root)
+    rbs_clients = discover_clients_from_rbs(root)
+    validate_clients!(ruby_clients)
+    validate_rb_rbs_consistency!(ruby_clients, rbs_clients)
 
-    write(root.join(OUTPUT_RB_GENERATED), render_generated_ruby(clients))
-    write(root.join(OUTPUT_RB_FACTORY), render_factory_ruby(clients))
-    write(root.join(OUTPUT_RBS), render_rbs(clients))
+    write(root.join(OUTPUT_RB_GENERATED), render_generated_ruby(ruby_clients))
+    write(root.join(OUTPUT_RB_FACTORY), render_factory_ruby(ruby_clients))
+    write(root.join(OUTPUT_RBS), render_rbs(rbs_clients))
     patch_bot_entrypoint!(root.join(BOT_ENTRYPOINT))
 
-    n = clients.sum { |c| c.delegated_methods.size }
+    n = ruby_clients.sum { |c| c.delegated_methods.size }
     puts "Generated #{OUTPUT_RB_GENERATED}, #{OUTPUT_RB_FACTORY}, #{OUTPUT_RBS}. " \
-         "#{clients.size} client classes, #{n} delegated methods."
+         "#{ruby_clients.size} client classes, #{n} delegated methods."
   end
 
   # --- Validation ---
@@ -99,6 +101,32 @@ module UnifiedClientGenerator
         raise "Unsupported default_base_url #{c.default_base_url.inspect} in #{c.qualified_class_name}. " \
               "Supported: #{SUPPORTED_BASE_URLS.to_a.join(', ')}"
       end
+    end
+  end
+
+  def validate_rb_rbs_consistency!(ruby_clients, rbs_clients)
+    ruby_by_delegate = ruby_clients.to_h { |c| [c.delegate_name, c] }
+    rbs_by_delegate = rbs_clients.to_h { |c| [c.delegate_name, c] }
+
+    missing_in_rbs = ruby_by_delegate.keys - rbs_by_delegate.keys
+    missing_in_ruby = rbs_by_delegate.keys - ruby_by_delegate.keys
+    unless missing_in_rbs.empty? && missing_in_ruby.empty?
+      raise "Client mismatch between rb and rbs. " \
+            "missing_in_rbs=#{missing_in_rbs.sort.join(', ')}, " \
+            "missing_in_ruby=#{missing_in_ruby.sort.join(', ')}"
+    end
+
+    ruby_by_delegate.each do |delegate_name, ruby_client|
+      rbs_client = rbs_by_delegate.fetch(delegate_name)
+      ruby_methods = ruby_client.delegated_methods.map(&:name).sort
+      rbs_methods = rbs_client.delegated_methods.map(&:name).sort
+      next if ruby_methods == rbs_methods
+
+      missing_in_rbs_methods = ruby_methods - rbs_methods
+      missing_in_ruby_methods = rbs_methods - ruby_methods
+      raise "Method mismatch for #{delegate_name}. " \
+            "missing_in_rbs=#{missing_in_rbs_methods.join(', ')}, " \
+            "missing_in_ruby=#{missing_in_ruby_methods.join(', ')}"
     end
   end
 

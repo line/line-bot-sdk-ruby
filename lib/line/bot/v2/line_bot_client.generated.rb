@@ -513,7 +513,7 @@ module Line
         # @param description [String, nil] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion.
         # @param status [Line::Bot::V2::ManageAudience::AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.
         # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40
-        # @param includes_external_public_groups [bool, nil] true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel.
+        # @param includes_external_public_groups [Boolean, nil] true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel.
         # @param create_route [Line::Bot::V2::ManageAudience::AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API.
         # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
         # @return [Array(Line::Bot::V2::ManageAudience::GetAudienceGroupsResponse, Integer, Hash{String => String})] when HTTP status code is 200
@@ -544,7 +544,7 @@ module Line
         # @param description [String, nil] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion.
         # @param status [Line::Bot::V2::ManageAudience::AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.
         # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40
-        # @param includes_external_public_groups [bool, nil] true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel.
+        # @param includes_external_public_groups [Boolean, nil] true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel.
         # @param create_route [Line::Bot::V2::ManageAudience::AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API.
         # @see https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
         # @return [Line::Bot::V2::ManageAudience::GetAudienceGroupsResponse] when HTTP status code is 200
@@ -610,7 +610,7 @@ module Line
         # @param status [Line::Bot::V2::ManageAudience::AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.
         # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40
         # @param create_route [Line::Bot::V2::ManageAudience::AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API.
-        # @param includes_owned_audience_groups [bool, nil] true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager
+        # @param includes_owned_audience_groups [Boolean, nil] true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager
         # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
         # @return [Array(Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse, Integer, Hash{String => String})] when HTTP status code is 200
         # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
@@ -641,7 +641,7 @@ module Line
         # @param status [Line::Bot::V2::ManageAudience::AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.
         # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40
         # @param create_route [Line::Bot::V2::ManageAudience::AudienceGroupCreateRoute, nil] How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API.
-        # @param includes_owned_audience_groups [bool, nil] true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager
+        # @param includes_owned_audience_groups [Boolean, nil] true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager
         # @see https://developers.line.biz/en/reference/messaging-api/#get-shared-audience-list
         # @return [Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse] when HTTP status code is 200
         # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
@@ -751,7 +751,7 @@ module Line
         #
         # @param file [File] A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000
         # @param description [String, nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120
-        # @param is_ifa_audience [bool, nil] To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property.
+        # @param is_ifa_audience [Boolean, nil] To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property.
         # @param upload_description [String, nil] The description to register for the job (in `jobs[].description`).
         # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group-by-file
         # @return [Array(Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse, Integer, Hash{String => String})] when HTTP status code is 202
@@ -776,7 +776,7 @@ module Line
         #
         # @param file [File] A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000
         # @param description [String, nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120
-        # @param is_ifa_audience [bool, nil] To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property.
+        # @param is_ifa_audience [Boolean, nil] To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property.
         # @param upload_description [String, nil] The description to register for the job (in `jobs[].description`).
         # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group-by-file
         # @return [Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse] when HTTP status code is 202

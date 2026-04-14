@@ -312,7 +312,7 @@ describe 'Line::Bot::V2::LineBotClient' do
       next if %w[channel_access_token module_attach].include?(pkg)
 
       methods = []
-      File.readlines(path).each do |line|
+      File.readlines(path, encoding: 'utf-8').each do |line|
         if line =~ /^\s+def\s+(\w+[?!]?):/ && Regexp.last_match(1) != 'initialize'
           methods << Regexp.last_match(1).to_sym
         end
