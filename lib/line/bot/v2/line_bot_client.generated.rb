@@ -1697,7 +1697,7 @@ module Line
           )
         end
 
-        # Get number of sent LINE notification messages　
+        # Get number of sent LINE notification messages
         # This requests to <code>GET https://api.line.me/v2/bot/message/delivery/pnp</code>
         # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
         #
@@ -1713,7 +1713,7 @@ module Line
           )
         end
 
-        # Get number of sent LINE notification messages　
+        # Get number of sent LINE notification messages
         # This requests to <code>GET https://api.line.me/v2/bot/message/delivery/pnp</code>
         # When you want to get HTTP status code or response headers, use {#get_pnp_message_statistics_with_http_info} instead of this.
         #
@@ -3182,13 +3182,13 @@ module Line
         # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
         #
         # @param rich_menu_id [String] The ID of the rich menu to attach the image to
-        # @param body [File, nil]
+        # @param body [File]
         # @see https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
         # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
         # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
         def set_rich_menu_image_with_http_info(
           rich_menu_id:,
-          body: nil
+          body:
         )
           @messaging_api_blob.set_rich_menu_image_with_http_info(
             rich_menu_id: rich_menu_id,
@@ -3201,13 +3201,13 @@ module Line
         # When you want to get HTTP status code or response headers, use {#set_rich_menu_image_with_http_info} instead of this.
         #
         # @param rich_menu_id [String] The ID of the rich menu to attach the image to
-        # @param body [File, nil]
+        # @param body [File]
         # @see https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
         # @return [String, nil] when HTTP status code is 200
         # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
         def set_rich_menu_image(
           rich_menu_id:,
-          body: nil
+          body:
         )
           @messaging_api_blob.set_rich_menu_image(
             rich_menu_id: rich_menu_id,
