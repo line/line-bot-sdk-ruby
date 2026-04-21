@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
     "source_code_uri" => spec.homepage,
   }
 
-  spec.required_ruby_version = '>= 3.2.0'
+  spec.required_ruby_version = '>= 3.3.0'
 
   spec.add_runtime_dependency "multipart-post", "~> 2.4"
 

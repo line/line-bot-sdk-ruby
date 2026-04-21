@@ -19,7 +19,7 @@ Also, generated documentation by YARD is available.
 - https://line.github.io/line-bot-sdk-ruby/_index.html
 
 ## Requirements
-This library requires Ruby 3.2 or later.
+This library requires Ruby 3.3 or later.
 
 ## Installation
 
