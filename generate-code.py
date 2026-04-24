@@ -62,6 +62,10 @@ def generate_clients():
     run_command("rm -rf lib/line/bot/v2/webhook/api")
     run_command("rm -rf sig/line/bot/v2/webhook/api")
 
+def generate_unified_client():
+    """Generate the unified client that wraps all individual API clients."""
+    run_command('bundle exec ruby scripts/unified-client-generator/main.rb')
+
 def main():
     """Main function to package and generate clients."""
     os.chdir("generator")
@@ -69,6 +73,7 @@ def main():
     os.chdir("..")
 
     generate_clients()
+    generate_unified_client()
 
 if __name__ == "__main__":
     main()
