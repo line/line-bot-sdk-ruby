@@ -7,7 +7,7 @@ group :development, :test do
   gem 'irb', '~> 1.17.0'
   gem 'rack', '~> 3.1' # for yard server
   gem 'rackup', '~> 2.1' # for yard server
-  gem 'rbs', '~> 3.10.0'
+  gem 'rbs', '~> 4.0.0'
   gem 'redcarpet', '~> 3.6.0'
   gem 'rubocop', '~> 1.86.0', require: false
   gem 'steep', '~> 1.10.0'
