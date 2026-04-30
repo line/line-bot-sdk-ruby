@@ -17,7 +17,7 @@ jobs:
       issues: write
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: ruby/setup-ruby@94e4d89d3e6c1c7599e0210d114c5ffb23f1a866 # v1.304.0
+      - uses: ruby/setup-ruby@0cb964fd540e0a24c900370abf38a33466142735 # v1.305.0
         with:
           ruby-version: '4.0'
       - run: bundle install
