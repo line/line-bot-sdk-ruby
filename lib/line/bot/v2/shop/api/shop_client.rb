@@ -53,7 +53,7 @@ module Line
           # @see https://developers.line.biz/en/reference/partner-docs/#send-mission-stickers-v3
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
-          def mission_sticker_v3_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+          def mission_sticker_v3_with_http_info( 
             mission_sticker_request:
           )
             path = "/shop/v3/mission"

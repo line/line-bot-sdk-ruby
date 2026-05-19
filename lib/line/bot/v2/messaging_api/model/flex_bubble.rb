@@ -64,13 +64,13 @@ module Line
             @type = "bubble"
             
             @direction = direction
-            @styles = styles.is_a?(Line::Bot::V2::MessagingApi::FlexBubbleStyles) || styles.nil? ? styles : Line::Bot::V2::MessagingApi::FlexBubbleStyles.create(**styles) # steep:ignore
-            @header = header.is_a?(Line::Bot::V2::MessagingApi::FlexBox) || header.nil? ? header : Line::Bot::V2::MessagingApi::FlexBox.create(**header) # steep:ignore
-            @hero = hero.is_a?(Line::Bot::V2::MessagingApi::FlexComponent) || hero.nil? ? hero : Line::Bot::V2::MessagingApi::FlexComponent.create(**hero) # steep:ignore
-            @body = body.is_a?(Line::Bot::V2::MessagingApi::FlexBox) || body.nil? ? body : Line::Bot::V2::MessagingApi::FlexBox.create(**body) # steep:ignore
-            @footer = footer.is_a?(Line::Bot::V2::MessagingApi::FlexBox) || footer.nil? ? footer : Line::Bot::V2::MessagingApi::FlexBox.create(**footer) # steep:ignore
+            @styles = styles.is_a?(Line::Bot::V2::MessagingApi::FlexBubbleStyles) || styles.nil? ? styles : Line::Bot::V2::MessagingApi::FlexBubbleStyles.create(**styles)
+            @header = header.is_a?(Line::Bot::V2::MessagingApi::FlexBox) || header.nil? ? header : Line::Bot::V2::MessagingApi::FlexBox.create(**header)
+            @hero = hero.is_a?(Line::Bot::V2::MessagingApi::FlexComponent) || hero.nil? ? hero : Line::Bot::V2::MessagingApi::FlexComponent.create(**hero)
+            @body = body.is_a?(Line::Bot::V2::MessagingApi::FlexBox) || body.nil? ? body : Line::Bot::V2::MessagingApi::FlexBox.create(**body)
+            @footer = footer.is_a?(Line::Bot::V2::MessagingApi::FlexBox) || footer.nil? ? footer : Line::Bot::V2::MessagingApi::FlexBox.create(**footer)
             @size = size
-            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action) # steep:ignore
+            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -88,9 +88,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::FlexBubble] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args)
           end
 
           # @param other [Object] Object to compare
