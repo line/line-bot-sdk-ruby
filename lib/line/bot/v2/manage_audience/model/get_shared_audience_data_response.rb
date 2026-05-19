@@ -34,15 +34,15 @@ module Line
             **dynamic_attributes
           )
             
-            @audience_group = audience_group.is_a?(Line::Bot::V2::ManageAudience::AudienceGroup) || audience_group.nil? ? audience_group : Line::Bot::V2::ManageAudience::AudienceGroup.create(**audience_group) # steep:ignore
+            @audience_group = audience_group.is_a?(Line::Bot::V2::ManageAudience::AudienceGroup) || audience_group.nil? ? audience_group : Line::Bot::V2::ManageAudience::AudienceGroup.create(**audience_group)
             @jobs = jobs&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::ManageAudience::AudienceGroupJob.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::ManageAudience::AudienceGroupJob.create(**item)
               else
                 item
               end
             end
-            @owner = owner.is_a?(Line::Bot::V2::ManageAudience::DetailedOwner) || owner.nil? ? owner : Line::Bot::V2::ManageAudience::DetailedOwner.create(**owner) # steep:ignore
+            @owner = owner.is_a?(Line::Bot::V2::ManageAudience::DetailedOwner) || owner.nil? ? owner : Line::Bot::V2::ManageAudience::DetailedOwner.create(**owner)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -60,9 +60,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::ManageAudience::GetSharedAudienceDataResponse] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args)
           end
 
           # @param other [Object] Object to compare

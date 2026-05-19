@@ -52,35 +52,35 @@ module Line
             @available = available
             @genders = genders&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::GenderTile.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::Insight::GenderTile.create(**item)
               else
                 item
               end
             end
             @ages = ages&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::AgeTile.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::Insight::AgeTile.create(**item)
               else
                 item
               end
             end
             @areas = areas&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::AreaTile.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::Insight::AreaTile.create(**item)
               else
                 item
               end
             end
             @app_types = app_types&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::AppTypeTile.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::Insight::AppTypeTile.create(**item)
               else
                 item
               end
             end
             @subscription_periods = subscription_periods&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::SubscriptionPeriodTile.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::Insight::SubscriptionPeriodTile.create(**item)
               else
                 item
               end
@@ -102,9 +102,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::Insight::GetFriendsDemographicsResponse] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args)
           end
 
           # @param other [Object] Object to compare

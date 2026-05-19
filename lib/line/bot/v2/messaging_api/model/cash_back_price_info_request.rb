@@ -40,11 +40,11 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::CashBackPriceInfoRequest] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
             klass = detect_class(type: symbolized_args[:type])
-            return klass.new(**symbolized_args) if klass # steep:ignore
-            return new(**symbolized_args) # steep:ignore
+            return klass.new(**symbolized_args) if klass # steep:ignore UnannotatedEmptyCollection
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

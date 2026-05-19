@@ -76,7 +76,7 @@ module Line
             {%- if property.items.isModel -%}
             @{{ property.name }} = {{ property.name }}{{ property.required ? '' : '&'  }}.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::{{ packageName | camelize }}::{{ property.complexType }}.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::{{ packageName | camelize }}::{{ property.complexType }}.create(**item)
               else
                 item
               end
@@ -85,7 +85,7 @@ module Line
             @{{ property.name }} = {{ property.name }}
             {%- endif -%}
             {%- elseif property.isModel -%}
-            @{{ property.name }} = {{ property.name }}.is_a?(Line::Bot::V2::{{ packageName | camelize }}::{{ property.baseType }}){% if not property.required %} || {{ property.name }}.nil?{% endif %} ? {{ property.name }} : Line::Bot::V2::{{ packageName | camelize }}::{{ property.baseType }}.create(**{{ property.name }}) # steep:ignore
+            @{{ property.name }} = {{ property.name }}.is_a?(Line::Bot::V2::{{ packageName | camelize }}::{{ property.baseType }}){% if not property.required %} || {{ property.name }}.nil?{% endif %} ? {{ property.name }} : Line::Bot::V2::{{ packageName | camelize }}::{{ property.baseType }}.create(**{{ property.name }})
             {%- elseif model.model.vendorExtensions.get("x-selector").propertyName != property.name -%}
             @{{ property.name }} = {{ property.name }}
             {%- endif -%}
@@ -107,13 +107,15 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::{{ packageName | camelize }}::{{ model.model.classname }}] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
             {%- if model.model.vendorExtensions.get("x-children") != null and model.model.vendorExtensions.get("x-discriminator-property") != null %}
             klass = detect_class(type: symbolized_args[:{{ model.model.vendorExtensions.get("x-discriminator-property") }}])
-            return klass.new(**symbolized_args) if klass # steep:ignore
+            return klass.new(**symbolized_args) if klass # steep:ignore UnannotatedEmptyCollection
             {%- endif %}
-            return new(**symbolized_args) # steep:ignore
+            {%- set steepIgnore = '' -%}
+            {%- for p in model.model.requiredVars %}{%- if p.defaultValue == null and model.model.vendorExtensions.get("x-selector").propertyName != p.name %}{%- set steepIgnore = ' # steep:ignore InsufficientKeywordArguments' %}{%- endif %}{%- endfor %}
+            return new(**symbolized_args){{ steepIgnore }}
           end
 
           # @param other [Object] Object to compare
