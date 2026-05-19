@@ -45,14 +45,14 @@ module Line
             
             @messages = messages.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::Message.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::MessagingApi::Message.create(**item)
               else
                 item
               end
             end
-            @recipient = recipient.is_a?(Line::Bot::V2::MessagingApi::Recipient) || recipient.nil? ? recipient : Line::Bot::V2::MessagingApi::Recipient.create(**recipient) # steep:ignore
-            @filter = filter.is_a?(Line::Bot::V2::MessagingApi::Filter) || filter.nil? ? filter : Line::Bot::V2::MessagingApi::Filter.create(**filter) # steep:ignore
-            @limit = limit.is_a?(Line::Bot::V2::MessagingApi::Limit) || limit.nil? ? limit : Line::Bot::V2::MessagingApi::Limit.create(**limit) # steep:ignore
+            @recipient = recipient.is_a?(Line::Bot::V2::MessagingApi::Recipient) || recipient.nil? ? recipient : Line::Bot::V2::MessagingApi::Recipient.create(**recipient)
+            @filter = filter.is_a?(Line::Bot::V2::MessagingApi::Filter) || filter.nil? ? filter : Line::Bot::V2::MessagingApi::Filter.create(**filter)
+            @limit = limit.is_a?(Line::Bot::V2::MessagingApi::Limit) || limit.nil? ? limit : Line::Bot::V2::MessagingApi::Limit.create(**limit)
             @notification_disabled = notification_disabled
 
             dynamic_attributes.each do |key, value|
@@ -71,9 +71,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::NarrowcastRequest] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

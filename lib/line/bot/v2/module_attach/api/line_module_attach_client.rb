@@ -64,7 +64,7 @@ module Line
           # @see https://developers.line.biz/en/reference/partner-docs/#link-attach-by-operation-module-channel-provider
           # @return [Array(Line::Bot::V2::ModuleAttach::AttachModuleResponse, Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
-          def attach_module_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+          def attach_module_with_http_info( 
             grant_type:, 
             code:, 
             redirect_uri:, 
@@ -102,7 +102,7 @@ module Line
               json.transform_keys! do |key|
                 Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
               end
-              response_body = Line::Bot::V2::ModuleAttach::AttachModuleResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              response_body = Line::Bot::V2::ModuleAttach::AttachModuleResponse.create(json)
               [response_body, 200, response.each_header.to_h]
             else
               [response.body, response.code.to_i, response.each_header.to_h]

@@ -62,12 +62,12 @@ module Line
             @text = text
             @emojis = emojis&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Webhook::Emoji.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::Webhook::Emoji.create(**item)
               else
                 item
               end
             end
-            @mention = mention.is_a?(Line::Bot::V2::Webhook::Mention) || mention.nil? ? mention : Line::Bot::V2::Webhook::Mention.create(**mention) # steep:ignore
+            @mention = mention.is_a?(Line::Bot::V2::Webhook::Mention) || mention.nil? ? mention : Line::Bot::V2::Webhook::Mention.create(**mention)
             @quote_token = quote_token
             @quoted_message_id = quoted_message_id
             @mark_as_read_token = mark_as_read_token
@@ -88,9 +88,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::Webhook::TextMessageContent] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

@@ -40,19 +40,19 @@ module Line
             
             @_and = _and&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::DemographicFilter.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::MessagingApi::DemographicFilter.create(**item)
               else
                 item
               end
             end
             @_or = _or&.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::DemographicFilter.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::MessagingApi::DemographicFilter.create(**item)
               else
                 item
               end
             end
-            @_not = _not.is_a?(Line::Bot::V2::MessagingApi::DemographicFilter) || _not.nil? ? _not : Line::Bot::V2::MessagingApi::DemographicFilter.create(**_not) # steep:ignore
+            @_not = _not.is_a?(Line::Bot::V2::MessagingApi::DemographicFilter) || _not.nil? ? _not : Line::Bot::V2::MessagingApi::DemographicFilter.create(**_not)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -70,9 +70,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::OperatorDemographicFilter] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args)
           end
 
           # @param other [Object] Object to compare

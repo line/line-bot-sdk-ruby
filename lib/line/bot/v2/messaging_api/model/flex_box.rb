@@ -162,7 +162,7 @@ module Line
             @flex = flex
             @contents = contents.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::FlexComponent.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::MessagingApi::FlexComponent.create(**item)
               else
                 item
               end
@@ -187,10 +187,10 @@ module Line
             @padding_bottom = padding_bottom
             @padding_start = padding_start
             @padding_end = padding_end
-            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action) # steep:ignore
+            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) || action.nil? ? action : Line::Bot::V2::MessagingApi::Action.create(**action)
             @justify_content = justify_content
             @align_items = align_items
-            @background = background.is_a?(Line::Bot::V2::MessagingApi::FlexBoxBackground) || background.nil? ? background : Line::Bot::V2::MessagingApi::FlexBoxBackground.create(**background) # steep:ignore
+            @background = background.is_a?(Line::Bot::V2::MessagingApi::FlexBoxBackground) || background.nil? ? background : Line::Bot::V2::MessagingApi::FlexBoxBackground.create(**background)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -208,9 +208,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::FlexBox] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

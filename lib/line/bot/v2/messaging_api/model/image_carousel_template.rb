@@ -30,7 +30,7 @@ module Line
             
             @columns = columns.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::ImageCarouselColumn.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::MessagingApi::ImageCarouselColumn.create(**item)
               else
                 item
               end
@@ -52,9 +52,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::ImageCarouselTemplate] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

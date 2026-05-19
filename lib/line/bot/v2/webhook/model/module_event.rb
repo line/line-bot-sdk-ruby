@@ -54,12 +54,12 @@ module Line
           )
             @type = "module"
             
-            @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source) # steep:ignore
+            @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source)
             @timestamp = timestamp
             @mode = mode
             @webhook_event_id = webhook_event_id
-            @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context) # steep:ignore
-            @_module = _module.is_a?(Line::Bot::V2::Webhook::ModuleContent) ? _module : Line::Bot::V2::Webhook::ModuleContent.create(**_module) # steep:ignore
+            @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context)
+            @_module = _module.is_a?(Line::Bot::V2::Webhook::ModuleContent) ? _module : Line::Bot::V2::Webhook::ModuleContent.create(**_module)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -77,9 +77,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::Webhook::ModuleEvent] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

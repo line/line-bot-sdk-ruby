@@ -84,8 +84,7 @@ module Line
           {%- endif %}
           {%- endfor %}
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
-          {#- Remove this steep:ignore after https://github.com/soutaro/steep/issues/1603 is resolved #}
-          def {{op.nickname}}_with_http_info( # steep:ignore MethodBodyTypeMismatch
+          def {{op.nickname}}_with_http_info(
             {%- for param in op.allParams %} 
             {{param.paramName}}:{{ param.required ? '' : ' nil' }}{{ loop.last ? '' : ',' -}}
             {%- endfor %}
@@ -127,7 +126,7 @@ module Line
               json.transform_keys! do |key|
                 Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
               end
-              response_body = Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}.create(json) # steep:ignore InsufficientKeywordArguments
+              response_body = Line::Bot::V2::{{ packageName | camelize }}::{{ response.content['application/json'].schema.complexType }}.create(json)
               [response_body, {{ response.code }}, response.each_header.to_h]
               {%- else %}
               [response.body, {{ response.code }}, response.each_header.to_h]

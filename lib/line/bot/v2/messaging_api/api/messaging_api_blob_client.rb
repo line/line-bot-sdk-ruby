@@ -53,7 +53,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-content
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
-          def get_message_content_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+          def get_message_content_with_http_info( 
             message_id:
           )
             path = "/v2/bot/message/{messageId}/content"
@@ -97,7 +97,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#get-image-or-video-preview
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
-          def get_message_content_preview_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+          def get_message_content_preview_with_http_info( 
             message_id:
           )
             path = "/v2/bot/message/{messageId}/content/preview"
@@ -141,7 +141,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#verify-video-or-audio-preparation-status
           # @return [Array(Line::Bot::V2::MessagingApi::GetMessageContentTranscodingResponse, Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
-          def get_message_content_transcoding_by_message_id_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+          def get_message_content_transcoding_by_message_id_with_http_info( 
             message_id:
           )
             path = "/v2/bot/message/{messageId}/content/transcoding"
@@ -157,7 +157,7 @@ module Line
               json.transform_keys! do |key|
                 Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
               end
-              response_body = Line::Bot::V2::MessagingApi::GetMessageContentTranscodingResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              response_body = Line::Bot::V2::MessagingApi::GetMessageContentTranscodingResponse.create(json)
               [response_body, 200, response.each_header.to_h]
             else
               [response.body, response.code.to_i, response.each_header.to_h]
@@ -190,7 +190,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#download-rich-menu-image
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
-          def get_rich_menu_image_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+          def get_rich_menu_image_with_http_info( 
             rich_menu_id:
           )
             path = "/v2/bot/richmenu/{richMenuId}/content"
@@ -235,7 +235,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
-          def set_rich_menu_image_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+          def set_rich_menu_image_with_http_info( 
             rich_menu_id:, 
             body:
           )

@@ -44,7 +44,7 @@ module Line
             @type = "audio"
             
             @id = id
-            @content_provider = content_provider.is_a?(Line::Bot::V2::Webhook::ContentProvider) ? content_provider : Line::Bot::V2::Webhook::ContentProvider.create(**content_provider) # steep:ignore
+            @content_provider = content_provider.is_a?(Line::Bot::V2::Webhook::ContentProvider) ? content_provider : Line::Bot::V2::Webhook::ContentProvider.create(**content_provider)
             @duration = duration
             @mark_as_read_token = mark_as_read_token
 
@@ -64,9 +64,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::Webhook::AudioMessageContent] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare
