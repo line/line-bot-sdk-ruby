@@ -37,10 +37,10 @@ module Line
             **dynamic_attributes
           )
             
-            @header = header.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || header.nil? ? header : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**header) # steep:ignore
-            @hero = hero.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || hero.nil? ? hero : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**hero) # steep:ignore
-            @body = body.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || body.nil? ? body : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**body) # steep:ignore
-            @footer = footer.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || footer.nil? ? footer : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**footer) # steep:ignore
+            @header = header.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || header.nil? ? header : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**header)
+            @hero = hero.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || hero.nil? ? hero : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**hero)
+            @body = body.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || body.nil? ? body : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**body)
+            @footer = footer.is_a?(Line::Bot::V2::MessagingApi::FlexBlockStyle) || footer.nil? ? footer : Line::Bot::V2::MessagingApi::FlexBlockStyle.create(**footer)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -58,9 +58,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::FlexBubbleStyles] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args)
           end
 
           # @param other [Object] Object to compare

@@ -55,7 +55,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group-by-file
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 202
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
-          def add_user_ids_to_audience_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+          def add_user_ids_to_audience_with_http_info( 
             file:, 
             audience_group_id: nil, 
             upload_description: nil
@@ -116,7 +116,7 @@ module Line
           # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group-by-file
           # @return [Array(Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse, Integer, Hash{String => String})] when HTTP status code is 202
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
-          def create_audience_for_uploading_user_ids_with_http_info( # steep:ignore MethodBodyTypeMismatch 
+          def create_audience_for_uploading_user_ids_with_http_info( 
             file:, 
             description: nil, 
             is_ifa_audience: nil, 
@@ -142,7 +142,7 @@ module Line
               json.transform_keys! do |key|
                 Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
               end
-              response_body = Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse.create(json) # steep:ignore InsufficientKeywordArguments
+              response_body = Line::Bot::V2::ManageAudience::CreateAudienceGroupResponse.create(json)
               [response_body, 202, response.each_header.to_h]
             else
               [response.body, response.code.to_i, response.each_header.to_h]

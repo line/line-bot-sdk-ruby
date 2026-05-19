@@ -44,8 +44,8 @@ module Line
           )
             @type = "audio"
             
-            @quick_reply = quick_reply.is_a?(Line::Bot::V2::MessagingApi::QuickReply) || quick_reply.nil? ? quick_reply : Line::Bot::V2::MessagingApi::QuickReply.create(**quick_reply) # steep:ignore
-            @sender = sender.is_a?(Line::Bot::V2::MessagingApi::Sender) || sender.nil? ? sender : Line::Bot::V2::MessagingApi::Sender.create(**sender) # steep:ignore
+            @quick_reply = quick_reply.is_a?(Line::Bot::V2::MessagingApi::QuickReply) || quick_reply.nil? ? quick_reply : Line::Bot::V2::MessagingApi::QuickReply.create(**quick_reply)
+            @sender = sender.is_a?(Line::Bot::V2::MessagingApi::Sender) || sender.nil? ? sender : Line::Bot::V2::MessagingApi::Sender.create(**sender)
             @original_content_url = original_content_url
             @duration = duration
 
@@ -65,9 +65,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::AudioMessage] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

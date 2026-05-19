@@ -28,7 +28,7 @@ module Line
           )
             
             @image_url = image_url
-            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) ? action : Line::Bot::V2::MessagingApi::Action.create(**action) # steep:ignore
+            @action = action.is_a?(Line::Bot::V2::MessagingApi::Action) ? action : Line::Bot::V2::MessagingApi::Action.create(**action)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -46,9 +46,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::ImageCarouselColumn] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

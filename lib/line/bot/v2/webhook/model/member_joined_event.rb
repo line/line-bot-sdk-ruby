@@ -59,13 +59,13 @@ module Line
           )
             @type = "memberJoined"
             
-            @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source) # steep:ignore
+            @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source)
             @timestamp = timestamp
             @mode = mode
             @webhook_event_id = webhook_event_id
-            @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context) # steep:ignore
+            @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context)
             @reply_token = reply_token
-            @joined = joined.is_a?(Line::Bot::V2::Webhook::JoinedMembers) ? joined : Line::Bot::V2::Webhook::JoinedMembers.create(**joined) # steep:ignore
+            @joined = joined.is_a?(Line::Bot::V2::Webhook::JoinedMembers) ? joined : Line::Bot::V2::Webhook::JoinedMembers.create(**joined)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -83,9 +83,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::Webhook::MemberJoinedEvent] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

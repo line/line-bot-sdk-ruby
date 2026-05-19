@@ -30,7 +30,7 @@ module Line
           )
             @type = "mention"
             
-            @mentionee = mentionee.is_a?(Line::Bot::V2::MessagingApi::MentionTarget) ? mentionee : Line::Bot::V2::MessagingApi::MentionTarget.create(**mentionee) # steep:ignore
+            @mentionee = mentionee.is_a?(Line::Bot::V2::MessagingApi::MentionTarget) ? mentionee : Line::Bot::V2::MessagingApi::MentionTarget.create(**mentionee)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -48,9 +48,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::MentionSubstitutionObject] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

@@ -69,10 +69,10 @@ module Line
             @image_background_color = image_background_color
             @title = title
             @text = text
-            @default_action = default_action.is_a?(Line::Bot::V2::MessagingApi::Action) || default_action.nil? ? default_action : Line::Bot::V2::MessagingApi::Action.create(**default_action) # steep:ignore
+            @default_action = default_action.is_a?(Line::Bot::V2::MessagingApi::Action) || default_action.nil? ? default_action : Line::Bot::V2::MessagingApi::Action.create(**default_action)
             @actions = actions.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::Action.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::MessagingApi::Action.create(**item)
               else
                 item
               end
@@ -94,9 +94,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::ButtonsTemplate] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

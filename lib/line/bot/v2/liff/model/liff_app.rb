@@ -53,9 +53,9 @@ module Line
           )
             
             @liff_id = liff_id
-            @view = view.is_a?(Line::Bot::V2::Liff::LiffView) || view.nil? ? view : Line::Bot::V2::Liff::LiffView.create(**view) # steep:ignore
+            @view = view.is_a?(Line::Bot::V2::Liff::LiffView) || view.nil? ? view : Line::Bot::V2::Liff::LiffView.create(**view)
             @description = description
-            @features = features.is_a?(Line::Bot::V2::Liff::LiffFeatures) || features.nil? ? features : Line::Bot::V2::Liff::LiffFeatures.create(**features) # steep:ignore
+            @features = features.is_a?(Line::Bot::V2::Liff::LiffFeatures) || features.nil? ? features : Line::Bot::V2::Liff::LiffFeatures.create(**features)
             @permanent_link_pattern = permanent_link_pattern
             @scope = scope
             @bot_prompt = bot_prompt
@@ -76,9 +76,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::Liff::LiffApp] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args)
           end
 
           # @param other [Object] Object to compare

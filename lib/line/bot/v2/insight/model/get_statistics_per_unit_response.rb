@@ -34,17 +34,17 @@ module Line
             **dynamic_attributes
           )
             
-            @overview = overview.is_a?(Line::Bot::V2::Insight::GetStatisticsPerUnitResponseOverview) ? overview : Line::Bot::V2::Insight::GetStatisticsPerUnitResponseOverview.create(**overview) # steep:ignore
+            @overview = overview.is_a?(Line::Bot::V2::Insight::GetStatisticsPerUnitResponseOverview) ? overview : Line::Bot::V2::Insight::GetStatisticsPerUnitResponseOverview.create(**overview)
             @messages = messages.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::GetStatisticsPerUnitResponseMessage.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::Insight::GetStatisticsPerUnitResponseMessage.create(**item)
               else
                 item
               end
             end
             @clicks = clicks.map do |item|
               if item.is_a?(Hash)
-                Line::Bot::V2::Insight::GetStatisticsPerUnitResponseClick.create(**item) # steep:ignore InsufficientKeywordArguments
+                Line::Bot::V2::Insight::GetStatisticsPerUnitResponseClick.create(**item)
               else
                 item
               end
@@ -66,9 +66,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::Insight::GetStatisticsPerUnitResponse] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

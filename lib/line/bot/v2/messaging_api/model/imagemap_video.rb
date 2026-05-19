@@ -39,8 +39,8 @@ module Line
             
             @original_content_url = original_content_url
             @preview_image_url = preview_image_url
-            @area = area.is_a?(Line::Bot::V2::MessagingApi::ImagemapArea) || area.nil? ? area : Line::Bot::V2::MessagingApi::ImagemapArea.create(**area) # steep:ignore
-            @external_link = external_link.is_a?(Line::Bot::V2::MessagingApi::ImagemapExternalLink) || external_link.nil? ? external_link : Line::Bot::V2::MessagingApi::ImagemapExternalLink.create(**external_link) # steep:ignore
+            @area = area.is_a?(Line::Bot::V2::MessagingApi::ImagemapArea) || area.nil? ? area : Line::Bot::V2::MessagingApi::ImagemapArea.create(**area)
+            @external_link = external_link.is_a?(Line::Bot::V2::MessagingApi::ImagemapExternalLink) || external_link.nil? ? external_link : Line::Bot::V2::MessagingApi::ImagemapExternalLink.create(**external_link)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -58,9 +58,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::ImagemapVideo] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args)
           end
 
           # @param other [Object] Object to compare

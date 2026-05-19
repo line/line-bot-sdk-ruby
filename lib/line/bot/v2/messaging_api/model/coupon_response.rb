@@ -108,7 +108,7 @@ module Line
             **dynamic_attributes
           )
             
-            @acquisition_condition = acquisition_condition.is_a?(Line::Bot::V2::MessagingApi::AcquisitionConditionResponse) || acquisition_condition.nil? ? acquisition_condition : Line::Bot::V2::MessagingApi::AcquisitionConditionResponse.create(**acquisition_condition) # steep:ignore
+            @acquisition_condition = acquisition_condition.is_a?(Line::Bot::V2::MessagingApi::AcquisitionConditionResponse) || acquisition_condition.nil? ? acquisition_condition : Line::Bot::V2::MessagingApi::AcquisitionConditionResponse.create(**acquisition_condition)
             @barcode_image_url = barcode_image_url
             @coupon_code = coupon_code
             @description = description
@@ -120,7 +120,7 @@ module Line
             @start_timestamp = start_timestamp
             @title = title
             @usage_condition = usage_condition
-            @reward = reward.is_a?(Line::Bot::V2::MessagingApi::CouponRewardResponse) || reward.nil? ? reward : Line::Bot::V2::MessagingApi::CouponRewardResponse.create(**reward) # steep:ignore
+            @reward = reward.is_a?(Line::Bot::V2::MessagingApi::CouponRewardResponse) || reward.nil? ? reward : Line::Bot::V2::MessagingApi::CouponRewardResponse.create(**reward)
             @visibility = visibility
             @timezone = timezone
             @coupon_id = coupon_id
@@ -143,9 +143,9 @@ module Line
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
           # @return [Line::Bot::V2::MessagingApi::CouponResponse] Instance of the class
-          def self.create(args) # steep:ignore
+          def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args) # steep:ignore
+            return new(**symbolized_args)
           end
 
           # @param other [Object] Object to compare
