@@ -413,13 +413,13 @@ describe Line::Bot::V2::Utils do
     end
 
     it 'rejects "." or ".." as a complete value' do
-      expect {
+      expect do
         Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => '.' })
-      }.to raise_error(ArgumentError, /path traversal/)
+      end.to raise_error(ArgumentError, /path traversal/)
 
-      expect {
+      expect do
         Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => '..' })
-      }.to raise_error(ArgumentError, /path traversal/)
+      end.to raise_error(ArgumentError, /path traversal/)
     end
 
     it 'rejects dot segments that already exist in the template' do
@@ -432,16 +432,16 @@ describe Line::Bot::V2::Utils do
         '/v2/bot/./profile',
         '/v2/bot/../profile'
       ].each do |raw_path|
-        expect {
+        expect do
           Line::Bot::V2::Utils.build_path(raw_path, {})
-        }.to raise_error(ArgumentError, /path traversal/), "expected #{raw_path} to be rejected"
+        end.to raise_error(ArgumentError, /path traversal/), "expected #{raw_path} to be rejected"
       end
     end
 
     it 'raises when a path parameter value is nil' do
-      expect {
+      expect do
         Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => nil })
-      }.to raise_error(ArgumentError, /userId/)
+      end.to raise_error(ArgumentError, /userId/)
     end
   end
 end

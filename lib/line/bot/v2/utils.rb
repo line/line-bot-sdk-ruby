@@ -10,9 +10,8 @@ module Line
         #       breaking change that does not allow Hash requests will be necessary.
         NO_CAMELIZE_PARENT_KEYS = %w(substitution).freeze
 
-        # Matches a path that contains a "." or ".." segment (literal or
-        # percent-encoded), so a path parameter cannot escape its endpoint.
-        # See square/retrofit's RequestBuilder for the same idea.
+        # Matches a path that contains a "." or ".." segment (literal or percent-encoded),
+        # so a path parameter cannot escape its endpoint. See square/retrofit's RequestBuilder for the same idea.
         PATH_TRAVERSAL = %r{\A(?:.*/)?(?:\.|%2e|%2E){1,2}(?:/.*)?\z}.freeze
 
         # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
