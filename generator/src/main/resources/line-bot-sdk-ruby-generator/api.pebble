@@ -89,10 +89,15 @@ module Line
             {{param.paramName}}:{{ param.required ? '' : ' nil' }}{{ loop.last ? '' : ',' -}}
             {%- endfor %}
           )
-            path = {% if op.hasPathParams %}Line::Bot::V2::Utils.build_path("{{ op.path }}", {{ '{' }}{% for param in op.pathParams %}
+            {%- if op.hasPathParams %}
+            path = Line::Bot::V2::Utils.build_path("{{ op.path }}", {
+              {%- for param in op.pathParams %}
               "{{ param.baseName }}": {{ param.paramName }}{{ loop.last ? '' : ',' -}}
-              {% endfor %}
-            }){% else %}"{{ op.path }}"{% endif %}{% if op.hasFormParams %}
+              {%- endfor %}
+            })
+            {%- else %}
+            path = "{{ op.path }}"
+            {%- endif %}{% if op.hasFormParams %}
 
             form_params = {{ '{' }}{% for param in op.formParams %}
               "{{ param.baseName }}": {{ param.paramName }}{{ loop.last ? '' : ',' -}}
