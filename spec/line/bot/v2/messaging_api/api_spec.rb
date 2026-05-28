@@ -67,5 +67,21 @@ describe 'MessagingApi::ApiClient path parameters' do
         client.get_group_member_profile_with_http_info(group_id: 'Ga123', user_id: '.')
       end.to raise_error(ArgumentError, /path traversal/)
     end
+
+    it 'does not let a group_id value that looks like {userId} steal the user_id slot' do
+      # If braces were not URL-encoded, the second substitution would replace
+      # the just-substituted {userId} from group_id with the real user_id and
+      # the request would silently target the wrong group.
+      stub_request(:get, 'https://api.line.me/v2/bot/group/%7BuserId%7D/member/Ub456')
+        .to_return(status: 200, body: { 'displayName' => 'x', 'userId' => 'Ub456' }.to_json,
+                   headers: { 'Content-Type' => 'application/json' })
+
+      _body, status_code, _headers = client.get_group_member_profile_with_http_info(
+        group_id: '{userId}',
+        user_id: 'Ub456'
+      )
+
+      expect(status_code).to eq(200)
+    end
   end
 end

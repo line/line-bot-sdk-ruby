@@ -412,6 +412,38 @@ describe Line::Bot::V2::Utils do
       ).to eq('/v2/bot/group/Ga/member/Ub')
     end
 
+    it 'does not let one parameter value smuggle in another placeholder' do
+      # If `group_id` could itself become a placeholder, the second iteration
+      # would replace it. Encoding the braces to %7B/%7D blocks that.
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/group/{groupId}/member/{userId}',
+          { 'groupId' => '{userId}', 'userId' => 'Ub' }
+        )
+      ).to eq('/v2/bot/group/%7BuserId%7D/member/Ub')
+    end
+
+    it 'does not recurse on a value that matches the same placeholder' do
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/profile/{userId}',
+          { 'userId' => '{userId}' }
+        )
+      ).to eq('/v2/bot/profile/%7BuserId%7D')
+    end
+
+    it 'percent-encodes backslashes so gsub backreference syntax cannot fire' do
+      # In `gsub(String, String)` the replacement string still interprets
+      # \1, \0, \\ etc. The URI encoder turns the backslash into %5C before
+      # it ever reaches gsub, so the literal sequence ends up in the path.
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/profile/{userId}',
+          { 'userId' => '\1' }
+        )
+      ).to eq('/v2/bot/profile/%5C1')
+    end
+
     it 'rejects "." or ".." as a complete value' do
       expect do
         Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => '.' })
