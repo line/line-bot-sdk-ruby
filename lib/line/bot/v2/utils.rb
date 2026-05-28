@@ -1,3 +1,5 @@
+require 'uri'
+
 module Line
   module Bot
     module V2
@@ -7,6 +9,30 @@ module Line
         #       If there is a mix of camelize and non-camelize cases even with the same key name,
         #       breaking change that does not allow Hash requests will be necessary.
         NO_CAMELIZE_PARENT_KEYS = %w(substitution).freeze
+
+        # Matches a path that contains a "." or ".." segment (literal or
+        # percent-encoded), so a path parameter cannot escape its endpoint.
+        # See square/retrofit's RequestBuilder for the same idea.
+        PATH_TRAVERSAL = %r{\A(?:.*/)?(?:\.|%2e|%2E){1,2}(?:/.*)?\z}.freeze
+
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
+        #
+        # Substitutes path parameters into a path template and rejects any
+        # result that would let a parameter perform path traversal.
+        def self.build_path(path_template, params)
+          path = path_template.dup
+          params.each do |name, value|
+            raise ArgumentError, "#{name} is required" if value.nil?
+
+            path = path.gsub("{#{name}}", URI.encode_uri_component(value.to_s))
+          end
+
+          if PATH_TRAVERSAL.match?(path)
+            raise ArgumentError, "Path parameters shouldn't perform path traversal ('.' or '..'): #{path}"
+          end
+
+          path
+        end
 
         # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def self.deep_underscore(hash)

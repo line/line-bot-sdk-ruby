@@ -56,8 +56,9 @@ module Line
           def get_message_content_with_http_info( 
             message_id:
           )
-            path = "/v2/bot/message/{messageId}/content"
-              .gsub(/{messageId}/, message_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/message/{messageId}/content", {
+              "messageId": message_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -100,8 +101,9 @@ module Line
           def get_message_content_preview_with_http_info( 
             message_id:
           )
-            path = "/v2/bot/message/{messageId}/content/preview"
-              .gsub(/{messageId}/, message_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/message/{messageId}/content/preview", {
+              "messageId": message_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -144,8 +146,9 @@ module Line
           def get_message_content_transcoding_by_message_id_with_http_info( 
             message_id:
           )
-            path = "/v2/bot/message/{messageId}/content/transcoding"
-              .gsub(/{messageId}/, message_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/message/{messageId}/content/transcoding", {
+              "messageId": message_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -193,8 +196,9 @@ module Line
           def get_rich_menu_image_with_http_info( 
             rich_menu_id:
           )
-            path = "/v2/bot/richmenu/{richMenuId}/content"
-              .gsub(/{richMenuId}/, rich_menu_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/richmenu/{richMenuId}/content", {
+              "richMenuId": rich_menu_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -239,8 +243,9 @@ module Line
             rich_menu_id:, 
             body:
           )
-            path = "/v2/bot/richmenu/{richMenuId}/content"
-              .gsub(/{richMenuId}/, rich_menu_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/richmenu/{richMenuId}/content", {
+              "richMenuId": rich_menu_id
+            })
 
             response = @http_client.post(
               path: path,

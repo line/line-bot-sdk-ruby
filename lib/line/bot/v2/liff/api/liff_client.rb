@@ -115,8 +115,9 @@ module Line
           def delete_liff_app_with_http_info( 
             liff_id:
           )
-            path = "/liff/v1/apps/{liffId}"
-              .gsub(/{liffId}/, liff_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/liff/v1/apps/{liffId}", {
+              "liffId": liff_id
+            })
 
             response = @http_client.delete(
               path: path,
@@ -221,8 +222,9 @@ module Line
             liff_id:, 
             update_liff_app_request:
           )
-            path = "/liff/v1/apps/{liffId}"
-              .gsub(/{liffId}/, liff_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/liff/v1/apps/{liffId}", {
+              "liffId": liff_id
+            })
 
             response = @http_client.put(
               path: path,
