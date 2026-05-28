@@ -443,5 +443,22 @@ describe Line::Bot::V2::Utils do
         Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => nil })
       end.to raise_error(ArgumentError, /userId/)
     end
+
+    it 'does not mutate the path_template argument' do
+      template = +'/v2/bot/profile/{userId}'
+      snapshot = template.dup
+
+      Line::Bot::V2::Utils.build_path(template, { 'userId' => 'U0123456789abcdef0123456789abcdef' })
+
+      expect(template).to eq(snapshot)
+    end
+
+    it 'accepts a frozen path_template' do
+      template = '/v2/bot/profile/{userId}'.freeze
+
+      expect(
+        Line::Bot::V2::Utils.build_path(template, { 'userId' => 'U0123456789abcdef0123456789abcdef' })
+      ).to eq('/v2/bot/profile/U0123456789abcdef0123456789abcdef')
+    end
   end
 end
