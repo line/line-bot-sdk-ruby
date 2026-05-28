@@ -19,7 +19,7 @@ module Line
         # Substitutes path parameters into a path template and rejects any
         # result that would let a parameter perform path traversal.
         def self.build_path(path_template, params)
-          path = path_template.dup
+          path = path_template
           params.each do |name, value|
             raise ArgumentError, "#{name} is required" if value.nil?
 
