@@ -247,8 +247,9 @@ module Line
           def delete_audience_group_with_http_info( 
             audience_group_id:
           )
-            path = "/v2/bot/audienceGroup/{audienceGroupId}"
-              .gsub(/{audienceGroupId}/, audience_group_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/audienceGroup/{audienceGroupId}", {
+              "audienceGroupId": audience_group_id
+            })
 
             response = @http_client.delete(
               path: path,
@@ -292,8 +293,9 @@ module Line
           def get_audience_data_with_http_info( 
             audience_group_id:
           )
-            path = "/v2/bot/audienceGroup/{audienceGroupId}"
-              .gsub(/{audienceGroupId}/, audience_group_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/audienceGroup/{audienceGroupId}", {
+              "audienceGroupId": audience_group_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -432,8 +434,9 @@ module Line
           def get_shared_audience_data_with_http_info( 
             audience_group_id:
           )
-            path = "/v2/bot/audienceGroup/shared/{audienceGroupId}"
-              .gsub(/{audienceGroupId}/, audience_group_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/audienceGroup/shared/{audienceGroupId}", {
+              "audienceGroupId": audience_group_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -573,8 +576,9 @@ module Line
             audience_group_id:, 
             update_audience_group_description_request:
           )
-            path = "/v2/bot/audienceGroup/{audienceGroupId}/updateDescription"
-              .gsub(/{audienceGroupId}/, audience_group_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/audienceGroup/{audienceGroupId}/updateDescription", {
+              "audienceGroupId": audience_group_id
+            })
 
             response = @http_client.put(
               path: path,
