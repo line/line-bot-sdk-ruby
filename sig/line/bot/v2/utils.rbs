@@ -6,7 +6,7 @@ module Line
 
         PATH_TRAVERSAL: Regexp
 
-        def self.build_path: (String, Hash[untyped, untyped]) -> String
+        def self.build_path: (String, Hash[Symbol, untyped]) -> String
 
         def self.deep_underscore: (Hash[untyped, untyped]) -> Hash[Symbol, untyped]
 
