@@ -8,12 +8,13 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    base64 (0.2.0)
+    base64 (0.3.0)
     multipart-post (2.4.1)
 
 PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
+  arm64-darwin-23
 
 DEPENDENCIES
   line-bot-api!
