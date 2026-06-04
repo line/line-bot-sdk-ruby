@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Pin bundler so Renovate keeps it up to date (BUNDLED WITH alone is not tracked by Renovate)
+gem 'bundler', '~> 4.0.13'
+
 # Write actual dependencies for library to line-bot-api.gemspec
 gemspec
 
