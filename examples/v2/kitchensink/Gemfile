@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# Pin bundler so Renovate keeps it up to date (BUNDLED WITH alone is not tracked by Renovate)
+gem 'bundler', '~> 4.0.13'
 
 gem 'line-bot-api', path: '../../..' # delete this `path: ...`, and specify the latest version of line-bot-api when you want to use this example out side of this repository.
 gem "puma"
