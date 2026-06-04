@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://rubygems.org', cooldown: 7
 
 # Pin bundler so Renovate keeps it up to date (BUNDLED WITH alone is not tracked by Renovate)
 gem 'bundler', '~> 4.0.13'
