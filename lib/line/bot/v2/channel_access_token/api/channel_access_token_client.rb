@@ -326,7 +326,7 @@ module Line
           # This requests to <code>POST https://api.line.me/v2/oauth/revoke</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
-          # @param access_token [String] Channel access token
+          # @param access_token [String] A short-lived or long-lived channel access token.
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
           # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
@@ -356,7 +356,7 @@ module Line
           # This requests to <code>POST https://api.line.me/v2/oauth/revoke</code>
           # When you want to get HTTP status code or response headers, use {#revoke_channel_token_with_http_info} instead of this.
           #
-          # @param access_token [String] Channel access token
+          # @param access_token [String] A short-lived or long-lived channel access token.
           # @see https://developers.line.biz/en/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token
           # @return [String, nil] when HTTP status code is 200
           # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
