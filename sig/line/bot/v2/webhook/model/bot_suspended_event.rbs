@@ -12,6 +12,7 @@ module Line
     module V2
       module Webhook
         # This event indicates that the LINE Official Account has been suspended (Suspend). Sent to the webhook URL server of the module channel.
+        # @see https://developers.line.biz/en/reference/partner-docs/#botsuspend-event
         class BotSuspendedEvent < Event
           attr_reader type: String
           attr_accessor source: Source?

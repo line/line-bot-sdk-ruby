@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # Event object for when the user unsends a message.
+        # @see https://developers.line.biz/en/reference/messaging-api/#unsend-event
         class UnsendEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

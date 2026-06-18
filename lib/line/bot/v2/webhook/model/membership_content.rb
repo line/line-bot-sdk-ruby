@@ -12,6 +12,7 @@ module Line
     module V2
       module Webhook
         # Content of the membership event.
+        # @see https://developers.line.biz/en/reference/messaging-api/#membership-event
         class MembershipContent
           # @!attribute [rw] type
           #   @return [String] Type of membership event.

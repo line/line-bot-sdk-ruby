@@ -12,6 +12,7 @@ module Line
     module V2
       module ChannelAccessToken
         # Error response of the Channel access token
+        # @see https://developers.line.biz/en/reference/messaging-api/#error-responses
         class ErrorResponse
           # @!attribute [rw] error
           #   @return [String,nil] Error summary

@@ -12,6 +12,7 @@ module Line
     module V2
       module ChannelAccessToken
         # Verification result
+        # @see https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token-v2-1
         class VerifyChannelAccessTokenResponse
           # @!attribute [rw] client_id
           #   @return [String] The channel ID for which the channel access token was issued.

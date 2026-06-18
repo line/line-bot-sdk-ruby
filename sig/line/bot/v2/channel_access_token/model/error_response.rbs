@@ -12,6 +12,7 @@ module Line
     module V2
       module ChannelAccessToken
         # Error response of the Channel access token
+        # @see https://developers.line.biz/en/reference/messaging-api/#error-responses
         class ErrorResponse
           attr_accessor error: String?
           attr_accessor error_description: String?

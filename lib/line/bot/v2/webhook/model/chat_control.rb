@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/partner-docs/#activated-event
         class ChatControl
           # @!attribute [rw] expire_at
           #   @return [Integer] 

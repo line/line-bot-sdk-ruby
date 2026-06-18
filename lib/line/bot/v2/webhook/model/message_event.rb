@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # Webhook event object which contains the sent message.
+        # @see https://developers.line.biz/en/reference/messaging-api/#message-event
         class MessageEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

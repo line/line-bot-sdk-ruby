@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module MessagingApi
+        # @see https://developers.line.biz/en/reference/messaging-api/#rich-menu-response-object
         class RichMenuResponse
           # @!attribute [rw] rich_menu_id
           #   @return [String] ID of a rich menu

@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Insight
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-insight-message-event-response
         class GetMessageEventResponseClick
           # @!attribute [rw] seq
           #   @return [Integer,nil] The URL's serial number.

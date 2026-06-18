@@ -13,6 +13,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/partner-docs/#detached-event
         class DetachedModuleContent < ModuleContent
           # @!attribute [r] type
           #   @return [String] Type

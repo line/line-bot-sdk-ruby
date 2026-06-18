@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # Event object for when a user leaves a group chat or multi-person chat that the LINE Official Account is in.
+        # @see https://developers.line.biz/en/reference/messaging-api/#member-left-event
         class MemberLeftEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

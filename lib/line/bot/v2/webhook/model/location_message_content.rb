@@ -13,6 +13,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/messaging-api/#wh-location
         class LocationMessageContent < MessageContent
           # @!attribute [r] type
           #   @return [String] Type

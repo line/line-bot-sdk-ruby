@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # Event for when a user finishes viewing a video at least once with the specified trackingId sent by the LINE Official Account.
+        # @see https://developers.line.biz/en/reference/messaging-api/#video-viewing-complete
         class VideoPlayCompleteEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

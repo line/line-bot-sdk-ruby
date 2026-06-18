@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # This event indicates that the module channel has been switched to Active Channel by calling the Acquire Control API. Sent to the webhook URL server of the module channel.
+        # @see https://developers.line.biz/en/reference/partner-docs/#activated-event
         class ActivatedEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Liff
+        # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
         class LiffFeatures
           # @!attribute [rw] ble
           #   @return [Boolean,nil] `true` if the LIFF app supports Bluetooth® Low Energy for LINE Things. `false` otherwise. 

@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # Event object for when your LINE Official Account is added as a friend (or unblocked). You can reply to follow events.
+        # @see https://developers.line.biz/en/reference/messaging-api/#follow-event
         class FollowEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

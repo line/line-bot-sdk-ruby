@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Liff
+        # @see https://developers.line.biz/en/reference/liff-server/#add-liff-app
         class AddLiffAppResponse
           attr_accessor liff_id: String
           

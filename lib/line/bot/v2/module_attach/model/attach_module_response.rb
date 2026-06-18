@@ -12,6 +12,7 @@ module Line
     module V2
       module ModuleAttach
         # Attach by operation of the module channel provider
+        # @see https://developers.line.biz/en/reference/partner-docs/#link-attach-by-operation-module-channel-provider
         class AttachModuleResponse
           # @!attribute [rw] bot_id
           #   @return [String] User ID of the bot on the LINE Official Account.

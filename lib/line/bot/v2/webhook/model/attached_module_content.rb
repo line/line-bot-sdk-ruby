@@ -13,6 +13,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/partner-docs/#attached-event
         class AttachedModuleContent < ModuleContent
           # @!attribute [r] type
           #   @return [String] Type
