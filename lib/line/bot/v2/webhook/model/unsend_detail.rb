@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/messaging-api/#unsend-event
         class UnsendDetail
           # @!attribute [rw] message_id
           #   @return [String] The message ID of the unsent message

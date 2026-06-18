@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # Event object for when a user has linked their LINE account with a provider's service account. You can reply to account link events.
+        # @see https://developers.line.biz/en/reference/messaging-api/#account-link-event
         class AccountLinkEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

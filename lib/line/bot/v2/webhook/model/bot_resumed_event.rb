@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # This event indicates that the LINE Official Account has returned from the suspended state. Sent to the webhook URL server of the module channel.
+        # @see https://developers.line.biz/en/reference/partner-docs/#botresumed-event
         class BotResumedEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

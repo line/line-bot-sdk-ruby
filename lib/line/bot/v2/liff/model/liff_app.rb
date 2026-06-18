@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Liff
+        # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
         class LiffApp
           # @!attribute [rw] liff_id
           #   @return [String,nil] LIFF app ID

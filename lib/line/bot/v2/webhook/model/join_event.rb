@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # Event object for when your LINE Official Account joins a group chat or multi-person chat. You can reply to join events.
+        # @see https://developers.line.biz/en/reference/messaging-api/#join-event
         class JoinEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

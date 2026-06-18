@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/partner-docs/#module-channel-specific-webhook-events
         class ModuleContent
           # @!attribute [rw] type
           #   @return [String] Type

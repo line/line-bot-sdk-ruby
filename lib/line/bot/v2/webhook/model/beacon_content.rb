@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/messaging-api/#beacon-event
         class BeaconContent
           # @!attribute [rw] hwid
           #   @return [String] Hardware ID of the beacon that was detected

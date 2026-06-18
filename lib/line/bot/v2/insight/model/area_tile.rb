@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Insight
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
         class AreaTile
           # @!attribute [rw] area
           #   @return [String,nil] users' country and region
