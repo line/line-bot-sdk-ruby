@@ -7,6 +7,10 @@
   timezone: 'Asia/Tokyo',
   automerge: true,
   platformAutomerge: true,
+  // Override `config:recommended` defaults so that Renovate also updates dependencies under `examples/`.
+  ignorePaths: [
+    '**/test/**',
+  ],
   'git-submodules': {
     enabled: true,
   },
