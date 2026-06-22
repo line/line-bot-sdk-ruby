@@ -118,6 +118,21 @@ task :build_test do
   sh "rm -rf metadata.gz"
 end
 
+desc "bundle install + syntax-check each examples/v2/* (uses published line-bot-api)"
+task :examples do
+  examples_root = File.expand_path("examples/v2", __dir__)
+  Dir.children(examples_root).sort.each do |name|
+    dir = File.join(examples_root, name)
+    next unless File.directory?(dir) && File.exist?(File.join(dir, "Gemfile"))
+
+    puts "==> examples/v2/#{name}"
+    Bundler.with_unbundled_env do
+      sh "bundle install", chdir: dir
+      sh "ruby -c app.rb", chdir: dir
+    end
+  end
+end
+
 desc "Run all tasks for development check and test"
 task :ci do
   Rake::Task[:test].invoke
@@ -127,4 +142,5 @@ task :ci do
   Rake::Task[:rbs_steep].invoke
   Rake::Task[:rbs_test].invoke
   Rake::Task[:build_test].invoke
+  Rake::Task[:examples].invoke
 end
