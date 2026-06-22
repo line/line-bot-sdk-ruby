@@ -12,6 +12,7 @@ module Line
     module V2
       module Insight
         # Summary of message statistics.
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-insight-message-event-response
         class GetMessageEventResponseOverview
           attr_accessor request_id: String?
           attr_accessor timestamp: Integer?

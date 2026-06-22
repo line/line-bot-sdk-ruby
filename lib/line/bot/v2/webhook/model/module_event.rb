@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # This event indicates that the module channel has been attached to the LINE Official Account. Sent to the webhook URL server of the module channel.
+        # @see https://developers.line.biz/en/reference/partner-docs/#module-channel-specific-webhook-events
         class ModuleEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

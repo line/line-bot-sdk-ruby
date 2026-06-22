@@ -19,8 +19,8 @@ jobs:
       issues: write
 
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: ruby/setup-ruby@6aaa311d81eba98ae12eaffbcb63296ace0efcde # v1.307.0
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: ruby/setup-ruby@89f90524b88a01fe6e0b732220432cc6142926af # v1.313.0
         with:
           bundler-cache: true
           ruby-version: '4.0'
@@ -45,7 +45,7 @@ jobs:
 
           git add lib/line/bot/version.rb Gemfile.lock
           git commit -m "Set version to $VERSION"
-      - uses: rubygems/release-gem@6317d8d1f7e28c24d28f6eff169ea854948bd9f7 # v1.2.0
+      - uses: rubygems/release-gem@052cc82692552de3ef2b81fd670e41d13cba8092 # v1.4.0
 
       - name: Create GitHub Issue on Failure
         if: failure()

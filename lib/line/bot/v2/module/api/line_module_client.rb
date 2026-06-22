@@ -58,8 +58,9 @@ module Line
             chat_id:, 
             acquire_chat_control_request: nil
           )
-            path = "/v2/bot/chat/{chatId}/control/acquire"
-              .gsub(/{chatId}/, chat_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/chat/{chatId}/control/acquire", {
+              "chatId": chat_id
+            })
 
             response = @http_client.post(
               path: path,
@@ -208,8 +209,9 @@ module Line
           def release_chat_control_with_http_info( 
             chat_id:
           )
-            path = "/v2/bot/chat/{chatId}/control/release"
-              .gsub(/{chatId}/, chat_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/chat/{chatId}/control/release", {
+              "chatId": chat_id
+            })
 
             response = @http_client.post(
               path: path,

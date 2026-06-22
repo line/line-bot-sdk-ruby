@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Liff
+        # @see https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
         class LiffFeatures
           attr_accessor ble: bool?
           attr_accessor qr_code: bool?

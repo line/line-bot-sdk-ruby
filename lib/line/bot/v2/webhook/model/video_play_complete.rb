@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/messaging-api/#video-viewing-complete
         class VideoPlayComplete
           # @!attribute [rw] tracking_id
           #   @return [String] ID used to identify a video. Returns the same value as the trackingId assigned to the video message.

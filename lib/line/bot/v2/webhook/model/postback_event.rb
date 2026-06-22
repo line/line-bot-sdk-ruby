@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # Event object for when a user performs a postback action which initiates a postback. You can reply to postback events.
+        # @see https://developers.line.biz/en/reference/messaging-api/#postback-event
         class PostbackEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

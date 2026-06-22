@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Insight
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
         class AppTypeTile
           # @!attribute [rw] app_type
           #   @return [String,nil] ('ios'|'android'|'others') users' OS

@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Insight
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
         class GenderTile
           attr_accessor gender: 'male'|'female'|'unknown'?
           attr_accessor percentage: Float?

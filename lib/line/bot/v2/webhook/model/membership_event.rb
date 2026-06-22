@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # This event indicates that a user has subscribed (joined), unsubscribed (left), or renewed the bot's membership.
+        # @see https://developers.line.biz/en/reference/messaging-api/#membership-event
         class MembershipEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

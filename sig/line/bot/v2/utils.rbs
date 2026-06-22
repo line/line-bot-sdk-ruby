@@ -4,6 +4,10 @@ module Line
       module Utils
         NO_CAMELIZE_PARENT_KEYS: Array[String]
 
+        PATH_TRAVERSAL: Regexp
+
+        def self.build_path: (String, Hash[Symbol, untyped]) -> String
+
         def self.deep_underscore: (Hash[untyped, untyped]) -> Hash[Symbol, untyped]
 
         def self.deep_symbolize: (untyped) -> untyped

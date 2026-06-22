@@ -12,6 +12,7 @@ module Line
     module V2
       module Webhook
         # Event object for when your LINE Official Account is blocked.
+        # @see https://developers.line.biz/en/reference/messaging-api/#unfollow-event
         class UnfollowEvent < Event
           attr_reader type: String
           attr_accessor source: Source?

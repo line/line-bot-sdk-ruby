@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Insight
+        # @see https://developers.line.biz/en/reference/messaging-api/#error-responses
         class ErrorDetail
           # @!attribute [rw] message
           #   @return [String,nil] Details of the error. Not included in the response under certain situations.

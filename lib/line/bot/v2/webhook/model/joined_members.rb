@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/messaging-api/#member-joined-event
         class JoinedMembers
           # @!attribute [rw] members
           #   @return [Array[UserSource]] Users who joined. Array of source user objects.

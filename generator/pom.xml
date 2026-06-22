@@ -11,7 +11,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.6.2</version>
+        <version>3.6.3</version>
         <executions>
           <execution>
             <id>enforce-maven</id>
@@ -31,7 +31,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.5</version>
+        <version>3.5.6</version>
         <configuration>
           <systemProperties>
             <property>
@@ -131,11 +131,11 @@
     <dependency>
       <groupId>io.pebbletemplates</groupId>
       <artifactId>pebble</artifactId>
-      <version>4.1.1</version>
+      <version>4.1.2</version>
     </dependency>
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <openapi-generator-version>7.22.0</openapi-generator-version>
+    <openapi-generator-version>7.23.0</openapi-generator-version>
   </properties>
 </project>

@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # When a request is made to the LINE notification messages API and delivery of the LINE notification message to the user is completed, a dedicated webhook event (delivery completion event) is sent from the LINE Platform to the webhook URL of the bot server.
+        # @see https://developers.line.biz/en/docs/partner-docs/line-notification-messages/message-sending-complete-webhook-event/#overview-delivery-webhook-event
         class PnpDeliveryCompletionEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

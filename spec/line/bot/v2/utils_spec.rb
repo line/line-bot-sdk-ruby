@@ -320,4 +320,177 @@ describe Line::Bot::V2::Utils do
       expect(Line::Bot::V2::Utils.deep_symbolize(input)).to eq(expected_output)
     end
   end
+
+  describe '.build_path' do
+    it 'substitutes plain parameter values without altering them' do
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/profile/{userId}',
+          { 'userId' => 'U0123456789abcdef0123456789abcdef' }
+        )
+      ).to eq('/v2/bot/profile/U0123456789abcdef0123456789abcdef')
+    end
+
+    it 'leaves dots in the middle of a value untouched' do
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/profile/{userId}',
+          { 'userId' => 'abc..def' }
+        )
+      ).to eq('/v2/bot/profile/abc..def')
+    end
+
+    it 'percent-encodes slashes so that a traversal attempt becomes a single segment' do
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/profile/{userId}',
+          { 'userId' => '../message/quota' }
+        )
+      ).to eq('/v2/bot/profile/..%2Fmessage%2Fquota')
+    end
+
+    it 'double-encodes already percent-encoded dots' do
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/profile/{userId}',
+          { 'userId' => '%2e%2e/message/quota' }
+        )
+      ).to eq('/v2/bot/profile/%252e%252e%2Fmessage%2Fquota')
+    end
+
+    it 'percent-encodes other reserved characters' do
+      expect(
+        Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => 'foo?bar' })
+      ).to eq('/v2/bot/profile/foo%3Fbar')
+
+      expect(
+        Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => 'foo#bar' })
+      ).to eq('/v2/bot/profile/foo%23bar')
+
+      expect(
+        Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => 'foo\\bar' })
+      ).to eq('/v2/bot/profile/foo%5Cbar')
+
+      expect(
+        Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => 'foo:bar;baz' })
+      ).to eq('/v2/bot/profile/foo%3Abar%3Bbaz')
+    end
+
+    it 'encodes spaces as %20 (not +) so the value stays inside one path segment' do
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/profile/{userId}',
+          { 'userId' => 'hello world' }
+        )
+      ).to eq('/v2/bot/profile/hello%20world')
+    end
+
+    it 'accepts symbol keys as well as string keys' do
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/profile/{userId}',
+          { userId: 'U0123456789abcdef0123456789abcdef' }
+        )
+      ).to eq('/v2/bot/profile/U0123456789abcdef0123456789abcdef')
+    end
+
+    it 'coerces non-string values via to_s' do
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/message/{messageId}/content',
+          { 'messageId' => 12345 }
+        )
+      ).to eq('/v2/bot/message/12345/content')
+    end
+
+    it 'replaces multiple path parameters in one call' do
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/group/{groupId}/member/{userId}',
+          { 'groupId' => 'Ga', 'userId' => 'Ub' }
+        )
+      ).to eq('/v2/bot/group/Ga/member/Ub')
+    end
+
+    it 'does not let one parameter value smuggle in another placeholder' do
+      # If `group_id` could itself become a placeholder, the second iteration
+      # would replace it. Encoding the braces to %7B/%7D blocks that.
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/group/{groupId}/member/{userId}',
+          { 'groupId' => '{userId}', 'userId' => 'Ub' }
+        )
+      ).to eq('/v2/bot/group/%7BuserId%7D/member/Ub')
+    end
+
+    it 'does not recurse on a value that matches the same placeholder' do
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/profile/{userId}',
+          { 'userId' => '{userId}' }
+        )
+      ).to eq('/v2/bot/profile/%7BuserId%7D')
+    end
+
+    it 'percent-encodes backslashes so gsub backreference syntax cannot fire' do
+      # In `gsub(String, String)` the replacement string still interprets
+      # \1, \0, \\ etc. The URI encoder turns the backslash into %5C before
+      # it ever reaches gsub, so the literal sequence ends up in the path.
+      expect(
+        Line::Bot::V2::Utils.build_path(
+          '/v2/bot/profile/{userId}',
+          { 'userId' => '\1' }
+        )
+      ).to eq('/v2/bot/profile/%5C1')
+    end
+
+    it 'rejects "." or ".." as a complete value' do
+      expect do
+        Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => '.' })
+      end.to raise_error(ArgumentError, /path traversal/)
+
+      expect do
+        Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => '..' })
+      end.to raise_error(ArgumentError, /path traversal/)
+    end
+
+    it 'rejects dot segments that already exist in the template' do
+      [
+        '/v2/bot/profile/.',
+        '/v2/bot/profile/..',
+        '/v2/bot/profile/%2e',
+        '/v2/bot/profile/%2e%2e',
+        '/v2/bot/profile/%2E%2E',
+        '/v2/bot/./profile',
+        '/v2/bot/../profile'
+      ].each do |raw_path|
+        expect do
+          Line::Bot::V2::Utils.build_path(raw_path, {})
+        end.to raise_error(ArgumentError, /path traversal/), "expected #{raw_path} to be rejected"
+      end
+    end
+
+    it 'raises when a path parameter value is nil' do
+      expect do
+        Line::Bot::V2::Utils.build_path('/v2/bot/profile/{userId}', { 'userId' => nil })
+      end.to raise_error(ArgumentError, /userId/)
+    end
+
+    it 'does not mutate the path_template argument' do
+      template = +'/v2/bot/profile/{userId}'
+      snapshot = template.dup
+
+      Line::Bot::V2::Utils.build_path(template, { 'userId' => 'U0123456789abcdef0123456789abcdef' })
+
+      expect(template).to eq(snapshot)
+    end
+
+    it 'accepts a frozen path_template' do
+      template = '/v2/bot/profile/{userId}'.freeze
+
+      expect(
+        Line::Bot::V2::Utils.build_path(template, { 'userId' => 'U0123456789abcdef0123456789abcdef' })
+      ).to eq('/v2/bot/profile/U0123456789abcdef0123456789abcdef')
+    end
+  end
 end

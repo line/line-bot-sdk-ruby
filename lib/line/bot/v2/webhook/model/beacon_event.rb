@@ -14,6 +14,7 @@ module Line
     module V2
       module Webhook
         # Event object for when a user enters the range of a LINE Beacon. You can reply to beacon events.
+        # @see https://developers.line.biz/en/reference/messaging-api/#beacon-event
         class BeaconEvent < Event
           # @!attribute [r] type
           #   @return [String] Type of the event

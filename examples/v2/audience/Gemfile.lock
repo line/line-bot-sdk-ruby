@@ -1,22 +1,25 @@
-PATH
-  remote: ../../..
-  specs:
-    line-bot-api (0.0.1.pre.test)
-      base64 (~> 0.2)
-      multipart-post (~> 2.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
-    base64 (0.2.0)
+    base64 (0.3.0)
+    line-bot-api (2.8.3)
+      base64 (~> 0.2)
+      multipart-post (~> 2.4)
     multipart-post (2.4.1)
 
 PLATFORMS
-  arm64-darwin-21
-  arm64-darwin-22
+  arm64-darwin-23
+  ruby
 
 DEPENDENCIES
-  line-bot-api!
+  bundler (~> 4.0.13)
+  line-bot-api (>= 2.8.3)
+
+CHECKSUMS
+  base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
+  bundler (4.0.13) sha256=19f08be7f27022cf0b89f27da0b044ae075e8270a9ef44ad248a932614e1ca3b
+  line-bot-api (2.8.3) sha256=c695ea0413228e3a69b89b3df93431ba70dd255004b9214763172423acd5b740
+  multipart-post (2.4.1) sha256=9872d03a8e552020ca096adadbf5e3cb1cd1cdd6acd3c161136b8a5737cdb4a8
 
 BUNDLED WITH
-   2.4.10
+  4.0.13

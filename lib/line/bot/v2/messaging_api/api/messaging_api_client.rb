@@ -186,8 +186,9 @@ module Line
           def close_coupon_with_http_info( 
             coupon_id:
           )
-            path = "/v2/bot/coupon/{couponId}/close"
-              .gsub(/{couponId}/, coupon_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/coupon/{couponId}/close", {
+              "couponId": coupon_id
+            })
 
             response = @http_client.put(
               path: path,
@@ -414,8 +415,9 @@ module Line
           def delete_rich_menu_with_http_info( 
             rich_menu_id:
           )
-            path = "/v2/bot/richmenu/{richMenuId}"
-              .gsub(/{richMenuId}/, rich_menu_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/richmenu/{richMenuId}", {
+              "richMenuId": rich_menu_id
+            })
 
             response = @http_client.delete(
               path: path,
@@ -459,8 +461,9 @@ module Line
           def delete_rich_menu_alias_with_http_info( 
             rich_menu_alias_id:
           )
-            path = "/v2/bot/richmenu/alias/{richMenuAliasId}"
-              .gsub(/{richMenuAliasId}/, rich_menu_alias_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/richmenu/alias/{richMenuAliasId}", {
+              "richMenuAliasId": rich_menu_alias_id
+            })
 
             response = @http_client.delete(
               path: path,
@@ -657,8 +660,9 @@ module Line
           def get_coupon_detail_with_http_info( 
             coupon_id:
           )
-            path = "/v2/bot/coupon/{couponId}"
-              .gsub(/{couponId}/, coupon_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/coupon/{couponId}", {
+              "couponId": coupon_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -823,8 +827,9 @@ module Line
           def get_group_member_count_with_http_info( 
             group_id:
           )
-            path = "/v2/bot/group/{groupId}/members/count"
-              .gsub(/{groupId}/, group_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/group/{groupId}/members/count", {
+              "groupId": group_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -874,9 +879,10 @@ module Line
             group_id:, 
             user_id:
           )
-            path = "/v2/bot/group/{groupId}/member/{userId}"
-              .gsub(/{groupId}/, group_id.to_s)
-              .gsub(/{userId}/, user_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/group/{groupId}/member/{userId}", {
+              "groupId": group_id,
+              "userId": user_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -929,8 +935,9 @@ module Line
             group_id:, 
             start: nil
           )
-            path = "/v2/bot/group/{groupId}/members/ids"
-              .gsub(/{groupId}/, group_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/group/{groupId}/members/ids", {
+              "groupId": group_id
+            })
             query_params = {
               "start": start
             }.compact
@@ -985,8 +992,9 @@ module Line
           def get_group_summary_with_http_info( 
             group_id:
           )
-            path = "/v2/bot/group/{groupId}/summary"
-              .gsub(/{groupId}/, group_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/group/{groupId}/summary", {
+              "groupId": group_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -1040,8 +1048,9 @@ module Line
             start: nil, 
             limit: nil
           )
-            path = "/v2/bot/membership/{membershipId}/users/ids"
-              .gsub(/{membershipId}/, membership_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/membership/{membershipId}/users/ids", {
+              "membershipId": membership_id
+            })
             query_params = {
               "start": start,
               "limit": limit
@@ -1170,8 +1179,9 @@ module Line
           def get_membership_subscription_with_http_info( 
             user_id:
           )
-            path = "/v2/bot/membership/subscription/{userId}"
-              .gsub(/{userId}/, user_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/membership/subscription/{userId}", {
+              "userId": user_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -1633,8 +1643,9 @@ module Line
           def get_profile_with_http_info( 
             user_id:
           )
-            path = "/v2/bot/profile/{userId}"
-              .gsub(/{userId}/, user_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/profile/{userId}", {
+              "userId": user_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -1682,8 +1693,9 @@ module Line
           def get_rich_menu_with_http_info( 
             rich_menu_id:
           )
-            path = "/v2/bot/richmenu/{richMenuId}"
-              .gsub(/{richMenuId}/, rich_menu_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/richmenu/{richMenuId}", {
+              "richMenuId": rich_menu_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -1731,8 +1743,9 @@ module Line
           def get_rich_menu_alias_with_http_info( 
             rich_menu_alias_id:
           )
-            path = "/v2/bot/richmenu/alias/{richMenuAliasId}"
-              .gsub(/{richMenuAliasId}/, rich_menu_alias_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/richmenu/alias/{richMenuAliasId}", {
+              "richMenuAliasId": rich_menu_alias_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -1875,8 +1888,9 @@ module Line
           def get_rich_menu_id_of_user_with_http_info( 
             user_id:
           )
-            path = "/v2/bot/user/{userId}/richmenu"
-              .gsub(/{userId}/, user_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/user/{userId}/richmenu", {
+              "userId": user_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -1967,8 +1981,9 @@ module Line
           def get_room_member_count_with_http_info( 
             room_id:
           )
-            path = "/v2/bot/room/{roomId}/members/count"
-              .gsub(/{roomId}/, room_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/room/{roomId}/members/count", {
+              "roomId": room_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -2018,9 +2033,10 @@ module Line
             room_id:, 
             user_id:
           )
-            path = "/v2/bot/room/{roomId}/member/{userId}"
-              .gsub(/{roomId}/, room_id.to_s)
-              .gsub(/{userId}/, user_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/room/{roomId}/member/{userId}", {
+              "roomId": room_id,
+              "userId": user_id
+            })
 
             response = @http_client.get(
               path: path,
@@ -2073,8 +2089,9 @@ module Line
             room_id:, 
             start: nil
           )
-            path = "/v2/bot/room/{roomId}/members/ids"
-              .gsub(/{roomId}/, room_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/room/{roomId}/members/ids", {
+              "roomId": room_id
+            })
             query_params = {
               "start": start
             }.compact
@@ -2172,8 +2189,9 @@ module Line
           def issue_link_token_with_http_info( 
             user_id:
           )
-            path = "/v2/bot/user/{userId}/linkToken"
-              .gsub(/{userId}/, user_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/user/{userId}/linkToken", {
+              "userId": user_id
+            })
 
             response = @http_client.post(
               path: path,
@@ -2223,8 +2241,9 @@ module Line
           def leave_group_with_http_info( 
             group_id:
           )
-            path = "/v2/bot/group/{groupId}/leave"
-              .gsub(/{groupId}/, group_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/group/{groupId}/leave", {
+              "groupId": group_id
+            })
 
             response = @http_client.post(
               path: path,
@@ -2283,8 +2302,9 @@ module Line
           def leave_room_with_http_info( 
             room_id:
           )
-            path = "/v2/bot/room/{roomId}/leave"
-              .gsub(/{roomId}/, room_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/room/{roomId}/leave", {
+              "roomId": room_id
+            })
 
             response = @http_client.post(
               path: path,
@@ -2329,9 +2349,10 @@ module Line
             user_id:, 
             rich_menu_id:
           )
-            path = "/v2/bot/user/{userId}/richmenu/{richMenuId}"
-              .gsub(/{userId}/, user_id.to_s)
-              .gsub(/{richMenuId}/, rich_menu_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/user/{userId}/richmenu/{richMenuId}", {
+              "userId": user_id,
+              "richMenuId": rich_menu_id
+            })
 
             response = @http_client.post(
               path: path,
@@ -3036,8 +3057,9 @@ module Line
           def set_default_rich_menu_with_http_info( 
             rich_menu_id:
           )
-            path = "/v2/bot/user/all/richmenu/{richMenuId}"
-              .gsub(/{richMenuId}/, rich_menu_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/user/all/richmenu/{richMenuId}", {
+              "richMenuId": rich_menu_id
+            })
 
             response = @http_client.post(
               path: path,
@@ -3226,8 +3248,9 @@ module Line
           def unlink_rich_menu_id_from_user_with_http_info( 
             user_id:
           )
-            path = "/v2/bot/user/{userId}/richmenu"
-              .gsub(/{userId}/, user_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/user/{userId}/richmenu", {
+              "userId": user_id
+            })
 
             response = @http_client.delete(
               path: path,
@@ -3317,8 +3340,9 @@ module Line
             rich_menu_alias_id:, 
             update_rich_menu_alias_request:
           )
-            path = "/v2/bot/richmenu/alias/{richMenuAliasId}"
-              .gsub(/{richMenuAliasId}/, rich_menu_alias_id.to_s)
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/richmenu/alias/{richMenuAliasId}", {
+              "richMenuAliasId": rich_menu_alias_id
+            })
 
             response = @http_client.post(
               path: path,

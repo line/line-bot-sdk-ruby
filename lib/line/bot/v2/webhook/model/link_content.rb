@@ -12,6 +12,7 @@ module Line
     module V2
       module Webhook
         # Content of the account link event.
+        # @see https://developers.line.biz/en/reference/messaging-api/#account-link-event
         class LinkContent
           # @!attribute [rw] result
           #   @return [String] ('ok'|'failed') One of the following values to indicate whether linking the account was successful or not

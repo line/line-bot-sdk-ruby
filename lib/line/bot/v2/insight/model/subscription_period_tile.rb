@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Insight
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
         class SubscriptionPeriodTile
           # @!attribute [rw] subscription_period
           #   @return [String,nil] ('within7days'|'within30days'|'within90days'|'within180days'|'within365days'|'over365days'|'unknown') Subscription period. Possible values: `within7days`, `within90days`, `unknown` etc.

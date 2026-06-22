@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Insight
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-insight-message-event-response
         class GetMessageEventResponseMessage
           attr_accessor seq: Integer?
           attr_accessor impression: Integer?

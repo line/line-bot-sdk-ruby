@@ -12,6 +12,7 @@ module Line
     module V2
       module Webhook
         # Content of the account link event.
+        # @see https://developers.line.biz/en/reference/messaging-api/#account-link-event
         class LinkContent
           attr_accessor result: 'ok'|'failed'
           attr_accessor nonce: String

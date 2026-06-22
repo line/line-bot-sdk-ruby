@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/messaging-api/#postback-event
         class PostbackContent
           # @!attribute [rw] data
           #   @return [String] Postback data

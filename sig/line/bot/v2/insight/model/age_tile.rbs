@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Insight
+        # @see https://developers.line.biz/en/reference/messaging-api/#get-demographic
         class AgeTile
           attr_accessor age: 'from0to14'|'from15to19'|'from20to24'|'from25to29'|'from30to34'|'from35to39'|'from40to44'|'from45to49'|'from50'|'from50to54'|'from55to59'|'from60to64'|'from65to69'|'from70'|'unknown'?
           attr_accessor percentage: Float?

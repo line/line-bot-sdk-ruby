@@ -11,6 +11,7 @@ module Line
   module Bot
     module V2
       module Webhook
+        # @see https://developers.line.biz/en/reference/messaging-api/#follow-event
         class FollowDetail
           # @!attribute [rw] is_unblocked
           #   @return [Boolean] Whether a user has added your LINE Official Account as a friend or unblocked.
