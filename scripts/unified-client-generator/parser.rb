@@ -94,6 +94,8 @@ module UnifiedClientGenerator
       )
     end
 
+    raise "No delegated methods found in #{rb_path}" if delegated_methods.empty?
+
     ClientSpec.new(
       package_dir: package_dir,
       namespace_name: namespace_name,
@@ -211,22 +213,31 @@ module UnifiedClientGenerator
   end
 
   def collect_parenthesized_params(lines, start_index, after_open)
-    return [after_open.split(')', 2).first, start_index] if after_open.include?(')')
+    depth = 1
+    buf = +''
+    scan = after_open
+    j = start_index
 
-    collected = [after_open]
-    j = start_index + 1
-    while j < lines.length
-      segment = lines[j]
-      if segment.include?(')')
-        collected << segment.split(')', 2).first
-        return [collected.join("\n"), j]
+    loop do
+      scan.each_char do |ch|
+        if ch == '('
+          depth += 1
+        elsif ch == ')'
+          depth -= 1
+          return [buf, j] if depth.zero?
+        end
+
+        buf << ch
       end
 
-      collected << segment
       j += 1
+      break if j >= lines.length
+
+      buf << "\n"
+      scan = lines[j]
     end
 
-    [collected.join("\n"), start_index]
+    [buf, start_index]
   end
 
   def extract_ruby_comment_block(lines, def_line_index)
@@ -260,6 +271,11 @@ module UnifiedClientGenerator
         optional_keywords[match[1].to_sym] = nil
       end
     end
+
+    if params_text && !params_text.strip.empty? && required_keywords.empty? && optional_keywords.empty?
+      raise "Failed to parse any keyword params from: #{params_text.inspect}"
+    end
+
     [required_keywords, optional_keywords]
   end
 

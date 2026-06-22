@@ -63,6 +63,7 @@ module UnifiedClientGenerator
     ruby_clients = discover_clients_from_ruby(root)
     rbs_clients = discover_clients_from_rbs(root)
     validate_clients!(ruby_clients)
+    validate_clients!(rbs_clients)
     validate_rb_rbs_consistency!(ruby_clients, rbs_clients)
 
     write(root.join(OUTPUT_RB_GENERATED), render_generated_ruby(ruby_clients))
@@ -120,13 +121,25 @@ module UnifiedClientGenerator
       rbs_client = rbs_by_delegate.fetch(delegate_name)
       ruby_methods = ruby_client.delegated_methods.map(&:name).sort
       rbs_methods = rbs_client.delegated_methods.map(&:name).sort
-      next if ruby_methods == rbs_methods
 
-      missing_in_rbs_methods = ruby_methods - rbs_methods
-      missing_in_ruby_methods = rbs_methods - ruby_methods
-      raise "Method mismatch for #{delegate_name}. " \
-            "missing_in_rbs=#{missing_in_rbs_methods.join(', ')}, " \
-            "missing_in_ruby=#{missing_in_ruby_methods.join(', ')}"
+      unless ruby_methods == rbs_methods
+        missing_in_rbs_methods = ruby_methods - rbs_methods
+        missing_in_ruby_methods = rbs_methods - ruby_methods
+        raise "Method mismatch for #{delegate_name}. " \
+              "missing_in_rbs=#{missing_in_rbs_methods.join(', ')}, " \
+              "missing_in_ruby=#{missing_in_ruby_methods.join(', ')}"
+      end
+
+      ruby_by_method = ruby_client.delegated_methods.to_h { |m| [m.name, m] }
+      rbs_client.delegated_methods.each do |rbs_method|
+        ruby_method = ruby_by_method[rbs_method.name]
+        ruby_kw = (ruby_method.required_keywords.keys + ruby_method.optional_keywords.keys).map(&:to_s).sort
+        rbs_kw = (rbs_method.required_keywords.keys + rbs_method.optional_keywords.keys).map(&:to_s).sort
+        next if ruby_kw == rbs_kw
+
+        raise "Keyword mismatch for #{delegate_name}##{rbs_method.name}. " \
+              "ruby=#{ruby_kw.join(', ')}, rbs=#{rbs_kw.join(', ')}"
+      end
     end
   end
 
