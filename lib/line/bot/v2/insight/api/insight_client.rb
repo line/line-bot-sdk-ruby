@@ -244,6 +244,172 @@ module Line
             response_body
           end
 
+          # Gets rich menu statistics broken down by day for the specified period, for a rich menu created via the Messaging API. Returns the daily impression count for the whole rich menu and the daily click count for each tappable area. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/richmenu/{richMenuId}/daily</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param rich_menu_id [String] ID of the rich menu created via the Messaging API.
+          # @param from [String] Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 
+          # @param to [String] End date of the aggregation period (inclusive). The end date can be specified for up to 99 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-insight-daily
+          # @return [Array(Line::Bot::V2::Insight::GetRichMenuInsightDailyResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::Insight::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array(Line::Bot::V2::Insight::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 404
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_rich_menu_insight_daily_with_http_info( 
+            rich_menu_id:, 
+            from:, 
+            to:
+          )
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/insight/richmenu/{richMenuId}/daily", {
+              "richMenuId": rich_menu_id
+            })
+            query_params = {
+              "from": from,
+              "to": to
+            }.compact
+
+            response = @http_client.get(
+              path: path,
+              query_params: query_params,
+            )
+
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::GetRichMenuInsightDailyResponse.create(json)
+              [response_body, 200, response.each_header.to_h]
+            when 400
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::ErrorResponse.create(json)
+              [response_body, 400, response.each_header.to_h]
+            when 404
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::ErrorResponse.create(json)
+              [response_body, 404, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
+          end
+
+          # Gets rich menu statistics broken down by day for the specified period, for a rich menu created via the Messaging API. Returns the daily impression count for the whole rich menu and the daily click count for each tappable area. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/richmenu/{richMenuId}/daily</code>
+          # When you want to get HTTP status code or response headers, use {#get_rich_menu_insight_daily_with_http_info} instead of this.
+          #
+          # @param rich_menu_id [String] ID of the rich menu created via the Messaging API.
+          # @param from [String] Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 
+          # @param to [String] End date of the aggregation period (inclusive). The end date can be specified for up to 99 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-insight-daily
+          # @return [Line::Bot::V2::Insight::GetRichMenuInsightDailyResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::Insight::ErrorResponse] when HTTP status code is 400
+          # @return [Line::Bot::V2::Insight::ErrorResponse] when HTTP status code is 404
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def get_rich_menu_insight_daily(
+            rich_menu_id:,
+            from:,
+            to:
+          )
+            response_body, _status_code, _headers = get_rich_menu_insight_daily_with_http_info(
+              rich_menu_id: rich_menu_id,
+              from: from,
+              to: to
+            )
+
+            response_body
+          end
+
+          # Gets a summary of rich menu statistics for the specified period, for a rich menu created via the Messaging API. Returns the total impression count for the whole rich menu and the click count for each tappable area, aggregated over the entire period as a single result. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/richmenu/{richMenuId}/summary</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param rich_menu_id [String] ID of the rich menu created via the Messaging API.
+          # @param from [String] Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 
+          # @param to [String] End date of the aggregation period (inclusive). The end date can be specified for up to 396 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-insight-summary
+          # @return [Array(Line::Bot::V2::Insight::GetRichMenuInsightSummaryResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array(Line::Bot::V2::Insight::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 400
+          # @return [Array(Line::Bot::V2::Insight::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 404
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_rich_menu_insight_summary_with_http_info( 
+            rich_menu_id:, 
+            from:, 
+            to:
+          )
+            path = Line::Bot::V2::Utils.build_path("/v2/bot/insight/richmenu/{richMenuId}/summary", {
+              "richMenuId": rich_menu_id
+            })
+            query_params = {
+              "from": from,
+              "to": to
+            }.compact
+
+            response = @http_client.get(
+              path: path,
+              query_params: query_params,
+            )
+
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::GetRichMenuInsightSummaryResponse.create(json)
+              [response_body, 200, response.each_header.to_h]
+            when 400
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::ErrorResponse.create(json)
+              [response_body, 400, response.each_header.to_h]
+            when 404
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::Insight::ErrorResponse.create(json)
+              [response_body, 404, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
+          end
+
+          # Gets a summary of rich menu statistics for the specified period, for a rich menu created via the Messaging API. Returns the total impression count for the whole rich menu and the click count for each tappable area, aggregated over the entire period as a single result. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted. 
+          # This requests to <code>GET https://api.line.me/v2/bot/insight/richmenu/{richMenuId}/summary</code>
+          # When you want to get HTTP status code or response headers, use {#get_rich_menu_insight_summary_with_http_info} instead of this.
+          #
+          # @param rich_menu_id [String] ID of the rich menu created via the Messaging API.
+          # @param from [String] Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 
+          # @param to [String] End date of the aggregation period (inclusive). The end date can be specified for up to 396 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 
+          # @see https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-insight-summary
+          # @return [Line::Bot::V2::Insight::GetRichMenuInsightSummaryResponse] when HTTP status code is 200
+          # @return [Line::Bot::V2::Insight::ErrorResponse] when HTTP status code is 400
+          # @return [Line::Bot::V2::Insight::ErrorResponse] when HTTP status code is 404
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def get_rich_menu_insight_summary(
+            rich_menu_id:,
+            from:,
+            to:
+          )
+            response_body, _status_code, _headers = get_rich_menu_insight_summary_with_http_info(
+              rich_menu_id: rich_menu_id,
+              from: from,
+              to: to
+            )
+
+            response_body
+          end
+
           # You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
           # This requests to <code>GET https://api.line.me/v2/bot/insight/message/event/aggregation</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.

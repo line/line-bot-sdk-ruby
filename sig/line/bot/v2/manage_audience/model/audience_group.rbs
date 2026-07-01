@@ -17,7 +17,7 @@ module Line
           attr_accessor type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'|'TRACKINGTAG_WEBTRAFFIC'?
           attr_accessor description: String?
           attr_accessor status: 'IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING'?
-          attr_accessor failed_type: 'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|''?
+          attr_accessor failed_type: 'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'?
           attr_accessor audience_count: Integer?
           attr_accessor created: Integer?
           attr_accessor request_id: String?
@@ -31,7 +31,7 @@ module Line
           # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'|'TRACKINGTAG_WEBTRAFFIC') 
           # @param description [String,nil] The audience's name.
           # @param status [String,nil] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
-          # @param failed_type [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
+          # @param failed_type [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR') 
           # @param audience_count [Integer,nil] The number of users included in the audience.
           # @param created [Integer,nil] When the audience was created (in UNIX time).
           # @param request_id [String,nil] The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
@@ -44,7 +44,7 @@ module Line
             ?type: 'UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'|'TRACKINGTAG_WEBTRAFFIC'?,
             ?description: String?,
             ?status: 'IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING'?,
-            ?failed_type: 'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|''?,
+            ?failed_type: 'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'?,
             ?audience_count: Integer?,
             ?created: Integer?,
             ?request_id: String?,

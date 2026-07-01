@@ -26,7 +26,7 @@ module Line
           #   @return [String,nil] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
           attr_accessor :status
           # @!attribute [rw] failed_type
-          #   @return [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
+          #   @return [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR') 
           attr_accessor :failed_type
           # @!attribute [rw] audience_count
           #   @return [Integer,nil] The number of users included in the audience.
@@ -54,7 +54,7 @@ module Line
           # @param type [String,nil] ('UPLOAD'|'CLICK'|'IMP'|'CHAT_TAG'|'FRIEND_PATH'|'RESERVATION'|'APP_EVENT'|'VIDEO_VIEW'|'WEBTRAFFIC'|'IMAGE_CLICK'|'RICHMENU_IMP'|'RICHMENU_CLICK'|'POP_AD_IMP'|'TRACKINGTAG_WEBTRAFFIC') 
           # @param description [String,nil] The audience's name.
           # @param status [String,nil] ('IN_PROGRESS'|'READY'|'FAILED'|'EXPIRED'|'INACTIVE'|'ACTIVATING') 
-          # @param failed_type [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR'|'') 
+          # @param failed_type [String,nil] ('AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'|'INTERNAL_ERROR') 
           # @param audience_count [Integer,nil] The number of users included in the audience.
           # @param created [Integer,nil] When the audience was created (in UNIX time).
           # @param request_id [String,nil] The request ID that was specified when the audience was created. This is only included when `audienceGroup.type` is CLICK or IMP. 
