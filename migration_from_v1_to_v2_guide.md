@@ -45,22 +45,33 @@ You can suppress the deprecation warning by setting any value to `ENV['SUPRESS_V
 However, it's not recommended to always use it as it could lead to migration errors.
 
 ## Clients
-There are several types of API clients.
-Depending on the classification of the API, there are several types of clients.
-- `MessagingApi`.
+
+### Unified Client (recommended)
+`Line::Bot::V2::LineBotClient` wraps supported API clients into a single object. ChannelAccessToken and ModuleAttach are not included; use their individual clients directly.
+
+```rb
+client = Line::Bot::V2::LineBotClient.new(
+  channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
+)
+
+# All APIs available through a single client:
+client.push_message(push_message_request: request)
+client.get_number_of_followers(date: '20240101')
+client.get_message_content(message_id: '12345')
+```
+
+### Individual Clients
+You can also use individual clients directly. There are several types depending on the API classification:
+- `MessagingApi`
 - `ManageAudience`
-- `Inshight`
+- `Insight`
 - `ChannelAccessToken`
 - `Liff`
 - `Shop`
   and so on.
 
-In addition, the same `MessagingApi` is divided into `ApiBlobClient` for APIs that use https://api-data.line.me to upload and download files.
-
-- `Line::Bot::V2::MessagingApi::ApiClient`.
-- `Line::Bot::V2::MessagingApi::ApiBlobClient`.
-
-These are planned to be integrated in the future, but this has not yet been accomplished.
+For channel access token operations, use `Line::Bot::V2::ChannelAccessToken::ApiClient` directly (not included in the unified client).
+For module attach operations, use `Line::Bot::V2::ModuleAttach::ApiClient` directly (not included in the unified client).
 
 
 ## Migration examples
@@ -88,7 +99,7 @@ puts response.class # => Net::HTTPResponse
 ```
 #### v2 (with class)
 ```rb
-client = Line::Bot::V2::MessagingApi::ApiClient.new(
+client = Line::Bot::V2::LineBotClient.new(
   channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
 )
 
@@ -116,7 +127,7 @@ Please use one of the above methods if possible.
 However, this method makes migration from v1 easier.
 
 ```rb
-client = Line::Bot::V2::MessagingApi::ApiClient.new(
+client = Line::Bot::V2::LineBotClient.new(
   channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
 )
 
@@ -184,7 +195,7 @@ require 'line-bot-api'
 set :environment, :production
 
 def client
-  @client ||= Line::Bot::V2::MessagingApi::ApiClient.new(
+  @client ||= Line::Bot::V2::LineBotClient.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
   )
 end

@@ -27,7 +27,7 @@ Thus, you can't edit almost all code under `lib/line/bot/v2/<dir>.rb` and `sig/l
 
 You need to edit the pebble template under [resources](generator/src/main/resources) instead.
 
-After editing the templates, run `generate-code.py` to generate the code, and then commit all affected files.
+After editing the templates, run `generate-code.py` to generate the code (including the unified client), and then commit all affected files.
 If not, CI status will be red.
 
 When you update code, be sure to check consistencies between `lib/**.rb` and `sig/**.rbs`.
