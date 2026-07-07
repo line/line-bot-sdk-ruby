@@ -7,15 +7,18 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
+require_relative './event'
+
 module Line
   module Bot
     module V2
       module Webhook
-        # Webhook event
-        class Event
-          # @!attribute [rw] type
+        # Webhook event object which contains the edited message. This event is triggered when a user edits a text message. Currently, message editing is not available in one-on-one chats with LINE Official Accounts, so this event is only triggered in group chats. Multiple messageEdited webhook events may arrive out of order. The event with the largest timestamp represents the latest edit state. 
+        # @see https://developers.line.biz/en/reference/messaging-api/#edit-event
+        class MessageEditedEvent < Event
+          # @!attribute [r] type
           #   @return [String] Type of the event
-          attr_accessor :type
+          attr_reader :type
           # @!attribute [rw] source
           #   @return [Source,nil] 
           attr_accessor :source
@@ -31,29 +34,39 @@ module Line
           # @!attribute [rw] delivery_context
           #   @return [DeliveryContext] 
           attr_accessor :delivery_context
+          # @!attribute [rw] reply_token
+          #   @return [String,nil] 
+          attr_accessor :reply_token
+          # @!attribute [rw] message
+          #   @return [MessageContent] 
+          attr_accessor :message
 
-          # @param type [String] Type of the event
           # @param source [Source, Hash[Symbol, untyped], nil] 
           # @param timestamp [Integer] Time of the event in milliseconds.
           # @param mode [String] ('active'|'standby') 
           # @param webhook_event_id [String] Webhook Event ID. An ID that uniquely identifies a webhook event. This is a string in ULID format.
           # @param delivery_context [DeliveryContext, Hash[Symbol, untyped]] 
+          # @param reply_token [String,nil] 
+          # @param message [MessageContent, Hash[Symbol, untyped]] 
           def initialize(
-            type:,
             source: nil,
             timestamp:,
             mode:,
             webhook_event_id:,
             delivery_context:,
+            reply_token: nil,
+            message:,
             **dynamic_attributes
           )
+            @type = "messageEdited"
             
-            @type = type
             @source = source.is_a?(Line::Bot::V2::Webhook::Source) || source.nil? ? source : Line::Bot::V2::Webhook::Source.create(**source)
             @timestamp = timestamp
             @mode = mode
             @webhook_event_id = webhook_event_id
             @delivery_context = delivery_context.is_a?(Line::Bot::V2::Webhook::DeliveryContext) ? delivery_context : Line::Bot::V2::Webhook::DeliveryContext.create(**delivery_context)
+            @reply_token = reply_token
+            @message = message.is_a?(Line::Bot::V2::Webhook::MessageContent) ? message : Line::Bot::V2::Webhook::MessageContent.create(**message)
 
             dynamic_attributes.each do |key, value|
               self.class.attr_accessor key
@@ -70,11 +83,9 @@ module Line
 
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
-          # @return [Line::Bot::V2::Webhook::Event] Instance of the class
+          # @return [Line::Bot::V2::Webhook::MessageEditedEvent] Instance of the class
           def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            klass = detect_class(type: symbolized_args[:type])
-            return klass.new(**symbolized_args) if klass # steep:ignore UnannotatedEmptyCollection
             return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
@@ -91,33 +102,6 @@ module Line
           # @return [Integer] Hash code of the object
           def hash
             [self.class, *instance_variables.map { |var| instance_variable_get(var) }].hash
-          end
-
-          private
-
-          def self.detect_class(type:)
-            {
-              accountLink: Line::Bot::V2::Webhook::AccountLinkEvent,
-              activated: Line::Bot::V2::Webhook::ActivatedEvent,
-              beacon: Line::Bot::V2::Webhook::BeaconEvent,
-              botResumed: Line::Bot::V2::Webhook::BotResumedEvent,
-              botSuspended: Line::Bot::V2::Webhook::BotSuspendedEvent,
-              deactivated: Line::Bot::V2::Webhook::DeactivatedEvent,
-              follow: Line::Bot::V2::Webhook::FollowEvent,
-              join: Line::Bot::V2::Webhook::JoinEvent,
-              leave: Line::Bot::V2::Webhook::LeaveEvent,
-              memberJoined: Line::Bot::V2::Webhook::MemberJoinedEvent,
-              memberLeft: Line::Bot::V2::Webhook::MemberLeftEvent,
-              membership: Line::Bot::V2::Webhook::MembershipEvent,
-              messageEdited: Line::Bot::V2::Webhook::MessageEditedEvent,
-              message: Line::Bot::V2::Webhook::MessageEvent,
-              module: Line::Bot::V2::Webhook::ModuleEvent,
-              delivery: Line::Bot::V2::Webhook::PnpDeliveryCompletionEvent,
-              postback: Line::Bot::V2::Webhook::PostbackEvent,
-              unfollow: Line::Bot::V2::Webhook::UnfollowEvent,
-              unsend: Line::Bot::V2::Webhook::UnsendEvent,
-              videoPlayComplete: Line::Bot::V2::Webhook::VideoPlayCompleteEvent,
-            }[type.to_sym]
           end
         end
       end

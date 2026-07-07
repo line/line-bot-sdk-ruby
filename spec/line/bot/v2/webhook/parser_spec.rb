@@ -1770,6 +1770,63 @@ describe Line::Bot::V2::WebhookParser do
       end
     end
 
+    context 'with a MessageEditedEvent' do
+      let(:webhook) do
+        <<~JSON
+          {
+            "destination": "xxxxxxxxxx",
+            "events": [
+              {
+                "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+                "type": "messageEdited",
+                "mode": "active",
+                "timestamp": 1462629479859,
+                "source": {
+                  "type": "group",
+                  "groupId": "Ca56f94637c...",
+                  "userId": "U4af4980629..."
+                },
+                "webhookEventId": "01FZ74A0TDDPYRVKNK77XKC3ZR",
+                "deliveryContext": {
+                  "isRedelivery": false
+                },
+                "message": {
+                  "id": "444573844083572737",
+                  "type": "text",
+                  "quoteToken": "q3Plxr4AgKd...",
+                  "text": "Hello, world! (edited)"
+                }
+              }
+            ]
+          }
+        JSON
+      end
+
+      it 'parses the webhook as a MessageEditedEvent' do
+        events = parser.parse(body: webhook, signature: signature)
+        expect(events).not_to be_empty
+
+        event = events.first
+        expect(event).to be_a(Line::Bot::V2::Webhook::MessageEditedEvent)
+        expect(event.reply_token).to eq('nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        expect(event.type).to eq('messageEdited')
+        expect(event.mode).to eq('active')
+        expect(event.timestamp).to eq(1462629479859)
+        expect(event.source).to be_a(Line::Bot::V2::Webhook::GroupSource)
+        expect(event.source.type).to eq('group')
+        expect(event.source.group_id).to eq('Ca56f94637c...')
+        expect(event.source.user_id).to eq('U4af4980629...')
+        expect(event.webhook_event_id).to eq('01FZ74A0TDDPYRVKNK77XKC3ZR')
+        expect(event.delivery_context).to be_a(Line::Bot::V2::Webhook::DeliveryContext)
+        expect(event.delivery_context.is_redelivery).to be false
+        expect(event.message).to be_a(Line::Bot::V2::Webhook::TextMessageContent)
+        expect(event.message.id).to eq('444573844083572737')
+        expect(event.message.type).to eq('text')
+        expect(event.message.quote_token).to eq('q3Plxr4AgKd...')
+        expect(event.message.text).to eq('Hello, world! (edited)')
+      end
+    end
+
     context 'with a MembershioEvent' do
       let(:webhook) do
         <<~JSON
