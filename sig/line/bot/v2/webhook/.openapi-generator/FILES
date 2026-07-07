@@ -39,6 +39,7 @@ model/membership_event.rbs
 model/mention.rbs
 model/mentionee.rbs
 model/message_content.rbs
+model/message_edited_event.rbs
 model/message_event.rbs
 model/module_content.rbs
 model/module_event.rbs
