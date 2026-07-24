@@ -54,6 +54,9 @@ You can code with type support in the corresponding IDE or editor.
 
 ### Basic Usage
 
+The unified `Line::Bot::V2::LineBotClient` wraps all individual API clients into a single object.
+You no longer need to create separate clients for MessagingApi, Insight, Liff, etc.
+
 ```ruby
 # app.rb
 require 'sinatra'
@@ -62,13 +65,7 @@ require 'line-bot-api'
 set :environment, :production
 
 def client
-  @client ||= Line::Bot::V2::MessagingApi::ApiClient.new(
-    channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
-  )
-end
-
-def blob_client
-  @blob_client ||= Line::Bot::V2::MessagingApi::ApiBlobClient.new(
+  @client ||= Line::Bot::V2::LineBotClient.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
   )
 end
@@ -109,9 +106,9 @@ post '/callback' do
           )
           client.reply_message(reply_message_request: request)
         end
-        
+
       when Line::Bot::V2::Webhook::ImageMessageContent, Line::Bot::V2::Webhook::VideoMessageContent
-        response = blob_client.get_message_content(message_id: event.message.message_id)
+        response = client.get_message_content(message_id: event.message.message_id)
         tf = Tempfile.open("content")
         tf.write(response)
       end
@@ -123,6 +120,10 @@ post '/callback' do
 end
 ```
 
+> **Note:** You can still use the individual clients (e.g. `Line::Bot::V2::MessagingApi::ApiClient`) if you prefer.
+> For channel access token operations, use `Line::Bot::V2::ChannelAccessToken::ApiClient` directly.
+> For module attach operations, use `Line::Bot::V2::ModuleAttach::ApiClient` directly.
+
 ### Main classes
 You may use this classes to use LINE Messaging API features.
 
@@ -131,6 +132,26 @@ You may use this classes to use LINE Messaging API features.
 - [Line::Bot::V2::Webhook::Event](https://line.github.io/line-bot-sdk-ruby/Line/Bot/V2/Webhook/Event.html) ([LINE Developers](https://developers.line.biz/en/reference/messaging-api/#webhook-event-objects))
 
 ### Clients
+
+#### Unified Client (recommended)
+
+`Line::Bot::V2::LineBotClient` wraps all API clients below (except ChannelAccessToken and ModuleAttach) into one object.
+You only need a single `channel_access_token` to call any API.
+
+```ruby
+client = Line::Bot::V2::LineBotClient.new(
+  channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN")
+)
+
+# MessagingApi, Insight, Liff, ManageAudience, Module, Shop — all available:
+client.push_message(push_message_request: request)
+client.get_number_of_followers(date: '20240101')
+client.get_message_content(message_id: '12345')
+```
+
+#### Individual Clients
+
+You can also use the individual clients directly if you need finer control.
 
 | Class(YARD documentation)                                                                                                              | API EndPoint                                      | LINE Developers                                                                                                    |
 |----------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
@@ -173,7 +194,7 @@ require 'json'
 require 'line-bot-api'
 
 def client
-  @client ||= Line::Bot::V2::MessagingApi::ApiClient.new(
+  @client ||= Line::Bot::V2::LineBotClient.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
   )
 end
@@ -219,7 +240,7 @@ This is useful, for example, in migrating from v1 or building Flex Message.
 **But this is not recommended because you lose type checking by RBS.**
 
 ```ruby
-client = Line::Bot::V2::MessagingApi::ApiClient.new(
+client = Line::Bot::V2::LineBotClient.new(
   channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
 )
 
