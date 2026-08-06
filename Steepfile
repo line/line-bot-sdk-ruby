@@ -13,11 +13,11 @@ target :lib do
 end
 
 target :test do
-  unreferenced!                     # Skip type checking the `lib` code when types in `test` target is changed
+  unreferenced!                     # Skip type checking the `lib` code when types in test targets is changed
   signature "sig/test"              # Put RBS files for tests under `sig/test`
-  check "test"                      # Type check Ruby scripts under `test`
+  check "test", "type-test"         # Type check Ruby scripts under `test` and `type-test`
 
-  configure_code_diagnostics(D::Ruby.lenient)      # Weak type checking for test code
+  configure_code_diagnostics(D::Ruby.strict)       # Keep integration type tests meaningful in CI
 
   # library "pathname"              # Standard libraries
 end
