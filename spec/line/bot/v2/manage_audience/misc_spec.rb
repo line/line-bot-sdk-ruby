@@ -82,6 +82,7 @@ describe 'ManageAudience' do
           .to_return(status: 202, body: response_body, headers: {})
 
         body, status_code, headers = client.create_audience_for_uploading_user_ids_with_http_info(
+          description: 'Test Audience',
           file: file,
           upload_description: 'Test Audience'
         )

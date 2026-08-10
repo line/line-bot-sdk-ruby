@@ -95,7 +95,7 @@ describe 'Insight' do
         "blocks" => 100
       }.to_json
 
-      stub_request(:get, "https://api.line.me/v2/bot/insight/followers")
+      stub_request(:get, "https://api.line.me/v2/bot/insight/followers?date=20210101")
         .with(
           headers: {
             'Authorization' => "Bearer #{channel_access_token}"
@@ -103,7 +103,7 @@ describe 'Insight' do
         )
         .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      body, status_code, = client.get_number_of_followers_with_http_info
+      body, status_code, = client.get_number_of_followers_with_http_info(date: '20210101')
 
       expect(status_code).to eq(200)
       expect(body.status).to eq('ready')
@@ -120,7 +120,7 @@ describe 'Insight' do
         "blocks" => nil
       }.to_json
 
-      stub_request(:get, "https://api.line.me/v2/bot/insight/followers")
+      stub_request(:get, "https://api.line.me/v2/bot/insight/followers?date=20210101")
         .with(
           headers: {
             'Authorization' => "Bearer #{channel_access_token}"
@@ -128,7 +128,7 @@ describe 'Insight' do
         )
         .to_return(status: response_code, body: response_body, headers: { 'Content-Type' => 'application/json' })
 
-      body, status_code, = client.get_number_of_followers_with_http_info
+      body, status_code, = client.get_number_of_followers_with_http_info(date: '20210101')
 
       expect(status_code).to eq(200)
       expect(body.status).to eq('unready')
