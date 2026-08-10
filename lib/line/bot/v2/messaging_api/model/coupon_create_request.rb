@@ -44,7 +44,7 @@ module Line
           #   @return [String,nil] Conditions for using the coupon. Shown to users.
           attr_accessor :usage_condition
           # @!attribute [rw] reward
-          #   @return [CouponRewardRequest,nil] 
+          #   @return [CouponRewardRequest] 
           attr_accessor :reward
           # @!attribute [rw] visibility
           #   @return [String] ('UNLISTED'|'PUBLIC') Visibility of the coupon. Determines who can see or acquire the coupon.
@@ -63,7 +63,7 @@ module Line
           # @param start_timestamp [Integer] Coupon start time (epoch seconds). Coupon can be used from this time.
           # @param title [String] Title of the coupon. Displayed in the coupon list.
           # @param usage_condition [String,nil] Conditions for using the coupon. Shown to users.
-          # @param reward [CouponRewardRequest, Hash[Symbol, untyped], nil] 
+          # @param reward [CouponRewardRequest, Hash[Symbol, untyped]] 
           # @param visibility [String] ('UNLISTED'|'PUBLIC') Visibility of the coupon. Determines who can see or acquire the coupon.
           # @param timezone [String] ('ETC_GMT_MINUS_12'|'ETC_GMT_MINUS_11'|'PACIFIC_HONOLULU'|'AMERICA_ANCHORAGE'|'AMERICA_LOS_ANGELES'|'AMERICA_PHOENIX'|'AMERICA_CHICAGO'|'AMERICA_NEW_YORK'|'AMERICA_CARACAS'|'AMERICA_SANTIAGO'|'AMERICA_ST_JOHNS'|'AMERICA_SAO_PAULO'|'ETC_GMT_MINUS_2'|'ATLANTIC_CAPE_VERDE'|'EUROPE_LONDON'|'EUROPE_PARIS'|'EUROPE_ISTANBUL'|'EUROPE_MOSCOW'|'ASIA_TEHRAN'|'ASIA_TBILISI'|'ASIA_KABUL'|'ASIA_TASHKENT'|'ASIA_COLOMBO'|'ASIA_KATHMANDU'|'ASIA_ALMATY'|'ASIA_RANGOON'|'ASIA_BANGKOK'|'ASIA_TAIPEI'|'ASIA_TOKYO'|'AUSTRALIA_DARWIN'|'AUSTRALIA_SYDNEY'|'ASIA_VLADIVOSTOK'|'ETC_GMT_PLUS_12'|'PACIFIC_TONGATAPU') Timezone for interpreting start and end timestamps.
           def initialize(
@@ -77,7 +77,7 @@ module Line
             start_timestamp:,
             title:,
             usage_condition: nil,
-            reward: nil,
+            reward:,
             visibility:,
             timezone:,
             **dynamic_attributes
@@ -93,7 +93,7 @@ module Line
             @start_timestamp = start_timestamp
             @title = title
             @usage_condition = usage_condition
-            @reward = reward.is_a?(Line::Bot::V2::MessagingApi::CouponRewardRequest) || reward.nil? ? reward : Line::Bot::V2::MessagingApi::CouponRewardRequest.create(**reward)
+            @reward = reward.is_a?(Line::Bot::V2::MessagingApi::CouponRewardRequest) ? reward : Line::Bot::V2::MessagingApi::CouponRewardRequest.create(**reward)
             @visibility = visibility
             @timezone = timezone
 

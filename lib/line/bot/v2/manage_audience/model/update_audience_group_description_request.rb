@@ -15,12 +15,12 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#set-description-audience-group
         class UpdateAudienceGroupDescriptionRequest
           # @!attribute [rw] description
-          #   @return [String,nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          #   @return [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           attr_accessor :description
 
-          # @param description [String,nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          # @param description [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           def initialize(
-            description: nil,
+            description:,
             **dynamic_attributes
           )
             
@@ -44,7 +44,7 @@ module Line
           # @return [Line::Bot::V2::ManageAudience::UpdateAudienceGroupDescriptionRequest] Instance of the class
           def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args)
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

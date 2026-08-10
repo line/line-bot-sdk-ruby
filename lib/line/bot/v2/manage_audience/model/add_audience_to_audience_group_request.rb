@@ -15,28 +15,28 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
         class AddAudienceToAudienceGroupRequest
           # @!attribute [rw] audience_group_id
-          #   @return [Integer,nil] The audience ID.
+          #   @return [Integer] The audience ID.
           attr_accessor :audience_group_id
           # @!attribute [rw] upload_description
           #   @return [String,nil] The audience's name.
           attr_accessor :upload_description
           # @!attribute [rw] audiences
-          #   @return [Array[Audience],nil] An array of up to 10,000 user IDs or IFAs.
+          #   @return [Array[Audience]] An array of up to 10,000 user IDs or IFAs.
           attr_accessor :audiences
 
-          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param audience_group_id [Integer] The audience ID.
           # @param upload_description [String,nil] The audience's name.
-          # @param audiences [Array[Audience, Hash[Symbol, untyped]],nil] An array of up to 10,000 user IDs or IFAs.
+          # @param audiences [Array[Audience, Hash[Symbol, untyped]]] An array of up to 10,000 user IDs or IFAs.
           def initialize(
-            audience_group_id: nil,
+            audience_group_id:,
             upload_description: nil,
-            audiences: nil,
+            audiences:,
             **dynamic_attributes
           )
             
             @audience_group_id = audience_group_id
             @upload_description = upload_description
-            @audiences = audiences&.map do |item|
+            @audiences = audiences.map do |item|
               if item.is_a?(Hash)
                 Line::Bot::V2::ManageAudience::Audience.create(**item)
               else
@@ -62,7 +62,7 @@ module Line
           # @return [Line::Bot::V2::ManageAudience::AddAudienceToAudienceGroupRequest] Instance of the class
           def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args)
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

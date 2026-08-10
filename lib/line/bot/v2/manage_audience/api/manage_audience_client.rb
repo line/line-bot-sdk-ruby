@@ -485,7 +485,7 @@ module Line
           # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/shared/list</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
-          # @param page [Integer] The page to return when getting (paginated) results. Must be 1 or higher.
+          # @param page [Integer, nil] The page to return when getting (paginated) results. Must be 1 or higher.
           # @param description [String, nil] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
           # @param status [AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
           # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40 
@@ -495,7 +495,7 @@ module Line
           # @return [Array(Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse, Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def get_shared_audience_groups_with_http_info( 
-            page:, 
+            page: nil, 
             description: nil, 
             status: nil, 
             size: nil, 
@@ -534,7 +534,7 @@ module Line
           # This requests to <code>GET https://api.line.me/v2/bot/audienceGroup/shared/list</code>
           # When you want to get HTTP status code or response headers, use {#get_shared_audience_groups_with_http_info} instead of this.
           #
-          # @param page [Integer] The page to return when getting (paginated) results. Must be 1 or higher.
+          # @param page [Integer, nil] The page to return when getting (paginated) results. Must be 1 or higher.
           # @param description [String, nil] The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
           # @param status [AudienceGroupStatus, nil] The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
           # @param size [Integer, nil] The number of audiences per page. Default: 20 Max: 40 
@@ -544,7 +544,7 @@ module Line
           # @return [Line::Bot::V2::ManageAudience::GetSharedAudienceGroupsResponse] when HTTP status code is 200
           # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_shared_audience_groups(
-            page:,
+            page: nil,
             description: nil,
             status: nil,
             size: nil,

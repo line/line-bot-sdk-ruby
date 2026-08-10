@@ -12,24 +12,24 @@ module Line
     module V2
       module MessagingApi
         class RichMenuRequest
-          attr_accessor size: RichMenuSize?
-          attr_accessor selected: bool?
-          attr_accessor name: String?
-          attr_accessor chat_bar_text: String?
-          attr_accessor areas: Array[RichMenuArea]?
+          attr_accessor size: RichMenuSize
+          attr_accessor selected: bool
+          attr_accessor name: String
+          attr_accessor chat_bar_text: String
+          attr_accessor areas: Array[RichMenuArea]
           
 
-          # @param size [RichMenuSize, Hash[Symbol, untyped], nil] 
-          # @param selected [bool,nil] `true` to display the rich menu by default. Otherwise, `false`.
-          # @param name [String,nil] Name of the rich menu. This value can be used to help manage your rich menus and is not displayed to users.
-          # @param chat_bar_text [String,nil] Text displayed in the chat bar
-          # @param areas [Array[RichMenuArea, Hash[Symbol, untyped]],nil] Array of area objects which define the coordinates and size of tappable areas
+          # @param size [RichMenuSize, Hash[Symbol, untyped]] 
+          # @param selected [bool] `true` to display the rich menu by default. Otherwise, `false`.
+          # @param name [String] Name of the rich menu. This value can be used to help manage your rich menus and is not displayed to users.
+          # @param chat_bar_text [String] Text displayed in the chat bar
+          # @param areas [Array[RichMenuArea, Hash[Symbol, untyped]]] Array of area objects which define the coordinates and size of tappable areas
           def initialize: (
-            ?size: RichMenuSize?| Hash[Symbol, untyped]?,
-            ?selected: bool?,
-            ?name: String?,
-            ?chat_bar_text: String?,
-            ?areas: Array[RichMenuArea| Hash[Symbol, untyped]]?,
+            size: RichMenuSize| Hash[Symbol, untyped],
+            selected: bool,
+            name: String,
+            chat_bar_text: String,
+            areas: Array[RichMenuArea| Hash[Symbol, untyped]],
             **untyped dynamic_attributes
           ) -> void
 

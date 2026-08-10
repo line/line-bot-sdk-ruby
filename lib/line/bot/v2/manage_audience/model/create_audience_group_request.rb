@@ -15,7 +15,7 @@ module Line
         # @see https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
         class CreateAudienceGroupRequest
           # @!attribute [rw] description
-          #   @return [String,nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          #   @return [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           attr_accessor :description
           # @!attribute [rw] is_ifa_audience
           #   @return [Boolean,nil] To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 
@@ -27,12 +27,12 @@ module Line
           #   @return [Array[Audience],nil] An array of user IDs or IFAs. Max number: 10,000 
           attr_accessor :audiences
 
-          # @param description [String,nil] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
+          # @param description [String] The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
           # @param is_ifa_audience [Boolean,nil] To specify recipients by IFAs: set true. To specify recipients by user IDs: set false or omit isIfaAudience property. 
           # @param upload_description [String,nil] The description to register for the job (in jobs[].description). 
           # @param audiences [Array[Audience, Hash[Symbol, untyped]],nil] An array of user IDs or IFAs. Max number: 10,000 
           def initialize(
-            description: nil,
+            description:,
             is_ifa_audience: nil,
             upload_description: nil,
             audiences: nil,
@@ -68,7 +68,7 @@ module Line
           # @return [Line::Bot::V2::ManageAudience::CreateAudienceGroupRequest] Instance of the class
           def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
-            return new(**symbolized_args)
+            return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 
           # @param other [Object] Object to compare

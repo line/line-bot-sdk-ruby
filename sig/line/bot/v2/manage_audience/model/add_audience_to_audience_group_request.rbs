@@ -14,18 +14,18 @@ module Line
         # Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
         # @see https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
         class AddAudienceToAudienceGroupRequest
-          attr_accessor audience_group_id: Integer?
+          attr_accessor audience_group_id: Integer
           attr_accessor upload_description: String?
-          attr_accessor audiences: Array[Audience]?
+          attr_accessor audiences: Array[Audience]
           
 
-          # @param audience_group_id [Integer,nil] The audience ID.
+          # @param audience_group_id [Integer] The audience ID.
           # @param upload_description [String,nil] The audience's name.
-          # @param audiences [Array[Audience, Hash[Symbol, untyped]],nil] An array of up to 10,000 user IDs or IFAs.
+          # @param audiences [Array[Audience, Hash[Symbol, untyped]]] An array of up to 10,000 user IDs or IFAs.
           def initialize: (
-            ?audience_group_id: Integer?,
+            audience_group_id: Integer,
             ?upload_description: String?,
-            ?audiences: Array[Audience| Hash[Symbol, untyped]]?,
+            audiences: Array[Audience| Hash[Symbol, untyped]],
             **untyped dynamic_attributes
           ) -> void
 

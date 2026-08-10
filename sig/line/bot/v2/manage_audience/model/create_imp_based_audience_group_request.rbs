@@ -14,15 +14,15 @@ module Line
         # Create audience for impression-based retargeting
         # @see https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
         class CreateImpBasedAudienceGroupRequest
-          attr_accessor description: String?
-          attr_accessor request_id: String?
+          attr_accessor description: String
+          attr_accessor request_id: String
           
 
-          # @param description [String,nil] The audience's name. This is case-insensitive, meaning `AUDIENCE` and `audience` are considered identical. Max character limit: 120 
-          # @param request_id [String,nil] The request ID of a broadcast or narrowcast message sent in the past 60 days. Each Messaging API request has a request ID. 
+          # @param description [String] The audience's name. This is case-insensitive, meaning `AUDIENCE` and `audience` are considered identical. Max character limit: 120 
+          # @param request_id [String] The request ID of a broadcast or narrowcast message sent in the past 60 days. Each Messaging API request has a request ID. 
           def initialize: (
-            ?description: String?,
-            ?request_id: String?,
+            description: String,
+            request_id: String,
             **untyped dynamic_attributes
           ) -> void
 

@@ -96,12 +96,12 @@ module Line
           # This requests to <code>GET https://api.line.me/v2/bot/insight/followers</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
           #
-          # @param date [String, nil] Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
+          # @param date [String] Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
           # @return [Array(Line::Bot::V2::Insight::GetNumberOfFollowersResponse, Integer, Hash{String => String})] when HTTP status code is 200
           # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
           def get_number_of_followers_with_http_info: (
-            ?date: String?
+            date: String
           ) -> (
             [GetNumberOfFollowersResponse, 200, Hash[untyped, untyped]] # when HTTP status code is 200
             | [String?, Integer, Hash[untyped, untyped]] # otherwise
@@ -111,12 +111,12 @@ module Line
           # This requests to <code>GET https://api.line.me/v2/bot/insight/followers</code>
           # When you want to get HTTP status code or response headers, use {#get_number_of_followers_with_http_info} instead of this.
           #
-          # @param date [String, nil] Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
+          # @param date [String] Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
           # @see https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
           # @return [Line::Bot::V2::Insight::GetNumberOfFollowersResponse] when HTTP status code is 200
           # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
           def get_number_of_followers: (
-            ?date: String?
+            date: String
           ) -> (
             GetNumberOfFollowersResponse # when HTTP status code is 200
             | String? # otherwise
