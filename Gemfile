@@ -13,7 +13,7 @@ group :development, :test do
   gem 'rbs', '~> 4.0.0'
   gem 'redcarpet', '~> 3.6.0'
   gem 'rubocop', '~> 1.90.0', require: false
-  gem 'steep', '~> 2.0.0'
+  gem 'steep', '~> 2.1.0'
   gem 'webrick', '~> 1.9.1'
   gem 'yard', '~> 0.9.20' # for yard server
 end
