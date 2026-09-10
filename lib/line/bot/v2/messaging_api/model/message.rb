@@ -56,7 +56,7 @@ module Line
           def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
             klass = detect_class(type: symbolized_args[:type])
-            return klass.new(**symbolized_args) if klass # steep:ignore UnannotatedEmptyCollection
+            return klass.new(**symbolized_args) if klass
             return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
           end
 

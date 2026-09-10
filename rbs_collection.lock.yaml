@@ -25,14 +25,6 @@ gems:
     revision: 0ef449166f72c767f58f920cc36aca818fbf082f
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
-- name: date
-  version: '0'
-  source:
-    type: stdlib
-- name: dbm
-  version: '0'
-  source:
-    type: stdlib
 - name: diff-lcs
   version: '1.5'
   source:
@@ -89,23 +81,11 @@ gems:
   version: 1.9.0
   source:
     type: rubygems
-- name: pstore
-  version: '0'
-  source:
-    type: stdlib
-- name: psych
-  version: '0'
-  source:
-    type: stdlib
 - name: rdoc
   version: '0'
   source:
     type: stdlib
 - name: socket
-  version: '0'
-  source:
-    type: stdlib
-- name: stringio
   version: '0'
   source:
     type: stdlib

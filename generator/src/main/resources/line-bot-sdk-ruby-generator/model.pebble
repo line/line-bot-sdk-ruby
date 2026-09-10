@@ -111,7 +111,7 @@ module Line
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
             {%- if model.model.vendorExtensions.get("x-children") != null and model.model.vendorExtensions.get("x-discriminator-property") != null %}
             klass = detect_class(type: symbolized_args[:{{ model.model.vendorExtensions.get("x-discriminator-property") }}])
-            return klass.new(**symbolized_args) if klass # steep:ignore UnannotatedEmptyCollection
+            return klass.new(**symbolized_args) if klass
             {%- endif %}
             {%- set steepIgnore = '' -%}
             {%- for p in model.model.requiredVars %}{%- if p.defaultValue == null and model.model.vendorExtensions.get("x-selector").propertyName != p.name %}{%- set steepIgnore = ' # steep:ignore InsufficientKeywordArguments' %}{%- endif %}{%- endfor %}
