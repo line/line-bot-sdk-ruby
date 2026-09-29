@@ -140,6 +140,11 @@ model/number_of_messages_response.rbs
 model/operator_demographic_filter.rbs
 model/operator_recipient.rbs
 model/pnp_messages_request.rbs
+model/pnp_templated_button.rbs
+model/pnp_templated_emphasized_item.rbs
+model/pnp_templated_item.rbs
+model/pnp_templated_message_body.rbs
+model/pnp_templated_message_request.rbs
 model/postback_action.rbs
 model/push_message_request.rbs
 model/push_message_response.rbs
