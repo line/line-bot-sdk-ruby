@@ -141,6 +141,11 @@ model/number_of_messages_response.rb
 model/operator_demographic_filter.rb
 model/operator_recipient.rb
 model/pnp_messages_request.rb
+model/pnp_templated_button.rb
+model/pnp_templated_emphasized_item.rb
+model/pnp_templated_item.rb
+model/pnp_templated_message_body.rb
+model/pnp_templated_message_request.rb
 model/postback_action.rb
 model/push_message_request.rb
 model/push_message_response.rb

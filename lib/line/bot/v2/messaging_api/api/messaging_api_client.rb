@@ -1632,6 +1632,58 @@ module Line
             response_body
           end
 
+          # Get number of sent LINE notification messages (template)
+          # This requests to <code>GET https://api.line.me/v2/bot/message/delivery/pnp/templated</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param date [String] Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 
+          # @see https://developers.line.biz/en/reference/line-notification-messages/#get-number-of-sent-line-notification-messages-template
+          # @return [Array(Line::Bot::V2::MessagingApi::NumberOfMessagesResponse, Integer, Hash{String => String})] when HTTP status code is 200
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def get_pnp_templated_message_statistics_with_http_info( 
+            date:
+          )
+            path = "/v2/bot/message/delivery/pnp/templated"
+            query_params = {
+              "date": date
+            }.compact
+
+            response = @http_client.get(
+              path: path,
+              query_params: query_params,
+            )
+
+            case response.code.to_i
+            when 200
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::NumberOfMessagesResponse.create(json)
+              [response_body, 200, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
+          end
+
+          # Get number of sent LINE notification messages (template)
+          # This requests to <code>GET https://api.line.me/v2/bot/message/delivery/pnp/templated</code>
+          # When you want to get HTTP status code or response headers, use {#get_pnp_templated_message_statistics_with_http_info} instead of this.
+          #
+          # @param date [String] Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 
+          # @see https://developers.line.biz/en/reference/line-notification-messages/#get-number-of-sent-line-notification-messages-template
+          # @return [Line::Bot::V2::MessagingApi::NumberOfMessagesResponse] when HTTP status code is 200
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def get_pnp_templated_message_statistics(
+            date:
+          )
+            response_body, _status_code, _headers = get_pnp_templated_message_statistics_with_http_info(
+              date: date
+            )
+
+            response_body
+          end
+
           # Get profile
           # This requests to <code>GET https://api.line.me/v2/bot/profile/{userId}</code>
           # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
@@ -2929,6 +2981,68 @@ module Line
           )
             response_body, _status_code, _headers = push_messages_by_phone_with_http_info(
               pnp_messages_request: pnp_messages_request,
+              x_line_delivery_tag: x_line_delivery_tag
+            )
+
+            response_body
+          end
+
+          # Send LINE notification message (template)
+          # This requests to <code>POST https://api.line.me/v2/bot/message/pnp/templated/push</code>
+          # This returns an array containing response, HTTP status code, and header in order. Please specify all header keys in lowercase.
+          #
+          # @param pnp_templated_message_request [PnpTemplatedMessageRequest] 
+          # @param x_line_delivery_tag [String, nil] String returned in the delivery.data property of the delivery completion event via Webhook.
+          # @see https://developers.line.biz/en/reference/line-notification-messages/#send-line-notification-message-template
+          # @return [Array((String|nil), Integer, Hash{String => String})] when HTTP status code is 202
+          # @return [Array(Line::Bot::V2::MessagingApi::ErrorResponse, Integer, Hash{String => String})] when HTTP status code is 422
+          # @return [Array((String|nil), Integer, Hash{String => String})] when other HTTP status code is returned. String is HTTP response body itself.
+          def push_templated_messages_by_phone_with_http_info( 
+            pnp_templated_message_request:, 
+            x_line_delivery_tag: nil
+          )
+            path = "/v2/bot/message/pnp/templated/push"
+            header_params = {
+              "X-Line-Delivery-Tag": x_line_delivery_tag
+            }.compact
+
+            response = @http_client.post(
+              path: path,
+              body_params: pnp_templated_message_request,
+              headers: header_params
+            )
+
+            case response.code.to_i
+            when 202
+              [response.body, 202, response.each_header.to_h]
+            when 422
+              json = Line::Bot::V2::Utils.deep_underscore(JSON.parse(response.body))
+              json.transform_keys! do |key|
+                Line::Bot::V2::RESERVED_WORDS.include?(key) ? "_#{key}".to_sym : key
+              end
+              response_body = Line::Bot::V2::MessagingApi::ErrorResponse.create(json)
+              [response_body, 422, response.each_header.to_h]
+            else
+              [response.body, response.code.to_i, response.each_header.to_h]
+            end
+          end
+
+          # Send LINE notification message (template)
+          # This requests to <code>POST https://api.line.me/v2/bot/message/pnp/templated/push</code>
+          # When you want to get HTTP status code or response headers, use {#push_templated_messages_by_phone_with_http_info} instead of this.
+          #
+          # @param pnp_templated_message_request [PnpTemplatedMessageRequest] 
+          # @param x_line_delivery_tag [String, nil] String returned in the delivery.data property of the delivery completion event via Webhook.
+          # @see https://developers.line.biz/en/reference/line-notification-messages/#send-line-notification-message-template
+          # @return [String, nil] when HTTP status code is 202
+          # @return [Line::Bot::V2::MessagingApi::ErrorResponse] when HTTP status code is 422
+          # @return [String, nil] when other HTTP status code is returned. This String is HTTP response body itself.
+          def push_templated_messages_by_phone(
+            pnp_templated_message_request:,
+            x_line_delivery_tag: nil
+          )
+            response_body, _status_code, _headers = push_templated_messages_by_phone_with_http_info(
+              pnp_templated_message_request: pnp_templated_message_request,
               x_line_delivery_tag: x_line_delivery_tag
             )
 

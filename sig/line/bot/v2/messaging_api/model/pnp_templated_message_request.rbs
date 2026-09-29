@@ -11,30 +11,30 @@ module Line
   module Bot
     module V2
       module MessagingApi
-        # @see https://developers.line.biz/en/reference/partner-docs/#send-line-notification-message
-        class PnpMessagesRequest
-          attr_accessor messages: Array[Message]
+        # @see https://developers.line.biz/en/reference/line-notification-messages/#send-line-notification-message-template
+        class PnpTemplatedMessageRequest
           attr_accessor to: String
-          attr_accessor notification_disabled: bool?
+          attr_accessor template_key: String
+          attr_accessor body: PnpTemplatedMessageBody?
           attr_accessor custom_aggregation_units: Array[String]?
           
 
-          # @param messages [Array[Message, Hash[Symbol, untyped]]] Message to be sent.
           # @param to [String] Message destination. Specify a phone number that has been normalized to E.164 format and hashed with SHA256.
-          # @param notification_disabled [bool,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
-          # @param custom_aggregation_units [Array[String],nil] Name of aggregation unit. Case-sensitive.
+          # @param template_key [String] Specify the key of the template you want to send. For available keys, see https://developers.line.biz/en/docs/partner-docs/line-notification-messages/template/#templates 
+          # @param body [PnpTemplatedMessageBody, Hash[Symbol, untyped], nil] 
+          # @param custom_aggregation_units [Array[String],nil] Name of aggregation unit. Case-sensitive. For more information about assigning a unit name, see https://developers.line.biz/en/docs/messaging-api/unit-based-statistics-aggregation/#assign-names-to-units-when-sending-messages 
           def initialize: (
-            messages: Array[Message| Hash[Symbol, untyped]],
             to: String,
-            ?notification_disabled: bool?,
+            template_key: String,
+            ?body: PnpTemplatedMessageBody?| Hash[Symbol, untyped]?,
             ?custom_aggregation_units: Array[String]?,
             **untyped dynamic_attributes
           ) -> void
 
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
-          # @return [Line::Bot::V2::MessagingApi::PnpMessagesRequest] Instance of the class
-          def self.create: (Hash[Symbol, untyped]) -> PnpMessagesRequest
+          # @return [Line::Bot::V2::MessagingApi::PnpTemplatedMessageRequest] Instance of the class
+          def self.create: (Hash[Symbol, untyped]) -> PnpTemplatedMessageRequest
 
           # @param other [Object] Object to compare
           # @return [Boolean] true if the objects are equal, false otherwise
