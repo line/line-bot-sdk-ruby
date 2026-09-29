@@ -11,42 +11,36 @@ module Line
   module Bot
     module V2
       module MessagingApi
-        # @see https://developers.line.biz/en/reference/partner-docs/#send-line-notification-message
-        class PnpMessagesRequest
-          # @!attribute [rw] messages
-          #   @return [Array[Message]] Message to be sent.
-          attr_accessor :messages
+        # @see https://developers.line.biz/en/reference/line-notification-messages/#send-line-notification-message-template
+        class PnpTemplatedMessageRequest
           # @!attribute [rw] to
           #   @return [String] Message destination. Specify a phone number that has been normalized to E.164 format and hashed with SHA256.
           attr_accessor :to
-          # @!attribute [rw] notification_disabled
-          #   @return [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
-          attr_accessor :notification_disabled
+          # @!attribute [rw] template_key
+          #   @return [String] Specify the key of the template you want to send. For available keys, see https://developers.line.biz/en/docs/partner-docs/line-notification-messages/template/#templates 
+          attr_accessor :template_key
+          # @!attribute [rw] body
+          #   @return [PnpTemplatedMessageBody,nil] 
+          attr_accessor :body
           # @!attribute [rw] custom_aggregation_units
-          #   @return [Array[String],nil] Name of aggregation unit. Case-sensitive.
+          #   @return [Array[String],nil] Name of aggregation unit. Case-sensitive. For more information about assigning a unit name, see https://developers.line.biz/en/docs/messaging-api/unit-based-statistics-aggregation/#assign-names-to-units-when-sending-messages 
           attr_accessor :custom_aggregation_units
 
-          # @param messages [Array[Message, Hash[Symbol, untyped]]] Message to be sent.
           # @param to [String] Message destination. Specify a phone number that has been normalized to E.164 format and hashed with SHA256.
-          # @param notification_disabled [Boolean,nil] `true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. 
-          # @param custom_aggregation_units [Array[String],nil] Name of aggregation unit. Case-sensitive.
+          # @param template_key [String] Specify the key of the template you want to send. For available keys, see https://developers.line.biz/en/docs/partner-docs/line-notification-messages/template/#templates 
+          # @param body [PnpTemplatedMessageBody, Hash[Symbol, untyped], nil] 
+          # @param custom_aggregation_units [Array[String],nil] Name of aggregation unit. Case-sensitive. For more information about assigning a unit name, see https://developers.line.biz/en/docs/messaging-api/unit-based-statistics-aggregation/#assign-names-to-units-when-sending-messages 
           def initialize(
-            messages:,
             to:,
-            notification_disabled: false,
+            template_key:,
+            body: nil,
             custom_aggregation_units: nil,
             **dynamic_attributes
           )
             
-            @messages = messages.map do |item|
-              if item.is_a?(Hash)
-                Line::Bot::V2::MessagingApi::Message.create(**item)
-              else
-                item
-              end
-            end
             @to = to
-            @notification_disabled = notification_disabled
+            @template_key = template_key
+            @body = body.is_a?(Line::Bot::V2::MessagingApi::PnpTemplatedMessageBody) || body.nil? ? body : Line::Bot::V2::MessagingApi::PnpTemplatedMessageBody.create(**body)
             @custom_aggregation_units = custom_aggregation_units
 
             dynamic_attributes.each do |key, value|
@@ -64,7 +58,7 @@ module Line
 
           # Create an instance of the class from a hash
           # @param args [Hash] Hash containing all the required attributes
-          # @return [Line::Bot::V2::MessagingApi::PnpMessagesRequest] Instance of the class
+          # @return [Line::Bot::V2::MessagingApi::PnpTemplatedMessageRequest] Instance of the class
           def self.create(args)
             symbolized_args = Line::Bot::V2::Utils.deep_symbolize(args)
             return new(**symbolized_args) # steep:ignore InsufficientKeywordArguments
