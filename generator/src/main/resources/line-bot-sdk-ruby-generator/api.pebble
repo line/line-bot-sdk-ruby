@@ -117,10 +117,10 @@ module Line
             }.compact{% endif %}
 
             response = @http_client.{{ op.httpMethod | lower }}{% if op.hasFormParams %}_form{% endif %}{% if op.isMultipart %}_multipart{% endif %}(
-              path: path,{% if op.hasBodyParam %}
+              path: path,{% if op.hasQueryParams %}
+              query_params: query_params,{% endif %}{% if op.hasBodyParam %}
               body_params: {{ op.bodyParam.paramName }},{% elseif op.hasFormParams %}
-              form_params: form_params,{% elseif op.hasQueryParams %}
-              query_params: query_params,{% endif %}{% if op.hasHeaderParams %}
+              form_params: form_params,{% endif %}{% if op.hasHeaderParams %}
               headers: header_params{% endif %}
             )
 

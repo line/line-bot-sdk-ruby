@@ -32,6 +32,13 @@ module Line
             ?headers: Hash[Symbol, untyped]?
           ) -> Net::HTTPResponse
 
+        def patch: (
+            path: String,
+            ?query_params: Hash[Symbol, untyped]?,
+            ?body_params: (File | Hash[untyped, untyped] | untyped)?,
+            ?headers: Hash[Symbol, untyped]?
+          ) -> Net::HTTPResponse
+
         def delete: (
             path: String,
             ?query_params: Hash[Symbol, untyped]?,
