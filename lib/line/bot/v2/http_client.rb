@@ -43,6 +43,12 @@ module Line
         end
 
         # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
+        def patch(path:, query_params: nil, body_params: nil, headers: nil)
+          request = build_request(http_class: Net::HTTP::Patch, path: path, query_params: query_params, headers: headers, body_params: body_params)
+          perform_request(request: request)
+        end
+
+        # NOTE: line-bot-sdk-ruby users should not use this. Breaking changes may occur, so use at your own risk.
         def delete(path:, query_params: nil, headers: nil)
           request = build_request(http_class: Net::HTTP::Delete, path: path, query_params: query_params, headers: headers)
           perform_request(request: request)
