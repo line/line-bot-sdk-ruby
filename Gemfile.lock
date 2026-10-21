@@ -124,7 +124,7 @@ GEM
       unicode-emoji (~> 4.3)
     unicode-emoji (4.3.0)
     uri (1.1.2)
-    webmock (3.32.0)
+    webmock (3.34.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -150,7 +150,7 @@ DEPENDENCIES
   rspec (~> 3.13.0)
   rubocop (~> 1.92.0)
   steep (~> 2.1.0)
-  webmock (~> 3.32.0)
+  webmock (~> 3.34.0)
   webrick (~> 1.9.1)
   yard (~> 0.9.20)
 
@@ -213,7 +213,7 @@ CHECKSUMS
   unicode-display_width (3.3.0) sha256=4b7aa66a4b11db50f6f7e98411215cd0dd10eaecb665d36eec5bcacb3fa0b613
   unicode-emoji (4.3.0) sha256=11c02fa73290378c066bb0562cd4c87d8e1b706fbbe0059ca12746a4244de8ce
   uri (1.1.2) sha256=89292e98eabbef6248b0a0ed5e7e398e152f83f17560023a6d94a7f492b169fb
-  webmock (3.32.0) sha256=4a3afeff1e5fb0f13750a1204aba8baff02cf970a9f1ac262a7a1513f894c671
+  webmock (3.34.0) sha256=72eed29dc8c00148d592acaedaaa6b869e2e397de57dfc8602b84aa834f46b33
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
   yard (0.9.45) sha256=52e211493f7cb8a3ebf7e104a25a1e73937a3103092545d34cb88fafebb3dc51
 
