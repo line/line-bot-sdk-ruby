@@ -7,7 +7,7 @@ gem 'bundler', '~> 4.0.13'
 gemspec
 
 group :development, :test do
-  gem 'irb', '~> 1.18.0'
+  gem 'irb', '~> 1.19.0'
   gem 'rack', '~> 3.1' # for yard server
   gem 'rackup', '~> 2.1' # for yard server
   gem 'rbs', '~> 4.2.0'
