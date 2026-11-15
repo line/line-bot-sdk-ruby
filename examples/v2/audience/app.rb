@@ -1,19 +1,7 @@
 require 'line-bot-api'
 
 def client
-  @client ||= Line::Bot::V2::ManageAudience::ApiClient.new(
-    channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
-  )
-end
-
-def blob_client
-  @blob_client ||= Line::Bot::V2::ManageAudience::ApiBlobClient.new(
-    channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
-  )
-end
-
-def api_client
-  @api_client ||= Line::Bot::V2::MessagingApi::ApiClient.new(
+  @client ||= Line::Bot::V2::LineBotClient.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
   )
 end
@@ -71,7 +59,7 @@ end
 def add_audience_by_file(audience_group_id:)
   # TODO: replace with your user ID in audience.txt
   File.open('audience.txt', 'r') do |f|
-    _body, status_code, _http_headers = blob_client.add_user_ids_to_audience_with_http_info(
+    _body, status_code, _http_headers = client.add_user_ids_to_audience_with_http_info(
       audience_group_id: audience_group_id,
       file: f
     )
@@ -120,7 +108,7 @@ def push_narrowcast(audience_group_id:)
       audience_group_id: audience_group_id,
     )
   )
-  _body, status_code, _http_headers = api_client.narrowcast_with_http_info(narrowcast_request: request)
+  _body, status_code, _http_headers = client.narrowcast_with_http_info(narrowcast_request: request)
 
   if status_code == 202
     puts '=== Push narrowcast successfully ==='
