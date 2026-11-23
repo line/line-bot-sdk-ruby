@@ -45,7 +45,7 @@ jobs:
 
           git add lib/line/bot/version.rb Gemfile.lock
           git commit -m "Set version to $VERSION"
-      - uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
+      - uses: rubygems/release-gem@5c53f5308233b7c0f47411f0471b3faae6fa57b2 # v1.4.2
 
       - name: Create GitHub Issue on Failure
         if: failure()
