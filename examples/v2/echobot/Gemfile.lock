@@ -35,7 +35,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 4.0.13)
+  bundler (~> 4.1.0)
   line-bot-api (>= 2.8.3)
   puma
   rackup
@@ -58,4 +58,4 @@ CHECKSUMS
   tilt (2.9.0) sha256=da5735d0280bba96e9a91041bb14aee435ccad5c17b0fa519249ae543d9aa3a5
 
 BUNDLED WITH
-  4.0.13
+  4.1.0
