@@ -140,7 +140,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bundler (~> 4.0.13)
+  bundler (~> 4.1.0)
   irb (~> 1.19.0)
   line-bot-api!
   rack (~> 3.1)
@@ -220,4 +220,4 @@ CHECKSUMS
   yard (0.9.45) sha256=52e211493f7cb8a3ebf7e104a25a1e73937a3103092545d34cb88fafebb3dc51
 
 BUNDLED WITH
-  4.0.13
+  4.1.0

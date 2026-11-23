@@ -12,7 +12,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 4.0.13)
+  bundler (~> 4.1.0)
   line-bot-api (>= 2.8.3)
 
 CHECKSUMS
@@ -22,4 +22,4 @@ CHECKSUMS
   multipart-post (2.4.1) sha256=9872d03a8e552020ca096adadbf5e3cb1cd1cdd6acd3c161136b8a5737cdb4a8
 
 BUNDLED WITH
-  4.0.13
+  4.1.0
