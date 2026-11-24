@@ -1,13 +1,7 @@
 require 'line-bot-api'
 
 def client
-  @client ||= Line::Bot::V2::MessagingApi::ApiClient.new(
-    channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
-  )
-end
-
-def blob_client
-  @blob_client ||= Line::Bot::V2::MessagingApi::ApiBlobClient.new(
+  @client ||= Line::Bot::V2::LineBotClient.new(
     channel_access_token: ENV.fetch("LINE_CHANNEL_ACCESS_TOKEN"),
   )
 end
@@ -15,11 +9,11 @@ end
 def main
   create_rich_menu_a_response = client.create_rich_menu(rich_menu_request: rich_menu_request_a)
   puts "created: #{create_rich_menu_a_response.rich_menu_id}"
-  blob_client.set_rich_menu_image(rich_menu_id: create_rich_menu_a_response.rich_menu_id, body: File.open('./public/richmenu-a.png'))
+  client.set_rich_menu_image(rich_menu_id: create_rich_menu_a_response.rich_menu_id, body: File.open('./public/richmenu-a.png'))
 
   create_rich_menu_b_response = client.create_rich_menu(rich_menu_request: rich_menu_request_b)
   puts "created: #{create_rich_menu_b_response.rich_menu_id}"
-  blob_client.set_rich_menu_image(rich_menu_id: create_rich_menu_b_response.rich_menu_id, body: File.open('./public/richmenu-b.png'))
+  client.set_rich_menu_image(rich_menu_id: create_rich_menu_b_response.rich_menu_id, body: File.open('./public/richmenu-b.png'))
 
   client.set_default_rich_menu(rich_menu_id: create_rich_menu_a_response.rich_menu_id)
 
